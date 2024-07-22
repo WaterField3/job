@@ -14,6 +14,7 @@ namespace TMF
 		virtual void OnFinalize();
 		virtual void OnUpdate();
 		virtual void OnDraw();
+
 		virtual void SetName(const char name[64]);
 		virtual const char* GetName();
 		virtual const DirectX::XMFLOAT3 GetTransform(const char name[32]);

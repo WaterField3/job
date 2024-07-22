@@ -1,9 +1,14 @@
 #undef UNICODE  // Unicodeではなく、マルチバイト文字を使う
 
 #include <Windows.h>
+
 #include "direct3d.h"
 #include "Input.h"
 #include "Application/Application.h"
+#include "GameObject/GameObject.h"
+#include "Component/Component.h"
+#include "Component/Transform/Transform.h"
+#include "GameObjectManager/GameObjectManager.h"
 
 // マクロ定義
 #define CLASS_NAME    "DX21Smpl"// ウインドウクラスの名前
@@ -21,6 +26,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
+	auto gameObject = std::make_shared<TMF::GameObject>();
+	auto component = gameObject->AddComponent<TMF::Component>();
+	auto component2 = gameObject->AddComponent<TMF::Transform>();
+	auto transcomponent= gameObject->GetComponent<TMF::Transform>();
+	gameObject->RemoveComponent<TMF::Transform>();
+	auto gameManeger = std::make_unique<TMF::GameObjectManager>();
+	gameManeger->AddGameObject<TMF::GameObject>();
+
+
+
 	WNDCLASSEX wc;
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.style = CS_CLASSDC;
