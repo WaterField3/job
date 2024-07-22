@@ -1,0 +1,12 @@
+#
+#
+#
+
+newmtl rpgpp_lt_building_03.002_rpgpp_st_mat_a.001
+illum 2
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.250000 0.250000 0.250000
+Ns 9.607843
+map_Kd rpgpp_lt_tex_a.png
+

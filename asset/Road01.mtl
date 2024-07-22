@@ -1,0 +1,36 @@
+#
+#
+#
+
+newmtl _Material #3049
+illum 2
+Ka 0.588000 0.588000 0.588000
+Kd 0.588000 0.588000 0.588000
+Ks 0.000000 0.000000 0.000000
+Ns 2.000000
+map_Kd Road_with_pavements_v1.png
+
+newmtl _17 - Default
+illum 2
+Ka 0.588235 0.588235 0.588235
+Kd 0.588235 0.588235 0.588235
+Ks 0.000000 0.000000 0.000000
+Ns 2.000000
+map_Kd Seamless_asphalt_v1.png
+
+newmtl _Material #3049
+illum 2
+Ka 0.588000 0.588000 0.588000
+Kd 0.588000 0.588000 0.588000
+Ks 0.000000 0.000000 0.000000
+Ns 2.000000
+map_Kd Road_with_pavements_v1.png
+
+newmtl _17 - Default
+illum 2
+Ka 0.588235 0.588235 0.588235
+Kd 0.588235 0.588235 0.588235
+Ks 0.000000 0.000000 0.000000
+Ns 2.000000
+map_Kd Seamless_asphalt_v1.png
+
