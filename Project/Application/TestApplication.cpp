@@ -5,6 +5,7 @@
 #include "Layer/FieldLayer.h"
 #include "GraphicManager/GraphicManager.h"
 #include "Utility/Log.h"
+#include "Layer/GameLayer.h"
 
 TMF::Application* CreateApplication()
 {
@@ -15,13 +16,7 @@ void TMF::TestApplication::OnInitialize()
 {
 	//m_console.Initialize();
 	GraphicManager::CreateGraphicManager();
-	AddLayer<CameraLayer>("camera");
-	AddLayer<TestLayer>("test");
-	AddLayer<FieldLayer>("Field");
-	//GraphicManager::Get()->CreatCameraLayer();
-	GraphicManager::Get()->SetCameraLayer(GetLayer<CameraLayer>("camera"));
-	GraphicManager::Get()->CameraSetOwner(GetLayer<TestLayer>("test"));
-	//Log::Info(GetLayer<TestLayer>("test")->GetName());
+	AddLayer<GameLayer>();
 }	
 
 void TMF::TestApplication::OnUpdate()

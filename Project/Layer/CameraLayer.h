@@ -14,11 +14,10 @@ namespace TMF
 		void OnFinalize() override;
 		void OnUpdate() override;
 		void OnDraw() override;
-		void SetName(const char name[64]) override;
-		const DirectX::XMFLOAT3 GetTransform(const char name[32]) override;
+
 		void SetEyePos(DirectX::XMFLOAT3 _eyePos);
 		void SetFocus(DirectX::XMFLOAT3 _focus);
-		const char* GetName() override;
+
 		void SetCameraOwner(Layer* _owner);
 		DirectX::XMMATRIX GetViewMatrix();
 		DirectX::XMMATRIX GetProjectionMatrix();

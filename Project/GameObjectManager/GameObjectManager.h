@@ -12,32 +12,17 @@ namespace TMF
 	class GameObjectManager
 	{
 	public:
-		template <typename TGameObject>
-		std::weak_ptr<TGameObject> AddGameObject()
+
+		std::weak_ptr<GameObject> CreateGameObject();
+		void DestroyGameObject(GameObject* pGameObject);
+		void Update();
+		void LateUpdate();
+		void Draw();
+
+		static GameObjectManager& Instance() 
 		{
-			auto pGameObject = std::make_shared<TGameObject>();
-
-			m_pGameObjects.push_back(pGameObject);
-
-			return pGameObject;
-		}
-
-		template <typename TGameObject>
-		void RemoveGameObject()
-		{
-			int iterator = 0;
-
-			for (auto& gameObject : m_pGameObjects)
-			{
-				if (typeid(*gameObject) == typeid(TGameObject))
-				{
-					m_pGameObjects.erase(m_pGameObjects.begin() + iterator);
-				}
-				else
-				{
-					iterator++;
-				}
-			}
+			static GameObjectManager instance;
+			return instance;
 		}
 
 	private:

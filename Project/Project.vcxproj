@@ -150,7 +150,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Application\Application.cpp" />
     <ClCompile Include="BoxMesh.cpp" />
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Component\Camera\Camera.cpp" />
     <ClCompile Include="Component\Component.cpp" />
     <ClCompile Include="Layer\GameLayer.cpp" />
     <ClCompile Include="GameObjectManager\GameObjectManager.cpp" />
@@ -176,7 +176,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application\Application.h" />
     <ClInclude Include="BoxMesh.h" />
-    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Component\Camera\Camera.h" />
     <ClInclude Include="Component\Component.h" />
     <ClInclude Include="Layer\GameLayer.h" />
     <ClInclude Include="GameObjectManager\GameObjectManager.h" />

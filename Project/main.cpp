@@ -26,13 +26,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
-	auto gameObject = std::make_shared<TMF::GameObject>();
-	auto component = gameObject->AddComponent<TMF::Component>();
-	auto component2 = gameObject->AddComponent<TMF::Transform>();
-	auto transcomponent= gameObject->GetComponent<TMF::Transform>();
-	gameObject->RemoveComponent<TMF::Transform>();
-	auto gameManeger = std::make_unique<TMF::GameObjectManager>();
-	gameManeger->AddGameObject<TMF::GameObject>();
+	auto& gameObjectManager = TMF::GameObjectManager::Instance();
+	auto pGameObject = gameObjectManager.CreateGameObject();
+	if (auto pObject = pGameObject.lock())
+	{
+		auto component = pObject-> AddComponent<TMF::Component>();
+		auto component2 = pObject->AddComponent<TMF::Transform>();
+		auto transcomponent = pObject->GetComponent<TMF::Transform>();
+		pObject->RemoveComponent<TMF::Transform>();
+		gameObjectManager.DestroyGameObject(pObject.get());
+	}
 
 
 

@@ -43,13 +43,16 @@ namespace TMF
 		template <typename TComponent>
 		std::weak_ptr<TComponent> GetComponent()
 		{
-			for (auto& component : m_pComponents)
+			for (auto& pComponent : m_pComponents)
 			{
-				if (typeid(*component) == typeid(TComponent))
+				if (auto result = std::dynamic_pointer_cast<TComponent>(pComponent))
 				{
-					return std::dynamic_pointer_cast<TComponent>(component);
+					return result;
 				}
 			}
+
+			std::weak_ptr<TComponent> nonPtr;
+			return  nonPtr;
 		}
 
 		void Initialize();
@@ -58,7 +61,12 @@ namespace TMF
 		void Draw();
 		void LateUpdate();
 
+		inline void SetName(std::string name) { m_name = name; }
+		inline std::string GetName() const { return m_name; }
+
 	private:
 		std::vector<std::shared_ptr<Component>> m_pComponents;
+
+		std::string m_name = "NewGameObject";
 	};
 }

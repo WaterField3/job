@@ -32,7 +32,7 @@ namespace TMF
 		}
 	protected:
 		template <typename T>
-		void AddLayer(const char name[64])
+		void AddLayer()
 		{
 			m_layers.push_back(std::make_unique<T>());
 			auto size = m_layers.size();
@@ -41,21 +41,7 @@ namespace TMF
 				return;
 			}
 			m_layers[size - 1]->OnInitialize();
-			m_layers[size - 1]->SetName(name);
-		}
 
-		template <typename T>
-		T* GetLayer(const char name[64])
-		{
-			auto size = m_layers.size();
-			for (int i = 0; i < size; i++)
-			{
-				if (m_layers[i]->GetName() == name)
-				{
-					return dynamic_cast<T*> (m_layers[i].get());
-				}
-			}
-			return nullptr;
 		}
 
 		void RemoveAllLayer();
