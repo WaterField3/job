@@ -90,6 +90,8 @@ public:
 	ID3D11DeviceContext* GetContext() { return m_pImmediateContext; }
 	ID3D11Buffer* GetConstantBuffer() { return m_pConstantBuffer; }
 
+	inline HWND GetHwnd() const { return m_hwnd; }
+
 	// 頂点データ１つあたりのバイトサイズを返す
 	UINT GetVertexStride();
 
@@ -129,5 +131,6 @@ private:
 	// 定数バッファ用変数
 	ID3D11Buffer* m_pConstantBuffer;
 
+	HWND m_hwnd;
 };
 

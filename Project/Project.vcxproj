@@ -152,6 +152,7 @@
     <ClCompile Include="BoxMesh.cpp" />
     <ClCompile Include="Component\Camera\Camera.cpp" />
     <ClCompile Include="Component\Component.cpp" />
+    <ClCompile Include="Layer\EditerLayer.cpp" />
     <ClCompile Include="Layer\GameLayer.cpp" />
     <ClCompile Include="GameObjectManager\GameObjectManager.cpp" />
     <ClCompile Include="GameObject\GameObject.cpp" />
@@ -170,6 +171,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Application\TestApplication.cpp" />
     <ClCompile Include="Layer\TestLayer.cpp" />
+    <ClCompile Include="Vender\Imgui\imgui.cpp" />
+    <ClCompile Include="Vender\Imgui\imgui_demo.cpp" />
+    <ClCompile Include="Vender\Imgui\imgui_draw.cpp" />
+    <ClCompile Include="Vender\Imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Vender\Imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="Vender\Imgui\imgui_tables.cpp" />
+    <ClCompile Include="Vender\Imgui\imgui_widgets.cpp" />
     <ClCompile Include="WICTextureLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +186,7 @@
     <ClInclude Include="BoxMesh.h" />
     <ClInclude Include="Component\Camera\Camera.h" />
     <ClInclude Include="Component\Component.h" />
+    <ClInclude Include="Layer\EditerLayer.h" />
     <ClInclude Include="Layer\GameLayer.h" />
     <ClInclude Include="GameObjectManager\GameObjectManager.h" />
     <ClInclude Include="GameObject\GameObject.h" />
@@ -197,6 +206,14 @@
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="Application\TestApplication.h" />
     <ClInclude Include="Layer\TestLayer.h" />
+    <ClInclude Include="Vender\Imgui\imconfig.h" />
+    <ClInclude Include="Vender\Imgui\imgui.h" />
+    <ClInclude Include="Vender\Imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="Vender\Imgui\imgui_impl_win32.h" />
+    <ClInclude Include="Vender\Imgui\imgui_internal.h" />
+    <ClInclude Include="Vender\Imgui\imstb_rectpack.h" />
+    <ClInclude Include="Vender\Imgui\imstb_textedit.h" />
+    <ClInclude Include="Vender\Imgui\imstb_truetype.h" />
     <ClInclude Include="VertexShader.h" />
     <ClInclude Include="WaveFrontReader.h" />
     <ClInclude Include="WICTextureLoader.h" />

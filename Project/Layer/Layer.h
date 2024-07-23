@@ -14,6 +14,7 @@ namespace TMF
 		virtual void OnFinalize();
 		virtual void OnUpdate();
 		virtual void OnDraw();
+		virtual void OnDrawImGui();
 
 	protected:
 

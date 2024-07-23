@@ -238,6 +238,9 @@ HRESULT D3D::Create(HWND hwnd)
     BlendState.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
     m_pDevice->CreateBlendState(&BlendState, &m_pBlendStateAdditive);
 
+    m_hwnd = hwnd;
+
+
     return hr;
 }
 
@@ -485,7 +488,7 @@ UINT D3D::GetVertexStride()
 void D3D::ClearScreen()
 {
     // 画面塗りつぶし色
-    float clearColor[4] = { 0.0f, 0.0f, 1.0f, 1.0f }; //red,green,blue,alpha
+    float clearColor[4] = { 0.0f, 0.0f, 1.0f, 0.5f }; //red,green,blue,alpha
 
     // 描画先のキャンバスと使用する深度バッファを指定する
     m_pImmediateContext->OMSetRenderTargets(1, &m_pRenderTargetView, m_pDepthStencilView);
@@ -518,5 +521,5 @@ void D3D::ClearScreen()
 void D3D::UpdateScreen()
 {
     // ダブルバッファの切り替えを行い画面を更新する
-    m_pSwapChain->Present(0, 0);
+    m_pSwapChain->Present(1, 0);
 }

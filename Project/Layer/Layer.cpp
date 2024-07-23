@@ -22,6 +22,10 @@ namespace TMF
 	{
 
 	}
+	void Layer::OnDrawImGui()
+	{
+
+	}
 	//void Layer::SetName(const char name[64])
 	//{
 	//	m_name = name;

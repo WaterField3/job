@@ -9,6 +9,7 @@
 #include "Component/Component.h"
 #include "Component/Transform/Transform.h"
 #include "GameObjectManager/GameObjectManager.h"
+#include "Vender/Imgui/imgui.h"
 
 // マクロ定義
 #define CLASS_NAME    "DX21Smpl"// ウインドウクラスの名前
@@ -34,7 +35,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		auto component2 = pObject->AddComponent<TMF::Transform>();
 		auto transcomponent = pObject->GetComponent<TMF::Transform>();
 		pObject->RemoveComponent<TMF::Transform>();
-		gameObjectManager.DestroyGameObject(pObject.get());
+		//gameObjectManager.DestroyGameObject(pObject.get());
 	}
 
 
@@ -133,6 +134,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 				app->OnUpdate();
 
+				//app->OnDraw();
+
+				app->OnDrawImGui();
+
 				fpsCounter++; // ゲームループ実行回数をカウント＋１
 				oldCount = nowCount;
 			}
@@ -159,9 +164,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	return (int)msg.wParam;
 }
 
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
+		return true;
+
 	switch (uMsg)
 	{
 	case WM_DESTROY:// ウィンドウ破棄のメッセージ

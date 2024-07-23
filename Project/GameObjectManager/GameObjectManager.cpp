@@ -57,4 +57,9 @@ namespace TMF
 		}
 	}
 
+	std::vector<std::shared_ptr<GameObject>> GameObjectManager::GetGameObjects()
+	{
+		return m_pGameObjects;
+	}
+
 }

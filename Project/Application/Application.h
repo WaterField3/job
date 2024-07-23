@@ -16,6 +16,8 @@ namespace TMF
 		virtual void OnInitialize();
 		virtual void OnFinalize();
 		virtual void OnUpdate();
+		virtual void OnDraw();
+		virtual void OnDrawImGui();
 		// •‚ğæ“¾
 		static uint32_t GetWidth() {
 			return m_Width;

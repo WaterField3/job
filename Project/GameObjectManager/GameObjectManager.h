@@ -19,6 +19,8 @@ namespace TMF
 		void LateUpdate();
 		void Draw();
 
+		std::vector<std::shared_ptr<GameObject>> GetGameObjects();
+
 		static GameObjectManager& Instance() 
 		{
 			static GameObjectManager instance;

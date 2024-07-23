@@ -6,6 +6,7 @@
 #include "GraphicManager/GraphicManager.h"
 #include "Utility/Log.h"
 #include "Layer/GameLayer.h"
+#include "Layer/EditerLayer.h"
 
 TMF::Application* CreateApplication()
 {
@@ -17,6 +18,7 @@ void TMF::TestApplication::OnInitialize()
 	//m_console.Initialize();
 	GraphicManager::CreateGraphicManager();
 	AddLayer<GameLayer>();
+	AddLayer<EditerLayer>();
 }	
 
 void TMF::TestApplication::OnUpdate()
