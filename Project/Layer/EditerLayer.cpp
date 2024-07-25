@@ -1,12 +1,13 @@
 #include "EditerLayer.h"
 
-#include "Vender/Imgui/imgui_impl_win32.h"
-#include "Vender/Imgui/imgui_impl_dx11.h"
+#include <Imgui/imgui_impl_win32.h>
+#include <Imgui/imgui_impl_dx11.h>
 #include <d3d11.h>
 #include <tchar.h>
-
 #include <iostream>
+
 #include "GameObjectManager/GameObjectManager.h"
+#include "GameObject/GameObject.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -78,12 +79,27 @@ namespace TMF
 		//ImGui::ShowDemoWindow(&m_show_demo_window);
 
 
-		ImGui::Begin("Hello2, world!");                          // Create a window called "Hello, world!" and append into it.
+		ImGui::Begin("Hierarchy");                          // Create a window called "Hello, world!" and append into it.
 
-		if (ImGui::TreeNode("a"))
+		auto pGameObjects = GameObjectManager::Instance().GetGameObjects();
+
+		for (auto& pGameObject : pGameObjects)
 		{
+			auto name = pGameObject->GetName();
+			
+			name += "##" + pGameObject->GetStrUUID();
 
-			ImGui::TreePop();
+			if (ImGui::TreeNodeEx(name.c_str()))
+			{
+
+				ImGui::TreePop();
+			}
+
+
+		}
+		if (ImGui::Button("AddGameObject"))
+		{
+			GameObjectManager::Instance().CreateGameObject();
 		}
 
 

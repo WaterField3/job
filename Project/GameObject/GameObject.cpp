@@ -2,7 +2,10 @@
 
 void TMF::GameObject::Initialize()
 {
-
+	if (m_uuID.is_nil())
+	{
+		m_uuID = boost::uuids::random_generator()();
+	}
 }
 
 void TMF::GameObject::Finalize()
