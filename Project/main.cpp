@@ -1,6 +1,10 @@
 #undef UNICODE  // Unicodeではなく、マルチバイト文字を使う
 
 #include <Windows.h>
+#include <Imgui/imgui.h>
+#include <cereal/cereal.hpp>
+#include <cereal/archives/json.hpp>
+#include <fstream>
 
 #include "direct3d.h"
 #include "Input.h"
@@ -8,8 +12,9 @@
 #include "GameObject/GameObject.h"
 #include "Component/Component.h"
 #include "Component/Transform/Transform.h"
-#include "GameObjectManager/GameObjectManager.h"
-#include "Vender/Imgui/imgui.h"
+#include "GameObject/GameObjectManager.h"
+#include "Utility/CerealExtention.h"
+
 
 // マクロ定義
 #define CLASS_NAME    "DX21Smpl"// ウインドウクラスの名前
@@ -17,29 +22,18 @@
 
 #define SCREEN_WIDTH (1024)	// ウインドウの幅
 #define SCREEN_HEIGHT (576)	// ウインドウの高さ
+using namespace TMF;
 
-extern TMF::Application* CreateApplication();
+extern Application* CreateApplication();
 
 // 関数のプロトタイプ宣言
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
 
 // エントリポイント＝一番最初に実行される関数
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
-	auto& gameObjectManager = TMF::GameObjectManager::Instance();
-	auto pGameObject = gameObjectManager.CreateGameObject();
-	if (auto pObject = pGameObject.lock())
-	{
-		auto component = pObject-> AddComponent<TMF::Component>();
-		auto component2 = pObject->AddComponent<TMF::Transform>();
-		auto transcomponent = pObject->GetComponent<TMF::Transform>();
-		pObject->RemoveComponent<TMF::Transform>();
-		//gameObjectManager.DestroyGameObject(pObject.get());
-	}
-
-
-
 	WNDCLASSEX wc;
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.style = CS_CLASSDC;
@@ -102,9 +96,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	MSG msg;
 
-
-
-	
+	std::ifstream iS("test.json", std::ios::in);
+	{
+		cereal::JSONInputArchive inArchive(iS);
+		inArchive(GameObjectManager::Instance());
+	}
 
 	auto app = CreateApplication();
 	app->OnInitialize();
@@ -159,6 +155,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	app->OnFinalize();
 
+	std::ofstream ss("test.json", std::ios::out);
+	{
+		cereal::JSONOutputArchive oArchive(ss);
+		oArchive(GameObjectManager::Instance());
+	}
+
 	UnregisterClass(CLASS_NAME, hInstance);
 
 	return (int)msg.wParam;
@@ -182,11 +184,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		DestroyWindow(hWnd);  // “WM_DESTROY”メッセージを送る
 		break;
 
-	// キーが押されたイベント
+		// キーが押されたイベント
 	case WM_KEYDOWN:
 		break;
 
-	// キーが離されたイベント
+		// キーが離されたイベント
 	case WM_KEYUP:
 		break;
 

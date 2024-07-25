@@ -1,8 +1,11 @@
 #pragma once
 
-#include "Layer.h"
-#include "Vender/Imgui/imgui.h"
+#include <memory>
 
+#include "Layer.h"
+#include "Imgui/imgui.h"
+#include "Editer/Hierarchy.h"
+#include "Editer/Inspector.h"
 
 namespace TMF
 {
@@ -16,9 +19,7 @@ namespace TMF
 		void OnDrawImGui() override;
 
 	private:
-		bool m_show_demo_window = true;
-		bool m_show_another_window = false;
-		ImVec4 m_clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
+		std::unique_ptr<Hierarchy> m_pHirarchy;
+		std::unique_ptr<Inspector> m_pInspector;
 	};
 }

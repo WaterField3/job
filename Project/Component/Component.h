@@ -17,6 +17,7 @@ namespace TMF
 		void Update();
 		void LateUpdate();
 		void Draw();
+		void DrawImGui();
 
 	protected:
 		virtual void OnInitialize();
@@ -24,6 +25,7 @@ namespace TMF
 		virtual void OnUpdate();
 		virtual void OnLateUpdate();
 		virtual void OnDraw();
+		virtual void OnDrawImGui();
 
 		std::weak_ptr<GameObject> m_pOwner;
 

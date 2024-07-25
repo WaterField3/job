@@ -7,7 +7,8 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include <boost/uuid/uuid_generators.hpp>
-
+#include <cereal/cereal.hpp>
+#include <optional>
 
 #include "Component/Component.h"
 
@@ -59,11 +60,26 @@ namespace TMF
 			return  nonPtr;
 		}
 
+		template<class Archive>
+		void serialize(Archive& archive)
+		{
+			archive(CEREAL_NVP(m_name));
+			try
+			{
+				archive(CEREAL_NVP(m_uuID));
+			}
+			catch (const std::exception&)
+			{
+
+			}
+		}
+
 		void Initialize();
 		void Finalize();
 		void Update();
-		void Draw();
 		void LateUpdate();
+		void Draw();
+		void DrawImGui();
 
 		inline void SetName(std::string name) { m_name = name; }
 		inline std::string GetName() const { return m_name; }
@@ -71,10 +87,7 @@ namespace TMF
 
 	private:
 		std::vector<std::shared_ptr<Component>> m_pComponents;
-
 		std::string m_name = "NewGameObject";
-
-		boost::uuids::uuid m_uuID;
-
+		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 	};
 }

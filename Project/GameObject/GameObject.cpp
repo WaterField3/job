@@ -1,38 +1,58 @@
 #include "GameObject.h"
 
-void TMF::GameObject::Initialize()
+#include <Imgui/imgui.h>
+
+#include <string.h>
+
+namespace TMF
 {
-	if (m_uuID.is_nil())
+	void GameObject::Initialize()
 	{
-		m_uuID = boost::uuids::random_generator()();
+		if (m_uuID.is_nil())
+		{
+			m_uuID = boost::uuids::random_generator()();
+		}
 	}
-}
 
-void TMF::GameObject::Finalize()
-{
-
-}
-
-void TMF::GameObject::Update()
-{
-	for (auto& component : m_pComponents)
+	void GameObject::Finalize()
 	{
-		component->Update();
+
 	}
-}
 
-void TMF::GameObject::Draw()
-{
-	for (auto& component : m_pComponents)
+	void GameObject::Update()
 	{
-		component->Draw();
+		for (auto& component : m_pComponents)
+		{
+			component->Update();
+		}
 	}
-}
 
-void TMF::GameObject::LateUpdate()
-{
-	for (auto& component : m_pComponents)
+	void GameObject::Draw()
 	{
-		component->LateUpdate();
+		for (auto& component : m_pComponents)
+		{
+			component->Draw();
+		}
+	}
+
+	void GameObject::DrawImGui()
+	{
+		//ImGui::Text(m_name.c_str());
+		char buf[256] = {};
+		strcpy_s(buf, sizeof(buf), m_name.c_str());
+		ImGui::InputText("Name", buf, 256);
+		//m_name = buf;
+		for (auto& component : m_pComponents)
+		{
+			component->DrawImGui();
+		}
+	}
+
+	void GameObject::LateUpdate()
+	{
+		for (auto& component : m_pComponents)
+		{
+			component->LateUpdate();
+		}
 	}
 }

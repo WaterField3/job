@@ -6,17 +6,18 @@
 #include <tchar.h>
 #include <iostream>
 
-#include "GameObjectManager/GameObjectManager.h"
+#include "GameObject/GameObjectManager.h"
 #include "GameObject/GameObject.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-
 namespace TMF
 {
-
 	void EditerLayer::OnInitialize()
 	{
+		m_pHirarchy = std::make_unique<Hierarchy>();
+		m_pInspector = std::make_unique<Inspector>();
+
 		// Show the window
 		::ShowWindow(D3D::Get()->GetHwnd(), SW_SHOWDEFAULT);
 		::UpdateWindow(D3D::Get()->GetHwnd());
@@ -51,7 +52,6 @@ namespace TMF
 
 	void EditerLayer::OnFinalize()
 	{
-
 		// Cleanup
 		ImGui_ImplDX11_Shutdown();
 		ImGui_ImplWin32_Shutdown();
@@ -76,39 +76,14 @@ namespace TMF
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
 
-		//ImGui::ShowDemoWindow(&m_show_demo_window);
+		//ImGui::ShowDemoWindow();
 
+		m_pHirarchy->DrawImGui();
 
-		ImGui::Begin("Hierarchy");                          // Create a window called "Hello, world!" and append into it.
-
-		auto pGameObjects = GameObjectManager::Instance().GetGameObjects();
-
-		for (auto& pGameObject : pGameObjects)
-		{
-			auto name = pGameObject->GetName();
-			
-			name += "##" + pGameObject->GetStrUUID();
-
-			if (ImGui::TreeNodeEx(name.c_str()))
-			{
-
-				ImGui::TreePop();
-			}
-
-
-		}
-		if (ImGui::Button("AddGameObject"))
-		{
-			GameObjectManager::Instance().CreateGameObject();
-		}
-
-
-		ImGui::End();
-
+		m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
 
 		ImGui::Render();
 
-		const float clear_color_with_alpha[4] = { m_clear_color.x * m_clear_color.w, m_clear_color.y * m_clear_color.w, m_clear_color.z * m_clear_color.w, m_clear_color.w };
 
 		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 

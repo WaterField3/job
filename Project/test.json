@@ -1,0 +1,39 @@
+{
+    "value0": {
+        "m_pGameObjects": [
+            {
+                "ptr_wrapper": {
+                    "id": 2147483649,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "value0": "116938f9-ae8e-489d-904c-fd51f9703661"
+                        }
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483650,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "value0": "2b9279a0-48f0-46db-bbdf-baa53745fa0e"
+                        }
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483651,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "value0": "0a701064-6dbf-4206-adca-0861ff8dd9cd"
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

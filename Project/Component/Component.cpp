@@ -40,6 +40,10 @@ namespace TMF
 	{
 		OnDraw();
 	}
+	void Component::DrawImGui()
+	{
+		OnDrawImGui();
+	}
 	void Component::OnInitialize()
 	{
 
@@ -57,6 +61,10 @@ namespace TMF
 
 	}
 	void Component::OnDraw()
+	{
+
+	}
+	void Component::OnDrawImGui()
 	{
 
 	}
