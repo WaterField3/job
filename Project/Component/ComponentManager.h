@@ -5,6 +5,7 @@
 #include <memory>
 #include <map>
 #include <functional>
+#include <typeindex>
 
 #include "GameObject/GameObject.h"
 
@@ -18,6 +19,17 @@ namespace TMF
 		{
 			m_componentName.push_back(name);
 			m_addComponentMap.emplace(name, [&](std::weak_ptr<GameObject> pGameObject) {AddComponent<TComponent>(pGameObject); });
+			m_componentNameMap.emplace(typeid(TComponent), name);
+		}
+
+		std::string GetComponentName(std::type_index type)
+		{
+			auto it = m_componentNameMap.find(type);
+			if (it != m_componentNameMap.end())
+			{
+				return it->second;
+			}
+			return "";
 		}
 
 		static ComponentManager& Instance()
@@ -38,9 +50,10 @@ namespace TMF
 				pObject->AddComponent<TComponent>();
 			}
 		}
-		
+
 	private:
 		std::vector<std::string> m_componentName;
 		std::map<std::string, std::function<void(std::weak_ptr<GameObject>)>> m_addComponentMap;
+		std::map<std::type_index, std::string> m_componentNameMap;
 	};
 }

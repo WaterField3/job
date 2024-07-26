@@ -47,8 +47,6 @@ namespace TMF
 		ImGui_ImplWin32_Init(D3D::Get()->GetHwnd());
 		ImGui_ImplDX11_Init(D3D::Get()->GetDevice(), D3D::Get()->GetContext());
 
-		ComponentManager::Instance().RegisterComponent<TMF::Transform>("Transform");
-
 		bool show_demo_window = true;
 		bool show_another_window = false;
 		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);

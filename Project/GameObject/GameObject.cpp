@@ -1,8 +1,9 @@
 #include "GameObject.h"
 
 #include <Imgui/imgui.h>
-
 #include <string.h>
+
+#include "Component/ComponentManager.h"
 
 namespace TMF
 {
@@ -37,17 +38,23 @@ namespace TMF
 
 	void GameObject::DrawImGui()
 	{
-	
+
 		char buf[256] = "";
 		strcpy_s(buf, sizeof(buf), m_name.c_str());
 		if (ImGui::InputText("Name", buf, 256))
 		{
 			m_name = buf;
 		}
-
+		auto index = 0;
 		for (auto& component : m_pComponents)
 		{
-			component->DrawImGui();
+			auto label = ComponentManager::Instance().GetComponentName(typeid(*component));
+			label += "## " + std::to_string(index);
+			if (ImGui::CollapsingHeader(label.c_str()))
+			{
+				component->DrawImGui();
+			}
+			index++;
 		}
 	}
 

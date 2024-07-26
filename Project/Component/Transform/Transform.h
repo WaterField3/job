@@ -29,4 +29,3 @@ namespace TMF
 		DirectX::SimpleMath::Vector3 m_rotation;
 	};
 }
-

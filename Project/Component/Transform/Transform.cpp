@@ -2,8 +2,12 @@
 
 #include <Imgui/imgui.h>
 
+#include "Component/ComponentRegister.h"
+
 namespace TMF
 {
+	REGISTER_COMPONENT(Transform);
+
 	Transform::Transform()
 	{
 

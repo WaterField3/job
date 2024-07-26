@@ -280,6 +280,7 @@
     <ClInclude Include="Component\ComponentManager.h" />
     <ClInclude Include="Component\Camera\Camera.h" />
     <ClInclude Include="Component\Component.h" />
+    <ClInclude Include="Component\ComponentRegister.h" />
     <ClInclude Include="Editer\Inspector.h" />
     <ClInclude Include="Utility\CerealExtention.h" />
     <ClInclude Include="Editer\Hierarchy.h" />
