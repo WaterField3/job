@@ -156,6 +156,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Application\Application.cpp" />
     <ClCompile Include="BoxMesh.cpp" />
+    <ClCompile Include="Component\ComponentManager.cpp" />
     <ClCompile Include="Component\Camera\Camera.cpp" />
     <ClCompile Include="Component\Component.cpp" />
     <ClCompile Include="Editer\Hierarchy.cpp" />
@@ -276,6 +277,7 @@
     <ClInclude Include="cereal\types\variant.hpp" />
     <ClInclude Include="cereal\types\vector.hpp" />
     <ClInclude Include="cereal\version.hpp" />
+    <ClInclude Include="Component\ComponentManager.h" />
     <ClInclude Include="Component\Camera\Camera.h" />
     <ClInclude Include="Component\Component.h" />
     <ClInclude Include="Editer\Inspector.h" />

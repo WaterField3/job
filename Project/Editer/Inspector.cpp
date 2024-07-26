@@ -2,7 +2,7 @@
 
 #include "Imgui/imgui.h"
 
-#include "GameObject/GameObject.h"
+#include "Component/ComponentManager.h"
 #include "Component/Transform/Transform.h"
 
 namespace TMF
@@ -20,11 +20,15 @@ namespace TMF
 			}
 			if (ImGui::BeginPopup("Components"))
 			{
-				if (ImGui::Button("Transfrom"))
+				for (auto& componentName : ComponentManager::Instance().GetComponentNames())
 				{
-					pObject->AddComponent<Transform>();
-					ImGui::CloseCurrentPopup();
+					if (ImGui::Button(componentName.c_str()))
+					{
+						ComponentManager::Instance().AddComponent(componentName, pObject);
+						ImGui::CloseCurrentPopup();
+					}
 				}
+
 				ImGui::EndPopup();
 			}
 		}

@@ -8,6 +8,8 @@
 
 #include "GameObject/GameObjectManager.h"
 #include "GameObject/GameObject.h"
+#include "Component/ComponentManager.h"
+#include "Component/Transform/Transform.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -44,6 +46,8 @@ namespace TMF
 
 		ImGui_ImplWin32_Init(D3D::Get()->GetHwnd());
 		ImGui_ImplDX11_Init(D3D::Get()->GetDevice(), D3D::Get()->GetContext());
+
+		ComponentManager::Instance().RegisterComponent<TMF::Transform>("Transform");
 
 		bool show_demo_window = true;
 		bool show_another_window = false;
