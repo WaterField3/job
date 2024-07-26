@@ -82,7 +82,7 @@ namespace TMF
 
 		m_pHirarchy->DrawImGui();
 
-		m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
+		//m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
 
 		ImGui::Render();
 

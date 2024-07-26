@@ -48,13 +48,30 @@ namespace TMF
 		auto index = 0;
 		for (auto& component : m_pComponents)
 		{
-			auto label = ComponentManager::Instance().GetComponentName(typeid(*component));
+			index++;
+			auto componentName = ComponentManager::Instance().GetComponentName(typeid(*component));
+			auto label = componentName;
 			label += "## " + std::to_string(index);
-			if (ImGui::CollapsingHeader(label.c_str()))
+			if (ImGui::CollapsingHeader(label.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
 			{
+				if (ImGui::IsItemClicked(ImGuiMouseButton_Right))
+				{
+					ImGui::OpenPopup("ComponentMenuPopup");
+
+				}
+				if (ImGui::BeginPopup("ComponentMenuPopup"))
+				{
+					if (ImGui::Button("RemoveComponent"))
+					{
+						ComponentManager::Instance().RemoveComponent(componentName, shared_from_this());
+						ImGui::CloseCurrentPopup();
+						ImGui::EndPopup();
+						continue;
+					}
+					ImGui::EndPopup();
+				}
 				component->DrawImGui();
 			}
-			index++;
 		}
 	}
 
