@@ -78,11 +78,11 @@ namespace TMF
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
 
-		ImGui::ShowDemoWindow();
+		//ImGui::ShowDemoWindow();
 
 		m_pHirarchy->DrawImGui();
 
-		//m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
+		m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
 
 		ImGui::Render();
 

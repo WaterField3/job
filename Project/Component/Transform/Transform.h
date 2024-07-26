@@ -2,7 +2,7 @@
 #include "Component/Component.h"
 
 #include "SimpleMath.h"
-
+#include <cereal/types/polymorphic.hpp>
 namespace TMF
 {
 	class Transform : public Component
@@ -29,3 +29,6 @@ namespace TMF
 		DirectX::SimpleMath::Vector3 m_rotation;
 	};
 }
+CEREAL_REGISTER_TYPE(TMF::Transform);
+
+CEREAL_REGISTER_POLYMORPHIC_RELATION(TMF::Component, TMF::Transform)

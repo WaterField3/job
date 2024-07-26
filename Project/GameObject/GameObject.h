@@ -85,6 +85,8 @@ namespace TMF
 		inline std::string GetName() const { return m_name; }
 		inline std::string GetStrUUID() const { return boost::uuids::to_string(m_uuID); }
 
+
+
 	private:
 		std::vector<std::shared_ptr<Component>> m_pComponents;
 		std::string m_name = "NewGameObject";

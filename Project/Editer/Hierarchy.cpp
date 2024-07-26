@@ -23,8 +23,11 @@ namespace TMF
 
 			if (ImGui::TreeNodeEx(name.c_str()))
 			{
-
 				ImGui::TreePop();
+				if (ImGui::IsItemClicked(ImGuiMouseButton_Right))
+				{
+					ImGui::OpenPopup("GameObjectMenuPopup");
+				}
 			}
 
 			if (ImGui::IsItemClicked())
@@ -32,19 +35,23 @@ namespace TMF
 				m_pSelectGameObject = pGameObject;
 			}
 		}
+		if (ImGui::BeginPopup("GameObjectMenuPopup"))
+		{
+			if (ImGui::Button("DeleteGameObject"))
+			{
+				if (!m_pSelectGameObject.expired())
+				{
+					auto pGameObject = m_pSelectGameObject.lock();
+					GameObjectManager::Instance().DestroyGameObject(pGameObject.get());
+				}
+				ImGui::CloseCurrentPopup();
+			}
+			ImGui::EndPopup();
+		}
 		if (ImGui::Button("CreateGameObject"))
 		{
 			GameObjectManager::Instance().CreateGameObject();
 		}
-		if (ImGui::Button("DeleteGameObject"))
-		{
-			if (!m_pSelectGameObject.expired())
-			{
-				auto pGameObject = m_pSelectGameObject.lock();
-				GameObjectManager::Instance().DestroyGameObject(pGameObject.get());
-			}
-		}
-
 		ImGui::End();
 	}
 }
