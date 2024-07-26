@@ -7,7 +7,6 @@
 #include <fstream>
 
 #include "direct3d.h"
-#include "Input.h"
 #include "Application/Application.h"
 #include "GameObject/GameObject.h"
 #include "Component/Component.h"
@@ -74,7 +73,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	D3D::Get()->Create(hWnd);
 
 	// Inputクラスの初期化
-	Input::Get()->Initialize(hWnd, hInstance);
 
 	// FPS表示用変数
 	int fpsCounter = 0;
@@ -108,10 +106,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// ゲームループ
 	for (;;)
 	{
-		BOOL isAnyMessage = PeekMessage(&msg, NULL, 0, 0, PM_REMOVE);
+		BOOL isAnyMessage = PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE);
 
 		if (isAnyMessage)// 何かメッセージがあるか判定
 		{
+			TranslateMessage(&msg);
+
 			DispatchMessage(&msg);
 
 			if (msg.message == WM_QUIT) {
@@ -126,7 +126,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			if (nowCount >= oldCount + numCount_1frame)
 			{
 				// ゲーム処理実行
-				Input::Get()->Update();
 
 				app->OnUpdate();
 
@@ -185,11 +184,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		break;
 
 		// キーが押されたイベント
-	case WM_KEYDOWN:
-		break;
+	//case WM_KEYDOWN:
+	//	break;
 
-		// キーが離されたイベント
-	case WM_KEYUP:
+	//	// キーが離されたイベント
+	//case WM_KEYUP:
+	//	break;
+
+	case WM_DPICHANGED:
+		if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DpiEnableScaleViewports)
+		{
+			//const int dpi = HIWORD(wParam);
+			//printf("WM_DPICHANGED to %d (%.0f%%)\n", dpi, (float)dpi / 96.0f * 100.0f);
+			const RECT* suggested_rect = (RECT*)lParam;
+			::SetWindowPos(hWnd, nullptr, suggested_rect->left, suggested_rect->top, suggested_rect->right - suggested_rect->left, suggested_rect->bottom - suggested_rect->top, SWP_NOZORDER | SWP_NOACTIVATE);
+		}
 		break;
 
 	default:

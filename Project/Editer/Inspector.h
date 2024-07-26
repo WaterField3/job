@@ -2,6 +2,8 @@
 
 #include <memory>
 
+#include <string>
+
 namespace TMF
 {
 	class GameObject;
@@ -9,6 +11,8 @@ namespace TMF
 	{
 	public:
 		void DrawImGui(std::weak_ptr<GameObject> pGameObject);
+
+	private:
 	};
 }
 

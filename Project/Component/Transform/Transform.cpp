@@ -1,51 +1,80 @@
 #include "Transform.h"
 
-TMF::Transform::Transform()
+#include <Imgui/imgui.h>
+
+namespace TMF
 {
+	Transform::Transform()
+	{
 
-}
+	}
 
-TMF::Transform::~Transform()
-{
+	Transform::~Transform()
+	{
 
-}
+	}
 
-void TMF::Transform::OnInitialize()
-{
+	void Transform::OnInitialize()
+	{
 
-}
+	}
 
-void TMF::Transform::OnFinalize()
-{
+	void Transform::OnFinalize()
+	{
 
-}
+	}
 
-void TMF::Transform::OnUpdate()
-{
+	void Transform::OnUpdate()
+	{
 
-}
+	}
 
-void TMF::Transform::OnLateUpdate()
-{
+	void Transform::OnLateUpdate()
+	{
 
-}
+	}
 
-void TMF::Transform::OnDraw()
-{
+	void Transform::OnDraw()
+	{
 
-}
+	}
 
-void TMF::Transform::SetPos(DirectX::SimpleMath::Vector3 pos)
-{
+	void Transform::OnDrawImGui()
+	{
+		if (ImGui::DragFloat3("Position", &m_position.x, 0.1f))
+		{
 
-}
+		}
+	}
 
-void TMF::Transform::SetScale(DirectX::SimpleMath::Vector3 scale)
-{
+	void Transform::SetPos(DirectX::SimpleMath::Vector3 pos)
+	{
 
-}
+	}
 
-void TMF::Transform::SetRotation(DirectX::SimpleMath::Vector3 rotation)
-{
+	void Transform::SetScale(DirectX::SimpleMath::Vector3 scale)
+	{
 
+	}
+
+	void Transform::SetRotation(DirectX::SimpleMath::Vector3 rotation)
+	{
+
+	}
+
+	DirectX::SimpleMath::Matrix Transform::GetMatrixLocal()
+	{
+		// âÒì]çsóÒ
+		auto rotateMatrixX = DirectX::SimpleMath::Matrix::CreateRotationX(m_rotation.x);
+		auto rotateMatrixY = DirectX::SimpleMath::Matrix::CreateRotationY(m_rotation.y);
+		auto rotateMatrixZ = DirectX::SimpleMath::Matrix::CreateRotationY(m_rotation.z);
+
+		auto rotateMatrix = rotateMatrixX * rotateMatrixY * rotateMatrixZ;
+		// ägèkçsóÒ
+		auto scaleMatrix = DirectX::SimpleMath::Matrix::CreateScale(m_scale);
+		// à⁄ìÆçsóÒ
+		auto transformMatrix = DirectX::SimpleMath::Matrix::CreateTranslation(m_position);
+
+		return scaleMatrix * rotateMatrix * transformMatrix;
+	}
 }

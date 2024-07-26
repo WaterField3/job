@@ -174,7 +174,6 @@
     <ClCompile Include="direct3d.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Layer\HogeLayer.cpp" />
-    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Layer\Layer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Application\TestApplication.cpp" />
@@ -297,7 +296,6 @@
     <ClInclude Include="direct3d.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Layer\HogeLayer.h" />
-    <ClInclude Include="Input.h" />
     <ClInclude Include="Layer\Layer.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="Application\TestApplication.h" />

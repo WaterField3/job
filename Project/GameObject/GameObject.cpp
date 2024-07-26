@@ -37,11 +37,14 @@ namespace TMF
 
 	void GameObject::DrawImGui()
 	{
-		//ImGui::Text(m_name.c_str());
-		char buf[256] = {};
+	
+		char buf[256] = "";
 		strcpy_s(buf, sizeof(buf), m_name.c_str());
-		ImGui::InputText("Name", buf, 256);
-		//m_name = buf;
+		if (ImGui::InputText("Name", buf, 256))
+		{
+			m_name = buf;
+		}
+
 		for (auto& component : m_pComponents)
 		{
 			component->DrawImGui();
