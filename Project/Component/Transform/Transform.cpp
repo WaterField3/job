@@ -2,8 +2,6 @@
 
 #include <Imgui/imgui.h>
 
-#include "Component/ComponentRegister.h"
-
 namespace TMF
 {
 	REGISTER_COMPONENT(Transform);
@@ -49,9 +47,17 @@ namespace TMF
 		{
 
 		}
+		if (ImGui::DragFloat3("Scale", &m_scale.x, 0.1f))
+		{
+
+		}
+		if (ImGui::DragFloat3("Rotarion", &m_rotation.x, 0.1f))
+		{
+
+		}
 	}
 
-	void Transform::SetPos(DirectX::SimpleMath::Vector3 pos)
+	void Transform::SetPosition(DirectX::SimpleMath::Vector3 pos)
 	{
 
 	}

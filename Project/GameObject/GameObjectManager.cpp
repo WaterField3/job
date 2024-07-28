@@ -12,7 +12,6 @@ namespace TMF
 		m_pGameObjects.push_back(pGameObject);
 
 		return pGameObject;
-
 	}
 
 	void GameObjectManager::DestroyGameObject(GameObject* pGameObject)
@@ -61,5 +60,4 @@ namespace TMF
 	{
 		return m_pGameObjects;
 	}
-
 }

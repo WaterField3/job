@@ -15,7 +15,6 @@ namespace TMF
 		inline  std::weak_ptr<GameObject> GetSelectGameObject() const { return m_pSelectGameObject; }
 
 	private:
-		std::weak_ptr<GameObject> m_pSelectGameObject;
-		 
+		std::weak_ptr<GameObject> m_pSelectGameObject;	 
 	};
 }

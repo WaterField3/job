@@ -18,8 +18,14 @@ namespace TMF
 	};
 }
 
+// AddComponentをシステムに登録(cppに書いてください)
 #define REGISTER_COMPONENT(componentName) \
 namespace \
 { \
-	TMF::ComponentRegister<componentName> g_##componentName##Register(#componentName); \
+	inline TMF::ComponentRegister<componentName> g_##componentName##Register(#componentName); \
 }
+
+// Cerealにコンポーネントを登録(hに書いてください)
+#define REGISTER_CEREAL_TYPE(componentName) \
+CEREAL_REGISTER_TYPE(componentName); \
+CEREAL_REGISTER_POLYMORPHIC_RELATION(TMF::Component, componentName);

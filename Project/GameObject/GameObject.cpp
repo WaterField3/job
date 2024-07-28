@@ -57,21 +57,20 @@ namespace TMF
 				if (ImGui::IsItemClicked(ImGuiMouseButton_Right))
 				{
 					ImGui::OpenPopup("ComponentMenuPopup");
-
+					m_selectComponentName = componentName.c_str();
 				}
-				if (ImGui::BeginPopup("ComponentMenuPopup"))
-				{
-					if (ImGui::Button("RemoveComponent"))
-					{
-						ComponentManager::Instance().RemoveComponent(componentName, shared_from_this());
-						ImGui::CloseCurrentPopup();
-						ImGui::EndPopup();
-						continue;
-					}
-					ImGui::EndPopup();
-				}
-				component->DrawImGui();
 			}
+			component->DrawImGui();
+		}
+
+		if (ImGui::BeginPopup("ComponentMenuPopup"))
+		{
+			if (ImGui::Button("RemoveComponent"))
+			{
+				ComponentManager::Instance().RemoveComponent(m_selectComponentName, shared_from_this());
+				ImGui::CloseCurrentPopup();
+			}
+			ImGui::EndPopup();
 		}
 	}
 

@@ -38,4 +38,3 @@ namespace TMF
 		std::vector<std::shared_ptr<GameObject>> m_pGameObjects;
 	};
 }
-
