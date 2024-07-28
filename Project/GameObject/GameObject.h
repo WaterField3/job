@@ -72,6 +72,14 @@ namespace TMF
 			{
 
 			}
+			try
+			{
+				archive(CEREAL_NVP(m_pComponents));
+			}
+			catch (const std::exception&)
+			{
+
+			}
 		}
 
 		void Initialize();

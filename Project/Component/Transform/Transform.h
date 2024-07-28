@@ -1,8 +1,9 @@
 #pragma once
-#include "Component/Component.h"
 
-#include "SimpleMath.h"
 #include <cereal/types/polymorphic.hpp>
+
+#include "Component/Component.h"
+#include "SimpleMath.h"
 namespace TMF
 {
 	class Transform : public Component
@@ -20,8 +21,14 @@ namespace TMF
 		void SetPos(DirectX::SimpleMath::Vector3 pos);
 		void SetScale(DirectX::SimpleMath::Vector3 scale);
 		void SetRotation(DirectX::SimpleMath::Vector3 rotation);
-
 		DirectX::SimpleMath::Matrix GetMatrixLocal();
+
+		template<typename Archive>
+		void serialize(Archive& ar)
+		{
+			ar(cereal::base_class<Component>(this), m_position, m_scale, m_rotation);
+			return;
+		}
 
 	private:
 		DirectX::SimpleMath::Vector3 m_scale;

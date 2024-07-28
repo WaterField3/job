@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <string>
+#include <cereal/types/base_class.hpp>
 
 namespace TMF
 {
@@ -12,6 +13,12 @@ namespace TMF
 	public:
 		Component();
 		virtual ~Component();
+
+		template<typename Archive>
+		void serialize(Archive& ar)
+		{
+			return;
+		}
 
 		void Initialize(std::weak_ptr<GameObject> pOwner);
 		void Finalize();
