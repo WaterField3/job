@@ -29,17 +29,19 @@
                                     "id": 2147483651,
                                     "data": {
                                         "value0": {},
-                                        "value1": {
-                                            "value0": 11.899999618530274,
-                                            "value1": 14.0,
-                                            "value2": -6.400000095367432
+                                        "m_position": {
+                                            "value0": 3.700000047683716,
+                                            "value1": -3.5,
+                                            "value2": 14.5
                                         },
-                                        "value2": {
+                                        "value1": {},
+                                        "m_scale": {
                                             "value0": 0.0,
                                             "value1": 0.0,
                                             "value2": 0.0
                                         },
-                                        "value3": {
+                                        "value2": {},
+                                        "m_rotation": {
                                             "value0": 0.0,
                                             "value1": 0.0,
                                             "value2": 0.0
@@ -55,11 +57,38 @@
                 "ptr_wrapper": {
                     "id": 2147483652,
                     "data": {
-                        "m_name": "NewGameObject",
+                        "m_name": "hoge",
                         "m_uuID": {
                             "value0": "0a701064-6dbf-4206-adca-0861ff8dd9cd"
                         },
-                        "m_pComponents": []
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483653,
+                                    "data": {
+                                        "value0": {},
+                                        "m_position": {
+                                            "value0": -8.199999809265137,
+                                            "value1": 6.300000190734863,
+                                            "value2": 10.5
+                                        },
+                                        "value1": {},
+                                        "m_scale": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "value2": {},
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        }
+                                    }
+                                }
+                            }
+                        ]
                     }
                 }
             }

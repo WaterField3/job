@@ -277,6 +277,7 @@
     <ClInclude Include="cereal\types\variant.hpp" />
     <ClInclude Include="cereal\types\vector.hpp" />
     <ClInclude Include="cereal\version.hpp" />
+    <ClInclude Include="Component\ComponentCerealHelper.h" />
     <ClInclude Include="Component\ComponentManager.h" />
     <ClInclude Include="Component\Camera\Camera.h" />
     <ClInclude Include="Component\Component.h" />
@@ -293,6 +294,7 @@
     <ClInclude Include="GraphicManager\GraphicManager.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Component\Transform\Transform.h" />
+    <ClInclude Include="Utility\CerealHelper.h" />
     <ClInclude Include="Utility\Log.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Utility\Console.h" />

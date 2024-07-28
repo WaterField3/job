@@ -11,6 +11,8 @@
 #include <optional>
 
 #include "Component/Component.h"
+#include "Utility/CerealExtention.h"
+#include "Utility/CerealHelper.h"
 
 namespace TMF
 {
@@ -60,27 +62,6 @@ namespace TMF
 			return  nonPtr;
 		}
 
-		template<class Archive>
-		void serialize(Archive& archive)
-		{
-			archive(CEREAL_NVP(m_name));
-			try
-			{
-				archive(CEREAL_NVP(m_uuID));
-			}
-			catch (const std::exception&)
-			{
-
-			}
-			try
-			{
-				archive(CEREAL_NVP(m_pComponents));
-			}
-			catch (const std::exception&)
-			{
-
-			}
-		}
 
 		void Initialize();
 		void Finalize();
@@ -94,10 +75,11 @@ namespace TMF
 		inline std::string GetStrUUID() const { return boost::uuids::to_string(m_uuID); }
 
 
-
 	private:
 		std::vector<std::shared_ptr<Component>> m_pComponents;
 		std::string m_name = "NewGameObject";
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
+
+		SERIALIZE(m_name, m_uuID,m_pComponents);
 	};
 }

@@ -4,6 +4,8 @@
 
 #include "Component/Component.h"
 #include "SimpleMath.h"
+#include "Component/ComponentCerealHelper.h"
+
 namespace TMF
 {
 	class Transform : public Component
@@ -23,18 +25,14 @@ namespace TMF
 		void SetRotation(DirectX::SimpleMath::Vector3 rotation);
 		DirectX::SimpleMath::Matrix GetMatrixLocal();
 
-		template<typename Archive>
-		void serialize(Archive& ar)
-		{
-			ar(cereal::base_class<Component>(this), m_position, m_scale, m_rotation);
-			return;
-		}
-
 	private:
 		DirectX::SimpleMath::Vector3 m_scale;
 		DirectX::SimpleMath::Vector3 m_position;
 		DirectX::SimpleMath::Vector3 m_rotation;
+
+		SERIALIZE_COMPONENT(m_position, m_scale, m_rotation);
 	};
+
 }
 CEREAL_REGISTER_TYPE(TMF::Transform);
 

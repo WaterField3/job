@@ -39,9 +39,5 @@ namespace TMF
 
 	private:
 
-
 	};
-
-
 }
-
