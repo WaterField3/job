@@ -9,7 +9,8 @@ namespace TMF
 	class GraphicManager
 	{
 	public:
-		GraphicManager() {};
+		GraphicManager() = default;
+		~GraphicManager() = default;
 		static GraphicManager* Get();
 		static void CreateGraphicManager();
 		void SetCameraLayer(CameraLayer* _camLayer);
@@ -23,6 +24,5 @@ namespace TMF
 
 	private:
 		CameraLayer* cameraLayer;
-
 	};
 }

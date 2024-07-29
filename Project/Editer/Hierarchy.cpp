@@ -7,10 +7,8 @@
 
 namespace TMF
 {
-
 	void Hierarchy::DrawImGui()
 	{
-
 		ImGui::Begin("Hierarchy");                          // Create a window called "Hello, world!" and append into it.
 
 		auto pGameObjects = GameObjectManager::Instance().GetGameObjects();

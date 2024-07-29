@@ -7,7 +7,6 @@
 namespace TMF
 {
 	class GameObject;
-
 	class Component
 	{
 	public:
@@ -38,6 +37,5 @@ namespace TMF
 		std::weak_ptr<GameObject> m_pOwner;
 
 	private:
-
 	};
 }

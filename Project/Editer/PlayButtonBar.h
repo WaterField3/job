@@ -17,12 +17,11 @@ namespace TMF
 		bool m_isPlay = false;
 		bool m_isPause = false;
 		bool m_isNextFrame = false;
+		bool m_isDemoWindow = false;
 
-		ImVec4 m_ButtonColor = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
-		ImVec4 pressedColor = ImVec4(0.0f, 0.7f, 0.0f, 1.0f); // 緑色
+		ImVec4 normalColor = ImVec4(0.0f, 0.7f, 0.0f, 1.0f); // 緑色
 		// 通常の色
-		ImVec4 normalColor = ImVec4(0.7f, 0.0f, 0.0f, 1.0f); // 赤色
+		ImVec4 pressedColor = ImVec4(0.7f, 0.0f, 0.0f, 1.0f); // 赤色
 
 	};
 }
-

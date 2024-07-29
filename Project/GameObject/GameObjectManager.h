@@ -9,7 +9,6 @@
 namespace TMF
 {
 	class GameObject;
-
 	class GameObjectManager
 	{
 	public:

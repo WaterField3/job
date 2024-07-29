@@ -13,4 +13,3 @@ private:
 	FILE* m_fpStdout;
 	FILE* m_fpStderr;
 };
-

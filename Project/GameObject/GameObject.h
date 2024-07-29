@@ -58,7 +58,6 @@ namespace TMF
 			return  nonPtr;
 		}
 
-
 		void Initialize();
 		void Finalize();
 		void Update();
@@ -69,7 +68,6 @@ namespace TMF
 		inline void SetName(std::string name) { m_name = name; }
 		inline std::string GetName() const { return m_name; }
 		inline std::string GetStrUUID() const { return boost::uuids::to_string(m_uuID); }
-
 
 	private:
 		std::vector<std::shared_ptr<Component>> m_pComponents;

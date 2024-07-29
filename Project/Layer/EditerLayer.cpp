@@ -59,6 +59,7 @@ namespace TMF
 		ImGui_ImplDX11_Shutdown();
 		ImGui_ImplWin32_Shutdown();
 		ImGui::DestroyContext();
+		GameObjectManager::Instance().Finalize();
 	}
 
 	void EditerLayer::OnUpdate()
@@ -76,8 +77,6 @@ namespace TMF
 		ImGui_ImplDX11_NewFrame();
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
-
-		ImGui::ShowDemoWindow();
 
 		m_pHirarchy->DrawImGui();
 		m_pPlayButtonBar->DrawImGui();

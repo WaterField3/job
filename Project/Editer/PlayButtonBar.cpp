@@ -42,25 +42,54 @@ namespace TMF
 			m_isPlay = !m_isPlay;
 		}
 
-		// ボタンの色を変更
-		auto currentColor = m_isPause ? normalColor : pressedColor;
-		ImGui::PushStyleColor(ImGuiCol_Button, currentColor);
-		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, currentColor);
-		ImGui::PushStyleColor(ImGuiCol_ButtonActive, currentColor);
-
 		ImGui::SameLine();
-		if (ImGui::Button("Pause"))
+		if (m_isPause)
+		{
+			ImGui::PushStyleColor(ImGuiCol_Button, normalColor);
+		}
+		else
+		{
+			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.2f, 0.3f, 0.4f, 1.0f });
+		}
+		auto temp = ImGui::Button("Pause");
+
+		if (temp)
 		{
 			m_isPause = !m_isPause;
 		}
-		ImGui::PopStyleColor(3);
+		ImGui::PopStyleColor(1);
 		ImGui::SameLine();
+		if (m_isNextFrame)
+		{
+			m_isNextFrame = false;
+		}
 		if (ImGui::Button("NextFrame"))
 		{
-			m_isNextFrame = !m_isNextFrame;
+			if (m_isPause)
+			{
+				m_isNextFrame = true;
+			}
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Save"))
+		{
+			if (!m_isPlay)
+			{
+				std::ofstream ss("test.json", std::ios::out);
+				{
+					cereal::JSONOutputArchive oArchive(ss);
+					oArchive(GameObjectManager::Instance());
+				}
+			}
+		}
+		ImGui::SameLine();
+		ImGui::Checkbox("DemoWindow", &m_isDemoWindow);
+		if (m_isDemoWindow)
+		{
+			ImGui::ShowDemoWindow();
 		}
 		ImGui::End();
-		if (m_isPlay && !m_isPause)
+		if ((m_isPlay && !m_isPause) || (m_isPlay && m_isNextFrame))
 		{
 			GameObjectManager::Instance().Update();
 			GameObjectManager::Instance().LateUpdate();

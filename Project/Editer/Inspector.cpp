@@ -27,11 +27,9 @@ namespace TMF
 						ImGui::CloseCurrentPopup();
 					}
 				}
-
 				ImGui::EndPopup();
 			}
 		}
-
 		ImGui::End();
 	}
 }

@@ -28,7 +28,7 @@ namespace TMF
 
 	void Transform::OnUpdate()
 	{
-
+		m_position.x += 0.1f;
 	}
 
 	void Transform::OnLateUpdate()

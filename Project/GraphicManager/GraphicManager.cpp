@@ -2,52 +2,54 @@
 
 #include "Utility/Log.h"
 
-TMF::GraphicManager* TMF::GraphicManager::instance = nullptr;
-
-
-void TMF::GraphicManager::CreateGraphicManager()
+namespace TMF
 {
-	if (instance == nullptr)
+	GraphicManager* GraphicManager::instance = nullptr;
+
+	void GraphicManager::CreateGraphicManager()
 	{
-		instance = new GraphicManager();
+		if (instance == nullptr)
+		{
+			instance = new GraphicManager();
+		}
 	}
-}
 
-TMF::GraphicManager* TMF::GraphicManager::Get()
-{
-	if (instance == nullptr)
+	GraphicManager* GraphicManager::Get()
 	{
-		instance = new GraphicManager();
+		if (instance == nullptr)
+		{
+			instance = new GraphicManager();
+		}
+		return instance;
 	}
-	return instance;
-}
 
-void TMF::GraphicManager::SetCameraLayer(CameraLayer* _camLayer)
-{
-	cameraLayer = _camLayer;
-}
+	void GraphicManager::SetCameraLayer(CameraLayer* _camLayer)
+	{
+		cameraLayer = _camLayer;
+	}
 
-void TMF::GraphicManager::CreatCameraLayer()
-{
-	cameraLayer = new CameraLayer();
-}
+	void GraphicManager::CreatCameraLayer()
+	{
+		cameraLayer = new CameraLayer();
+	}
 
-void TMF::GraphicManager::DeleteCameraLayer()
-{
-	delete cameraLayer;
-}
+	void GraphicManager::DeleteCameraLayer()
+	{
+		delete cameraLayer;
+	}
 
-void TMF::GraphicManager::CameraSetOwner(Layer* _owner)
-{
-	cameraLayer->SetCameraOwner(_owner);
-}
+	void GraphicManager::CameraSetOwner(Layer* _owner)
+	{
+		cameraLayer->SetCameraOwner(_owner);
+	}
 
-DirectX::XMMATRIX TMF::GraphicManager::GetViewMatrix()
-{
-	return cameraLayer->GetViewMatrix();
-}
+	DirectX::XMMATRIX GraphicManager::GetViewMatrix()
+	{
+		return cameraLayer->GetViewMatrix();
+	}
 
-DirectX::XMMATRIX TMF::GraphicManager::GetProjectionMatrix()
-{
-	return cameraLayer->GetProjectionMatrix();
+	DirectX::XMMATRIX GraphicManager::GetProjectionMatrix()
+	{
+		return cameraLayer->GetProjectionMatrix();
+	}
 }
