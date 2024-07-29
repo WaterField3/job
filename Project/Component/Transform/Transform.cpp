@@ -43,15 +43,22 @@ namespace TMF
 
 	void Transform::OnDrawImGui()
 	{
-		if (ImGui::DragFloat3("Position", &m_position.x, 0.1f))
+		auto componentName = std::string("Position");
+		auto label = componentName;
+		label += "## " + boost::uuids::to_string(m_uuID);
+		if (ImGui::DragFloat3(label.c_str(), &m_position.x, 0.1f))
 		{
 
 		}
-		if (ImGui::DragFloat3("Scale", &m_scale.x, 0.1f))
+		label = "Scale";
+		label += "## " + boost::uuids::to_string(m_uuID);
+		if (ImGui::DragFloat3(label.c_str(), &m_scale.x, 0.1f))
 		{
 
 		}
-		if (ImGui::DragFloat3("Rotarion", &m_rotation.x, 0.1f))
+		label = "Rotation";
+		label += "## " + boost::uuids::to_string(m_uuID);
+		if (ImGui::DragFloat3(label.c_str(), &m_rotation.x, 0.1f))
 		{
 
 		}

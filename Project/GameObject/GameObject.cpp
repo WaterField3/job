@@ -13,11 +13,18 @@ namespace TMF
 		{
 			m_uuID = boost::uuids::random_generator()();
 		}
+		for (auto& pComponent: m_pComponents)
+		{
+			pComponent->Initialize(shared_from_this());
+		}
 	}
 
 	void GameObject::Finalize()
 	{
-
+		for (auto& pComponent: m_pComponents)
+		{
+			pComponent->Finalize();
+		}
 	}
 
 	void GameObject::Update()
@@ -58,6 +65,7 @@ namespace TMF
 				{
 					ImGui::OpenPopup("ComponentMenuPopup");
 					m_selectComponentName = componentName.c_str();
+					m_selectIndex = index;
 				}
 			}
 			component->DrawImGui();
@@ -67,7 +75,7 @@ namespace TMF
 		{
 			if (ImGui::Button("RemoveComponent"))
 			{
-				ComponentManager::Instance().RemoveComponent(m_selectComponentName, shared_from_this());
+				ComponentManager::Instance().RemoveComponent(m_selectComponentName, shared_from_this(), m_selectIndex);
 				ImGui::CloseCurrentPopup();
 			}
 			ImGui::EndPopup();

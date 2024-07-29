@@ -1,6 +1,9 @@
 #pragma once
 
 #include <cereal/types/polymorphic.hpp>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include <boost/uuid/uuid_generators.hpp>
 
 #include "Component/Component.h"
 #include "SimpleMath.h"
@@ -30,8 +33,9 @@ namespace TMF
 		DirectX::SimpleMath::Vector3 m_position;
 		DirectX::SimpleMath::Vector3 m_scale;
 		DirectX::SimpleMath::Vector3 m_rotation;
+		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 
-		SERIALIZE_COMPONENT(m_position, m_scale, m_rotation);
+		SERIALIZE_COMPONENT(m_position, m_scale, m_rotation,m_uuID);
 	};
 }
 REGISTER_CEREAL_TYPE(TMF::Transform);

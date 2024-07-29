@@ -19,6 +19,7 @@ namespace TMF
 	{
 		m_pHirarchy = std::make_unique<Hierarchy>();
 		m_pInspector = std::make_unique<Inspector>();
+		m_pPlayButtonBar = std::make_unique<PlayButtonBar>();
 
 		// Show the window
 		::ShowWindow(D3D::Get()->GetHwnd(), SW_SHOWDEFAULT);
@@ -71,17 +72,15 @@ namespace TMF
 	}
 	void EditerLayer::OnDrawImGui()
 	{
-		ImGuiIO& io = ImGui::GetIO();
-
 		// Start the Dear ImGui frame
 		ImGui_ImplDX11_NewFrame();
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
 
-		//ImGui::ShowDemoWindow();
+		ImGui::ShowDemoWindow();
 
 		m_pHirarchy->DrawImGui();
-
+		m_pPlayButtonBar->DrawImGui();
 		m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
 
 		ImGui::Render();

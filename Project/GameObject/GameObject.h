@@ -31,9 +31,18 @@ namespace TMF
 		}
 
 		template <typename TComponent>
-		void RemoveComponent()
+		void RemoveComponent(int index)
 		{
-			std::erase_if(m_pComponents, [](std::shared_ptr<Component> pObject) { return typeid(*pObject) == typeid(TComponent); });
+			auto count = 0;
+			std::erase_if(m_pComponents, [&count,index](std::shared_ptr<Component> pObject)
+				{
+					count++;
+					if (typeid(*pObject) == typeid(TComponent) && index == count)
+					{
+						return true;
+					}
+					return false;
+				});
 		}
 		template <typename TComponent>
 		std::weak_ptr<TComponent> GetComponent()
@@ -67,6 +76,7 @@ namespace TMF
 		std::string m_name = "NewGameObject";
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		std::string m_selectComponentName = "";
+		int m_selectIndex = 0;
 
 		SERIALIZE(m_name, m_uuID,m_pComponents);
 	};

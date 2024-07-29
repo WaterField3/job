@@ -12,12 +12,12 @@ namespace TMF
 			it->second(pGameObject);
 		}
 	}
-	void ComponentManager::RemoveComponent(std::string name, std::weak_ptr<GameObject> pGameObject)
+	void ComponentManager::RemoveComponent(std::string name, std::weak_ptr<GameObject> pGameObject, int index)
 	{
 		auto it = m_removeComponentMap.find(name);
 		if (it != m_removeComponentMap.end())
 		{
-			it->second(pGameObject);
+			it->second(pGameObject,index);
 		}
 	}
 }

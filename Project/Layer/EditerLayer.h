@@ -6,6 +6,7 @@
 #include "Imgui/imgui.h"
 #include "Editer/Hierarchy.h"
 #include "Editer/Inspector.h"
+#include "Editer/PlayButtonBar.h"
 
 namespace TMF
 {
@@ -21,5 +22,6 @@ namespace TMF
 	private:
 		std::unique_ptr<Hierarchy> m_pHirarchy;
 		std::unique_ptr<Inspector> m_pInspector;
+		std::unique_ptr<PlayButtonBar> m_pPlayButtonBar;
 	};
 }

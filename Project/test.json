@@ -45,6 +45,10 @@
                                             "value0": 0.0,
                                             "value1": 0.0,
                                             "value2": 0.0
+                                        },
+                                        "value3": {},
+                                        "m_uuID": {
+                                            "value0": "c452d3d3-d2fa-4ace-b8c7-f1c406f6738f"
                                         }
                                     }
                                 }
@@ -84,11 +88,100 @@
                                             "value0": 0.0,
                                             "value1": 0.0,
                                             "value2": 0.0
+                                        },
+                                        "value3": {},
+                                        "m_uuID": {
+                                            "value0": "698506f1-4988-4d4b-b569-d36fde20197e"
                                         }
                                     }
                                 }
                             }
                         ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483654,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "value0": "bc323c6d-f637-48db-9b86-9c4f5c8d6919"
+                        },
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483655,
+                                    "data": {
+                                        "value0": {},
+                                        "m_position": {
+                                            "value0": 4.300000190734863,
+                                            "value1": 7.300000190734863,
+                                            "value2": 5.0
+                                        },
+                                        "value1": {},
+                                        "m_scale": {
+                                            "value0": -3.200000047683716,
+                                            "value1": -2.700000047683716,
+                                            "value2": -1.5
+                                        },
+                                        "value2": {},
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": -3.0999999046325685,
+                                            "value2": 0.0
+                                        },
+                                        "value3": {},
+                                        "m_uuID": {
+                                            "value0": "c2228da5-b59d-44bd-ae76-a9625dc5e32c"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483656,
+                                    "data": {
+                                        "value0": {},
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": -4.400000095367432,
+                                            "value2": 0.0
+                                        },
+                                        "value1": {},
+                                        "m_scale": {
+                                            "value0": 5.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "value2": {},
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": -2.799999952316284
+                                        },
+                                        "value3": {},
+                                        "m_uuID": {
+                                            "value0": "6098e6b8-2249-4be9-a3cf-adc180765f24"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483657,
+                    "data": {
+                        "m_name": "NewGameObj",
+                        "m_uuID": {
+                            "value0": "f63b83c6-d0ff-4fe7-8f84-3c9b451d32e4"
+                        },
+                        "m_pComponents": []
                     }
                 }
             }

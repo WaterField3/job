@@ -32,6 +32,22 @@ namespace TMF
 		}
 	}
 
+	void GameObjectManager::Initialize()
+	{
+		for (auto& pGameObject : m_pGameObjects)
+		{
+			pGameObject->Initialize();
+		}
+	}
+
+	void GameObjectManager::Finalize()
+	{
+		for (auto& pGameObject : m_pGameObjects)
+		{
+			pGameObject->Finalize();
+		}
+	}
+
 	void GameObjectManager::Update()
 	{
 		for (auto& pGameObject : m_pGameObjects)

@@ -94,6 +94,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	MSG msg;
 
+	GameObjectManager::Instance().Initialize();
 	std::ifstream iS("test.json", std::ios::in);
 	{
 		cereal::JSONInputArchive inArchive(iS);
@@ -154,11 +155,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	app->OnFinalize();
 
-	std::ofstream ss("test.json", std::ios::out);
-	{
-		cereal::JSONOutputArchive oArchive(ss);
-		oArchive(GameObjectManager::Instance());
-	}
+
 
 	UnregisterClass(CLASS_NAME, hInstance);
 

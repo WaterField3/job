@@ -20,7 +20,7 @@ namespace TMF
 			m_componentName.push_back(name);
 			m_addComponentMap.emplace(name, [&](std::weak_ptr<GameObject> pGameObject) {AddComponent<TComponent>(pGameObject); });
 			m_componentNameMap.emplace(typeid(TComponent), name);
-			m_removeComponentMap.emplace(name, [&](std::weak_ptr<GameObject> pGameObject) {RemoveComponent<TComponent>(pGameObject); });
+			m_removeComponentMap.emplace(name, [&](std::weak_ptr<GameObject> pGameObject,int index) {RemoveComponent<TComponent>(pGameObject,index); });
 		}
 
 		std::string GetComponentName(std::type_index type)
@@ -40,7 +40,7 @@ namespace TMF
 		}
 
 		void AddComponent(std::string name, std::weak_ptr<GameObject> pGameObject);
-		void RemoveComponent(std::string name, std::weak_ptr<GameObject> pGameObject);
+		void RemoveComponent(std::string name, std::weak_ptr<GameObject> pGameObject,int index);
 		inline std::vector<std::string> GetComponentNames() const { return m_componentName; }
 
 	private:
@@ -54,18 +54,18 @@ namespace TMF
 		}
 
 		template <typename TComponent>
-		void RemoveComponent(std::weak_ptr<GameObject> pGameObject)
+		void RemoveComponent(std::weak_ptr<GameObject> pGameObject, int index)
 		{
 			if (auto pObject = pGameObject.lock())
 			{
-				pObject->RemoveComponent<TComponent>();
+				pObject->RemoveComponent<TComponent>(index);
 			}
 		}
 
 	private:
 		std::vector<std::string> m_componentName;
 		std::map<std::string, std::function<void(std::weak_ptr<GameObject>)>> m_addComponentMap;
-		std::map<std::string, std::function<void(std::weak_ptr<GameObject>)>> m_removeComponentMap;
+		std::map<std::string, std::function<void(std::weak_ptr<GameObject>,int index)>> m_removeComponentMap;
 		std::map<std::type_index, std::string> m_componentNameMap;
 	};
 }
