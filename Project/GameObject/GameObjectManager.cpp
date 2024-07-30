@@ -9,7 +9,6 @@
 
 namespace TMF
 {
-
 	std::weak_ptr<GameObject> GameObjectManager::CreateGameObject()
 	{
 		auto pGameObject = std::make_shared<GameObject>();

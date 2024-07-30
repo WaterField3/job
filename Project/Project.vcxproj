@@ -171,6 +171,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Component\Transform\Transform.cpp" />
     <ClCompile Include="Editer\PlayButtonBar.cpp" />
+    <ClCompile Include="Component\Model.cpp" />
     <ClCompile Include="Utility\Log.cpp" />
     <ClCompile Include="Utility\Console.cpp" />
     <ClCompile Include="direct3d.cpp" />
@@ -285,6 +286,7 @@
     <ClInclude Include="Component\ComponentRegister.h" />
     <ClInclude Include="Editer\Inspector.h" />
     <ClInclude Include="Editer\PlayButtonBar.h" />
+    <ClInclude Include="Component\Model.h" />
     <ClInclude Include="System\DataFileNames.h" />
     <ClInclude Include="Utility\CerealExtention.h" />
     <ClInclude Include="Editer\Hierarchy.h" />

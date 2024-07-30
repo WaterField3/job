@@ -11,6 +11,7 @@
 #include "GameObject/GameObject.h"
 #include "Component/Component.h"
 #include "Component/Transform/Transform.h"
+#include "Component/Model.h"
 #include "GameObject/GameObjectManager.h"
 #include "Utility/CerealExtention.h"
 #include "System/DataFileNames.h"

@@ -33,4 +33,4 @@ void serialize(TArchive& archive) \
 
 // CEREAL_NVP’·‚¢‚Ì‚ÅNVP‚Ö
 #define CEREAL_COMPONENT_NVP(...) CEREAL_NVP(__VA_ARGS__)
-#define MAKE_NVP(name, value) cereal::make_nvp(name, value)
+//#define MAKE_NVP(name, value) cereal::make_nvp(name, value)

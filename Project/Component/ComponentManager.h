@@ -18,9 +18,9 @@ namespace TMF
 		void RegisterComponent(std::string name)
 		{
 			m_componentName.push_back(name);
-			m_addComponentMap.emplace(name, [&](std::weak_ptr<GameObject> pGameObject) {AddComponent<TComponent>(pGameObject); });
+			m_addComponentMap.emplace(name, [&](std::weak_ptr<GameObject> pGameObject) { AddComponent<TComponent>(pGameObject); });
 			m_componentNameMap.emplace(typeid(TComponent), name);
-			m_removeComponentMap.emplace(name, [&](std::weak_ptr<GameObject> pGameObject,int index) {RemoveComponent<TComponent>(pGameObject,index); });
+			m_removeComponentMap.emplace(name, [&](std::weak_ptr<GameObject> pGameObject,int index) { RemoveComponent<TComponent>(pGameObject,index); });
 		}
 
 		std::string GetComponentName(std::type_index type)

@@ -168,38 +168,20 @@
                                         }
                                     }
                                 }
-                            },
-                            {
-                                "polymorphic_id": 1,
-                                "ptr_wrapper": {
-                                    "id": 2147483657,
-                                    "data": {
-                                        "value0": {},
-                                        "m_position": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0
-                                        },
-                                        "value1": {},
-                                        "m_scale": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0
-                                        },
-                                        "value2": {},
-                                        "m_rotation": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0
-                                        },
-                                        "value3": {},
-                                        "m_uuID": {
-                                            "value0": "8def70d3-bf09-430a-8605-674274a263f2"
-                                        }
-                                    }
-                                }
                             }
                         ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483657,
+                    "data": {
+                        "m_name": "modelObj",
+                        "m_uuID": {
+                            "value0": "7e0b1630-48bd-4764-88e8-fee34b46073a"
+                        },
+                        "m_pComponents": []
                     }
                 }
             }

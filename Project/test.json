@@ -104,7 +104,7 @@
                 "ptr_wrapper": {
                     "id": 2147483654,
                     "data": {
-                        "m_name": "NewGameObject",
+                        "m_name": "transform2Object",
                         "m_uuID": {
                             "value0": "bc323c6d-f637-48db-9b86-9c4f5c8d6919"
                         },
@@ -165,6 +165,34 @@
                                         "value3": {},
                                         "m_uuID": {
                                             "value0": "6098e6b8-2249-4be9-a3cf-adc180765f24"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483657,
+                    "data": {
+                        "m_name": "Modelobject",
+                        "m_uuID": {
+                            "value0": "8c4676bf-0ca4-4af9-9d83-7b9fc573704f"
+                        },
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 2147483650,
+                                "polymorphic_name": "TMF::Model",
+                                "ptr_wrapper": {
+                                    "id": 2147483658,
+                                    "data": {
+                                        "value0": {},
+                                        "m_loadFileName": "No",
+                                        "value1": {},
+                                        "m_uuID": {
+                                            "value0": "93f426e3-3601-4a56-ab19-404dcb7a18d7"
                                         }
                                     }
                                 }
