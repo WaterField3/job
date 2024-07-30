@@ -2,8 +2,8 @@
 
 #include <Windows.h>
 #include <Imgui/imgui.h>
-#include <cereal/cereal.hpp>
 #include <cereal/archives/json.hpp>
+#include <cereal/cereal.hpp>
 #include <fstream>
 
 #include "direct3d.h"
@@ -13,6 +13,7 @@
 #include "Component/Transform/Transform.h"
 #include "GameObject/GameObjectManager.h"
 #include "Utility/CerealExtention.h"
+#include "System/DataFileNames.h"
 
 
 // ƒ}ƒNƒ’è‹`
@@ -94,12 +95,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	MSG msg;
 
+	GameObjectManager::Instance().Load(MAIN_DATA);
 	GameObjectManager::Instance().Initialize();
-	std::ifstream iS("test.json", std::ios::in);
-	{
-		cereal::JSONInputArchive inArchive(iS);
-		inArchive(GameObjectManager::Instance());
-	}
 
 	auto app = CreateApplication();
 	app->OnInitialize();

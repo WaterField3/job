@@ -18,20 +18,6 @@ namespace TMF
 		virtual void OnUpdate();
 		virtual void OnDraw();
 		virtual void OnDrawImGui();
-		// 幅を取得
-		static uint32_t GetWidth() {
-			return m_Width;
-		}
-
-		// 高さを取得
-		static uint32_t GetHeight() {
-			return m_Height;
-		}
-
-		// ウインドウハンドルを返す
-		static HWND GetWindow() {
-			return m_hWnd;
-		}
 	protected:
 		template <typename T>
 		void AddLayer()
@@ -53,10 +39,5 @@ namespace TMF
 		Console m_console;
 
 	private:
-		static HINSTANCE   m_hInst;        // インスタンスハンドルです.
-		static HWND        m_hWnd;         // ウィンドウハンドルです.
-		static uint32_t    m_Width;        // ウィンドウの横幅です.
-		static uint32_t    m_Height;       // ウィンドウの縦幅です.
-
 	};
 }

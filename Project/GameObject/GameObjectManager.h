@@ -3,8 +3,8 @@
 #include <vector>
 #include <memory>
 #include <cereal/cereal.hpp>
-
-#include "typeinfo"
+#include <typeinfo>
+#include <string>
 
 namespace TMF
 {
@@ -20,6 +20,8 @@ namespace TMF
 		void Update();
 		void LateUpdate();
 		void Draw();
+		void Save(std::string fileName);
+		void Load(std::string fileName);
 
 		std::vector<std::shared_ptr<GameObject>> GetGameObjects();
 

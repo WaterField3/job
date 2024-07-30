@@ -7,6 +7,7 @@
 #include "GameObject/GameObjectManager.h"
 #include "GameObject/GameObject.h"
 #include "Utility/CerealExtention.h"
+#include "System/DataFileNames.h"
 
 namespace TMF
 {
@@ -23,21 +24,12 @@ namespace TMF
 		{
 			if (!m_isPlay)
 			{
-				GameObjectManager::Instance().Initialize();
-				std::ofstream ss("test.json", std::ios::out);
-				{
-					cereal::JSONOutputArchive oArchive(ss);
-					oArchive(GameObjectManager::Instance());
-				}
+				GameObjectManager::Instance().Save(TEST_DATA);
 			}
 			else
 			{
-				GameObjectManager::Instance().Finalize();
-				std::ifstream iS("test.json", std::ios::in);
-				{
-					cereal::JSONInputArchive inArchive(iS);
-					inArchive(GameObjectManager::Instance());
-				}
+				GameObjectManager::Instance().Load(TEST_DATA);
+				GameObjectManager::Instance().Initialize();
 			}
 			m_isPlay = !m_isPlay;
 		}
@@ -75,11 +67,8 @@ namespace TMF
 		{
 			if (!m_isPlay)
 			{
-				std::ofstream ss("test.json", std::ios::out);
-				{
-					cereal::JSONOutputArchive oArchive(ss);
-					oArchive(GameObjectManager::Instance());
-				}
+				GameObjectManager::Instance().Finalize();
+				GameObjectManager::Instance().Save(MAIN_DATA);
 			}
 		}
 		ImGui::SameLine();

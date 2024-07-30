@@ -285,6 +285,7 @@
     <ClInclude Include="Component\ComponentRegister.h" />
     <ClInclude Include="Editer\Inspector.h" />
     <ClInclude Include="Editer\PlayButtonBar.h" />
+    <ClInclude Include="System\DataFileNames.h" />
     <ClInclude Include="Utility\CerealExtention.h" />
     <ClInclude Include="Editer\Hierarchy.h" />
     <ClInclude Include="Layer\EditerLayer.h" />
