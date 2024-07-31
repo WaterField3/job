@@ -50,15 +50,15 @@ namespace TMF
 		{
 
 		}
-		label = "Scale";
-		label += "## " + boost::uuids::to_string(m_uuID);
-		if (ImGui::DragFloat3(label.c_str(), &m_scale.x, 0.1f))
-		{
-
-		}
 		label = "Rotation";
 		label += "## " + boost::uuids::to_string(m_uuID);
 		if (ImGui::DragFloat3(label.c_str(), &m_rotation.x, 0.1f))
+		{
+
+		}
+		label = "Scale";
+		label += "## " + boost::uuids::to_string(m_uuID);
+		if (ImGui::DragFloat3(label.c_str(), &m_scale.x, 0.1f))
 		{
 
 		}
@@ -84,7 +84,7 @@ namespace TMF
 		// âÒì]çsóÒ
 		auto rotateMatrixX = DirectX::SimpleMath::Matrix::CreateRotationX(m_rotation.x);
 		auto rotateMatrixY = DirectX::SimpleMath::Matrix::CreateRotationY(m_rotation.y);
-		auto rotateMatrixZ = DirectX::SimpleMath::Matrix::CreateRotationY(m_rotation.z);
+		auto rotateMatrixZ = DirectX::SimpleMath::Matrix::CreateRotationZ(m_rotation.z);
 
 		auto rotateMatrix = rotateMatrixX * rotateMatrixY * rotateMatrixZ;
 		// ägèkçsóÒ
@@ -93,5 +93,16 @@ namespace TMF
 		auto transformMatrix = DirectX::SimpleMath::Matrix::CreateTranslation(m_position);
 
 		return scaleMatrix * rotateMatrix * transformMatrix;
+	}
+	DirectX::SimpleMath::Matrix Transform::GetMatrixRotation()
+	{
+		// âÒì]çsóÒ
+		auto rotateMatrixX = DirectX::SimpleMath::Matrix::CreateRotationX(m_rotation.x);
+		auto rotateMatrixY = DirectX::SimpleMath::Matrix::CreateRotationY(m_rotation.y);
+		auto rotateMatrixZ = DirectX::SimpleMath::Matrix::CreateRotationZ(m_rotation.z);
+
+		auto rotateMatrix = rotateMatrixX * rotateMatrixY * rotateMatrixZ;
+		
+		return rotateMatrix;
 	}
 }

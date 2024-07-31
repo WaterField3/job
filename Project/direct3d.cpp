@@ -343,8 +343,12 @@ D3D::Model D3D::LoadObjModel(const wchar_t* fileName)
     // MicrosoftのWaveFrontReaderクラスを使ってOBJファイルを読み込む
     WaveFrontReader<uint16_t> reader;
 
+    wchar_t wideName[256];
+    wcscpy_s(wideName, L"asset/"); // 文字列コピー関数
+    wcscat_s(wideName, fileName); // 文字列結合関数
+
     HRESULT hr;
-    hr = reader.Load(fileName, true);
+    hr = reader.Load(wideName, true);
 
     if (FAILED(hr)) // 読み込み失敗したら
     {
@@ -427,8 +431,6 @@ D3D::Model D3D::LoadObjModel(const wchar_t* fileName)
 
     return model;
 }
-
-
 
 D3DTEXTURE D3D::LoadTexture(const wchar_t* filename)
 {

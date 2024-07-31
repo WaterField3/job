@@ -155,7 +155,6 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Application\Application.cpp" />
-    <ClCompile Include="BoxMesh.cpp" />
     <ClCompile Include="Component\ComponentManager.cpp" />
     <ClCompile Include="Component\Camera\Camera.cpp" />
     <ClCompile Include="Component\Component.cpp" />
@@ -168,7 +167,6 @@
     <ClCompile Include="Layer\FieldLayer.cpp" />
     <ClCompile Include="Layer\CameraLayer.cpp" />
     <ClCompile Include="GraphicManager\GraphicManager.cpp" />
-    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Component\Transform\Transform.cpp" />
     <ClCompile Include="Editer\PlayButtonBar.cpp" />
     <ClCompile Include="Component\Model.cpp" />
@@ -193,7 +191,6 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application\Application.h" />
-    <ClInclude Include="BoxMesh.h" />
     <ClInclude Include="cereal\access.hpp" />
     <ClInclude Include="cereal\archives\adapters.hpp" />
     <ClInclude Include="cereal\archives\binary.hpp" />
@@ -297,7 +294,6 @@
     <ClInclude Include="Layer\FieldLayer.h" />
     <ClInclude Include="Layer\CameraLayer.h" />
     <ClInclude Include="GraphicManager\GraphicManager.h" />
-    <ClInclude Include="Mesh.h" />
     <ClInclude Include="Component\Transform\Transform.h" />
     <ClInclude Include="Utility\CerealHelper.h" />
     <ClInclude Include="Utility\Log.h" />

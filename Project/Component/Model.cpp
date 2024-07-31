@@ -2,6 +2,10 @@
 
 #include <Imgui/imgui.h>
 
+#include "GameObject/GameObjectManager.h"
+#include "Component/Transform/Transform.h"
+#include "direct3d.h"
+
 namespace TMF
 {
 	REGISTER_COMPONENT(Model);
@@ -18,7 +22,8 @@ namespace TMF
 
 	void Model::OnInitialize()
 	{
-
+		auto wideFileName = std::wstring(m_loadFileName.begin(), m_loadFileName.end());
+		m_model = D3D::Get()->LoadObjModel(wideFileName.c_str());
 	}
 
 	void Model::OnFinalize()
@@ -39,15 +44,90 @@ namespace TMF
 	void Model::OnDraw()
 	{
 
+		if (m_isDraw)
+		{
+			ModelDraw();
+		}
 	}
 
 	void Model::OnDrawImGui()
 	{
+		ImGui::Checkbox("active", &m_isDraw);
 		char buf[256] = "";
 		strcpy_s(buf, sizeof(buf), m_loadFileName.c_str());
 		if (ImGui::InputText("fileName", buf, 256))
 		{
 			m_loadFileName = buf;
 		}
+		if (ImGui::Button("LoadModel"))
+		{
+			auto wideFileName = std::wstring(m_loadFileName.begin(), m_loadFileName.end());
+			m_model = D3D::Get()->LoadObjModel(wideFileName.c_str());
+		}
+	}
+
+	void Model::ModelDraw()
+	{
+		ID3D11DeviceContext* d3dContext = D3D::Get()->GetContext();
+
+		D3D::ConstBuffer cb;
+		DirectX::SimpleMath::Matrix matrixWorld;
+
+		m_view = DirectX::SimpleMath::Matrix::CreateLookAt(DirectX::SimpleMath::Vector3(2.f, 0.f, 2.f),
+			DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector3::UnitY);
+		m_proj = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(DirectX::XM_PI / 4.0f,
+			float(1) / float(1), 0.1f, 10.f);
+
+		// XYZの三軸の回転角度を指定して回転させる方法　＝　オイラー角
+		auto matrixRotateX = DirectX::SimpleMath::Matrix::CreateRotationX(0);
+		auto matrixRotateY = DirectX::SimpleMath::Matrix::CreateRotationY(0);
+		auto matrixRotateZ = DirectX::SimpleMath::Matrix::CreateRotationZ(0);
+
+		// 回転行列
+		auto matrixRotate = matrixRotateX * matrixRotateY * matrixRotateZ;
+
+		if (auto gameObject = m_pOwner.lock())
+		{
+			auto Component = gameObject->GetComponent<Transform>();
+			if (auto pComponent = Component.lock())
+			{
+				matrixWorld = pComponent->GetMatrixLocal();
+				matrixRotate = pComponent->GetMatrixRotation();
+			}
+		}
+
+		// 法線ベクトル回転用行列
+		cb.matrixWorldNormal = XMMatrixTranspose(matrixRotate);
+
+		cb.matrixWorld = matrixWorld * m_view * m_proj;
+		// 合成した行列の転置行列を作成する ※シェーダーとC++でメモリの並びが異なるため
+		cb.matrixWorld = XMMatrixTranspose(cb.matrixWorld);
+
+		// UVアニメーション行列
+		cb.matrixUV = DirectX::XMMatrixIdentity();
+		cb.matrixUV = XMMatrixTranspose(cb.matrixUV);
+
+		cb.materialDiffuse = { 1,1,1,1 };
+
+
+		// 行列をシェーダーに渡す
+		d3dContext->UpdateSubresource(D3D::Get()->GetConstantBuffer(), 0, NULL,
+			&cb, 0, 0);
+
+		D3D::Model& mdl = m_model;
+
+		// 今からDrawする頂点バッファ（モデル）を指定する
+		UINT strides = D3D::Get()->GetVertexStride();
+		UINT offsets = 0;
+		d3dContext->IASetVertexBuffers(0, 1, &mdl.vertexBuffer,
+			&strides, &offsets);
+
+		// 描画に使うインデックスバッファを指定する
+		d3dContext->IASetIndexBuffer(mdl.indexBuffer, DXGI_FORMAT_R16_UINT, 0);
+
+		// ピクセルシェーダーにテクスチャを渡す
+		d3dContext->PSSetShaderResources(0, 1, &mdl.texture);
+		// 第１引数　→　描画する頂点数
+		d3dContext->DrawIndexed(mdl.numIndex, 0, 0); // 描画命令
 	}
 }

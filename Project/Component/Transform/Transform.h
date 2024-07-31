@@ -28,6 +28,7 @@ namespace TMF
 		void SetScale(DirectX::SimpleMath::Vector3 scale);
 		void SetRotation(DirectX::SimpleMath::Vector3 rotation);
 		DirectX::SimpleMath::Matrix GetMatrixLocal();
+		DirectX::SimpleMath::Matrix GetMatrixRotation();
 
 	private:
 		DirectX::SimpleMath::Vector3 m_position;
@@ -35,7 +36,7 @@ namespace TMF
 		DirectX::SimpleMath::Vector3 m_rotation;
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 
-		SERIALIZE_COMPONENT(m_position, m_scale, m_rotation,m_uuID);
+		SERIALIZE_COMPONENT(m_position, m_scale, m_rotation, m_uuID);
 	};
 }
 REGISTER_CEREAL_TYPE(TMF::Transform);

@@ -6,11 +6,13 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include <boost/uuid/uuid_generators.hpp>
+#include <d3d11.h>
 #include <SimpleMath.h>
 #include <string>
 
 #include "Component/ComponentCerealHelper.h"
 #include "Component/ComponentRegister.h"
+#include "direct3d.h"
 
 namespace TMF
 {
@@ -27,8 +29,15 @@ namespace TMF
 		void OnDrawImGui() override;
 
 	private:
+		void ModelDraw();
+
 		std::string m_loadFileName = "NoSetting";
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
+		D3D::Model m_model;
+		DirectX::SimpleMath::Matrix m_world;
+		DirectX::SimpleMath::Matrix m_view;
+		DirectX::SimpleMath::Matrix m_proj;
+		bool m_isDraw = true;
 
 		SERIALIZE_COMPONENT(m_loadFileName, m_uuID);
 	};

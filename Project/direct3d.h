@@ -2,7 +2,7 @@
 
 #include <d3d11.h>  // DirectX11を使うためのヘッダーファイル
 #include <DirectXMath.h> // DirextXの数学関連のヘッダーファイル
-
+#include <SimpleMath.h>
 
 // Direct3D解放の簡略化マクロ
 #define SAFE_RELEASE(p)      { if( NULL != p ) { p->Release(); p = NULL; } }
@@ -34,16 +34,16 @@ public:
 	struct ConstBuffer
 	{
 		// ワールド変換行列
-		DirectX::XMMATRIX matrixWorld;
+		DirectX::SimpleMath::Matrix matrixWorld;
 
 		// 法線ベクトルを回転させる行列
-		DirectX::XMMATRIX matrixWorldNormal;
+		DirectX::SimpleMath::Matrix matrixWorldNormal;
 
 		// UVアニメーション行列
-		DirectX::XMMATRIX matrixUV;
+		DirectX::SimpleMath::Matrix matrixUV;
 
 		// マテリアル色
-		DirectX::XMFLOAT4 materialDiffuse;
+		DirectX::SimpleMath::Vector4 materialDiffuse;
 
 		unsigned int isLighting;
 		int dummy2, dummy3, dummy4;
@@ -54,13 +54,13 @@ public:
 	struct Vertex
 	{
 		// 頂点の位置座標
-		DirectX::XMFLOAT3 position;
+		DirectX::SimpleMath::Vector3 position;
 		// UV座標（テクスチャ座標）
-		DirectX::XMFLOAT2 uv;
+		DirectX::SimpleMath::Vector2 uv;
 		// 頂点の法線ベクトル
-		DirectX::XMFLOAT3 normal;
+		DirectX::SimpleMath::Vector3 normal;
 		// 頂点の拡散
-		DirectX::XMFLOAT4 diffuse;
+		DirectX::SimpleMath::Vector4 diffuse;
 
 	};
 
