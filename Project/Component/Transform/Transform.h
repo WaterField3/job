@@ -26,14 +26,15 @@ namespace TMF
 		void OnDrawImGui() override;
 		void SetPosition(DirectX::SimpleMath::Vector3 pos);
 		void SetScale(DirectX::SimpleMath::Vector3 scale);
-		void SetRotation(DirectX::SimpleMath::Vector3 rotation);
+		void SetRotation(DirectX::SimpleMath::Quaternion rotation);
 		DirectX::SimpleMath::Matrix GetMatrixLocal();
 		DirectX::SimpleMath::Matrix GetMatrixRotation();
 
 	private:
 		DirectX::SimpleMath::Vector3 m_position;
 		DirectX::SimpleMath::Vector3 m_scale;
-		DirectX::SimpleMath::Vector3 m_rotation;
+		DirectX::SimpleMath::Quaternion m_rotation = DirectX::SimpleMath::Quaternion::Identity;
+		DirectX::SimpleMath::Vector3 m_editorRotation;
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 
 		SERIALIZE_COMPONENT(m_position, m_scale, m_rotation, m_uuID);

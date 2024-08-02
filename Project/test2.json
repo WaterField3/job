@@ -44,7 +44,8 @@
                                         "m_rotation": {
                                             "value0": 0.0,
                                             "value1": 0.0,
-                                            "value2": 0.0
+                                            "value2": 0.0,
+                                            "value3": 1.0
                                         },
                                         "value3": {},
                                         "m_uuID": {
@@ -87,7 +88,8 @@
                                         "m_rotation": {
                                             "value0": 0.0,
                                             "value1": 0.0,
-                                            "value2": 0.0
+                                            "value2": 0.0,
+                                            "value3": 1.0
                                         },
                                         "value3": {},
                                         "m_uuID": {
@@ -104,7 +106,7 @@
                 "ptr_wrapper": {
                     "id": 2147483654,
                     "data": {
-                        "m_name": "NewGameObject",
+                        "m_name": "transform2Object",
                         "m_uuID": {
                             "value0": "bc323c6d-f637-48db-9b86-9c4f5c8d6919"
                         },
@@ -130,7 +132,8 @@
                                         "m_rotation": {
                                             "value0": 0.0,
                                             "value1": -3.0999999046325685,
-                                            "value2": 0.0
+                                            "value2": 0.0,
+                                            "value3": 1.0
                                         },
                                         "value3": {},
                                         "m_uuID": {
@@ -160,7 +163,8 @@
                                         "m_rotation": {
                                             "value0": 0.0,
                                             "value1": 0.0,
-                                            "value2": -2.799999952316284
+                                            "value2": -2.799999952316284,
+                                            "value3": 1.0
                                         },
                                         "value3": {},
                                         "m_uuID": {
@@ -177,11 +181,58 @@
                 "ptr_wrapper": {
                     "id": 2147483657,
                     "data": {
-                        "m_name": "modelObj",
+                        "m_name": "Modelobject",
                         "m_uuID": {
-                            "value0": "7e0b1630-48bd-4764-88e8-fee34b46073a"
+                            "value0": "8c4676bf-0ca4-4af9-9d83-7b9fc573704f"
                         },
-                        "m_pComponents": []
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 2147483650,
+                                "polymorphic_name": "TMF::Model",
+                                "ptr_wrapper": {
+                                    "id": 2147483658,
+                                    "data": {
+                                        "value0": {},
+                                        "m_loadFileName": "Gun.obj",
+                                        "value1": {},
+                                        "m_uuID": {
+                                            "value0": "93f426e3-3601-4a56-ab19-404dcb7a18d7"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483659,
+                                    "data": {
+                                        "value0": {},
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.30000001192092898,
+                                            "value2": -3.299999952316284
+                                        },
+                                        "value1": {},
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "value2": {},
+                                        "m_rotation": {
+                                            "value0": 0.07069972902536392,
+                                            "value1": 0.9973170757293701,
+                                            "value2": 0.011558100581169129,
+                                            "value3": -0.015054799616336823
+                                        },
+                                        "value3": {},
+                                        "m_uuID": {
+                                            "value0": "2f0896c6-9229-4cf5-9739-95e37ab9b035"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
                     }
                 }
             }

@@ -6,6 +6,8 @@
 #include <typeinfo>
 #include <string>
 
+#include "Utility/CerealHelper.h"
+
 namespace TMF
 {
 	class GameObject;
@@ -31,11 +33,7 @@ namespace TMF
 			return instance;
 		}
 
-		template<class Archive>
-		void serialize(Archive& archive)
-		{
-			archive(CEREAL_NVP(m_pGameObjects));
-		}
+		SERIALIZE(m_pGameObjects);
 
 	private:
 		std::vector<std::shared_ptr<GameObject>> m_pGameObjects;

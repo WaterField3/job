@@ -25,17 +25,15 @@ namespace cereal
 		at = boost::uuids::string_generator()(uuidStr);
 	}
 
-	template <class Archive>
-	void save(Archive& ar, DirectX::SimpleMath::Vector3 const& at)
+	template<class Archive>
+	void serialize(Archive& archive, DirectX::SimpleMath::Vector3& v)
 	{
-		ar(at.x, at.y, at.z);
+		archive(v.x, v.y, v.z);
 	}
 
-	template <class Archive>
-	void load(Archive& ar, DirectX::SimpleMath::Vector3& at)
+	template<class Archive>
+	void serialize(Archive& archive, DirectX::SimpleMath::Quaternion& q)
 	{
-		DirectX::SimpleMath::Vector3 vector;
-		ar(vector.x, vector.y, vector.z);
-		at = vector;
+		archive(q.x, q.y, q.z, q.w);
 	}
 }

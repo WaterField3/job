@@ -233,10 +233,21 @@ HRESULT D3D::Create(HWND hwnd)
 
     m_pImmediateContext->OMSetBlendState(m_pBlendStateAlpha, NULL, 0xffffffff);
 
+    D3D11_RASTERIZER_DESC rastraizerDesc;
+    ZeroMemory(&rastraizerDesc, sizeof(D3D11_RASTERIZER_DESC));
+    rastraizerDesc.CullMode = D3D11_CULL_FRONT;
+    rastraizerDesc.FillMode = D3D11_FILL_SOLID;
+
+    ID3D11RasterizerState* RasterrizeState;
+
+    hr = m_pDevice->CreateRasterizerState(&rastraizerDesc, &RasterrizeState);
+    m_pImmediateContext->RSSetState(RasterrizeState);
+
     // ‰ÁŽZ‡¬‚ÌÝ’è‚ðì‚é
     // ”wŒiF‚ÉŠ|‚¯‡‚í‚¹‚éŒW”
     BlendState.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
     m_pDevice->CreateBlendState(&BlendState, &m_pBlendStateAdditive);
+
 
     m_hwnd = hwnd;
 

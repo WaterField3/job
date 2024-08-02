@@ -2,6 +2,8 @@
 
 #include <Imgui/imgui.h>
 
+using namespace DirectX::SimpleMath;
+
 namespace TMF
 {
 	REGISTER_COMPONENT(Transform);
@@ -18,7 +20,7 @@ namespace TMF
 
 	void Transform::OnInitialize()
 	{
-
+		m_editorRotation = m_rotation.ToEuler();
 	}
 
 	void Transform::OnFinalize()
@@ -28,7 +30,7 @@ namespace TMF
 
 	void Transform::OnUpdate()
 	{
-		m_position.x += 0.1f;
+
 	}
 
 	void Transform::OnLateUpdate()
@@ -45,19 +47,20 @@ namespace TMF
 	{
 		auto componentName = std::string("Position");
 		auto label = componentName;
-		label += "## " + boost::uuids::to_string(m_uuID);
+		auto uuidStr = boost::uuids::to_string(m_uuID);
+		label += "## " + uuidStr;
 		if (ImGui::DragFloat3(label.c_str(), &m_position.x, 0.1f))
 		{
 
 		}
 		label = "Rotation";
-		label += "## " + boost::uuids::to_string(m_uuID);
-		if (ImGui::DragFloat3(label.c_str(), &m_rotation.x, 0.1f))
+		label += "## " + uuidStr;
+		if (ImGui::DragFloat3(label.c_str(), &m_editorRotation.x, 0.1f))
 		{
-
+			m_rotation = Quaternion::CreateFromYawPitchRoll(m_editorRotation.y, m_editorRotation.x, m_editorRotation.z);
 		}
 		label = "Scale";
-		label += "## " + boost::uuids::to_string(m_uuID);
+		label += "## " + uuidStr;
 		if (ImGui::DragFloat3(label.c_str(), &m_scale.x, 0.1f))
 		{
 
@@ -74,19 +77,16 @@ namespace TMF
 
 	}
 
-	void Transform::SetRotation(DirectX::SimpleMath::Vector3 rotation)
+	void Transform::SetRotation(DirectX::SimpleMath::Quaternion rotation)
 	{
-
+		m_rotation = rotation;
+		m_editorRotation = m_rotation.ToEuler();
 	}
 
 	DirectX::SimpleMath::Matrix Transform::GetMatrixLocal()
 	{
 		// âÒì]çsóÒ
-		auto rotateMatrixX = DirectX::SimpleMath::Matrix::CreateRotationX(m_rotation.x);
-		auto rotateMatrixY = DirectX::SimpleMath::Matrix::CreateRotationY(m_rotation.y);
-		auto rotateMatrixZ = DirectX::SimpleMath::Matrix::CreateRotationZ(m_rotation.z);
-
-		auto rotateMatrix = rotateMatrixX * rotateMatrixY * rotateMatrixZ;
+		auto rotateMatrix = Matrix::CreateFromQuaternion(m_rotation);
 		// ägèkçsóÒ
 		auto scaleMatrix = DirectX::SimpleMath::Matrix::CreateScale(m_scale);
 		// à⁄ìÆçsóÒ
@@ -102,7 +102,7 @@ namespace TMF
 		auto rotateMatrixZ = DirectX::SimpleMath::Matrix::CreateRotationZ(m_rotation.z);
 
 		auto rotateMatrix = rotateMatrixX * rotateMatrixY * rotateMatrixZ;
-		
+
 		return rotateMatrix;
 	}
 }

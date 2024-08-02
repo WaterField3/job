@@ -73,7 +73,7 @@ namespace TMF
 		D3D::ConstBuffer cb;
 		DirectX::SimpleMath::Matrix matrixWorld;
 
-		m_view = DirectX::SimpleMath::Matrix::CreateLookAt(DirectX::SimpleMath::Vector3(2.f, 0.f, 2.f),
+		m_view = DirectX::SimpleMath::Matrix::CreateLookAt(DirectX::SimpleMath::Vector3(0.0f, 0.0f, 5.0f),
 			DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector3::UnitY);
 		m_proj = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(DirectX::XM_PI / 4.0f,
 			float(1) / float(1), 0.1f, 10.f);
@@ -97,11 +97,11 @@ namespace TMF
 		}
 
 		// 法線ベクトル回転用行列
-		cb.matrixWorldNormal = XMMatrixTranspose(matrixRotate);
+		//cb.matrixWorldNormal = matrixRotate.Transpose();
 
 		cb.matrixWorld = matrixWorld * m_view * m_proj;
 		// 合成した行列の転置行列を作成する ※シェーダーとC++でメモリの並びが異なるため
-		cb.matrixWorld = XMMatrixTranspose(cb.matrixWorld);
+		cb.matrixWorld = cb.matrixWorld.Transpose();
 
 		// UVアニメーション行列
 		cb.matrixUV = DirectX::XMMatrixIdentity();

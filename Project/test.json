@@ -44,7 +44,8 @@
                                         "m_rotation": {
                                             "value0": 0.0,
                                             "value1": 0.0,
-                                            "value2": 0.0
+                                            "value2": 0.0,
+                                            "value3": 1.0
                                         },
                                         "value3": {},
                                         "m_uuID": {
@@ -87,7 +88,8 @@
                                         "m_rotation": {
                                             "value0": 0.0,
                                             "value1": 0.0,
-                                            "value2": 0.0
+                                            "value2": 0.0,
+                                            "value3": 1.0
                                         },
                                         "value3": {},
                                         "m_uuID": {
@@ -130,7 +132,8 @@
                                         "m_rotation": {
                                             "value0": 0.0,
                                             "value1": -3.0999999046325685,
-                                            "value2": 0.0
+                                            "value2": 0.0,
+                                            "value3": 1.0
                                         },
                                         "value3": {},
                                         "m_uuID": {
@@ -160,7 +163,8 @@
                                         "m_rotation": {
                                             "value0": 0.0,
                                             "value1": 0.0,
-                                            "value2": -2.799999952316284
+                                            "value2": -2.799999952316284,
+                                            "value3": 1.0
                                         },
                                         "value3": {},
                                         "m_uuID": {
@@ -204,9 +208,9 @@
                                     "data": {
                                         "value0": {},
                                         "m_position": {
-                                            "value0": -1.0,
-                                            "value1": -0.5,
-                                            "value2": -1.100000023841858
+                                            "value0": 0.0,
+                                            "value1": 0.30000001192092898,
+                                            "value2": -3.299999952316284
                                         },
                                         "value1": {},
                                         "m_scale": {
@@ -216,9 +220,10 @@
                                         },
                                         "value2": {},
                                         "m_rotation": {
-                                            "value0": 0.0,
-                                            "value1": 3.9000000953674318,
-                                            "value2": 0.0
+                                            "value0": -0.011832977645099163,
+                                            "value1": 0.011175926774740219,
+                                            "value2": 0.0706542432308197,
+                                            "value3": 0.9973680973052979
                                         },
                                         "value3": {},
                                         "m_uuID": {
