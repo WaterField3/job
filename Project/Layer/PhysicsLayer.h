@@ -3,16 +3,14 @@
 
 namespace TMF
 {
-	class FieldLayer :
-		public Layer
+	class PhysicsLayer : public Layer
 	{
-
+	public:
 		void OnInitialize() override;
 		void OnFinalize() override;
-		void OnUpdate() override;
+		void OnUpdate()override;
 		void OnDraw() override;
-	public:
+
 	private:
 	};
 }
-

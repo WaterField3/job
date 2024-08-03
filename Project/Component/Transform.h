@@ -5,8 +5,8 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include <boost/uuid/uuid_generators.hpp>
+#include <SimpleMath.h>
 
-#include "SimpleMath.h"
 #include "Component/ComponentCerealHelper.h"
 #include "Component/ComponentRegister.h"
 
@@ -25,10 +25,14 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		void SetPosition(DirectX::SimpleMath::Vector3 pos);
-		void SetScale(DirectX::SimpleMath::Vector3 scale);
 		void SetRotation(DirectX::SimpleMath::Quaternion rotation);
+		void SetScale(DirectX::SimpleMath::Vector3 scale);
 		DirectX::SimpleMath::Matrix GetMatrixLocal();
 		DirectX::SimpleMath::Matrix GetMatrixRotation();
+
+		inline DirectX::SimpleMath::Vector3 GetPosition() const { return m_position; }
+		inline DirectX::SimpleMath::Quaternion GetRotation() const { return m_rotation; }
+		inline DirectX::SimpleMath::Vector3 GetScale() const { return m_scale; }
 
 	private:
 		DirectX::SimpleMath::Vector3 m_position;

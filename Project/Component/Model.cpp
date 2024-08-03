@@ -3,7 +3,7 @@
 #include <Imgui/imgui.h>
 
 #include "GameObject/GameObjectManager.h"
-#include "Component/Transform/Transform.h"
+#include "Component/Transform.h"
 #include "direct3d.h"
 
 namespace TMF

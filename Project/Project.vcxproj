@@ -158,6 +158,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Application\Application.cpp" />
+    <ClCompile Include="Component\Collider.cpp" />
     <ClCompile Include="Component\ComponentManager.cpp" />
     <ClCompile Include="Component\Camera\Camera.cpp" />
     <ClCompile Include="Component\Component.cpp" />
@@ -167,21 +168,20 @@
     <ClCompile Include="Layer\GameLayer.cpp" />
     <ClCompile Include="GameObject\GameObjectManager.cpp" />
     <ClCompile Include="GameObject\GameObject.cpp" />
-    <ClCompile Include="Layer\FieldLayer.cpp" />
-    <ClCompile Include="Layer\CameraLayer.cpp" />
     <ClCompile Include="GraphicManager\GraphicManager.cpp" />
-    <ClCompile Include="Component\Transform\Transform.cpp" />
+    <ClCompile Include="Component\Transform.cpp" />
     <ClCompile Include="Editer\PlayButtonBar.cpp" />
     <ClCompile Include="Component\Model.cpp" />
+    <ClCompile Include="Layer\PhysicsLayer.cpp" />
+    <ClCompile Include="Component\Rigidbody.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Utility\Log.cpp" />
     <ClCompile Include="Utility\Console.cpp" />
     <ClCompile Include="direct3d.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Layer\HogeLayer.cpp" />
     <ClCompile Include="Layer\Layer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Application\TestApplication.cpp" />
-    <ClCompile Include="Layer\TestLayer.cpp" />
     <ClCompile Include="Vender\Imgui\imgui.cpp" />
     <ClCompile Include="Vender\Imgui\imgui_demo.cpp" />
     <ClCompile Include="Vender\Imgui\imgui_draw.cpp" />
@@ -194,6 +194,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application\Application.h" />
+    <ClInclude Include="Component\Collider.h" />
     <ClInclude Include="cereal\access.hpp" />
     <ClInclude Include="cereal\archives\adapters.hpp" />
     <ClInclude Include="cereal\archives\binary.hpp" />
@@ -287,6 +288,9 @@
     <ClInclude Include="Editer\Inspector.h" />
     <ClInclude Include="Editer\PlayButtonBar.h" />
     <ClInclude Include="Component\Model.h" />
+    <ClInclude Include="Layer\PhysicsLayer.h" />
+    <ClInclude Include="Component\Rigidbody.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="System\DataFileNames.h" />
     <ClInclude Include="Utility\CerealExtention.h" />
     <ClInclude Include="Editer\Hierarchy.h" />
@@ -294,21 +298,17 @@
     <ClInclude Include="Layer\GameLayer.h" />
     <ClInclude Include="GameObject\GameObjectManager.h" />
     <ClInclude Include="GameObject\GameObject.h" />
-    <ClInclude Include="Layer\FieldLayer.h" />
-    <ClInclude Include="Layer\CameraLayer.h" />
     <ClInclude Include="GraphicManager\GraphicManager.h" />
-    <ClInclude Include="Component\Transform\Transform.h" />
+    <ClInclude Include="Component\Transform.h" />
     <ClInclude Include="Utility\CerealHelper.h" />
     <ClInclude Include="Utility\Log.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Utility\Console.h" />
     <ClInclude Include="direct3d.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Layer\HogeLayer.h" />
     <ClInclude Include="Layer\Layer.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="Application\TestApplication.h" />
-    <ClInclude Include="Layer\TestLayer.h" />
     <ClInclude Include="Vender\Imgui\imconfig.h" />
     <ClInclude Include="Vender\Imgui\imgui.h" />
     <ClInclude Include="Vender\Imgui\imgui_impl_dx11.h" />

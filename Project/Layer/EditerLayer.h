@@ -1,9 +1,9 @@
 #pragma once
 
+#include "Layer.h"
+
 #include <memory>
 
-#include "Layer.h"
-#include "Imgui/imgui.h"
 #include "Editer/Hierarchy.h"
 #include "Editer/Inspector.h"
 #include "Editer/PlayButtonBar.h"
