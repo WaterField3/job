@@ -3,6 +3,8 @@
 #include <d3d11.h>  // DirectX11を使うためのヘッダーファイル
 #include <DirectXMath.h> // DirextXの数学関連のヘッダーファイル
 #include <SimpleMath.h>
+#include <Effects.h>
+#include <memory>
 
 // Direct3D解放の簡略化マクロ
 #define SAFE_RELEASE(p)      { if( NULL != p ) { p->Release(); p = NULL; } }
@@ -72,6 +74,7 @@ public:
 	void ClearScreen();
 	// 画面を更新する関数
 	void UpdateScreen();
+	void InitEffect();
 
 	// 四角形ポリゴンを作成し、頂点バッファ生成を行う
 	static Model CreateSquare(FLOAT_XY center, FLOAT_XY size, FLOAT_XY uv);
@@ -89,7 +92,7 @@ public:
 	ID3D11Device* GetDevice() { return m_pDevice; }
 	ID3D11DeviceContext* GetContext() { return m_pImmediateContext; }
 	ID3D11Buffer* GetConstantBuffer() { return m_pConstantBuffer; }
-
+	ID3D11InputLayout* GetInputLayout() { return m_pInputLayout; }
 	inline HWND GetHwnd() const { return m_hwnd; }
 
 	// 頂点データ１つあたりのバイトサイズを返す
@@ -132,5 +135,7 @@ private:
 	ID3D11Buffer* m_pConstantBuffer;
 
 	HWND m_hwnd;
+
+	std::shared_ptr<DirectX::BasicEffect> m_pEffect;
 };
 

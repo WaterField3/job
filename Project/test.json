@@ -208,7 +208,7 @@
                                     "data": {
                                         "value0": {},
                                         "m_position": {
-                                            "value0": 0.0,
+                                            "value0": -1.2000000476837159,
                                             "value1": 0.30000001192092898,
                                             "value2": -3.299999952316284
                                         },
@@ -252,15 +252,15 @@
                                     "data": {
                                         "value0": {},
                                         "m_position": {
-                                            "value0": 0.0,
+                                            "value0": 0.4000000059604645,
                                             "value1": 0.0,
-                                            "value2": 0.0
+                                            "value2": -0.20000000298023225
                                         },
                                         "value1": {},
                                         "m_scale": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
                                         },
                                         "value2": {},
                                         "m_rotation": {
@@ -296,7 +296,7 @@
                                     "id": 2147483663,
                                     "data": {
                                         "value0": {},
-                                        "m_mass": 0.0,
+                                        "m_mass": 3.0,
                                         "value1": {},
                                         "m_drag": 0.0,
                                         "value2": {},
@@ -308,6 +308,20 @@
                                         "value5": {},
                                         "m_uuID": {
                                             "value0": "ee13e35a-ae04-43a5-8d0c-c45b673e564e"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2,
+                                "ptr_wrapper": {
+                                    "id": 2147483664,
+                                    "data": {
+                                        "value0": {},
+                                        "m_loadFileName": "Gun.obj",
+                                        "value1": {},
+                                        "m_uuID": {
+                                            "value0": "43e911b2-64d9-452e-913d-f087154d35f5"
                                         }
                                     }
                                 }

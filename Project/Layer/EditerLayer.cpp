@@ -94,6 +94,6 @@ namespace TMF
 			ImGui::RenderPlatformWindowsDefault();
 		}
 
-		D3D::Get()->UpdateScreen();
+		//D3D::Get()->UpdateScreen();
 	}
 }

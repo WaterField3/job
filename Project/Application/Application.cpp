@@ -35,12 +35,12 @@ namespace TMF
 		{
 			layer->OnDraw();
 		}
-		D3D::Get()->UpdateScreen();
+		//D3D::Get()->UpdateScreen();
 	}
 
 	void Application::OnDrawImGui()
 	{
-		D3D::Get()->ClearScreen();
+		//D3D::Get()->ClearScreen();
 		for (auto& layer : m_layers)
 		{
 			layer->OnDrawImGui();

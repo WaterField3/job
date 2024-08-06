@@ -17,6 +17,7 @@
 #include "GameObject/GameObjectManager.h"
 #include "Utility/CerealExtention.h"
 #include "System/DataFileNames.h"
+#include "PhysicsManager.h"
 
 
 // マクロ定義
@@ -74,7 +75,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	// ゲームループに入る前に
 	// DirectXの初期化をする
-	D3D::Get()->Create(hWnd);
 
 	// Inputクラスの初期化
 
@@ -98,8 +98,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	MSG msg;
 
+
+	D3D::Get()->Create(hWnd);
 	GameObjectManager::Instance().Load(MAIN_DATA);
+	PhysicsManager::Instance().Initialize();
 	GameObjectManager::Instance().Initialize();
+
 
 	auto app = CreateApplication();
 	app->OnInitialize();
@@ -130,7 +134,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 				app->OnUpdate();
 
-				//app->OnDraw();
+				app->OnDraw();
 
 				app->OnDrawImGui();
 

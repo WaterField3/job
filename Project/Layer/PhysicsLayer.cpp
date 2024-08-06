@@ -1,5 +1,6 @@
 #include "PhysicsLayer.h"
 #include "GameObject/GameObjectManager.h"
+#include "PhysicsManager.h"
 
 namespace TMF
 {
@@ -14,11 +15,11 @@ namespace TMF
 
 	void PhysicsLayer::OnUpdate()
 	{
-
+		PhysicsManager::Instance().LateUpdate();
 	}
 
 	void PhysicsLayer::OnDraw()
 	{
-		
+		PhysicsManager::Instance().Draw();
 	}
 }

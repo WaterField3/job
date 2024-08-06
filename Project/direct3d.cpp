@@ -1,8 +1,10 @@
-
 #include "WaveFrontReader.h"
-#include <atltypes.h> // CRectを使うためのヘッダーファイル
-#include "WICTextureLoader.h" // テクスチャ読み込みライブラリ
 
+#include <atltypes.h> // CRectを使うためのヘッダーファイル
+#include <DirectXHelpers.h>
+#include <VertexTypes.h>
+
+#include "WICTextureLoader.h" // テクスチャ読み込みライブラリ
 
 // コンパイル済みシェーダーをインクルード
 #include "VertexShader.h"
@@ -251,7 +253,14 @@ HRESULT D3D::Create(HWND hwnd)
 
     m_hwnd = hwnd;
 
-
+    m_pEffect = std::make_shared<DirectX::BasicEffect>(m_pDevice);
+    m_pEffect->SetVertexColorEnabled(true);
+    DirectX::CreateInputLayoutFromEffect<DirectX::VertexPositionColor>(m_pDevice, m_pEffect.get(), &m_pInputLayout);
+    auto m_view = DirectX::SimpleMath::Matrix::CreateLookAt(DirectX::SimpleMath::Vector3(0.0f, 0.0f, 5.0f), DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector3::UnitY);
+    auto m_proj = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(DirectX::XM_PI / 4.0f, float(1024) / float(576), 0.1f, 10.f);
+    m_pEffect->SetView(m_view);
+    m_pEffect->SetProjection(m_proj);
+    m_pEffect->SetWorld(DirectX::SimpleMath::Matrix::Identity);
     return hr;
 }
 
@@ -281,6 +290,7 @@ D3D::~D3D()
     SAFE_RELEASE(m_pSwapChain);
     SAFE_RELEASE(m_pImmediateContext);
     SAFE_RELEASE(m_pDevice);
+    m_pEffect.reset();
 }
 
 
@@ -529,10 +539,22 @@ void D3D::ClearScreen()
     // 定数バッファをピクセルシェーダーにセットする
     m_pImmediateContext->PSSetConstantBuffers(
         0, 1, &m_pConstantBuffer);
+
 }
 
 void D3D::UpdateScreen()
 {
     // ダブルバッファの切り替えを行い画面を更新する
     m_pSwapChain->Present(1, 0);
+}
+
+void D3D::InitEffect()
+{
+    m_pEffect->SetVertexColorEnabled(true);
+    DirectX::CreateInputLayoutFromEffect<DirectX::VertexPositionColor>(m_pDevice, m_pEffect.get(), &m_pInputLayout);
+    auto m_view = DirectX::SimpleMath::Matrix::CreateLookAt(DirectX::SimpleMath::Vector3(0.0f, 0.0f, 5.0f), DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector3::UnitY);
+    auto m_proj = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(DirectX::XM_PI / 4.0f, float(1024) / float(576), 0.1f, 10.f);
+    m_pEffect->SetView(m_view);
+    m_pEffect->SetProjection(m_proj);
+    m_pEffect->SetWorld(DirectX::SimpleMath::Matrix::Identity);
 }

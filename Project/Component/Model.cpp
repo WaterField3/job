@@ -76,7 +76,7 @@ namespace TMF
 		m_view = DirectX::SimpleMath::Matrix::CreateLookAt(DirectX::SimpleMath::Vector3(0.0f, 0.0f, 5.0f),
 			DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector3::UnitY);
 		m_proj = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(DirectX::XM_PI / 4.0f,
-			float(1) / float(1), 0.1f, 10.f);
+			float(1024) / float(576), 0.1f, 10.f);
 
 		// XYZの三軸の回転角度を指定して回転させる方法　＝　オイラー角
 		auto matrixRotateX = DirectX::SimpleMath::Matrix::CreateRotationX(0);
@@ -127,6 +127,7 @@ namespace TMF
 
 		// ピクセルシェーダーにテクスチャを渡す
 		d3dContext->PSSetShaderResources(0, 1, &mdl.texture);
+		D3D::Get()->GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 		// 第１引数　→　描画する頂点数
 		d3dContext->DrawIndexed(mdl.numIndex, 0, 0); // 描画命令
 	}

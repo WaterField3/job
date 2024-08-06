@@ -21,6 +21,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+
 	private:
 		std::string LabelTransform(const char* labelName);
 		float m_mass = 0.0f;

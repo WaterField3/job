@@ -8,6 +8,30 @@ namespace TMF
 
 	void Collider::OnInitialize()
 	{
+		MakeCollision();
+	}
+	void Collider::OnFinalize()
+	{
+
+	}
+	void Collider::OnUpdate()
+	{
+
+	}
+	void Collider::OnLateUpdate()
+	{
+
+	}
+	void Collider::OnDraw()
+	{
+
+	}
+	void Collider::OnDrawImGui()
+	{
+
+	}
+	void Collider::MakeCollision()
+	{
 		auto btscale = btVector3(1.0f, 1.0f, 1.0f);
 		if (auto owner = m_pOwner.lock())
 		{
@@ -41,24 +65,13 @@ namespace TMF
 			break;
 		}
 	}
-	void Collider::OnFinalize()
+	std::weak_ptr<btCollisionShape> Collider::GetCollisionShape()
 	{
-
-	}
-	void Collider::OnUpdate()
-	{
-
-	}
-	void Collider::OnLateUpdate()
-	{
-
-	}
-	void Collider::OnDraw()
-	{
-
-	}
-	void Collider::OnDrawImGui()
-	{
+		if (m_pCollisionShape.get() == nullptr)
+		{
+			MakeCollision();
+		}
+		return m_pCollisionShape;
 
 	}
 }

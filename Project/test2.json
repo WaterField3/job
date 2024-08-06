@@ -208,7 +208,7 @@
                                     "data": {
                                         "value0": {},
                                         "m_position": {
-                                            "value0": 0.0,
+                                            "value0": -1.2000000476837159,
                                             "value1": 0.30000001192092898,
                                             "value2": -3.299999952316284
                                         },
@@ -220,14 +220,108 @@
                                         },
                                         "value2": {},
                                         "m_rotation": {
-                                            "value0": 0.07069972902536392,
-                                            "value1": 0.9973170757293701,
-                                            "value2": 0.011558100581169129,
-                                            "value3": -0.015054799616336823
+                                            "value0": -0.011832977645099163,
+                                            "value1": 0.011175926774740219,
+                                            "value2": 0.0706542432308197,
+                                            "value3": 0.9973680973052979
                                         },
                                         "value3": {},
                                         "m_uuID": {
                                             "value0": "2f0896c6-9229-4cf5-9739-95e37ab9b035"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483660,
+                    "data": {
+                        "m_name": "rigObject",
+                        "m_uuID": {
+                            "value0": "50f82bd8-ead4-4e48-b314-5b984adc8ba6"
+                        },
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483661,
+                                    "data": {
+                                        "value0": {},
+                                        "m_position": {
+                                            "value0": 0.4000000059604645,
+                                            "value1": 0.0,
+                                            "value2": -0.20000000298023225
+                                        },
+                                        "value1": {},
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "value2": {},
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "value3": {},
+                                        "m_uuID": {
+                                            "value0": "0b26dd1a-af92-4190-a212-1cbbf65cc58e"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483651,
+                                "polymorphic_name": "TMF::Collider",
+                                "ptr_wrapper": {
+                                    "id": 2147483662,
+                                    "data": {
+                                        "value0": {},
+                                        "m_uuID": {
+                                            "value0": "c11b6940-5391-4296-9cc6-8ee7308a0015"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483652,
+                                "polymorphic_name": "TMF::Rigidbody",
+                                "ptr_wrapper": {
+                                    "id": 2147483663,
+                                    "data": {
+                                        "value0": {},
+                                        "m_mass": 3.0,
+                                        "value1": {},
+                                        "m_drag": 0.0,
+                                        "value2": {},
+                                        "m_angularDrag": 0.0,
+                                        "value3": {},
+                                        "m_useGravity": false,
+                                        "value4": {},
+                                        "m_isKinematic": false,
+                                        "value5": {},
+                                        "m_uuID": {
+                                            "value0": "ee13e35a-ae04-43a5-8d0c-c45b673e564e"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2,
+                                "ptr_wrapper": {
+                                    "id": 2147483664,
+                                    "data": {
+                                        "value0": {},
+                                        "m_loadFileName": "Gun.obj",
+                                        "value1": {},
+                                        "m_uuID": {
+                                            "value0": "43e911b2-64d9-452e-913d-f087154d35f5"
                                         }
                                     }
                                 }

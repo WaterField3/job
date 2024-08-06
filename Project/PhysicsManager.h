@@ -4,6 +4,8 @@
 #include <memory>
 #include <vector>
 
+#include "Utility/BulletDebugDrawer.h"
+
 namespace TMF
 {
 	class PhysicsManager
@@ -22,7 +24,12 @@ namespace TMF
 			return instance;
 		}
 	private:
+		std::unique_ptr<btBroadphaseInterface> m_pBroadphaseInterface;
+		std::unique_ptr<btDefaultCollisionConfiguration> m_pCollisionConfig;
+		std::unique_ptr<btCollisionDispatcher> m_pCollisionDispacher;
+		std::unique_ptr<btSequentialImpulseConstraintSolver> m_pConstrainSolver;
 		std::unique_ptr<btDiscreteDynamicsWorld> m_pDynamicsWorld;
 		std::vector<std::weak_ptr<btRigidBody>> m_pRigidBodys;
+		std::unique_ptr<BulletDebugDrawer> m_pBulletDebugDrawer;
 	};
 }

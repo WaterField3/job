@@ -14,23 +14,33 @@ namespace TMF
 	{
 		if (auto owner = m_pOwner.lock())
 		{
-			auto ColliderComponent = owner->GetComponent<Collider>();
 			auto transformComponent = owner->GetComponent<Transform>();
 			auto btPos = btVector3(0.0f, 0.0f, 0.0f);
+			auto quotainon = btQuaternion(0.0f, 0.0f, 0.0f, 1.0f);
 			if (auto transform = transformComponent.lock())
 			{
 				auto pos = transform->GetPosition();
 				btPos.setValue(pos.x, pos.y, pos.z);
+				auto rotate = transform->GetRotation();
+				btScalar x = rotate.x;
+				btScalar y = rotate.y;
+				btScalar z = rotate.z;
+				btScalar w = rotate.w;
+				quotainon.setValue(x, y, z, w);
 			}
 
-			if (auto collider = ColliderComponent.lock())
+			auto colliderComponent = owner->GetComponent<Collider>();
+			if (auto collider = colliderComponent.lock())
 			{
 				auto collisionShape = collider->GetCollisionShape();
 				if (auto colShape = collisionShape.lock())
 				{
-					btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(m_mass, m_pMotionState.get(), colShape.get(), btPos);
+					auto inertia = btVector3(0.0f, 0.0f, 0.0f);
+					colShape->calculateLocalInertia(m_mass, inertia);
+					m_pMotionState = std::make_unique<btDefaultMotionState>(btTransform(quotainon, btPos));
+					btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(m_mass, m_pMotionState.get(), colShape.get(), inertia);
 					m_pRigidBody = std::make_shared<btRigidBody>(rigidBodyCI);
-					//PhysicsManager::Instance().AddRigidBody(m_pRigidBody);
+					PhysicsManager::Instance().AddRigidBody(m_pRigidBody);
 				}
 			}
 		}
@@ -49,6 +59,17 @@ namespace TMF
 	void Rigidbody::OnLateUpdate()
 	{
 
+		if (auto owner = m_pOwner.lock())
+		{
+			auto TransformComponent = owner->GetComponent<Transform>();
+			if (auto transform = TransformComponent.lock())
+			{
+				btTransform trans;
+				m_pRigidBody->getMotionState()->getWorldTransform(trans);
+				auto Pos = DirectX::SimpleMath::Vector3{ trans.getOrigin().getX(),trans.getOrigin().getY(),trans.getOrigin().getZ() };
+				transform->SetPosition(Pos);
+			}
+		}
 	}
 
 	void Rigidbody::OnDraw()

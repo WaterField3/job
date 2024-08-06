@@ -24,8 +24,8 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
-
-		inline std::weak_ptr<btCollisionShape> GetCollisionShape() const { return m_pCollisionShape; }
+		void MakeCollision();
+		std::weak_ptr<btCollisionShape> GetCollisionShape();
 	private:
 		enum class Collider_Type
 		{
@@ -37,7 +37,7 @@ namespace TMF
 		};
 		std::shared_ptr<btCollisionShape> m_pCollisionShape;
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
-		Collider_Type m_collidrType = Collider_Type::BOX;
+		Collider_Type m_collidrType = Collider_Type::SPHERE;
 
 		SERIALIZE_COMPONENT(m_uuID);
 	};
