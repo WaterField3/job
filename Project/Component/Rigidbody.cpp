@@ -79,23 +79,23 @@ namespace TMF
 
 	void Rigidbody::OnDrawImGui()
 	{
-		auto label = LabelTransform("Mass");
+		auto label = LabelChange("Mass");
 		if (ImGui::DragFloat(label.c_str(), &m_mass, 0.1f))
 		{
 
 		}
-		label = LabelTransform("Drag");
+		label = LabelChange("Drag");
 		if (ImGui::DragFloat(label.c_str(), &m_drag, 0.1f))
 		{
 
 		}
-		label = LabelTransform("AngularDrag");
+		label = LabelChange("AngularDrag");
 		if (ImGui::DragFloat(label.c_str(), &m_angularDrag, 0.1f))
 		{
 
 		}
 	}
-	std::string Rigidbody::LabelTransform(const char* labelName)
+	std::string Rigidbody::LabelChange(const char* labelName)
 	{
 		auto label = std::string(labelName);
 		label += "## " + boost::uuids::to_string(m_uuID);

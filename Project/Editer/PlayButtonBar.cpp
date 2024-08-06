@@ -8,6 +8,7 @@
 #include "GameObject/GameObject.h"
 #include "Utility/CerealExtention.h"
 #include "System/DataFileNames.h"
+#include "PhysicsManager.h"
 
 namespace TMF
 {
@@ -82,6 +83,7 @@ namespace TMF
 		{
 			GameObjectManager::Instance().Update();
 			GameObjectManager::Instance().LateUpdate();
+			PhysicsManager::Instance().LateUpdate();
 		}
 		GameObjectManager::Instance().Draw();
 	}

@@ -23,7 +23,7 @@ namespace TMF
 		void OnDrawImGui() override;
 
 	private:
-		std::string LabelTransform(const char* labelName);
+		std::string LabelChange(const char* labelName);
 		float m_mass = 0.0f;
 		float m_drag = 0.0f;
 		float m_angularDrag = 0.0f;

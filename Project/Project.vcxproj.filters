@@ -63,7 +63,7 @@
     <ClCompile Include="Layer\GameLayer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Component\Camera\Camera.cpp">
+    <ClCompile Include="Component\Camera.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Vender\Imgui\imgui.cpp">
@@ -179,7 +179,7 @@
     <ClInclude Include="Layer\GameLayer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Component\Camera\Camera.h">
+    <ClInclude Include="Component\Camera.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Vender\Imgui\imconfig.h">

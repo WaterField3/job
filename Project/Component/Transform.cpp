@@ -69,7 +69,7 @@ namespace TMF
 
 	void Transform::SetPosition(DirectX::SimpleMath::Vector3 pos)
 	{
-
+		m_position = pos;
 	}
 
 	void Transform::SetScale(DirectX::SimpleMath::Vector3 scale)

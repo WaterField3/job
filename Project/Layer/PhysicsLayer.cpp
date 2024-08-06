@@ -15,7 +15,7 @@ namespace TMF
 
 	void PhysicsLayer::OnUpdate()
 	{
-		PhysicsManager::Instance().LateUpdate();
+		
 	}
 
 	void PhysicsLayer::OnDraw()

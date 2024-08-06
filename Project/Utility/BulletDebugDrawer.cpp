@@ -75,15 +75,15 @@ void BulletDebugDrawer::Render(ID3D11Device* pDevice, ID3D11DeviceContext* pDevi
 		m_pBatch->DrawLine(v1, v2);
 	}
 	m_pBatch->End();
-	D3D11_RASTERIZER_DESC rastraizerDesc;
-	ZeroMemory(&rastraizerDesc, sizeof(D3D11_RASTERIZER_DESC));
-	rastraizerDesc.CullMode = D3D11_CULL_FRONT;
-	rastraizerDesc.FillMode = D3D11_FILL_SOLID;
+	//D3D11_RASTERIZER_DESC rastraizerDesc;
+	//ZeroMemory(&rastraizerDesc, sizeof(D3D11_RASTERIZER_DESC));
+	//rastraizerDesc.CullMode = D3D11_CULL_FRONT;
+	//rastraizerDesc.FillMode = D3D11_FILL_SOLID;
 
-	ID3D11RasterizerState* RasterrizeState;
+	//ID3D11RasterizerState* RasterrizeState;
 
-	pDevice->CreateRasterizerState(&rastraizerDesc, &RasterrizeState);
-	pDeviceContext->RSSetState(RasterrizeState);
+	//pDevice->CreateRasterizerState(&rastraizerDesc, &RasterrizeState);
+	//pDeviceContext->RSSetState(RasterrizeState);
 	m_vertices.clear();
 	m_colors.clear();
 }

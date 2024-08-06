@@ -14,6 +14,7 @@
 #include "Component/Model.h"
 #include "Component/Rigidbody.h"
 #include "Component/Collider.h"
+#include "Component/Camera.h"
 #include "GameObject/GameObjectManager.h"
 #include "Utility/CerealExtention.h"
 #include "System/DataFileNames.h"
@@ -103,7 +104,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	GameObjectManager::Instance().Load(MAIN_DATA);
 	PhysicsManager::Instance().Initialize();
 	GameObjectManager::Instance().Initialize();
-
 
 	auto app = CreateApplication();
 	app->OnInitialize();

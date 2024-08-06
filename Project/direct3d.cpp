@@ -548,13 +548,11 @@ void D3D::UpdateScreen()
     m_pSwapChain->Present(1, 0);
 }
 
-void D3D::InitEffect()
+void D3D::InitEffect(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj)
 {
     m_pEffect->SetVertexColorEnabled(true);
     DirectX::CreateInputLayoutFromEffect<DirectX::VertexPositionColor>(m_pDevice, m_pEffect.get(), &m_pInputLayout);
-    auto m_view = DirectX::SimpleMath::Matrix::CreateLookAt(DirectX::SimpleMath::Vector3(0.0f, 0.0f, 5.0f), DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector3::UnitY);
-    auto m_proj = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(DirectX::XM_PI / 4.0f, float(1024) / float(576), 0.1f, 10.f);
-    m_pEffect->SetView(m_view);
-    m_pEffect->SetProjection(m_proj);
+    m_pEffect->SetView(view);
+    m_pEffect->SetProjection(proj);
     m_pEffect->SetWorld(DirectX::SimpleMath::Matrix::Identity);
 }

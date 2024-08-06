@@ -4,6 +4,7 @@
 
 #include "GameObject/GameObjectManager.h"
 #include "Component/Transform.h"
+#include "Component/Camera.h"
 #include "direct3d.h"
 
 namespace TMF
@@ -72,11 +73,23 @@ namespace TMF
 
 		D3D::ConstBuffer cb;
 		DirectX::SimpleMath::Matrix matrixWorld;
+		
+		auto view = DirectX::SimpleMath::Matrix::CreateLookAt(DirectX::SimpleMath::Vector3(0.0f, 0.0f, 5.0f), DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector3::UnitY);
+		auto proj = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(DirectX::XM_PI / 4.0f, float(1024) / float(576), 0.1f, 10.f);
+		for (auto pGameObject : GameObjectManager::Instance().GetGameObjects())
+		{
+			if (pGameObject->GetName() == "CameraObject")
+			{
+				auto cameraComponent = pGameObject->GetComponent<Camera>();
+				if (auto camera = cameraComponent.lock())
+				{
+					view = camera->GetViewMatrix();
+					proj = camera->GetProjectionMatrix();
+				}
 
-		m_view = DirectX::SimpleMath::Matrix::CreateLookAt(DirectX::SimpleMath::Vector3(0.0f, 0.0f, 5.0f),
-			DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector3::UnitY);
-		m_proj = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(DirectX::XM_PI / 4.0f,
-			float(1024) / float(576), 0.1f, 10.f);
+			}
+		}
+		
 
 		// XYZの三軸の回転角度を指定して回転させる方法　＝　オイラー角
 		auto matrixRotateX = DirectX::SimpleMath::Matrix::CreateRotationX(0);
@@ -99,7 +112,7 @@ namespace TMF
 		// 法線ベクトル回転用行列
 		//cb.matrixWorldNormal = matrixRotate.Transpose();
 
-		cb.matrixWorld = matrixWorld * m_view * m_proj;
+		cb.matrixWorld = matrixWorld * view * proj;
 		// 合成した行列の転置行列を作成する ※シェーダーとC++でメモリの並びが異なるため
 		cb.matrixWorld = cb.matrixWorld.Transpose();
 
@@ -127,6 +140,7 @@ namespace TMF
 
 		// ピクセルシェーダーにテクスチャを渡す
 		d3dContext->PSSetShaderResources(0, 1, &mdl.texture);
+
 		D3D::Get()->GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 		// 第１引数　→　描画する頂点数
 		d3dContext->DrawIndexed(mdl.numIndex, 0, 0); // 描画命令

@@ -220,10 +220,10 @@
                                         },
                                         "value2": {},
                                         "m_rotation": {
-                                            "value0": -0.011832977645099163,
-                                            "value1": 0.011175926774740219,
-                                            "value2": 0.0706542432308197,
-                                            "value3": 0.9973680973052979
+                                            "value0": 0.03008722886443138,
+                                            "value1": 0.5725346803665161,
+                                            "value2": 0.06491360813379288,
+                                            "value3": 0.8167528510093689
                                         },
                                         "value3": {},
                                         "m_uuID": {
@@ -265,9 +265,9 @@
                                         "value2": {},
                                         "m_rotation": {
                                             "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0,
-                                            "value3": 1.0
+                                            "value1": -0.9463000893592835,
+                                            "value2": -0.0,
+                                            "value3": -0.3232894539833069
                                         },
                                         "value3": {},
                                         "m_uuID": {
@@ -322,6 +322,69 @@
                                         "value1": {},
                                         "m_uuID": {
                                             "value0": "43e911b2-64d9-452e-913d-f087154d35f5"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483665,
+                    "data": {
+                        "m_name": "CameraObject",
+                        "m_uuID": {
+                            "value0": "efe87573-157e-435b-a69d-52aa149b45c1"
+                        },
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483666,
+                                    "data": {
+                                        "value0": {},
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 3.4000000953674318
+                                        },
+                                        "value1": {},
+                                        "m_scale": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "value2": {},
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "value3": {},
+                                        "m_uuID": {
+                                            "value0": "11f622f7-d394-4929-b8db-4e0e15b3ad06"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483653,
+                                "polymorphic_name": "TMF::Camera",
+                                "ptr_wrapper": {
+                                    "id": 2147483667,
+                                    "data": {
+                                        "value0": {},
+                                        "m_fov": 1.0,
+                                        "value1": {},
+                                        "m_near": 0.10000000149011612,
+                                        "value2": {},
+                                        "m_far": 1.0,
+                                        "value3": {},
+                                        "m_uuID": {
+                                            "value0": "5b219252-f32f-452f-930c-2295139ae5fe"
                                         }
                                     }
                                 }

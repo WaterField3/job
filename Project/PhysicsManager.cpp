@@ -30,7 +30,7 @@ namespace TMF
 	}
 	void PhysicsManager::LateUpdate()
 	{
-		m_pDynamicsWorld->stepSimulation(1 / 60.0f);
+		m_pDynamicsWorld->stepSimulation(1 / 60.0f,10);
 
 	}
 	void PhysicsManager::Draw()
