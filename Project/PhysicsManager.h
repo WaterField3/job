@@ -17,6 +17,8 @@ namespace TMF
 		void LateUpdate();
 		void Draw();
 		void AddRigidBody(std::weak_ptr<btRigidBody> rigidBody);
+		void RemoveRigidBody(std::weak_ptr<btRigidBody> rigidBody);
+		void AllRemoveRigidBody();
 
 		static PhysicsManager& Instance()
 		{
@@ -29,7 +31,6 @@ namespace TMF
 		std::unique_ptr<btCollisionDispatcher> m_pCollisionDispacher;
 		std::unique_ptr<btSequentialImpulseConstraintSolver> m_pConstrainSolver;
 		std::unique_ptr<btDiscreteDynamicsWorld> m_pDynamicsWorld;
-		std::vector<std::weak_ptr<btRigidBody>> m_pRigidBodys;
 		std::unique_ptr<BulletDebugDrawer> m_pBulletDebugDrawer;
 	};
 }

@@ -29,6 +29,8 @@ namespace TMF
 			}
 			else
 			{
+				PhysicsManager::Instance().AllRemoveRigidBody();
+				GameObjectManager::Instance().Finalize();
 				GameObjectManager::Instance().Load(TEST_DATA);
 				GameObjectManager::Instance().Initialize();
 			}
@@ -68,8 +70,8 @@ namespace TMF
 		{
 			if (!m_isPlay)
 			{
-				GameObjectManager::Instance().Finalize();
 				GameObjectManager::Instance().Save(MAIN_DATA);
+				GameObjectManager::Instance().Finalize();
 			}
 		}
 		ImGui::SameLine();
@@ -86,5 +88,6 @@ namespace TMF
 			PhysicsManager::Instance().LateUpdate();
 		}
 		GameObjectManager::Instance().Draw();
+		PhysicsManager::Instance().Draw();
 	}
 }

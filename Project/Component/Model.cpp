@@ -86,7 +86,6 @@ namespace TMF
 					view = camera->GetViewMatrix();
 					proj = camera->GetProjectionMatrix();
 				}
-
 			}
 		}
 		
@@ -118,7 +117,7 @@ namespace TMF
 
 		// UVアニメーション行列
 		cb.matrixUV = DirectX::XMMatrixIdentity();
-		cb.matrixUV = XMMatrixTranspose(cb.matrixUV);
+		cb.matrixUV = cb.matrixUV.Transpose();
 
 		cb.materialDiffuse = { 1,1,1,1 };
 
@@ -141,7 +140,9 @@ namespace TMF
 		// ピクセルシェーダーにテクスチャを渡す
 		d3dContext->PSSetShaderResources(0, 1, &mdl.texture);
 
-		D3D::Get()->GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		d3dContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
 		// 第１引数　→　描画する頂点数
 		d3dContext->DrawIndexed(mdl.numIndex, 0, 0); // 描画命令
 	}

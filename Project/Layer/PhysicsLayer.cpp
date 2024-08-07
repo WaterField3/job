@@ -10,7 +10,7 @@ namespace TMF
 
 	void PhysicsLayer::OnFinalize()
 	{
-
+		PhysicsManager::Instance().AllRemoveRigidBody();
 	}
 
 	void PhysicsLayer::OnUpdate()
@@ -20,6 +20,6 @@ namespace TMF
 
 	void PhysicsLayer::OnDraw()
 	{
-		PhysicsManager::Instance().Draw();
+		//PhysicsManager::Instance().Draw();
 	}
 }

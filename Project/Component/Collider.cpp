@@ -1,5 +1,7 @@
 #include "Collider.h"
 
+#include <Imgui/imgui.h>
+
 #include "Component/Transform.h"
 
 namespace TMF
@@ -28,7 +30,15 @@ namespace TMF
 	}
 	void Collider::OnDrawImGui()
 	{
-
+		if (ImGui::BeginListBox("ColliderType"))
+		{
+			//for (int i = 0; i < (int)Collider_Type::MAX; i++)
+			//{
+			//	auto isSelected = i == (int)m_collidrType;
+			//	auto enumName = 
+			//	if (ImGui::Selectable(""))
+			//}
+		}
 	}
 	void Collider::MakeCollision()
 	{

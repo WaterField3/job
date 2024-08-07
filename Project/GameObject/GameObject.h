@@ -39,6 +39,7 @@ namespace TMF
 					count++;
 					if (typeid(*pObject) == typeid(TComponent) && index == count)
 					{
+						pObject->Finalize();
 						return true;
 					}
 					return false;

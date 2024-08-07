@@ -252,7 +252,7 @@
                                     "data": {
                                         "value0": {},
                                         "m_position": {
-                                            "value0": 0.4000000059604645,
+                                            "value0": 0.20000000298023225,
                                             "value1": 0.0,
                                             "value2": -0.20000000298023225
                                         },
@@ -346,9 +346,9 @@
                                     "data": {
                                         "value0": {},
                                         "m_position": {
-                                            "value0": 0.0,
+                                            "value0": 4.599999904632568,
                                             "value1": 0.0,
-                                            "value2": 3.4000000953674318
+                                            "value2": -3.0
                                         },
                                         "value1": {},
                                         "m_scale": {
@@ -381,10 +381,88 @@
                                         "value1": {},
                                         "m_near": 0.10000000149011612,
                                         "value2": {},
-                                        "m_far": 1.0,
+                                        "m_far": 10.100000381469727,
                                         "value3": {},
                                         "m_uuID": {
                                             "value0": "5b219252-f32f-452f-930c-2295139ae5fe"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483668,
+                    "data": {
+                        "m_name": "FieldObject",
+                        "m_uuID": {
+                            "value0": "0b0ce06e-f7a8-49f9-ad69-20bc3eb9ea5e"
+                        },
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483669,
+                                    "data": {
+                                        "value0": {},
+                                        "m_position": {
+                                            "value0": 1.2999999523162842,
+                                            "value1": -0.8999999761581421,
+                                            "value2": -1.7999999523162842
+                                        },
+                                        "value1": {},
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "value2": {},
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "value3": {},
+                                        "m_uuID": {
+                                            "value0": "0f9e5b00-8558-4b22-92b7-4ca61716efb2"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "id": 2147483670,
+                                    "data": {
+                                        "value0": {},
+                                        "m_uuID": {
+                                            "value0": "2adf9d81-4e5f-4a5b-8659-ebf60e7b81dc"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 4,
+                                "ptr_wrapper": {
+                                    "id": 2147483671,
+                                    "data": {
+                                        "value0": {},
+                                        "m_mass": 0.0,
+                                        "value1": {},
+                                        "m_drag": 1.2999999523162842,
+                                        "value2": {},
+                                        "m_angularDrag": 0.0,
+                                        "value3": {},
+                                        "m_useGravity": false,
+                                        "value4": {},
+                                        "m_isKinematic": false,
+                                        "value5": {},
+                                        "m_uuID": {
+                                            "value0": "f972feb4-5250-46bb-b5b1-071f6c8af385"
                                         }
                                     }
                                 }

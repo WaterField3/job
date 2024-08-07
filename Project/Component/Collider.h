@@ -34,10 +34,11 @@ namespace TMF
 			SPHERE,
 			CYLINDER,
 			CONE,
+			MAX,
 		};
 		std::shared_ptr<btCollisionShape> m_pCollisionShape;
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
-		Collider_Type m_collidrType = Collider_Type::SPHERE;
+		Collider_Type m_collidrType = Collider_Type::BOX;
 
 		SERIALIZE_COMPONENT(m_uuID);
 	};

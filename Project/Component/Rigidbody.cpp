@@ -48,7 +48,7 @@ namespace TMF
 
 	void Rigidbody::OnFinalize()
 	{
-
+		PhysicsManager::Instance().RemoveRigidBody(m_pRigidBody);
 	}
 
 	void Rigidbody::OnUpdate()

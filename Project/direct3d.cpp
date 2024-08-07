@@ -250,17 +250,11 @@ HRESULT D3D::Create(HWND hwnd)
     BlendState.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
     m_pDevice->CreateBlendState(&BlendState, &m_pBlendStateAdditive);
 
-
     m_hwnd = hwnd;
 
     m_pEffect = std::make_shared<DirectX::BasicEffect>(m_pDevice);
     m_pEffect->SetVertexColorEnabled(true);
-    DirectX::CreateInputLayoutFromEffect<DirectX::VertexPositionColor>(m_pDevice, m_pEffect.get(), &m_pInputLayout);
-    auto m_view = DirectX::SimpleMath::Matrix::CreateLookAt(DirectX::SimpleMath::Vector3(0.0f, 0.0f, 5.0f), DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector3::UnitY);
-    auto m_proj = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(DirectX::XM_PI / 4.0f, float(1024) / float(576), 0.1f, 10.f);
-    m_pEffect->SetView(m_view);
-    m_pEffect->SetProjection(m_proj);
-    m_pEffect->SetWorld(DirectX::SimpleMath::Matrix::Identity);
+
     return hr;
 }
 
@@ -550,9 +544,8 @@ void D3D::UpdateScreen()
 
 void D3D::InitEffect(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj)
 {
-    m_pEffect->SetVertexColorEnabled(true);
-    DirectX::CreateInputLayoutFromEffect<DirectX::VertexPositionColor>(m_pDevice, m_pEffect.get(), &m_pInputLayout);
     m_pEffect->SetView(view);
     m_pEffect->SetProjection(proj);
     m_pEffect->SetWorld(DirectX::SimpleMath::Matrix::Identity);
+    m_pEffect->Apply(m_pImmediateContext);
 }
