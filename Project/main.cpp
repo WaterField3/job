@@ -103,7 +103,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	D3D::Get()->Create(hWnd);
 	GameObjectManager::Instance().Load(MAIN_DATA);
 	PhysicsManager::Instance().Initialize();
-	GameObjectManager::Instance().Initialize();
 
 	auto app = CreateApplication();
 	app->OnInitialize();

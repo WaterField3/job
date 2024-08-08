@@ -74,7 +74,7 @@ namespace TMF
 
 	void Transform::SetScale(DirectX::SimpleMath::Vector3 scale)
 	{
-
+		m_scale = scale;
 	}
 
 	void Transform::SetRotation(DirectX::SimpleMath::Quaternion rotation)
@@ -97,12 +97,6 @@ namespace TMF
 	DirectX::SimpleMath::Matrix Transform::GetMatrixRotation()
 	{
 		// âÒì]çsóÒ
-		auto rotateMatrixX = DirectX::SimpleMath::Matrix::CreateRotationX(m_rotation.x);
-		auto rotateMatrixY = DirectX::SimpleMath::Matrix::CreateRotationY(m_rotation.y);
-		auto rotateMatrixZ = DirectX::SimpleMath::Matrix::CreateRotationZ(m_rotation.z);
-
-		auto rotateMatrix = rotateMatrixX * rotateMatrixY * rotateMatrixZ;
-
-		return rotateMatrix;
+		return Matrix::CreateFromQuaternion(m_rotation);
 	}
 }

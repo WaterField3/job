@@ -11,7 +11,7 @@ namespace TMF
 	void Camera::OnInitialize()
 	{
 		auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(m_fov, float(1024) / float(576), m_near, m_far);
-		D3D::Get()->InitEffect(MakeViewMatrix(), projectionMatrix);
+		D3D::Get()->SettingEffect(MakeViewMatrix(), projectionMatrix);
 	}
 	void Camera::OnFinalize()
 	{
@@ -35,19 +35,19 @@ namespace TMF
 		if (ImGui::DragFloat(label.c_str(), &m_near, 0.1f))
 		{
 			auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(m_fov, float(1024) / float(576), m_near, m_far);
-			D3D::Get()->InitEffect(MakeViewMatrix(), projectionMatrix);
+			D3D::Get()->SettingEffect(MakeViewMatrix(), projectionMatrix);
 		}
 		label = LabelChange("Far");
 		if (ImGui::DragFloat(label.c_str(), &m_far, 0.1f))
 		{
 			auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(m_fov, float(1024) / float(576), m_near, m_far);
-			D3D::Get()->InitEffect(MakeViewMatrix(), projectionMatrix);
+			D3D::Get()->SettingEffect(MakeViewMatrix(), projectionMatrix);
 		}
 		label = LabelChange("Fov");
 		if (ImGui::DragFloat(label.c_str(), &m_fov, 0.1f))
 		{
 			auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(m_fov, float(1024) / float(576), m_near, m_far);
-			D3D::Get()->InitEffect(MakeViewMatrix(), projectionMatrix);
+			D3D::Get()->SettingEffect(MakeViewMatrix(), projectionMatrix);
 		}
 
 	}

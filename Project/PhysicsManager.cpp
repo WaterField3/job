@@ -1,6 +1,8 @@
 #include "PhysicsManager.h"
 
 #include "direct3d.h"
+#include "GameObject/GameObjectManager.h"
+#include "Component/Camera.h"
 
 namespace TMF
 {
@@ -20,20 +22,24 @@ namespace TMF
 	}
 	void PhysicsManager::Update()
 	{
-
+		m_pDynamicsWorld->stepSimulation(1 / 60.0f,10);
 	}
 	void PhysicsManager::LateUpdate()
 	{
-		m_pDynamicsWorld->stepSimulation(1 / 60.0f,10);
 
 	}
 	void PhysicsManager::Draw()
 	{
+		auto compoent = GameObjectManager::Instance().GetComponent<Camera>("CameraObject");
+		if (auto camera = compoent.lock())
+		{
+			D3D::Get()->SettingEffect(camera->GetViewMatrix(), camera->GetProjectionMatrix());
+		}
 		auto CollisionObjects = m_pDynamicsWorld->getCollisionObjectArray();
 		if (CollisionObjects.size() > 0)
 		{
 			m_pDynamicsWorld->debugDrawWorld();
-			m_pBulletDebugDrawer->Render(D3D::Get()->GetContext());
+			m_pBulletDebugDrawer->Render();
 		}
 	}
 	void PhysicsManager::AddRigidBody(std::weak_ptr<btRigidBody> rigidBody)

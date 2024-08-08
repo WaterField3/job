@@ -193,8 +193,10 @@
                                     "id": 2147483658,
                                     "data": {
                                         "value0": {},
-                                        "m_loadFileName": "Gun.obj",
+                                        "m_loadFileName": "",
                                         "value1": {},
+                                        "m_isDraw": false,
+                                        "value2": {},
                                         "m_uuID": {
                                             "value0": "93f426e3-3601-4a56-ab19-404dcb7a18d7"
                                         }
@@ -318,8 +320,10 @@
                                     "id": 2147483664,
                                     "data": {
                                         "value0": {},
-                                        "m_loadFileName": "Gun.obj",
+                                        "m_loadFileName": "",
                                         "value1": {},
+                                        "m_isDraw": false,
+                                        "value2": {},
                                         "m_uuID": {
                                             "value0": "43e911b2-64d9-452e-913d-f087154d35f5"
                                         }
@@ -381,7 +385,7 @@
                                         "value1": {},
                                         "m_near": 0.10000000149011612,
                                         "value2": {},
-                                        "m_far": 10.100000381469727,
+                                        "m_far": 1000.0,
                                         "value3": {},
                                         "m_uuID": {
                                             "value0": "5b219252-f32f-452f-930c-2295139ae5fe"
@@ -409,22 +413,22 @@
                                     "data": {
                                         "value0": {},
                                         "m_position": {
-                                            "value0": 1.2999999523162842,
-                                            "value1": -0.8999999761581421,
-                                            "value2": -1.7999999523162842
+                                            "value0": -1.7999999523162842,
+                                            "value1": -1.899999976158142,
+                                            "value2": 1.7000000476837159
                                         },
                                         "value1": {},
                                         "m_scale": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0
+                                            "value0": 4.400000095367432,
+                                            "value1": 0.10000000149011612,
+                                            "value2": 4.300000190734863
                                         },
                                         "value2": {},
                                         "m_rotation": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
+                                            "value0": -0.0,
+                                            "value1": -0.19866932928562165,
                                             "value2": 0.0,
-                                            "value3": 1.0
+                                            "value3": 0.9800665974617004
                                         },
                                         "value3": {},
                                         "m_uuID": {

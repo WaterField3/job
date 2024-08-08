@@ -27,7 +27,21 @@ namespace TMF
 
 		std::vector<std::shared_ptr<GameObject>> GetGameObjects();
 
-		static GameObjectManager& Instance() 
+		template < typename TComponent>
+		std::weak_ptr<TComponent> GetComponent(std::string name)
+		{
+			for (auto gameobject : m_pGameObjects)
+			{
+				if (gameobject->GetName() == name)
+				{
+					return gameobject->GetComponent<TComponent>();
+				}
+			}
+			std::weak_ptr<TComponent> nonPtr;
+			return  nonPtr;
+		}
+
+		static GameObjectManager& Instance()
 		{
 			static GameObjectManager instance;
 			return instance;

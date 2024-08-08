@@ -11,6 +11,7 @@
 #include "GameObject/GameObject.h"
 #include "Component/ComponentManager.h"
 #include "Component/Transform.h"
+#include "ApplicationState.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -82,7 +83,7 @@ namespace TMF
 		m_pHirarchy->DrawImGui();
 		m_pPlayButtonBar->DrawImGui();
 		m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
-
+		ApplicationState::Instance().DrawImGui();
 		ImGui::Render();
 
 

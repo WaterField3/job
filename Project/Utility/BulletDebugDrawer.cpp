@@ -5,6 +5,7 @@
 BulletDebugDrawer::BulletDebugDrawer(ID3D11DeviceContext* pDeviceContext)
 {
 	m_pBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>>(pDeviceContext);
+
 }
 
 BulletDebugDrawer::~BulletDebugDrawer()
@@ -46,22 +47,29 @@ int BulletDebugDrawer::getDebugMode() const
 	return m_debugMode;
 }
 
-void BulletDebugDrawer::Render(ID3D11DeviceContext* pDeviceContext)
+void BulletDebugDrawer::Render()
 {
 	if (m_vertices.empty())
 	{
 		return;
 	}
+
 	m_pBatch->Begin();
 
-	auto divisions = m_vertices.size();
+	auto size = m_vertices.size();
 
-	for (int i = 0; i < divisions - 1; ++i)
+
+	for (int i = 0; i < size ; i += 2)
 	{
-		DirectX::VertexPositionColor v1(m_vertices[i], DirectX::SimpleMath::Vector4(1, 0, 0, 0.5f));
-		DirectX::VertexPositionColor v2(m_vertices[i + 1], DirectX::SimpleMath::Vector4(1, 0, 0, 0.5f));
+		if (i >= size)
+		{
+			break;
+		}
+		DirectX::VertexPositionColor v1(m_vertices[i], DirectX::SimpleMath::Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+		DirectX::VertexPositionColor v2(m_vertices[i + 1], DirectX::SimpleMath::Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 		m_pBatch->DrawLine(v1, v2);
 	}
+
 	m_pBatch->End();
 	m_vertices.clear();
 	m_colors.clear();

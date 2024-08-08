@@ -3,6 +3,7 @@
 #include <atltypes.h> // CRectを使うためのヘッダーファイル
 #include <DirectXHelpers.h>
 #include <VertexTypes.h>
+#include <CommonStates.h>
 
 #include "WICTextureLoader.h" // テクスチャ読み込みライブラリ
 
@@ -254,7 +255,8 @@ HRESULT D3D::Create(HWND hwnd)
 
     m_pEffect = std::make_shared<DirectX::BasicEffect>(m_pDevice);
     m_pEffect->SetVertexColorEnabled(true);
-
+    CreateInputLayoutFromEffect<VertexPositionColor>(m_pDevice, m_pEffect.get(),
+        &m_pInputLayout);
     return hr;
 }
 
@@ -542,10 +544,21 @@ void D3D::UpdateScreen()
     m_pSwapChain->Present(1, 0);
 }
 
-void D3D::InitEffect(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj)
+void D3D::SettingEffect(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj)
 {
     m_pEffect->SetView(view);
     m_pEffect->SetProjection(proj);
     m_pEffect->SetWorld(DirectX::SimpleMath::Matrix::Identity);
+    void const* shaderByteCode;
+    size_t byteCodeLength;
+    m_pEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
+    m_pDevice->CreateInputLayout(
+        VertexPositionColor::InputElements, VertexPositionColor::InputElementCount,
+        shaderByteCode, byteCodeLength,
+        &m_pInputLayout);
+    auto states = CommonStates(m_pDevice);
+    m_pImmediateContext->OMSetBlendState(states.Opaque(), nullptr, 0xFFFFFFFF);
+    //m_pImmediateContext->OMSetDepthStencilState(states.DepthNone(), 0);
     m_pEffect->Apply(m_pImmediateContext);
+    m_pImmediateContext->IASetInputLayout(m_pInputLayout);
 }

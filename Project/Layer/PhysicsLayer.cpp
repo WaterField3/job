@@ -15,11 +15,11 @@ namespace TMF
 
 	void PhysicsLayer::OnUpdate()
 	{
-		
+		PhysicsManager::Instance().Update();
 	}
 
 	void PhysicsLayer::OnDraw()
 	{
-		//PhysicsManager::Instance().Draw();
+		PhysicsManager::Instance().Draw();
 	}
 }

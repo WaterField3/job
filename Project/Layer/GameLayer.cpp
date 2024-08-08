@@ -1,18 +1,44 @@
 #include "GameLayer.h"
 
-void TMF::GameLayer::OnInitialize()
-{
+#include "GameObject/GameObjectManager.h"
+#include "ApplicationState.h"
 
-}
-
-void TMF::GameLayer::OnFinalize()
+namespace TMF
 {
-}
+	void GameLayer::OnInitialize()
+	{
+		GameObjectManager::Instance().Initialize();
+	}
 
-void TMF::GameLayer::OnUpdate()
-{
-}
+	void GameLayer::OnFinalize()
+	{
+		GameObjectManager::Instance().Finalize();
+	}
 
-void TMF::GameLayer::OnDraw()
-{
+	void GameLayer::OnUpdate()
+	{
+		auto isPlay = ApplicationState::Instance().GetIsPlay();
+		auto isPause = ApplicationState::Instance().GetIsPause();
+		auto isNextFrame = ApplicationState::Instance().GetIsNextFrame();
+		if ((isPlay && !isPause) || (isPlay && isNextFrame))
+		{
+			GameObjectManager::Instance().Update();
+		}
+	}
+
+	void GameLayer::OnLateUpdate()
+	{
+		auto isPlay = ApplicationState::Instance().GetIsPlay();
+		auto isPause = ApplicationState::Instance().GetIsPause();
+		auto isNextFrame = ApplicationState::Instance().GetIsNextFrame();
+		if ((isPlay && !isPause) || (isPlay && isNextFrame))
+		{
+			GameObjectManager::Instance().LateUpdate();
+		}
+	}
+
+	void GameLayer::OnDraw()
+	{
+		GameObjectManager::Instance().Draw();
+	}
 }

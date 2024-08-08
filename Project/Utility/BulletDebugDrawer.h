@@ -21,7 +21,7 @@ public:
 	virtual void draw3dText(const btVector3& location, const char* textString) override;
 	virtual void setDebugMode(int debugMode) override;
 	virtual int getDebugMode() const override;
-	void Render(ID3D11DeviceContext* pDeviceContext);
+	void Render();
 private:
 	int m_debugMode = DBG_DrawWireframe;
 	std::vector<DirectX::SimpleMath::Vector3> m_vertices;

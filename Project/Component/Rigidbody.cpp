@@ -14,21 +14,6 @@ namespace TMF
 	{
 		if (auto owner = m_pOwner.lock())
 		{
-			auto transformComponent = owner->GetComponent<Transform>();
-			auto btPos = btVector3(0.0f, 0.0f, 0.0f);
-			auto quotainon = btQuaternion(0.0f, 0.0f, 0.0f, 1.0f);
-			if (auto transform = transformComponent.lock())
-			{
-				auto pos = transform->GetPosition();
-				btPos.setValue(pos.x, pos.y, pos.z);
-				auto rotate = transform->GetRotation();
-				btScalar x = rotate.x;
-				btScalar y = rotate.y;
-				btScalar z = rotate.z;
-				btScalar w = rotate.w;
-				quotainon.setValue(x, y, z, w);
-			}
-
 			auto colliderComponent = owner->GetComponent<Collider>();
 			if (auto collider = colliderComponent.lock())
 			{
@@ -37,7 +22,7 @@ namespace TMF
 				{
 					auto inertia = btVector3(0.0f, 0.0f, 0.0f);
 					colShape->calculateLocalInertia(m_mass, inertia);
-					m_pMotionState = std::make_unique<btDefaultMotionState>(btTransform(quotainon, btPos));
+					m_pMotionState = std::make_unique<btDefaultMotionState>(TransfomPosToBtTransform());
 					btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(m_mass, m_pMotionState.get(), colShape.get(), inertia);
 					m_pRigidBody = std::make_shared<btRigidBody>(rigidBodyCI);
 					PhysicsManager::Instance().AddRigidBody(m_pRigidBody);
@@ -94,6 +79,28 @@ namespace TMF
 		{
 
 		}
+	}
+
+	btTransform Rigidbody::TransfomPosToBtTransform()
+	{
+		auto btPos = btVector3(0.0f, 0.0f, 0.0f);
+		auto btQuotainon = btQuaternion(0.0f, 0.0f, 0.0f, 1.0f);
+		if (auto owner = m_pOwner.lock())
+		{
+			auto transformComponent = owner->GetComponent<Transform>();
+			if (auto transform = transformComponent.lock())
+			{
+				auto pos = transform->GetPosition();
+				btPos.setValue(pos.x, pos.y, pos.z);
+				auto rotate = transform->GetRotation();
+				btScalar x = rotate.x;
+				btScalar y = rotate.y;
+				btScalar z = rotate.z;
+				btScalar w = rotate.w;
+				btQuotainon.setValue(x, y, z, w);
+			}
+		}
+		return btTransform(btQuotainon, btPos);
 	}
 	std::string Rigidbody::LabelChange(const char* labelName)
 	{

@@ -36,7 +36,7 @@ namespace TMF
 		D3D::Model m_model;
 		bool m_isDraw = true;
 
-		SERIALIZE_COMPONENT(m_loadFileName, m_uuID);
+		SERIALIZE_COMPONENT(m_loadFileName,m_isDraw, m_uuID);
 	};
 }
 REGISTER_CEREAL_TYPE(TMF::Model);

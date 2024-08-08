@@ -157,6 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="ApplicationState.cpp" />
     <ClCompile Include="Application\Application.cpp" />
     <ClCompile Include="Utility\BulletDebugDrawer.cpp" />
     <ClCompile Include="Component\Collider.cpp" />
@@ -194,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="ApplicationState.h" />
     <ClInclude Include="Application\Application.h" />
     <ClInclude Include="Utility\BulletDebugDrawer.h" />
     <ClInclude Include="Component\Collider.h" />
@@ -303,7 +305,6 @@
     <ClInclude Include="GraphicManager\GraphicManager.h" />
     <ClInclude Include="Component\Transform.h" />
     <ClInclude Include="Utility\CerealHelper.h" />
-    <ClInclude Include="Utility\EnumHelper.h" />
     <ClInclude Include="Utility\Log.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Utility\Console.h" />

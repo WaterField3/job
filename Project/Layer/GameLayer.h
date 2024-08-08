@@ -10,9 +10,10 @@ namespace TMF
 
 		void OnInitialize() override;
 		void OnFinalize() override;
-		void OnUpdate()override;
+		void OnUpdate() override;
+		void OnLateUpdate() override;
 		void OnDraw() override;
-		
+
 	};
 }
 

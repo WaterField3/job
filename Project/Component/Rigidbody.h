@@ -23,6 +23,7 @@ namespace TMF
 		void OnDrawImGui() override;
 
 	private:
+		btTransform TransfomPosToBtTransform();
 		std::string LabelChange(const char* labelName);
 		float m_mass = 0.0f;
 		float m_drag = 0.0f;

@@ -120,6 +120,9 @@
     <ClCompile Include="Utility\BulletDebugDrawer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="ApplicationState.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -509,7 +512,7 @@
     <ClInclude Include="Utility\BulletDebugDrawer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\EnumHelper.h">
+    <ClInclude Include="ApplicationState.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

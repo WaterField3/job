@@ -30,15 +30,20 @@ namespace TMF
 	}
 	void Collider::OnDrawImGui()
 	{
-		if (ImGui::BeginListBox("ColliderType"))
-		{
-			//for (int i = 0; i < (int)Collider_Type::MAX; i++)
-			//{
-			//	auto isSelected = i == (int)m_collidrType;
-			//	auto enumName = 
-			//	if (ImGui::Selectable(""))
-			//}
-		}
+		//const char* types[] = { "BOX","CAPSULE","SPHERE","CYLINDER","CONE" };
+		//if (ImGui::BeginListBox("ColliderType"))
+		//{
+		//	for (int i = 0; i < IM_ARRAYSIZE(types); i++)
+		//	{
+		//		auto selected = ((int)m_collidrType == i);
+		//		if (ImGui::Selectable(types[i], selected))
+		//		{
+		//			m_collidrType = Collider_Type(i);
+		//			MakeCollision();
+		//		}
+		//	}
+		//}
+		//ImGui::EndListBox();
 	}
 	void Collider::MakeCollision()
 	{
@@ -84,4 +89,5 @@ namespace TMF
 		return m_pCollisionShape;
 
 	}
+
 }

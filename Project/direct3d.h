@@ -74,7 +74,7 @@ public:
 	void ClearScreen();
 	// 画面を更新する関数
 	void UpdateScreen();
-	void InitEffect(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj);
+	void SettingEffect(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj);
 
 	// 四角形ポリゴンを作成し、頂点バッファ生成を行う
 	static Model CreateSquare(FLOAT_XY center, FLOAT_XY size, FLOAT_XY uv);
