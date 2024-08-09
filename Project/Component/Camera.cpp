@@ -10,7 +10,8 @@ namespace TMF
 	REGISTER_COMPONENT(Camera);
 	void Camera::OnInitialize()
 	{
-		auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(m_fov, float(1024) / float(576), m_near, m_far);
+		auto fovRadian = DirectX::XMConvertToRadians(m_fov);
+		auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(fovRadian, float(1024) / float(576), m_near, m_far);
 		D3D::Get()->SettingEffect(MakeViewMatrix(), projectionMatrix);
 	}
 	void Camera::OnFinalize()
@@ -34,26 +35,45 @@ namespace TMF
 		auto label = LabelChange("Near");
 		if (ImGui::DragFloat(label.c_str(), &m_near, 0.1f))
 		{
-			auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(m_fov, float(1024) / float(576), m_near, m_far);
+			if (m_near >= m_far)
+			{
+				m_near = m_far - 0.1f;
+			}
+			auto fovRadian = DirectX::XMConvertToRadians(m_fov);
+			auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(fovRadian, float(1024) / float(576), m_near, m_far);
 			D3D::Get()->SettingEffect(MakeViewMatrix(), projectionMatrix);
 		}
 		label = LabelChange("Far");
 		if (ImGui::DragFloat(label.c_str(), &m_far, 0.1f))
 		{
-			auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(m_fov, float(1024) / float(576), m_near, m_far);
-			D3D::Get()->SettingEffect(MakeViewMatrix(), projectionMatrix);
+			if (m_near >= m_far)
+			{
+				m_far = m_near + 0.1f;
+			}
+			auto fovRadian = DirectX::XMConvertToRadians(m_fov);
+			auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(fovRadian, float(1024) / float(576), m_near, m_far);			D3D::Get()->SettingEffect(MakeViewMatrix(), projectionMatrix);
 		}
 		label = LabelChange("Fov");
 		if (ImGui::DragFloat(label.c_str(), &m_fov, 0.1f))
 		{
-			auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(m_fov, float(1024) / float(576), m_near, m_far);
+			if (m_fov == 0)
+			{
+				m_fov = 0.1f;
+			}
+			auto fovRadian = DirectX::XMConvertToRadians(m_fov);
+			auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(fovRadian, float(1024) / float(576), m_near, m_far);
 			D3D::Get()->SettingEffect(MakeViewMatrix(), projectionMatrix);
 		}
 
 	}
+	boost::uuids::uuid Camera::OnGetUUID()
+	{
+		return m_uuID;
+	}
 	DirectX::SimpleMath::Matrix Camera::GetProjectionMatrix()
 	{
-		auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(m_fov, float(1024) / float(576), m_near, m_far);
+		auto fovRadian = DirectX::XMConvertToRadians(m_fov);
+		auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(fovRadian, float(1024) / float(576), m_near, m_far);
 		return projectionMatrix;
 	}
 	DirectX::SimpleMath::Matrix Camera::GetViewMatrix()

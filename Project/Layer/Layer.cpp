@@ -30,4 +30,8 @@ namespace TMF
 	{
 
 	}
+	bool Layer::GetIsUpdate()
+	{
+		return false;
+	}
 }

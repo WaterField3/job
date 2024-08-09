@@ -27,6 +27,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		boost::uuids::uuid OnGetUUID() override;
 
 	private:
 		void ModelDraw();

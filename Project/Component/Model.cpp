@@ -67,6 +67,11 @@ namespace TMF
 		}
 	}
 
+	boost::uuids::uuid Model::OnGetUUID()
+	{
+		return m_uuID;
+	}
+
 	void Model::ModelDraw()
 	{
 		ID3D11DeviceContext* d3dContext = D3D::Get()->GetContext();

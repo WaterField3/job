@@ -17,28 +17,20 @@ namespace TMF
 
 	void GameLayer::OnUpdate()
 	{
-		auto isPlay = ApplicationState::Instance().GetIsPlay();
-		auto isPause = ApplicationState::Instance().GetIsPause();
-		auto isNextFrame = ApplicationState::Instance().GetIsNextFrame();
-		if ((isPlay && !isPause) || (isPlay && isNextFrame))
-		{
-			GameObjectManager::Instance().Update();
-		}
+		GameObjectManager::Instance().Update();
 	}
 
 	void GameLayer::OnLateUpdate()
 	{
-		auto isPlay = ApplicationState::Instance().GetIsPlay();
-		auto isPause = ApplicationState::Instance().GetIsPause();
-		auto isNextFrame = ApplicationState::Instance().GetIsNextFrame();
-		if ((isPlay && !isPause) || (isPlay && isNextFrame))
-		{
-			GameObjectManager::Instance().LateUpdate();
-		}
+		GameObjectManager::Instance().LateUpdate();
 	}
 
 	void GameLayer::OnDraw()
 	{
 		GameObjectManager::Instance().Draw();
+	}
+	bool GameLayer::GetIsUpdate()
+	{
+		return ApplicationState::Instance().GetIsUpdate();
 	}
 }

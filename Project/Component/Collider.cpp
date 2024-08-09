@@ -3,6 +3,7 @@
 #include <Imgui/imgui.h>
 
 #include "Component/Transform.h"
+#include "Component/Rigidbody.h"
 
 namespace TMF
 {
@@ -14,7 +15,12 @@ namespace TMF
 	}
 	void Collider::OnFinalize()
 	{
-
+		auto owner = m_pOwner.lock();
+		auto rigidBody = owner->GetComponent<Rigidbody>();
+		if (auto rb = rigidBody.lock())
+		{
+			rb->RemoveRigidBody();
+		}
 	}
 	void Collider::OnUpdate()
 	{
@@ -30,20 +36,38 @@ namespace TMF
 	}
 	void Collider::OnDrawImGui()
 	{
-		//const char* types[] = { "BOX","CAPSULE","SPHERE","CYLINDER","CONE" };
-		//if (ImGui::BeginListBox("ColliderType"))
-		//{
-		//	for (int i = 0; i < IM_ARRAYSIZE(types); i++)
-		//	{
-		//		auto selected = ((int)m_collidrType == i);
-		//		if (ImGui::Selectable(types[i], selected))
-		//		{
-		//			m_collidrType = Collider_Type(i);
-		//			MakeCollision();
-		//		}
-		//	}
-		//}
-		//ImGui::EndListBox();
+		const char* types[] = { "Box","Capsule","Sphere","Cylinder","Cone" };
+		static int selectIndex = 0;
+		if (ImGui::BeginCombo("ColliderType", types[selectIndex]))
+		{
+			for (int i = 0; i < IM_ARRAYSIZE(types); i++)
+			{
+				auto selected = ((int)m_collidrType == i);
+				if (ImGui::Selectable(types[i], selected))
+				{
+					m_collidrType = Collider_Type(i);
+					selectIndex = i;
+					UpdateShapeInfo();
+
+				}
+				if (selected)
+				{
+					ImGui::SetItemDefaultFocus();
+				}
+			}
+			ImGui::EndCombo();
+			ImGui::SameLine();
+		}
+		
+		if (ImGui::Button("Update"))
+		{
+			UpdateShapeInfo();
+
+		}
+	}
+	boost::uuids::uuid Collider::OnGetUUID()
+	{
+		return m_uuID;
 	}
 	void Collider::MakeCollision()
 	{
@@ -90,4 +114,15 @@ namespace TMF
 
 	}
 
+	void Collider::UpdateShapeInfo()
+	{
+		auto owner = m_pOwner.lock();
+		auto rigidBody = owner->GetComponent<Rigidbody>();
+		if (auto rb = rigidBody.lock())
+		{
+			rb->RemoveRigidBody();
+			MakeCollision();
+			rb->AddRigidBody(m_pCollisionShape);
+		}
+	}
 }

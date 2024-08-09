@@ -15,14 +15,12 @@ namespace TMF
 {
 	void PlayButtonBar::DrawImGui()
 	{
-		auto m_ButtonName = "Play";
-
 		auto isPlay = ApplicationState::Instance().GetIsPlay();
 		auto isPause = ApplicationState::Instance().GetIsPause();
-
-		// プレイボタン押したときのセーブをApplicationStateに移す
-
+		auto isNextFrame = ApplicationState::Instance().GetIsNextFrame();
+		auto m_ButtonName = "Play";
 		ImGui::Begin("PlayButtonBar");
+
 		if (isPlay)
 		{
 			m_ButtonName = "Stop";
@@ -40,14 +38,42 @@ namespace TMF
 				GameObjectManager::Instance().Load(TEST_DATA);
 				GameObjectManager::Instance().Initialize();
 			}
+			ApplicationState::Instance().SetIsPlay(!isPlay);
 		}
 		ImGui::SameLine();
+		if (isPause)
+		{
+			ImGui::PushStyleColor(ImGuiCol_Button, normalColor);
+		}
+		else
+		{
+			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.2f, 0.3f, 0.4f, 1.0f });
+		}
+		auto temp = ImGui::Button("Pause");
+
+		if (temp)
+		{
+			ApplicationState::Instance().SetIsPause(!isPause);
+		}
+		ImGui::PopStyleColor(1);
+		ImGui::SameLine();
+		if (isNextFrame)
+		{
+			ApplicationState::Instance().SetIsNextFrame(false);
+		}
+		if (ImGui::Button("NextFrame"))
+		{
+			if (isPause)
+			{
+				ApplicationState::Instance().SetIsNextFrame(true);
+			}
+		}
+
 		if (ImGui::Button("Save"))
 		{
-			if (isPlay)
+			if (!isPlay)
 			{
 				GameObjectManager::Instance().Save(MAIN_DATA);
-				GameObjectManager::Instance().Finalize();
 			}
 		}
 		ImGui::SameLine();

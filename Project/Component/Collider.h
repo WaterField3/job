@@ -3,7 +3,6 @@
 
 #include <memory>
 #include <bullet/btBulletDynamicsCommon.h>
-
 #include <cereal/types/polymorphic.hpp>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
@@ -24,6 +23,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		boost::uuids::uuid OnGetUUID() override;
 		void MakeCollision();
 		std::weak_ptr<btCollisionShape> GetCollisionShape();
 	private:
@@ -36,6 +36,7 @@ namespace TMF
 			CONE,
 			MAX,
 		};
+		void UpdateShapeInfo();
 		std::shared_ptr<btCollisionShape> m_pCollisionShape;
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		Collider_Type m_collidrType = Collider_Type::BOX;

@@ -21,8 +21,14 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		boost::uuids::uuid OnGetUUID() override;
 
+		void SetRigidBodyTranform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion rotate);
+		void RemoveRigidBody();
+		void AddRigidBody(std::weak_ptr<btCollisionShape> coll);
 	private:
+		btVector3 MakebtVector3(DirectX::SimpleMath::Vector3 vec);
+		btQuaternion MakebtQuaternion(DirectX::SimpleMath::Quaternion qua);
 		btTransform TransfomPosToBtTransform();
 		std::string LabelChange(const char* labelName);
 		float m_mass = 0.0f;

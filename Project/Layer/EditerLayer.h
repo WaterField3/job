@@ -18,6 +18,7 @@ namespace TMF
 		void OnUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		bool GetIsUpdate() override;
 
 	private:
 		std::unique_ptr<Hierarchy> m_pHirarchy;

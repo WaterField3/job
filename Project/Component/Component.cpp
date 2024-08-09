@@ -43,6 +43,10 @@ namespace TMF
 	{
 		OnDrawImGui();
 	}
+	boost::uuids::uuid Component::GetUUID()
+	{
+		return OnGetUUID();
+	}
 	void Component::OnInitialize()
 	{
 
@@ -66,5 +70,9 @@ namespace TMF
 	void Component::OnDrawImGui()
 	{
 
+	}
+	boost::uuids::uuid Component::OnGetUUID()
+	{
+		return boost::uuids::uuid();
 	}
 }

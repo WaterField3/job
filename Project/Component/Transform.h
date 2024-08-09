@@ -24,11 +24,13 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		boost::uuids::uuid OnGetUUID() override;
 		void SetPosition(DirectX::SimpleMath::Vector3 pos);
 		void SetRotation(DirectX::SimpleMath::Quaternion rotation);
 		void SetScale(DirectX::SimpleMath::Vector3 scale);
 		DirectX::SimpleMath::Matrix GetMatrixLocal();
 		DirectX::SimpleMath::Matrix GetMatrixRotation();
+		void ChangeRigidBodyTransform();
 
 		inline DirectX::SimpleMath::Vector3 GetPosition() const { return m_position; }
 		inline DirectX::SimpleMath::Quaternion GetRotation() const { return m_rotation; }

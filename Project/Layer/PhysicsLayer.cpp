@@ -2,6 +2,7 @@
 #include "GameObject/GameObjectManager.h"
 #include "PhysicsManager.h"
 
+#include "ApplicationState.h"
 namespace TMF
 {
 	void PhysicsLayer::OnInitialize()
@@ -21,5 +22,9 @@ namespace TMF
 	void PhysicsLayer::OnDraw()
 	{
 		PhysicsManager::Instance().Draw();
+	}
+	bool PhysicsLayer::GetIsUpdate()
+	{
+		return ApplicationState::Instance().GetIsUpdate();
 	}
 }

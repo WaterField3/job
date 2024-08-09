@@ -18,6 +18,7 @@ namespace TMF
 		virtual void OnDraw();
 		virtual void OnDrawImGui();
 
+		virtual bool GetIsUpdate();
 	protected:
 	};
 }

@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 #include <cereal/types/base_class.hpp>
+#include <boost/uuid/uuid.hpp>
 
 namespace TMF
 {
@@ -25,6 +26,7 @@ namespace TMF
 		void LateUpdate();
 		void Draw();
 		void DrawImGui();
+		boost::uuids::uuid GetUUID();
 
 	protected:
 		virtual void OnInitialize();
@@ -33,9 +35,9 @@ namespace TMF
 		virtual void OnLateUpdate();
 		virtual void OnDraw();
 		virtual void OnDrawImGui();
+		virtual boost::uuids::uuid OnGetUUID();
 
 		std::weak_ptr<GameObject> m_pOwner;
-
 	private:
 	};
 }

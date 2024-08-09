@@ -22,7 +22,10 @@ namespace TMF
 	{
 		for (auto& layer : m_layers)
 		{
-			layer->OnUpdate();
+			if (layer->GetIsUpdate())
+			{
+				layer->OnUpdate();
+			}
 		}
 	}
 
@@ -33,7 +36,7 @@ namespace TMF
 		D3D::Get()->ClearScreen();
 		for (auto& layer : m_layers)
 		{
-			layer->OnDraw();
+				layer->OnDraw();
 		}
 		//D3D::Get()->UpdateScreen();
 	}

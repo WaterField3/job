@@ -33,7 +33,7 @@ namespace TMF
 
 	void Rigidbody::OnFinalize()
 	{
-		PhysicsManager::Instance().RemoveRigidBody(m_pRigidBody);
+		RemoveRigidBody();
 	}
 
 	void Rigidbody::OnUpdate()
@@ -81,6 +81,50 @@ namespace TMF
 		}
 	}
 
+	boost::uuids::uuid Rigidbody::OnGetUUID()
+	{
+		return m_uuID;
+	}
+
+	void Rigidbody::SetRigidBodyTranform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion rotate)
+	{
+		auto trans = btTransform(MakebtQuaternion(rotate), MakebtVector3(pos));
+		m_pRigidBody->setWorldTransform(trans);
+	}
+
+	void Rigidbody::RemoveRigidBody()
+	{
+		if (m_pRigidBody)
+		{
+			PhysicsManager::Instance().RemoveRigidBody(m_pRigidBody);
+		}
+	}
+
+	void Rigidbody::AddRigidBody(std::weak_ptr<btCollisionShape> coll)
+	{
+		if (auto colShape = coll.lock())
+		{
+			auto inertia = btVector3(0.0f, 0.0f, 0.0f);
+			colShape->calculateLocalInertia(m_mass, inertia);
+			m_pMotionState = std::make_unique<btDefaultMotionState>(TransfomPosToBtTransform());
+			btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(m_mass, m_pMotionState.get(), colShape.get(), inertia);
+			m_pRigidBody = std::make_shared<btRigidBody>(rigidBodyCI);
+			PhysicsManager::Instance().AddRigidBody(m_pRigidBody);
+		}
+	}
+
+	btVector3 Rigidbody::MakebtVector3(DirectX::SimpleMath::Vector3 vec)
+	{
+		auto btVec = btVector3(vec.x, vec.y, vec.z);
+		return btVec;
+	}
+
+	btQuaternion Rigidbody::MakebtQuaternion(DirectX::SimpleMath::Quaternion qua)
+	{
+		auto btQua = btQuaternion(qua.x, qua.y, qua.z, qua.w);
+		return btQua;
+	}
+
 	btTransform Rigidbody::TransfomPosToBtTransform()
 	{
 		auto btPos = btVector3(0.0f, 0.0f, 0.0f);
@@ -91,13 +135,9 @@ namespace TMF
 			if (auto transform = transformComponent.lock())
 			{
 				auto pos = transform->GetPosition();
-				btPos.setValue(pos.x, pos.y, pos.z);
+				btPos = MakebtVector3(pos);
 				auto rotate = transform->GetRotation();
-				btScalar x = rotate.x;
-				btScalar y = rotate.y;
-				btScalar z = rotate.z;
-				btScalar w = rotate.w;
-				btQuotainon.setValue(x, y, z, w);
+				btQuotainon = MakebtQuaternion(rotate);
 			}
 		}
 		return btTransform(btQuotainon, btPos);

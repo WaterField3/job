@@ -13,6 +13,7 @@ namespace TMF
 		void OnUpdate() override;
 		void OnLateUpdate() override;
 		void OnDraw() override;
+		bool GetIsUpdate() override;
 
 	};
 }

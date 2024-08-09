@@ -13,7 +13,7 @@ namespace TMF
 		{
 			m_uuID = boost::uuids::random_generator()();
 		}
-		for (auto& pComponent: m_pComponents)
+		for (auto& pComponent : m_pComponents)
 		{
 			pComponent->Initialize(shared_from_this());
 		}
@@ -21,7 +21,7 @@ namespace TMF
 
 	void GameObject::Finalize()
 	{
-		for (auto& pComponent: m_pComponents)
+		for (auto& pComponent : m_pComponents)
 		{
 			pComponent->Finalize();
 		}
@@ -57,8 +57,11 @@ namespace TMF
 		{
 			index++;
 			auto componentName = ComponentManager::Instance().GetComponentName(typeid(*component));
+
 			auto label = componentName;
-			label += "## " + std::to_string(index);
+			auto uuID = component->GetUUID();
+			auto uuIDStr = boost::uuids::to_string(uuID);
+			label += "## " + uuIDStr;
 			if (ImGui::CollapsingHeader(label.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
 			{
 				if (ImGui::IsItemClicked(ImGuiMouseButton_Right))
@@ -67,8 +70,8 @@ namespace TMF
 					m_selectComponentName = componentName.c_str();
 					m_selectIndex = index;
 				}
+				component->DrawImGui();
 			}
-			component->DrawImGui();
 		}
 
 		if (ImGui::BeginPopup("ComponentMenuPopup"))

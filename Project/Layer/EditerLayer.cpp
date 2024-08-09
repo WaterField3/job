@@ -97,4 +97,8 @@ namespace TMF
 
 		//D3D::Get()->UpdateScreen();
 	}
+	bool EditerLayer::GetIsUpdate()
+	{
+		return true;
+	}
 }

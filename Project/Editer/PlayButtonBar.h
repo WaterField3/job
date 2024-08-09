@@ -14,5 +14,6 @@ namespace TMF
 	private:
 
 		bool m_isDemoWindow = false;
+		ImVec4 normalColor = ImVec4(0.0f, 0.7f, 0.0f, 1.0f); // óŒêF
 	};
 }

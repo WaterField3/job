@@ -10,7 +10,7 @@ namespace TMF
 		void OnFinalize() override;
 		void OnUpdate()override;
 		void OnDraw() override;
-
+		bool GetIsUpdate() override;
 	private:
 	};
 }

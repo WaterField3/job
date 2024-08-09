@@ -2,6 +2,7 @@
 
 #include <Imgui/imgui.h>
 
+#include "Component/Rigidbody.h"
 using namespace DirectX::SimpleMath;
 
 namespace TMF
@@ -52,19 +53,27 @@ namespace TMF
 		if (ImGui::DragFloat3(label.c_str(), &m_position.x, 0.1f))
 		{
 
+			ChangeRigidBodyTransform();
 		}
 		label = "Rotation";
 		label += "## " + uuidStr;
 		if (ImGui::DragFloat3(label.c_str(), &m_editorRotation.x, 0.1f))
 		{
 			m_rotation = Quaternion::CreateFromYawPitchRoll(m_editorRotation.y, m_editorRotation.x, m_editorRotation.z);
+			ChangeRigidBodyTransform();
+
 		}
 		label = "Scale";
 		label += "## " + uuidStr;
 		if (ImGui::DragFloat3(label.c_str(), &m_scale.x, 0.1f))
 		{
-
+			
 		}
+	}
+
+	boost::uuids::uuid Transform::OnGetUUID()
+	{
+		return m_uuID;
 	}
 
 	void Transform::SetPosition(DirectX::SimpleMath::Vector3 pos)
@@ -98,5 +107,16 @@ namespace TMF
 	{
 		// ‰ñ“]s—ñ
 		return Matrix::CreateFromQuaternion(m_rotation);
+	}
+	void Transform::ChangeRigidBodyTransform()
+	{
+		if (auto owner = m_pOwner.lock())
+		{
+			auto rigidBody = owner->GetComponent<Rigidbody>();
+			if (auto rb = rigidBody.lock())
+			{
+				rb->SetRigidBodyTranform(m_position, m_rotation);
+			}
+		}
 	}
 }
