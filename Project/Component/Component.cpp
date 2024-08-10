@@ -49,6 +49,37 @@ namespace TMF
 	{
 		OnDrawImGui();
 	}
+
+	void Component::CollisionEnter()
+	{
+		OnCollisionEnter();
+	}
+
+	void Component::CollisionStay()
+	{
+		OnCollisionStay();
+	}
+
+	void Component::CollisionExit()
+	{
+		OnCollisionExit();
+	}
+
+	void Component::TrigerEnter()
+	{
+		OnTrigerEnter();
+	}
+
+	void Component::TrigerStay()
+	{
+		OnTrigerStay();
+	}
+
+	void Component::TrigerExit()
+	{
+		OnTrigerExit();
+	}
+
 	boost::uuids::uuid Component::GetUUID()
 	{
 		return OnGetUUID();
@@ -76,6 +107,24 @@ namespace TMF
 	void Component::OnDrawImGui()
 	{
 
+	}
+	void Component::OnCollisionEnter()
+	{
+	}
+	void Component::OnCollisionStay()
+	{
+	}
+	void Component::OnCollisionExit()
+	{
+	}
+	void Component::OnTrigerEnter()
+	{
+	}
+	void Component::OnTrigerStay()
+	{
+	}
+	void Component::OnTrigerExit()
+	{
 	}
 	boost::uuids::uuid Component::OnGetUUID()
 	{

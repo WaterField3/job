@@ -2,7 +2,6 @@
 
 #include <bullet/btBulletDynamicsCommon.h>
 #include <memory>
-#include <vector>
 
 #include "Utility/BulletDebugDrawer.h"
 
@@ -14,7 +13,6 @@ namespace TMF
 		void Initialize();
 		void Finalize();
 		void Update();
-		void LateUpdate();
 		void Draw();
 		void AddRigidBody(std::weak_ptr<btRigidBody> rigidBody);
 		void RemoveRigidBody(std::weak_ptr<btRigidBody> rigidBody);

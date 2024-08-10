@@ -19,6 +19,8 @@ namespace TMF
 	class GameObject : public std::enable_shared_from_this<GameObject>
 	{
 	public:
+		GameObject() = default;
+		~GameObject() = default;
 		template <typename TComponent>
 		std::weak_ptr<TComponent> AddComponent()
 		{
@@ -65,6 +67,12 @@ namespace TMF
 		void LateUpdate();
 		void Draw();
 		void DrawImGui();
+		void CollisionEnter();
+		void CollisionStay();
+		void CollisionExit();
+		void TrigerEnter();
+		void TrigerStay();
+		void TrigerExit();
 
 		inline void SetName(std::string name) { m_name = name; }
 		inline std::string GetName() const { return m_name; }

@@ -2,7 +2,8 @@
 
 #include <Imgui/imgui.h>
 
-#include "Component/Rigidbody.h"
+#include "Rigidbody.h"
+
 using namespace DirectX::SimpleMath;
 
 namespace TMF
@@ -69,6 +70,30 @@ namespace TMF
 		{
 			
 		}
+	}
+
+	void Transform::OnCollisionEnter()
+	{
+	}
+
+	void Transform::OnCollisionStay()
+	{
+	}
+
+	void Transform::OnCollisionExit()
+	{
+	}
+
+	void Transform::OnTrigerEnter()
+	{
+	}
+
+	void Transform::OnTrigerStay()
+	{
+	}
+
+	void Transform::OnTrigerExit()
+	{
 	}
 
 	boost::uuids::uuid Transform::OnGetUUID()

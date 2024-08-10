@@ -23,11 +23,28 @@ namespace TMF
 	void PhysicsManager::Update()
 	{
 		m_pDynamicsWorld->stepSimulation(1 / 60.0f,10);
-	}
-	void PhysicsManager::LateUpdate()
-	{
+		auto num = m_pCollisionDispacher.get()->getNumManifolds();
+		for (auto i = 0; i < num; i++)
+		{
+			auto contactManifold = m_pCollisionDispacher.get()->getManifoldByIndexInternal(i);
+			auto object1 = contactManifold->getBody0();
+			auto gameObject1 = static_cast<GameObject*>(object1->getUserPointer());
+			auto object2 = contactManifold->getBody1();
+			auto gameObject2 = static_cast<GameObject*>(object1->getUserPointer());
+			auto numContacts = contactManifold->getNumContacts();
+			for (auto j = 0; j < numContacts; j++)
+			{
+				auto point = contactManifold->getContactPoint(j);
+				if (point.getDistance() < 0.0f)
+				{
+					auto nomal = point.m_normalWorldOnB;
+					auto impulse = point.getAppliedImpulse();
+				}
+			}
 
+		}
 	}
+
 	void PhysicsManager::Draw()
 	{
 		auto compoent = GameObjectManager::Instance().GetComponent<Camera>("CameraObject");

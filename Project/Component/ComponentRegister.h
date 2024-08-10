@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Component/ComponentManager.h"
+#include "ComponentManager.h"
 
 namespace TMF
 {

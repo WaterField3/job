@@ -3,8 +3,8 @@
 #include <Imgui/imgui.h>
 
 #include "GameObject/GameObjectManager.h"
-#include "Component/Transform.h"
-#include "Component/Camera.h"
+#include "Transform.h"
+#include "Camera.h"
 #include "direct3d.h"
 
 namespace TMF
@@ -65,6 +65,30 @@ namespace TMF
 			auto wideFileName = std::wstring(m_loadFileName.begin(), m_loadFileName.end());
 			m_model = D3D::Get()->LoadObjModel(wideFileName.c_str());
 		}
+	}
+
+	void Model::OnCollisionEnter()
+	{
+	}
+
+	void Model::OnCollisionStay()
+	{
+	}
+
+	void Model::OnCollisionExit()
+	{
+	}
+
+	void Model::OnTrigerEnter()
+	{
+	}
+
+	void Model::OnTrigerStay()
+	{
+	}
+
+	void Model::OnTrigerExit()
+	{
 	}
 
 	boost::uuids::uuid Model::OnGetUUID()

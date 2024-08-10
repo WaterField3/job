@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component/Component.h"
+#include "Component.h"
 
 #include <cereal/types/polymorphic.hpp>
 #include <SimpleMath.h>
@@ -8,8 +8,8 @@
 #include <boost/uuid/uuid_io.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 
-#include "Component/ComponentCerealHelper.h"
-#include "Component/ComponentRegister.h"
+#include "ComponentCerealHelper.h"
+#include "ComponentRegister.h"
 
 namespace TMF
 {
@@ -22,6 +22,12 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		void OnCollisionEnter() override;
+		void OnCollisionStay() override;
+		void OnCollisionExit() override;
+		void OnTrigerEnter() override;
+		void OnTrigerStay() override;
+		void OnTrigerExit() override;
 		boost::uuids::uuid OnGetUUID() override;
 
 		DirectX::SimpleMath::Matrix GetProjectionMatrix();

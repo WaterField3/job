@@ -2,8 +2,8 @@
 
 #include <Imgui/imgui.h>
 
-#include "Component/Transform.h"
-#include "Component/Rigidbody.h"
+#include "Transform.h"
+#include "Rigidbody.h"
 
 namespace TMF
 {
@@ -11,7 +11,7 @@ namespace TMF
 
 	void Collider::OnInitialize()
 	{
-		AddRigidBody();
+		//AddRigidBody();
 	}
 	void Collider::OnFinalize()
 	{
@@ -65,6 +65,24 @@ namespace TMF
 
 		}
 	}
+	void Collider::OnCollisionEnter()
+	{
+	}
+	void Collider::OnCollisionStay()
+	{
+	}
+	void Collider::OnCollisionExit()
+	{
+	}
+	void Collider::OnTrigerEnter()
+	{
+	}
+	void Collider::OnTrigerStay()
+	{
+	}
+	void Collider::OnTrigerExit()
+	{
+	}
 	boost::uuids::uuid Collider::OnGetUUID()
 	{
 		return m_uuID;
@@ -113,6 +131,8 @@ namespace TMF
 		return m_pCollisionShape;
 
 	}
+
+
 
 	void Collider::UpdateShapeInfo()
 	{

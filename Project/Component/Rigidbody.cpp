@@ -2,8 +2,8 @@
 
 #include <Imgui/imgui.h>
 
-#include "Component/Collider.h"
-#include "Component/Transform.h"
+#include "Collider.h"
+#include "Transform.h"
 #include "PhysicsManager.h"
 
 namespace TMF
@@ -12,7 +12,36 @@ namespace TMF
 
 	void Rigidbody::OnInitialize()
 	{
+		if (auto owner = m_pOwner.lock())
+		{
+			auto collider = owner->GetComponent<Collider>();
 
+			auto transform = owner->GetComponent<Transform>();
+			auto pos = DirectX::SimpleMath::Vector3::Zero;
+			auto qua = DirectX::SimpleMath::Quaternion::Identity;
+			if (auto trans = transform.lock())
+			{
+				pos = trans->GetPosition();
+				qua = trans->GetRotation();
+			}
+			if (auto col = collider.lock())
+			{
+				auto inertia = btVector3(pos.x, pos.y, pos.z);
+				auto colShape = col->GetCollisionShape();
+				if (auto usefullColShape = colShape.lock())
+				{
+					usefullColShape->calculateLocalInertia(m_mass, inertia);
+					m_pMotionState = std::make_unique<btDefaultMotionState>(MakebtTransform(pos, qua));
+					btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(m_mass, m_pMotionState.get(), usefullColShape.get(), inertia);
+					m_pRigidBody = std::make_shared<btRigidBody>(rigidBodyCI);
+					if (auto owner = m_pOwner.lock())
+					{
+						m_pRigidBody->setUserPointer(owner.get());
+					}
+					PhysicsManager::Instance().AddRigidBody(m_pRigidBody);
+				}
+			}
+		}
 	}
 
 	void Rigidbody::OnFinalize()
@@ -65,6 +94,30 @@ namespace TMF
 		}
 	}
 
+	void Rigidbody::OnCollisionEnter()
+	{
+	}
+
+	void Rigidbody::OnCollisionStay()
+	{
+	}
+
+	void Rigidbody::OnCollisionExit()
+	{
+	}
+
+	void Rigidbody::OnTrigerEnter()
+	{
+	}
+
+	void Rigidbody::OnTrigerStay()
+	{
+	}
+
+	void Rigidbody::OnTrigerExit()
+	{
+	}
+
 	boost::uuids::uuid Rigidbody::OnGetUUID()
 	{
 		return m_uuID;
@@ -95,6 +148,10 @@ namespace TMF
 			m_pMotionState = std::make_unique<btDefaultMotionState>(MakebtTransform(pos, qua));
 			btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(m_mass, m_pMotionState.get(), colShape.get(), inertia);
 			m_pRigidBody = std::make_shared<btRigidBody>(rigidBodyCI);
+			if (auto owner = m_pOwner.lock())
+			{
+				m_pRigidBody->setUserPointer(static_cast<void*>(owner.get()));
+			}
 			PhysicsManager::Instance().AddRigidBody(m_pRigidBody);
 		}
 	}
@@ -112,7 +169,7 @@ namespace TMF
 	}
 	btTransform Rigidbody::MakebtTransform(DirectX::SimpleMath::Vector3 vec, DirectX::SimpleMath::Quaternion qua)
 	{
-		return btTransform(MakebtQuaternion(qua),MakebtVector3(vec));
+		return btTransform(MakebtQuaternion(qua), MakebtVector3(vec));
 	}
 	std::string Rigidbody::LabelChange(const char* labelName)
 	{

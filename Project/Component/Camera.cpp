@@ -2,7 +2,7 @@
 
 #include <Imgui/imgui.h>
 
-#include "Component/Transform.h"
+#include "Transform.h"
 #include "direct3d.h"
 
 namespace TMF
@@ -65,6 +65,24 @@ namespace TMF
 			D3D::Get()->SettingEffect(MakeViewMatrix(), projectionMatrix);
 		}
 
+	}
+	void Camera::OnCollisionEnter()
+	{
+	}
+	void Camera::OnCollisionStay()
+	{
+	}
+	void Camera::OnCollisionExit()
+	{
+	}
+	void Camera::OnTrigerEnter()
+	{
+	}
+	void Camera::OnTrigerStay()
+	{
+	}
+	void Camera::OnTrigerExit()
+	{
 	}
 	boost::uuids::uuid Camera::OnGetUUID()
 	{
