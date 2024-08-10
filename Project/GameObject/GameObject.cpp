@@ -29,9 +29,12 @@ namespace TMF
 
 	void GameObject::Update()
 	{
-		for (auto& component : m_pComponents)
+		if (m_isActive)
 		{
-			component->Update();
+			for (auto& component : m_pComponents)
+			{
+				component->Update();
+			}
 		}
 	}
 
@@ -45,6 +48,10 @@ namespace TMF
 
 	void GameObject::DrawImGui()
 	{
+		auto label = std::string("## ");
+		label += boost::uuids::to_string(m_uuID);
+		ImGui::Checkbox(label.c_str(), &m_isActive);
+		ImGui::SameLine(30);
 
 		char buf[256] = "";
 		strcpy_s(buf, sizeof(buf), m_name.c_str());
@@ -55,12 +62,20 @@ namespace TMF
 		auto index = 0;
 		for (auto& component : m_pComponents)
 		{
+
 			index++;
 			auto componentName = ComponentManager::Instance().GetComponentName(typeid(*component));
 
-			auto label = componentName;
 			auto uuID = component->GetUUID();
 			auto uuIDStr = boost::uuids::to_string(uuID);
+			auto label = "## " + componentName + uuIDStr;
+			auto enable = component->GetIsEnable();
+			ImGui::Checkbox(label.c_str(), &enable);
+			{
+				component->SetIsEnable(enable);
+			}
+			ImGui::SameLine(30);
+			 label = componentName;
 			label += "## " + uuIDStr;
 			if (ImGui::CollapsingHeader(label.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
 			{

@@ -76,6 +76,7 @@ namespace TMF
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		std::string m_selectComponentName = "";
 		int m_selectIndex = 0;
+		bool m_isActive = true;
 
 		SERIALIZE(m_name, m_uuID,m_pComponents);
 	};

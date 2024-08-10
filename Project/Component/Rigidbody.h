@@ -23,13 +23,14 @@ namespace TMF
 		void OnDrawImGui() override;
 		boost::uuids::uuid OnGetUUID() override;
 
-		void SetRigidBodyTranform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion rotate);
+		void SetRigidBodyTranform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua);
 		void RemoveRigidBody();
-		void AddRigidBody(std::weak_ptr<btCollisionShape> coll);
+		void AddRigidBody(std::weak_ptr<btCollisionShape> col);
+		void AddRigidBody(std::weak_ptr<btCollisionShape> col, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua);
 	private:
 		btVector3 MakebtVector3(DirectX::SimpleMath::Vector3 vec);
 		btQuaternion MakebtQuaternion(DirectX::SimpleMath::Quaternion qua);
-		btTransform TransfomPosToBtTransform();
+		btTransform MakebtTransform(DirectX::SimpleMath::Vector3 vec, DirectX::SimpleMath::Quaternion qua);
 		std::string LabelChange(const char* labelName);
 		float m_mass = 0.0f;
 		float m_drag = 0.0f;

@@ -12,23 +12,7 @@ namespace TMF
 
 	void Rigidbody::OnInitialize()
 	{
-		if (auto owner = m_pOwner.lock())
-		{
-			auto colliderComponent = owner->GetComponent<Collider>();
-			if (auto collider = colliderComponent.lock())
-			{
-				auto collisionShape = collider->GetCollisionShape();
-				if (auto colShape = collisionShape.lock())
-				{
-					auto inertia = btVector3(0.0f, 0.0f, 0.0f);
-					colShape->calculateLocalInertia(m_mass, inertia);
-					m_pMotionState = std::make_unique<btDefaultMotionState>(TransfomPosToBtTransform());
-					btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(m_mass, m_pMotionState.get(), colShape.get(), inertia);
-					m_pRigidBody = std::make_shared<btRigidBody>(rigidBodyCI);
-					PhysicsManager::Instance().AddRigidBody(m_pRigidBody);
-				}
-			}
-		}
+
 	}
 
 	void Rigidbody::OnFinalize()
@@ -86,9 +70,9 @@ namespace TMF
 		return m_uuID;
 	}
 
-	void Rigidbody::SetRigidBodyTranform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion rotate)
+	void Rigidbody::SetRigidBodyTranform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua)
 	{
-		auto trans = btTransform(MakebtQuaternion(rotate), MakebtVector3(pos));
+		auto trans = btTransform(MakebtQuaternion(qua), MakebtVector3(pos));
 		m_pRigidBody->setWorldTransform(trans);
 	}
 
@@ -100,13 +84,15 @@ namespace TMF
 		}
 	}
 
-	void Rigidbody::AddRigidBody(std::weak_ptr<btCollisionShape> coll)
+
+
+	void Rigidbody::AddRigidBody(std::weak_ptr<btCollisionShape> col, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua)
 	{
-		if (auto colShape = coll.lock())
+		if (auto colShape = col.lock())
 		{
-			auto inertia = btVector3(0.0f, 0.0f, 0.0f);
+			auto inertia = btVector3(pos.x, pos.y, pos.z);
 			colShape->calculateLocalInertia(m_mass, inertia);
-			m_pMotionState = std::make_unique<btDefaultMotionState>(TransfomPosToBtTransform());
+			m_pMotionState = std::make_unique<btDefaultMotionState>(MakebtTransform(pos, qua));
 			btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(m_mass, m_pMotionState.get(), colShape.get(), inertia);
 			m_pRigidBody = std::make_shared<btRigidBody>(rigidBodyCI);
 			PhysicsManager::Instance().AddRigidBody(m_pRigidBody);
@@ -124,23 +110,9 @@ namespace TMF
 		auto btQua = btQuaternion(qua.x, qua.y, qua.z, qua.w);
 		return btQua;
 	}
-
-	btTransform Rigidbody::TransfomPosToBtTransform()
+	btTransform Rigidbody::MakebtTransform(DirectX::SimpleMath::Vector3 vec, DirectX::SimpleMath::Quaternion qua)
 	{
-		auto btPos = btVector3(0.0f, 0.0f, 0.0f);
-		auto btQuotainon = btQuaternion(0.0f, 0.0f, 0.0f, 1.0f);
-		if (auto owner = m_pOwner.lock())
-		{
-			auto transformComponent = owner->GetComponent<Transform>();
-			if (auto transform = transformComponent.lock())
-			{
-				auto pos = transform->GetPosition();
-				btPos = MakebtVector3(pos);
-				auto rotate = transform->GetRotation();
-				btQuotainon = MakebtQuaternion(rotate);
-			}
-		}
-		return btTransform(btQuotainon, btPos);
+		return btTransform(MakebtQuaternion(qua),MakebtVector3(vec));
 	}
 	std::string Rigidbody::LabelChange(const char* labelName)
 	{

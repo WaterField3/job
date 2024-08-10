@@ -11,7 +11,7 @@ namespace TMF
 
 	void Collider::OnInitialize()
 	{
-		MakeCollision();
+		AddRigidBody();
 	}
 	void Collider::OnFinalize()
 	{
@@ -37,7 +37,7 @@ namespace TMF
 	void Collider::OnDrawImGui()
 	{
 		const char* types[] = { "Box","Capsule","Sphere","Cylinder","Cone" };
-		static int selectIndex = 0;
+		static int selectIndex = (int)m_collidrType;
 		if (ImGui::BeginCombo("ColliderType", types[selectIndex]))
 		{
 			for (int i = 0; i < IM_ARRAYSIZE(types); i++)
@@ -58,7 +58,7 @@ namespace TMF
 			ImGui::EndCombo();
 			ImGui::SameLine();
 		}
-		
+
 		if (ImGui::Button("Update"))
 		{
 			UpdateShapeInfo();
@@ -116,13 +116,25 @@ namespace TMF
 
 	void Collider::UpdateShapeInfo()
 	{
+		AddRigidBody();
+	}
+	void Collider::AddRigidBody()
+	{
 		auto owner = m_pOwner.lock();
+		auto transformComponent = owner->GetComponent<Transform>();
+		auto pos = DirectX::SimpleMath::Vector3::Zero;
+		auto rotate = DirectX::SimpleMath::Quaternion::Identity;
+		if (auto transform = transformComponent.lock())
+		{
+			pos = transform->GetPosition();
+			rotate = transform->GetRotation();
+		}
 		auto rigidBody = owner->GetComponent<Rigidbody>();
 		if (auto rb = rigidBody.lock())
 		{
 			rb->RemoveRigidBody();
 			MakeCollision();
-			rb->AddRigidBody(m_pCollisionShape);
+			rb->AddRigidBody(m_pCollisionShape, pos, rotate);
 		}
 	}
 }

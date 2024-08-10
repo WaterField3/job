@@ -28,6 +28,9 @@ namespace TMF
 		void DrawImGui();
 		boost::uuids::uuid GetUUID();
 
+		inline bool GetIsEnable() const { return m_isEnable; }
+		inline void SetIsEnable(bool set) { m_isEnable = set; }
+
 	protected:
 		virtual void OnInitialize();
 		virtual void OnFinalize();
@@ -38,6 +41,7 @@ namespace TMF
 		virtual boost::uuids::uuid OnGetUUID();
 
 		std::weak_ptr<GameObject> m_pOwner;
+		bool m_isEnable = true;
 	private:
 	};
 }

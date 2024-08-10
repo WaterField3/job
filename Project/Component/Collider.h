@@ -37,11 +37,12 @@ namespace TMF
 			MAX,
 		};
 		void UpdateShapeInfo();
+		void AddRigidBody();
 		std::shared_ptr<btCollisionShape> m_pCollisionShape;
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		Collider_Type m_collidrType = Collider_Type::BOX;
 
-		SERIALIZE_COMPONENT(m_uuID);
+		SERIALIZE_COMPONENT(m_collidrType , m_uuID);
 	};
 }
 REGISTER_CEREAL_TYPE(TMF::Collider);

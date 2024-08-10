@@ -27,7 +27,10 @@ namespace TMF
 
 	void Component::Update()
 	{
-		OnUpdate();
+		if (m_isEnable)
+		{
+			OnUpdate();
+		}
 	}
 
 	void Component::LateUpdate()
@@ -37,7 +40,10 @@ namespace TMF
 
 	void Component::Draw()
 	{
-		OnDraw();
+		if (m_isEnable)
+		{
+			OnDraw();
+		}
 	}
 	void Component::DrawImGui()
 	{
