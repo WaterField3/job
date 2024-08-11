@@ -15,6 +15,7 @@
 #include "Component/Rigidbody.h"
 #include "Component/Collider.h"
 #include "Component/Camera.h"
+#include "Component/GhostObject.h"
 #include "GameObject/GameObjectManager.h"
 #include "Utility/CerealExtention.h"
 #include "System/DataFileNames.h"

@@ -2,10 +2,12 @@
 
 #include "Component.h"
 
-#include <memory>
+#include <cereal/types/polymorphic.hpp>
 #include <bullet/btBulletDynamicsCommon.h>
 #include <bullet/BulletCollision/CollisionDispatch/btGhostObject.h>
-#include <boost/uuid/random_generator.hpp>
+
+#include <boost/uuid/uuid_generators.hpp>
+#include <memory>
 
 #include "ComponentRegister.h"
 #include "ComponentCerealHelper.h"
@@ -21,6 +23,10 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		boost::uuids::uuid OnGetUUID() override;
+		void AddGhostObject(std::weak_ptr<btCollisionShape> col, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua);
+		void RemoveGhostObject();
+		void SetGhostObjectTransform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion rotate);
 
 	private:
 		std::shared_ptr<btGhostObject> m_pGhostObject;

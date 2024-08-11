@@ -3,6 +3,7 @@
 #include <Imgui/imgui.h>
 
 #include "Rigidbody.h"
+#include "GhostObject.h"
 
 using namespace DirectX::SimpleMath;
 
@@ -53,15 +54,14 @@ namespace TMF
 		label += "## " + uuidStr;
 		if (ImGui::DragFloat3(label.c_str(), &m_position.x, 0.1f))
 		{
-
-			ChangeRigidBodyTransform();
+			UpDateCollisionObjectTransform();
 		}
 		label = "Rotation";
 		label += "## " + uuidStr;
 		if (ImGui::DragFloat3(label.c_str(), &m_editorRotation.x, 0.1f))
 		{
 			m_rotation = Quaternion::CreateFromYawPitchRoll(m_editorRotation.y, m_editorRotation.x, m_editorRotation.z);
-			ChangeRigidBodyTransform();
+			UpDateCollisionObjectTransform();
 
 		}
 		label = "Scale";
@@ -143,5 +143,21 @@ namespace TMF
 				rb->SetRigidBodyTranform(m_position, m_rotation);
 			}
 		}
+	}
+	void Transform::ChangeGhostObjectTransform()
+	{
+		if (auto owner = m_pOwner.lock())
+		{
+			auto ghostObject = owner->GetComponent<GhostObject>();
+			if (auto ghost = ghostObject.lock())
+			{
+				ghost->SetGhostObjectTransform(m_position, m_rotation);
+			}
+		}
+	}
+	void Transform::UpDateCollisionObjectTransform()
+	{
+		ChangeRigidBodyTransform();
+		ChangeGhostObjectTransform();
 	}
 }

@@ -4,6 +4,7 @@
 
 #include "Transform.h"
 #include "Rigidbody.h"
+#include "GhostObject.h"
 
 namespace TMF
 {
@@ -20,6 +21,11 @@ namespace TMF
 		if (auto rb = rigidBody.lock())
 		{
 			rb->RemoveRigidBody();
+		}
+		auto ghostObject = owner->GetComponent<GhostObject>();
+		if (auto ghost = ghostObject.lock())
+		{
+			ghost->RemoveGhostObject();
 		}
 	}
 	void Collider::OnUpdate()
@@ -62,7 +68,6 @@ namespace TMF
 		if (ImGui::Button("Update"))
 		{
 			UpdateShapeInfo();
-
 		}
 	}
 	void Collider::OnCollisionEnter()
@@ -137,6 +142,7 @@ namespace TMF
 	void Collider::UpdateShapeInfo()
 	{
 		AddRigidBody();
+		AddGhostObject();
 	}
 	void Collider::AddRigidBody()
 	{
@@ -155,6 +161,25 @@ namespace TMF
 			rb->RemoveRigidBody();
 			MakeCollision();
 			rb->AddRigidBody(m_pCollisionShape, pos, rotate);
+		}
+	}
+	void Collider::AddGhostObject()
+	{
+		auto owner = m_pOwner.lock();
+		auto transformComponent = owner->GetComponent<Transform>();
+		auto pos = DirectX::SimpleMath::Vector3::Zero;
+		auto rotate = DirectX::SimpleMath::Quaternion::Identity;
+		if (auto transform = transformComponent.lock())
+		{
+			pos = transform->GetPosition();
+			rotate = transform->GetRotation();
+		}
+		auto ghostObject = owner->GetComponent<GhostObject>();
+		if (auto ghost = ghostObject.lock())
+		{
+			ghost->RemoveGhostObject();
+			MakeCollision();
+			ghost->AddGhostObject(m_pCollisionShape, pos, rotate);
 		}
 	}
 }

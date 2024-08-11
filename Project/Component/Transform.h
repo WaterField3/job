@@ -37,6 +37,8 @@ namespace TMF
 		DirectX::SimpleMath::Matrix GetMatrixLocal();
 		DirectX::SimpleMath::Matrix GetMatrixRotation();
 		void ChangeRigidBodyTransform();
+		void ChangeGhostObjectTransform();
+		void UpDateCollisionObjectTransform();
 
 		inline DirectX::SimpleMath::Vector3 GetPosition() const { return m_position; }
 		inline DirectX::SimpleMath::Quaternion GetRotation() const { return m_rotation; }

@@ -14,8 +14,6 @@ namespace TMF
 	{
 		if (auto owner = m_pOwner.lock())
 		{
-			auto collider = owner->GetComponent<Collider>();
-
 			auto transform = owner->GetComponent<Transform>();
 			auto pos = DirectX::SimpleMath::Vector3::Zero;
 			auto qua = DirectX::SimpleMath::Quaternion::Identity;
@@ -24,6 +22,7 @@ namespace TMF
 				pos = trans->GetPosition();
 				qua = trans->GetRotation();
 			}
+			auto collider = owner->GetComponent<Collider>();
 			if (auto col = collider.lock())
 			{
 				auto inertia = btVector3(pos.x, pos.y, pos.z);
@@ -56,7 +55,6 @@ namespace TMF
 
 	void Rigidbody::OnLateUpdate()
 	{
-
 		if (auto owner = m_pOwner.lock())
 		{
 			auto TransformComponent = owner->GetComponent<Transform>();

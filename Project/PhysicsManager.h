@@ -1,10 +1,11 @@
 #pragma once
 
 #include <bullet/btBulletDynamicsCommon.h>
+
 #include <memory>
 
 #include "Utility/BulletDebugDrawer.h"
-
+class btGhostObject;
 namespace TMF
 {
 	class PhysicsManager
@@ -14,9 +15,12 @@ namespace TMF
 		void Finalize();
 		void Update();
 		void Draw();
-		void AddRigidBody(std::weak_ptr<btRigidBody> rigidBody);
-		void RemoveRigidBody(std::weak_ptr<btRigidBody> rigidBody);
+		void AddRigidBody(std::weak_ptr<btRigidBody> pRigidBody);
+		void RemoveRigidBody(std::weak_ptr<btRigidBody> pRigidBody);
 		void AllRemoveRigidBody();
+		void AddGhostObject(std::weak_ptr<btGhostObject> pGhostObject);
+		void RemoveGhostObject(std::weak_ptr<btGhostObject> pGhostObject);
+		void AllRemoveColiisionObject();
 
 		static PhysicsManager& Instance()
 		{

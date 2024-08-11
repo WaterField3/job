@@ -1,8 +1,10 @@
 #include "PhysicsManager.h"
 
+#include "bullet/BulletCollision/CollisionDispatch/btGhostObject.h"
 #include "direct3d.h"
 #include "GameObject/GameObjectManager.h"
 #include "Component/Camera.h"
+
 
 namespace TMF
 {
@@ -13,7 +15,7 @@ namespace TMF
 		m_pCollisionDispacher = std::make_unique<btCollisionDispatcher>(m_pCollisionConfig.get());
 		m_pConstrainSolver = std::make_unique<btSequentialImpulseConstraintSolver>();
 		m_pDynamicsWorld = std::make_unique<btDiscreteDynamicsWorld>(m_pCollisionDispacher.get(), m_pBroadphaseInterface.get(), m_pConstrainSolver.get(), m_pCollisionConfig.get());
-		m_pBulletDebugDrawer = std::make_unique<BulletDebugDrawer>( D3D::Get()->GetContext());
+		m_pBulletDebugDrawer = std::make_unique<BulletDebugDrawer>(D3D::Get()->GetContext());
 		m_pDynamicsWorld->setDebugDrawer(m_pBulletDebugDrawer.get());
 	}
 	void PhysicsManager::Finalize()
@@ -22,7 +24,7 @@ namespace TMF
 	}
 	void PhysicsManager::Update()
 	{
-		m_pDynamicsWorld->stepSimulation(1 / 60.0f,10);
+		m_pDynamicsWorld->stepSimulation(1 / 60.0f, 10);
 		auto num = m_pCollisionDispacher.get()->getNumManifolds();
 		for (auto i = 0; i < num; i++)
 		{
@@ -59,16 +61,16 @@ namespace TMF
 			m_pBulletDebugDrawer->Render();
 		}
 	}
-	void PhysicsManager::AddRigidBody(std::weak_ptr<btRigidBody> rigidBody)
+	void PhysicsManager::AddRigidBody(std::weak_ptr<btRigidBody> pRigidBody)
 	{
-		if (auto rb = rigidBody.lock())
+		if (auto rb = pRigidBody.lock())
 		{
 			m_pDynamicsWorld->addRigidBody(rb.get());
 		}
 	}
-	void PhysicsManager::RemoveRigidBody(std::weak_ptr<btRigidBody> rigidBody)
+	void PhysicsManager::RemoveRigidBody(std::weak_ptr<btRigidBody> pRigidBody)
 	{
-		if (auto rb = rigidBody.lock())
+		if (auto rb = pRigidBody.lock())
 		{
 			m_pDynamicsWorld->removeRigidBody(rb.get());
 		}
@@ -82,6 +84,30 @@ namespace TMF
 			auto collisionObject = collisionObjects[i];
 			auto rigidBody = btRigidBody::upcast(collisionObject);
 			m_pDynamicsWorld->removeRigidBody(rigidBody);
+		}
+	}
+	void PhysicsManager::AddGhostObject(std::weak_ptr<btGhostObject> pGhostObject)
+	{
+		if (auto ghost = pGhostObject.lock())
+		{
+			m_pDynamicsWorld->addCollisionObject(ghost.get());
+		}
+	}
+	void PhysicsManager::RemoveGhostObject(std::weak_ptr<btGhostObject> pGhostObject)
+	{
+		if (auto ghost = pGhostObject.lock())
+		{
+			m_pDynamicsWorld->removeCollisionObject(ghost.get());
+		}
+	}
+	void PhysicsManager::AllRemoveColiisionObject()
+	{
+		auto collisionObjects = m_pDynamicsWorld->getCollisionObjectArray();
+		auto size = collisionObjects.size();
+		for (auto i = 0; i < size; i++)
+		{
+			auto collsionObject = collisionObjects[i];
+			m_pDynamicsWorld->removeCollisionObject(collsionObject);
 		}
 	}
 }

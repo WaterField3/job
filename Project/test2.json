@@ -270,6 +270,77 @@
                         ]
                     }
                 }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483662,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "value0": "be4e4c7b-4f5d-41c0-bbd1-59eba9384b1a"
+                        },
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483663,
+                                    "data": {
+                                        "value0": {},
+                                        "m_position": {
+                                            "value0": -2.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "value1": {},
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "value2": {},
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "value3": {},
+                                        "m_uuID": {
+                                            "value0": "f79a1591-73f4-41a3-a776-45b8e0fbc0d4"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2,
+                                "ptr_wrapper": {
+                                    "id": 2147483664,
+                                    "data": {
+                                        "value0": {},
+                                        "m_collidrType": 0,
+                                        "value1": {},
+                                        "m_uuID": {
+                                            "value0": "f7fe50d6-30fe-4afc-b154-d44cb54a8963"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483653,
+                                "polymorphic_name": "TMF::GhostObject",
+                                "ptr_wrapper": {
+                                    "id": 2147483665,
+                                    "data": {
+                                        "value0": {},
+                                        "m_uuID": {
+                                            "value0": "841339bd-d4ff-460f-9142-f49f0ab1b1e4"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
             }
         ]
     }

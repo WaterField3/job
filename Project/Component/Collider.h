@@ -44,6 +44,7 @@ namespace TMF
 		};
 		void UpdateShapeInfo();
 		void AddRigidBody();
+		void AddGhostObject();
 		std::shared_ptr<btCollisionShape> m_pCollisionShape;
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		Collider_Type m_collidrType = Collider_Type::BOX;
