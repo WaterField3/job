@@ -67,12 +67,12 @@ namespace TMF
 		void LateUpdate();
 		void Draw();
 		void DrawImGui();
-		void CollisionEnter();
-		void CollisionStay();
-		void CollisionExit();
-		void TrigerEnter();
-		void TrigerStay();
-		void TrigerExit();
+		void CollisionEnter(GameObject* pGameObject);
+		void CollisionStay(GameObject* pGameObject);
+		void CollisionExit(GameObject* pGameObject);
+		void TrigerEnter(GameObject* pGameObject);
+		void TrigerStay(GameObject* pGameObject);
+		void TrigerExit(GameObject* pGameObject);
 
 		inline void SetName(std::string name) { m_name = name; }
 		inline std::string GetName() const { return m_name; }

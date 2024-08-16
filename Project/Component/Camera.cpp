@@ -66,22 +66,22 @@ namespace TMF
 		}
 
 	}
-	void Camera::OnCollisionEnter()
+	void Camera::OnCollisionEnter(GameObject* pGameObject)
 	{
 	}
-	void Camera::OnCollisionStay()
+	void Camera::OnCollisionStay(GameObject* pGameObject)
 	{
 	}
-	void Camera::OnCollisionExit()
+	void Camera::OnCollisionExit(GameObject* pGameObject)
 	{
 	}
-	void Camera::OnTrigerEnter()
+	void Camera::OnTrigerEnter(GameObject* pGameObject)
 	{
 	}
-	void Camera::OnTrigerStay()
+	void Camera::OnTrigerStay(GameObject* pGameObject)
 	{
 	}
-	void Camera::OnTrigerExit()
+	void Camera::OnTrigerExit(GameObject* pGameObject)
 	{
 	}
 	boost::uuids::uuid Camera::OnGetUUID()

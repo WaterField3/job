@@ -11,7 +11,7 @@ namespace TMF
 
 	void PhysicsLayer::OnFinalize()
 	{
-		PhysicsManager::Instance().AllRemoveRigidBody();
+
 	}
 
 	void PhysicsLayer::OnUpdate()

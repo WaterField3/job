@@ -70,24 +70,6 @@ namespace TMF
 			UpdateShapeInfo();
 		}
 	}
-	void Collider::OnCollisionEnter()
-	{
-	}
-	void Collider::OnCollisionStay()
-	{
-	}
-	void Collider::OnCollisionExit()
-	{
-	}
-	void Collider::OnTrigerEnter()
-	{
-	}
-	void Collider::OnTrigerStay()
-	{
-	}
-	void Collider::OnTrigerExit()
-	{
-	}
 	boost::uuids::uuid Collider::OnGetUUID()
 	{
 		return m_uuID;

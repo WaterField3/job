@@ -5,7 +5,6 @@
 #include "GameObject/GameObjectManager.h"
 #include "Component/Camera.h"
 
-
 namespace TMF
 {
 	void PhysicsManager::Initialize()
@@ -26,6 +25,10 @@ namespace TMF
 	{
 		m_pDynamicsWorld->stepSimulation(1 / 60.0f, 10);
 		auto num = m_pCollisionDispacher.get()->getNumManifolds();
+		for (auto& pair : m_contactPairsMap)
+		{
+			pair.second = false;
+		}
 		for (auto i = 0; i < num; i++)
 		{
 			auto contactManifold = m_pCollisionDispacher.get()->getManifoldByIndexInternal(i);
@@ -33,17 +36,30 @@ namespace TMF
 			auto gameObject1 = static_cast<GameObject*>(object1->getUserPointer());
 			auto object2 = contactManifold->getBody1();
 			auto gameObject2 = static_cast<GameObject*>(object1->getUserPointer());
-			auto numContacts = contactManifold->getNumContacts();
-			for (auto j = 0; j < numContacts; j++)
+			std::pair<const btCollisionObject*, const btCollisionObject*> pair = std::make_pair(object1, object2);
+			if (m_contactPairsMap.find(pair) == m_contactPairsMap.end())
 			{
-				auto point = contactManifold->getContactPoint(j);
-				if (point.getDistance() < 0.0f)
-				{
-					auto nomal = point.m_normalWorldOnB;
-					auto impulse = point.getAppliedImpulse();
-				}
+				m_contactPairsMap[pair] = true;
+				gameObject1->CollisionEnter(gameObject2);
+				gameObject2->CollisionEnter(gameObject1);
+			}
+			else
+			{
+				m_contactPairsMap[pair] = true;
 			}
 
+			// ŠeÚG“_‚Ìî•ñ‚ðŽæ“¾
+			int numContacts = contactManifold->getNumContacts();
+			for (int j = 0; j < numContacts; j++) {
+				auto point = contactManifold->getContactPoint(j);
+				if (point.getDistance() < 0.0f) {
+					// ÚG’†
+					auto nomal = point.m_normalWorldOnB;
+					auto impulse = point.getAppliedImpulse();
+					gameObject1->CollisionStay(gameObject2);
+					gameObject2->CollisionStay(gameObject1);
+				}
+			}
 		}
 	}
 
@@ -75,17 +91,7 @@ namespace TMF
 			m_pDynamicsWorld->removeRigidBody(rb.get());
 		}
 	}
-	void PhysicsManager::AllRemoveRigidBody()
-	{
-		auto collisionObjects = m_pDynamicsWorld->getCollisionObjectArray();
-		auto size = collisionObjects.size();
-		for (int i = 0; i < size; i++)
-		{
-			auto collisionObject = collisionObjects[i];
-			auto rigidBody = btRigidBody::upcast(collisionObject);
-			m_pDynamicsWorld->removeRigidBody(rigidBody);
-		}
-	}
+
 	void PhysicsManager::AddGhostObject(std::weak_ptr<btGhostObject> pGhostObject)
 	{
 		if (auto ghost = pGhostObject.lock())
@@ -100,14 +106,5 @@ namespace TMF
 			m_pDynamicsWorld->removeCollisionObject(ghost.get());
 		}
 	}
-	void PhysicsManager::AllRemoveColiisionObject()
-	{
-		auto collisionObjects = m_pDynamicsWorld->getCollisionObjectArray();
-		auto size = collisionObjects.size();
-		for (auto i = 0; i < size; i++)
-		{
-			auto collsionObject = collisionObjects[i];
-			m_pDynamicsWorld->removeCollisionObject(collsionObject);
-		}
-	}
+
 }

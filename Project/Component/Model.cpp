@@ -67,30 +67,6 @@ namespace TMF
 		}
 	}
 
-	void Model::OnCollisionEnter()
-	{
-	}
-
-	void Model::OnCollisionStay()
-	{
-	}
-
-	void Model::OnCollisionExit()
-	{
-	}
-
-	void Model::OnTrigerEnter()
-	{
-	}
-
-	void Model::OnTrigerStay()
-	{
-	}
-
-	void Model::OnTrigerExit()
-	{
-	}
-
 	boost::uuids::uuid Model::OnGetUUID()
 	{
 		return m_uuID;

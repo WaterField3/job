@@ -92,30 +92,6 @@ namespace TMF
 		}
 	}
 
-	void Rigidbody::OnCollisionEnter()
-	{
-	}
-
-	void Rigidbody::OnCollisionStay()
-	{
-	}
-
-	void Rigidbody::OnCollisionExit()
-	{
-	}
-
-	void Rigidbody::OnTrigerEnter()
-	{
-	}
-
-	void Rigidbody::OnTrigerStay()
-	{
-	}
-
-	void Rigidbody::OnTrigerExit()
-	{
-	}
-
 	boost::uuids::uuid Rigidbody::OnGetUUID()
 	{
 		return m_uuID;

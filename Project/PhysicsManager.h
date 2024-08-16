@@ -1,8 +1,8 @@
 #pragma once
 
 #include <bullet/btBulletDynamicsCommon.h>
-
 #include <memory>
+#include <map>
 
 #include "Utility/BulletDebugDrawer.h"
 class btGhostObject;
@@ -17,10 +17,8 @@ namespace TMF
 		void Draw();
 		void AddRigidBody(std::weak_ptr<btRigidBody> pRigidBody);
 		void RemoveRigidBody(std::weak_ptr<btRigidBody> pRigidBody);
-		void AllRemoveRigidBody();
 		void AddGhostObject(std::weak_ptr<btGhostObject> pGhostObject);
 		void RemoveGhostObject(std::weak_ptr<btGhostObject> pGhostObject);
-		void AllRemoveColiisionObject();
 
 		static PhysicsManager& Instance()
 		{
@@ -34,5 +32,6 @@ namespace TMF
 		std::unique_ptr<btSequentialImpulseConstraintSolver> m_pConstrainSolver;
 		std::unique_ptr<btDiscreteDynamicsWorld> m_pDynamicsWorld;
 		std::unique_ptr<BulletDebugDrawer> m_pBulletDebugDrawer;
+		std::map<std::pair<const btCollisionObject*, const btCollisionObject*>, bool> m_contactPairsMap;
 	};
 }

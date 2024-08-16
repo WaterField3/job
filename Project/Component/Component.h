@@ -26,12 +26,12 @@ namespace TMF
 		void LateUpdate();
 		void Draw();
 		void DrawImGui();
-		void CollisionEnter();
-		void CollisionStay();
-		void CollisionExit();
-		void TrigerEnter();
-		void TrigerStay();
-		void TrigerExit();
+		void CollisionEnter(GameObject* pGameObject);
+		void CollisionStay(GameObject* pGameObject);
+		void CollisionExit(GameObject* pGameObject);
+		void TrigerEnter(GameObject* pGameObject);
+		void TrigerStay(GameObject* pGameObject);
+		void TrigerExit(GameObject* pGameObject);
 		boost::uuids::uuid GetUUID();
 
 		inline bool GetIsEnable() const { return m_isEnable; }
@@ -44,12 +44,12 @@ namespace TMF
 		virtual void OnLateUpdate();
 		virtual void OnDraw();
 		virtual void OnDrawImGui();
-		virtual void OnCollisionEnter();
-		virtual void OnCollisionStay();
-		virtual void OnCollisionExit();
-		virtual void OnTrigerEnter();
-		virtual void OnTrigerStay();
-		virtual void OnTrigerExit();
+		virtual void OnCollisionEnter(GameObject* pGameObject);
+		virtual void OnCollisionStay(GameObject* pGameObject);
+		virtual void OnCollisionExit(GameObject* pGameObject);
+		virtual void OnTrigerEnter(GameObject* pGameObject);
+		virtual void OnTrigerStay(GameObject* pGameObject);
+		virtual void OnTrigerExit(GameObject* pGameObject);
 		virtual boost::uuids::uuid OnGetUUID();
 		std::weak_ptr<GameObject> m_pOwner;
 		bool m_isEnable = true;

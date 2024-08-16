@@ -21,12 +21,6 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
-		void OnCollisionEnter() override;
-		void OnCollisionStay() override;
-		void OnCollisionExit() override;
-		void OnTrigerEnter() override;
-		void OnTrigerStay() override;
-		void OnTrigerExit() override;
 		boost::uuids::uuid OnGetUUID() override;
 
 		void SetRigidBodyTranform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua);

@@ -33,7 +33,6 @@ namespace TMF
 			}
 			else
 			{
-				PhysicsManager::Instance().AllRemoveRigidBody();
 				GameObjectManager::Instance().Finalize();
 				GameObjectManager::Instance().Load(TEST_DATA);
 				GameObjectManager::Instance().Initialize();

@@ -100,51 +100,51 @@ namespace TMF
 		}
 	}
 
-	void GameObject::CollisionEnter()
+	void GameObject::CollisionEnter(GameObject* pGameObject)
 	{
 		for (auto& component : m_pComponents)
 		{
-			component->CollisionEnter();
+			component->CollisionEnter(pGameObject);
 		}
 	}
 
-	void GameObject::CollisionStay()
+	void GameObject::CollisionStay(GameObject* pGameObject)
 	{
 		for (auto& component : m_pComponents)
 		{
-			component->CollisionStay();
+			component->CollisionStay(pGameObject);
 		}
 	}
 
-	void GameObject::CollisionExit()
+	void GameObject::CollisionExit(GameObject* pGameObject)
 	{
 		for (auto& component : m_pComponents)
 		{
-			component->CollisionExit();
+			component->CollisionExit(pGameObject);
 		}
 	}
 
-	void GameObject::TrigerEnter()
+	void GameObject::TrigerEnter(GameObject* pGameObject)
 	{
 		for (auto& component : m_pComponents)
 		{
-			component->TrigerEnter();
+			component->TrigerEnter(pGameObject);
 		}
 	}
 
-	void GameObject::TrigerStay()
+	void GameObject::TrigerStay(GameObject* pGameObject)
 	{
 		for (auto& component : m_pComponents)
 		{
-			component->TrigerStay();
+			component->TrigerStay(pGameObject);
 		}
 	}
 
-	void GameObject::TrigerExit()
+	void GameObject::TrigerExit(GameObject* pGameObject)
 	{
 		for (auto& component : m_pComponents)
 		{
-			component->TrigerExit();
+			component->TrigerExit(pGameObject);
 		}
 	}
 

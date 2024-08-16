@@ -50,34 +50,34 @@ namespace TMF
 		OnDrawImGui();
 	}
 
-	void Component::CollisionEnter()
+	void Component::CollisionEnter(GameObject* pGameObject)
 	{
-		OnCollisionEnter();
+			OnCollisionEnter(pGameObject);
 	}
 
-	void Component::CollisionStay()
+	void Component::CollisionStay(GameObject* pGameObject)
 	{
-		OnCollisionStay();
+		OnCollisionStay(pGameObject);
 	}
 
-	void Component::CollisionExit()
+	void Component::CollisionExit(GameObject* pGameObject)
 	{
-		OnCollisionExit();
+		OnCollisionExit(pGameObject);
 	}
 
-	void Component::TrigerEnter()
+	void Component::TrigerEnter(GameObject* pGameObject)
 	{
-		OnTrigerEnter();
+		OnTrigerEnter(pGameObject);
 	}
 
-	void Component::TrigerStay()
+	void Component::TrigerStay(GameObject* pGameObject)
 	{
-		OnTrigerStay();
+		OnTrigerStay(pGameObject);
 	}
 
-	void Component::TrigerExit()
+	void Component::TrigerExit(GameObject* pGameObject)
 	{
-		OnTrigerExit();
+		OnTrigerExit(pGameObject);
 	}
 
 	boost::uuids::uuid Component::GetUUID()
@@ -108,22 +108,22 @@ namespace TMF
 	{
 
 	}
-	void Component::OnCollisionEnter()
+	void Component::OnCollisionEnter(GameObject* pGameObject)
 	{
 	}
-	void Component::OnCollisionStay()
+	void Component::OnCollisionStay(GameObject* pGameObject)
 	{
 	}
-	void Component::OnCollisionExit()
+	void Component::OnCollisionExit(GameObject* pGameObject)
 	{
 	}
-	void Component::OnTrigerEnter()
+	void Component::OnTrigerEnter(GameObject* pGameObject)
 	{
 	}
-	void Component::OnTrigerStay()
+	void Component::OnTrigerStay(GameObject* pGameObject)
 	{
 	}
-	void Component::OnTrigerExit()
+	void Component::OnTrigerExit(GameObject* pGameObject)
 	{
 	}
 	boost::uuids::uuid Component::OnGetUUID()
