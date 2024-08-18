@@ -69,11 +69,6 @@ namespace TMF
 				transform->SetPosition(pos);
 				rotate = transform->GetRotation();
 			}
-			auto ghostComponent = owner->GetComponent<GhostObject>();
-			if (auto ghost = ghostComponent.lock())
-			{
-				ghost->SetGhostObjectTransform(pos, rotate);
-			}
 		}
 	}
 

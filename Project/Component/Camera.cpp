@@ -51,7 +51,8 @@ namespace TMF
 				m_far = m_near + 0.1f;
 			}
 			auto fovRadian = DirectX::XMConvertToRadians(m_fov);
-			auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(fovRadian, float(1024) / float(576), m_near, m_far);			D3D::Get()->SettingEffect(MakeViewMatrix(), projectionMatrix);
+			auto projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(fovRadian, float(1024) / float(576), m_near, m_far);
+			D3D::Get()->SettingEffect(MakeViewMatrix(), projectionMatrix);
 		}
 		label = LabelChange("Fov");
 		if (ImGui::DragFloat(label.c_str(), &m_fov, 0.1f))
@@ -66,24 +67,7 @@ namespace TMF
 		}
 
 	}
-	void Camera::OnCollisionEnter(GameObject* pGameObject)
-	{
-	}
-	void Camera::OnCollisionStay(GameObject* pGameObject)
-	{
-	}
-	void Camera::OnCollisionExit(GameObject* pGameObject)
-	{
-	}
-	void Camera::OnTrigerEnter(GameObject* pGameObject)
-	{
-	}
-	void Camera::OnTrigerStay(GameObject* pGameObject)
-	{
-	}
-	void Camera::OnTrigerExit(GameObject* pGameObject)
-	{
-	}
+
 	boost::uuids::uuid Camera::OnGetUUID()
 	{
 		return m_uuID;
@@ -101,17 +85,19 @@ namespace TMF
 	DirectX::SimpleMath::Matrix Camera::MakeViewMatrix()
 	{
 		auto pos = DirectX::SimpleMath::Vector3::Zero;
+		auto tagetpos = DirectX::SimpleMath::Vector3::Zero;
 		if (auto owner = m_pOwner.lock())
 		{
 			auto transformComponent = owner->GetComponent<Transform>();
 			if (auto transform = transformComponent.lock())
 			{
 				pos = transform->GetPosition();
+				auto rotate = transform->GetRotation();
+				auto forward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Forward, rotate);
+				tagetpos = pos + forward;
 			}
 		}
-
-		auto viewMatrix = DirectX::SimpleMath::Matrix::CreateLookAt(pos, pos.Forward, DirectX::SimpleMath::Vector3::UnitY);;
-
+		auto viewMatrix = DirectX::SimpleMath::Matrix::CreateLookAt(pos, tagetpos, DirectX::SimpleMath::Vector3::UnitY);
 		return viewMatrix;
 	}
 	std::string Camera::LabelChange(const char* labelName)

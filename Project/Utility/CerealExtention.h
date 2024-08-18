@@ -36,13 +36,4 @@ namespace cereal
 	{
 		archive(q.x, q.y, q.z, q.w);
 	}
-
-	template<class Archive>
-	void serialize(Archive& archive, DirectX::SimpleMath::Matrix& m)
-	{
-		archive(m._11, m._12, m._13, m._14,
-			m._21, m._22, m._23, m._24,
-			m._31, m._32, m._33, m._34,
-			m._41, m._42, m._43, m._44);
-	}
 }

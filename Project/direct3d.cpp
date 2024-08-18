@@ -369,7 +369,7 @@ D3D::Model D3D::LoadObjModel(const wchar_t* fileName)
 
     if (FAILED(hr)) // 読み込み失敗したら
     {
-        MessageBoxA(NULL, "モデル読み込み失敗", "エラー", MB_OK | MB_ICONERROR);
+        //MessageBoxA(NULL, "モデル読み込み失敗", "エラー", MB_OK | MB_ICONERROR);
         return Model(); // 空のモデルを返す
     }
 

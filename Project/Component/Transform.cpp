@@ -54,14 +54,14 @@ namespace TMF
 		label += "## " + uuidStr;
 		if (ImGui::DragFloat3(label.c_str(), &m_position.x, 0.1f))
 		{
-			UpDateCollisionObjectTransform();
+			UpdateCollisionObjectTransform();
 		}
 		label = "Rotation";
 		label += "## " + uuidStr;
 		if (ImGui::DragFloat3(label.c_str(), &m_editorRotation.x, 0.1f))
 		{
 			m_rotation = Quaternion::CreateFromYawPitchRoll(m_editorRotation.y, m_editorRotation.x, m_editorRotation.z);
-			UpDateCollisionObjectTransform();
+			UpdateCollisionObjectTransform();
 
 		}
 		label = "Scale";
@@ -131,7 +131,7 @@ namespace TMF
 			}
 		}
 	}
-	void Transform::UpDateCollisionObjectTransform()
+	void Transform::UpdateCollisionObjectTransform()
 	{
 		ChangeRigidBodyTransform();
 		ChangeGhostObjectTransform();

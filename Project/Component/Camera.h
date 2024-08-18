@@ -22,12 +22,6 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
-		void OnCollisionEnter(GameObject* pGameObject) override;
-		void OnCollisionStay(GameObject* pGameObject) override;
-		void OnCollisionExit(GameObject* pGameObject) override;
-		void OnTrigerEnter(GameObject* pGameObject) override;
-		void OnTrigerStay(GameObject* pGameObject) override;
-		void OnTrigerExit(GameObject* pGameObject) override;
 		boost::uuids::uuid OnGetUUID() override;
 
 		DirectX::SimpleMath::Matrix GetProjectionMatrix();

@@ -75,9 +75,9 @@
                                         "value2": {},
                                         "m_rotation": {
                                             "value0": 0.0,
-                                            "value1": -0.9463000893592835,
-                                            "value2": -0.0,
-                                            "value3": -0.3232894539833069
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
                                         },
                                         "value3": {},
                                         "m_uuID": {
@@ -144,9 +144,9 @@
                                     "data": {
                                         "value0": {},
                                         "m_position": {
-                                            "value0": 4.599999904632568,
+                                            "value0": 0.0,
                                             "value1": 0.0,
-                                            "value2": 9.800000190734864
+                                            "value2": 11.300000190734864
                                         },
                                         "value1": {},
                                         "m_scale": {
@@ -207,9 +207,9 @@
                                     "data": {
                                         "value0": {},
                                         "m_position": {
-                                            "value0": -1.7999999523162842,
+                                            "value0": 0.0,
                                             "value1": -1.899999976158142,
-                                            "value2": 1.7000000476837159
+                                            "value2": 0.0
                                         },
                                         "value1": {},
                                         "m_scale": {
@@ -219,10 +219,10 @@
                                         },
                                         "value2": {},
                                         "m_rotation": {
-                                            "value0": -0.0,
-                                            "value1": -0.8912073373794556,
+                                            "value0": 0.0,
+                                            "value1": 0.0,
                                             "value2": 0.0,
-                                            "value3": 0.4535961151123047
+                                            "value3": 1.0
                                         },
                                         "value3": {},
                                         "m_uuID": {
@@ -404,6 +404,67 @@
                                         "value0": {},
                                         "m_uuID": {
                                             "value0": "78d3a094-d234-4058-965c-37801fdfbefe"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483670,
+                    "data": {
+                        "m_name": "modelobj",
+                        "m_uuID": {
+                            "value0": "e3b31c4a-02c3-458d-86e6-b036e99f4bac"
+                        },
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483671,
+                                    "data": {
+                                        "value0": {},
+                                        "m_position": {
+                                            "value0": -0.20000000298023225,
+                                            "value1": 0.5,
+                                            "value2": 3.0999999046325685
+                                        },
+                                        "value1": {},
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "value2": {},
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "value3": {},
+                                        "m_uuID": {
+                                            "value0": "f1b4f7ff-22ae-4215-a5de-4faba179b97f"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483654,
+                                "polymorphic_name": "TMF::Model",
+                                "ptr_wrapper": {
+                                    "id": 2147483672,
+                                    "data": {
+                                        "value0": {},
+                                        "m_loadFileName": "Gun.obj",
+                                        "value1": {},
+                                        "m_isDraw": true,
+                                        "value2": {},
+                                        "m_uuID": {
+                                            "value0": "7e686f5f-4b31-4cf0-bfdd-0d1233b3d6b1"
                                         }
                                     }
                                 }
