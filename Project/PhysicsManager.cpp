@@ -11,7 +11,7 @@ namespace TMF
 	{
 		m_pBroadphaseInterface = std::make_unique<btDbvtBroadphase>();
 		m_pCollisionConfig = std::make_unique<btDefaultCollisionConfiguration>();
-		m_pCollisionDispacher = std::make_unique<btCollisionDispatcher>(m_pCollisionConfig.get());
+		m_pCollisionDispacher = std::make_unique<MyBulletCollisionDispatcher>(m_pCollisionConfig.get());
 		m_pConstrainSolver = std::make_unique<btSequentialImpulseConstraintSolver>();
 		m_pDynamicsWorld = std::make_unique<btDiscreteDynamicsWorld>(m_pCollisionDispacher.get(), m_pBroadphaseInterface.get(), m_pConstrainSolver.get(), m_pCollisionConfig.get());
 		m_pBulletDebugDrawer = std::make_unique<BulletDebugDrawer>(D3D::Get()->GetContext());
@@ -24,43 +24,6 @@ namespace TMF
 	void PhysicsManager::Update()
 	{
 		m_pDynamicsWorld->stepSimulation(1 / 60.0f, 10);
-		auto num = m_pCollisionDispacher.get()->getNumManifolds();
-		for (auto& pair : m_contactPairsMap)
-		{
-			pair.second = false;
-		}
-		for (auto i = 0; i < num; i++)
-		{
-			auto contactManifold = m_pCollisionDispacher.get()->getManifoldByIndexInternal(i);
-			auto object1 = contactManifold->getBody0();
-			auto gameObject1 = static_cast<GameObject*>(object1->getUserPointer());
-			auto object2 = contactManifold->getBody1();
-			auto gameObject2 = static_cast<GameObject*>(object1->getUserPointer());
-			std::pair<const btCollisionObject*, const btCollisionObject*> pair = std::make_pair(object1, object2);
-			if (m_contactPairsMap.find(pair) == m_contactPairsMap.end())
-			{
-				m_contactPairsMap[pair] = true;
-				gameObject1->CollisionEnter(gameObject2);
-				gameObject2->CollisionEnter(gameObject1);
-			}
-			else
-			{
-				m_contactPairsMap[pair] = true;
-			}
-
-			// ŠeÚG“_‚Ìî•ñ‚ðŽæ“¾
-			int numContacts = contactManifold->getNumContacts();
-			for (int j = 0; j < numContacts; j++) {
-				auto point = contactManifold->getContactPoint(j);
-				if (point.getDistance() < 0.0f) {
-					// ÚG’†
-					auto nomal = point.m_normalWorldOnB;
-					auto impulse = point.getAppliedImpulse();
-					gameObject1->CollisionStay(gameObject2);
-					gameObject2->CollisionStay(gameObject1);
-				}
-			}
-		}
 	}
 
 	void PhysicsManager::Draw()
@@ -105,6 +68,13 @@ namespace TMF
 		{
 			m_pDynamicsWorld->removeCollisionObject(ghost.get());
 		}
+	}
+
+	void PhysicsManager::Reset()
+	{
+		m_pDynamicsWorld->getBroadphase()->resetPool(m_pDynamicsWorld->getDispatcher());
+		m_pDynamicsWorld->getConstraintSolver()->reset();
+		m_pCollisionDispacher->Reset();
 	}
 
 }

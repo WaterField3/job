@@ -160,6 +160,7 @@
     <ClCompile Include="ApplicationState.cpp" />
     <ClCompile Include="Application\Application.cpp" />
     <ClCompile Include="Component\GhostObject.cpp" />
+    <ClCompile Include="MyBulletCollisionDispatcher.cpp" />
     <ClCompile Include="Utility\BulletDebugDrawer.cpp" />
     <ClCompile Include="Component\Collider.cpp" />
     <ClCompile Include="Component\ComponentManager.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="ApplicationState.h" />
     <ClInclude Include="Application\Application.h" />
     <ClInclude Include="Component\GhostObject.h" />
+    <ClInclude Include="MyBulletCollisionDispatcher.h" />
     <ClInclude Include="Utility\BulletDebugDrawer.h" />
     <ClInclude Include="Component\Collider.h" />
     <ClInclude Include="cereal\access.hpp" />

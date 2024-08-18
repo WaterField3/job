@@ -5,6 +5,7 @@
 #include "Collider.h"
 #include "Transform.h"
 #include "PhysicsManager.h"
+#include "GhostObject.h"
 
 namespace TMF
 {
@@ -57,13 +58,21 @@ namespace TMF
 	{
 		if (auto owner = m_pOwner.lock())
 		{
-			auto TransformComponent = owner->GetComponent<Transform>();
-			if (auto transform = TransformComponent.lock())
+			auto transformComponent = owner->GetComponent<Transform>();
+			auto pos = DirectX::SimpleMath::Vector3::Zero;
+			auto rotate = DirectX::SimpleMath::Quaternion::Identity;
+			if (auto transform = transformComponent.lock())
 			{
 				btTransform trans;
 				m_pRigidBody->getMotionState()->getWorldTransform(trans);
-				auto Pos = DirectX::SimpleMath::Vector3{ trans.getOrigin().getX(),trans.getOrigin().getY(),trans.getOrigin().getZ() };
-				transform->SetPosition(Pos);
+				pos = DirectX::SimpleMath::Vector3{ trans.getOrigin().getX(),trans.getOrigin().getY(),trans.getOrigin().getZ() };
+				transform->SetPosition(pos);
+				rotate = transform->GetRotation();
+			}
+			auto ghostComponent = owner->GetComponent<GhostObject>();
+			if (auto ghost = ghostComponent.lock())
+			{
+				ghost->SetGhostObjectTransform(pos, rotate);
 			}
 		}
 	}

@@ -34,6 +34,7 @@ namespace TMF
 			else
 			{
 				GameObjectManager::Instance().Finalize();
+				PhysicsManager::Instance().Reset();
 				GameObjectManager::Instance().Load(TEST_DATA);
 				GameObjectManager::Instance().Initialize();
 			}
