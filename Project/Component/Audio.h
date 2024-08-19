@@ -17,6 +17,8 @@ namespace TMF
 	class Audio : public Component
 	{
 	public:
+		Audio();
+		~Audio();
 		void OnInitialize() override;
 		void OnFinalize() override;
 		void OnUpdate() override;

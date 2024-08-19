@@ -25,8 +25,10 @@ namespace TMF
 
 		void SetRigidBodyTranform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua);
 		void RemoveRigidBody();
-		void AddRigidBody(std::weak_ptr<btCollisionShape> col);
 		void AddRigidBody(std::weak_ptr<btCollisionShape> col, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua);
+		void ApplyCentralForce(DirectX::SimpleMath::Vector3 force);
+		void SetLinearVelocity(DirectX::SimpleMath::Vector3 velocity);
+		void ApplyImpulse(DirectX::SimpleMath::Vector3 impulse, DirectX::SimpleMath::Vector3 relPos);
 	private:
 		btVector3 MakebtVector3(DirectX::SimpleMath::Vector3 vec);
 		btQuaternion MakebtQuaternion(DirectX::SimpleMath::Quaternion qua);

@@ -121,7 +121,7 @@
                                         "m_isKinematic": false,
                                         "value6": {},
                                         "m_uuID": {
-                                            "value0": "35046632-38f1-4958-aac4-7ca319da49e0"
+                                            "value0": "37da7ded-2aac-4843-a7ca-7c65ebd9385b"
                                         }
                                     }
                                 }
@@ -266,7 +266,7 @@
                                         "m_isKinematic": false,
                                         "value6": {},
                                         "m_uuID": {
-                                            "value0": "bc2ec214-c213-4ccb-89b3-8ff26116b68d"
+                                            "value0": "a10295af-b6c7-40ac-9062-0c9c326b0999"
                                         }
                                     }
                                 }
@@ -469,6 +469,103 @@
                                         "value2": {},
                                         "m_uuID": {
                                             "value0": "7e686f5f-4b31-4cf0-bfdd-0d1233b3d6b1"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483673,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "value0": "c41aec41-37e7-4689-b3db-fdeb0dcb2998"
+                        },
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483674,
+                                    "data": {
+                                        "value0": {},
+                                        "m_position": {
+                                            "value0": 2.5999999046325685,
+                                            "value1": 0.0,
+                                            "value2": 1.399999976158142
+                                        },
+                                        "value1": {},
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "value2": {},
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "value3": {},
+                                        "m_uuID": {
+                                            "value0": "6a71a0b5-1595-40a3-907f-4483a0761f4b"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2,
+                                "ptr_wrapper": {
+                                    "id": 2147483675,
+                                    "data": {
+                                        "value0": {},
+                                        "m_collidrType": 3,
+                                        "value1": {},
+                                        "m_uuID": {
+                                            "value0": "c4bd0394-3680-4279-a580-d334e7f01ed5"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "id": 2147483676,
+                                    "data": {
+                                        "value0": {},
+                                        "m_mass": 1.0,
+                                        "value1": {},
+                                        "m_drag": 0.0,
+                                        "value2": {},
+                                        "m_angularDrag": 0.0,
+                                        "value3": {},
+                                        "m_angulerSleepingThresholds": 0.0,
+                                        "value4": {},
+                                        "m_linearSleepingThresholds": 0.0,
+                                        "value5": {},
+                                        "m_isKinematic": false,
+                                        "value6": {},
+                                        "m_uuID": {
+                                            "value0": "26680d0b-bccc-4f3f-9ed0-8e6e9f5c05e2"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483655,
+                                "polymorphic_name": "TMF::Move",
+                                "ptr_wrapper": {
+                                    "id": 2147483677,
+                                    "data": {
+                                        "value0": {},
+                                        "m_moveSpeed": 1.0,
+                                        "value1": {},
+                                        "m_uuID": {
+                                            "value0": "c2bd7509-dbb0-4130-898f-2452b9baeb81"
                                         }
                                     }
                                 }

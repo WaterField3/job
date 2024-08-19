@@ -5,6 +5,12 @@
 namespace TMF
 {
 	REGISTER_COMPONENT(Audio);
+	Audio::Audio()
+	{
+	}
+	Audio::~Audio()
+	{
+	}
 	void Audio::OnInitialize()
 	{
 		m_pAudioEngine = std::make_unique<DirectX::AudioEngine>(DirectX::AudioEngine_Default);

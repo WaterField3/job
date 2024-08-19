@@ -40,7 +40,7 @@ namespace TMF
 
 	private:
 		DirectX::SimpleMath::Vector3 m_position;
-		DirectX::SimpleMath::Vector3 m_scale;
+		DirectX::SimpleMath::Vector3 m_scale = DirectX::SimpleMath::Vector3::One;
 		DirectX::SimpleMath::Quaternion m_rotation = DirectX::SimpleMath::Quaternion::Identity;
 		DirectX::SimpleMath::Vector3 m_editorRotation;
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();

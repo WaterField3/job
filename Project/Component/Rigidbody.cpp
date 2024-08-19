@@ -152,6 +152,21 @@ namespace TMF
 		}
 	}
 
+	void Rigidbody::ApplyCentralForce(DirectX::SimpleMath::Vector3 force)
+	{
+		m_pRigidBody->applyCentralForce(MakebtVector3(force));
+	}
+
+	void Rigidbody::SetLinearVelocity(DirectX::SimpleMath::Vector3 velocity)
+	{
+		m_pRigidBody->setLinearVelocity(MakebtVector3(velocity));
+	}
+
+	void Rigidbody::ApplyImpulse(DirectX::SimpleMath::Vector3 impulse, DirectX::SimpleMath::Vector3 relPos)
+	{
+		m_pRigidBody->applyImpulse(MakebtVector3(impulse),MakebtVector3(relPos));
+	}
+
 	btVector3 Rigidbody::MakebtVector3(DirectX::SimpleMath::Vector3 vec)
 	{
 		auto btVec = btVector3(vec.x, vec.y, vec.z);

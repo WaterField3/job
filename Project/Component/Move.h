@@ -1,0 +1,39 @@
+#pragma once
+
+#include "Component.h"
+
+#include <cereal/types/polymorphic.hpp>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <d3d11.h>
+#include <SimpleMath.h>
+#include <string>
+
+#include "ComponentCerealHelper.h"
+#include "ComponentRegister.h"
+
+namespace TMF
+{
+	class Move : public Component
+	{
+	public:
+		Move();
+		~Move();
+		void OnInitialize() override;
+		void OnFinalize() override;
+		void OnUpdate() override;
+		void OnLateUpdate() override;
+		void OnDraw() override;
+		void OnDrawImGui() override;
+		boost::uuids::uuid OnGetUUID() override;
+
+	private:
+		float m_moveSpeed = 1;
+		float m_jumpPower = 1;
+		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
+
+		SERIALIZE_COMPONENT(m_moveSpeed, m_uuID);
+	};
+}
+REGISTER_CEREAL_TYPE(TMF::Move);

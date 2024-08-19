@@ -19,6 +19,7 @@
 #include "Component/Camera.h"
 #include "Component/GhostObject.h"
 #include "Component/Audio.h"
+#include "Component/Move.h"
 #include "GameObject/GameObjectManager.h"
 #include "Utility/CerealExtention.h"
 #include "System/DataFileNames.h"
