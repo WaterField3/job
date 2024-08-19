@@ -101,4 +101,15 @@ namespace TMF
 	{
 		return m_pGameObjects;
 	}
+	std::weak_ptr<GameObject> GameObjectManager::GetGameObject(std::string name)
+	{
+		for (auto& pGameObject : m_pGameObjects)
+		{
+			if (pGameObject->GetName() == name)
+			{
+				return pGameObject;
+			}
+		}
+		return std::weak_ptr<GameObject>();
+	}
 }

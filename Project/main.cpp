@@ -18,6 +18,7 @@
 #include "Component/Collider.h"
 #include "Component/Camera.h"
 #include "Component/GhostObject.h"
+#include "Component/Audio.h"
 #include "GameObject/GameObjectManager.h"
 #include "Utility/CerealExtention.h"
 #include "System/DataFileNames.h"
@@ -189,6 +190,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		DirectX::Keyboard::ProcessMessage(uMsg, wParam, lParam);
 		DirectX::Mouse::ProcessMessage(uMsg, wParam, lParam);
 		break;
+
 	case WM_ACTIVATE:
 	case WM_INPUT:
 	case WM_MOUSEMOVE:
@@ -204,18 +206,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_MOUSEHOVER:
 		DirectX::Mouse::ProcessMessage(uMsg, wParam, lParam);
 		break;
+
 	case WM_KEYDOWN:
 	case WM_KEYUP:
 	case WM_SYSKEYUP:
 		DirectX::Keyboard::ProcessMessage(uMsg, wParam, lParam);
 		break;
-		// キーが押されたイベント
-	//case WM_KEYDOWN:
-	//	break;
-
-	//	// キーが離されたイベント
-	//case WM_KEYUP:
-	//	break;
 
 	case WM_DPICHANGED:
 		if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DpiEnableScaleViewports)

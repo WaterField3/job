@@ -26,6 +26,7 @@ namespace TMF
 		void Load(std::string fileName);
 
 		std::vector<std::shared_ptr<GameObject>> GetGameObjects();
+		std::weak_ptr<GameObject> GetGameObject(std::string name);
 
 		template < typename TComponent>
 		std::weak_ptr<TComponent> GetComponent(std::string name)
