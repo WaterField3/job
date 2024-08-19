@@ -38,6 +38,8 @@ namespace TMF
 					{
 						m_pRigidBody->setUserPointer(owner.get());
 					}
+					m_pRigidBody->setSleepingThresholds(m_linearSleepingThresholds, m_angulerSleepingThresholds);
+					//m_pRigidBody->setActivationState(DISABLE_DEACTIVATION);
 					PhysicsManager::Instance().AddRigidBody(m_pRigidBody);
 				}
 			}
@@ -94,6 +96,22 @@ namespace TMF
 		{
 
 		}
+		label = LabelChange("LinearSleepingThresholds");
+		if (ImGui::DragFloat(label.c_str(), &m_linearSleepingThresholds, 0.1f))
+		{
+
+		}
+		label = LabelChange("AngulerSleepingThresholds");
+		if (ImGui::DragFloat(label.c_str(), &m_angulerSleepingThresholds, 0.1f))
+		{
+
+		}
+		//if (ImGui::Button("a"))
+		//{
+		// //sleep‚©‚ç–ß‚ç‚È‚¢‚©‚çactive‚É
+		////m_pRigidBody->activate();
+		//	m_pRigidBody->applyImpulse(btVector3(0, 50, 0), btVector3(0, 0, 0));
+		//}
 	}
 
 	boost::uuids::uuid Rigidbody::OnGetUUID()

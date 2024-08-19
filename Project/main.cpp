@@ -5,6 +5,8 @@
 #include <cereal/archives/json.hpp>
 #include <cereal/cereal.hpp>
 #include <fstream>
+#include <Keyboard.h>
+#include <Mouse.h>
 
 #include "direct3d.h"
 #include "Application/Application.h"
@@ -20,6 +22,7 @@
 #include "Utility/CerealExtention.h"
 #include "System/DataFileNames.h"
 #include "PhysicsManager.h"
+#include "Input.h"
 
 
 // マクロ定義
@@ -102,6 +105,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 
 	D3D::Get()->Create(hWnd);
+	Input::Instance().Initialize(hWnd);
 	GameObjectManager::Instance().Load(MAIN_DATA);
 	PhysicsManager::Instance().Initialize();
 
@@ -181,6 +185,30 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		DestroyWindow(hWnd);  // “WM_DESTROY”メッセージを送る
 		break;
 
+	case WM_ACTIVATEAPP:
+		DirectX::Keyboard::ProcessMessage(uMsg, wParam, lParam);
+		DirectX::Mouse::ProcessMessage(uMsg, wParam, lParam);
+		break;
+	case WM_ACTIVATE:
+	case WM_INPUT:
+	case WM_MOUSEMOVE:
+	case WM_LBUTTONDOWN:
+	case WM_LBUTTONUP:
+	case WM_RBUTTONDOWN:
+	case WM_RBUTTONUP:
+	case WM_MBUTTONDOWN:
+	case WM_MBUTTONUP:
+	case WM_MOUSEWHEEL:
+	case WM_XBUTTONDOWN:
+	case WM_XBUTTONUP:
+	case WM_MOUSEHOVER:
+		DirectX::Mouse::ProcessMessage(uMsg, wParam, lParam);
+		break;
+	case WM_KEYDOWN:
+	case WM_KEYUP:
+	case WM_SYSKEYUP:
+		DirectX::Keyboard::ProcessMessage(uMsg, wParam, lParam);
+		break;
 		// キーが押されたイベント
 	//case WM_KEYDOWN:
 	//	break;

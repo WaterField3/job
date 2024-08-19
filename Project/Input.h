@@ -1,51 +1,33 @@
 #pragma once
 
-// Direct Inputを使ってキーボードとマウス操作を取得するクラス
-#define DIRECTINPUT_VERSION 0x0800
-#include	<dinput.h>
+#include <memory>
+#include <Windows.h>
+#include <Keyboard.h>
+#include <Mouse.h>
 
-class Input
+namespace TMF
 {
+	class Input
+	{
+	public:
+		Input() = default;
+		~Input() = default;
+		void Initialize(HWND hwnd);
 
-private:
-	IDirectInput8* mDInput = nullptr;
-	IDirectInputDevice8* mDevKeyboad = nullptr;
-	IDirectInputDevice8* mDevMouse = nullptr;
+		inline DirectX::Keyboard::State GetKeyState() const { return m_pKeyboard->GetState(); }
+		inline DirectX::Mouse::State GetMouseState() const { return m_pMouse->GetState(); }
+		inline DirectX::Keyboard::KeyboardStateTracker* GetTracker() const { return m_pTracker.get(); }
 
-	unsigned char mKeyBuffer[256] = {};
-	unsigned char mOldKeyBuffer[256] = {};
+		static Input& Instance()
+		{
+			static Input instance;
+			return instance;
+		}
 
-	DIMOUSESTATE2 mMouseState = {};
-	DIMOUSESTATE2 mOldMouseState = {};
-
-	Input() {};
-
-	~Input();
-	
-
-public:
-	// シングルトンのインスタンスを取得する関数
-	static Input* Get();
-
-	// DirectInputの初期化を行う関数
-	// ゲームループが始まる前に呼び出す
-	void Initialize(HWND hWnd, HINSTANCE hInstance);
-
-	// 毎ループ呼び出しキーの押下状態をバッファに保存する
-	void Update();
-
-	// 現在のキーボードの押下状態を取得する
-	// key: DIK_で始まるキー定数を使う
-	bool GetKeyPress(int key);
-
-	bool GetKeyTrigger(int key);
-
-	// マウスボタンの押下状態を取得する
-	// key: 0-4
-	bool GetMousePress(int key);
-
-	// マウスの移動量を取得する
-	POINT GetMouseMove();
-
-};
+	private:
+		std::unique_ptr<DirectX::Keyboard> m_pKeyboard;
+		std::unique_ptr<DirectX::Mouse> m_pMouse;
+		std::shared_ptr<DirectX::Keyboard::KeyboardStateTracker> m_pTracker;
+	};
+}
 

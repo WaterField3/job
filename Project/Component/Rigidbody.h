@@ -35,13 +35,14 @@ namespace TMF
 		float m_mass = 0.0f;
 		float m_drag = 0.0f;
 		float m_angularDrag = 0.0f;
-		bool m_useGravity = false;
 		bool m_isKinematic = false;
+		float m_linearSleepingThresholds = 0;
+		float m_angulerSleepingThresholds = 0;
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		std::unique_ptr<btDefaultMotionState> m_pMotionState;
 		std::shared_ptr<btRigidBody> m_pRigidBody;
 
-		SERIALIZE_COMPONENT(m_mass, m_drag, m_angularDrag, m_useGravity, m_isKinematic, m_uuID);
+		SERIALIZE_COMPONENT(m_mass, m_drag, m_angularDrag, m_angulerSleepingThresholds, m_linearSleepingThresholds , m_isKinematic, m_uuID);
     };
 }
 REGISTER_CEREAL_TYPE(TMF::Rigidbody);
