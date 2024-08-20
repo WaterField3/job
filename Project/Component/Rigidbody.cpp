@@ -9,16 +9,17 @@
 
 REGISTER_COMPONENT(TMF::Rigidbody, "Rigidbody");
 
+using namespace DirectX::SimpleMath;
+
 namespace TMF
 {
-
 	void Rigidbody::OnInitialize()
 	{
 		if (auto owner = m_pOwner.lock())
 		{
 			auto transform = owner->GetComponent<Transform>();
-			auto pos = DirectX::SimpleMath::Vector3::Zero;
-			auto qua = DirectX::SimpleMath::Quaternion::Identity;
+			auto pos = Vector3::Zero;
+			auto qua = Quaternion::Identity;
 			if (auto trans = transform.lock())
 			{
 				pos = trans->GetPosition();
@@ -41,7 +42,7 @@ namespace TMF
 					}
 					m_pRigidBody->setSleepingThresholds(m_linearSleepingThresholds, m_angulerSleepingThresholds);
 					//m_pRigidBody->setActivationState(DISABLE_DEACTIVATION);
-					m_pRigidBody->setAngularFactor(MakebtVector3(m_angularFactor));
+					m_pRigidBody->setAngularFactor(MakebtVector3(Vector3(m_isAngularFactorX, m_isAngularFactorY, m_isAngularFactorZ)));
 					PhysicsManager::Instance().AddRigidBody(m_pRigidBody);
 				}
 			}
@@ -63,13 +64,13 @@ namespace TMF
 		if (auto owner = m_pOwner.lock())
 		{
 			auto transformComponent = owner->GetComponent<Transform>();
-			auto pos = DirectX::SimpleMath::Vector3::Zero;
-			auto rotate = DirectX::SimpleMath::Quaternion::Identity;
+			auto pos = Vector3::Zero;
+			auto rotate = Quaternion::Identity;
 			if (auto transform = transformComponent.lock())
 			{
 				btTransform trans;
 				m_pRigidBody->getMotionState()->getWorldTransform(trans);
-				pos = DirectX::SimpleMath::Vector3{ trans.getOrigin().getX(),trans.getOrigin().getY(),trans.getOrigin().getZ() };
+				pos = Vector3{ trans.getOrigin().getX(),trans.getOrigin().getY(),trans.getOrigin().getZ() };
 				transform->SetPosition(pos);
 				rotate = transform->GetRotation();
 			}
@@ -108,8 +109,22 @@ namespace TMF
 		{
 
 		}
-		label = LabelChange("AngularFactor");
-		if (ImGui::DragFloat3(label.c_str(), &m_angularFactor.x, 0.1f))
+		label = LabelChange("");
+		ImGui::LabelText(label.c_str(),"%s", "AngularFactor");
+		label = LabelChange("X");
+		if (ImGui::Checkbox(label.c_str(), &m_isAngularFactorX))
+		{
+
+		}
+		label = LabelChange("Y");
+		ImGui::SameLine(45);
+		if (ImGui::Checkbox(label.c_str(), &m_isAngularFactorY))
+		{
+
+		}
+		label = LabelChange("Z");
+		ImGui::SameLine(80);
+		if (ImGui::Checkbox(label.c_str(), &m_isAngularFactorZ))
 		{
 
 		}
@@ -176,7 +191,7 @@ namespace TMF
 
 	void Rigidbody::ApplyForce(DirectX::SimpleMath::Vector3 force, DirectX::SimpleMath::Vector3 relPos)
 	{
-		m_pRigidBody->applyForce(MakebtVector3(force), MakebtVector3(DirectX::SimpleMath::Vector3::Zero));
+		m_pRigidBody->applyForce(MakebtVector3(force), MakebtVector3(Vector3::Zero));
 	}
 
 	btVector3 Rigidbody::MakebtVector3(DirectX::SimpleMath::Vector3 vec)
@@ -190,7 +205,7 @@ namespace TMF
 		auto btQua = btQuaternion(qua.x, qua.y, qua.z, qua.w);
 		return btQua;
 	}
-	btTransform Rigidbody::MakebtTransform(DirectX::SimpleMath::Vector3 vec, DirectX::SimpleMath::Quaternion qua)
+	btTransform Rigidbody::MakebtTransform(Vector3 vec, Quaternion qua)
 	{
 		return btTransform(MakebtQuaternion(qua), MakebtVector3(vec));
 	}

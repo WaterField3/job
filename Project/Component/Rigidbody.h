@@ -40,11 +40,13 @@ namespace TMF
 		float m_angularDrag = 0.0f;
 		float m_linearSleepingThresholds = 0;
 		float m_angulerSleepingThresholds = 0;
-		DirectX::SimpleMath::Vector3 m_angularFactor = DirectX::SimpleMath::Vector3::Zero;
+		bool m_isAngularFactorX = false;
+		bool m_isAngularFactorY = false;
+		bool m_isAngularFactorZ = false;
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		std::unique_ptr<btDefaultMotionState> m_pMotionState;
 		std::shared_ptr<btRigidBody> m_pRigidBody;
 
-		SERIALIZE_COMPONENT(m_mass, m_drag, m_angularDrag, m_angulerSleepingThresholds, m_linearSleepingThresholds , m_angularFactor, m_uuID);
+		SERIALIZE_COMPONENT(m_mass, m_drag, m_angularDrag, m_angulerSleepingThresholds, m_linearSleepingThresholds, m_isAngularFactorX, m_isAngularFactorY, m_isAngularFactorZ, m_uuID);
     };
 }

@@ -13,7 +13,9 @@
 
 [cereal](https://uscilab.github.io/cereal/) 
 
-[vcpkg](https://github.com/Microsoft/vcpkg/?tab=readme-ov-file)
+[vcpkg](https://github.com/Microsoft/vcpkg/?tab=readme-ov-file)  
+
+[Effekseer for C++](https://effekseer.github.io/jp/download.html)  
 
 ## 追加 vcpkg  
 [bullet3](https://github.com/bulletphysics/bullet3)

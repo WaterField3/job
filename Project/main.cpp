@@ -7,6 +7,7 @@
 #include <Keyboard.h>
 #include <Mouse.h>
 
+
 #include "direct3d.h"
 #include "Application/Application.h"
 #include "GameObject/GameObjectManager.h"
@@ -14,6 +15,7 @@
 #include "System/DataFileNames.h"
 #include "PhysicsManager.h"
 #include "Input.h"
+#include "Timer.h"
 
 // マクロ定義
 #define CLASS_NAME    "DX21Smpl"// ウインドウクラスの名前
@@ -75,6 +77,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	// FPS表示用変数
 	int fpsCounter = 0;
+	float elapsedTime = 0.0f;
+	float fps = 0.0f;
 	long long oldTick = GetTickCount64();//現在時間を保存
 	long long nowTick = oldTick; // 現在時間取得用
 
@@ -93,6 +97,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	MSG msg;
 
+	Timer::Instance().Initialize();
 
 	D3D::Get()->Create(hWnd);
 	Input::Instance().Initialize(hWnd);
@@ -119,35 +124,44 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		}
 		else
 		{
-			// 1/60秒経過したか？
-			QueryPerformanceCounter(&liWork);
-			nowCount = liWork.QuadPart; // 現在時間を取得（単位：カウント）
-			if (nowCount >= oldCount + numCount_1frame)
-			{
-				// ゲーム処理実行
+			Timer::Instance().Update();
+			// ゲーム処理実行
 
-				app->OnUpdate();
+			app->OnUpdate();
 
-				app->OnDraw();
+			app->OnDraw();
 
-				app->OnDrawImGui();
+			app->OnDrawImGui();
 
-				fpsCounter++; // ゲームループ実行回数をカウント＋１
-				oldCount = nowCount;
-			}
+			//// 1/60秒経過したか？
+			//QueryPerformanceCounter(&liWork);
+			//nowCount = liWork.QuadPart; // 現在時間を取得（単位：カウント）
+			//if (nowCount >= oldCount + numCount_1frame)
+			//{
+			//	// ゲーム処理実行
 
-			nowTick = GetTickCount64(); // 現在時間取得
-			// １秒経過したか？
-			if (nowTick >= oldTick + 1000)
-			{
+			//	app->OnUpdate();
+
+			//	app->OnDraw();
+
+			//	app->OnDrawImGui();
+
+			//	fpsCounter++; // ゲームループ実行回数をカウント＋１
+			//	oldCount = nowCount;
+			//}
+
+			//nowTick = GetTickCount64(); // 現在時間取得
+			//// １秒経過したか？
+			//if (nowTick >= oldTick + 1000)
+			//{
 				// FPSを表示する
-				char str[32];
-				wsprintfA(str, "FPS=%d", fpsCounter);
-				SetWindowTextA(hWnd, str);
-				// カウンターをリセット
-				fpsCounter = 0;
-				oldTick = nowTick;
-			}
+				//char str[32];
+				//wsprintfA(str, "FPS=%d", targetFrameTime);
+				//SetWindowTextA(hWnd, str);
+			//	// カウンターをリセット
+			//	fpsCounter = 0;
+			//	oldTick = nowTick;
+			//}
 		}
 	} // ゲームループの閉じカッコ
 
