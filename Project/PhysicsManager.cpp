@@ -28,7 +28,7 @@ namespace TMF
 
 	void PhysicsManager::Draw()
 	{
-		auto compoent = GameObjectManager::Instance().GetComponent<Camera>("CameraObject");
+		auto compoent = GameObjectManager::Instance().GetComponent<Camera>();
 		if (auto camera = compoent.lock())
 		{
 			D3D::Get()->SettingEffect(camera->GetViewMatrix(), camera->GetProjectionMatrix());

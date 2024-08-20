@@ -2,9 +2,10 @@
 
 #include <Imgui/imgui.h>
 
+REGISTER_COMPONENT(TMF::Audio, "Audio");
+
 namespace TMF
 {
-	REGISTER_COMPONENT(Audio);
 	Audio::Audio()
 	{
 	}

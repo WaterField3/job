@@ -29,6 +29,7 @@ namespace TMF
 		void ApplyCentralForce(DirectX::SimpleMath::Vector3 force);
 		void SetLinearVelocity(DirectX::SimpleMath::Vector3 velocity);
 		void ApplyImpulse(DirectX::SimpleMath::Vector3 impulse, DirectX::SimpleMath::Vector3 relPos);
+		void ApplyForce(DirectX::SimpleMath::Vector3 force, DirectX::SimpleMath::Vector3 relPos);
 	private:
 		btVector3 MakebtVector3(DirectX::SimpleMath::Vector3 vec);
 		btQuaternion MakebtQuaternion(DirectX::SimpleMath::Quaternion qua);
@@ -37,14 +38,13 @@ namespace TMF
 		float m_mass = 0.0f;
 		float m_drag = 0.0f;
 		float m_angularDrag = 0.0f;
-		bool m_isKinematic = false;
 		float m_linearSleepingThresholds = 0;
 		float m_angulerSleepingThresholds = 0;
+		DirectX::SimpleMath::Vector3 m_angularFactor = DirectX::SimpleMath::Vector3::Zero;
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		std::unique_ptr<btDefaultMotionState> m_pMotionState;
 		std::shared_ptr<btRigidBody> m_pRigidBody;
 
-		SERIALIZE_COMPONENT(m_mass, m_drag, m_angularDrag, m_angulerSleepingThresholds, m_linearSleepingThresholds , m_isKinematic, m_uuID);
+		SERIALIZE_COMPONENT(m_mass, m_drag, m_angularDrag, m_angulerSleepingThresholds, m_linearSleepingThresholds , m_angularFactor, m_uuID);
     };
 }
-REGISTER_CEREAL_TYPE(TMF::Rigidbody);

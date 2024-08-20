@@ -46,4 +46,3 @@ namespace TMF
 
 	};
 }
-REGISTER_CEREAL_TYPE(TMF::Audio);

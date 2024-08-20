@@ -15,11 +15,11 @@
 
 namespace TMF
 {
-	class Move : public Component
+	class CharacterMoveController : public Component
 	{
 	public:
-		Move();
-		~Move();
+		CharacterMoveController();
+		~CharacterMoveController();
 		void OnInitialize() override;
 		void OnFinalize() override;
 		void OnUpdate() override;
@@ -36,4 +36,3 @@ namespace TMF
 		SERIALIZE_COMPONENT(m_moveSpeed, m_uuID);
 	};
 }
-REGISTER_CEREAL_TYPE(TMF::Move);

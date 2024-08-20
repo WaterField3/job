@@ -48,4 +48,3 @@ namespace TMF
 		SERIALIZE_COMPONENT(m_position, m_scale, m_rotation, m_uuID);
 	};
 }
-REGISTER_CEREAL_TYPE(TMF::Transform);

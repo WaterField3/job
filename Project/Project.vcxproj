@@ -162,7 +162,7 @@
     <ClCompile Include="Component\Audio.cpp" />
     <ClCompile Include="Component\GhostObject.cpp" />
     <ClCompile Include="Input.cpp" />
-    <ClCompile Include="Component\Move.cpp" />
+    <ClCompile Include="Component\CharacterMoveController.cpp" />
     <ClCompile Include="MyBulletCollisionDispatcher.cpp" />
     <ClCompile Include="Utility\BulletDebugDrawer.cpp" />
     <ClCompile Include="Component\Collider.cpp" />
@@ -205,7 +205,7 @@
     <ClInclude Include="Component\Audio.h" />
     <ClInclude Include="Component\GhostObject.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="Component\Move.h" />
+    <ClInclude Include="Component\CharacterMoveController.h" />
     <ClInclude Include="MyBulletCollisionDispatcher.h" />
     <ClInclude Include="Utility\BulletDebugDrawer.h" />
     <ClInclude Include="Component\Collider.h" />

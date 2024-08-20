@@ -7,9 +7,10 @@
 
 using namespace DirectX::SimpleMath;
 
+REGISTER_COMPONENT(TMF::Transform, "Transform");
+
 namespace TMF
 {
-	REGISTER_COMPONENT(Transform);
 
 	Transform::Transform()
 	{

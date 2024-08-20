@@ -86,6 +86,6 @@ namespace TMF
 		int m_selectIndex = 0;
 		bool m_isActive = true;
 
-		SERIALIZE(m_name, m_uuID,m_pComponents);
+		SERIALIZE(m_name, m_uuID, m_pComponents);
 	};
 }

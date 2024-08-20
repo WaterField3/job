@@ -1,4 +1,4 @@
-#include "Move.h"
+#include "CharacterMoveController.h"
 
 #include <Imgui/imgui.h>
 
@@ -6,22 +6,22 @@
 #include "Rigidbody.h"
 #include "Input.h"
 
+REGISTER_COMPONENT(TMF::CharacterMoveController, "CharacterMoveController");
 namespace TMF
 {
-	REGISTER_COMPONENT(Move);
-	Move::Move()
+	CharacterMoveController::CharacterMoveController()
 	{
 	}
-	Move::~Move()
+	CharacterMoveController::~CharacterMoveController()
 	{
 	}
-	void Move::OnInitialize()
+	void CharacterMoveController::OnInitialize()
 	{
 	}
-	void Move::OnFinalize()
+	void CharacterMoveController::OnFinalize()
 	{
 	}
-	void Move::OnUpdate()
+	void CharacterMoveController::OnUpdate()
 	{
 		auto kb = Input::Instance().GetKeyState();
 		auto tracker = Input::Instance().GetTracker();
@@ -57,7 +57,8 @@ namespace TMF
 				if (movePos != DirectX::SimpleMath::Vector3::Zero)
 				{
 					//rb->SetLinearVelocity(movePos);
-					rb->ApplyCentralForce(movePos);
+					//rb->ApplyCentralForce(movePos);
+					rb->ApplyForce(movePos,DirectX::SimpleMath::Vector3::Zero);
 				}
 				if (jump)
 				{
@@ -67,13 +68,13 @@ namespace TMF
 			}
 		}
 	}
-	void Move::OnLateUpdate()
+	void CharacterMoveController::OnLateUpdate()
 	{
 	}
-	void Move::OnDraw()
+	void CharacterMoveController::OnDraw()
 	{
 	}
-	void Move::OnDrawImGui()
+	void CharacterMoveController::OnDrawImGui()
 	{
 		if (ImGui::DragFloat("MoveSpeed", &m_moveSpeed, 0.1f, 0.0f))
 		{
@@ -84,7 +85,7 @@ namespace TMF
 
 		}
 	}
-	boost::uuids::uuid Move::OnGetUUID()
+	boost::uuids::uuid CharacterMoveController::OnGetUUID()
 	{
 		return m_uuID;
 	}

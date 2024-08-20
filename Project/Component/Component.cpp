@@ -2,6 +2,8 @@
 
 #include "GameObject/GameObject.h"
 
+CEREAL_REGISTER_TYPE(TMF::Component);
+
 namespace TMF
 {
 	Component::Component()

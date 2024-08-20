@@ -30,12 +30,11 @@ namespace TMF
 	private:
 		DirectX::SimpleMath::Matrix MakeViewMatrix();
 		std::string LabelChange(const char* labelName);
-		float m_fov;
-		float m_near;
-		float m_far;
+		float m_fov = 45.0f;
+		float m_near = 0.1f;
+		float m_far = 1000.0f;
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 
 		SERIALIZE_COMPONENT(m_fov, m_near, m_far, m_uuID);
 	};
 }
-REGISTER_CEREAL_TYPE(TMF::Camera);

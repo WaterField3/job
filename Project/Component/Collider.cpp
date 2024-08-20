@@ -6,9 +6,10 @@
 #include "Rigidbody.h"
 #include "GhostObject.h"
 
+REGISTER_COMPONENT(TMF::Collider, "Collider");
+
 namespace TMF
 {
-	REGISTER_COMPONENT(Collider);
 
 	void Collider::OnInitialize()
 	{

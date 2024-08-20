@@ -7,9 +7,10 @@
 #include "Camera.h"
 #include "direct3d.h"
 
+REGISTER_COMPONENT(TMF::Model, "Model");
+
 namespace TMF
 {
-	REGISTER_COMPONENT(Model);
 
 	Model::Model()
 	{
@@ -78,7 +79,7 @@ namespace TMF
 
 		D3D::ConstBuffer cb;
 		DirectX::SimpleMath::Matrix matrixWorld;
-		
+
 		auto view = DirectX::SimpleMath::Matrix::CreateLookAt(DirectX::SimpleMath::Vector3(0.0f, 0.0f, 5.0f), DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector3::UnitY);
 		auto proj = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(DirectX::XM_PI / 4.0f, float(1024) / float(576), 0.1f, 10.f);
 		for (auto pGameObject : GameObjectManager::Instance().GetGameObjects())
@@ -93,7 +94,7 @@ namespace TMF
 				}
 			}
 		}
-		
+
 
 		// XYZの三軸の回転角度を指定して回転させる方法　＝　オイラー角
 		auto matrixRotateX = DirectX::SimpleMath::Matrix::CreateRotationX(0);

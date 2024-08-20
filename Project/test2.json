@@ -118,10 +118,14 @@
                                         "value4": {},
                                         "m_linearSleepingThresholds": 0.0,
                                         "value5": {},
-                                        "m_isKinematic": false,
+                                        "m_angularFactor": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
                                         "value6": {},
                                         "m_uuID": {
-                                            "value0": "37da7ded-2aac-4843-a7ca-7c65ebd9385b"
+                                            "value0": "eac89d69-601b-4bc0-88e2-4ab72e34f064"
                                         }
                                     }
                                 }
@@ -263,10 +267,14 @@
                                         "value4": {},
                                         "m_linearSleepingThresholds": 0.0,
                                         "value5": {},
-                                        "m_isKinematic": false,
+                                        "m_angularFactor": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
                                         "value6": {},
                                         "m_uuID": {
-                                            "value0": "a10295af-b6c7-40ac-9062-0c9c326b0999"
+                                            "value0": "05bea6de-071a-4c61-aa9a-08190596d625"
                                         }
                                     }
                                 }
@@ -547,25 +555,29 @@
                                         "value4": {},
                                         "m_linearSleepingThresholds": 0.0,
                                         "value5": {},
-                                        "m_isKinematic": false,
+                                        "m_angularFactor": {
+                                            "value0": 0.10000000149011612,
+                                            "value1": 0.10000000149011612,
+                                            "value2": 0.10000000149011612
+                                        },
                                         "value6": {},
                                         "m_uuID": {
-                                            "value0": "26680d0b-bccc-4f3f-9ed0-8e6e9f5c05e2"
+                                            "value0": "d71fc91a-6ca3-46a9-aab4-cdc62b313387"
                                         }
                                     }
                                 }
                             },
                             {
                                 "polymorphic_id": 2147483655,
-                                "polymorphic_name": "TMF::Move",
+                                "polymorphic_name": "TMF::CharacterMoveController",
                                 "ptr_wrapper": {
                                     "id": 2147483677,
                                     "data": {
                                         "value0": {},
-                                        "m_moveSpeed": 1.0,
+                                        "m_moveSpeed": 10.0,
                                         "value1": {},
                                         "m_uuID": {
-                                            "value0": "c2bd7509-dbb0-4130-898f-2452b9baeb81"
+                                            "value0": "029d165e-6e17-4075-93cc-558fbf5c060a"
                                         }
                                     }
                                 }

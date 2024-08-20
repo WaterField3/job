@@ -3,6 +3,7 @@
 #include <cereal/archives/json.hpp>
 #include <cereal/cereal.hpp>
 #include <fstream>
+#include <filesystem>
 
 #include "GameObject/GameObject.h"
 #include "Utility/CerealExtention.h"
@@ -90,6 +91,10 @@ namespace TMF
 	void GameObjectManager::Load(std::string fileName)
 	{
 		fileName = fileName + ".json";
+		if (!std::filesystem::is_regular_file(fileName))
+		{
+			return;
+		}
 		std::ifstream iS(fileName.c_str(), std::ios::in);
 		{
 			cereal::JSONInputArchive inArchive(iS);

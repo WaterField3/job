@@ -1,11 +1,13 @@
 #include "GhostObject.h"
+
 #include "Collider.h"
 #include "Transform.h"
 #include "PhysicsManager.h"
 
+REGISTER_COMPONENT(TMF::GhostObject, "GhostObject");
+
 namespace TMF
 {
-	REGISTER_COMPONENT(GhostObject);
 
 	void GhostObject::OnInitialize()
 	{

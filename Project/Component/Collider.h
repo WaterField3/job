@@ -46,4 +46,3 @@ namespace TMF
 		SERIALIZE_COMPONENT(m_collidrType , m_uuID);
 	};
 }
-REGISTER_CEREAL_TYPE(TMF::Collider);

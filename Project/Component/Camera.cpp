@@ -5,9 +5,10 @@
 #include "Transform.h"
 #include "direct3d.h"
 
+REGISTER_COMPONENT(TMF::Camera, "Camera");
+
 namespace TMF
 {
-	REGISTER_COMPONENT(Camera);
 	void Camera::OnInitialize()
 	{
 		auto fovRadian = DirectX::XMConvertToRadians(m_fov);

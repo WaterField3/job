@@ -40,4 +40,3 @@ namespace TMF
 		SERIALIZE_COMPONENT(m_loadFileName,m_isDraw, m_uuID);
 	};
 }
-REGISTER_CEREAL_TYPE(TMF::Model);

@@ -29,18 +29,20 @@ namespace TMF
 		std::weak_ptr<GameObject> GetGameObject(std::string name);
 
 		template < typename TComponent>
-		std::weak_ptr<TComponent> GetComponent(std::string name)
+		std::weak_ptr<TComponent> GetComponent()
 		{
 			for (auto gameobject : m_pGameObjects)
 			{
-				if (gameobject->GetName() == name)
+				auto compoent = gameobject->GetComponent<TComponent>();
+				if (!compoent.expired())
 				{
-					return gameobject->GetComponent<TComponent>();
+					return compoent;
 				}
 			}
 			std::weak_ptr<TComponent> nonPtr;
 			return  nonPtr;
 		}
+
 
 		static GameObjectManager& Instance()
 		{

@@ -7,9 +7,10 @@
 #include "PhysicsManager.h"
 #include "GhostObject.h"
 
+REGISTER_COMPONENT(TMF::Rigidbody, "Rigidbody");
+
 namespace TMF
 {
-	REGISTER_COMPONENT(Rigidbody);
 
 	void Rigidbody::OnInitialize()
 	{
@@ -40,6 +41,7 @@ namespace TMF
 					}
 					m_pRigidBody->setSleepingThresholds(m_linearSleepingThresholds, m_angulerSleepingThresholds);
 					//m_pRigidBody->setActivationState(DISABLE_DEACTIVATION);
+					m_pRigidBody->setAngularFactor(MakebtVector3(m_angularFactor));
 					PhysicsManager::Instance().AddRigidBody(m_pRigidBody);
 				}
 			}
@@ -106,6 +108,11 @@ namespace TMF
 		{
 
 		}
+		label = LabelChange("AngularFactor");
+		if (ImGui::DragFloat3(label.c_str(), &m_angularFactor.x, 0.1f))
+		{
+
+		}
 		//if (ImGui::Button("a"))
 		//{
 		// //sleep‚©‚ç–ß‚ç‚È‚¢‚©‚çactive‚É
@@ -164,7 +171,12 @@ namespace TMF
 
 	void Rigidbody::ApplyImpulse(DirectX::SimpleMath::Vector3 impulse, DirectX::SimpleMath::Vector3 relPos)
 	{
-		m_pRigidBody->applyImpulse(MakebtVector3(impulse),MakebtVector3(relPos));
+		m_pRigidBody->applyImpulse(MakebtVector3(impulse), MakebtVector3(relPos));
+	}
+
+	void Rigidbody::ApplyForce(DirectX::SimpleMath::Vector3 force, DirectX::SimpleMath::Vector3 relPos)
+	{
+		m_pRigidBody->applyForce(MakebtVector3(force), MakebtVector3(DirectX::SimpleMath::Vector3::Zero));
 	}
 
 	btVector3 Rigidbody::MakebtVector3(DirectX::SimpleMath::Vector3 vec)

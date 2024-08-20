@@ -2,7 +2,6 @@
 
 #include <Windows.h>
 #include <Imgui/imgui.h>
-#include <cereal/archives/json.hpp>
 #include <cereal/cereal.hpp>
 #include <fstream>
 #include <Keyboard.h>
@@ -10,22 +9,11 @@
 
 #include "direct3d.h"
 #include "Application/Application.h"
-#include "GameObject/GameObject.h"
-#include "Component/Component.h"
-#include "Component/Transform.h"
-#include "Component/Model.h"
-#include "Component/Rigidbody.h"
-#include "Component/Collider.h"
-#include "Component/Camera.h"
-#include "Component/GhostObject.h"
-#include "Component/Audio.h"
-#include "Component/Move.h"
 #include "GameObject/GameObjectManager.h"
 #include "Utility/CerealExtention.h"
 #include "System/DataFileNames.h"
 #include "PhysicsManager.h"
 #include "Input.h"
-
 
 // マクロ定義
 #define CLASS_NAME    "DX21Smpl"// ウインドウクラスの名前
