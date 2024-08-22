@@ -141,6 +141,15 @@
     <ClCompile Include="Timer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Effect.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\StringHelper.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -233,259 +242,259 @@
     <ClInclude Include="Editer\Hierarchy.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\archives\adapters.hpp">
+    <ClInclude Include="Vender\cereal\archives\adapters.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\archives\binary.hpp">
+    <ClInclude Include="Vender\cereal\archives\binary.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\archives\json.hpp">
+    <ClInclude Include="Vender\cereal\archives\json.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\archives\portable_binary.hpp">
+    <ClInclude Include="Vender\cereal\archives\portable_binary.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\archives\xml.hpp">
+    <ClInclude Include="Vender\cereal\archives\xml.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\details\helpers.hpp">
+    <ClInclude Include="Vender\cereal\details\helpers.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\details\polymorphic_impl.hpp">
+    <ClInclude Include="Vender\cereal\details\polymorphic_impl.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\details\polymorphic_impl_fwd.hpp">
+    <ClInclude Include="Vender\cereal\details\polymorphic_impl_fwd.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\details\static_object.hpp">
+    <ClInclude Include="Vender\cereal\details\static_object.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\details\traits.hpp">
+    <ClInclude Include="Vender\cereal\details\traits.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\details\util.hpp">
+    <ClInclude Include="Vender\cereal\details\util.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\error\en.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\error\en.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\error\error.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\error\error.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\internal\biginteger.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\biginteger.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\internal\diyfp.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\diyfp.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\internal\dtoa.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\dtoa.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\internal\ieee754.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\ieee754.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\internal\itoa.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\itoa.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\internal\meta.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\meta.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\internal\pow10.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\pow10.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\internal\regex.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\regex.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\internal\stack.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\stack.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\internal\strfunc.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\strfunc.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\internal\strtod.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\strtod.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\internal\swap.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\swap.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\msinttypes\inttypes.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\msinttypes\inttypes.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\msinttypes\stdint.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\msinttypes\stdint.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\allocators.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\allocators.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\cursorstreamwrapper.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\cursorstreamwrapper.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\document.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\document.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\encodedstream.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\encodedstream.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\encodings.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\encodings.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\filereadstream.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\filereadstream.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\filewritestream.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\filewritestream.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\fwd.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\fwd.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\istreamwrapper.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\istreamwrapper.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\memorybuffer.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\memorybuffer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\memorystream.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\memorystream.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\ostreamwrapper.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\ostreamwrapper.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\pointer.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\pointer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\prettywriter.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\prettywriter.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\rapidjson.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\rapidjson.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\reader.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\reader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\schema.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\schema.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\stream.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\stream.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\stringbuffer.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\stringbuffer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidjson\writer.h">
+    <ClInclude Include="Vender\cereal\external\rapidjson\writer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidxml\rapidxml.hpp">
+    <ClInclude Include="Vender\cereal\external\rapidxml\rapidxml.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidxml\rapidxml_iterators.hpp">
+    <ClInclude Include="Vender\cereal\external\rapidxml\rapidxml_iterators.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidxml\rapidxml_print.hpp">
+    <ClInclude Include="Vender\cereal\external\rapidxml\rapidxml_print.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\rapidxml\rapidxml_utils.hpp">
+    <ClInclude Include="Vender\cereal\external\rapidxml\rapidxml_utils.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\external\base64.hpp">
+    <ClInclude Include="Vender\cereal\external\base64.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\concepts\pair_associative_container.hpp">
+    <ClInclude Include="Vender\cereal\types\concepts\pair_associative_container.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\array.hpp">
+    <ClInclude Include="Vender\cereal\types\array.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\atomic.hpp">
+    <ClInclude Include="Vender\cereal\types\atomic.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\base_class.hpp">
+    <ClInclude Include="Vender\cereal\types\base_class.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\bitset.hpp">
+    <ClInclude Include="Vender\cereal\types\bitset.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\boost_variant.hpp">
+    <ClInclude Include="Vender\cereal\types\boost_variant.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\chrono.hpp">
+    <ClInclude Include="Vender\cereal\types\chrono.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\common.hpp">
+    <ClInclude Include="Vender\cereal\types\common.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\complex.hpp">
+    <ClInclude Include="Vender\cereal\types\complex.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\deque.hpp">
+    <ClInclude Include="Vender\cereal\types\deque.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\forward_list.hpp">
+    <ClInclude Include="Vender\cereal\types\forward_list.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\functional.hpp">
+    <ClInclude Include="Vender\cereal\types\functional.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\list.hpp">
+    <ClInclude Include="Vender\cereal\types\list.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\map.hpp">
+    <ClInclude Include="Vender\cereal\types\map.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\memory.hpp">
+    <ClInclude Include="Vender\cereal\types\memory.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\optional.hpp">
+    <ClInclude Include="Vender\cereal\types\optional.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\polymorphic.hpp">
+    <ClInclude Include="Vender\cereal\types\polymorphic.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\queue.hpp">
+    <ClInclude Include="Vender\cereal\types\queue.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\set.hpp">
+    <ClInclude Include="Vender\cereal\types\set.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\stack.hpp">
+    <ClInclude Include="Vender\cereal\types\stack.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\string.hpp">
+    <ClInclude Include="Vender\cereal\types\string.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\tuple.hpp">
+    <ClInclude Include="Vender\cereal\types\tuple.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\unordered_map.hpp">
+    <ClInclude Include="Vender\cereal\types\unordered_map.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\unordered_set.hpp">
+    <ClInclude Include="Vender\cereal\types\unordered_set.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\utility.hpp">
+    <ClInclude Include="Vender\cereal\types\utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\valarray.hpp">
+    <ClInclude Include="Vender\cereal\types\valarray.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\variant.hpp">
+    <ClInclude Include="Vender\cereal\types\variant.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\types\vector.hpp">
+    <ClInclude Include="Vender\cereal\types\vector.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\access.hpp">
+    <ClInclude Include="Vender\cereal\access.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\cereal.hpp">
+    <ClInclude Include="Vender\cereal\cereal.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\macros.hpp">
+    <ClInclude Include="Vender\cereal\macros.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\specialize.hpp">
+    <ClInclude Include="Vender\cereal\specialize.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cereal\version.hpp">
+    <ClInclude Include="Vender\cereal\version.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Utility\CerealExtention.h">
@@ -551,6 +560,33 @@
     <ClInclude Include="Timer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Effekseer\EffekseerRendererDX9.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Effekseer\EffekseerRendererGL.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Vender\Effekseer\Effekseer\Effekseer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Vender\Effekseer\Effekseer\Effekseer.Modules.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Vender\Effekseer\Effekseer\Effekseer.SIMD.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Vender\Effekseer\EffekseerRendererDX11\EffekseerRendererDX11.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Effect.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\StringHelper.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PixelShader.hlsl" />
@@ -558,6 +594,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="cereal\external\rapidxml\manual.html" />
+    <None Include="Vender\cereal\external\rapidxml\manual.html" />
   </ItemGroup>
 </Project>

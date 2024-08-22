@@ -7,7 +7,6 @@
 #include <Keyboard.h>
 #include <Mouse.h>
 
-
 #include "direct3d.h"
 #include "Application/Application.h"
 #include "GameObject/GameObjectManager.h"
@@ -16,6 +15,7 @@
 #include "PhysicsManager.h"
 #include "Input.h"
 #include "Timer.h"
+#include "EffectManager.h"
 
 // マクロ定義
 #define CLASS_NAME    "DX21Smpl"// ウインドウクラスの名前
@@ -96,10 +96,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	long long nowCount = oldCount;
 
 	MSG msg;
-
 	Timer::Instance().Initialize();
-
 	D3D::Get()->Create(hWnd);
+
+	EffectManager::Instance().Initialize();
 	Input::Instance().Initialize(hWnd);
 	GameObjectManager::Instance().Load(MAIN_DATA);
 	PhysicsManager::Instance().Initialize();
@@ -166,6 +166,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	} // ゲームループの閉じカッコ
 
 	app->OnFinalize();
+	EffectManager::Instance().Finalize();
 
 	UnregisterClass(CLASS_NAME, hInstance);
 

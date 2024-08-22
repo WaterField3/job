@@ -2,6 +2,7 @@
 
 #include "GameObject/GameObjectManager.h"
 #include "ApplicationState.h"
+#include "EffectManager.h"
 
 namespace TMF
 {
@@ -18,6 +19,7 @@ namespace TMF
 	void GameLayer::OnUpdate()
 	{
 		GameObjectManager::Instance().Update();
+		EffectManager::Instance().Update();
 	}
 
 	void GameLayer::OnLateUpdate()
@@ -28,6 +30,7 @@ namespace TMF
 	void GameLayer::OnDraw()
 	{
 		GameObjectManager::Instance().Draw();
+		EffectManager::Instance().Draw();
 	}
 	bool GameLayer::GetIsUpdate()
 	{

@@ -72,9 +72,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
@@ -123,15 +125,17 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(SolutionDir)\vcpkg_installed\x64-windows\x64-windows\include\bullet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(SolutionDir)\vcpkg_installed\x64-windows\x64-windows\include\bullet;$(ProjectDir)Vender\Effekseer\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;Effekseerd.lib;EffekseerRendererDX11d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,17 +146,19 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(SolutionDir)\vcpkg_installed\x64-windows\x64-windows\include\bullet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(SolutionDir)\vcpkg_installed\x64-windows\x64-windows\include\bullet;$(ProjectDir)Vender\Effekseer\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;Effekseer.lib;EffekseerRendererDX11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -161,8 +167,11 @@
     <ClCompile Include="Application\Application.cpp" />
     <ClCompile Include="Component\Audio.cpp" />
     <ClCompile Include="Component\GhostObject.cpp" />
+    <ClCompile Include="Component\Effect.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Component\CharacterMoveController.cpp" />
+    <ClCompile Include="Utility\StringHelper.cpp" />
     <ClCompile Include="MyBulletCollisionDispatcher.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Utility\BulletDebugDrawer.cpp" />
@@ -205,97 +214,102 @@
     <ClInclude Include="Application\Application.h" />
     <ClInclude Include="Component\Audio.h" />
     <ClInclude Include="Component\GhostObject.h" />
+    <ClInclude Include="Component\Effect.h" />
+    <ClInclude Include="EffectManager.h" />
+    <ClInclude Include="Effekseer\EffekseerRendererDX9.h" />
+    <ClInclude Include="Effekseer\EffekseerRendererGL.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Component\CharacterMoveController.h" />
+    <ClInclude Include="Utility\StringHelper.h" />
     <ClInclude Include="MyBulletCollisionDispatcher.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Utility\BulletDebugDrawer.h" />
     <ClInclude Include="Component\Collider.h" />
-    <ClInclude Include="cereal\access.hpp" />
-    <ClInclude Include="cereal\archives\adapters.hpp" />
-    <ClInclude Include="cereal\archives\binary.hpp" />
-    <ClInclude Include="cereal\archives\json.hpp" />
-    <ClInclude Include="cereal\archives\portable_binary.hpp" />
-    <ClInclude Include="cereal\archives\xml.hpp" />
-    <ClInclude Include="cereal\cereal.hpp" />
-    <ClInclude Include="cereal\details\helpers.hpp" />
-    <ClInclude Include="cereal\details\polymorphic_impl.hpp" />
-    <ClInclude Include="cereal\details\polymorphic_impl_fwd.hpp" />
-    <ClInclude Include="cereal\details\static_object.hpp" />
-    <ClInclude Include="cereal\details\traits.hpp" />
-    <ClInclude Include="cereal\details\util.hpp" />
-    <ClInclude Include="cereal\external\base64.hpp" />
-    <ClInclude Include="cereal\external\rapidjson\allocators.h" />
-    <ClInclude Include="cereal\external\rapidjson\cursorstreamwrapper.h" />
-    <ClInclude Include="cereal\external\rapidjson\document.h" />
-    <ClInclude Include="cereal\external\rapidjson\encodedstream.h" />
-    <ClInclude Include="cereal\external\rapidjson\encodings.h" />
-    <ClInclude Include="cereal\external\rapidjson\error\en.h" />
-    <ClInclude Include="cereal\external\rapidjson\error\error.h" />
-    <ClInclude Include="cereal\external\rapidjson\filereadstream.h" />
-    <ClInclude Include="cereal\external\rapidjson\filewritestream.h" />
-    <ClInclude Include="cereal\external\rapidjson\fwd.h" />
-    <ClInclude Include="cereal\external\rapidjson\internal\biginteger.h" />
-    <ClInclude Include="cereal\external\rapidjson\internal\diyfp.h" />
-    <ClInclude Include="cereal\external\rapidjson\internal\dtoa.h" />
-    <ClInclude Include="cereal\external\rapidjson\internal\ieee754.h" />
-    <ClInclude Include="cereal\external\rapidjson\internal\itoa.h" />
-    <ClInclude Include="cereal\external\rapidjson\internal\meta.h" />
-    <ClInclude Include="cereal\external\rapidjson\internal\pow10.h" />
-    <ClInclude Include="cereal\external\rapidjson\internal\regex.h" />
-    <ClInclude Include="cereal\external\rapidjson\internal\stack.h" />
-    <ClInclude Include="cereal\external\rapidjson\internal\strfunc.h" />
-    <ClInclude Include="cereal\external\rapidjson\internal\strtod.h" />
-    <ClInclude Include="cereal\external\rapidjson\internal\swap.h" />
-    <ClInclude Include="cereal\external\rapidjson\istreamwrapper.h" />
-    <ClInclude Include="cereal\external\rapidjson\memorybuffer.h" />
-    <ClInclude Include="cereal\external\rapidjson\memorystream.h" />
-    <ClInclude Include="cereal\external\rapidjson\msinttypes\inttypes.h" />
-    <ClInclude Include="cereal\external\rapidjson\msinttypes\stdint.h" />
-    <ClInclude Include="cereal\external\rapidjson\ostreamwrapper.h" />
-    <ClInclude Include="cereal\external\rapidjson\pointer.h" />
-    <ClInclude Include="cereal\external\rapidjson\prettywriter.h" />
-    <ClInclude Include="cereal\external\rapidjson\rapidjson.h" />
-    <ClInclude Include="cereal\external\rapidjson\reader.h" />
-    <ClInclude Include="cereal\external\rapidjson\schema.h" />
-    <ClInclude Include="cereal\external\rapidjson\stream.h" />
-    <ClInclude Include="cereal\external\rapidjson\stringbuffer.h" />
-    <ClInclude Include="cereal\external\rapidjson\writer.h" />
-    <ClInclude Include="cereal\external\rapidxml\rapidxml.hpp" />
-    <ClInclude Include="cereal\external\rapidxml\rapidxml_iterators.hpp" />
-    <ClInclude Include="cereal\external\rapidxml\rapidxml_print.hpp" />
-    <ClInclude Include="cereal\external\rapidxml\rapidxml_utils.hpp" />
-    <ClInclude Include="cereal\macros.hpp" />
-    <ClInclude Include="cereal\specialize.hpp" />
-    <ClInclude Include="cereal\types\array.hpp" />
-    <ClInclude Include="cereal\types\atomic.hpp" />
-    <ClInclude Include="cereal\types\base_class.hpp" />
-    <ClInclude Include="cereal\types\bitset.hpp" />
-    <ClInclude Include="cereal\types\boost_variant.hpp" />
-    <ClInclude Include="cereal\types\chrono.hpp" />
-    <ClInclude Include="cereal\types\common.hpp" />
-    <ClInclude Include="cereal\types\complex.hpp" />
-    <ClInclude Include="cereal\types\concepts\pair_associative_container.hpp" />
-    <ClInclude Include="cereal\types\deque.hpp" />
-    <ClInclude Include="cereal\types\forward_list.hpp" />
-    <ClInclude Include="cereal\types\functional.hpp" />
-    <ClInclude Include="cereal\types\list.hpp" />
-    <ClInclude Include="cereal\types\map.hpp" />
-    <ClInclude Include="cereal\types\memory.hpp" />
-    <ClInclude Include="cereal\types\optional.hpp" />
-    <ClInclude Include="cereal\types\polymorphic.hpp" />
-    <ClInclude Include="cereal\types\queue.hpp" />
-    <ClInclude Include="cereal\types\set.hpp" />
-    <ClInclude Include="cereal\types\stack.hpp" />
-    <ClInclude Include="cereal\types\string.hpp" />
-    <ClInclude Include="cereal\types\tuple.hpp" />
-    <ClInclude Include="cereal\types\unordered_map.hpp" />
-    <ClInclude Include="cereal\types\unordered_set.hpp" />
-    <ClInclude Include="cereal\types\utility.hpp" />
-    <ClInclude Include="cereal\types\valarray.hpp" />
-    <ClInclude Include="cereal\types\variant.hpp" />
-    <ClInclude Include="cereal\types\vector.hpp" />
-    <ClInclude Include="cereal\version.hpp" />
+    <ClInclude Include="Vender\cereal\access.hpp" />
+    <ClInclude Include="Vender\cereal\archives\adapters.hpp" />
+    <ClInclude Include="Vender\cereal\archives\binary.hpp" />
+    <ClInclude Include="Vender\cereal\archives\json.hpp" />
+    <ClInclude Include="Vender\cereal\archives\portable_binary.hpp" />
+    <ClInclude Include="Vender\cereal\archives\xml.hpp" />
+    <ClInclude Include="Vender\cereal\cereal.hpp" />
+    <ClInclude Include="Vender\cereal\details\helpers.hpp" />
+    <ClInclude Include="Vender\cereal\details\polymorphic_impl.hpp" />
+    <ClInclude Include="Vender\cereal\details\polymorphic_impl_fwd.hpp" />
+    <ClInclude Include="Vender\cereal\details\static_object.hpp" />
+    <ClInclude Include="Vender\cereal\details\traits.hpp" />
+    <ClInclude Include="Vender\cereal\details\util.hpp" />
+    <ClInclude Include="Vender\cereal\external\base64.hpp" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\allocators.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\cursorstreamwrapper.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\document.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\encodedstream.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\encodings.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\error\en.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\error\error.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\filereadstream.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\filewritestream.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\fwd.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\biginteger.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\diyfp.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\dtoa.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\ieee754.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\itoa.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\meta.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\pow10.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\regex.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\stack.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\strfunc.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\strtod.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\internal\swap.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\istreamwrapper.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\memorybuffer.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\memorystream.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\msinttypes\inttypes.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\msinttypes\stdint.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\ostreamwrapper.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\pointer.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\prettywriter.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\rapidjson.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\reader.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\schema.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\stream.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\stringbuffer.h" />
+    <ClInclude Include="Vender\cereal\external\rapidjson\writer.h" />
+    <ClInclude Include="Vender\cereal\external\rapidxml\rapidxml.hpp" />
+    <ClInclude Include="Vender\cereal\external\rapidxml\rapidxml_iterators.hpp" />
+    <ClInclude Include="Vender\cereal\external\rapidxml\rapidxml_print.hpp" />
+    <ClInclude Include="Vender\cereal\external\rapidxml\rapidxml_utils.hpp" />
+    <ClInclude Include="Vender\cereal\macros.hpp" />
+    <ClInclude Include="Vender\cereal\specialize.hpp" />
+    <ClInclude Include="Vender\cereal\types\array.hpp" />
+    <ClInclude Include="Vender\cereal\types\atomic.hpp" />
+    <ClInclude Include="Vender\cereal\types\base_class.hpp" />
+    <ClInclude Include="Vender\cereal\types\bitset.hpp" />
+    <ClInclude Include="Vender\cereal\types\boost_variant.hpp" />
+    <ClInclude Include="Vender\cereal\types\chrono.hpp" />
+    <ClInclude Include="Vender\cereal\types\common.hpp" />
+    <ClInclude Include="Vender\cereal\types\complex.hpp" />
+    <ClInclude Include="Vender\cereal\types\concepts\pair_associative_container.hpp" />
+    <ClInclude Include="Vender\cereal\types\deque.hpp" />
+    <ClInclude Include="Vender\cereal\types\forward_list.hpp" />
+    <ClInclude Include="Vender\cereal\types\functional.hpp" />
+    <ClInclude Include="Vender\cereal\types\list.hpp" />
+    <ClInclude Include="Vender\cereal\types\map.hpp" />
+    <ClInclude Include="Vender\cereal\types\memory.hpp" />
+    <ClInclude Include="Vender\cereal\types\optional.hpp" />
+    <ClInclude Include="Vender\cereal\types\polymorphic.hpp" />
+    <ClInclude Include="Vender\cereal\types\queue.hpp" />
+    <ClInclude Include="Vender\cereal\types\set.hpp" />
+    <ClInclude Include="Vender\cereal\types\stack.hpp" />
+    <ClInclude Include="Vender\cereal\types\string.hpp" />
+    <ClInclude Include="Vender\cereal\types\tuple.hpp" />
+    <ClInclude Include="Vender\cereal\types\unordered_map.hpp" />
+    <ClInclude Include="Vender\cereal\types\unordered_set.hpp" />
+    <ClInclude Include="Vender\cereal\types\utility.hpp" />
+    <ClInclude Include="Vender\cereal\types\valarray.hpp" />
+    <ClInclude Include="Vender\cereal\types\variant.hpp" />
+    <ClInclude Include="Vender\cereal\types\vector.hpp" />
+    <ClInclude Include="Vender\cereal\version.hpp" />
     <ClInclude Include="Component\ComponentCerealHelper.h" />
     <ClInclude Include="Component\ComponentManager.h" />
     <ClInclude Include="Component\Camera.h" />
@@ -325,6 +339,10 @@
     <ClInclude Include="Layer\Layer.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="Application\TestApplication.h" />
+    <ClInclude Include="Vender\Effekseer\EffekseerRendererDX11\EffekseerRendererDX11.h" />
+    <ClInclude Include="Vender\Effekseer\Effekseer\Effekseer.h" />
+    <ClInclude Include="Vender\Effekseer\Effekseer\Effekseer.Modules.h" />
+    <ClInclude Include="Vender\Effekseer\Effekseer\Effekseer.SIMD.h" />
     <ClInclude Include="Vender\Imgui\imconfig.h" />
     <ClInclude Include="Vender\Imgui\imgui.h" />
     <ClInclude Include="Vender\Imgui\imgui_impl_dx11.h" />
@@ -360,7 +378,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="cereal\external\rapidxml\manual.html" />
+    <None Include="Vender\cereal\external\rapidxml\manual.html" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

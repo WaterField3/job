@@ -574,10 +574,44 @@
                                     "id": 2147483677,
                                     "data": {
                                         "value0": {},
-                                        "m_moveSpeed": 100.0,
+                                        "m_moveSpeed": 10.0,
                                         "value1": {},
                                         "m_uuID": {
                                             "value0": "029d165e-6e17-4075-93cc-558fbf5c060a"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483678,
+                    "data": {
+                        "m_name": "effectObject",
+                        "m_uuID": {
+                            "value0": "b020743a-f467-48c2-a5f1-b5d2eb5258bc"
+                        },
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 2147483656,
+                                "polymorphic_name": "TMF::Effect",
+                                "ptr_wrapper": {
+                                    "id": 2147483679,
+                                    "data": {
+                                        "value0": {},
+                                        "m_effectPath": "C:\\Users\\temet\\Downloads\\Effekseer01\\Effekseer01\\Laser01.efk",
+                                        "value1": {},
+                                        "m_effectPos": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "value2": {},
+                                        "m_uuID": {
+                                            "value0": "806021d5-fcd0-4f97-b053-abe11ae7a232"
                                         }
                                     }
                                 }
