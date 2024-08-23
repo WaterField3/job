@@ -55,6 +55,8 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\MeshContentTask.props" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.props" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\ShaderGraphContentTask.props" />
   </ImportGroup>
   <ImportGroup Label="Shared">
   </ImportGroup>
@@ -207,7 +209,6 @@
     <ClCompile Include="Vender\Imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="Vender\Imgui\imgui_tables.cpp" />
     <ClCompile Include="Vender\Imgui\imgui_widgets.cpp" />
-    <ClCompile Include="WICTextureLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -354,7 +355,6 @@
     <ClInclude Include="Vender\Imgui\imstb_truetype.h" />
     <ClInclude Include="VertexShader.h" />
     <ClInclude Include="WaveFrontReader.h" />
-    <ClInclude Include="WICTextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PixelShader.hlsl">
@@ -387,6 +387,8 @@
     <Import Project="..\packages\directxtk_desktop_win10.2024.6.5.1\build\native\directxtk_desktop_win10.targets" Condition="Exists('..\packages\directxtk_desktop_win10.2024.6.5.1\build\native\directxtk_desktop_win10.targets')" />
     <Import Project="..\packages\boost.1.85.0\build\boost.targets" Condition="Exists('..\packages\boost.1.85.0\build\boost.targets')" />
     <Import Project="$(VCTargetsPath)\BuildCustomizations\MeshContentTask.targets" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\ShaderGraphContentTask.targets" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
