@@ -9,6 +9,8 @@
 #include <d3d11.h>
 #include <SimpleMath.h>
 #include <string>
+#include <Model.h>
+#include <CommonStates.h>
 
 #include "ComponentCerealHelper.h"
 #include "ComponentRegister.h"
@@ -33,8 +35,13 @@ namespace TMF
 		void ModelDraw();
 
 		std::string m_loadFileName = "NoSetting";
+		std::string m_loadCmo = "";
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		D3D::Model m_model;
+
+		std::unique_ptr<DirectX::EffectFactory> m_pEffectFactory;
+		std::unique_ptr<DirectX::Model> m_pModel;
+		std::unique_ptr<DirectX::CommonStates> m_pCommonState;
 		bool m_isDraw = true;
 
 		SERIALIZE_COMPONENT(m_loadFileName,m_isDraw, m_uuID);

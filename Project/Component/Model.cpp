@@ -6,6 +6,7 @@
 #include "Transform.h"
 #include "Camera.h"
 #include "direct3d.h"
+#include "Effects.h"
 
 REGISTER_COMPONENT(TMF::Model, "Model");
 
@@ -26,6 +27,9 @@ namespace TMF
 	{
 		auto wideFileName = std::wstring(m_loadFileName.begin(), m_loadFileName.end());
 		m_model = D3D::Get()->LoadObjModel(wideFileName.c_str());
+		//m_pCommonState = std::make_unique<DirectX::CommonStates>(D3D::Get()->GetDevice());
+		//m_pEffectFactory = std::make_unique<DirectX::EffectFactory>(D3D::Get()->GetDevice());
+		//m_pModel = DirectX::Model::CreateFromCMO(D3D::Get()->GetDevice(), wideFileName.c_str(), *m_pEffectFactory);
 	}
 
 	void Model::OnFinalize()
@@ -35,7 +39,7 @@ namespace TMF
 
 	void Model::OnUpdate()
 	{
-
+		
 	}
 
 	void Model::OnLateUpdate()
@@ -66,6 +70,11 @@ namespace TMF
 			auto wideFileName = std::wstring(m_loadFileName.begin(), m_loadFileName.end());
 			m_model = D3D::Get()->LoadObjModel(wideFileName.c_str());
 		}
+		if (ImGui::Button("LoadCmo"))
+		{
+			//auto wideFileName = std::wstring(m_loadFileName.begin(), m_loadFileName.end());
+			//m_pModel = DirectX::Model::CreateFromCMO(D3D::Get()->GetDevice(), wideFileName.c_str(), *m_pEffectFactory);
+		}
 	}
 
 	boost::uuids::uuid Model::OnGetUUID()
@@ -95,7 +104,6 @@ namespace TMF
 			}
 		}
 
-
 		// XYZの三軸の回転角度を指定して回転させる方法　＝　オイラー角
 		auto matrixRotateX = DirectX::SimpleMath::Matrix::CreateRotationX(0);
 		auto matrixRotateY = DirectX::SimpleMath::Matrix::CreateRotationY(0);
@@ -113,6 +121,8 @@ namespace TMF
 				matrixRotate = pComponent->GetMatrixRotation();
 			}
 		}
+
+		//m_pModel->Draw(d3dContext, *m_pCommonState, matrixWorld, view, proj);
 
 		// 法線ベクトル回転用行列
 		//cb.matrixWorldNormal = matrixRotate.Transpose();
