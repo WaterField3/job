@@ -14,23 +14,25 @@ namespace TMF
 		ImGui::Begin("Hierarchy");                          // Create a window called "Hello, world!" and append into it.
 
 		m_pTransformsCache.clear();
-		auto pTransforms = GameObjectManager::Instance().GetComponents<Transform>();
+		m_pTransformsCache = GameObjectManager::Instance().GetComponents<Transform>();
 
-		for (auto& pTransform : pTransforms)
-		{
-			if (auto pTrans = pTransform.lock())
-			{
-				m_pTransformsCache.push_back(pTrans.get());
-			}
-		}
+		// ルートの表示
+		ImGui::Text("Root");
+		auto dropLabel = "HierarchyDragDropTransform";
+		TransformDropTarget(dropLabel, std::make_shared<Transform>());
+		
 		//GameObjectのComponentの表示
 		for (auto& pTransform : m_pTransformsCache)
 		{
 			// 親が設定されてなければ表示
-			if (pTransform->GetParent().expired() == true)
+			if (auto pLockedTransform = pTransform.lock())
 			{
-				DrawTree(pTransform);
+				if (pLockedTransform->GetParent().expired() == false)
+				{
+					continue;
+				}
 			}
+			DrawTree(pTransform);
 		}
 
 		if (ImGui::Button("CreateGameObject"))
@@ -39,67 +41,106 @@ namespace TMF
 		}
 		ImGui::End();
 	}
-	void Hierarchy::DrawTree(const Transform* pTransform)
+	void Hierarchy::DrawTree(std::weak_ptr<Transform> pTransform)
 	{
-		auto pGameObject = pTransform->GetOwner();
-		if (auto pObject = pGameObject.lock())
+		if (auto pLockedTransform = pTransform.lock())
 		{
-			auto name = pObject->GetName();
-			auto uuID = pTransform->GetUUID();
-			auto label = StringHelper::CreateLabel(name.c_str(), uuID);
-			auto flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
-			auto pChildren = GetTransformChildren(pTransform);
-			auto isOpen = false;
+			auto pGameObject = pLockedTransform->GetOwner();
+			if (auto pObject = pGameObject.lock())
+			{
+				auto name = pObject->GetName();
+				auto uuID = pLockedTransform->GetUUID();
+				auto label = StringHelper::CreateLabel(name.c_str(), uuID);
+				auto flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
+				auto pChildren = GetTransformChildren(pTransform);
+				auto isOpen = false;
 
-			if (ImGui::TreeNodeEx(label.c_str(), flags))
-			{
-				isOpen = true;
-			}
-
-			if (ImGui::IsItemClicked())
-			{
-				m_pSelectGameObject = pGameObject;
-			}
-			auto popupLabel = StringHelper::CreateLabel("GameObjectMenuPopup", uuID);
-			if (ImGui::IsItemClicked(ImGuiMouseButton_Right))
-			{
-				ImGui::OpenPopup(popupLabel.c_str());
-			}
-			if (ImGui::BeginPopup(popupLabel.c_str()))
-			{
-				if (ImGui::Button("DeleteGameObject"))
+				if (ImGui::TreeNodeEx(label.c_str(), flags))
 				{
-					if (m_pSelectGameObject.expired() == false)
+					isOpen = true;
+				}
+
+				if (ImGui::IsItemClicked())
+				{
+					m_pSelectGameObject = pGameObject;
+				}
+
+				// ポップアップのラベル作成
+				auto popupLabel = StringHelper::CreateLabel("GameObjectMenuPopup", uuID);
+				if (ImGui::IsItemClicked(ImGuiMouseButton_Right))
+				{
+					ImGui::OpenPopup(popupLabel.c_str());
+				}
+
+				// DeletePopup描画
+				if (ImGui::BeginPopup(popupLabel.c_str()))
+				{
+					if (ImGui::Button("DeleteGameObject"))
 					{
-						auto pGameObject = m_pSelectGameObject.lock();
-						GameObjectManager::Instance().DestroyGameObject(pGameObject.get());
+						if (m_pSelectGameObject.expired() == false)
+						{
+							auto pGameObject = m_pSelectGameObject.lock();
+							GameObjectManager::Instance().DestroyGameObject(pGameObject.get());
+						}
+						ImGui::CloseCurrentPopup();
 					}
-					ImGui::CloseCurrentPopup();
+					ImGui::EndPopup();
 				}
-				ImGui::EndPopup();
-			}
-
-			if (isOpen == true)
-			{
-				for (auto& pChild : pChildren)
+				// ドラッグでTransform登録
+				auto dragDropLabel = "HierarchyDragDropTransform";
+				if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None))
 				{
-					DrawTree(pChild);
+					ImGui::SetDragDropPayload(dragDropLabel, &pLockedTransform, sizeof(std::weak_ptr<Transform>));
+					ImGui::Text("%s", name.c_str());
+					ImGui::EndDragDropSource();
 				}
-				ImGui::TreePop();
+
+				// ドロップするデータの取り出し
+				TransformDropTarget(dragDropLabel, pTransform);
+
+				if (isOpen == true)
+				{
+					for (auto& pChild : pChildren)
+					{
+						DrawTree(pChild);
+					}
+					ImGui::TreePop();
+				}
 			}
 		}
 	}
-	std::vector<Transform*> Hierarchy::GetTransformChildren(const Transform* pTransform)
+	void Hierarchy::TransformDropTarget(const char* dragDropLabel, std::weak_ptr<TMF::Transform> pTransform)
 	{
-		auto children = std::vector<Transform*>();
+		if (ImGui::BeginDragDropTarget())
+		{
+			if (const auto payload = ImGui::AcceptDragDropPayload(dragDropLabel))
+			{
+				auto pDropTransform = static_cast<std::weak_ptr<Transform>*>(payload->Data);
+				if (auto pLockedTransform = pDropTransform->lock())
+				{
+					pLockedTransform->SetParent(pTransform);
+				}
+			}
+			ImGui::EndDragDropTarget();
+		}
+	}
+	std::vector<std::weak_ptr<Transform>> Hierarchy::GetTransformChildren(std::weak_ptr<Transform> pTransform)
+	{
+		auto children = std::vector<std::weak_ptr<Transform>>();
 		for (auto& pCurrentTransform : m_pTransformsCache)
 		{
-			auto pParentTransform = pCurrentTransform->GetParent();
-			if (auto pLockedParentTransform = pParentTransform.lock())
+			if (auto pLockedCurrentTransform = pCurrentTransform.lock())
 			{
-				if (pTransform == pLockedParentTransform.get())
+				auto pParentTransform = pLockedCurrentTransform->GetParent();
+				if (auto pLockedParentTransform = pParentTransform.lock())
 				{
-					children.push_back(pCurrentTransform);
+					if (auto pLockedTransform = pTransform.lock())
+					{
+						if (pLockedTransform.get() == pLockedParentTransform.get())
+						{
+							children.push_back(pCurrentTransform);
+						}
+					}
 				}
 			}
 		}

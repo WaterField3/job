@@ -17,10 +17,11 @@ namespace TMF
 		inline  std::weak_ptr<GameObject> GetSelectGameObject() const { return m_pSelectGameObject; }
 
 	private:
-		void DrawTree(const Transform* pTransform);
-		std::vector<Transform*> GetTransformChildren(const Transform* pTransform);
+		void DrawTree(std::weak_ptr<Transform> pTransform);
+		void TransformDropTarget(const char* dragDropLabel, std::weak_ptr<TMF::Transform> pTransform);
+		std::vector<std::weak_ptr<Transform>> GetTransformChildren(std::weak_ptr<Transform> pTransform);
 	private:
 		std::weak_ptr<GameObject> m_pSelectGameObject;
-		std::vector<Transform*> m_pTransformsCache;
+		std::vector<std::weak_ptr<Transform>> m_pTransformsCache;
 	};
 }
