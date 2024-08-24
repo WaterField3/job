@@ -7,12 +7,14 @@
 
 #include "GameObject/GameObject.h"
 #include "Utility/CerealExtention.h"
+#include "Component/Transform.h"
 
 namespace TMF
 {
 	std::weak_ptr<GameObject> GameObjectManager::CreateGameObject()
 	{
 		auto pGameObject = std::make_shared<GameObject>();
+		pGameObject->AddComponent<Transform>();
 		pGameObject->Initialize();
 
 		m_pGameObjects.push_back(pGameObject);

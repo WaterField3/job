@@ -34,9 +34,9 @@ namespace TMF
 
 	private:
 		void ModelDraw();
+		void LoadCMO();
 
-		std::string m_loadFileName = "NoSetting";
-		std::string m_loadCmo = "asset/Barrel_v1.cmo";
+		std::string m_loadCmo = "asset/Gun.cmo";
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		//D3D::Model m_model;
 
@@ -45,6 +45,6 @@ namespace TMF
 		std::unique_ptr<DirectX::CommonStates> m_pCommonState;
 		bool m_isDraw = true;
 
-		SERIALIZE_COMPONENT(m_loadFileName,m_isDraw, m_uuID);
+		SERIALIZE_COMPONENT(m_loadCmo, m_isDraw, m_uuID);
 	};
 }

@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "Layer/Layer.h"
-#include "Utility/Console.h"
 
 namespace TMF
 {
@@ -36,7 +35,6 @@ namespace TMF
 
 	protected:
 		std::vector<std::unique_ptr<Layer>> m_layers;
-		Console m_console;
 
 	private:
 	};

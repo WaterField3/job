@@ -453,9 +453,9 @@
                                         "value2": {},
                                         "m_rotation": {
                                             "value0": 0.0,
-                                            "value1": 0.0,
+                                            "value1": 0.7833268642425537,
                                             "value2": 0.0,
-                                            "value3": 1.0
+                                            "value3": 0.6216099858283997
                                         },
                                         "value3": {},
                                         "m_uuID": {
@@ -471,12 +471,12 @@
                                     "id": 2147483672,
                                     "data": {
                                         "value0": {},
-                                        "m_loadFileName": "Gun.obj",
+                                        "m_loadCmo": "asset/cup.cmo",
                                         "value1": {},
                                         "m_isDraw": true,
                                         "value2": {},
                                         "m_uuID": {
-                                            "value0": "7e686f5f-4b31-4cf0-bfdd-0d1233b3d6b1"
+                                            "value0": "09868a3b-f87b-463c-8bb2-31d1159f20f9"
                                         }
                                     }
                                 }
@@ -612,6 +612,66 @@
                                         "value2": {},
                                         "m_uuID": {
                                             "value0": "806021d5-fcd0-4f97-b053-abe11ae7a232"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483680,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "value0": "d8112026-4a62-441e-a7bb-9badcac57ea4"
+                        },
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483681,
+                                    "data": {
+                                        "value0": {},
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "value1": {},
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "value2": {},
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "value3": {},
+                                        "m_uuID": {
+                                            "value0": "fd33c8d3-edc1-4a69-af13-2757ebe913e1"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 6,
+                                "ptr_wrapper": {
+                                    "id": 2147483682,
+                                    "data": {
+                                        "value0": {},
+                                        "m_loadCmo": "asset/Gun.cmo",
+                                        "value1": {},
+                                        "m_isDraw": true,
+                                        "value2": {},
+                                        "m_uuID": {
+                                            "value0": "bd9ddc0d-90b0-4bb1-81a3-a207dad2a723"
                                         }
                                     }
                                 }

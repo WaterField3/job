@@ -6,6 +6,7 @@
 #include "Transform.h"
 #include "Camera.h"
 #include "direct3d.h"
+#include "Utility/Log.h"
 
 REGISTER_COMPONENT(TMF::Model, "Model");
 
@@ -29,7 +30,23 @@ namespace TMF
 		auto device = D3D::Get()->GetDevice();
 		m_pCommonState = std::make_unique<DirectX::CommonStates>(device);
 		m_pEffectFactory = std::make_unique<DirectX::EffectFactory>(device);
-		m_pModel = DirectX::Model::CreateFromCMO(device, wideFileName.c_str(), *m_pEffectFactory);
+		m_pEffectFactory->SetDirectory(L"asset");
+		LoadCMO();
+		
+	}
+
+	void Model::LoadCMO()
+	{
+		auto device = D3D::Get()->GetDevice();
+		auto wideFileName = std::wstring(m_loadCmo.begin(), m_loadCmo.end());
+		try
+		{
+			m_pModel = DirectX::Model::CreateFromCMO(device, wideFileName.c_str(), *m_pEffectFactory);
+		}
+		catch (const std::exception& e)
+		{
+			Log::Info("%s", e.what());
+		}
 	}
 
 	void Model::OnFinalize()
@@ -60,20 +77,17 @@ namespace TMF
 	{
 		ImGui::Checkbox("active", &m_isDraw);
 		char buf[256] = "";
-		strcpy_s(buf, sizeof(buf), m_loadFileName.c_str());
+		strcpy_s(buf, sizeof(buf), m_loadCmo.c_str());
 		if (ImGui::InputText("fileName", buf, 256))
 		{
-			m_loadFileName = buf;
+			m_loadCmo = buf;
 		}
-		if (ImGui::Button("LoadModel"))
-		{
-			//auto wideFileName = std::wstring(m_loadFileName.begin(), m_loadFileName.end());
-			//m_model = D3D::Get()->LoadObjModel(wideFileName.c_str());
-		}
+
 		if (ImGui::Button("LoadCmo"))
 		{
-			auto wideFileName = std::wstring(m_loadFileName.begin(), m_loadFileName.end());
-			m_pModel = DirectX::Model::CreateFromCMO(D3D::Get()->GetDevice(), wideFileName.c_str(), *m_pEffectFactory);
+			auto device = D3D::Get()->GetDevice();
+
+			LoadCMO();
 		}
 	}
 

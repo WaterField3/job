@@ -13,10 +13,9 @@ namespace TMF
 {
 	void TestApplication::OnInitialize()
 	{
-		//m_console.Initialize();
+		AddLayer<EditerLayer>();
 		AddLayer<GameLayer>();
 		AddLayer<PhysicsLayer>();
-		AddLayer<EditerLayer>();
 	}
 
 	void TestApplication::OnUpdate()
@@ -26,7 +25,6 @@ namespace TMF
 
 	void TestApplication::OnFinalize()
 	{
-		//m_console.Finalize();
 		Application::OnFinalize();
 	}
 }

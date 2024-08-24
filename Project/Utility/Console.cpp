@@ -3,7 +3,7 @@
 #include <iostream>
 #include <windows.h>
 
-void Console::Initialize()
+Console::Console()
 {
 	AllocConsole();
 	freopen_s(&m_fpStdin, "CONIN$", "r", stdin);
@@ -11,7 +11,7 @@ void Console::Initialize()
 	freopen_s(&m_fpStderr, "CONOUT$", "w", stderr);
 }
 
-void Console::Finalize()
+Console::~Console()
 {
 	fclose(m_fpStdin);
 	fclose(m_fpStdout);

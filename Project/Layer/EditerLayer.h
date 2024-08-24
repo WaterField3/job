@@ -7,6 +7,7 @@
 #include "Editer/Hierarchy.h"
 #include "Editer/Inspector.h"
 #include "Editer/PlayButtonBar.h"
+#include "Utility/Console.h"
 
 namespace TMF
 {
@@ -24,5 +25,6 @@ namespace TMF
 		std::unique_ptr<Hierarchy> m_pHirarchy;
 		std::unique_ptr<Inspector> m_pInspector;
 		std::unique_ptr<PlayButtonBar> m_pPlayButtonBar;
+		std::unique_ptr<Console> m_pConsole;
 	};
 }

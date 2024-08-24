@@ -22,6 +22,8 @@ namespace TMF
 		m_pHirarchy = std::make_unique<Hierarchy>();
 		m_pInspector = std::make_unique<Inspector>();
 		m_pPlayButtonBar = std::make_unique<PlayButtonBar>();
+		m_pConsole = std::make_unique<Console>();
+	
 
 		// Show the window
 		::ShowWindow(D3D::Get()->GetHwnd(), SW_SHOWDEFAULT);

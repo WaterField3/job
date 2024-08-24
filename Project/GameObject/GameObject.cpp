@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "Component/ComponentManager.h"
+#include "Component/Transform.h"
 
 namespace TMF
 {
@@ -13,6 +14,7 @@ namespace TMF
 		{
 			m_uuID = boost::uuids::random_generator()();
 		}
+		m_pTransform = GetComponent<Transform>();
 		for (auto& pComponent : m_pComponents)
 		{
 			pComponent->Initialize(shared_from_this());

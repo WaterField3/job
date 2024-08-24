@@ -25,6 +25,8 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		boost::uuids::uuid OnGetUUID() override;
+		inline bool IsRemovable() override { return false; }
+
 		void SetPosition(DirectX::SimpleMath::Vector3 pos);
 		void SetRotation(DirectX::SimpleMath::Quaternion rotation);
 		void SetScale(DirectX::SimpleMath::Vector3 scale);

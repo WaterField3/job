@@ -5,8 +5,8 @@
 class Console
 {
 public:
-	void Initialize();
-	void Finalize();
+	Console();
+	virtual ~Console();
 
 private:
 	FILE* m_fpStdin;

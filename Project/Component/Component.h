@@ -34,6 +34,8 @@ namespace TMF
 		void TrigerExit(GameObject* pGameObject);
 		boost::uuids::uuid GetUUID();
 
+		// Remove‰Â”\‚©
+		inline virtual bool IsRemovable() { return true; }
 		inline bool GetIsEnable() const { return m_isEnable; }
 		inline void SetIsEnable(bool set) { m_isEnable = set; }
 
@@ -51,6 +53,8 @@ namespace TMF
 		virtual void OnTrigerStay(GameObject* pGameObject);
 		virtual void OnTrigerExit(GameObject* pGameObject);
 		virtual boost::uuids::uuid OnGetUUID();
+
+	protected:
 		std::weak_ptr<GameObject> m_pOwner;
 		bool m_isEnable = true;
 	private:

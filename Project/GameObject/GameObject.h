@@ -16,6 +16,7 @@
 
 namespace TMF
 {
+	class Transform;
 	class GameObject : public std::enable_shared_from_this<GameObject>
 	{
 	public:
@@ -36,12 +37,16 @@ namespace TMF
 		void RemoveComponent(int index)
 		{
 			auto count = 0;
-			std::erase_if(m_pComponents, [&count,index](std::shared_ptr<Component> pObject)
+			std::erase_if(m_pComponents, [&count,index](std::shared_ptr<Component> pComponent)
 				{
-					count++;
-					if (typeid(*pObject) == typeid(TComponent) && index == count)
+					if (pComponent->IsRemovable() == false)
 					{
-						pObject->Finalize();
+						return false;
+					}
+					count++;
+					if (typeid(*pComponent) == typeid(TComponent) && index == count)
+					{
+						pComponent->Finalize();
 						return true;
 					}
 					return false;
@@ -83,6 +88,7 @@ namespace TMF
 		std::string m_name = "NewGameObject";
 		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		std::string m_selectComponentName = "";
+		std::weak_ptr<Transform> m_pTransform;
 		int m_selectIndex = 0;
 		bool m_isActive = true;
 
