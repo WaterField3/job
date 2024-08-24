@@ -4,6 +4,7 @@
 
 #include "Rigidbody.h"
 #include "GhostObject.h"
+#include "GameObject/GameObjectManager.h"
 
 using namespace DirectX::SimpleMath;
 
@@ -71,11 +72,16 @@ namespace TMF
 		{
 			
 		}
-	}
-
-	boost::uuids::uuid Transform::OnGetUUID()
-	{
-		return m_uuID;
+		label = "s";
+		label += "## " + uuidStr;
+		if (ImGui::Button(label.c_str()))
+		{
+			auto k = GameObjectManager::Instance().GetGameObject("modelobj");
+			if (auto j = k.lock())
+			{
+				m_pParent = j->GetComponent<Transform>();
+			}
+		}
 	}
 
 	void Transform::SetPosition(DirectX::SimpleMath::Vector3 pos)
@@ -94,7 +100,7 @@ namespace TMF
 		m_editorRotation = m_rotation.ToEuler();
 	}
 
-	DirectX::SimpleMath::Matrix Transform::GetMatrixLocal()
+	DirectX::SimpleMath::Matrix Transform::GetLocalMatrix()
 	{
 		// ‰ñ“]s—ñ
 		auto rotateMatrix = Matrix::CreateFromQuaternion(m_rotation);
@@ -104,6 +110,16 @@ namespace TMF
 		auto transformMatrix = DirectX::SimpleMath::Matrix::CreateTranslation(m_position);
 
 		return scaleMatrix * rotateMatrix * transformMatrix;
+	}
+	DirectX::SimpleMath::Matrix Transform::GetWorldMatrix()
+	{
+		auto matrix = GetLocalMatrix();
+		if (auto pParent = m_pParent.lock())
+		{
+			matrix *= pParent->GetWorldMatrix();
+		}
+		return matrix;
+
 	}
 	DirectX::SimpleMath::Matrix Transform::GetMatrixRotation()
 	{

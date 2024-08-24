@@ -4,6 +4,8 @@
 
 #include "GameObject/GameObjectManager.h"
 #include "GameObject/GameObject.h"
+#include "Component/Transform.h"
+#include "Utility/StringHelper.h"
 
 namespace TMF
 {
@@ -11,45 +13,96 @@ namespace TMF
 	{
 		ImGui::Begin("Hierarchy");                          // Create a window called "Hello, world!" and append into it.
 
-		auto pGameObjects = GameObjectManager::Instance().GetGameObjects();
+		m_pTransformsCache.clear();
+		auto pTransforms = GameObjectManager::Instance().GetComponents<Transform>();
 
-		for (auto& pGameObject : pGameObjects)
+		for (auto& pTransform : pTransforms)
 		{
-			auto name = pGameObject->GetName();
-
-			name += "##" + pGameObject->GetStrUUID();
-
-			if (ImGui::TreeNodeEx(name.c_str()))
+			if (auto pTrans = pTransform.lock())
 			{
-				ImGui::TreePop();
-				if (ImGui::IsItemClicked(ImGuiMouseButton_Right))
-				{
-					ImGui::OpenPopup("GameObjectMenuPopup");
-				}
+				m_pTransformsCache.push_back(pTrans.get());
+			}
+		}
+		//GameObject‚ÌComponent‚Ì•\Ž¦
+		for (auto& pTransform : m_pTransformsCache)
+		{
+			// e‚ªÝ’è‚³‚ê‚Ä‚È‚¯‚ê‚Î•\Ž¦
+			if (pTransform->GetParent().expired() == true)
+			{
+				DrawTree(pTransform);
+			}
+		}
+
+		if (ImGui::Button("CreateGameObject"))
+		{
+			GameObjectManager::Instance().CreateGameObject();
+		}
+		ImGui::End();
+	}
+	void Hierarchy::DrawTree(const Transform* pTransform)
+	{
+		auto pGameObject = pTransform->GetOwner();
+		if (auto pObject = pGameObject.lock())
+		{
+			auto name = pObject->GetName();
+			auto uuID = pTransform->GetUUID();
+			auto label = StringHelper::CreateLabel(name.c_str(), uuID);
+			auto flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
+			auto pChildren = GetTransformChildren(pTransform);
+			auto isOpen = false;
+
+			if (ImGui::TreeNodeEx(label.c_str(), flags))
+			{
+				isOpen = true;
 			}
 
 			if (ImGui::IsItemClicked())
 			{
 				m_pSelectGameObject = pGameObject;
 			}
-		}
-		if (ImGui::BeginPopup("GameObjectMenuPopup"))
-		{
-			if (ImGui::Button("DeleteGameObject"))
+			auto popupLabel = StringHelper::CreateLabel("GameObjectMenuPopup", uuID);
+			if (ImGui::IsItemClicked(ImGuiMouseButton_Right))
 			{
-				if (!m_pSelectGameObject.expired())
-				{
-					auto pGameObject = m_pSelectGameObject.lock();
-					GameObjectManager::Instance().DestroyGameObject(pGameObject.get());
-				}
-				ImGui::CloseCurrentPopup();
+				ImGui::OpenPopup(popupLabel.c_str());
 			}
-			ImGui::EndPopup();
+			if (ImGui::BeginPopup(popupLabel.c_str()))
+			{
+				if (ImGui::Button("DeleteGameObject"))
+				{
+					if (m_pSelectGameObject.expired() == false)
+					{
+						auto pGameObject = m_pSelectGameObject.lock();
+						GameObjectManager::Instance().DestroyGameObject(pGameObject.get());
+					}
+					ImGui::CloseCurrentPopup();
+				}
+				ImGui::EndPopup();
+			}
+
+			if (isOpen == true)
+			{
+				for (auto& pChild : pChildren)
+				{
+					DrawTree(pChild);
+				}
+				ImGui::TreePop();
+			}
 		}
-		if (ImGui::Button("CreateGameObject"))
+	}
+	std::vector<Transform*> Hierarchy::GetTransformChildren(const Transform* pTransform)
+	{
+		auto children = std::vector<Transform*>();
+		for (auto& pCurrentTransform : m_pTransformsCache)
 		{
-			GameObjectManager::Instance().CreateGameObject();
+			auto pParentTransform = pCurrentTransform->GetParent();
+			if (auto pLockedParentTransform = pParentTransform.lock())
+			{
+				if (pTransform == pLockedParentTransform.get())
+				{
+					children.push_back(pCurrentTransform);
+				}
+			}
 		}
-		ImGui::End();
+		return children;
 	}
 }

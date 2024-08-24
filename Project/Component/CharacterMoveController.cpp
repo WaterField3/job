@@ -85,8 +85,4 @@ namespace TMF
 
 		}
 	}
-	boost::uuids::uuid CharacterMoveController::OnGetUUID()
-	{
-		return m_uuID;
-	}
 }

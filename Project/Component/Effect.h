@@ -23,11 +23,9 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		void Play();
-		boost::uuids::uuid OnGetUUID() override;
 	private:
 		DirectX::SimpleMath::Vector3 m_effectPos = DirectX::SimpleMath::Vector3::Zero;
 		std::string m_effectPath = "";
-		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 
 		SERIALIZE_COMPONENT(m_effectPath, m_effectPos, m_uuID);
 	};

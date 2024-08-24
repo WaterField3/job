@@ -69,10 +69,6 @@ namespace TMF
 
 	}
 
-	boost::uuids::uuid Camera::OnGetUUID()
-	{
-		return m_uuID;
-	}
 	DirectX::SimpleMath::Matrix Camera::GetProjectionMatrix()
 	{
 		auto fovRadian = DirectX::XMConvertToRadians(m_fov);

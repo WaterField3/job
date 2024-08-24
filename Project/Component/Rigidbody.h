@@ -21,8 +21,6 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
-		boost::uuids::uuid OnGetUUID() override;
-
 		void SetRigidBodyTranform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua);
 		void RemoveRigidBody();
 		void AddRigidBody(std::weak_ptr<btCollisionShape> col, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua);
@@ -43,7 +41,6 @@ namespace TMF
 		bool m_isAngularFactorX = false;
 		bool m_isAngularFactorY = false;
 		bool m_isAngularFactorZ = false;
-		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		std::unique_ptr<btDefaultMotionState> m_pMotionState;
 		std::shared_ptr<btRigidBody> m_pRigidBody;
 

@@ -32,7 +32,7 @@ namespace TMF
 		{
 			m_effectPath = buf;
 		}
-		auto label = StringHelper::Instance().ChangeLabel("EffectPos", m_uuID);
+		auto label = StringHelper::CreateLabel("EffectPos", m_uuID);
 		if (ImGui::DragFloat3(label.c_str(), &m_effectPos.x, 0.1f))
 		{
 
@@ -45,9 +45,5 @@ namespace TMF
 	void Effect::Play()
 	{
 		EffectManager::Instance().Play(m_effectPath, m_effectPos);
-	}
-	boost::uuids::uuid Effect::OnGetUUID()
-	{
-		return m_uuID;
 	}
 }

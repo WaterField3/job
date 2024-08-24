@@ -91,11 +91,6 @@ namespace TMF
 		}
 	}
 
-	boost::uuids::uuid Model::OnGetUUID()
-	{
-		return m_uuID;
-	}
-
 	void Model::ModelDraw()
 	{
 		ID3D11DeviceContext* d3dContext = D3D::Get()->GetContext();
@@ -131,7 +126,7 @@ namespace TMF
 			auto Component = gameObject->GetComponent<Transform>();
 			if (auto pComponent = Component.lock())
 			{
-				matrixWorld = pComponent->GetMatrixLocal();
+				matrixWorld = pComponent->GetWorldMatrix();
 				matrixRotate = pComponent->GetMatrixRotation();
 			}
 		}

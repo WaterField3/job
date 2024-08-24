@@ -71,10 +71,7 @@ namespace TMF
 			UpdateShapeInfo();
 		}
 	}
-	boost::uuids::uuid Collider::OnGetUUID()
-	{
-		return m_uuID;
-	}
+
 	void Collider::MakeCollision()
 	{
 		auto btscale = btVector3(1.0f, 1.0f, 1.0f);

@@ -79,10 +79,7 @@ namespace TMF
 		}
 
 	}
-	boost::uuids::uuid Audio::OnGetUUID()
-	{
-		return m_uuID;
-	}
+
 	void Audio::Load(std::string soundName)
 	{
 		m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(m_pAudioEngine.get(), ChangeWideString().c_str());

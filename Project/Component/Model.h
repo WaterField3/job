@@ -30,14 +30,12 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
-		boost::uuids::uuid OnGetUUID() override;
 
 	private:
 		void ModelDraw();
 		void LoadCMO();
 
 		std::string m_loadCmo = "asset/Gun.cmo";
-		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		//D3D::Model m_model;
 
 		std::unique_ptr<DirectX::EffectFactory> m_pEffectFactory;

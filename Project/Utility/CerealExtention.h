@@ -6,6 +6,7 @@
 #include <cereal/types/vector.hpp>
 #include <cereal/types/string.hpp>
 #include <cereal/types/memory.hpp>
+#include <cereal/cereal.hpp>
 #include <SimpleMath.h>
 #include <string>
 
@@ -14,7 +15,7 @@ namespace cereal
 	template <class Archive>
 	void save(Archive& ar, boost::uuids::uuid const& at)
 	{ 
-		ar(boost::uuids::to_string(at));
+		ar(cereal::make_nvp("uuid", boost::uuids::to_string(at)));
 	}
 
 	template <class Archive>

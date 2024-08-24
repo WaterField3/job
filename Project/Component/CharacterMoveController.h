@@ -26,12 +26,10 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
-		boost::uuids::uuid OnGetUUID() override;
 
 	private:
 		float m_moveSpeed = 1;
 		float m_jumpPower = 1;
-		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 
 		SERIALIZE_COMPONENT(m_moveSpeed, m_uuID);
 	};

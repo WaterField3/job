@@ -74,10 +74,7 @@ namespace TMF
 
 	}
 
-	boost::uuids::uuid GhostObject::OnGetUUID()
-	{
-		return m_uuID;
-	}
+
 
 	void GhostObject::AddGhostObject(std::weak_ptr<btCollisionShape> col, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua)
 	{

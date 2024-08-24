@@ -23,14 +23,12 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
-		boost::uuids::uuid OnGetUUID() override;
 		void AddGhostObject(std::weak_ptr<btCollisionShape> col, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua);
 		void RemoveGhostObject();
 		void SetGhostObjectTransform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion rotate);
 
 	private:
 		std::shared_ptr<btGhostObject> m_pGhostObject;
-		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 		SERIALIZE_COMPONENT(m_uuID);
 	};
 }

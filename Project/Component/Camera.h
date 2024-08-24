@@ -22,7 +22,6 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
-		boost::uuids::uuid OnGetUUID() override;
 
 		DirectX::SimpleMath::Matrix GetProjectionMatrix();
 		DirectX::SimpleMath::Matrix GetViewMatrix();
@@ -33,7 +32,6 @@ namespace TMF
 		float m_fov = 45.0f;
 		float m_near = 0.1f;
 		float m_far = 1000.0f;
-		boost::uuids::uuid m_uuID = boost::uuids::random_generator()();
 
 		SERIALIZE_COMPONENT(m_fov, m_near, m_far, m_uuID);
 	};

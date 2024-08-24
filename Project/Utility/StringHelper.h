@@ -4,16 +4,11 @@
 #include <boost/uuid/uuid.hpp>
 namespace TMF
 {
+	// –¼‘OLabelUtilty‚É
 	class StringHelper
 	{
 	public:
-
-		static StringHelper& Instance()
-		{
-			static StringHelper instance;
-			return instance;
-		 }
-		std::string ChangeLabel(const char* labelName, boost::uuids::uuid uuID);
+		static std::string CreateLabel(const char* labelName, boost::uuids::uuid uuID);
 	};
 }
 

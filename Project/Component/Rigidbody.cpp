@@ -136,11 +136,6 @@ namespace TMF
 		//}
 	}
 
-	boost::uuids::uuid Rigidbody::OnGetUUID()
-	{
-		return m_uuID;
-	}
-
 	void Rigidbody::SetRigidBodyTranform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua)
 	{
 		auto trans = btTransform(MakebtQuaternion(qua), MakebtVector3(pos));

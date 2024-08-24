@@ -82,10 +82,6 @@ namespace TMF
 		OnTrigerExit(pGameObject);
 	}
 
-	boost::uuids::uuid Component::GetUUID()
-	{
-		return OnGetUUID();
-	}
 	void Component::OnInitialize()
 	{
 
@@ -94,42 +90,54 @@ namespace TMF
 	{
 
 	}
+
 	void Component::OnUpdate()
 	{
 
 	}
+
 	void Component::OnLateUpdate()
 	{
 
 	}
+
 	void Component::OnDraw()
 	{
 
 	}
+
 	void Component::OnDrawImGui()
 	{
 
 	}
+
 	void Component::OnCollisionEnter(GameObject* pGameObject)
 	{
+
 	}
+
 	void Component::OnCollisionStay(GameObject* pGameObject)
 	{
+
 	}
+
 	void Component::OnCollisionExit(GameObject* pGameObject)
 	{
+
 	}
+
 	void Component::OnTrigerEnter(GameObject* pGameObject)
 	{
+
 	}
+	
 	void Component::OnTrigerStay(GameObject* pGameObject)
 	{
+
 	}
+	
 	void Component::OnTrigerExit(GameObject* pGameObject)
 	{
-	}
-	boost::uuids::uuid Component::OnGetUUID()
-	{
-		return boost::uuids::uuid();
+
 	}
 }
