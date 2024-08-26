@@ -12,7 +12,6 @@ REGISTER_COMPONENT(TMF::Transform, "Transform");
 
 namespace TMF
 {
-
 	Transform::Transform()
 	{
 
@@ -71,16 +70,6 @@ namespace TMF
 		if (ImGui::DragFloat3(label.c_str(), &m_scale.x, 0.1f))
 		{
 			
-		}
-		label = "s";
-		label += "## " + uuidStr;
-		if (ImGui::Button(label.c_str()))
-		{
-			auto k = GameObjectManager::Instance().GetGameObject("modelobj");
-			if (auto j = k.lock())
-			{
-				m_pParent = j->GetComponent<Transform>();
-			}
 		}
 	}
 

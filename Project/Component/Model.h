@@ -36,7 +36,6 @@ namespace TMF
 		void LoadCMO();
 
 		std::string m_loadCmo = "asset/Gun.cmo";
-		//D3D::Model m_model;
 
 		std::unique_ptr<DirectX::EffectFactory> m_pEffectFactory;
 		std::unique_ptr<DirectX::Model> m_pModel;

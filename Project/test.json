@@ -667,7 +667,7 @@
                 "ptr_wrapper": {
                     "id": 2147483680,
                     "data": {
-                        "m_name": "NewGameObject",
+                        "m_name": "Gun",
                         "m_uuID": {
                             "uuid": "d8112026-4a62-441e-a7bb-9badcac57ea4"
                         },
@@ -685,7 +685,7 @@
                                         "m_position": {
                                             "value0": 0.0,
                                             "value1": 0.0,
-                                            "value2": 0.0
+                                            "value2": 5.800000190734863
                                         },
                                         "m_scale": {
                                             "value0": 1.0,

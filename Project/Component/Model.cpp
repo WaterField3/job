@@ -24,15 +24,13 @@ namespace TMF
 
 	void Model::OnInitialize()
 	{
-		//auto wideFileName = std::wstring(m_loadFileName.begin(), m_loadFileName.end());
-		//m_model = D3D::Get()->LoadObjModel(wideFileName.c_str());
 		auto wideFileName = std::wstring(m_loadCmo.begin(), m_loadCmo.end());
 		auto device = D3D::Get()->GetDevice();
 		m_pCommonState = std::make_unique<DirectX::CommonStates>(device);
 		m_pEffectFactory = std::make_unique<DirectX::EffectFactory>(device);
 		m_pEffectFactory->SetDirectory(L"asset");
 		LoadCMO();
-		
+
 	}
 
 	void Model::LoadCMO()
@@ -121,6 +119,7 @@ namespace TMF
 		// 回転行列
 		auto matrixRotate = matrixRotateX * matrixRotateY * matrixRotateZ;
 
+		// Transformを取得
 		if (auto gameObject = m_pOwner.lock())
 		{
 			auto Component = gameObject->GetComponent<Transform>();
@@ -131,48 +130,11 @@ namespace TMF
 			}
 		}
 
+		// モデルの描画(あれば)
 		if (m_pModel)
 		{
 			m_pModel->Draw(d3dContext, *m_pCommonState, matrixWorld, view, proj);
 		}
-
-		//// 法線ベクトル回転用行列
-		////cb.matrixWorldNormal = matrixRotate.Transpose();
-
-		//cb.matrixWorld = matrixWorld * view * proj;
-		//// 合成した行列の転置行列を作成する ※シェーダーとC++でメモリの並びが異なるため
-		//cb.matrixWorld = cb.matrixWorld.Transpose();
-
-		//// UVアニメーション行列
-		//cb.matrixUV = DirectX::XMMatrixIdentity();
-		//cb.matrixUV = cb.matrixUV.Transpose();
-
-		//cb.materialDiffuse = { 1,1,1,1 };
-
-
-		//// 行列をシェーダーに渡す
-		//d3dContext->UpdateSubresource(D3D::Get()->GetConstantBuffer(), 0, NULL,
-		//	&cb, 0, 0);
-
-		//D3D::Model& mdl = m_model;
-
-		//// 今からDrawする頂点バッファ（モデル）を指定する
-		//UINT strides = D3D::Get()->GetVertexStride();
-		//UINT offsets = 0;
-		//d3dContext->IASetVertexBuffers(0, 1, &mdl.vertexBuffer,
-		//	&strides, &offsets);
-
-		//// 描画に使うインデックスバッファを指定する
-		//d3dContext->IASetIndexBuffer(mdl.indexBuffer, DXGI_FORMAT_R16_UINT, 0);
-
-		//// ピクセルシェーダーにテクスチャを渡す
-		//d3dContext->PSSetShaderResources(0, 1, &mdl.texture);
-
-
-		//d3dContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-		//// 第１引数　→　描画する頂点数
-		////d3dContext->DrawIndexed(mdl.numIndex, 0, 0); // 描画命令
 	}
 
 }
