@@ -3,7 +3,6 @@
 #include <atltypes.h> // CRectを使うためのヘッダーファイル
 #include <DirectXHelpers.h>
 #include <VertexTypes.h>
-#include <CommonStates.h>
 
 #include "WICTextureLoader.h" // テクスチャ読み込みライブラリ
 
@@ -556,8 +555,8 @@ void D3D::SettingEffect(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::M
         VertexPositionColor::InputElements, VertexPositionColor::InputElementCount,
         shaderByteCode, byteCodeLength,
         &m_pInputLayout);
-    auto states = CommonStates(m_pDevice);
-    m_pImmediateContext->OMSetBlendState(states.Opaque(), nullptr, 0xFFFFFFFF);
+    m_pCommonStates = std::make_shared<CommonStates>(m_pDevice);
+    m_pImmediateContext->OMSetBlendState(m_pCommonStates->Opaque(), nullptr, 0xFFFFFFFF);
     //m_pImmediateContext->OMSetDepthStencilState(states.DepthNone(), 0);
     m_pEffect->Apply(m_pImmediateContext);
     m_pImmediateContext->IASetInputLayout(m_pInputLayout);

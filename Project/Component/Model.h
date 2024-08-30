@@ -30,6 +30,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		inline std::weak_ptr<DirectX::Model> GetModel() { return m_pModel; }
 
 	private:
 		void ModelDraw();
@@ -38,7 +39,7 @@ namespace TMF
 		std::string m_loadCmo = "asset/Gun.cmo";
 
 		std::unique_ptr<DirectX::EffectFactory> m_pEffectFactory;
-		std::unique_ptr<DirectX::Model> m_pModel;
+		std::shared_ptr<DirectX::Model> m_pModel;
 		std::unique_ptr<DirectX::CommonStates> m_pCommonState;
 		bool m_isDraw = true;
 

@@ -4,6 +4,7 @@
 #include <DirectXMath.h> // DirextXの数学関連のヘッダーファイル
 #include <SimpleMath.h>
 #include <Effects.h>
+#include <CommonStates.h>
 #include <memory>
 
 // Direct3D解放の簡略化マクロ
@@ -94,6 +95,7 @@ public:
 	ID3D11Buffer* GetConstantBuffer() { return m_pConstantBuffer; }
 	ID3D11InputLayout* GetInputLayout() { return m_pInputLayout; }
 	inline HWND GetHwnd() const { return m_hwnd; }
+	inline std::shared_ptr<DirectX::CommonStates> GetCommonStates() { return m_pCommonStates; }
 
 	// 頂点データ１つあたりのバイトサイズを返す
 	UINT GetVertexStride();
@@ -137,5 +139,7 @@ private:
 	HWND m_hwnd;
 
 	std::shared_ptr<DirectX::BasicEffect> m_pEffect;
+
+	std::shared_ptr<DirectX::CommonStates> m_pCommonStates;
 };
 
