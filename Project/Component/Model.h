@@ -31,13 +31,14 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		inline std::weak_ptr<DirectX::Model> GetModel() { return m_pModel; }
+		inline size_t GetAnimOffset() const { return animOffset; }
 
 	private:
 		void ModelDraw();
 		void LoadCMO();
 
+		size_t animOffset = 0;
 		std::string m_loadCmo = "asset/Gun.cmo";
-
 		std::unique_ptr<DirectX::EffectFactory> m_pEffectFactory;
 		std::shared_ptr<DirectX::Model> m_pModel;
 		std::unique_ptr<DirectX::CommonStates> m_pCommonState;

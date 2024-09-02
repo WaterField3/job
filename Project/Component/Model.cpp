@@ -39,7 +39,7 @@ namespace TMF
 		auto wideFileName = std::wstring(m_loadCmo.begin(), m_loadCmo.end());
 		try
 		{
-			m_pModel = DirectX::Model::CreateFromCMO(device, wideFileName.c_str(), *m_pEffectFactory);
+			m_pModel = DirectX::Model::CreateFromCMO(device, wideFileName.c_str(), *m_pEffectFactory, DirectX::ModelLoader_CounterClockwise | DirectX::ModelLoader_IncludeBones, &animOffset);
 		}
 		catch (const std::exception& e)
 		{

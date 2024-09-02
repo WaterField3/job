@@ -1,4 +1,4 @@
-#include "Animation.h"
+#include "Animater.h"
 
 #include <Imgui/imgui.h>
 
@@ -9,12 +9,19 @@
 #include "GameObject/GameObjectManager.h"
 #include "Timer.h"
 
-REGISTER_COMPONENT(TMF::Animation, "Animation");
+#include "System/Animation.h"
+
+REGISTER_COMPONENT(TMF::Animater, "Animater");
 
 namespace TMF
 {
-	void Animation::OnInitialize()
+	void Animater::OnInitialize()
 	{
+		if (m_fileName == "")
+		{
+			return;
+		}
+
 		if (auto pOwner = m_pOwner.lock())
 		{
 			auto pModel = pOwner->GetComponent<Model>();
@@ -22,16 +29,17 @@ namespace TMF
 			{
 				auto model = pLockModel->GetModel();
 				m_pModel = model;
+				m_animOffset = pLockModel->GetAnimOffset();
 				if (auto lockModel = model.lock())
 				{
 					try
 					{
 						auto wideString = std::wstring(m_fileName.begin(), m_fileName.end());
 						m_boneSize = lockModel->bones.size();
-
-						//m_animation.Load(wideString.c_str(), m_animOffset);
-						//m_pAnimation->Bind(*lockModel);
-						//m_pDrawBone = DirectX::ModelBone::MakeArray(m_boneSize);
+						m_pAnimation = std::make_unique<DX::AnimationCMO>();
+						m_pAnimation->Load(wideString.c_str(), m_animOffset);
+						m_pAnimation->Bind(*lockModel);
+						m_drawBone = DirectX::ModelBone::MakeArray(m_boneSize);
 					}
 					catch (const std::exception&)
 					{
@@ -41,20 +49,23 @@ namespace TMF
 			}
 		}
 	}
-	void Animation::OnFinalize()
+	void Animater::OnFinalize()
 	{
 
 	}
-	void Animation::OnUpdate()
+	void Animater::OnUpdate()
 	{
 
-		auto deltaTime = Timer::Instance().deltaTime.count();
-		//m_pAnimation->Update(deltaTime);
+		if (m_pAnimation)
+		{
+			auto deltaTime = Timer::Instance().deltaTime.count();
+			m_pAnimation->Update(deltaTime);
+		}
 	}
-	void Animation::OnLateUpdate()
+	void Animater::OnLateUpdate()
 	{
 	}
-	void Animation::OnDraw()
+	void Animater::OnDraw()
 	{
 
 		auto world = DirectX::SimpleMath::Matrix::Identity;
@@ -80,17 +91,17 @@ namespace TMF
 		{
 			auto context = D3D::Get()->GetContext();
 			auto state = D3D::Get()->GetCommonStates();
-			//m_pAnimation->Apply(*pLockModel, m_boneSize, m_pDrawBone.get());
-			//pLockModel->DrawSkinned(context, *state, m_boneSize, m_pDrawBone.get(), world, view, proj);
+			m_pAnimation->Apply(*pLockModel, m_boneSize, m_drawBone.get());
+			pLockModel->DrawSkinned(context, *state, m_boneSize, m_drawBone.get(), world, view, proj);
 
 		}
 
 	}
-	void Animation::OnDrawImGui()
+	void Animater::OnDrawImGui()
 	{
 		char buf[256] = "";
 		strcpy_s(buf, sizeof(buf), m_fileName.c_str());
-		if (ImGui::InputText("SoundName", buf, 256))
+		if (ImGui::InputText("FileName", buf, 256))
 		{
 			m_fileName = buf;
 		}
@@ -103,16 +114,17 @@ namespace TMF
 			{
 				auto model = pLockModel->GetModel();
 				m_pModel = model;
+				m_animOffset = pLockModel->GetAnimOffset();
 				if (auto lockModel = model.lock())
 				{
 					try
 					{
 						auto wideString = std::wstring(m_fileName.begin(), m_fileName.end());
 						m_boneSize = lockModel->bones.size();
-						//m_pAnimation = std::make_unique<DX::AnimationCMO>();
-						//m_pAnimation->Load(wideString.c_str(), m_animOffset);
-						//m_pAnimation->Bind(*lockModel);
-						//m_pDrawBone = DirectX::ModelBone::MakeArray(m_boneSize);
+						m_pAnimation = std::make_unique<DX::AnimationCMO>();
+						m_pAnimation->Load(wideString.c_str(), m_animOffset);
+						m_pAnimation->Bind(*lockModel);
+						m_drawBone = DirectX::ModelBone::MakeArray(m_boneSize);
 					}
 					catch (const std::exception&)
 					{

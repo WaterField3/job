@@ -777,6 +777,155 @@
                         ]
                     }
                 }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483685,
+                    "data": {
+                        "m_name": "Effect",
+                        "m_uuID": {
+                            "uuid": "17bf2ef1-e473-4b2c-b3b7-96f9f27e116c"
+                        },
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483686,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "64f60607-d246-4e98-abe5-0d74274b040f"
+                                            }
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 8,
+                                "ptr_wrapper": {
+                                    "id": 2147483687,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "cc4ce83d-37b9-45e9-946c-dd714caf9b5e"
+                                            }
+                                        },
+                                        "m_effectPath": "C:\\Users\\temet\\Downloads\\Effekseer01\\Effekseer01\\Laser01.efk",
+                                        "m_effectPos": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_uuID": {
+                                            "uuid": "cc4ce83d-37b9-45e9-946c-dd714caf9b5e"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483688,
+                    "data": {
+                        "m_name": "Anim",
+                        "m_uuID": {
+                            "uuid": "cb93c7c3-00da-463d-9f7b-ba5803ba24ce"
+                        },
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483689,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "db6347a9-1756-419b-87f2-011cbc223691"
+                                            }
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 8.300000190734864
+                                        },
+                                        "m_scale": {
+                                            "value0": 0.009999999776482582,
+                                            "value1": 0.009999999776482582,
+                                            "value2": 0.009999999776482582
+                                        },
+                                        "m_rotation": {
+                                            "value0": -0.0,
+                                            "value1": -0.7512804269790649,
+                                            "value2": 0.0,
+                                            "value3": 0.6599831581115723
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 6,
+                                "ptr_wrapper": {
+                                    "id": 2147483690,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "876f5065-a9d7-4288-8c0c-f7ab1c072ad5"
+                                            }
+                                        },
+                                        "m_loadCmo": "asset/teapot.cmo",
+                                        "m_isDraw": true,
+                                        "m_uuID": {
+                                            "uuid": "876f5065-a9d7-4288-8c0c-f7ab1c072ad5"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483657,
+                                "polymorphic_name": "TMF::Animater",
+                                "ptr_wrapper": {
+                                    "id": 2147483691,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "8034c743-5ef0-41ec-b152-167172a28821"
+                                            }
+                                        },
+                                        "m_fileName": "asset/teapot.cmo"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
             }
         ]
     }

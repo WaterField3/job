@@ -39,11 +39,11 @@ namespace TMF
 			auto count = 0;
 			std::erase_if(m_pComponents, [&count,index](std::shared_ptr<Component> pComponent)
 				{
-					if (pComponent->IsRemovable() == false)
+					count++;
+					if (pComponent->IsRemovable() == false && count == index)
 					{
 						return false;
 					}
-					count++;
 					if (typeid(*pComponent) == typeid(TComponent) && index == count)
 					{
 						pComponent->Finalize();

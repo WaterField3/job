@@ -165,7 +165,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Component\Animation.cpp" />
+    <ClCompile Include="System\Animation.cpp" />
+    <ClCompile Include="Component\Animater.cpp" />
     <ClCompile Include="ApplicationState.cpp" />
     <ClCompile Include="Application\Application.cpp" />
     <ClCompile Include="Component\Audio.cpp" />
@@ -211,7 +212,8 @@
     <ClCompile Include="Vender\Imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Component\Animation.h" />
+    <ClInclude Include="System\Animation.h" />
+    <ClInclude Include="Component\Animater.h" />
     <ClInclude Include="ApplicationState.h" />
     <ClInclude Include="Application\Application.h" />
     <ClInclude Include="Component\Audio.h" />

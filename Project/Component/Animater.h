@@ -1,3 +1,4 @@
+
 #pragma once
 
 #include "Component.h"
@@ -7,10 +8,15 @@
 #include "ComponentCerealHelper.h"
 #include "Model.h"
 
+namespace DX
+{
+	class AnimationCMO;
+}
+
 namespace TMF
 {
 	class Model;
-	class Animation : public Component
+	class Animater : public Component
 	{
 	public:
 		void OnInitialize() override;
@@ -25,8 +31,11 @@ namespace TMF
 		int m_boneSize = 0;
 		std::string m_fileName = "";
 		//DX::AnimationCMO m_animation;
-		//DirectX::ModelBone::TransformArray m_pDrawBone;
+		std::unique_ptr<DX::AnimationCMO> m_pAnimation;
+		DirectX::ModelBone::TransformArray m_drawBone;
 		std::weak_ptr<DirectX::Model> m_pModel;
 
+
+		SERIALIZE_COMPONENT(m_fileName);
 	};
 }
