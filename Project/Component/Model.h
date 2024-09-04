@@ -36,14 +36,15 @@ namespace TMF
 	private:
 		void ModelDraw();
 		void LoadCMO();
+		void LoadSdkMesh();
 
 		size_t animOffset = 0;
-		std::string m_loadCmo = "asset/Gun.cmo";
+		std::string m_loadFile = "asset/Gun.cmo";
 		std::unique_ptr<DirectX::EffectFactory> m_pEffectFactory;
 		std::shared_ptr<DirectX::Model> m_pModel;
 		std::unique_ptr<DirectX::CommonStates> m_pCommonState;
 		bool m_isDraw = true;
 
-		SERIALIZE_COMPONENT(m_loadCmo, m_isDraw, m_uuID);
+		SERIALIZE_COMPONENT(m_loadFile, m_isDraw, m_uuID);
 	};
 }

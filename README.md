@@ -6,6 +6,9 @@
 ## cmo変換方法  
 [directXMesh](https://github.com/microsoft/DirectXMesh/wiki/Meshconvert)  
 
+## sdkmesh変換方法  
+[contentexporter](https://github.com/walbourn/contentexporter)  
+
 ## 追加 NuGet 
 [directxtk_desktop_win10](https://github.com/Microsoft/DirectXTK)  
 

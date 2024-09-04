@@ -8,8 +8,8 @@
 #include "Camera.h"
 #include "GameObject/GameObjectManager.h"
 #include "Timer.h"
-
 #include "System/Animation.h"
+#include "Utility/Log.h"
 
 REGISTER_COMPONENT(TMF::Animater, "Animater");
 
@@ -17,37 +17,7 @@ namespace TMF
 {
 	void Animater::OnInitialize()
 	{
-		if (m_fileName == "")
-		{
-			return;
-		}
-
-		if (auto pOwner = m_pOwner.lock())
-		{
-			auto pModel = pOwner->GetComponent<Model>();
-			if (auto pLockModel = pModel.lock())
-			{
-				auto model = pLockModel->GetModel();
-				m_pModel = model;
-				m_animOffset = pLockModel->GetAnimOffset();
-				if (auto lockModel = model.lock())
-				{
-					try
-					{
-						auto wideString = std::wstring(m_fileName.begin(), m_fileName.end());
-						m_boneSize = lockModel->bones.size();
-						m_pAnimation = std::make_unique<DX::AnimationCMO>();
-						m_pAnimation->Load(wideString.c_str(), m_animOffset);
-						m_pAnimation->Bind(*lockModel);
-						m_drawBone = DirectX::ModelBone::MakeArray(m_boneSize);
-					}
-					catch (const std::exception&)
-					{
-
-					}
-				}
-			}
-		}
+		//LoadCMO();
 	}
 	void Animater::OnFinalize()
 	{
@@ -56,10 +26,14 @@ namespace TMF
 	void Animater::OnUpdate()
 	{
 
-		if (m_pAnimation)
+		auto deltaTime = Timer::Instance().deltaTime.count();
+		if (m_pAnimationCMO)
 		{
-			auto deltaTime = Timer::Instance().deltaTime.count();
-			m_pAnimation->Update(deltaTime);
+			m_pAnimationCMO->Update(deltaTime);
+		}
+		if (m_pAnimationSDKMESH)
+		{
+			m_pAnimationSDKMESH->Update(deltaTime);
 		}
 	}
 	void Animater::OnLateUpdate()
@@ -91,7 +65,14 @@ namespace TMF
 		{
 			auto context = D3D::Get()->GetContext();
 			auto state = D3D::Get()->GetCommonStates();
-			m_pAnimation->Apply(*pLockModel, m_boneSize, m_drawBone.get());
+			if (m_pAnimationCMO)
+			{
+				m_pAnimationCMO->Apply(*pLockModel, m_boneSize, m_drawBone.get());
+			}
+			if (m_pAnimationSDKMESH)
+			{
+				m_pAnimationSDKMESH->Apply(*pLockModel, m_boneSize, m_drawBone.get());
+			}
 			pLockModel->DrawSkinned(context, *state, m_boneSize, m_drawBone.get(), world, view, proj);
 
 		}
@@ -106,30 +87,73 @@ namespace TMF
 			m_fileName = buf;
 		}
 
-		if (ImGui::Button("Load"))
+		if (ImGui::Button("LoadCMO"))
 		{
-			auto pOwner = m_pOwner.lock();
-			auto pModel = pOwner->GetComponent<Model>();
-			if (auto pLockModel = pModel.lock())
+			LoadCMO();
+		}
+		if (ImGui::Button("LoadSDKMESH"))
+		{
+			LoadSDKMESH();
+		}
+	}
+	void Animater::LoadCMO()
+	{
+		auto pOwner = m_pOwner.lock();
+		auto pModel = pOwner->GetComponent<Model>();
+		if (auto pLockModel = pModel.lock())
+		{
+			auto model = pLockModel->GetModel();
+			if (m_fileName == "")
 			{
-				auto model = pLockModel->GetModel();
-				m_pModel = model;
-				m_animOffset = pLockModel->GetAnimOffset();
-				if (auto lockModel = model.lock())
+				return;
+			}
+			m_pModel = model;
+			m_animOffset = pLockModel->GetAnimOffset();
+			if (auto lockModel = model.lock())
+			{
+				try
 				{
-					try
-					{
-						auto wideString = std::wstring(m_fileName.begin(), m_fileName.end());
-						m_boneSize = lockModel->bones.size();
-						m_pAnimation = std::make_unique<DX::AnimationCMO>();
-						m_pAnimation->Load(wideString.c_str(), m_animOffset);
-						m_pAnimation->Bind(*lockModel);
-						m_drawBone = DirectX::ModelBone::MakeArray(m_boneSize);
-					}
-					catch (const std::exception&)
-					{
-
-					}
+					auto wideString = std::wstring(m_fileName.begin(), m_fileName.end());
+					m_boneSize = lockModel->bones.size();
+					m_pAnimationCMO = std::make_unique<DX::AnimationCMO>();
+					m_pAnimationCMO->Load(wideString.c_str(), m_animOffset);
+					m_pAnimationCMO->Bind(*lockModel);
+					m_drawBone = DirectX::ModelBone::MakeArray(m_boneSize);
+				}
+				catch (const std::exception& e)
+				{
+					Log::Info("%s", e.what());
+				}
+			}
+		}
+	}
+	void Animater::LoadSDKMESH()
+	{
+		auto pOwner = m_pOwner.lock();
+		auto pModel = pOwner->GetComponent<Model>();
+		if (auto pLockModel = pModel.lock())
+		{
+			auto model = pLockModel->GetModel();
+			if (m_fileName == "")
+			{
+				return;
+			}
+			m_pModel = model;
+			m_animOffset = pLockModel->GetAnimOffset();
+			if (auto lockModel = model.lock())
+			{
+				try
+				{
+					auto wideString = std::wstring(m_fileName.begin(), m_fileName.end());
+					m_boneSize = lockModel->bones.size();
+					m_pAnimationSDKMESH = std::make_unique<DX::AnimationSDKMESH>();
+					m_pAnimationSDKMESH->Load(wideString.c_str());
+					m_pAnimationSDKMESH->Bind(*lockModel);
+					m_drawBone = DirectX::ModelBone::MakeArray(m_boneSize);
+				}
+				catch (const std::exception& e)
+				{
+					Log::Info("%s", e.what());
 				}
 			}
 		}

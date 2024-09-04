@@ -509,7 +509,7 @@
                                                 "uuid": "09868a3b-f87b-463c-8bb2-31d1159f20f9"
                                             }
                                         },
-                                        "m_loadCmo": "asset/cup.cmo",
+                                        "m_loadFile": "asset/Gun.cmo",
                                         "m_isDraw": true,
                                         "m_uuID": {
                                             "uuid": "09868a3b-f87b-463c-8bb2-31d1159f20f9"
@@ -716,7 +716,7 @@
                                                 "uuid": "bd9ddc0d-90b0-4bb1-81a3-a207dad2a723"
                                             }
                                         },
-                                        "m_loadCmo": "asset/Gun.cmo",
+                                        "m_loadFile": "asset/Gun.cmo",
                                         "m_isDraw": true,
                                         "m_uuID": {
                                             "uuid": "bd9ddc0d-90b0-4bb1-81a3-a207dad2a723"
@@ -900,7 +900,7 @@
                                                 "uuid": "876f5065-a9d7-4288-8c0c-f7ab1c072ad5"
                                             }
                                         },
-                                        "m_loadCmo": "asset/teapot.cmo",
+                                        "m_loadFile": "asset/teapot.cmo",
                                         "m_isDraw": true,
                                         "m_uuID": {
                                             "uuid": "876f5065-a9d7-4288-8c0c-f7ab1c072ad5"

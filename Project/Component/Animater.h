@@ -11,6 +11,7 @@
 namespace DX
 {
 	class AnimationCMO;
+	class AnimationSDKMESH;
 }
 
 namespace TMF
@@ -27,11 +28,16 @@ namespace TMF
 		void OnDrawImGui() override;
 
 	private:
+		void LoadCMO();
+		void LoadSDKMESH();
+
+	private:
 		float m_animOffset = 0;
-		int m_boneSize = 0;
+		size_t m_boneSize = 0;
 		std::string m_fileName = "";
 		//DX::AnimationCMO m_animation;
-		std::unique_ptr<DX::AnimationCMO> m_pAnimation;
+		std::unique_ptr<DX::AnimationCMO> m_pAnimationCMO;
+		std::unique_ptr<DX::AnimationSDKMESH> m_pAnimationSDKMESH;
 		DirectX::ModelBone::TransformArray m_drawBone;
 		std::weak_ptr<DirectX::Model> m_pModel;
 

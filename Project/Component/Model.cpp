@@ -24,7 +24,7 @@ namespace TMF
 
 	void Model::OnInitialize()
 	{
-		auto wideFileName = std::wstring(m_loadCmo.begin(), m_loadCmo.end());
+		auto wideFileName = std::wstring(m_loadFile.begin(), m_loadFile.end());
 		auto device = D3D::Get()->GetDevice();
 		m_pCommonState = std::make_unique<DirectX::CommonStates>(device);
 		m_pEffectFactory = std::make_unique<DirectX::EffectFactory>(device);
@@ -36,10 +36,24 @@ namespace TMF
 	void Model::LoadCMO()
 	{
 		auto device = D3D::Get()->GetDevice();
-		auto wideFileName = std::wstring(m_loadCmo.begin(), m_loadCmo.end());
+		auto wideFileName = std::wstring(m_loadFile.begin(), m_loadFile.end());
 		try
 		{
 			m_pModel = DirectX::Model::CreateFromCMO(device, wideFileName.c_str(), *m_pEffectFactory, DirectX::ModelLoader_CounterClockwise | DirectX::ModelLoader_IncludeBones, &animOffset);
+		}
+		catch (const std::exception& e)
+		{
+			Log::Info("%s", e.what());
+		}
+	}
+
+	void Model::LoadSdkMesh()
+	{
+		auto device = D3D::Get()->GetDevice();
+		auto wideFileName = std::wstring(m_loadFile.begin(), m_loadFile.end());
+		try
+		{
+			m_pModel = DirectX::Model::CreateFromSDKMESH(device, wideFileName.c_str(), *m_pEffectFactory, DirectX::ModelLoader_CounterClockwise | DirectX::ModelLoader_IncludeBones);
 		}
 		catch (const std::exception& e)
 		{
@@ -75,17 +89,20 @@ namespace TMF
 	{
 		ImGui::Checkbox("active", &m_isDraw);
 		char buf[256] = "";
-		strcpy_s(buf, sizeof(buf), m_loadCmo.c_str());
+		strcpy_s(buf, sizeof(buf), m_loadFile.c_str());
 		if (ImGui::InputText("fileName", buf, 256))
 		{
-			m_loadCmo = buf;
+			m_loadFile = buf;
 		}
 
 		if (ImGui::Button("LoadCmo"))
 		{
-			auto device = D3D::Get()->GetDevice();
-
 			LoadCMO();
+		}
+
+		if (ImGui::Button("LoadSdkMesh"))
+		{
+			LoadSdkMesh();
 		}
 	}
 
