@@ -29,7 +29,19 @@ namespace TMF
 		m_pCommonState = std::make_unique<DirectX::CommonStates>(device);
 		m_pEffectFactory = std::make_unique<DirectX::EffectFactory>(device);
 		m_pEffectFactory->SetDirectory(L"asset");
-		LoadCMO();
+		switch (m_loadType)
+		{
+		case TMF::Model::DEFAULT:
+			break;
+		case TMF::Model::CMO:
+			LoadCMO();
+			break;
+		case TMF::Model::SDKMESH:
+			LoadSdkMesh();
+			break;
+		default:
+			break;
+		}
 
 	}
 
@@ -94,7 +106,27 @@ namespace TMF
 		{
 			m_loadFile = buf;
 		}
+		const char* types[] = { "Default","CMO","SDKMESH" };
+		static int selectIndex = (int)m_loadType;
+		if (ImGui::BeginCombo("LoadType", types[selectIndex]))
+		{
+			for (int i = 0; i < IM_ARRAYSIZE(types); i++)
+			{
+				auto selected = ((int)m_loadType == i);
+				if (ImGui::Selectable(types[i], selected))
+				{
+					m_loadType = LOADTYPE(i);
+					selectIndex = i;
 
+				}
+				if (selected)
+				{
+					ImGui::SetItemDefaultFocus();
+				}
+			}
+			ImGui::EndCombo();
+			ImGui::SameLine();
+		}
 		if (ImGui::Button("LoadCmo"))
 		{
 			LoadCMO();

@@ -41,6 +41,6 @@ namespace TMF
 		std::shared_ptr<btCollisionShape> m_pCollisionShape;
 		Collider_Type m_collidrType = Collider_Type::BOX;
 
-		SERIALIZE_COMPONENT(m_collidrType , m_uuID);
+		SERIALIZE_COMPONENT(m_collidrType);
 	};
 }

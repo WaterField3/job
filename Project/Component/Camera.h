@@ -33,6 +33,6 @@ namespace TMF
 		float m_near = 0.1f;
 		float m_far = 1000.0f;
 
-		SERIALIZE_COMPONENT(m_fov, m_near, m_far, m_uuID);
+		SERIALIZE_COMPONENT(m_fov, m_near, m_far);
 	};
 }

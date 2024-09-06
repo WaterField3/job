@@ -22,6 +22,14 @@ namespace TMF
 	class Model : public Component
 	{
 	public:
+		enum LOADTYPE
+		{
+			DEFAULT,
+			CMO,
+			SDKMESH,
+		};
+
+	public:
 		Model();
 		~Model();
 		void OnInitialize() override;
@@ -32,19 +40,22 @@ namespace TMF
 		void OnDrawImGui() override;
 		inline std::weak_ptr<DirectX::Model> GetModel() { return m_pModel; }
 		inline size_t GetAnimOffset() const { return animOffset; }
+		inline LOADTYPE GetLoadType() const { return m_loadType; }
 
 	private:
 		void ModelDraw();
 		void LoadCMO();
 		void LoadSdkMesh();
 
+
 		size_t animOffset = 0;
 		std::string m_loadFile = "asset/Gun.cmo";
+		LOADTYPE m_loadType = LOADTYPE::DEFAULT;
 		std::unique_ptr<DirectX::EffectFactory> m_pEffectFactory;
 		std::shared_ptr<DirectX::Model> m_pModel;
 		std::unique_ptr<DirectX::CommonStates> m_pCommonState;
 		bool m_isDraw = true;
 
-		SERIALIZE_COMPONENT(m_loadFile, m_isDraw, m_uuID);
+		SERIALIZE_COMPONENT(m_loadFile, m_isDraw, m_loadType);
 	};
 }

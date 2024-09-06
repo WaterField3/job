@@ -35,7 +35,6 @@ namespace TMF
 		float m_animOffset = 0;
 		size_t m_boneSize = 0;
 		std::string m_fileName = "";
-		//DX::AnimationCMO m_animation;
 		std::unique_ptr<DX::AnimationCMO> m_pAnimationCMO;
 		std::unique_ptr<DX::AnimationSDKMESH> m_pAnimationSDKMESH;
 		DirectX::ModelBone::TransformArray m_drawBone;

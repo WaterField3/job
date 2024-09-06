@@ -27,6 +27,6 @@ namespace TMF
 		DirectX::SimpleMath::Vector3 m_effectPos = DirectX::SimpleMath::Vector3::Zero;
 		std::string m_effectPath = "";
 
-		SERIALIZE_COMPONENT(m_effectPath, m_effectPos, m_uuID);
+		SERIALIZE_COMPONENT(m_effectPath, m_effectPos);
 	};
 }

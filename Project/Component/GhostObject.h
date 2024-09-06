@@ -29,6 +29,6 @@ namespace TMF
 
 	private:
 		std::shared_ptr<btGhostObject> m_pGhostObject;
-		SERIALIZE_COMPONENT(m_uuID);
+		//SERIALIZE_COMPONENT(m_uuID);
 	};
 }

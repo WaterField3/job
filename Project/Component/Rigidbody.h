@@ -44,6 +44,6 @@ namespace TMF
 		std::unique_ptr<btDefaultMotionState> m_pMotionState;
 		std::shared_ptr<btRigidBody> m_pRigidBody;
 
-		SERIALIZE_COMPONENT(m_mass, m_drag, m_angularDrag, m_angulerSleepingThresholds, m_linearSleepingThresholds, m_isAngularFactorX, m_isAngularFactorY, m_isAngularFactorZ, m_uuID);
+		SERIALIZE_COMPONENT(m_mass, m_drag, m_angularDrag, m_angulerSleepingThresholds, m_linearSleepingThresholds, m_isAngularFactorX, m_isAngularFactorY, m_isAngularFactorZ);
     };
 }

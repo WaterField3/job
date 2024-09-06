@@ -70,7 +70,7 @@
                                         },
                                         "m_position": {
                                             "value0": 0.20000000298023225,
-                                            "value1": 0.0,
+                                            "value1": 6.699999809265137,
                                             "value2": -0.20000000298023225
                                         },
                                         "m_scale": {
@@ -103,10 +103,7 @@
                                                 "uuid": "8b89cb1e-d1a7-477b-82c9-0c7fa57b93a9"
                                             }
                                         },
-                                        "m_collidrType": 0,
-                                        "m_uuID": {
-                                            "uuid": "8b89cb1e-d1a7-477b-82c9-0c7fa57b93a9"
-                                        }
+                                        "m_collidrType": 0
                                     }
                                 }
                             },
@@ -128,10 +125,7 @@
                                         "m_linearSleepingThresholds": 0.0,
                                         "m_isAngularFactorX": false,
                                         "m_isAngularFactorY": false,
-                                        "m_isAngularFactorZ": false,
-                                        "m_uuID": {
-                                            "uuid": "eac89d69-601b-4bc0-88e2-4ab72e34f064"
-                                        }
+                                        "m_isAngularFactorZ": false
                                     }
                                 }
                             }
@@ -195,10 +189,7 @@
                                         },
                                         "m_fov": 60.0,
                                         "m_near": 0.10000000149011612,
-                                        "m_far": 1000.0,
-                                        "m_uuID": {
-                                            "uuid": "5b219252-f32f-452f-930c-2295139ae5fe"
-                                        }
+                                        "m_far": 1000.0
                                     }
                                 }
                             }
@@ -259,10 +250,7 @@
                                                 "uuid": "9ebca57f-ab28-4c4b-b024-10e99f7bca70"
                                             }
                                         },
-                                        "m_collidrType": 0,
-                                        "m_uuID": {
-                                            "uuid": "9ebca57f-ab28-4c4b-b024-10e99f7bca70"
-                                        }
+                                        "m_collidrType": 0
                                     }
                                 }
                             },
@@ -283,10 +271,7 @@
                                         "m_linearSleepingThresholds": 0.0,
                                         "m_isAngularFactorX": false,
                                         "m_isAngularFactorY": false,
-                                        "m_isAngularFactorZ": false,
-                                        "m_uuID": {
-                                            "uuid": "05bea6de-071a-4c61-aa9a-08190596d625"
-                                        }
+                                        "m_isAngularFactorZ": false
                                     }
                                 }
                             }
@@ -347,10 +332,7 @@
                                                 "uuid": "4a5c05c6-1c58-4254-b8d3-e9106ee9c401"
                                             }
                                         },
-                                        "m_collidrType": 0,
-                                        "m_uuID": {
-                                            "uuid": "4a5c05c6-1c58-4254-b8d3-e9106ee9c401"
-                                        }
+                                        "m_collidrType": 0
                                     }
                                 }
                             },
@@ -360,11 +342,6 @@
                                 "ptr_wrapper": {
                                     "id": 2147483665,
                                     "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "f53803f1-fd7e-45ab-be53-e70cb09e6079"
-                                            }
-                                        },
                                         "m_uuID": {
                                             "uuid": "f53803f1-fd7e-45ab-be53-e70cb09e6079"
                                         }
@@ -428,10 +405,7 @@
                                                 "uuid": "99596327-aebb-46f5-a118-57aa8a903d8c"
                                             }
                                         },
-                                        "m_collidrType": 0,
-                                        "m_uuID": {
-                                            "uuid": "99596327-aebb-46f5-a118-57aa8a903d8c"
-                                        }
+                                        "m_collidrType": 0
                                     }
                                 }
                             },
@@ -440,11 +414,6 @@
                                 "ptr_wrapper": {
                                     "id": 2147483669,
                                     "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "78d3a094-d234-4058-965c-37801fdfbefe"
-                                            }
-                                        },
                                         "m_uuID": {
                                             "uuid": "78d3a094-d234-4058-965c-37801fdfbefe"
                                         }
@@ -511,9 +480,7 @@
                                         },
                                         "m_loadFile": "asset/Gun.cmo",
                                         "m_isDraw": true,
-                                        "m_uuID": {
-                                            "uuid": "09868a3b-f87b-463c-8bb2-31d1159f20f9"
-                                        }
+                                        "m_loadType": 0
                                     }
                                 }
                             }
@@ -574,10 +541,7 @@
                                                 "uuid": "c4bd0394-3680-4279-a580-d334e7f01ed5"
                                             }
                                         },
-                                        "m_collidrType": 3,
-                                        "m_uuID": {
-                                            "uuid": "c4bd0394-3680-4279-a580-d334e7f01ed5"
-                                        }
+                                        "m_collidrType": 3
                                     }
                                 }
                             },
@@ -598,10 +562,7 @@
                                         "m_linearSleepingThresholds": 0.0,
                                         "m_isAngularFactorX": false,
                                         "m_isAngularFactorY": false,
-                                        "m_isAngularFactorZ": false,
-                                        "m_uuID": {
-                                            "uuid": "d71fc91a-6ca3-46a9-aab4-cdc62b313387"
-                                        }
+                                        "m_isAngularFactorZ": false
                                     }
                                 }
                             },
@@ -652,9 +613,6 @@
                                             "value0": 0.0,
                                             "value1": 0.0,
                                             "value2": 0.0
-                                        },
-                                        "m_uuID": {
-                                            "uuid": "806021d5-fcd0-4f97-b053-abe11ae7a232"
                                         }
                                     }
                                 }
@@ -718,9 +676,7 @@
                                         },
                                         "m_loadFile": "asset/Gun.cmo",
                                         "m_isDraw": true,
-                                        "m_uuID": {
-                                            "uuid": "bd9ddc0d-90b0-4bb1-81a3-a207dad2a723"
-                                        }
+                                        "m_loadType": 0
                                     }
                                 }
                             }
@@ -836,9 +792,6 @@
                                             "value0": 0.0,
                                             "value1": 0.0,
                                             "value2": 0.0
-                                        },
-                                        "m_uuID": {
-                                            "uuid": "cc4ce83d-37b9-45e9-946c-dd714caf9b5e"
                                         }
                                     }
                                 }
@@ -868,13 +821,13 @@
                                         },
                                         "m_position": {
                                             "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 8.300000190734864
+                                            "value1": -0.800000011920929,
+                                            "value2": 0.0
                                         },
                                         "m_scale": {
-                                            "value0": 0.009999999776482582,
-                                            "value1": 0.009999999776482582,
-                                            "value2": 0.009999999776482582
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
                                         },
                                         "m_rotation": {
                                             "value0": -0.0,
@@ -902,9 +855,7 @@
                                         },
                                         "m_loadFile": "asset/teapot.cmo",
                                         "m_isDraw": true,
-                                        "m_uuID": {
-                                            "uuid": "876f5065-a9d7-4288-8c0c-f7ab1c072ad5"
-                                        }
+                                        "m_loadType": 1
                                     }
                                 }
                             },
@@ -920,6 +871,108 @@
                                             }
                                         },
                                         "m_fileName": "asset/teapot.cmo"
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "id": 2147483692,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "96e047ae-3983-4f0e-9ee9-84e92296c4fd"
+                                            }
+                                        },
+                                        "m_mass": 1.0,
+                                        "m_drag": 0.0,
+                                        "m_angularDrag": 0.0,
+                                        "m_angulerSleepingThresholds": 0.0,
+                                        "m_linearSleepingThresholds": 0.0,
+                                        "m_isAngularFactorX": false,
+                                        "m_isAngularFactorY": false,
+                                        "m_isAngularFactorZ": false
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2,
+                                "ptr_wrapper": {
+                                    "id": 2147483693,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "8848712a-6156-43f4-b0f2-561a27a0a4ca"
+                                            }
+                                        },
+                                        "m_collidrType": 0
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 7,
+                                "ptr_wrapper": {
+                                    "id": 2147483694,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "a0c6e1ce-c4eb-44f8-ae70-4bda8b1c2fce"
+                                            }
+                                        },
+                                        "m_moveSpeed": 10.0,
+                                        "m_uuID": {
+                                            "uuid": "a0c6e1ce-c4eb-44f8-ae70-4bda8b1c2fce"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483695,
+                    "data": {
+                        "m_name": "col",
+                        "m_uuID": {
+                            "uuid": "f93340e8-cdb7-443c-8d7c-79a5ae874577"
+                        },
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483696,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "0c8efb88-a4f8-4e7f-85bf-517d0832e85c"
+                                            }
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 1073741824,
+                                                "ptr_wrapper": {
+                                                    "id": 41
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }

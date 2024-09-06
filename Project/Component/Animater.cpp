@@ -17,7 +17,29 @@ namespace TMF
 {
 	void Animater::OnInitialize()
 	{
-		//LoadCMO();
+		// アニメーションの読み込み
+		if (auto pOwner = m_pOwner.lock())
+		{
+			auto pModel = pOwner->GetComponent<Model>();
+			if (auto pLockModel = pModel.lock())
+			{
+				// モデルの読み込みに合わせる
+				auto loadType = pLockModel->GetLoadType();
+				switch (loadType)
+				{
+				case TMF::Model::DEFAULT:
+					break;
+				case TMF::Model::CMO:
+					LoadCMO();
+					break;
+				case TMF::Model::SDKMESH:
+					LoadSDKMESH();
+					break;
+				default:
+					break;
+				}
+			}
+		}
 	}
 	void Animater::OnFinalize()
 	{
@@ -86,7 +108,6 @@ namespace TMF
 		{
 			m_fileName = buf;
 		}
-
 		if (ImGui::Button("LoadCMO"))
 		{
 			LoadCMO();
@@ -119,6 +140,11 @@ namespace TMF
 					m_pAnimationCMO->Load(wideString.c_str(), m_animOffset);
 					m_pAnimationCMO->Bind(*lockModel);
 					m_drawBone = DirectX::ModelBone::MakeArray(m_boneSize);
+
+					if (m_pAnimationSDKMESH)
+					{
+						m_pAnimationSDKMESH.release();
+					}
 				}
 				catch (const std::exception& e)
 				{
@@ -150,6 +176,11 @@ namespace TMF
 					m_pAnimationSDKMESH->Load(wideString.c_str());
 					m_pAnimationSDKMESH->Bind(*lockModel);
 					m_drawBone = DirectX::ModelBone::MakeArray(m_boneSize);
+
+					if (m_pAnimationCMO)
+					{
+						m_pAnimationCMO.release();
+					}
 				}
 				catch (const std::exception& e)
 				{
