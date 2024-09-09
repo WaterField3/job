@@ -10,6 +10,7 @@
 #include "Timer.h"
 #include "System/Animation.h"
 #include "Utility/Log.h"
+#include "Utility/StringHelper.h"
 
 REGISTER_COMPONENT(TMF::Animater, "Animater");
 
@@ -51,11 +52,11 @@ namespace TMF
 		auto deltaTime = Timer::Instance().deltaTime.count();
 		if (m_pAnimationCMO)
 		{
-			m_pAnimationCMO->Update(deltaTime);
+			m_pAnimationCMO->Update(deltaTime * m_animationSpeed);
 		}
 		if (m_pAnimationSDKMESH)
 		{
-			m_pAnimationSDKMESH->Update(deltaTime);
+			m_pAnimationSDKMESH->Update(deltaTime * m_animationSpeed);
 		}
 	}
 	void Animater::OnLateUpdate()
@@ -104,9 +105,15 @@ namespace TMF
 	{
 		char buf[256] = "";
 		strcpy_s(buf, sizeof(buf), m_fileName.c_str());
-		if (ImGui::InputText("FileName", buf, 256))
+		auto label = StringHelper::CreateLabel("FileName", m_uuID);
+		if (ImGui::InputText(label.c_str(), buf, 256))
 		{
 			m_fileName = buf;
+		}
+		auto animSpeedLabel = StringHelper::CreateLabel("AnimSpeed", m_uuID);
+		if (ImGui::DragFloat(animSpeedLabel.c_str(), &m_animationSpeed, 0.1f))
+		{
+
 		}
 		if (ImGui::Button("LoadCMO"))
 		{

@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "direct3d.h"
 #include "Utility/Log.h"
+#include "Utility/StringHelper.h"
 
 REGISTER_COMPONENT(TMF::Model, "Model");
 
@@ -99,10 +100,11 @@ namespace TMF
 
 	void Model::OnDrawImGui()
 	{
-		ImGui::Checkbox("active", &m_isDraw);
+		ImGui::Checkbox("Active", &m_isDraw);
 		char buf[256] = "";
 		strcpy_s(buf, sizeof(buf), m_loadFile.c_str());
-		if (ImGui::InputText("fileName", buf, 256))
+		auto label = StringHelper::CreateLabel("FileName", m_uuID);
+		if (ImGui::InputText(label.c_str(), buf, 256))
 		{
 			m_loadFile = buf;
 		}
@@ -160,14 +162,6 @@ namespace TMF
 			}
 		}
 
-		// XYZ‚ÌŽOŽ²‚Ì‰ñ“]Šp“x‚ðŽw’è‚µ‚Ä‰ñ“]‚³‚¹‚é•û–@@@ƒIƒCƒ‰[Šp
-		auto matrixRotateX = DirectX::SimpleMath::Matrix::CreateRotationX(0);
-		auto matrixRotateY = DirectX::SimpleMath::Matrix::CreateRotationY(0);
-		auto matrixRotateZ = DirectX::SimpleMath::Matrix::CreateRotationZ(0);
-
-		// ‰ñ“]s—ñ
-		auto matrixRotate = matrixRotateX * matrixRotateY * matrixRotateZ;
-
 		// Transform‚ðŽæ“¾
 		if (auto gameObject = m_pOwner.lock())
 		{
@@ -175,7 +169,6 @@ namespace TMF
 			if (auto pComponent = Component.lock())
 			{
 				matrixWorld = pComponent->GetWorldMatrix();
-				matrixRotate = pComponent->GetMatrixRotation();
 			}
 		}
 

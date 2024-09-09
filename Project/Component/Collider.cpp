@@ -5,6 +5,7 @@
 #include "Transform.h"
 #include "Rigidbody.h"
 #include "GhostObject.h"
+#include "Utility/StringHelper.h"
 
 REGISTER_COMPONENT(TMF::Collider, "Collider");
 
@@ -66,6 +67,17 @@ namespace TMF
 			ImGui::SameLine();
 		}
 
+		auto sizeLabel = StringHelper::CreateLabel("Size", m_uuID);
+		if (ImGui::DragFloat3(sizeLabel.c_str(), &m_size.x, 0.1f))
+		{
+			UpdateShapeInfo();
+		}
+		auto centerLabel = StringHelper::CreateLabel("Center", m_uuID);
+		if (ImGui::DragFloat3(centerLabel.c_str(), &m_center.x, 0.1f))
+		{
+			UpdateShapeInfo();
+		}
+
 		if (ImGui::Button("Update"))
 		{
 			UpdateShapeInfo();
@@ -81,6 +93,10 @@ namespace TMF
 			if (auto transform = transformComponent.lock())
 			{
 				auto scale = transform->GetScale();
+				scale.x = std::abs(scale.x);
+				scale.y = std::abs(scale.y);
+				scale.z = std::abs(scale.z);
+				scale *= m_size;
 				btscale.setValue(scale.x, scale.y, scale.z);
 			}
 		}
@@ -133,6 +149,7 @@ namespace TMF
 		if (auto transform = transformComponent.lock())
 		{
 			pos = transform->GetPosition();
+			pos += m_center;
 			rotate = transform->GetRotation();
 		}
 		auto rigidBody = owner->GetComponent<Rigidbody>();
@@ -152,6 +169,7 @@ namespace TMF
 		if (auto transform = transformComponent.lock())
 		{
 			pos = transform->GetPosition();
+			pos += m_center;
 			rotate = transform->GetRotation();
 		}
 		auto ghostObject = owner->GetComponent<GhostObject>();

@@ -26,10 +26,16 @@ namespace TMF
 				qua = trans->GetRotation();
 			}
 			auto collider = owner->GetComponent<Collider>();
+			auto centerOffset = Vector3::Zero;
 			if (auto col = collider.lock())
 			{
-				auto inertia = btVector3(pos.x, pos.y, pos.z);
+
 				auto colShape = col->GetCollisionShape();
+				centerOffset = col->GetCollsionCenter();
+				pos += centerOffset;
+				auto inertia = btVector3(pos.x, pos.y, pos.z);
+				
+				auto centerOffset = col->GetCollsionCenter();
 				if (auto usefullColShape = colShape.lock())
 				{
 					usefullColShape->calculateLocalInertia(m_mass, inertia);
@@ -66,11 +72,18 @@ namespace TMF
 			auto transformComponent = owner->GetComponent<Transform>();
 			auto pos = Vector3::Zero;
 			auto rotate = Quaternion::Identity;
+			auto centerOffset = Vector3::Zero;
+			auto pColl = owner->GetComponent<Collider>();
+			if (auto pLockColl = pColl.lock())
+			{
+				centerOffset = pLockColl->GetCollsionCenter();
+			}
 			if (auto transform = transformComponent.lock())
 			{
 				btTransform trans;
 				m_pRigidBody->getMotionState()->getWorldTransform(trans);
 				pos = Vector3{ trans.getOrigin().getX(),trans.getOrigin().getY(),trans.getOrigin().getZ() };
+				pos -= centerOffset;
 				transform->SetPosition(pos);
 				rotate = transform->GetRotation();
 			}

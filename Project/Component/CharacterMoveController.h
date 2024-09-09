@@ -31,6 +31,6 @@ namespace TMF
 		float m_moveSpeed = 1;
 		float m_jumpPower = 1;
 
-		SERIALIZE_COMPONENT(m_moveSpeed, m_uuID);
+		SERIALIZE_COMPONENT(m_moveSpeed, m_jumpPower);
 	};
 }

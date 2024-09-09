@@ -47,7 +47,7 @@ namespace TMF
 		void LoadCMO();
 		void LoadSdkMesh();
 
-
+	private:
 		size_t animOffset = 0;
 		std::string m_loadFile = "asset/Gun.cmo";
 		LOADTYPE m_loadType = LOADTYPE::DEFAULT;

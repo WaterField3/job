@@ -32,7 +32,8 @@ namespace TMF
 		void LoadSDKMESH();
 
 	private:
-		float m_animOffset = 0;
+		float m_animationSpeed = 1.0f;
+		size_t m_animOffset = 0;
 		size_t m_boneSize = 0;
 		std::string m_fileName = "";
 		std::unique_ptr<DX::AnimationCMO> m_pAnimationCMO;
@@ -41,6 +42,6 @@ namespace TMF
 		std::weak_ptr<DirectX::Model> m_pModel;
 
 
-		SERIALIZE_COMPONENT(m_fileName);
+		SERIALIZE_COMPONENT(m_fileName, m_animationSpeed);
 	};
 }

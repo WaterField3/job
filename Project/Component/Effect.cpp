@@ -4,6 +4,7 @@
 
 #include "EffectManager.h"
 #include "Utility/StringHelper.h"
+#include "Transform.h"
 
 REGISTER_COMPONENT(TMF::Effect, "Effect");
 
@@ -44,6 +45,21 @@ namespace TMF
 	}
 	void Effect::Play()
 	{
-		EffectManager::Instance().Play(m_effectPath, m_effectPos);
+		auto pOwner = m_pOwner.lock();
+		auto transform = pOwner->GetComponent<Transform>();
+		if (auto pLockTransform = transform.lock())
+		{
+			auto parent = pLockTransform->GetParent();
+			if (auto pLockTransform = parent.lock())
+			{
+				auto parentPos = pLockTransform->GetPosition();
+				auto effectPos = m_effectPos + parentPos;
+				EffectManager::Instance().Play(m_effectPath, effectPos);
+			}
+			else
+			{
+				EffectManager::Instance().Play(m_effectPath, m_effectPos);
+			}
+		}
 	}
 }
