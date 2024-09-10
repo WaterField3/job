@@ -194,7 +194,7 @@ namespace TMF
 
 					if (m_pAnimationCMO)
 					{
-						m_pAnimationCMO.release();
+						//m_pAnimationCMO.release();
 					}
 				}
 				catch (const std::exception& e)
