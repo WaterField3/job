@@ -903,7 +903,7 @@
                                             }
                                         },
                                         "m_fileName": "asset/Defeated.sdkmesh_anim",
-                                        "m_animationSpeed": 1.0
+                                        "m_animationSpeed": 0.0
                                     }
                                 }
                             },

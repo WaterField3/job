@@ -148,7 +148,7 @@ namespace TMF
 		auto rotate = DirectX::SimpleMath::Quaternion::Identity;
 		if (auto transform = transformComponent.lock())
 		{
-			pos = transform->GetPosition();
+			pos = transform->GetWorldPosition();
 			pos += m_center;
 			rotate = transform->GetRotation();
 		}
@@ -168,7 +168,7 @@ namespace TMF
 		auto rotate = DirectX::SimpleMath::Quaternion::Identity;
 		if (auto transform = transformComponent.lock())
 		{
-			pos = transform->GetPosition();
+			pos = transform->GetWorldPosition();
 			pos += m_center;
 			rotate = transform->GetRotation();
 		}

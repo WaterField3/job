@@ -115,6 +115,24 @@ namespace TMF
 		// ‰ñ“]s—ñ
 		return Matrix::CreateFromQuaternion(m_rotation);
 	}
+	DirectX::SimpleMath::Vector3 Transform::GetWorldPosition()
+	{
+		auto position = m_position;
+		if (auto pParent = m_pParent.lock())
+		{
+			position += pParent->GetWorldPosition();
+		}
+		return position;
+	}
+	DirectX::SimpleMath::Quaternion Transform::GetWorldRotation()
+	{
+		auto rotation = m_rotation;
+		if (auto pParent = m_pParent.lock())
+		{
+			rotation *= pParent->GetWorldRotation();
+		}
+		return rotation;
+	}
 	void Transform::ChangeRigidBodyTransform()
 	{
 		if (auto owner = m_pOwner.lock())

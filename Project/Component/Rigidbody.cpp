@@ -22,7 +22,7 @@ namespace TMF
 			auto qua = Quaternion::Identity;
 			if (auto trans = transform.lock())
 			{
-				pos = trans->GetPosition();
+				pos = trans->GetWorldPosition();
 				qua = trans->GetRotation();
 			}
 			auto collider = owner->GetComponent<Collider>();

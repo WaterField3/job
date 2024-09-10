@@ -88,8 +88,8 @@ namespace TMF
 			auto transformComponent = owner->GetComponent<Transform>();
 			if (auto transform = transformComponent.lock())
 			{
-				pos = transform->GetPosition();
-				auto rotate = transform->GetRotation();
+				pos = transform->GetWorldPosition();
+				auto rotate = transform->GetWorldRotation();
 				auto forward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Forward, rotate);
 				tagetpos = pos + forward;
 			}

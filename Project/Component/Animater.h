@@ -26,7 +26,6 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
-
 	private:
 		void LoadCMO();
 		void LoadSDKMESH();

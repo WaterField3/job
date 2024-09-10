@@ -42,10 +42,12 @@ namespace TMF
 			}
 		}
 	}
+
 	void Animater::OnFinalize()
 	{
 
 	}
+
 	void Animater::OnUpdate()
 	{
 
@@ -59,9 +61,12 @@ namespace TMF
 			m_pAnimationSDKMESH->Update(deltaTime * m_animationSpeed);
 		}
 	}
+
 	void Animater::OnLateUpdate()
 	{
+
 	}
+
 	void Animater::OnDraw()
 	{
 
@@ -101,6 +106,7 @@ namespace TMF
 		}
 
 	}
+
 	void Animater::OnDrawImGui()
 	{
 		char buf[256] = "";
@@ -124,6 +130,7 @@ namespace TMF
 			LoadSDKMESH();
 		}
 	}
+
 	void Animater::LoadCMO()
 	{
 		auto pOwner = m_pOwner.lock();
@@ -160,6 +167,7 @@ namespace TMF
 			}
 		}
 	}
+
 	void Animater::LoadSDKMESH()
 	{
 		auto pOwner = m_pOwner.lock();
