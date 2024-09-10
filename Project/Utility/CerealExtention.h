@@ -37,4 +37,10 @@ namespace cereal
 	{
 		archive(q.x, q.y, q.z, q.w);
 	}
+
+	template<class Archive>
+	void serialize(Archive& archive, DirectX::SimpleMath::Color& c)
+	{
+		archive(c.x, c.y, c.z, c.w);
+	}
 }

@@ -863,9 +863,9 @@
                                         },
                                         "m_rotation": {
                                             "value0": 0.0,
-                                            "value1": 0.9997837543487549,
+                                            "value1": 0.7173560857772827,
                                             "value2": 0.0,
-                                            "value3": 0.02079486846923828
+                                            "value3": 0.6967066526412964
                                         },
                                         "m_pParent": {
                                             "locked_ptr": {
@@ -885,9 +885,9 @@
                                                 "uuid": "876f5065-a9d7-4288-8c0c-f7ab1c072ad5"
                                             }
                                         },
-                                        "m_loadFile": "asset/Defeated.sdkmesh",
+                                        "m_loadFile": "asset/teapot.cmo",
                                         "m_isDraw": true,
-                                        "m_loadType": 2
+                                        "m_loadType": 1
                                     }
                                 }
                             },
@@ -902,8 +902,8 @@
                                                 "uuid": "8034c743-5ef0-41ec-b152-167172a28821"
                                             }
                                         },
-                                        "m_fileName": "asset/Defeated.sdkmesh_anim",
-                                        "m_animationSpeed": 0.0
+                                        "m_fileName": "asset/teapot.cmo",
+                                        "m_animationSpeed": 1.0
                                     }
                                 }
                             },
