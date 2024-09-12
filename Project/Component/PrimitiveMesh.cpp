@@ -8,6 +8,7 @@
 #include "Camera.h"
 #include "GameObject/GameObjectManager.h"
 #include "Utility/StringHelper.h"
+#include "Collider.h"
 
 REGISTER_COMPONENT(TMF::PrimitiveMesh, "PrimitiveMesh");
 
@@ -19,21 +20,13 @@ namespace TMF
 	}
 	void PrimitiveMesh::MakeMesh()
 	{
-		DirectX::XMFLOAT3 size = DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f);
-		if (auto pOwner = m_pOwner.lock())
-		{
-			auto pTransform = pOwner->GetComponent<Transform>();
-			if (auto pLockTransform = pTransform.lock())
-			{
-				auto transformSize = pLockTransform->GetScale();
-				size = DirectX::XMFLOAT3(transformSize.x, transformSize.y, transformSize.z);
-			}
-		}
+		DirectX::XMFLOAT3 size = DirectX::XMFLOAT3(m_scale.x, m_scale.y, m_scale.z);
+
 		auto context = D3D::Get()->GetContext();
 		switch (m_shapeType)
 		{
 		case TMF::PrimitiveMesh::CUBE:
-			m_pShape = DirectX::GeometricPrimitive::CreateCube(context, size.x);
+			m_pShape = DirectX::GeometricPrimitive::CreateBox(context, size);
 			break;
 		case TMF::PrimitiveMesh::SPHER:
 			m_pShape = DirectX::GeometricPrimitive::CreateSphere(context, size.x, size_t(16));
@@ -81,9 +74,10 @@ namespace TMF
 	}
 	void PrimitiveMesh::OnDrawImGui()
 	{
-		const char* types[] = { "Box","Sphere","Cylinder","Cone"};
+		const char* types[] = { "Box","Sphere","Cylinder","Cone" };
 		static int selectIndex = (int)m_shapeType;
-		if (ImGui::BeginCombo("ColliderType", types[selectIndex]))
+		auto shapeLabel = StringHelper::CreateLabel("ColliderType", m_uuID);
+		if (ImGui::BeginCombo(shapeLabel.c_str(), types[selectIndex]))
 		{
 			for (int i = 0; i < IM_ARRAYSIZE(types); i++)
 			{
@@ -101,7 +95,12 @@ namespace TMF
 			}
 			ImGui::EndCombo();
 		}
-		
+		auto scaleLabel = StringHelper::CreateLabel("Scale", m_uuID);
+		if (ImGui::DragFloat3(scaleLabel.c_str(), &m_scale.x))
+		{
+			MakeMesh();
+		}
+
 		auto colorLabel = StringHelper::CreateLabel("Color", m_uuID);
 		if (ImGui::DragFloat4(colorLabel.c_str(), &m_color.x, 0.1f, 0.0f, 1.0f))
 		{

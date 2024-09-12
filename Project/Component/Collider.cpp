@@ -46,7 +46,8 @@ namespace TMF
 	{
 		const char* types[] = { "Box","Capsule","Sphere","Cylinder","Cone" };
 		static int selectIndex = (int)m_collidrType;
-		if (ImGui::BeginCombo("ColliderType", types[selectIndex]))
+		auto shapeLabel = StringHelper::CreateLabel("ColliderType", m_uuID);
+		if (ImGui::BeginCombo(shapeLabel.c_str(), types[selectIndex]))
 		{
 			for (int i = 0; i < IM_ARRAYSIZE(types); i++)
 			{

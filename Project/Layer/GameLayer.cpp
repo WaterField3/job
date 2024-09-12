@@ -35,5 +35,6 @@ namespace TMF
 	bool GameLayer::GetIsUpdate()
 	{
 		return ApplicationState::Instance().GetIsUpdate();
+		//return true;
 	}
 }

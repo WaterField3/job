@@ -26,6 +26,7 @@ namespace TMF
 		void MakeCollision();
 		std::weak_ptr<btCollisionShape> GetCollisionShape();
 		inline DirectX::SimpleMath::Vector3 GetCollsionCenter() const { return m_center; }
+		inline DirectX::SimpleMath::Vector3 GetCollisionSize() const { return m_size; }
 
 	private:
 		void UpdateShapeInfo();

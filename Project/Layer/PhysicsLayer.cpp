@@ -27,5 +27,6 @@ namespace TMF
 	bool PhysicsLayer::GetIsUpdate()
 	{
 		return ApplicationState::Instance().GetIsUpdate();
+		//return true;
 	}
 }
