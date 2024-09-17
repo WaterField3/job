@@ -29,8 +29,10 @@ namespace TMF
 		auto tracker = Input::Instance().GetTracker();
 		tracker->Update(kb);
 		auto movePos = DirectX::SimpleMath::Vector3::Zero;
-		auto jump = false;
-		if (kb.W)
+		auto torque = DirectX::SimpleMath::Vector3::Zero;
+		auto isJump = false;
+		auto isRotate = false;
+		if (kb.W == true)
 		{
 			auto pOwner = m_pOwner.lock();
 			auto transform = pOwner->GetComponent<Transform>();
@@ -43,7 +45,7 @@ namespace TMF
 				movePos += forward * m_moveSpeed;
 			}
 		}
-		if (kb.S)
+		if (kb.S == true)
 		{
 			auto pOwner = m_pOwner.lock();
 			auto transform = pOwner->GetComponent<Transform>();
@@ -52,11 +54,10 @@ namespace TMF
 				auto pos = pLockTransform->GetWorldPosition();
 				auto rotate = pLockTransform->GetWorldRotation();
 				auto backward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Backward, rotate);
-
 				movePos += backward * m_moveSpeed;
 			}
 		}
-		if (kb.A)
+		if (kb.A == true)
 		{
 			auto pOwner = m_pOwner.lock();
 			auto transform = pOwner->GetComponent<Transform>();
@@ -66,9 +67,11 @@ namespace TMF
 				auto rotate = pLockTransform->GetWorldRotation();
 				auto left = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Left, rotate);
 				movePos += left * m_moveSpeed;
+				torque = DirectX::SimpleMath::Vector3(abs(checkvec3.x), abs(checkvec3.y), abs(checkvec3.y));
+				isRotate = true;
 			}
 		}
-		if (kb.D)
+		if (kb.D == true)
 		{
 			auto pOwner = m_pOwner.lock();
 			auto transform = pOwner->GetComponent<Transform>();
@@ -78,11 +81,13 @@ namespace TMF
 				auto rotate = pLockTransform->GetWorldRotation();
 				auto right = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Right, rotate);
 				movePos += right * m_moveSpeed;
+				torque = DirectX::SimpleMath::Vector3(abs(checkvec3.x), -abs(checkvec3.y), abs(checkvec3.y));
+				isRotate = true;
 			}
 		}
-		if (tracker->pressed.Space)
+		if (tracker->pressed.Space == true)
 		{
-			jump = true;
+			isJump = true;
 		}
 
 		if (auto owner = m_pOwner.lock())
@@ -95,11 +100,37 @@ namespace TMF
 					//rb->SetLinearVelocity(movePos);
 					//rb->ApplyCentralForce(movePos);
 					rb->ApplyForce(movePos, DirectX::SimpleMath::Vector3::Zero);
+					if (isRotate == true)
+					{
+						rb->SetAngularFactor(DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f));
+					}
+					else
+					{
+						rb->SetAngularFactor(DirectX::SimpleMath::Vector3::Zero);
+					}
+					rb->ApplyTorque(torque);
+
 				}
-				if (jump)
+				if (isJump == true)
 				{
 					auto jumpPos = DirectX::SimpleMath::Vector3::Up * m_jumpPower;
 					rb->ApplyImpulse(jumpPos, DirectX::SimpleMath::Vector3::Zero);
+					rb->ApplyTorque(torque);
+				}
+				if (kb.N == true)
+				{
+					rb->SetAngularFactor(DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f));
+					auto torque = checkvec3;
+					rb->ApplyTorque(torque);
+					//rb->GetTotalTorque();
+					//rb->SetRotation(torque);
+				}
+				if (tracker->pressed.O == true)
+				{
+					rb->SetAngularVelocity(DirectX::SimpleMath::Vector3::Zero);
+					//rb->ClearForces();
+					//rb->GetAngularFactor();
+
 				}
 			}
 		}
@@ -117,6 +148,10 @@ namespace TMF
 
 		}
 		if (ImGui::DragFloat("JumpPower", &m_jumpPower, 0.1f, 0.0f))
+		{
+
+		}
+		if (ImGui::DragFloat3("checkVec3", &checkvec3.x))
 		{
 
 		}

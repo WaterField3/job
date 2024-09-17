@@ -28,11 +28,20 @@ namespace TMF
 		void SetLinearVelocity(DirectX::SimpleMath::Vector3 velocity);
 		void ApplyImpulse(DirectX::SimpleMath::Vector3 impulse, DirectX::SimpleMath::Vector3 relPos);
 		void ApplyForce(DirectX::SimpleMath::Vector3 force, DirectX::SimpleMath::Vector3 relPos);
+		void ApplyTorque(DirectX::SimpleMath::Vector3 torque);
+		void SetAngularVelocity(DirectX::SimpleMath::Vector3 velocity);
+		void SetRotation(DirectX::SimpleMath::Vector3 rotation);
+		void GetTotalTorque();
+		void ClearForces();
+		void GetAngularFactor();
+		void SetAngularFactor(DirectX::SimpleMath::Vector3 angular);
 	private:
 		btVector3 MakebtVector3(DirectX::SimpleMath::Vector3 vec);
 		btQuaternion MakebtQuaternion(DirectX::SimpleMath::Quaternion qua);
 		btTransform MakebtTransform(DirectX::SimpleMath::Vector3 vec, DirectX::SimpleMath::Quaternion qua);
 		std::string LabelChange(const char* labelName);
+
+	private:
 		float m_mass = 0.0f;
 		float m_drag = 0.0f;
 		float m_angularDrag = 0.0f;

@@ -5,6 +5,7 @@
 #include <memory>
 #include <GeometricPrimitive.h>
 #include <string>
+#include <wrl/client.h>
 
 #include "ComponentCerealHelper.h"
 
@@ -22,6 +23,9 @@ namespace TMF
         void OnDrawImGui() override;
 
     private:
+        void LoadTexture();
+
+    private:
         enum ShapeType
         {
             CUBE,
@@ -31,13 +35,11 @@ namespace TMF
         };
 
     private:
-        std::string m_TextureFileName = "";
         DirectX::SimpleMath::Color m_color = DirectX::SimpleMath::Color(1.0f, 1.0f, 1.0f, 1.0f);
         ShapeType m_shapeType = ShapeType::CUBE;
         std::unique_ptr<DirectX::GeometricPrimitive> m_pShape;
-        /*std::unique_ptr<ID3D11ShaderResourceView> m_pTexture;*/
         // 基本形状のサイズ※基本的に2にすると良い
-        DirectX::SimpleMath::Vector3 m_scale = DirectX::SimpleMath::Vector3::One;
+        DirectX::SimpleMath::Vector3 m_scale = DirectX::SimpleMath::Vector3(2.0f,2.0f,2.0f);
         SERIALIZE_COMPONENT(m_shapeType, m_color, m_scale);
     };
 }

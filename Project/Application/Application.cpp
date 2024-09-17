@@ -38,6 +38,7 @@ namespace TMF
 		{
 			layer->OnDraw();
 		}
+		// §ìŽž‚Ì‚Ý
 		//D3D::Get()->UpdateScreen();
 	}
 

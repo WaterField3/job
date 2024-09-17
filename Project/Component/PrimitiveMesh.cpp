@@ -1,14 +1,15 @@
 #include "PrimitiveMesh.h"
 
-#include "Imgui/imgui.h"
+#include <Imgui/imgui.h>
+#include <WICTextureLoader.h>
 
 #include "direct3d.h"
 #include "ComponentRegister.h"
 #include "Transform.h"
 #include "Camera.h"
+#include "Collider.h"
 #include "GameObject/GameObjectManager.h"
 #include "Utility/StringHelper.h"
-#include "Collider.h"
 
 REGISTER_COMPONENT(TMF::PrimitiveMesh, "PrimitiveMesh");
 

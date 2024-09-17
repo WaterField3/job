@@ -30,7 +30,8 @@ namespace TMF
 	private:
 		float m_moveSpeed = 1;
 		float m_jumpPower = 1;
+		DirectX::SimpleMath::Vector3 checkvec3= DirectX::SimpleMath::Vector3::One;
 
-		SERIALIZE_COMPONENT(m_moveSpeed, m_jumpPower);
+		SERIALIZE_COMPONENT(m_moveSpeed, m_jumpPower, checkvec3);
 	};
 }

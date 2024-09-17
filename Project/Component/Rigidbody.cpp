@@ -6,6 +6,8 @@
 #include "Transform.h"
 #include "PhysicsManager.h"
 #include "GhostObject.h"
+#include "Input.h"
+#include "Utility/Log.h"
 
 REGISTER_COMPONENT(TMF::Rigidbody, "Rigidbody");
 
@@ -40,7 +42,7 @@ namespace TMF
 				{
 					usefullColShape->calculateLocalInertia(m_mass, inertia);
 					m_pMotionState = std::make_unique<btDefaultMotionState>(MakebtTransform(pos, qua));
-					btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(m_mass, m_pMotionState.get(), usefullColShape.get(), inertia);
+					auto  rigidBodyCI = btRigidBody::btRigidBodyConstructionInfo(m_mass, m_pMotionState.get(), usefullColShape.get(), inertia);
 					m_pRigidBody = std::make_shared<btRigidBody>(rigidBodyCI);
 					if (auto owner = m_pOwner.lock())
 					{
@@ -85,7 +87,8 @@ namespace TMF
 				pos = Vector3{ trans.getOrigin().getX(),trans.getOrigin().getY(),trans.getOrigin().getZ() };
 				pos -= centerOffset;
 				transform->SetPosition(pos);
-				rotate = transform->GetRotation();
+				rotate = Quaternion(trans.getRotation().getX(), trans.getRotation().getY(), trans.getRotation().getZ(), trans.getRotation().getW());
+				transform->SetRotation(rotate);
 			}
 		}
 	}
@@ -172,7 +175,7 @@ namespace TMF
 			auto inertia = btVector3(pos.x, pos.y, pos.z);
 			colShape->calculateLocalInertia(m_mass, inertia);
 			m_pMotionState = std::make_unique<btDefaultMotionState>(MakebtTransform(pos, qua));
-			btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(m_mass, m_pMotionState.get(), colShape.get(), inertia);
+			auto rigidBodyCI = btRigidBody::btRigidBodyConstructionInfo(m_mass, m_pMotionState.get(), colShape.get(), inertia);
 			m_pRigidBody = std::make_shared<btRigidBody>(rigidBodyCI);
 			if (auto owner = m_pOwner.lock())
 			{
@@ -199,7 +202,62 @@ namespace TMF
 
 	void Rigidbody::ApplyForce(DirectX::SimpleMath::Vector3 force, DirectX::SimpleMath::Vector3 relPos)
 	{
-		m_pRigidBody->applyForce(MakebtVector3(force), MakebtVector3(Vector3::Zero));
+		m_pRigidBody->applyForce(MakebtVector3(force), MakebtVector3(relPos));
+	}
+
+	void Rigidbody::ApplyTorque(DirectX::SimpleMath::Vector3 torque)
+	{
+		m_pRigidBody->applyTorque(MakebtVector3(torque));
+	}
+
+	void Rigidbody::SetAngularVelocity(DirectX::SimpleMath::Vector3 velocity)
+	{
+		m_pRigidBody->setAngularVelocity(MakebtVector3(velocity));
+	}
+
+	void Rigidbody::SetRotation(DirectX::SimpleMath::Vector3 rotation)
+	{
+		auto pOwner = m_pOwner.lock();
+		auto pTransform = pOwner->GetComponent<Transform>();
+		btTransform btTrans;
+		if (auto pLockTransform = pTransform.lock())
+		{
+			m_pRigidBody->getMotionState()->getWorldTransform(btTrans);
+			auto btQua = btQuaternion(MakebtVector3(rotation), SIMD_PI / 2);
+			btTrans.setRotation(btQua);
+			m_pRigidBody->getMotionState()->setWorldTransform(btTrans);
+			m_pRigidBody->setCenterOfMassTransform(btTrans);
+		}
+	}
+
+	void Rigidbody::GetTotalTorque()
+	{
+		auto torque = m_pRigidBody->getTotalTorque();
+		Log::Info("%d", torque.getX());
+		Log::Info("%d", torque.getY());
+		Log::Info("%d", torque.getZ());
+	}
+
+	void Rigidbody::ClearForces()
+	{
+		//m_pRigidBody->clearForces();
+		m_pRigidBody->setDamping(0.0f, 1.0f);
+	}
+
+	void Rigidbody::GetAngularFactor()
+	{
+		auto factor = m_pRigidBody->getAngularFactor();
+		Log::Info("X : %d", factor.getX());
+		Log::Info("Y : %d", factor.getY());
+		Log::Info("Z : %d", factor.getZ());
+	}
+
+	void Rigidbody::SetAngularFactor(DirectX::SimpleMath::Vector3 angular)
+	{
+		m_pRigidBody->setAngularFactor(MakebtVector3(angular));
+		m_isAngularFactorX = angular.x;
+		m_isAngularFactorY = angular.y;
+		m_isAngularFactorZ = angular.z;
 	}
 
 	btVector3 Rigidbody::MakebtVector3(DirectX::SimpleMath::Vector3 vec)

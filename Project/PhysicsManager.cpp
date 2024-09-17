@@ -11,6 +11,7 @@ namespace TMF
 	{
 		m_pBroadphaseInterface = std::make_unique<btDbvtBroadphase>();
 		m_pCollisionConfig = std::make_unique<btDefaultCollisionConfiguration>();
+
 		m_pCollisionDispacher = std::make_unique<MyBulletCollisionDispatcher>(m_pCollisionConfig.get());
 		m_pConstrainSolver = std::make_unique<btSequentialImpulseConstraintSolver>();
 		m_pDynamicsWorld = std::make_unique<btDiscreteDynamicsWorld>(m_pCollisionDispacher.get(), m_pBroadphaseInterface.get(), m_pConstrainSolver.get(), m_pCollisionConfig.get());
@@ -33,8 +34,8 @@ namespace TMF
 		{
 			D3D::Get()->SettingEffect(camera->GetViewMatrix(), camera->GetProjectionMatrix());
 		}
-		auto CollisionObjects = m_pDynamicsWorld->getCollisionObjectArray();
-		if (CollisionObjects.size() > 0)
+		auto collisionObjects = m_pDynamicsWorld->getCollisionObjectArray();
+		if (collisionObjects.size() > 0)
 		{
 			m_pDynamicsWorld->debugDrawWorld();
 			m_pBulletDebugDrawer->Render();
