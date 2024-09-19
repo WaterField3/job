@@ -8,6 +8,7 @@
 #include <CommonStates.h>
 #include <PrimitiveBatch.h>
 #include <VertexTypes.h>
+#include <SpriteBatch.h>
 
 class BulletDebugDrawer : public btIDebugDraw
 {
@@ -27,5 +28,6 @@ private:
 	std::vector<DirectX::SimpleMath::Vector3> m_vertices;
 	std::vector<DirectX::SimpleMath::Vector4> m_colors;
 	std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>> m_pBatch;
+	std::unique_ptr<DirectX::SpriteBatch> m_pSpriteBatch;
 };
 

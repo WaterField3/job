@@ -106,7 +106,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	auto app = CreateApplication();
 	app->OnInitialize();
-
+	D3D::Get()->Init();
 	// ƒQ[ƒ€ƒ‹[ƒv
 	for (;;)
 	{

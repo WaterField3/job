@@ -166,6 +166,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Component\PrimitiveMesh.cpp" />
+    <ClCompile Include="RenderTexture.cpp" />
     <ClCompile Include="System\Animation.cpp" />
     <ClCompile Include="Component\Animater.cpp" />
     <ClCompile Include="ApplicationState.cpp" />
@@ -214,6 +215,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component\PrimitiveMesh.h" />
+    <ClInclude Include="ReadData.h" />
+    <ClInclude Include="RenderTexture.h" />
     <ClInclude Include="System\Animation.h" />
     <ClInclude Include="Component\Animater.h" />
     <ClInclude Include="ApplicationState.h" />
@@ -361,6 +364,15 @@
     <ClInclude Include="WaveFrontReader.h" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="BloomCombine.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="BloomExtract.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="GaussianBlur.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+    </FxCompile>
     <FxCompile Include="PixelShader.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ps_main</EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
@@ -383,6 +395,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Bloom.hlsli" />
     <None Include="Vender\cereal\external\rapidxml\manual.html" />
     <None Include="packages.config" />
   </ItemGroup>

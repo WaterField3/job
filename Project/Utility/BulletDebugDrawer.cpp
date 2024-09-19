@@ -5,7 +5,6 @@
 BulletDebugDrawer::BulletDebugDrawer(ID3D11DeviceContext* pDeviceContext)
 {
 	m_pBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>>(pDeviceContext);
-
 }
 
 BulletDebugDrawer::~BulletDebugDrawer()
@@ -57,7 +56,6 @@ void BulletDebugDrawer::Render()
 	m_pBatch->Begin();
 
 	auto size = m_vertices.size();
-
 
 	for (int i = 0; i < size ; i += 2)
 	{

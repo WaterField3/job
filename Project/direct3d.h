@@ -6,6 +6,11 @@
 #include <Effects.h>
 #include <CommonStates.h>
 #include <memory>
+#include <wrl/client.h>
+
+#include "RenderTexture.h"
+#include "SpriteBatch.h"
+#include "VertexTypes.h"
 
 // Direct3D解放の簡略化マクロ
 #define SAFE_RELEASE(p)      { if( NULL != p ) { p->Release(); p = NULL; } }
@@ -69,6 +74,7 @@ public:
 
 	// Direct3Dの初期化処理を実行する
 	HRESULT Create(HWND hwnd);
+	void Init();
 	~D3D();
 
 	// 画面塗りつぶしと設定を行う関数
@@ -99,9 +105,11 @@ public:
 
 	// 頂点データ１つあたりのバイトサイズを返す
 	UINT GetVertexStride();
+	void PostProcess();
 
 private:
 	D3D() {};
+
 
 	// ※ID3D11で始まるポインタ型の変数は、解放する必要がある
 	ID3D11Device* m_pDevice; // デバイス＝DirectXの各種機能を作る
@@ -136,10 +144,30 @@ private:
 	// 定数バッファ用変数
 	ID3D11Buffer* m_pConstantBuffer;
 
+	ID3D11Resource* m_pResource;
+
 	HWND m_hwnd;
 
 	std::shared_ptr<DirectX::BasicEffect> m_pEffect;
 
+	std::unique_ptr<DirectX::SpriteBatch> m_pSpriteBatch;
+
 	std::shared_ptr<DirectX::CommonStates> m_pCommonStates;
+
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_bloomExtractPS;
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_bloomCombinePS;
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_gaussianBlurPS;
+
+	Microsoft::WRL::ComPtr<ID3D11Buffer> m_bloomParams;
+	Microsoft::WRL::ComPtr<ID3D11Buffer> m_blurParamsWidth;
+	Microsoft::WRL::ComPtr<ID3D11Buffer> m_blurParamsHeight;
+
+	std::unique_ptr<DX::RenderTexture> m_offscreenTexture;
+	std::unique_ptr<DX::RenderTexture> m_renderTarget1;
+	std::unique_ptr<DX::RenderTexture> m_renderTarget2;
+
+	RECT m_bloomRect;
+	RECT m_fullscreenRect;
+	RECT m_size;
 };
 

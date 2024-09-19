@@ -153,6 +153,9 @@
     <ClCompile Include="Component\PrimitiveMesh.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="RenderTexture.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="direct3d.h">
@@ -593,13 +596,23 @@
     <ClInclude Include="Component\PrimitiveMesh.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="ReadData.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTexture.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PixelShader.hlsl" />
     <FxCompile Include="VertexShader.hlsl" />
+    <FxCompile Include="BloomCombine.hlsl" />
+    <FxCompile Include="BloomExtract.hlsl" />
+    <FxCompile Include="GaussianBlur.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Vender\cereal\external\rapidxml\manual.html" />
+    <None Include="Bloom.hlsli" />
   </ItemGroup>
 </Project>

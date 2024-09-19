@@ -27,7 +27,6 @@ namespace TMF
 	{
 		auto wideFileName = std::wstring(m_loadFile.begin(), m_loadFile.end());
 		auto device = D3D::Get()->GetDevice();
-		m_pCommonState = std::make_unique<DirectX::CommonStates>(device);
 		m_pEffectFactory = std::make_unique<DirectX::EffectFactory>(device);
 		m_pEffectFactory->SetDirectory(L"asset");
 		switch (m_loadType)
@@ -142,24 +141,23 @@ namespace TMF
 
 	void Model::ModelDraw()
 	{
-		ID3D11DeviceContext* d3dContext = D3D::Get()->GetContext();
-
-		D3D::ConstBuffer cb;
-		DirectX::SimpleMath::Matrix matrixWorld;
+		if (!m_pModel)
+		{
+			return;
+		}
+		auto commonStates = D3D::Get()->GetCommonStates();
+		auto d3dContext = D3D::Get()->GetContext();
+		auto matrixWorld = DirectX::SimpleMath::Matrix::Identity;
 
 		auto view = DirectX::SimpleMath::Matrix::CreateLookAt(DirectX::SimpleMath::Vector3(0.0f, 0.0f, 5.0f), DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector3::UnitY);
 		auto proj = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(DirectX::XM_PI / 4.0f, float(1024) / float(576), 0.1f, 10.f);
-		for (auto pGameObject : GameObjectManager::Instance().GetGameObjects())
+
+		// camera‚ðŽæ“¾
+		auto pCamera = GameObjectManager::Instance().GetComponent<Camera>();
+		if (auto pLockCamera = pCamera.lock())
 		{
-			if (pGameObject->GetName() == "CameraObject")
-			{
-				auto cameraComponent = pGameObject->GetComponent<Camera>();
-				if (auto camera = cameraComponent.lock())
-				{
-					view = camera->GetViewMatrix();
-					proj = camera->GetProjectionMatrix();
-				}
-			}
+			view = pLockCamera->GetViewMatrix();
+			proj = pLockCamera->GetProjectionMatrix();
 		}
 
 		// Transform‚ðŽæ“¾
@@ -172,11 +170,10 @@ namespace TMF
 			}
 		}
 
-		// ƒ‚ƒfƒ‹‚Ì•`‰æ(‚ ‚ê‚Î)
-		if (m_pModel)
-		{
-			m_pModel->Draw(d3dContext, *m_pCommonState, matrixWorld, view, proj);
-		}
+		// ƒ‚ƒfƒ‹‚Ì•`‰æ
+		m_pModel->Draw(d3dContext, *commonStates.get(), matrixWorld, view, proj);
+		//DirectX::XMMATRIX blend;
+		//m_pModel->Draw(d3dContext,*m_pCommonState,m_pModel->bones.size(), &blend, matrixWorld, view, proj)
 	}
 
 }
