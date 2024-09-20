@@ -6,6 +6,7 @@
 #include <ReadData.h>
 
 #include "WICTextureLoader.h" // テクスチャ読み込みライブラリ
+#include "Utility/Log.h"
 
 // コンパイル済みシェーダーをインクルード
 #include "VertexShader.h"
@@ -149,7 +150,7 @@ enum BloomPresets
 	None
 };
 
-BloomPresets g_Bloom = Saturated;
+BloomPresets g_Bloom = Default;
 
 static const VS_BLOOM_PARAMETERS g_BloomPresets[] =
 {
@@ -366,9 +367,9 @@ HRESULT D3D::Create(HWND hwnd)
 		m_pDevice->CreatePixelShader(blob.data(), blob.size(),
 			nullptr, m_bloomExtractPS.ReleaseAndGetAddressOf());
 	}
-	catch (const std::exception&)
+	catch (const std::exception& e)
 	{
-
+		TMF::Log::Info("%s", e.what());
 	}
 	blob = DX::ReadData(L"BloomCombine.cso");
 	try
@@ -421,13 +422,20 @@ HRESULT D3D::Create(HWND hwnd)
 
 	}
 
+	m_bloomRect.left = rect.left;
+	m_bloomRect.right = rect.right;
+	m_bloomRect.top = rect.top;
+	m_bloomRect.bottom = rect.bottom;
+
+	m_size = m_bloomRect;
+
 	VS_BLUR_PARAMETERS blurData = {};
-	blurData.SetBlurEffectParameters(1.f / (float(1024) / 2), 0,
+	blurData.SetBlurEffectParameters(1.f / (float(m_size.right) / 2), 0,
 		g_BloomPresets[g_Bloom]);
 	m_pImmediateContext->UpdateSubresource(m_blurParamsWidth.Get(), 0, nullptr,
 		&blurData, sizeof(VS_BLUR_PARAMETERS), 0);
 
-	blurData.SetBlurEffectParameters(0, 1.f / (float(576) / 2),
+	blurData.SetBlurEffectParameters(0, 1.f / (float(m_size.bottom) / 2),
 		g_BloomPresets[g_Bloom]);
 	m_pImmediateContext->UpdateSubresource(m_blurParamsHeight.Get(), 0, nullptr,
 		&blurData, sizeof(VS_BLUR_PARAMETERS), 0);
@@ -435,12 +443,13 @@ HRESULT D3D::Create(HWND hwnd)
 
 	m_pSpriteBatch = std::make_unique<SpriteBatch>(m_pImmediateContext);
 
-	const auto format = DXGI_FORMAT(30);
+	const auto format = DXGI_FORMAT(2);
 	m_offscreenTexture = std::make_unique<DX::RenderTexture>(format);
 	m_renderTarget1 = std::make_unique<DX::RenderTexture>(format);
 	m_renderTarget2 = std::make_unique<DX::RenderTexture>(format);
 
 
+	m_fullscreenRect = m_bloomRect;
 
 	return hr;
 }
@@ -458,6 +467,8 @@ void D3D::Init()
 
 	m_renderTarget1->SetWindow(m_bloomRect);
 	m_renderTarget2->SetWindow(m_bloomRect);
+
+
 
 }
 
@@ -714,26 +725,24 @@ UINT D3D::GetVertexStride()
 
 void D3D::PostProcess()
 {
-	auto context = m_pImmediateContext;
-
 	ID3D11ShaderResourceView* null[] = { nullptr, nullptr };
 
 	if (g_Bloom == None)
 	{
 		// Pass-through test
-		context->CopyResource(m_pResource,
+		m_pImmediateContext->CopyResource(m_pResource,
 			m_offscreenTexture->GetRenderTarget());
 	}
 	else
 	{
-		// scene -> RT1 (downsample)
+		// scene -> RT1 
 		auto rt1RT = m_renderTarget1->GetRenderTargetView();
-		context->OMSetRenderTargets(1, &rt1RT, nullptr);
+		m_pImmediateContext->OMSetRenderTargets(1, &rt1RT, nullptr);
 		m_pSpriteBatch->Begin(SpriteSortMode_Immediate,
 			nullptr, nullptr, nullptr, nullptr,
 			[=]() {
-				context->PSSetConstantBuffers(0, 1, m_bloomParams.GetAddressOf());
-				context->PSSetShader(m_bloomExtractPS.Get(), nullptr, 0);
+				m_pImmediateContext->PSSetConstantBuffers(0, 1, m_bloomParams.GetAddressOf());
+				m_pImmediateContext->PSSetShader(m_bloomExtractPS.Get(), nullptr, 0);
 			});
 		auto rtSRV = m_offscreenTexture->GetShaderResourceView();
 		m_pSpriteBatch->Draw(rtSRV, m_bloomRect);
@@ -741,27 +750,27 @@ void D3D::PostProcess()
 
 		// RT1 -> RT2 (blur horizontal)
 		auto rt2RT = m_renderTarget2->GetRenderTargetView();
-		context->OMSetRenderTargets(1, &rt2RT, nullptr);
+		m_pImmediateContext->OMSetRenderTargets(1, &rt2RT, nullptr);
 		m_pSpriteBatch->Begin(SpriteSortMode_Immediate,
 			nullptr, nullptr, nullptr, nullptr,
 			[=]() {
-				context->PSSetShader(m_gaussianBlurPS.Get(), nullptr, 0);
-				context->PSSetConstantBuffers(0, 1,
+				m_pImmediateContext->PSSetShader(m_gaussianBlurPS.Get(), nullptr, 0);
+				m_pImmediateContext->PSSetConstantBuffers(0, 1,
 					m_blurParamsWidth.GetAddressOf());
 			});
 		auto rt1SRV = m_renderTarget1->GetShaderResourceView();
 		m_pSpriteBatch->Draw(rt1SRV, m_bloomRect);
 		m_pSpriteBatch->End();
 
-		context->PSSetShaderResources(0, 2, null);
+		m_pImmediateContext->PSSetShaderResources(0, 2, null);
 
 		// RT2 -> RT1 (blur vertical)
-		context->OMSetRenderTargets(1, &rt1RT, nullptr);
+		m_pImmediateContext->OMSetRenderTargets(1, &rt1RT, nullptr);
 		m_pSpriteBatch->Begin(SpriteSortMode_Immediate,
 			nullptr, nullptr, nullptr, nullptr,
 			[=]() {
-				context->PSSetShader(m_gaussianBlurPS.Get(), nullptr, 0);
-				context->PSSetConstantBuffers(0, 1,
+				m_pImmediateContext->PSSetShader(m_gaussianBlurPS.Get(), nullptr, 0);
+				m_pImmediateContext->PSSetConstantBuffers(0, 1,
 					m_blurParamsHeight.GetAddressOf());
 			});
 		auto rt2SRV = m_renderTarget2->GetShaderResourceView();
@@ -769,20 +778,19 @@ void D3D::PostProcess()
 		m_pSpriteBatch->End();
 
 		// RT1 + scene
-		auto renderTarget = m_pRenderTargetView;
-		context->OMSetRenderTargets(1, &renderTarget, nullptr);
+		m_pImmediateContext->OMSetRenderTargets(1, &m_pRenderTargetView, nullptr);
 		m_pSpriteBatch->Begin(SpriteSortMode_Immediate,
 			nullptr, nullptr, nullptr, nullptr,
 			[=]() {
-				context->PSSetShader(m_bloomCombinePS.Get(), nullptr, 0);
-				context->PSSetShaderResources(1, 1, &rt1SRV);
-				context->PSSetConstantBuffers(0, 1, m_bloomParams.GetAddressOf());
+				m_pImmediateContext->PSSetShader(m_bloomCombinePS.Get(), nullptr, 0);
+				m_pImmediateContext->PSSetShaderResources(1, 1, &rt1SRV);
+				m_pImmediateContext->PSSetConstantBuffers(0, 1, m_bloomParams.GetAddressOf());
 			});
 		m_pSpriteBatch->Draw(rtSRV, m_fullscreenRect);
 		m_pSpriteBatch->End();
 	}
 
-	context->PSSetShaderResources(0, 2, null);
+	m_pImmediateContext->PSSetShaderResources(0, 2, null);
 }
 
 void D3D::ClearScreen()
@@ -806,7 +814,6 @@ void D3D::ClearScreen()
 	m_pImmediateContext->RSSetViewports(1, &m_Viewport);
 	m_pImmediateContext->PSSetShader(m_pPixelShader, NULL, 0);
 
-
 	// ピクセルシェーダーにサンプラーを渡す
 	m_pImmediateContext->PSSetSamplers(0, 1, &m_pSampler);
 
@@ -817,13 +824,12 @@ void D3D::ClearScreen()
 	m_pImmediateContext->PSSetConstantBuffers(
 		0, 1, &m_pConstantBuffer);
 
-	//PostProcess();
 }
 
 void D3D::UpdateScreen()
 {
 	// ダブルバッファの切り替えを行い画面を更新する
-	PostProcess();
+	//PostProcess();
 	m_pSwapChain->Present(1, 0);
 }
 

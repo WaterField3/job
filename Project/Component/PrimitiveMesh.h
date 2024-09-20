@@ -32,6 +32,7 @@ namespace TMF
             SPHER,
             CYLINDER,
             CONE,
+            TORUS,
         };
 
     private:

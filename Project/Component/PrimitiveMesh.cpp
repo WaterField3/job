@@ -38,6 +38,9 @@ namespace TMF
 		case TMF::PrimitiveMesh::CONE:
 			m_pShape = DirectX::GeometricPrimitive::CreateCone(context, size.y, size.x);
 			break;
+		case TMF::PrimitiveMesh::TORUS:
+			m_pShape = DirectX::GeometricPrimitive::CreateTorus(context, size.y, size.x);
+			break;
 		default:
 			break;
 		}
@@ -75,7 +78,7 @@ namespace TMF
 	}
 	void PrimitiveMesh::OnDrawImGui()
 	{
-		const char* types[] = { "Box","Sphere","Cylinder","Cone" };
+		const char* types[] = { "Box","Sphere","Cylinder","Cone" ,"Torus"};
 		static int selectIndex = (int)m_shapeType;
 		auto shapeLabel = StringHelper::CreateLabel("ColliderType", m_uuID);
 		if (ImGui::BeginCombo(shapeLabel.c_str(), types[selectIndex]))

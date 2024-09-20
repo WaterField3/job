@@ -7,6 +7,8 @@
 #include <CommonStates.h>
 #include <memory>
 #include <wrl/client.h>
+#include <PostProcess.h>
+#include <Effects.h>
 
 #include "RenderTexture.h"
 #include "SpriteBatch.h"
