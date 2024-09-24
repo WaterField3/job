@@ -44,7 +44,7 @@ namespace TMF
 	}
 	void Collider::OnDrawImGui()
 	{
-		const char* types[] = { "Box","Capsule","Sphere","Cylinder","Cone" };
+		const char* types[] = { "Box", "Capsule", "Sphere", "Cylinder", "Cone", "Plane"};
 		static int selectIndex = (int)m_collidrType;
 		auto shapeLabel = StringHelper::CreateLabel("ColliderType", m_uuID);
 		if (ImGui::BeginCombo(shapeLabel.c_str(), types[selectIndex]))
@@ -103,6 +103,7 @@ namespace TMF
 		}
 		btScalar radius = btscale.getX();
 		btScalar height = btscale.getY();
+		auto btNormal = btVector3(0.0f, 1.0f, 0.0f);
 		switch (m_collidrType)
 		{
 		case TMF::Collider::Collider_Type::BOX:
@@ -120,6 +121,9 @@ namespace TMF
 		case TMF::Collider::Collider_Type::CONE:
 			m_pCollisionShape = std::make_shared<btConeShape>(radius, height);
 			break;
+		case TMF::Collider::Collider_Type::PLANE:
+			m_pCollisionShape = std::make_shared<btStaticPlaneShape>(btNormal, 1.0f);
+			break;
 		default:
 			break;
 		}
@@ -133,8 +137,6 @@ namespace TMF
 		return m_pCollisionShape;
 
 	}
-
-
 
 	void Collider::UpdateShapeInfo()
 	{

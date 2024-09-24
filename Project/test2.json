@@ -799,9 +799,9 @@
                 "ptr_wrapper": {
                     "id": 2147483685,
                     "data": {
-                        "m_name": "NewGameObject",
+                        "m_name": "Effect",
                         "m_uuID": {
-                            "uuid": "e7103b3c-381b-4294-a37d-ab7c346f93dc"
+                            "uuid": "17bf2ef1-e473-4b2c-b3b7-96f9f27e116c"
                         },
                         "m_pComponents": [
                             {
@@ -811,62 +811,12 @@
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
-                                                "uuid": "5a583fae-65e5-48fb-b229-4d52a3e4c5d6"
-                                            }
-                                        },
-                                        "m_position": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0
-                                        },
-                                        "m_scale": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0
-                                        },
-                                        "m_rotation": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0,
-                                            "value3": 1.0
-                                        },
-                                        "m_pParent": {
-                                            "locked_ptr": {
-                                                "polymorphic_id": 1073741824,
-                                                "ptr_wrapper": {
-                                                    "id": 9
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "id": 2147483687,
-                    "data": {
-                        "m_name": "Effect",
-                        "m_uuID": {
-                            "uuid": "17bf2ef1-e473-4b2c-b3b7-96f9f27e116c"
-                        },
-                        "m_pComponents": [
-                            {
-                                "polymorphic_id": 1,
-                                "ptr_wrapper": {
-                                    "id": 2147483688,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
                                                 "uuid": "64f60607-d246-4e98-abe5-0d74274b040f"
                                             }
                                         },
                                         "m_position": {
                                             "value0": 0.0,
-                                            "value1": 0.0,
+                                            "value1": -1.399999976158142,
                                             "value2": 0.0
                                         },
                                         "m_scale": {
@@ -891,7 +841,7 @@
                             {
                                 "polymorphic_id": 8,
                                 "ptr_wrapper": {
-                                    "id": 2147483689,
+                                    "id": 2147483687,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -913,7 +863,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483690,
+                    "id": 2147483688,
                     "data": {
                         "m_name": "Anim",
                         "m_uuID": {
@@ -923,7 +873,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483691,
+                                    "id": 2147483689,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -957,7 +907,7 @@
                             {
                                 "polymorphic_id": 7,
                                 "ptr_wrapper": {
-                                    "id": 2147483692,
+                                    "id": 2147483690,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -974,7 +924,7 @@
                                 "polymorphic_id": 2147483657,
                                 "polymorphic_name": "TMF::Animater",
                                 "ptr_wrapper": {
-                                    "id": 2147483693,
+                                    "id": 2147483691,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -989,7 +939,7 @@
                             {
                                 "polymorphic_id": 2,
                                 "ptr_wrapper": {
-                                    "id": 2147483694,
+                                    "id": 2147483692,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1013,7 +963,7 @@
                             {
                                 "polymorphic_id": 3,
                                 "ptr_wrapper": {
-                                    "id": 2147483695,
+                                    "id": 2147483693,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1035,7 +985,7 @@
                                 "polymorphic_id": 2147483658,
                                 "polymorphic_name": "TMF::CharacterMoveController",
                                 "ptr_wrapper": {
-                                    "id": 2147483696,
+                                    "id": 2147483694,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1049,79 +999,6 @@
                                             "value1": 10.0,
                                             "value2": 1.0
                                         }
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "id": 2147483697,
-                    "data": {
-                        "m_name": "NewGameObject",
-                        "m_uuID": {
-                            "uuid": "3abc9215-75aa-453c-9fda-cdbe0c958780"
-                        },
-                        "m_pComponents": [
-                            {
-                                "polymorphic_id": 1,
-                                "ptr_wrapper": {
-                                    "id": 2147483698,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "ec87f228-f871-4ae0-bf0b-f860779f1606"
-                                            }
-                                        },
-                                        "m_position": {
-                                            "value0": 0.0,
-                                            "value1": 2.700000047683716,
-                                            "value2": 6.300000190734863
-                                        },
-                                        "m_scale": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0
-                                        },
-                                        "m_rotation": {
-                                            "value0": 0.3844121992588043,
-                                            "value1": -0.6389864087104797,
-                                            "value2": -0.34346622228622439,
-                                            "value3": 0.5709242820739746
-                                        },
-                                        "m_pParent": {
-                                            "locked_ptr": {
-                                                "polymorphic_id": 0
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 4,
-                                "ptr_wrapper": {
-                                    "id": 2147483699,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "940e9e20-f873-4482-8ee7-61020c5fcbcb"
-                                            }
-                                        },
-                                        "m_shapeType": 4,
-                                        "m_color": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0,
-                                            "value3": 1.0
-                                        },
-                                        "m_scale": {
-                                            "value0": 1.0,
-                                            "value1": 2.0,
-                                            "value2": 2.0
-                                        },
-                                        "m_textureName": "asset/cup.jpg"
                                     }
                                 }
                             }

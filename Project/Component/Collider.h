@@ -41,6 +41,7 @@ namespace TMF
 			SPHERE,
 			CYLINDER,
 			CONE,
+			PLANE,
 			MAX,
 		};
 		DirectX::SimpleMath::Vector3 m_size = DirectX::SimpleMath::Vector3::One;
