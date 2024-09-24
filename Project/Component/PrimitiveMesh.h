@@ -6,6 +6,7 @@
 #include <GeometricPrimitive.h>
 #include <string>
 #include <wrl/client.h>
+#include <d3d11.h>
 
 #include "ComponentCerealHelper.h"
 
@@ -36,11 +37,13 @@ namespace TMF
         };
 
     private:
+        std::string m_textureName = "";
+        Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pTexture;
         DirectX::SimpleMath::Color m_color = DirectX::SimpleMath::Color(1.0f, 1.0f, 1.0f, 1.0f);
         ShapeType m_shapeType = ShapeType::CUBE;
         std::unique_ptr<DirectX::GeometricPrimitive> m_pShape;
         // 基本形状のサイズ※基本的に2にすると良い
         DirectX::SimpleMath::Vector3 m_scale = DirectX::SimpleMath::Vector3(2.0f,2.0f,2.0f);
-        SERIALIZE_COMPONENT(m_shapeType, m_color, m_scale);
+        SERIALIZE_COMPONENT(m_shapeType, m_color, m_scale, m_textureName);
     };
 }

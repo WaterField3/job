@@ -10,6 +10,7 @@
 #include "Collider.h"
 #include "GameObject/GameObjectManager.h"
 #include "Utility/StringHelper.h"
+#include "Utility/Log.h"
 
 REGISTER_COMPONENT(TMF::PrimitiveMesh, "PrimitiveMesh");
 
@@ -18,12 +19,15 @@ namespace TMF
 	void PrimitiveMesh::OnInitialize()
 	{
 		MakeMesh();
+		LoadTexture();
 	}
 	void PrimitiveMesh::MakeMesh()
 	{
 		DirectX::XMFLOAT3 size = DirectX::XMFLOAT3(m_scale.x, m_scale.y, m_scale.z);
-
+		
 		auto context = D3D::Get()->GetContext();
+		
+		// 形状を生成
 		switch (m_shapeType)
 		{
 		case TMF::PrimitiveMesh::CUBE:
@@ -72,13 +76,13 @@ namespace TMF
 			{
 				auto view = pLockCamera->GetViewMatrix();
 				auto proj = pLockCamera->GetProjectionMatrix();
-				m_pShape->Draw(world, view, proj, m_color);
+				m_pShape->Draw(world, view, proj, m_color, m_pTexture.Get());
 			}
 		}
 	}
 	void PrimitiveMesh::OnDrawImGui()
 	{
-		const char* types[] = { "Box","Sphere","Cylinder","Cone" ,"Torus"};
+		const char* types[] = { "Box","Sphere","Cylinder","Cone" ,"Torus" };
 		static int selectIndex = (int)m_shapeType;
 		auto shapeLabel = StringHelper::CreateLabel("ColliderType", m_uuID);
 		if (ImGui::BeginCombo(shapeLabel.c_str(), types[selectIndex]))
@@ -109,6 +113,40 @@ namespace TMF
 		if (ImGui::DragFloat4(colorLabel.c_str(), &m_color.x, 0.1f, 0.0f, 1.0f))
 		{
 
+		}
+		char buf[256] = "";
+		strcpy_s(buf, sizeof(buf), m_textureName.c_str());
+		auto label = StringHelper::CreateLabel("FileName", m_uuID);
+		if (ImGui::InputText(label.c_str(), buf, 256))
+		{
+			m_textureName = buf;
+		}
+
+		auto loadLabel = StringHelper::CreateLabel("LoadTexture", m_uuID);
+		if (ImGui::Button(loadLabel.c_str()))
+		{
+			LoadTexture();
+		}
+	}
+	void PrimitiveMesh::LoadTexture()
+	{
+		// パスが設定されていないとき実行しない
+		if (m_textureName == "")
+		{
+			return;
+		}
+		
+		// テクスチャ読み込み
+		try
+		{
+			auto wideFileName = std::wstring(m_textureName.begin(), m_textureName.end());
+			auto context = D3D::Get()->GetContext();
+			DirectX::CreateWICTextureFromFile(D3D::Get()->GetDevice(), context, wideFileName.c_str(), nullptr, m_pTexture.GetAddressOf());
+			context->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf());
+		}
+		catch (const std::exception& e)
+		{
+			Log::Info("%s", e.what());
 		}
 	}
 }
