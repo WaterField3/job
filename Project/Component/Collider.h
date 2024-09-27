@@ -43,6 +43,7 @@ namespace TMF
 			CONE,
 			PLANE,
 			CONVEXHULL,
+			TERRAIN,
 			MAX,
 		};
 

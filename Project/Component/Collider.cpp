@@ -1,6 +1,10 @@
 #include "Collider.h"
 
 #include <Imgui/imgui.h>
+// windows‚Ìmin max‚ðŽg—p‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+#undef min
+#undef max
+#include <BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h>
 
 #include "Transform.h"
 #include "Rigidbody.h"
