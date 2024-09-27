@@ -14,7 +14,7 @@ namespace TMF
 		void Finalize();
 		void Update();
 		void Draw();
-		void Play(std::string name, DirectX::SimpleMath::Vector3 pos);
+		void Play(std::string name, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Matrix matrix = DirectX::SimpleMath::Matrix::Identity);
 
 		static EffectManager& Instance()
 		{
@@ -24,6 +24,9 @@ namespace TMF
 
 	private:
 		void CopyMatrix(const DirectX::SimpleMath::Matrix& tkMatrix, Effekseer::Matrix44& efMatrix);
+		void CopyMatrix(const DirectX::SimpleMath::Matrix& tkMatrix, Effekseer::Matrix43& efMatrix);
+
+	private:
 		Effekseer::ManagerRef m_pEffekseerManager;
 		EffekseerRendererDX11::RendererRef m_pEffectRenderer;
 		Effekseer::EffectRef m_pEffect;

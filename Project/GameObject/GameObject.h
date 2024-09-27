@@ -82,6 +82,16 @@ namespace TMF
 		inline void SetName(std::string name) { m_name = name; }
 		inline std::string GetName() const { return m_name; }
 		inline std::string GetStrUUID() const { return boost::uuids::to_string(m_uuID); }
+		
+	private:
+		enum Tag
+		{
+			Default,
+			Player,
+			Ground,
+		};
+	public:
+		Tag inline GetTag() const { return m_tag; }
 
 	private:
 		std::vector<std::shared_ptr<Component>> m_pComponents;
@@ -91,7 +101,8 @@ namespace TMF
 		std::weak_ptr<Transform> m_pTransform;
 		int m_selectIndex = 0;
 		bool m_isActive = true;
+		Tag m_tag = Tag::Default;
 
-		SERIALIZE(m_name, m_uuID, m_pComponents);
+		SERIALIZE(m_name, m_uuID, m_tag, m_pComponents);
 	};
 }

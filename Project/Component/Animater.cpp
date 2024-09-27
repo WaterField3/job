@@ -69,6 +69,10 @@ namespace TMF
 
 	void Animater::OnDraw()
 	{
+		if (m_isAnimation == false)
+		{
+			return;
+		}
 
 		auto world = DirectX::SimpleMath::Matrix::Identity;
 		auto view = DirectX::SimpleMath::Matrix::Identity;
@@ -128,6 +132,11 @@ namespace TMF
 		if (ImGui::Button("LoadSDKMESH"))
 		{
 			LoadSDKMESH();
+		}
+		auto animButtonLabel = StringHelper::CreateLabel("IsAnimation", m_uuID);
+		if (ImGui::Checkbox(animButtonLabel.c_str(), &m_isAnimation))
+		{
+
 		}
 	}
 

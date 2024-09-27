@@ -31,6 +31,7 @@ namespace TMF
 		void LoadSDKMESH();
 
 	private:
+		bool m_isAnimation = false;
 		float m_animationSpeed = 1.0f;
 		size_t m_animOffset = 0;
 		size_t m_boneSize = 0;

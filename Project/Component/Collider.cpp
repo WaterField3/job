@@ -104,6 +104,7 @@ namespace TMF
 		btScalar radius = btscale.getX();
 		btScalar height = btscale.getY();
 		auto btNormal = btVector3(0.0f, 1.0f, 0.0f);
+
 		switch (m_collidrType)
 		{
 		case TMF::Collider::Collider_Type::BOX:

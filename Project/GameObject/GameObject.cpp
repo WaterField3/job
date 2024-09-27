@@ -5,6 +5,7 @@
 
 #include "Component/ComponentManager.h"
 #include "Component/Transform.h"
+#include "Utility/StringHelper.h"
 
 namespace TMF
 {
@@ -61,6 +62,29 @@ namespace TMF
 		{
 			m_name = buf;
 		}
+
+		const char* types[] = { "Default", "Player", "Ground" };
+		static int selectIndex = (int)m_tag;
+		auto shapeLabel = StringHelper::CreateLabel("Tag", m_uuID);
+		if (ImGui::BeginCombo(shapeLabel.c_str(), types[selectIndex]))
+		{
+			for (int i = 0; i < IM_ARRAYSIZE(types); i++)
+			{
+				auto selected = ((int)m_tag == i);
+				if (ImGui::Selectable(types[i], selected))
+				{
+					m_tag = Tag(i);
+					selectIndex = i;
+
+				}
+				if (selected)
+				{
+					ImGui::SetItemDefaultFocus();
+				}
+			}
+			ImGui::EndCombo();
+		}
+
 		auto index = 0;
 		for (auto& component : m_pComponents)
 		{
@@ -77,7 +101,7 @@ namespace TMF
 				component->SetIsEnable(enable);
 			}
 			ImGui::SameLine(30);
-			 label = componentName;
+			label = componentName;
 			label += "## " + uuIDStr;
 			if (ImGui::CollapsingHeader(label.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
 			{

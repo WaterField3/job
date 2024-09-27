@@ -68,11 +68,14 @@ namespace TMF
 		m_pEffekseerManager->Draw();
 		m_pEffectRenderer->EndRendering();
 	}
-	void EffectManager::Play(std::string name, DirectX::SimpleMath::Vector3 pos)
+	void EffectManager::Play(std::string name, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Matrix matrix)
 	{
 		auto uName = std::u16string(name.begin(), name.end());
 		m_pEffect = Effekseer::Effect::Create(m_pEffekseerManager, uName.c_str());
 		auto handle = m_pEffekseerManager->Play(m_pEffect, pos.x, pos.y, pos.z);
+		Effekseer::Matrix43 rotatematrix;
+		CopyMatrix(matrix, rotatematrix);
+		m_pEffekseerManager->SetMatrix(handle, rotatematrix);
 	}
 	void EffectManager::CopyMatrix(const DirectX::SimpleMath::Matrix& tkMatrix, Effekseer::Matrix44& efMatrix)
 	{
@@ -96,4 +99,24 @@ namespace TMF
 		efMatrix.Values[3][2] = tkMatrix._43;
 		efMatrix.Values[3][3] = tkMatrix._44;
 	}
+
+	void EffectManager::CopyMatrix(const DirectX::SimpleMath::Matrix& tkMatrix, Effekseer::Matrix43& efMatrix)
+	{
+		efMatrix.Value[0][0] = tkMatrix._11;
+		efMatrix.Value[0][1] = tkMatrix._12;
+		efMatrix.Value[0][2] = tkMatrix._13;
+
+		efMatrix.Value[1][0] = tkMatrix._21;
+		efMatrix.Value[1][1] = tkMatrix._22;
+		efMatrix.Value[1][2] = tkMatrix._23;
+
+		efMatrix.Value[2][0] = tkMatrix._31;
+		efMatrix.Value[2][1] = tkMatrix._32;
+		efMatrix.Value[2][2] = tkMatrix._33;
+
+		efMatrix.Value[3][0] = tkMatrix._41;
+		efMatrix.Value[3][1] = tkMatrix._42;
+		efMatrix.Value[3][2] = tkMatrix._43;
+	}
+
 }
