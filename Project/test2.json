@@ -9,6 +9,7 @@
                         "m_uuID": {
                             "uuid": "2b9279a0-48f0-46db-bbdf-baa53745fa0e"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 2147483649,
@@ -57,6 +58,7 @@
                         "m_uuID": {
                             "uuid": "50f82bd8-ead4-4e48-b314-5b984adc8ba6"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -178,6 +180,7 @@
                         "m_uuID": {
                             "uuid": "efe87573-157e-435b-a69d-52aa149b45c1"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -191,7 +194,7 @@
                                         },
                                         "m_position": {
                                             "value0": 0.0,
-                                            "value1": 2.0999999046325685,
+                                            "value1": -0.4000000059604645,
                                             "value2": 8.600000381469727
                                         },
                                         "m_scale": {
@@ -242,6 +245,7 @@
                         "m_uuID": {
                             "uuid": "0b0ce06e-f7a8-49f9-ad69-20bc3eb9ea5e"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -360,6 +364,7 @@
                         "m_uuID": {
                             "uuid": "cca2984c-aa54-48de-8e2e-b800bbbeac3d"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -443,6 +448,7 @@
                         "m_uuID": {
                             "uuid": "71b152f5-acb1-480c-9b38-935169b0ebbd"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -525,6 +531,7 @@
                         "m_uuID": {
                             "uuid": "e3b31c4a-02c3-458d-86e6-b036e99f4bac"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -589,6 +596,7 @@
                         "m_uuID": {
                             "uuid": "c41aec41-37e7-4689-b3db-fdeb0dcb2998"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -601,9 +609,9 @@
                                             }
                                         },
                                         "m_position": {
-                                            "value0": 2.5999999046325685,
-                                            "value1": 0.0,
-                                            "value2": 1.399999976158142
+                                            "value0": -4.199999809265137,
+                                            "value1": 0.5,
+                                            "value2": -3.799999952316284
                                         },
                                         "m_scale": {
                                             "value0": 1.0,
@@ -707,6 +715,7 @@
                         "m_uuID": {
                             "uuid": "b020743a-f467-48c2-a5f1-b5d2eb5258bc"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 2147483656,
@@ -740,6 +749,7 @@
                         "m_uuID": {
                             "uuid": "d8112026-4a62-441e-a7bb-9badcac57ea4"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -803,6 +813,7 @@
                         "m_uuID": {
                             "uuid": "17bf2ef1-e473-4b2c-b3b7-96f9f27e116c"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -869,6 +880,7 @@
                         "m_uuID": {
                             "uuid": "cb93c7c3-00da-463d-9f7b-ba5803ba24ce"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -976,7 +988,7 @@
                                         "m_angulerSleepingThresholds": 0.0,
                                         "m_linearSleepingThresholds": 0.0,
                                         "m_isAngularFactorX": false,
-                                        "m_isAngularFactorY": true,
+                                        "m_isAngularFactorY": false,
                                         "m_isAngularFactorZ": false
                                     }
                                 }
@@ -999,6 +1011,99 @@
                                             "value1": 10.0,
                                             "value2": 1.0
                                         }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483695,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "uuid": "9c16a863-ba48-405a-99a2-407c94d8b3d8"
+                        },
+                        "m_tag": 0,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483696,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "9f1a635b-c1aa-4764-b304-a842a751c300"
+                                            }
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.20000000298023225
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2,
+                                "ptr_wrapper": {
+                                    "id": 2147483697,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "4462fc9e-8fbc-4ded-81d8-ba7f4c963a6d"
+                                            }
+                                        },
+                                        "m_collidrType": 6,
+                                        "m_size": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_center": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "id": 2147483698,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "cc789ceb-192a-4d2a-a015-71fe47d3f2ba"
+                                            }
+                                        },
+                                        "m_mass": 1.0,
+                                        "m_drag": 0.0,
+                                        "m_angularDrag": 0.0,
+                                        "m_angulerSleepingThresholds": 0.0,
+                                        "m_linearSleepingThresholds": 0.0,
+                                        "m_isAngularFactorX": false,
+                                        "m_isAngularFactorY": false,
+                                        "m_isAngularFactorZ": false
                                     }
                                 }
                             }

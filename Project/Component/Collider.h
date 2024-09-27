@@ -42,8 +42,11 @@ namespace TMF
 			CYLINDER,
 			CONE,
 			PLANE,
+			CONVEXHULL,
 			MAX,
 		};
+
+		int m_poiygonNum = 0;
 		DirectX::SimpleMath::Vector3 m_size = DirectX::SimpleMath::Vector3::One;
 		DirectX::SimpleMath::Vector3 m_center = DirectX::SimpleMath::Vector3::Zero;
 		std::shared_ptr<btCollisionShape> m_pCollisionShape;

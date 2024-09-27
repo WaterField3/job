@@ -44,7 +44,7 @@ namespace TMF
 	}
 	void Collider::OnDrawImGui()
 	{
-		const char* types[] = { "Box", "Capsule", "Sphere", "Cylinder", "Cone", "Plane"};
+		const char* types[] = { "Box", "Capsule", "Sphere", "Cylinder", "Cone", "Plane","ConvexHull"};
 		static int selectIndex = (int)m_collidrType;
 		auto shapeLabel = StringHelper::CreateLabel("ColliderType", m_uuID);
 		if (ImGui::BeginCombo(shapeLabel.c_str(), types[selectIndex]))
@@ -104,6 +104,13 @@ namespace TMF
 		btScalar radius = btscale.getX();
 		btScalar height = btscale.getY();
 		auto btNormal = btVector3(0.0f, 1.0f, 0.0f);
+		std::vector<btVector3> vertices;
+		vertices.push_back(btVector3(-1, 0, -1));
+		vertices.push_back(btVector3(1, 0, -1));
+		vertices.push_back(btVector3(1, 0, 1));
+		vertices.push_back(btVector3(-1, 0, 1));
+
+		vertices.push_back(btVector3(0, 2, 0));
 
 		switch (m_collidrType)
 		{
@@ -124,6 +131,14 @@ namespace TMF
 			break;
 		case TMF::Collider::Collider_Type::PLANE:
 			m_pCollisionShape = std::make_shared<btStaticPlaneShape>(btNormal, 1.0f);
+			break;
+		case TMF::Collider::Collider_Type::CONVEXHULL:
+			m_pCollisionShape = std::make_shared<btConvexHullShape>();
+			for (const auto& vertex : vertices)
+			{
+				auto pVoidCollision = static_cast<void *>(m_pCollisionShape.get());
+				static_cast<btConvexHullShape*>(pVoidCollision)->addPoint(vertex);
+			}
 			break;
 		default:
 			break;
