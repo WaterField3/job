@@ -5,6 +5,7 @@
 #undef min
 #undef max
 #include <BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h>
+#include <random>
 
 #include "Transform.h"
 #include "Rigidbody.h"
@@ -48,7 +49,7 @@ namespace TMF
 	}
 	void Collider::OnDrawImGui()
 	{
-		const char* types[] = { "Box", "Capsule", "Sphere", "Cylinder", "Cone", "Plane","ConvexHull"};
+		const char* types[] = { "Box", "Capsule", "Sphere", "Cylinder", "Cone", "Plane","ConvexHull", "Terrain" };
 		static int selectIndex = (int)m_collidrType;
 		auto shapeLabel = StringHelper::CreateLabel("ColliderType", m_uuID);
 		if (ImGui::BeginCombo(shapeLabel.c_str(), types[selectIndex]))
@@ -116,6 +117,24 @@ namespace TMF
 
 		vertices.push_back(btVector3(0, 2, 0));
 
+		const int width = 8;
+		const int length = 8;
+		float heightData[width * length] = { 1, 1, 2, 3,
+											2, 2, 1, 1,
+											1, 1, 2, 2,
+											1, 1, 3, 1,
+											1, 1, 2, 3,
+											2, 2, 1, 1,
+											1, 1, 2, 2,
+											1, 1, 3, 1
+		};
+		//	for (int x = 0; x < width; ++x) {
+
+	//for (int y = 0; y < length; ++y) {
+//		heightData[y * width + x] = std::sin(x * 0.1f) * std::cos(y * 0.1f) ; // U•10‚Ì”gó’nŒ`
+//	}
+//}
+
 		switch (m_collidrType)
 		{
 		case TMF::Collider::Collider_Type::BOX:
@@ -137,13 +156,22 @@ namespace TMF
 			m_pCollisionShape = std::make_shared<btStaticPlaneShape>(btNormal, 1.0f);
 			break;
 		case TMF::Collider::Collider_Type::CONVEXHULL:
+		{
 			m_pCollisionShape = std::make_shared<btConvexHullShape>();
+			auto pVoidCollision = static_cast<void*>(m_pCollisionShape.get());
 			for (const auto& vertex : vertices)
 			{
-				auto pVoidCollision = static_cast<void *>(m_pCollisionShape.get());
 				static_cast<btConvexHullShape*>(pVoidCollision)->addPoint(vertex);
 			}
 			break;
+		}
+		case TMF::Collider::Collider_Type::TERRAIN:
+		{
+			m_pCollisionShape = std::make_shared<btHeightfieldTerrainShape>(width, length, heightData, 1.0f, -1.0f, 1.0f, 1, PHY_FLOAT, false);
+			auto pVoidCollision = static_cast<void*>(m_pCollisionShape.get());
+			static_cast<btHeightfieldTerrainShape*>(pVoidCollision)->setLocalScaling(btVector3(3.0f, 1.0f, 3.0f));
+			break;
+		}
 		default:
 			break;
 		}

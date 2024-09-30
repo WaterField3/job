@@ -194,7 +194,7 @@
                                         },
                                         "m_position": {
                                             "value0": 0.0,
-                                            "value1": -0.4000000059604645,
+                                            "value1": 2.0999999046325685,
                                             "value2": 8.600000381469727
                                         },
                                         "m_scale": {
@@ -609,9 +609,9 @@
                                             }
                                         },
                                         "m_position": {
-                                            "value0": -4.199999809265137,
-                                            "value1": 0.5,
-                                            "value2": -3.799999952316284
+                                            "value0": 2.5999999046325685,
+                                            "value1": 0.0,
+                                            "value2": 1.399999976158142
                                         },
                                         "m_scale": {
                                             "value0": 1.0,
@@ -988,7 +988,7 @@
                                         "m_angulerSleepingThresholds": 0.0,
                                         "m_linearSleepingThresholds": 0.0,
                                         "m_isAngularFactorX": false,
-                                        "m_isAngularFactorY": false,
+                                        "m_isAngularFactorY": true,
                                         "m_isAngularFactorZ": false
                                     }
                                 }
@@ -1024,7 +1024,7 @@
                     "data": {
                         "m_name": "NewGameObject",
                         "m_uuID": {
-                            "uuid": "9c16a863-ba48-405a-99a2-407c94d8b3d8"
+                            "uuid": "49d8f22c-8202-4f3c-a7bd-24ac5a9e87e8"
                         },
                         "m_tag": 0,
                         "m_pComponents": [
@@ -1035,13 +1035,13 @@
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
-                                                "uuid": "9f1a635b-c1aa-4764-b304-a842a751c300"
+                                                "uuid": "828fed68-8549-42f5-ba01-4e67d219f394"
                                             }
                                         },
                                         "m_position": {
                                             "value0": 0.0,
                                             "value1": 0.0,
-                                            "value2": 0.20000000298023225
+                                            "value2": 0.0
                                         },
                                         "m_scale": {
                                             "value0": 1.0,
@@ -1069,10 +1069,10 @@
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
-                                                "uuid": "4462fc9e-8fbc-4ded-81d8-ba7f4c963a6d"
+                                                "uuid": "0d391569-6704-4dd4-91a7-7a3cede32bf8"
                                             }
                                         },
-                                        "m_collidrType": 6,
+                                        "m_collidrType": 7,
                                         "m_size": {
                                             "value0": 1.0,
                                             "value1": 1.0,
@@ -1093,10 +1093,10 @@
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
-                                                "uuid": "cc789ceb-192a-4d2a-a015-71fe47d3f2ba"
+                                                "uuid": "aaa60cab-f0fe-4099-8ed0-c4287b2b3b3e"
                                             }
                                         },
-                                        "m_mass": 1.0,
+                                        "m_mass": 0.0,
                                         "m_drag": 0.0,
                                         "m_angularDrag": 0.0,
                                         "m_angulerSleepingThresholds": 0.0,

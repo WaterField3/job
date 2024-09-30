@@ -102,7 +102,7 @@ namespace TMF
 					rb->ApplyForce(movePos, DirectX::SimpleMath::Vector3::Zero);
 					if (isRotate == true)
 					{
-						rb->SetAngularFactor(DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f));
+						//rb->SetAngularFactor(DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f));
 					}
 					else
 					{
