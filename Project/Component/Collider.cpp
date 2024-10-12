@@ -70,7 +70,6 @@ namespace TMF
 				}
 			}
 			ImGui::EndCombo();
-			ImGui::SameLine();
 		}
 
 		auto sizeLabel = StringHelper::CreateLabel("Size", m_uuID);

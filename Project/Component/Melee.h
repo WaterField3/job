@@ -2,15 +2,12 @@
 
 #include "Component.h"
 
-#include <cereal/types/polymorphic.hpp>
-#include <SimpleMath.h>
-
 #include "ComponentCerealHelper.h"
 #include "ComponentRegister.h"
 
 namespace TMF
 {
-	class Effect : public Component
+	class Melee : public Component
 	{
 	public:
 		void OnInitialize() override;
@@ -19,11 +16,11 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
-		void Play();
-	private:
-		DirectX::SimpleMath::Vector3 m_effectPos = DirectX::SimpleMath::Vector3::Zero;
-		std::string m_effectPath = "";
 
-		SERIALIZE_COMPONENT(m_effectPath, m_effectPos);
+	private:
+		float m_damage = 0;
+
+		SERIALIZE_COMPONENT(m_damage);
 	};
 }
+
