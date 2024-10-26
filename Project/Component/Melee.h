@@ -16,11 +16,13 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		void Play();
 
 	private:
 		float m_damage = 0;
+		std::string m_meleeAnimation = "";
 
-		SERIALIZE_COMPONENT(m_damage);
+		SERIALIZE_COMPONENT(m_damage, m_meleeAnimation);
 	};
 }
 

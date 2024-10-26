@@ -19,28 +19,7 @@ namespace TMF
 	void Animater::OnInitialize()
 	{
 		// アニメーションの読み込み
-		if (auto pOwner = m_pOwner.lock())
-		{
-			auto pModel = pOwner->GetComponent<Model>();
-			if (auto pLockModel = pModel.lock())
-			{
-				// モデルの読み込みに合わせる
-				auto loadType = pLockModel->GetLoadType();
-				switch (loadType)
-				{
-				case TMF::Model::DEFAULT:
-					break;
-				case TMF::Model::CMO:
-					LoadCMO();
-					break;
-				case TMF::Model::SDKMESH:
-					LoadSDKMESH();
-					break;
-				default:
-					break;
-				}
-			}
-		}
+		LoadAnimation();
 	}
 
 	void Animater::OnFinalize()
@@ -137,6 +116,37 @@ namespace TMF
 		if (ImGui::Checkbox(animButtonLabel.c_str(), &m_isAnimation))
 		{
 
+		}
+	}
+
+	void Animater::SetFileName(std::string fileName)
+	{
+		m_fileName = fileName;
+		LoadAnimation();
+	}
+
+	void Animater::LoadAnimation()
+	{
+		if (auto pOwner = m_pOwner.lock())
+		{
+			auto pModel = pOwner->GetComponent<Model>();
+			if (auto pLockModel = pModel.lock())
+			{
+				auto loadType = pLockModel->GetLoadType();
+				switch (loadType)
+				{
+				case TMF::Model::DEFAULT:
+					break;
+				case TMF::Model::CMO:
+					LoadCMO();
+					break;
+				case TMF::Model::SDKMESH:
+					LoadSDKMESH();
+					break;
+				default:
+					break;
+				}
+			}
 		}
 	}
 

@@ -51,6 +51,14 @@ namespace TMF
 		virtual void OnTrigerStay(GameObject* pGameObject);
 		virtual void OnTrigerExit(GameObject* pGameObject);
 
+		template <typename TComponent>
+		std::shared_ptr<TComponent> GetComponent(TComponent component)
+		{
+			if (auto pLockOwner = m_pOwner.lock())
+			{
+
+			}
+		}
 
 	protected:
 		std::weak_ptr<GameObject> m_pOwner;

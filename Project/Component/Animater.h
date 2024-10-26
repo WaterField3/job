@@ -26,6 +26,10 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		void SetFileName(std::string fileName);
+
+		void LoadAnimation();
+
 	private:
 		void LoadCMO();
 		void LoadSDKMESH();
