@@ -1,0 +1,78 @@
+{
+    "value0": {
+        "ptr_wrapper": {
+            "id": 2147483649,
+            "data": {
+                "m_name": "NewGameObject",
+                "m_uuID": {
+                    "uuid": "29e2dd63-df28-4ecd-9c37-e65eca6c2cc0"
+                },
+                "m_tag": 0,
+                "m_pComponents": [
+                    {
+                        "polymorphic_id": 2147483649,
+                        "polymorphic_name": "TMF::Transform",
+                        "ptr_wrapper": {
+                            "id": 2147483650,
+                            "data": {
+                                "value0": {
+                                    "m_uuID": {
+                                        "uuid": "0bdaa854-ec1c-4ad7-ae73-7bf12bfdfa9d"
+                                    }
+                                },
+                                "m_position": {
+                                    "value0": 0.0,
+                                    "value1": 0.0,
+                                    "value2": 0.0
+                                },
+                                "m_scale": {
+                                    "value0": 1.0,
+                                    "value1": 1.0,
+                                    "value2": 1.0
+                                },
+                                "m_rotation": {
+                                    "value0": 0.0,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 1.0
+                                },
+                                "m_pParent": {
+                                    "locked_ptr": {
+                                        "polymorphic_id": 0
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "polymorphic_id": 2147483650,
+                        "polymorphic_name": "TMF::PrimitiveMesh",
+                        "ptr_wrapper": {
+                            "id": 2147483651,
+                            "data": {
+                                "value0": {
+                                    "m_uuID": {
+                                        "uuid": "d7805a2f-72c4-4a70-bada-3a438fe63f99"
+                                    }
+                                },
+                                "m_shapeType": 0,
+                                "m_color": {
+                                    "value0": 1.0,
+                                    "value1": 1.0,
+                                    "value2": 1.0,
+                                    "value3": 1.0
+                                },
+                                "m_scale": {
+                                    "value0": 2.0,
+                                    "value1": 2.0,
+                                    "value2": 2.0
+                                },
+                                "m_textureName": ""
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

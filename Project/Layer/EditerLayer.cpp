@@ -83,7 +83,7 @@ namespace TMF
 		ImGui::NewFrame();
 
 		m_pHirarchy->DrawImGui();
-		m_pPlayButtonBar->DrawImGui();
+		m_pPlayButtonBar->DrawImGui(m_pHirarchy->GetSelectGameObject());
 		m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
 		ApplicationState::Instance().DrawImGui();
 		ImGui::Render();

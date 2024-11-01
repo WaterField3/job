@@ -13,7 +13,7 @@
 
 namespace TMF
 {
-	void PlayButtonBar::DrawImGui()
+	void PlayButtonBar::DrawImGui(std::weak_ptr<GameObject> pObject)
 	{
 		auto isPlay = ApplicationState::Instance().GetIsPlay();
 		auto isPause = ApplicationState::Instance().GetIsPause();
@@ -76,7 +76,19 @@ namespace TMF
 				GameObjectManager::Instance().Save(MAIN_DATA);
 			}
 		}
-		ImGui::SameLine();
+		char buf[256] = "";
+		strcpy_s(buf, sizeof(buf), m_saveObjectName.c_str());
+		if (ImGui::InputText("saveName", buf, 256))
+		{
+			m_saveObjectName = buf;
+		}
+		if (ImGui::Button("ObjectSave"))
+		{
+			if (!isPlay)
+			{
+				GameObjectManager::Instance().SaveObject(m_saveObjectName, pObject);
+			}
+		}
 		ImGui::Checkbox("DemoWindow", &m_isDemoWindow);
 		if (m_isDemoWindow)
 		{

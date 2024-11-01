@@ -8,6 +8,7 @@
 #include "GameObject/GameObject.h"
 #include "Utility/CerealExtention.h"
 #include "Component/Transform.h"
+#include "Utility/Log.h"
 
 namespace TMF
 {
@@ -20,6 +21,40 @@ namespace TMF
 		m_pGameObjects.push_back(pGameObject);
 
 		return pGameObject;
+	}
+	// jsonからオブジェクトを生成
+	void GameObjectManager::CreateGameObject(std::string fileName, std::weak_ptr<GameObject> obj)
+	{
+		fileName = fileName + ".json";
+		//std::ofstream ss(fileName.c_str(), std::ios::out);
+		//{
+		//	cereal::JSONOutputArchive oArchive(ss);
+		//	oArchive(obj);
+		//}
+
+		if (!std::filesystem::is_regular_file(fileName))
+		{
+			return;
+		}
+		auto pGameObject = std::make_shared<GameObject>();
+
+		std::ifstream iS(fileName.c_str(), std::ios::in);
+		{
+			cereal::JSONInputArchive inArchive(iS);
+			try
+			{
+				inArchive(pGameObject);
+			}
+			catch (const std::exception& e)
+			{
+				Log::Info(e.what());
+			}
+		}
+
+		pGameObject->AddComponent<Transform>();
+		pGameObject->Initialize();
+
+		m_pGameObjects.push_back(pGameObject);
 	}
 
 	void GameObjectManager::DestroyGameObject(GameObject* pGameObject)
@@ -103,6 +138,40 @@ namespace TMF
 			inArchive(GameObjectManager::Instance());
 		}
 	}
+
+	void GameObjectManager::SaveObject(std::string fileName, std::weak_ptr<GameObject> obj)
+	{
+		fileName = fileName + ".json";
+		std::ofstream ss(fileName.c_str(), std::ios::out);
+		{
+			cereal::JSONOutputArchive oArchive(ss);
+			oArchive(obj);
+		}
+	}
+
+	void GameObjectManager::LoadObject(std::string fileName)
+	{
+		fileName = fileName + ".json";
+		auto pGameObject = std::make_shared<GameObject>();
+
+		std::ifstream iS(fileName.c_str(), std::ios::in);
+		{
+			cereal::JSONInputArchive inArchive(iS);
+			try
+			{
+				inArchive(pGameObject);
+			}
+			catch (const std::exception& e)
+			{
+				Log::Info(e.what());
+			}
+		}
+
+		pGameObject->Initialize();
+
+		m_pGameObjects.push_back(pGameObject);
+	}
+
 
 	std::vector<std::shared_ptr<GameObject>> GameObjectManager::GetGameObjects()
 	{

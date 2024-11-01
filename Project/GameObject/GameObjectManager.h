@@ -16,6 +16,7 @@ namespace TMF
 	public:
 
 		std::weak_ptr<GameObject> CreateGameObject();
+		void CreateGameObject(std::string fileName, std::weak_ptr<GameObject> obj);
 		void DestroyGameObject(GameObject* pGameObject);
 		void Initialize();
 		void Finalize();
@@ -24,6 +25,8 @@ namespace TMF
 		void Draw();
 		void Save(std::string fileName);
 		void Load(std::string fileName);
+		void SaveObject(std::string fileName, std::weak_ptr<GameObject> obj);
+		void LoadObject(std::string fileName);
 
 		std::vector<std::shared_ptr<GameObject>> GetGameObjects();
 		std::weak_ptr<GameObject> GetGameObject(std::string name);

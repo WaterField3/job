@@ -165,6 +165,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Component\BulletStraightMove.cpp" />
     <ClCompile Include="Component\Attack.cpp" />
     <ClCompile Include="Component\PrimitiveMesh.cpp" />
     <ClCompile Include="Component\Melee.cpp" />
@@ -216,6 +217,7 @@
     <ClCompile Include="Vender\Imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component\BulletStraightMove.h" />
     <ClInclude Include="Component\Attack.h" />
     <ClInclude Include="Component\PrimitiveMesh.h" />
     <ClInclude Include="Component\Melee.h" />
