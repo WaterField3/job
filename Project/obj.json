@@ -3,9 +3,9 @@
         "ptr_wrapper": {
             "id": 2147483649,
             "data": {
-                "m_name": "NewGameObject",
+                "m_name": "Bullet",
                 "m_uuID": {
-                    "uuid": "29e2dd63-df28-4ecd-9c37-e65eca6c2cc0"
+                    "uuid": "e15a1053-5f15-4c41-b78f-bf2696a2a019"
                 },
                 "m_tag": 0,
                 "m_pComponents": [
@@ -17,7 +17,7 @@
                             "data": {
                                 "value0": {
                                     "m_uuID": {
-                                        "uuid": "0bdaa854-ec1c-4ad7-ae73-7bf12bfdfa9d"
+                                        "uuid": "0ed8f7c7-2864-43aa-bc29-967f49f427af"
                                     }
                                 },
                                 "m_position": {
@@ -52,7 +52,7 @@
                             "data": {
                                 "value0": {
                                     "m_uuID": {
-                                        "uuid": "d7805a2f-72c4-4a70-bada-3a438fe63f99"
+                                        "uuid": "b836201d-97db-49ff-9751-d5c8305fdad9"
                                     }
                                 },
                                 "m_shapeType": 0,
@@ -68,6 +68,26 @@
                                     "value2": 2.0
                                 },
                                 "m_textureName": ""
+                            }
+                        }
+                    },
+                    {
+                        "polymorphic_id": 2147483651,
+                        "polymorphic_name": "TMF::BulletStraightMove",
+                        "ptr_wrapper": {
+                            "id": 2147483652,
+                            "data": {
+                                "value0": {
+                                    "m_uuID": {
+                                        "uuid": "83b79b26-53e2-486e-b9a7-dc274060b0e9"
+                                    }
+                                },
+                                "m_moveSpeed": 0.10000000149011612,
+                                "m_moveVector": {
+                                    "value0": 0.0,
+                                    "value1": 0.0,
+                                    "value2": 1.0
+                                }
                             }
                         }
                     }

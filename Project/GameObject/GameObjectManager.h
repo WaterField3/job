@@ -26,7 +26,7 @@ namespace TMF
 		void Save(std::string fileName);
 		void Load(std::string fileName);
 		void SaveObject(std::string fileName, std::weak_ptr<GameObject> obj);
-		void LoadObject(std::string fileName);
+		std::weak_ptr<GameObject> LoadObject(std::string fileName);
 
 		std::vector<std::shared_ptr<GameObject>> GetGameObjects();
 		std::weak_ptr<GameObject> GetGameObject(std::string name);

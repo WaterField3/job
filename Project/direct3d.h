@@ -156,6 +156,8 @@ private:
 
 	std::shared_ptr<DirectX::CommonStates> m_pCommonStates;
 
+	Microsoft::WRL::ComPtr <ID3D11ShaderResourceView> m_pBackGround;
+
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_bloomExtractPS;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_bloomCombinePS;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_gaussianBlurPS;

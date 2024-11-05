@@ -23,6 +23,8 @@ namespace TMF
 		float m_moveSpeed = 0.0f;
 		DirectX::SimpleMath::Vector3 m_moveVector = DirectX::SimpleMath::Vector3::Zero;
 		std::weak_ptr<Transform> m_transform;
+
+		SERIALIZE_COMPONENT(m_moveSpeed, m_moveVector);
 	};
 }
 

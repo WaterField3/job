@@ -169,7 +169,10 @@
     <ClCompile Include="Component\Attack.cpp" />
     <ClCompile Include="Component\PrimitiveMesh.cpp" />
     <ClCompile Include="Component\Melee.cpp" />
+    <ClCompile Include="Component\Destroy.cpp" />
+    <ClCompile Include="Component\DebrisBody.cpp" />
     <ClCompile Include="RenderTexture.cpp" />
+    <ClCompile Include="Component\Shot.cpp" />
     <ClCompile Include="System\Animation.cpp" />
     <ClCompile Include="Component\Animater.cpp" />
     <ClCompile Include="ApplicationState.cpp" />
@@ -221,8 +224,11 @@
     <ClInclude Include="Component\Attack.h" />
     <ClInclude Include="Component\PrimitiveMesh.h" />
     <ClInclude Include="Component\Melee.h" />
+    <ClInclude Include="Component\Destroy.h" />
+    <ClInclude Include="Component\DebrisBody.h" />
     <ClInclude Include="ReadData.h" />
     <ClInclude Include="RenderTexture.h" />
+    <ClInclude Include="Component\Shot.h" />
     <ClInclude Include="System\Animation.h" />
     <ClInclude Include="Component\Animater.h" />
     <ClInclude Include="ApplicationState.h" />

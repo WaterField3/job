@@ -149,7 +149,7 @@ namespace TMF
 		}
 	}
 
-	void GameObjectManager::LoadObject(std::string fileName)
+	std::weak_ptr<GameObject> GameObjectManager::LoadObject(std::string fileName)
 	{
 		fileName = fileName + ".json";
 		auto pGameObject = std::make_shared<GameObject>();
@@ -170,6 +170,8 @@ namespace TMF
 		pGameObject->Initialize();
 
 		m_pGameObjects.push_back(pGameObject);
+
+		return pGameObject;
 	}
 
 

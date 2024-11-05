@@ -9,6 +9,7 @@
                         "m_uuID": {
                             "uuid": "2b9279a0-48f0-46db-bbdf-baa53745fa0e"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 2147483649,
@@ -57,6 +58,7 @@
                         "m_uuID": {
                             "uuid": "50f82bd8-ead4-4e48-b314-5b984adc8ba6"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -178,6 +180,7 @@
                         "m_uuID": {
                             "uuid": "efe87573-157e-435b-a69d-52aa149b45c1"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -242,6 +245,7 @@
                         "m_uuID": {
                             "uuid": "0b0ce06e-f7a8-49f9-ad69-20bc3eb9ea5e"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -360,6 +364,7 @@
                         "m_uuID": {
                             "uuid": "cca2984c-aa54-48de-8e2e-b800bbbeac3d"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -443,6 +448,7 @@
                         "m_uuID": {
                             "uuid": "71b152f5-acb1-480c-9b38-935169b0ebbd"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -525,6 +531,7 @@
                         "m_uuID": {
                             "uuid": "e3b31c4a-02c3-458d-86e6-b036e99f4bac"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -589,6 +596,7 @@
                         "m_uuID": {
                             "uuid": "c41aec41-37e7-4689-b3db-fdeb0dcb2998"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -684,7 +692,7 @@
                                             "value0": 0.0,
                                             "value1": 0.0,
                                             "value2": 0.0,
-                                            "value3": 1.0
+                                            "value3": 0.6000000238418579
                                         },
                                         "m_scale": {
                                             "value0": 2.0,
@@ -707,6 +715,7 @@
                         "m_uuID": {
                             "uuid": "b020743a-f467-48c2-a5f1-b5d2eb5258bc"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 2147483656,
@@ -740,6 +749,7 @@
                         "m_uuID": {
                             "uuid": "d8112026-4a62-441e-a7bb-9badcac57ea4"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -753,8 +763,8 @@
                                         },
                                         "m_position": {
                                             "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 5.800000190734863
+                                            "value1": 1.7999999523162842,
+                                            "value2": 2.5999999046325685
                                         },
                                         "m_scale": {
                                             "value0": 1.0,
@@ -763,9 +773,9 @@
                                         },
                                         "m_rotation": {
                                             "value0": 0.0,
-                                            "value1": 0.0,
+                                            "value1": 0.8368988037109375,
                                             "value2": 0.0,
-                                            "value3": 1.0
+                                            "value3": -0.5473576784133911
                                         },
                                         "m_pParent": {
                                             "locked_ptr": {
@@ -803,6 +813,7 @@
                         "m_uuID": {
                             "uuid": "17bf2ef1-e473-4b2c-b3b7-96f9f27e116c"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -869,6 +880,7 @@
                         "m_uuID": {
                             "uuid": "cb93c7c3-00da-463d-9f7b-ba5803ba24ce"
                         },
+                        "m_tag": 0,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -999,6 +1011,80 @@
                                             "value1": 10.0,
                                             "value2": 1.0
                                         }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483695,
+                    "data": {
+                        "m_name": "Red",
+                        "m_uuID": {
+                            "uuid": "300a111f-d011-47e8-b394-544d0cde1cff"
+                        },
+                        "m_tag": 0,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483696,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "8ca58c61-8705-413c-a511-70543f2dadf2"
+                                            }
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 2.0999999046325685,
+                                            "value2": 4.699999809265137
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.20417501032352448,
+                                            "value1": -0.4835909307003021,
+                                            "value2": 0.8430513739585877,
+                                            "value3": 0.11711882054805756
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 4,
+                                "ptr_wrapper": {
+                                    "id": 2147483697,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "26270a37-aa70-4c33-a72c-181c0042975d"
+                                            }
+                                        },
+                                        "m_shapeType": 4,
+                                        "m_color": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 2.0,
+                                            "value2": 2.0
+                                        },
+                                        "m_textureName": ""
                                     }
                                 }
                             }

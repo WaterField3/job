@@ -150,7 +150,7 @@ enum BloomPresets
 	None
 };
 
-BloomPresets g_Bloom = Default;
+BloomPresets g_Bloom = Saturated;
 
 static const VS_BLOOM_PARAMETERS g_BloomPresets[] =
 {
@@ -383,9 +383,9 @@ HRESULT D3D::Create(HWND hwnd)
 
 	}
 
-	blob = DX::ReadData(L"GaussianBlur.cso");
 	try
 	{
+	blob = DX::ReadData(L"GaussianBlur.cso");
 		m_pDevice->CreatePixelShader(blob.data(), blob.size(),
 			nullptr, m_gaussianBlurPS.ReleaseAndGetAddressOf());
 	}
@@ -443,13 +443,15 @@ HRESULT D3D::Create(HWND hwnd)
 
 	m_pSpriteBatch = std::make_unique<SpriteBatch>(m_pImmediateContext);
 
-	const auto format = DXGI_FORMAT(2);
+	const auto format = DXGI_FORMAT(10);
 	m_offscreenTexture = std::make_unique<DX::RenderTexture>(format);
 	m_renderTarget1 = std::make_unique<DX::RenderTexture>(format);
 	m_renderTarget2 = std::make_unique<DX::RenderTexture>(format);
 
 
 	m_fullscreenRect = m_bloomRect;
+
+	CreateWICTextureFromFile(m_pDevice, L"asset/textures/sunset.jpg", nullptr, m_pBackGround.ReleaseAndGetAddressOf());
 
 	return hr;
 }
@@ -506,6 +508,7 @@ D3D::~D3D()
 	m_bloomParams.Reset();
 	m_blurParamsWidth.Reset();
 	m_blurParamsHeight.Reset();
+	m_pBackGround.Reset();
 }
 
 
@@ -824,12 +827,20 @@ void D3D::ClearScreen()
 	m_pImmediateContext->PSSetConstantBuffers(
 		0, 1, &m_pConstantBuffer);
 
+	m_pSpriteBatch->Begin();
+	m_pSpriteBatch->Draw(m_pBackGround.Get(), m_fullscreenRect);
+	m_pSpriteBatch->End();
+
+	auto renderTarget = m_offscreenTexture->GetRenderTargetView();
+	//PostProcess();
+
+
 }
 
 void D3D::UpdateScreen()
 {
 	// ダブルバッファの切り替えを行い画面を更新する
-	//PostProcess();
+	PostProcess();
 	m_pSwapChain->Present(1, 0);
 }
 

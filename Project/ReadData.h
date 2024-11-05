@@ -12,6 +12,7 @@
 
 #pragma once
 
+#include <Windows.h>
 #include <cstddef>
 #include <cstdint>
 #include <exception>
@@ -19,7 +20,7 @@
 #include <stdexcept>
 #include <system_error>
 #include <vector>
-
+#include <libloaderapi.h>
 
 namespace DX
 {
