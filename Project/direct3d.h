@@ -74,6 +74,17 @@ public:
 
 	};
 
+	enum BloomPresets
+	{
+		Default = 0,
+		Soft,
+		Desaturated,
+		Saturated,
+		Blurry,
+		Subtle,
+		None
+	};
+
 	// Direct3Dの初期化処理を実行する
 	HRESULT Create(HWND hwnd);
 	void Init();
@@ -108,7 +119,8 @@ public:
 	// 頂点データ１つあたりのバイトサイズを返す
 	UINT GetVertexStride();
 	void PostProcess();
-
+	inline BloomPresets GetBloomPresets() { return g_Bloom; }
+	inline void SetBloomPresets(BloomPresets set) { g_Bloom = set; }
 private:
 	D3D() {};
 
@@ -173,5 +185,7 @@ private:
 	RECT m_bloomRect;
 	RECT m_fullscreenRect;
 	RECT m_size;
+
+	BloomPresets g_Bloom = Default;
 };
 

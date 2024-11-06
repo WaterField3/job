@@ -10,6 +10,7 @@
 #include "System/DataFileNames.h"
 #include "PhysicsManager.h"
 #include "ApplicationState.h"
+#include "direct3d.h"
 
 namespace TMF
 {
@@ -94,6 +95,29 @@ namespace TMF
 		{
 			ImGui::ShowDemoWindow();
 		}
+
+		const char* types[] = { "Default","Soft","Desaturated","Saturated","Blurry","Subtle","None"};
+		static int selectIndex = (int)D3D::Get()->GetBloomPresets();
+		if (ImGui::BeginCombo("BoloomPresets", types[selectIndex]))
+		{
+			for (int i = 0; i < IM_ARRAYSIZE(types); i++)
+			{
+				auto selected = ((int)D3D::Get()->GetBloomPresets() == i);
+				if (ImGui::Selectable(types[i], selected))
+				{
+					D3D::Get()->SetBloomPresets(D3D::BloomPresets(i));
+					selectIndex = i;
+
+				}
+				if (selected)
+				{
+					ImGui::SetItemDefaultFocus();
+				}
+			}
+			ImGui::EndCombo();
+			ImGui::SameLine();
+		}
+
 		ImGui::End();
 
 	}

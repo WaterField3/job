@@ -1040,8 +1040,8 @@
                                         },
                                         "m_position": {
                                             "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0
+                                            "value1": 2.0999999046325685,
+                                            "value2": 4.699999809265137
                                         },
                                         "m_scale": {
                                             "value0": 1.0,
@@ -1049,17 +1049,14 @@
                                             "value2": 1.0
                                         },
                                         "m_rotation": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0,
-                                            "value3": 1.0
+                                            "value0": 0.20417501032352448,
+                                            "value1": -0.4835909307003021,
+                                            "value2": 0.8430513739585877,
+                                            "value3": 0.11711882054805756
                                         },
                                         "m_pParent": {
                                             "locked_ptr": {
-                                                "polymorphic_id": 1073741824,
-                                                "ptr_wrapper": {
-                                                    "id": 35
-                                                }
+                                                "polymorphic_id": 0
                                             }
                                         }
                                     }
@@ -1075,15 +1072,15 @@
                                                 "uuid": "26270a37-aa70-4c33-a72c-181c0042975d"
                                             }
                                         },
-                                        "m_shapeType": 0,
+                                        "m_shapeType": 4,
                                         "m_color": {
                                             "value0": 1.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0,
-                                            "value3": 0.699999988079071
+                                            "value1": 1.0,
+                                            "value2": 1.0,
+                                            "value3": 1.0
                                         },
                                         "m_scale": {
-                                            "value0": 2.0,
+                                            "value0": 1.0,
                                             "value1": 2.0,
                                             "value2": 2.0
                                         },

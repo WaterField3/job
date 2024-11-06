@@ -139,18 +139,6 @@ private:
 static_assert(!(sizeof(VS_BLUR_PARAMETERS) % 16),
 	"VS_BLUR_PARAMETERS needs to be 16 bytes aligned");
 
-enum BloomPresets
-{
-	Default = 0,
-	Soft,
-	Desaturated,
-	Saturated,
-	Blurry,
-	Subtle,
-	None
-};
-
-BloomPresets g_Bloom = Saturated;
 
 static const VS_BLOOM_PARAMETERS g_BloomPresets[] =
 {
@@ -356,6 +344,11 @@ HRESULT D3D::Create(HWND hwnd)
 
 	m_hwnd = hwnd;
 
+	const auto format = DXGI_FORMAT(10);
+	m_offscreenTexture = std::make_unique<DX::RenderTexture>(format);
+	m_renderTarget1 = std::make_unique<DX::RenderTexture>(format);
+	m_renderTarget2 = std::make_unique<DX::RenderTexture>(format);
+
 	m_pEffect = std::make_shared<DirectX::BasicEffect>(m_pDevice);
 	m_pEffect->SetVertexColorEnabled(true);
 	CreateInputLayoutFromEffect<VertexPositionColor>(m_pDevice, m_pEffect.get(),
@@ -385,7 +378,7 @@ HRESULT D3D::Create(HWND hwnd)
 
 	try
 	{
-	blob = DX::ReadData(L"GaussianBlur.cso");
+		blob = DX::ReadData(L"GaussianBlur.cso");
 		m_pDevice->CreatePixelShader(blob.data(), blob.size(),
 			nullptr, m_gaussianBlurPS.ReleaseAndGetAddressOf());
 	}
@@ -443,10 +436,10 @@ HRESULT D3D::Create(HWND hwnd)
 
 	m_pSpriteBatch = std::make_unique<SpriteBatch>(m_pImmediateContext);
 
-	const auto format = DXGI_FORMAT(10);
-	m_offscreenTexture = std::make_unique<DX::RenderTexture>(format);
-	m_renderTarget1 = std::make_unique<DX::RenderTexture>(format);
-	m_renderTarget2 = std::make_unique<DX::RenderTexture>(format);
+
+	m_offscreenTexture->SetDevice(m_pDevice);
+	m_renderTarget1->SetDevice(m_pDevice);
+	m_renderTarget2->SetDevice(m_pDevice);
 
 
 	m_fullscreenRect = m_bloomRect;
@@ -458,9 +451,6 @@ HRESULT D3D::Create(HWND hwnd)
 
 void D3D::Init()
 {
-	m_offscreenTexture->SetDevice(m_pDevice);
-	m_renderTarget1->SetDevice(m_pDevice);
-	m_renderTarget2->SetDevice(m_pDevice);
 
 	m_offscreenTexture->SetWindow(m_size);
 
@@ -808,6 +798,14 @@ void D3D::ClearScreen()
 	// 深度バッファをリセットする
 	m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
+	if (g_Bloom != None)
+	{
+		float checkColor[4] = { 0.0f,0.0f,0.0f,0.0f };
+		auto renderTarget = m_offscreenTexture->GetRenderTargetView();
+		m_pImmediateContext->OMSetRenderTargets(1, &renderTarget, m_pDepthStencilView);
+		m_pImmediateContext->ClearRenderTargetView(renderTarget, checkColor);
+	}
+
 	UINT strides = sizeof(Vertex);
 	UINT offsets = 0;
 	m_pImmediateContext->IASetInputLayout(m_pInputLayout);
@@ -817,10 +815,10 @@ void D3D::ClearScreen()
 	m_pImmediateContext->RSSetViewports(1, &m_Viewport);
 	m_pImmediateContext->PSSetShader(m_pPixelShader, NULL, 0);
 
-	// ピクセルシェーダーにサンプラーを渡す
+	//// ピクセルシェーダーにサンプラーを渡す
 	m_pImmediateContext->PSSetSamplers(0, 1, &m_pSampler);
 
-	// 定数バッファを頂点シェーダーにセットする
+	//// 定数バッファを頂点シェーダーにセットする
 	m_pImmediateContext->VSSetConstantBuffers(
 		0, 1, &m_pConstantBuffer);
 	// 定数バッファをピクセルシェーダーにセットする
@@ -831,7 +829,6 @@ void D3D::ClearScreen()
 	m_pSpriteBatch->Draw(m_pBackGround.Get(), m_fullscreenRect);
 	m_pSpriteBatch->End();
 
-	auto renderTarget = m_offscreenTexture->GetRenderTargetView();
 	//PostProcess();
 
 
