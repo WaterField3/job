@@ -29,16 +29,28 @@ namespace TMF
 
 	void Animater::OnUpdate()
 	{
-
+		if (m_timer > m_animEndTime)
+		{
+			if (m_fileName != "asset/Breathing Idle.sdkmesh_anim")
+			{
+				m_fileName = "asset/Breathing Idle.sdkmesh_anim";
+				LoadAnimation();
+			}
+			else
+			{
+				m_timer = 0;
+			}
+		}
 		auto deltaTime = Timer::Instance().deltaTime.count();
 		if (m_pAnimationCMO)
 		{
 			m_pAnimationCMO->Update(deltaTime * m_animationSpeed);
 		}
-		if (m_pAnimationSDKMESH)
+		else if (m_pAnimationSDKMESH)
 		{
 			m_pAnimationSDKMESH->Update(deltaTime * m_animationSpeed);
 		}
+		m_timer += deltaTime * m_animationSpeed;
 	}
 
 	void Animater::OnLateUpdate()
@@ -117,11 +129,18 @@ namespace TMF
 		{
 
 		}
+		auto endTimeLabel = StringHelper::CreateLabel("EndTime", m_uuID);
+		if (ImGui::DragFloat(endTimeLabel.c_str(), &m_animEndTime))
+		{
+
+		}
 	}
 
-	void Animater::SetFileName(std::string fileName)
+	void Animater::SetFileName(std::string fileName, float endTime)
 	{
 		m_fileName = fileName;
+		m_timer = 0.0f;
+		m_animEndTime = endTime;
 		LoadAnimation();
 	}
 
@@ -173,6 +192,7 @@ namespace TMF
 					m_pAnimationCMO->Load(wideString.c_str(), m_animOffset);
 					m_pAnimationCMO->Bind(*lockModel);
 					m_drawBone = DirectX::ModelBone::MakeArray(m_boneSize);
+					m_timer = 0;
 
 					if (m_pAnimationSDKMESH)
 					{
@@ -210,7 +230,7 @@ namespace TMF
 					m_pAnimationSDKMESH->Load(wideString.c_str());
 					m_pAnimationSDKMESH->Bind(*lockModel);
 					m_drawBone = DirectX::ModelBone::MakeArray(m_boneSize);
-
+					m_timer = 0;
 					if (m_pAnimationCMO)
 					{
 						m_pAnimationCMO.release();

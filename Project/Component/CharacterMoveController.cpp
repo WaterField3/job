@@ -6,6 +6,7 @@
 #include "Rigidbody.h"
 #include "Input.h"
 #include "Transform.h"
+#include "Melee.h"
 
 REGISTER_COMPONENT(TMF::CharacterMoveController, "CharacterMoveController");
 
@@ -32,6 +33,7 @@ namespace TMF
 		auto torque = DirectX::SimpleMath::Vector3::Zero;
 		auto isJump = false;
 		auto isRotate = false;
+		auto isAttack = false;
 		if (kb.W == true)
 		{
 			auto pOwner = m_pOwner.lock();
@@ -89,10 +91,14 @@ namespace TMF
 		{
 			isJump = true;
 		}
-
-		if (auto owner = m_pOwner.lock())
+		else if (tracker->pressed.Enter == true)
 		{
-			auto rigidBodyComponent = owner->GetComponent<Rigidbody>();
+			isAttack = true;
+		}
+
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto rigidBodyComponent = pLockOwner->GetComponent<Rigidbody>();
 			if (auto rb = rigidBodyComponent.lock())
 			{
 				if (movePos != DirectX::SimpleMath::Vector3::Zero)
@@ -131,6 +137,14 @@ namespace TMF
 					//rb->ClearForces();
 					//rb->GetAngularFactor();
 
+				}
+			}
+			if (isAttack == true)
+			{
+				auto pMelee = pLockOwner->GetComponent<Melee>();
+				if (auto pLockMelee = pMelee.lock())
+				{
+					pLockMelee->Play();
 				}
 			}
 		}

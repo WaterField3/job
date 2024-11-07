@@ -38,7 +38,11 @@ namespace TMF
 		{
 			m_meleeAnimation = buf;
 		}
+		auto endTimeLabel = StringHelper::CreateLabel("EndTime", m_uuID);
+		if (ImGui::DragFloat(endTimeLabel.c_str(), &endTime))
+		{
 
+		}
 		auto playLabel = StringHelper::CreateLabel("Play", m_uuID);
 		if (ImGui::Button(playLabel.c_str()))
 		{
@@ -56,7 +60,7 @@ namespace TMF
 			if (auto pLockAnimater = pAnimater.lock())
 			{
 				// アニメーションのパスの変更
-				pLockAnimater->SetFileName(m_meleeAnimation);
+				pLockAnimater->SetFileName(m_meleeAnimation, endTime);
 			}
 		}
 	}

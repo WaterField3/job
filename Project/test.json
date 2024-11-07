@@ -944,7 +944,8 @@
                                             }
                                         },
                                         "m_fileName": "asset/Defeated.sdkmesh_anim",
-                                        "m_animationSpeed": 1.0
+                                        "m_animationSpeed": 1.0,
+                                        "m_isAnimation": true
                                     }
                                 }
                             },
@@ -1026,7 +1027,8 @@
                                             }
                                         },
                                         "m_damage": 0.0,
-                                        "m_meleeAnimation": "asset/Breathing Idle.sdkmesh_anim"
+                                        "m_meleeAnimation": "asset/Standing Melee Attack Downward.sdkmesh_anim",
+                                        "endTime": 2.4000000953674318
                                     }
                                 }
                             }

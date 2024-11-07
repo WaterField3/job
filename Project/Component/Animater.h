@@ -26,7 +26,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
-		void SetFileName(std::string fileName);
+		void SetFileName(std::string fileName, float endTime);
 
 		void LoadAnimation();
 
@@ -44,8 +44,10 @@ namespace TMF
 		std::unique_ptr<DX::AnimationSDKMESH> m_pAnimationSDKMESH;
 		DirectX::ModelBone::TransformArray m_drawBone;
 		std::weak_ptr<DirectX::Model> m_pModel;
+		float m_timer = 0;
+		float m_animEndTime = 0;
 
 
-		SERIALIZE_COMPONENT(m_fileName, m_animationSpeed);
+		SERIALIZE_COMPONENT(m_fileName, m_animationSpeed, m_isAnimation);
 	};
 }

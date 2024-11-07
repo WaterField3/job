@@ -21,8 +21,9 @@ namespace TMF
 	private:
 		float m_damage = 0;
 		std::string m_meleeAnimation = "";
+		float endTime = 0;
 
-		SERIALIZE_COMPONENT(m_damage, m_meleeAnimation);
+		SERIALIZE_COMPONENT(m_damage, m_meleeAnimation, endTime);
 	};
 }
 
