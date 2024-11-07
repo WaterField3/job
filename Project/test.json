@@ -1013,6 +1013,22 @@
                                         }
                                     }
                                 }
+                            },
+                            {
+                                "polymorphic_id": 2147483659,
+                                "polymorphic_name": "TMF::Melee",
+                                "ptr_wrapper": {
+                                    "id": 2147483695,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "825de199-b9fd-4b7b-8bb3-61ca7e8d23a8"
+                                            }
+                                        },
+                                        "m_damage": 0.0,
+                                        "m_meleeAnimation": "asset/Breathing Idle.sdkmesh_anim"
+                                    }
+                                }
                             }
                         ]
                     }
@@ -1020,7 +1036,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483695,
+                    "id": 2147483696,
                     "data": {
                         "m_name": "Red",
                         "m_uuID": {
@@ -1031,7 +1047,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483696,
+                                    "id": 2147483697,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1040,7 +1056,7 @@
                                         },
                                         "m_position": {
                                             "value0": 0.0,
-                                            "value1": 2.0999999046325685,
+                                            "value1": 6.599999904632568,
                                             "value2": 4.699999809265137
                                         },
                                         "m_scale": {
@@ -1065,7 +1081,7 @@
                             {
                                 "polymorphic_id": 4,
                                 "ptr_wrapper": {
-                                    "id": 2147483697,
+                                    "id": 2147483698,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {

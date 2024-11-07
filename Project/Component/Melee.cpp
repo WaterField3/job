@@ -8,6 +8,7 @@
 #include "Transform.h"
 #include "PrimitiveMesh.h"
 #include "BulletStraightMove.h"
+#include "Animater.h"
 
 REGISTER_COMPONENT(TMF::Melee, "Melee");
 
@@ -46,35 +47,17 @@ namespace TMF
 	}
 	void Melee::Play()
 	{
-		//if (auto pLockOwner = m_pOwner.lock())
-		//{
-		//	auto thisObjPosition = DirectX::SimpleMath::Vector3::Zero;
-		//	auto pTransform = pLockOwner->GetComponent<Transform>();
+		// objファイルのGameObjectを生成
+		//GameObjectManager::Instance().LoadObject("obj");
 
-		//	if (auto pLockTransrom = pTransform.lock())
-		//	{
-		//		thisObjPosition = pLockTransrom->GetPosition();
-
-		//	}
-		//	// 当たり判定用のオブジェクトを生成
-		//	auto pHitObj = GameObjectManager::Instance().CreateGameObject();
-		//	if (auto pLockHitObj = pHitObj.lock())
-		//	{
-		//		auto pHitObjTransform = pLockHitObj->GetComponent<Transform>();
-		//		if (auto pLockHitObjTransform = pHitObjTransform.lock())
-		//		{
-		//			pLockHitObjTransform->SetPosition(thisObjPosition);
-		//		}
-		//		pLockHitObj->SetName("hitobj");
-		//		pLockHitObj->AddComponent<Melee>();
-		//		pLockHitObj->AddComponent<PrimitiveMesh>();
-		//		auto pHitStraightMove = pLockHitObj->AddComponent<BulletStraightMove>();
-		//		if (auto pLockHitStraightMove = pHitStraightMove.lock())
-		//		{
-		//			pLockHitStraightMove->SetMoveVector(DirectX::SimpleMath::Vector3::Backward);
-		//		}
-		//	}
-		//}
-		GameObjectManager::Instance().LoadObject("obj");
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pAnimater = pLockOwner->GetComponent<Animater>();
+			if (auto pLockAnimater = pAnimater.lock())
+			{
+				// アニメーションのパスの変更
+				pLockAnimater->SetFileName(m_meleeAnimation);
+			}
+		}
 	}
 }
