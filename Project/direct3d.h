@@ -120,7 +120,7 @@ public:
 	UINT GetVertexStride();
 	void PostProcess();
 	inline BloomPresets GetBloomPresets() { return g_Bloom; }
-	inline void SetBloomPresets(BloomPresets set) { g_Bloom = set; }
+	void SetBloomPresets(BloomPresets set);
 private:
 	D3D() {};
 

@@ -786,6 +786,48 @@ void D3D::PostProcess()
 	m_pImmediateContext->PSSetShaderResources(0, 2, null);
 }
 
+void D3D::SetBloomPresets(BloomPresets set)
+{
+	g_Bloom = set;
+
+	CD3D11_BUFFER_DESC cbBloomDesc(sizeof(VS_BLOOM_PARAMETERS),
+		D3D11_BIND_CONSTANT_BUFFER);
+	D3D11_SUBRESOURCE_DATA initData = { &g_BloomPresets[g_Bloom], 0, 0 };
+	try
+	{
+		m_pDevice->CreateBuffer(&cbBloomDesc, &initData,
+			m_bloomParams.ReleaseAndGetAddressOf());
+	}
+	catch (const std::exception&)
+	{
+
+	}
+	CD3D11_BUFFER_DESC cbBlurDesc(sizeof(VS_BLUR_PARAMETERS),
+		D3D11_BIND_CONSTANT_BUFFER);
+	try
+	{
+		m_pDevice->CreateBuffer(&cbBlurDesc, nullptr,
+			m_blurParamsWidth.ReleaseAndGetAddressOf());
+		m_pDevice->CreateBuffer(&cbBlurDesc, nullptr,
+			m_blurParamsHeight.ReleaseAndGetAddressOf());
+	}
+	catch (const std::exception&)
+	{
+
+	}
+
+	VS_BLUR_PARAMETERS blurData = {};
+	blurData.SetBlurEffectParameters(1.f / (float(m_size.right) / 2), 0,
+		g_BloomPresets[g_Bloom]);
+	m_pImmediateContext->UpdateSubresource(m_blurParamsWidth.Get(), 0, nullptr,
+		&blurData, sizeof(VS_BLUR_PARAMETERS), 0);
+
+	blurData.SetBlurEffectParameters(0, 1.f / (float(m_size.bottom) / 2),
+		g_BloomPresets[g_Bloom]);
+	m_pImmediateContext->UpdateSubresource(m_blurParamsHeight.Get(), 0, nullptr,
+		&blurData, sizeof(VS_BLUR_PARAMETERS), 0);
+}
+
 void D3D::ClearScreen()
 {
 	// ‰æ–Ê“h‚è‚Â‚Ô‚µF
