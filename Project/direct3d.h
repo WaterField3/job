@@ -186,6 +186,6 @@ private:
 	RECT m_fullscreenRect;
 	RECT m_size;
 
-	BloomPresets g_Bloom = Default;
+	BloomPresets g_Bloom = None;
 };
 

@@ -40,7 +40,8 @@ namespace TMF
 		float m_volume = 1;
 		float m_pitch = 0;
 		float m_pan = 0;
-		SERIALIZE_COMPONENT(m_soundName, m_volume, m_pitch, m_pan);
+		bool m_isLoop = false;
+		SERIALIZE_COMPONENT(m_soundName, m_volume, m_pitch, m_pan, m_isLoop);
 
 	};
 }

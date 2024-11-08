@@ -77,17 +77,30 @@ namespace TMF
 				GameObjectManager::Instance().Save(MAIN_DATA);
 			}
 		}
-		char buf[256] = "";
-		strcpy_s(buf, sizeof(buf), m_saveObjectName.c_str());
-		if (ImGui::InputText("saveName", buf, 256))
+		char saveBuf[256] = "";
+		strcpy_s(saveBuf, sizeof(saveBuf), m_saveObjectName.c_str());
+		if (ImGui::InputText("saveName", saveBuf, 256))
 		{
-			m_saveObjectName = buf;
+			m_saveObjectName = saveBuf;
+		}
+		char loadBuf[256] = "";
+		strcpy_s(loadBuf, sizeof(loadBuf), m_saveObjectName.c_str());
+		if (ImGui::InputText("loadName", loadBuf, 256))
+		{
+			m_loadObjectName = loadBuf;
 		}
 		if (ImGui::Button("ObjectSave"))
 		{
 			if (!isPlay)
 			{
 				GameObjectManager::Instance().SaveObject(m_saveObjectName, pObject);
+			}
+		}
+		if (ImGui::Button("ObjectLoad"))
+		{
+			if (!isPlay)
+			{
+				GameObjectManager::Instance().LoadObject(m_loadObjectName);
 			}
 		}
 		ImGui::Checkbox("DemoWindow", &m_isDemoWindow);

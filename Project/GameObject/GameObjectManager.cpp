@@ -95,7 +95,10 @@ namespace TMF
 	{
 		for (auto& pGameObject : m_pGameObjects)
 		{
-			pGameObject->Update();
+			if (pGameObject->GetActive())
+			{
+				pGameObject->Update();
+			}
 		}
 	}
 
@@ -103,7 +106,10 @@ namespace TMF
 	{
 		for (auto& pGameObject : m_pGameObjects)
 		{
-			pGameObject->LateUpdate();
+			if (pGameObject->GetActive())
+			{
+				pGameObject->LateUpdate();
+			}
 		}
 	}
 
@@ -111,7 +117,10 @@ namespace TMF
 	{
 		for (auto& pGameObject : m_pGameObjects)
 		{
-			pGameObject->Draw();
+			if (pGameObject->GetActive())
+			{
+				pGameObject->Draw();
+			}
 		}
 	}
 

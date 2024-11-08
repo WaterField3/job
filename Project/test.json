@@ -194,8 +194,8 @@
                                         },
                                         "m_position": {
                                             "value0": 0.0,
-                                            "value1": 2.0999999046325685,
-                                            "value2": 8.600000381469727
+                                            "value1": 1.7000000476837159,
+                                            "value2": 14.899999618530274
                                         },
                                         "m_scale": {
                                             "value0": 0.0,
@@ -1028,7 +1028,8 @@
                                         },
                                         "m_damage": 0.0,
                                         "m_meleeAnimation": "asset/Standing Melee Attack Downward.sdkmesh_anim",
-                                        "endTime": 2.4000000953674318
+                                        "endTime": 2.4000000953674318,
+                                        "m_meleeObjectName": "MeleeMoveObj"
                                     }
                                 }
                             }
@@ -1103,6 +1104,130 @@
                                             "value2": 2.0
                                         },
                                         "m_textureName": ""
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483699,
+                    "data": {
+                        "m_name": "MeleeMoveObj",
+                        "m_uuID": {
+                            "uuid": "6ab964ad-096d-4d42-8540-8f0dbaa70020"
+                        },
+                        "m_tag": 0,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483700,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "171372e2-50c1-4dcf-b530-dff0377f7139"
+                                            }
+                                        },
+                                        "m_position": {
+                                            "value0": -1.0407159328460694,
+                                            "value1": 4.599999904632568,
+                                            "value2": 0.9575543999671936
+                                        },
+                                        "m_scale": {
+                                            "value0": 0.20000000298023225,
+                                            "value1": 0.5,
+                                            "value2": 0.5
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.24740396440029145,
+                                            "value3": 0.9689124226570129
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 1073741824,
+                                                "ptr_wrapper": {
+                                                    "id": 41
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483660,
+                                "polymorphic_name": "TMF::MeleeMove",
+                                "ptr_wrapper": {
+                                    "id": 2147483701,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "82dda18b-1174-4c65-8b9e-84cf42ab2a6e"
+                                            }
+                                        },
+                                        "m_moveSpeed": 0.05000000074505806,
+                                        "m_rotate": {
+                                            "value0": -0.5,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2,
+                                "ptr_wrapper": {
+                                    "id": 2147483702,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "fdf2bbbc-8c43-4636-b000-676dd45ccadc"
+                                            }
+                                        },
+                                        "m_collidrType": 0,
+                                        "m_size": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_center": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 6,
+                                "ptr_wrapper": {
+                                    "id": 2147483703,
+                                    "data": {
+                                        "m_uuID": {
+                                            "uuid": "da38cd02-176b-4f7c-bcc1-7a565d34e910"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483661,
+                                "polymorphic_name": "TMF::Audio",
+                                "ptr_wrapper": {
+                                    "id": 2147483704,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "06e8dec1-41c0-41d7-a06a-a666015e3a13"
+                                            }
+                                        },
+                                        "m_soundName": "C:/Users/temet/Downloads/sword.wav",
+                                        "m_volume": 1.0,
+                                        "m_pitch": 0.0,
+                                        "m_pan": 0.0
                                     }
                                 }
                             }

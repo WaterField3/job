@@ -13,7 +13,7 @@ namespace TMF
 	{
 		if (auto pLockOwner = m_pOwner.lock())
 		{
-			m_transform = pLockOwner->GetComponent<Transform>();
+			m_pTransform = pLockOwner->GetComponent<Transform>();
 		}
 	}
 	void BulletStraightMove::OnFinalize()
@@ -21,7 +21,7 @@ namespace TMF
 	}
 	void BulletStraightMove::OnUpdate()
 	{
-		if (auto pLockTransform = m_transform.lock())
+		if (auto pLockTransform = m_pTransform.lock())
 		{
 			auto movePos = pLockTransform->GetPosition() + m_moveVector * m_moveSpeed;
 			pLockTransform->SetPosition(movePos);

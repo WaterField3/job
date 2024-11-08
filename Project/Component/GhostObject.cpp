@@ -58,9 +58,9 @@ namespace TMF
 			auto TransformComponent = owner->GetComponent<Transform>();
 			if (auto transform = TransformComponent.lock())
 			{
-				auto btTrans = m_pGhostObject->getWorldTransform();
-				auto Pos = DirectX::SimpleMath::Vector3{ btTrans.getOrigin().getX(),btTrans.getOrigin().getY(),btTrans.getOrigin().getZ() };
-				transform->SetPosition(Pos);
+				//auto btTrans = m_pGhostObject->getWorldTransform();
+				//auto Pos = DirectX::SimpleMath::Vector3{ btTrans.getOrigin().getX(),btTrans.getOrigin().getY(),btTrans.getOrigin().getZ() };
+				//transform->SetPosition(Pos);
 			}
 		}
 	}

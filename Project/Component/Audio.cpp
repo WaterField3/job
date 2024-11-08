@@ -2,6 +2,8 @@
 
 #include <Imgui/imgui.h>
 
+#include "Utility/StringHelper.h"
+
 REGISTER_COMPONENT(TMF::Audio, "Audio");
 
 namespace TMF
@@ -26,7 +28,14 @@ namespace TMF
 		{
 			m_pAudioEngine->Suspend();
 		}
-		m_pSoundEffectInstance->Stop();
+		if (m_pSoundEffectInstance)
+		{
+			auto state = m_pSoundEffectInstance->GetState();
+			if (state != DirectX::STOPPED)
+			{
+				m_pSoundEffectInstance->Stop();
+			}
+		}
 	}
 
 	void Audio::OnUpdate()
@@ -48,21 +57,30 @@ namespace TMF
 	{
 		char buf[256] = "";
 		strcpy_s(buf, sizeof(buf), m_soundName.c_str());
-		if (ImGui::InputText("SoundName", buf, 256))
+		auto soundNameLabel = StringHelper::CreateLabel("SoundName", m_uuID);
+		if (ImGui::InputText(soundNameLabel.c_str(), buf, 256))
 		{
 			m_soundName = buf;
 		}
-		if (ImGui::DragFloat("Volume", &m_volume, 0.1f, 0.0f))
+		auto volumeLabel = StringHelper::CreateLabel("Volume", m_uuID);
+		if (ImGui::DragFloat(volumeLabel.c_str(), &m_volume, 0.1f, 0.0f))
 		{
 			m_pSoundEffectInstance->SetVolume(m_volume);
 		}
-		if (ImGui::DragFloat("Pitch", &m_pitch, 0.1f, -1.0f, 1.0f))
+		auto pitchLabel = StringHelper::CreateLabel("Pitch", m_uuID);
+		if (ImGui::DragFloat(pitchLabel.c_str(), &m_pitch, 0.1f, -1.0f, 1.0f))
 		{
 			m_pSoundEffectInstance->SetPitch(m_pitch);
 		}
-		if (ImGui::DragFloat("Pan", &m_pan, 0.1f, -1.0f, 1.0f))
+		auto panLabel = StringHelper::CreateLabel("Pan", m_uuID);
+		if (ImGui::DragFloat(panLabel.c_str(), &m_pan, 0.1f, -1.0f, 1.0f))
 		{
 			m_pSoundEffectInstance->SetPan(m_pan);
+		}
+		auto isLoopLabel = StringHelper::CreateLabel("IsLoop", m_uuID);
+		if (ImGui::Checkbox(isLoopLabel.c_str(), &m_isLoop))
+		{
+
 		}
 		if (ImGui::Button("Play"))
 		{
@@ -98,7 +116,7 @@ namespace TMF
 		m_pSoundEffectInstance->SetVolume(m_volume);
 		m_pSoundEffectInstance->SetPitch(m_pitch);
 		m_pSoundEffectInstance->SetPan(m_pan);
-		m_pSoundEffectInstance->Play(true);
+		m_pSoundEffectInstance->Play(m_isLoop);
 	}
 
 	void Audio::Stop()

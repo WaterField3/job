@@ -79,8 +79,10 @@ namespace TMF
 		void TrigerStay(GameObject* pGameObject);
 		void TrigerExit(GameObject* pGameObject);
 
-		
+		std::vector<std::weak_ptr<GameObject>> GetChildren();
 
+		inline void SetActive(bool active) { m_isActive = active; }
+		inline bool GetActive() const { return m_isActive; }
 		inline void SetName(std::string name) { m_name = name; }
 		inline std::string GetName() const { return m_name; }
 		inline std::string GetStrUUID() const { return boost::uuids::to_string(m_uuID); }

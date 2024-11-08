@@ -118,7 +118,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 			DispatchMessage(&msg);
 
-			if (msg.message == WM_QUIT) {
+			if (msg.message == WM_QUIT)
+			{
 				break;
 			}
 		}

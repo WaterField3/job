@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "Component/ComponentManager.h"
+#include "GameObject/GameObjectManager.h"
 #include "Component/Transform.h"
 #include "Utility/StringHelper.h"
 
@@ -172,6 +173,30 @@ namespace TMF
 		{
 			component->TrigerExit(pGameObject);
 		}
+	}
+
+	std::vector<std::weak_ptr<GameObject>> GameObject::GetChildren()
+	{
+		auto children = std::vector<std::weak_ptr<GameObject>>();
+		for (auto& pCurrentTransform : GameObjectManager::Instance().GetComponents<Transform>())
+		{
+			if (auto pLockedCurrentTransform = pCurrentTransform.lock())
+			{
+				auto pParentTransform = pLockedCurrentTransform->GetParent();
+				if (auto pLockedParentTransform = pParentTransform.lock())
+				{
+					auto pTransform = GetComponent<Transform>();
+					if (auto pLockedTransform = pTransform.lock())
+					{
+						if (pLockedTransform.get() == pLockedParentTransform.get())
+						{
+							children.push_back(pLockedCurrentTransform->GetOwner());
+						}
+					}
+				}
+			}
+		}
+		return children;
 	}
 
 	void GameObject::LateUpdate()
