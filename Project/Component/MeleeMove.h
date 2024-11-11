@@ -25,6 +25,9 @@ namespace TMF
 		void Play(MoveType type, DirectX::SimpleMath::Vector3 position, DirectX::SimpleMath::Quaternion rotation);
 
 	private:
+		void OnTrigerEnter(GameObject* pGameObject) override;
+
+	private:
 		float m_moveSpeed = 1.0f;
 		DirectX::SimpleMath::Vector3 m_rotate = DirectX::SimpleMath::Vector3::Zero;
 		DirectX::SimpleMath::Vector3 m_endPosition = DirectX::SimpleMath::Vector3::Zero;

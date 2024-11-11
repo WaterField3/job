@@ -83,7 +83,7 @@ namespace TMF
 	void PrimitiveMesh::OnDrawImGui()
 	{
 		const char* types[] = { "Box","Sphere","Cylinder","Cone" ,"Torus" };
-		static int selectIndex = (int)m_shapeType;
+		int selectIndex = (int)m_shapeType;
 		auto shapeLabel = StringHelper::CreateLabel("ColliderType", m_uuID);
 		if (ImGui::BeginCombo(shapeLabel.c_str(), types[selectIndex]))
 		{

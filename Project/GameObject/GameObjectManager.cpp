@@ -95,10 +95,7 @@ namespace TMF
 	{
 		for (auto& pGameObject : m_pGameObjects)
 		{
-			if (pGameObject->GetActive())
-			{
-				pGameObject->Update();
-			}
+			pGameObject->Update();
 		}
 	}
 

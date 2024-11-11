@@ -9,6 +9,7 @@
 #include "PrimitiveMesh.h"
 #include "Animater.h"
 #include "MeleeMove.h"
+#include "Timer.h"
 
 REGISTER_COMPONENT(TMF::Melee, "Melee");
 
@@ -22,6 +23,15 @@ namespace TMF
 	}
 	void Melee::OnUpdate()
 	{
+		if (m_isMelee == true)
+		{
+			m_timer += Timer::Instance().deltaTime.count();
+			if (m_timer > m_coolTime)
+			{
+				m_isMelee = false;
+				m_timer = 0.0f;
+			}
+		}
 	}
 	void Melee::OnLateUpdate()
 	{
@@ -48,10 +58,17 @@ namespace TMF
 		}
 
 		auto endTimeLabel = StringHelper::CreateLabel("EndTime", m_uuID);
-		if (ImGui::DragFloat(endTimeLabel.c_str(), &endTime))
+		if (ImGui::DragFloat(endTimeLabel.c_str(), &m_endTime))
 		{
 
 		}
+
+		auto coolTimeLabel = StringHelper::CreateLabel("CoolTime", m_uuID);
+		if (ImGui::DragFloat(coolTimeLabel.c_str(), &m_coolTime))
+		{
+
+		}
+
 		auto playLabel = StringHelper::CreateLabel("Play", m_uuID);
 		if (ImGui::Button(playLabel.c_str()))
 		{
@@ -64,7 +81,10 @@ namespace TMF
 		{
 			return;
 		}
-
+		if (m_isMelee == true)
+		{
+			return;
+		}
 		auto nowPosition = DirectX::SimpleMath::Vector3::Zero;
 		auto nowRotation = DirectX::SimpleMath::Quaternion::Identity;
 
@@ -74,7 +94,7 @@ namespace TMF
 			if (auto pLockAnimater = pAnimater.lock())
 			{
 				// アニメーションのパスの変更
-				pLockAnimater->SetFileName(m_meleeAnimation, endTime);
+				pLockAnimater->SetFileName(m_meleeAnimation, m_endTime);
 			}
 
 			// 座標の取得
@@ -95,6 +115,7 @@ namespace TMF
 						if (auto pLockMeleemove = pMeleeMove.lock())
 						{
 							pLockMeleemove->Play(MeleeMove::DEFAULT, nowPosition, nowRotation);
+							m_isMelee = true;
 						}
 					}
 				}

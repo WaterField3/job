@@ -19,12 +19,15 @@ namespace TMF
 		void Play();
 
 	private:
-		float m_damage = 0;
+		float m_endTime = 0;
+		float m_coolTime = 1.0f;
+		float m_timer = 0.0f;
+		bool m_isMelee = false;
 		std::string m_meleeAnimation = "";
-		float endTime = 0;
 		std::string m_meleeObjectName = "";
 
-		SERIALIZE_COMPONENT(m_damage, m_meleeAnimation, endTime, m_meleeObjectName);
+
+		SERIALIZE_COMPONENT(m_meleeAnimation, m_endTime, m_meleeObjectName);
 	};
 }
 

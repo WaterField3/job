@@ -7,6 +7,7 @@
 #include "Input.h"
 #include "Transform.h"
 #include "Melee.h"
+#include "Shot.h"
 
 REGISTER_COMPONENT(TMF::CharacterMoveController, "CharacterMoveController");
 
@@ -34,6 +35,7 @@ namespace TMF
 		auto isJump = false;
 		auto isRotate = false;
 		auto isAttack = false;
+		auto isShot = false;
 		if (kb.W == true)
 		{
 			auto pOwner = m_pOwner.lock();
@@ -95,6 +97,10 @@ namespace TMF
 		{
 			isAttack = true;
 		}
+		else if (tracker->pressed.Back == true)
+		{
+			isShot = true;
+		}
 
 		if (auto pLockOwner = m_pOwner.lock())
 		{
@@ -145,6 +151,14 @@ namespace TMF
 				if (auto pLockMelee = pMelee.lock())
 				{
 					pLockMelee->Play();
+				}
+			}
+			if (isShot == true)
+			{
+				auto pShot = pLockOwner->GetComponent<Shot>();
+				if (auto pLockShot = pShot.lock())
+				{
+					pLockShot->Play();
 				}
 			}
 		}

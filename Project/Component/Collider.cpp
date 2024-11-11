@@ -50,7 +50,7 @@ namespace TMF
 	void Collider::OnDrawImGui()
 	{
 		const char* types[] = { "Box", "Capsule", "Sphere", "Cylinder", "Cone", "Plane","ConvexHull", "Terrain" };
-		static int selectIndex = (int)m_collidrType;
+		 int selectIndex = (int)m_collidrType;
 		auto shapeLabel = StringHelper::CreateLabel("ColliderType", m_uuID);
 		if (ImGui::BeginCombo(shapeLabel.c_str(), types[selectIndex]))
 		{

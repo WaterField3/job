@@ -19,8 +19,11 @@ namespace TMF
 		void Play();
 
 	private:
+		float m_coolTime = 1.0f;
+		float m_timer = 0.0f;
+		bool m_isShot = false;
 		std::string m_objectFilePath = "";
-		SERIALIZE_COMPONENT(m_objectFilePath);
+		SERIALIZE_COMPONENT(m_objectFilePath, m_coolTime);
 	};
 }
 

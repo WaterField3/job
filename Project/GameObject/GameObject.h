@@ -87,7 +87,7 @@ namespace TMF
 		inline std::string GetName() const { return m_name; }
 		inline std::string GetStrUUID() const { return boost::uuids::to_string(m_uuID); }
 		
-	private:
+	public:
 		enum Tag
 		{
 			Default,
@@ -107,6 +107,6 @@ namespace TMF
 		bool m_isActive = true;
 		Tag m_tag = Tag::Default;
 
-		SERIALIZE(m_name, m_uuID, m_tag, m_pComponents);
+		SERIALIZE(m_name, m_uuID, m_tag, m_isActive, m_pComponents);
 	};
 }

@@ -172,6 +172,8 @@
     <ClCompile Include="Component\Destroy.cpp" />
     <ClCompile Include="Component\DebrisBody.cpp" />
     <ClCompile Include="Component\MeleeMove.cpp" />
+    <ClCompile Include="Component\Damage.cpp" />
+    <ClCompile Include="Component\PlayerStatus.cpp" />
     <ClCompile Include="RenderTexture.cpp" />
     <ClCompile Include="Component\Shot.cpp" />
     <ClCompile Include="System\Animation.cpp" />
@@ -228,6 +230,8 @@
     <ClInclude Include="Component\Destroy.h" />
     <ClInclude Include="Component\DebrisBody.h" />
     <ClInclude Include="Component\MeleeMove.h" />
+    <ClInclude Include="Component\Damage.h" />
+    <ClInclude Include="Component\PlayerStatus.h" />
     <ClInclude Include="ReadData.h" />
     <ClInclude Include="RenderTexture.h" />
     <ClInclude Include="Component\Shot.h" />

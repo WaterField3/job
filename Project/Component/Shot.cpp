@@ -5,6 +5,9 @@
 #include "Component/ComponentRegister.h"
 #include "Utility/StringHelper.h"
 #include "GameObject/GameObjectManager.h"
+#include "Transform.h"
+#include "BulletStraightMove.h"
+#include "Timer.h"
 
 REGISTER_COMPONENT(TMF::Shot, "Shot");
 
@@ -12,12 +15,23 @@ namespace TMF
 {
 	void Shot::OnInitialize()
 	{
+
 	}
 	void Shot::OnFinalize()
 	{
 	}
 	void Shot::OnUpdate()
 	{
+		if (m_isShot == true)
+		{
+			m_timer += Timer::Instance().deltaTime.count();
+			if (m_timer > m_coolTime)
+			{
+				m_isShot = false;
+				m_timer = 0.0f;
+			}
+
+		}
 	}
 	void Shot::OnLateUpdate()
 	{
@@ -34,7 +48,11 @@ namespace TMF
 		{
 			m_objectFilePath = buf;
 		}
+		auto coolTimeLabel = StringHelper::CreateLabel("CoolTime", m_uuID);
+		if (ImGui::DragFloat(coolTimeLabel.c_str(), &m_coolTime))
+		{
 
+		}
 		if (ImGui::Button("Play"))
 		{
 			Play();
@@ -43,7 +61,45 @@ namespace TMF
 
 	void Shot::Play()
 	{
-		GameObjectManager::Instance().LoadObject(m_objectFilePath);
+		//auto obj = GameObjectManager::Instance().LoadObject(m_objectFilePath);
+		//if (auto lockObj = obj.lock())
+		//{
+
+		//}
+		if (m_isShot)
+		{
+			return;
+		}
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pChildren = pLockOwner->GetChildren();
+			for (auto& pChild : pChildren)
+			{
+				if (auto pLockChild = pChild.lock())
+				{
+					if (pLockChild->GetName() == m_objectFilePath)
+					{
+						auto pChildTransform = pLockChild->GetComponent<Transform>();
+						if (auto pLockTransform = pChildTransform.lock())
+						{
+							pLockTransform->SetParent(std::weak_ptr<Transform>());
+						}
+						auto pBulletMove = pLockChild->GetComponent<BulletStraightMove>();
+						if (auto pLockBulletMove = pBulletMove.lock())
+						{
+							auto pTransform = pLockOwner->GetComponent<Transform>();
+							if (auto pLockTrancform = pTransform.lock())
+							{
+								m_isShot = true;
+								auto nowPosition = pLockTrancform->GetPosition();
+								auto nowRotation = pLockTrancform->GetRotation();
+								pLockBulletMove->MoveStart(nowPosition, nowRotation);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 

@@ -31,9 +31,9 @@ namespace TMF
 	{
 		if (m_timer > m_animEndTime)
 		{
-			if (m_fileName != "asset/Breathing Idle.sdkmesh_anim")
+			if (m_fileName != m_idlePath)
 			{
-				m_fileName = "asset/Breathing Idle.sdkmesh_anim";
+				m_fileName = m_idlePath;
 				LoadAnimation();
 			}
 			else
@@ -110,6 +110,13 @@ namespace TMF
 		if (ImGui::InputText(label.c_str(), buf, 256))
 		{
 			m_fileName = buf;
+		}
+		char idleBuf[256] = "";
+		strcpy_s(idleBuf, sizeof(idleBuf), m_idlePath.c_str());
+		auto idleLabel = StringHelper::CreateLabel("idlePath", m_uuID);
+		if (ImGui::InputText(idleLabel.c_str(), idleBuf, 256))
+		{
+			m_idlePath = idleBuf;
 		}
 		auto animSpeedLabel = StringHelper::CreateLabel("AnimSpeed", m_uuID);
 		if (ImGui::DragFloat(animSpeedLabel.c_str(), &m_animationSpeed, 0.1f))

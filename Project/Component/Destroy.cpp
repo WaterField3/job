@@ -47,8 +47,8 @@ namespace TMF
 	{
 		std::this_thread::sleep_for(std::chrono::seconds((int)time));
 		auto pOwner = m_pOwner.lock().get();
+		pOwner->SetActive(false);
 		GameObjectManager::Instance().DestroyGameObject(pOwner);
-
 		return;
 	}
 }

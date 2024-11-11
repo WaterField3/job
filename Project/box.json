@@ -3,9 +3,9 @@
         "ptr_wrapper": {
             "id": 2147483649,
             "data": {
-                "m_name": "Bullet",
+                "m_name": "box",
                 "m_uuID": {
-                    "uuid": "e15a1053-5f15-4c41-b78f-bf2696a2a019"
+                    "uuid": "7a22eb31-be8d-4573-9b06-6323a1190192"
                 },
                 "m_tag": 0,
                 "m_isActive": true,
@@ -18,7 +18,7 @@
                             "data": {
                                 "value0": {
                                     "m_uuID": {
-                                        "uuid": "0ed8f7c7-2864-43aa-bc29-967f49f427af"
+                                        "uuid": "a0a8e677-426a-46c6-a9d9-1e3dd4307e73"
                                     }
                                 },
                                 "m_position": {
@@ -53,7 +53,7 @@
                             "data": {
                                 "value0": {
                                     "m_uuID": {
-                                        "uuid": "b836201d-97db-49ff-9751-d5c8305fdad9"
+                                        "uuid": "5322e64e-7a5c-4a4e-894c-06f743ea19bd"
                                     }
                                 },
                                 "m_shapeType": 0,
@@ -69,26 +69,6 @@
                                     "value2": 2.0
                                 },
                                 "m_textureName": ""
-                            }
-                        }
-                    },
-                    {
-                        "polymorphic_id": 2147483651,
-                        "polymorphic_name": "TMF::BulletStraightMove",
-                        "ptr_wrapper": {
-                            "id": 2147483652,
-                            "data": {
-                                "value0": {
-                                    "m_uuID": {
-                                        "uuid": "83b79b26-53e2-486e-b9a7-dc274060b0e9"
-                                    }
-                                },
-                                "m_moveSpeed": 0.10000000149011612,
-                                "m_moveVector": {
-                                    "value0": 0.0,
-                                    "value1": 0.0,
-                                    "value2": 1.0
-                                }
                             }
                         }
                     }

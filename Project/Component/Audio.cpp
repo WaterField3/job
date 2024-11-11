@@ -65,17 +65,26 @@ namespace TMF
 		auto volumeLabel = StringHelper::CreateLabel("Volume", m_uuID);
 		if (ImGui::DragFloat(volumeLabel.c_str(), &m_volume, 0.1f, 0.0f))
 		{
-			m_pSoundEffectInstance->SetVolume(m_volume);
+			if (m_pSoundEffectInstance)
+			{
+				m_pSoundEffectInstance->SetVolume(m_volume);
+			}
 		}
 		auto pitchLabel = StringHelper::CreateLabel("Pitch", m_uuID);
 		if (ImGui::DragFloat(pitchLabel.c_str(), &m_pitch, 0.1f, -1.0f, 1.0f))
 		{
-			m_pSoundEffectInstance->SetPitch(m_pitch);
+			if (m_pSoundEffectInstance)
+			{
+				m_pSoundEffectInstance->SetPitch(m_pitch);
+			}
 		}
 		auto panLabel = StringHelper::CreateLabel("Pan", m_uuID);
 		if (ImGui::DragFloat(panLabel.c_str(), &m_pan, 0.1f, -1.0f, 1.0f))
 		{
-			m_pSoundEffectInstance->SetPan(m_pan);
+			if (m_pSoundEffectInstance)
+			{
+				m_pSoundEffectInstance->SetPan(m_pan);
+			}
 		}
 		auto isLoopLabel = StringHelper::CreateLabel("IsLoop", m_uuID);
 		if (ImGui::Checkbox(isLoopLabel.c_str(), &m_isLoop))

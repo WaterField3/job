@@ -84,7 +84,7 @@ namespace TMF
 			m_saveObjectName = saveBuf;
 		}
 		char loadBuf[256] = "";
-		strcpy_s(loadBuf, sizeof(loadBuf), m_saveObjectName.c_str());
+		strcpy_s(loadBuf, sizeof(loadBuf), m_loadObjectName.c_str());
 		if (ImGui::InputText("loadName", loadBuf, 256))
 		{
 			m_loadObjectName = loadBuf;

@@ -60,7 +60,7 @@ void MyBulletCollisionDispatcher::ObjectContactCheck(std::pair<const btCollision
 			object1->CollisionEnter(object0);
 			object0->CollisionEnter(object1);
 		}
-		else if ((!rig0.expired() && rig1.expired()) || (rig0.expired() && rig1.expired()))
+		else if ((!rig0.expired() && rig1.expired()) || (rig0.expired() && rig1.expired()) || (rig0.expired() && !rig1.expired()))
 		{
 			object0->TrigerEnter(object1);
 			object1->TrigerEnter(object0);
@@ -72,7 +72,7 @@ void MyBulletCollisionDispatcher::ObjectContactCheck(std::pair<const btCollision
 			object1->CollisionStay(object0);
 			object0->CollisionStay(object1);
 		}
-		else if ((!rig0.expired() && rig1.expired()) || (rig0.expired() && rig1.expired()))
+		else if ((!rig0.expired() && rig1.expired()) || (rig0.expired() && rig1.expired()) || (rig0.expired() && !rig1.expired()))
 		{
 			object0->TrigerStay(object1);
 			object1->TrigerStay(object0);

@@ -444,7 +444,7 @@ HRESULT D3D::Create(HWND hwnd)
 
 	m_fullscreenRect = m_bloomRect;
 
-	CreateWICTextureFromFile(m_pDevice, L"asset/textures/sunset.jpg", nullptr, m_pBackGround.ReleaseAndGetAddressOf());
+	//CreateWICTextureFromFile(m_pDevice, L"asset/textures/sunset.jpg", nullptr, m_pBackGround.ReleaseAndGetAddressOf());
 
 	return hr;
 }
@@ -498,7 +498,7 @@ D3D::~D3D()
 	m_bloomParams.Reset();
 	m_blurParamsWidth.Reset();
 	m_blurParamsHeight.Reset();
-	m_pBackGround.Reset();
+	//m_pBackGround.Reset();
 }
 
 
@@ -867,9 +867,9 @@ void D3D::ClearScreen()
 	m_pImmediateContext->PSSetConstantBuffers(
 		0, 1, &m_pConstantBuffer);
 
-	m_pSpriteBatch->Begin();
-	m_pSpriteBatch->Draw(m_pBackGround.Get(), m_fullscreenRect);
-	m_pSpriteBatch->End();
+	//m_pSpriteBatch->Begin();
+	//m_pSpriteBatch->Draw(m_pBackGround.Get(), m_fullscreenRect);
+	//m_pSpriteBatch->End();
 
 	//PostProcess();
 

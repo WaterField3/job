@@ -129,4 +129,8 @@ namespace TMF
 			}
 		}
 	}
+	void MeleeMove::OnTrigerEnter(GameObject* pGameObject)
+	{
+		//if (pGameObject->GetTag() == )
+	}
 }

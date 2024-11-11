@@ -51,9 +51,13 @@ namespace TMF
 		{
 			auto parent = pLockTransform->GetParent();
 			auto worldMatrix = pLockTransform->GetWorldMatrix();
-			if (auto pLockTransform = parent.lock())
+			if (auto pLockParentTransform = parent.lock())
 			{
-				auto parentPos = pLockTransform->GetPosition();
+				pLockTransform->SetPosition(m_effectPos);
+				auto rotation = pLockParentTransform->GetRotation();
+				pLockTransform->SetRotation(rotation);
+				worldMatrix = pLockTransform->GetWorldMatrix();
+				auto parentPos = pLockParentTransform->GetWorldPosition();
 				auto effectPos = m_effectPos + parentPos;
 				EffectManager::Instance().Play(m_effectPath, effectPos, worldMatrix);
 			}

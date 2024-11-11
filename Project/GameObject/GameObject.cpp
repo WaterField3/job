@@ -65,7 +65,7 @@ namespace TMF
 		}
 
 		const char* types[] = { "Default", "Player", "Ground" };
-		static int selectIndex = (int)m_tag;
+		int selectIndex = (int)m_tag;
 		auto shapeLabel = StringHelper::CreateLabel("Tag", m_uuID);
 		if (ImGui::BeginCombo(shapeLabel.c_str(), types[selectIndex]))
 		{

@@ -40,6 +40,7 @@ namespace TMF
 		size_t m_animOffset = 0;
 		size_t m_boneSize = 0;
 		std::string m_fileName = "";
+		std::string m_idlePath = "";
 		std::unique_ptr<DX::AnimationCMO> m_pAnimationCMO;
 		std::unique_ptr<DX::AnimationSDKMESH> m_pAnimationSDKMESH;
 		DirectX::ModelBone::TransformArray m_drawBone;
@@ -48,6 +49,6 @@ namespace TMF
 		float m_animEndTime = 0;
 
 
-		SERIALIZE_COMPONENT(m_fileName, m_animationSpeed, m_isAnimation);
+		SERIALIZE_COMPONENT(m_fileName ,m_idlePath, m_animationSpeed, m_isAnimation);
 	};
 }
