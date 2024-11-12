@@ -1,4 +1,9 @@
 #include "Attack.h"
+
+#include "Transform.h"
+#include "Rigidbody.h"
+#include "ComponentRegister.h"
+
 namespace TMF
 {
 	void Attack::OnInitialize()

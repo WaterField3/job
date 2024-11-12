@@ -99,7 +99,8 @@ namespace TMF
 
 	void Model::OnDrawImGui()
 	{
-		ImGui::Checkbox("Active", &m_isDraw);
+		auto activeLabel = StringHelper::CreateLabel("Active", m_uuID);
+		ImGui::Checkbox(activeLabel.c_str(), &m_isDraw);
 		char buf[256] = "";
 		strcpy_s(buf, sizeof(buf), m_loadFile.c_str());
 		auto label = StringHelper::CreateLabel("FileName", m_uuID);
@@ -108,8 +109,9 @@ namespace TMF
 			m_loadFile = buf;
 		}
 		const char* types[] = { "Default","CMO","SDKMESH" };
-		static int selectIndex = (int)m_loadType;
-		if (ImGui::BeginCombo("LoadType", types[selectIndex]))
+		int selectIndex = (int)m_loadType;
+		auto loadTypeCombo = StringHelper::CreateLabel("LoadType", m_uuID);
+		if (ImGui::BeginCombo(loadTypeCombo.c_str(), types[selectIndex]))
 		{
 			for (int i = 0; i < IM_ARRAYSIZE(types); i++)
 			{
@@ -128,12 +130,13 @@ namespace TMF
 			ImGui::EndCombo();
 			ImGui::SameLine();
 		}
-		if (ImGui::Button("LoadCmo"))
+		auto loadCmoLabel = StringHelper::CreateLabel("LoadCMO", m_uuID);
+		if (ImGui::Button(loadCmoLabel.c_str()))
 		{
 			LoadCMO();
 		}
-
-		if (ImGui::Button("LoadSdkMesh"))
+		auto loadSdkMeshLabel = StringHelper::CreateLabel("LoadSDKMESH", m_uuID);
+		if (ImGui::Button(loadSdkMeshLabel.c_str()))
 		{
 			LoadSdkMesh();
 		}

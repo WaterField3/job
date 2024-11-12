@@ -28,9 +28,10 @@ namespace TMF
 		float m_invertAnimEndTime = 1.0f;
 		std::string m_staggerAnimPath = "";
 		std::string m_invertAnimPath = "";
+		std::string m_standUpAnimPath = "";
 		std::weak_ptr<Animater> m_pAnimater;
 		
-		SERIALIZE_COMPONENT(m_hp, m_staggerAnimPath, m_invertAnimPath, m_invertAnimEndTime, m_staggerAnimEndTime);
+		SERIALIZE_COMPONENT(m_hp, m_staggerAnimPath, m_invertAnimPath, m_invertAnimEndTime, m_staggerAnimEndTime, m_standUpAnimPath);
 	};
 }
 

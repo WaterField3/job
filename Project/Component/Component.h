@@ -71,6 +71,11 @@ namespace TMF
 			}
 			catch (const std::exception&) {
 			}
+			try{
+				archive(::cereal::make_nvp("m_isEnable", m_isEnable));
+			}
+			catch (const std::exception&){
+			}
 		};
 	};
 }

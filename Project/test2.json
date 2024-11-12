@@ -21,7 +21,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "207c546c-e01a-463f-b55f-e3d3bd7f9978"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": 72.69947052001953,
@@ -70,7 +71,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "4a409518-081a-4a84-acbf-e17fc568b109"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": 3.0,
@@ -105,7 +107,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "8b89cb1e-d1a7-477b-82c9-0c7fa57b93a9"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_collidrType": 0,
                                         "m_size": {
@@ -130,7 +133,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "eac89d69-601b-4bc0-88e2-4ab72e34f064"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_mass": 0.0,
                                         "m_drag": 0.0,
@@ -152,7 +156,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "38a88a84-38f0-44d2-ba32-67823e5b870e"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_shapeType": 0,
                                         "m_color": {
@@ -193,12 +198,13 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "0679b4d3-51ec-4e58-a9a8-65441c2dacbb"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": 0.0,
                                             "value1": 3.299999952316284,
-                                            "value2": 13.600000381469727
+                                            "value2": 11.199999809265137
                                         },
                                         "m_scale": {
                                             "value0": 0.0,
@@ -228,7 +234,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "5b219252-f32f-452f-930c-2295139ae5fe"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_fov": 60.0,
                                         "m_near": 0.10000000149011612,
@@ -259,7 +266,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "e6080935-55e3-43ff-a413-5907d1aac387"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": 0.0,
@@ -267,9 +275,9 @@
                                             "value2": 0.0
                                         },
                                         "m_scale": {
-                                            "value0": 15.0,
+                                            "value0": 4.0,
                                             "value1": 0.5,
-                                            "value2": 15.0
+                                            "value2": 4.0
                                         },
                                         "m_rotation": {
                                             "value0": 0.0,
@@ -293,7 +301,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "9ebca57f-ab28-4c4b-b024-10e99f7bca70"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_collidrType": 0,
                                         "m_size": {
@@ -317,7 +326,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "05bea6de-071a-4c61-aa9a-08190596d625"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_mass": 0.0,
                                         "m_drag": 1.2999999523162842,
@@ -338,7 +348,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "79b7e623-8dc7-480b-90be-cbcaab52b795"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_shapeType": 0,
                                         "m_color": {
@@ -379,7 +390,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "b220c9ba-50f4-43a5-9c52-45ac499b96f4"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": 0.0,
@@ -413,7 +425,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "4a5c05c6-1c58-4254-b8d3-e9106ee9c401"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_collidrType": 0,
                                         "m_size": {
@@ -437,7 +450,8 @@
                                     "data": {
                                         "m_uuID": {
                                             "uuid": "f53803f1-fd7e-45ab-be53-e70cb09e6079"
-                                        }
+                                        },
+                                        "m_isEnable": true
                                     }
                                 }
                             }
@@ -464,7 +478,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "ce7b4e63-f712-472e-9022-9b95f858282f"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": -2.9000000953674318,
@@ -498,7 +513,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "99596327-aebb-46f5-a118-57aa8a903d8c"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_collidrType": 0,
                                         "m_size": {
@@ -521,7 +537,8 @@
                                     "data": {
                                         "m_uuID": {
                                             "uuid": "78d3a094-d234-4058-965c-37801fdfbefe"
-                                        }
+                                        },
+                                        "m_isEnable": true
                                     }
                                 }
                             }
@@ -548,7 +565,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "19e2ce86-3ab1-43b1-8a84-44257bd8fa40"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": -0.20000000298023225,
@@ -583,7 +601,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "09868a3b-f87b-463c-8bb2-31d1159f20f9"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_loadFile": "asset/Gun.cmo",
                                         "m_isDraw": true,
@@ -614,7 +633,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "b2e32bd8-7408-483e-88c1-bda94be6ec2f"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": 2.5999999046325685,
@@ -648,7 +668,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "c4bd0394-3680-4279-a580-d334e7f01ed5"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_collidrType": 0,
                                         "m_size": {
@@ -672,7 +693,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "d71fc91a-6ca3-46a9-aab4-cdc62b313387"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_mass": 1.0,
                                         "m_drag": 0.0,
@@ -693,7 +715,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "27028d9d-8a5b-4aad-a8e2-275623e3babe"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_shapeType": 0,
                                         "m_color": {
@@ -735,7 +758,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "806021d5-fcd0-4f97-b053-abe11ae7a232"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_effectPath": "C:\\Users\\temet\\Downloads\\Effekseer01\\Effekseer01\\Laser01.efk",
                                         "m_effectPos": {
@@ -769,7 +793,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "9ce8c9ce-1c53-44a4-bd0b-49496519340f"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": 0.0,
@@ -803,7 +828,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "bd9ddc0d-90b0-4bb1-81a3-a207dad2a723"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_loadFile": "asset/Gun.cmo",
                                         "m_isDraw": true,
@@ -834,7 +860,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "64f60607-d246-4e98-abe5-0d74274b040f"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": 0.0,
@@ -868,7 +895,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "cc4ce83d-37b9-45e9-946c-dd714caf9b5e"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_effectPath": "C:\\Users\\temet\\Downloads\\Effekseer01\\Effekseer01\\Laser01.efk",
                                         "m_effectPos": {
@@ -902,7 +930,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "db6347a9-1756-419b-87f2-011cbc223691"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": 0.0,
@@ -936,10 +965,11 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "876f5065-a9d7-4288-8c0c-f7ab1c072ad5"
-                                            }
+                                            },
+                                            "m_isEnable": false
                                         },
                                         "m_loadFile": "asset/Defeated.sdkmesh",
-                                        "m_isDraw": true,
+                                        "m_isDraw": false,
                                         "m_loadType": 2
                                     }
                                 }
@@ -953,7 +983,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "8034c743-5ef0-41ec-b152-167172a28821"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_fileName": "asset/Breathing Idle.sdkmesh_anim",
                                         "m_idlePath": "asset/Breathing Idle.sdkmesh_anim",
@@ -970,7 +1001,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "cc05d362-975d-43c2-8854-2a73b8d8d514"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_collidrType": 0,
                                         "m_size": {
@@ -994,7 +1026,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "be86e467-825d-4ef0-bdd8-db0750a864a4"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_mass": 1.0,
                                         "m_drag": 0.0,
@@ -1016,7 +1049,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "dae40b8d-e6f4-408c-b8c7-be69f580d506"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_moveSpeed": 10.0,
                                         "m_jumpPower": 7.300000190734863,
@@ -1037,7 +1071,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "825de199-b9fd-4b7b-8bb3-61ca7e8d23a8"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_meleeAnimation": "asset/Standing Melee Attack Downward.sdkmesh_anim",
                                         "m_endTime": 2.0,
@@ -1054,7 +1089,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "982126e2-b082-40a8-b2a1-702b16383e0f"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_objectFilePath": "Bullet",
                                         "m_coolTime": 1.0
@@ -1084,7 +1120,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "8ca58c61-8705-413c-a511-70543f2dadf2"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": 0.0,
@@ -1118,7 +1155,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "26270a37-aa70-4c33-a72c-181c0042975d"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_shapeType": 4,
                                         "m_color": {
@@ -1159,7 +1197,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "171372e2-50c1-4dcf-b530-dff0377f7139"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": -1.0407159328460694,
@@ -1197,7 +1236,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "82dda18b-1174-4c65-8b9e-84cf42ab2a6e"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_moveSpeed": 0.05000000074505806,
                                         "m_rotate": {
@@ -1216,7 +1256,8 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "fdf2bbbc-8c43-4636-b000-676dd45ccadc"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_collidrType": 0,
                                         "m_size": {
@@ -1239,7 +1280,8 @@
                                     "data": {
                                         "m_uuID": {
                                             "uuid": "da38cd02-176b-4f7c-bcc1-7a565d34e910"
-                                        }
+                                        },
+                                        "m_isEnable": true
                                     }
                                 }
                             },
@@ -1252,13 +1294,31 @@
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "06e8dec1-41c0-41d7-a06a-a666015e3a13"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_soundName": "C:/Users/temet/Downloads/sword.wav",
                                         "m_volume": 1.0,
                                         "m_pitch": 0.0,
                                         "m_pan": 0.0,
                                         "m_isLoop": false
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483663,
+                                "polymorphic_name": "TMF::Damage",
+                                "ptr_wrapper": {
+                                    "id": 2147483706,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "ce53900c-cf50-41b9-9e6d-6e5fc694c02e"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_damage": 1.0,
+                                        "m_reactionType": 0
                                     }
                                 }
                             }
@@ -1268,7 +1328,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483706,
+                    "id": 2147483707,
                     "data": {
                         "m_name": "Bullet",
                         "m_uuID": {
@@ -1280,12 +1340,13 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483707,
+                                    "id": 2147483708,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "0ed8f7c7-2864-43aa-bc29-967f49f427af"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": 0.0,
@@ -1317,12 +1378,13 @@
                             {
                                 "polymorphic_id": 4,
                                 "ptr_wrapper": {
-                                    "id": 2147483708,
+                                    "id": 2147483709,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "b836201d-97db-49ff-9751-d5c8305fdad9"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_shapeType": 1,
                                         "m_color": {
@@ -1341,15 +1403,16 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 2147483663,
+                                "polymorphic_id": 2147483664,
                                 "polymorphic_name": "TMF::BulletStraightMove",
                                 "ptr_wrapper": {
-                                    "id": 2147483709,
+                                    "id": 2147483710,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "83b79b26-53e2-486e-b9a7-dc274060b0e9"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_moveSpeed": 0.10000000149011612,
                                         "m_moveVector": {
@@ -1362,15 +1425,15 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 2147483664,
-                                "polymorphic_name": "TMF::Damage",
+                                "polymorphic_id": 15,
                                 "ptr_wrapper": {
-                                    "id": 2147483710,
+                                    "id": 2147483711,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "840f340b-9404-47aa-ab33-8ea82d16b685"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_damage": 1.0,
                                         "m_reactionType": 0
@@ -1380,12 +1443,13 @@
                             {
                                 "polymorphic_id": 14,
                                 "ptr_wrapper": {
-                                    "id": 2147483711,
+                                    "id": 2147483712,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "b2ccb7f1-9a80-4a70-8db3-4650bc9841fb"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_soundName": "C:/Users/temet/Downloads/maou_game_battle21.wav",
                                         "m_volume": 0.10000000149011612,
@@ -1398,12 +1462,13 @@
                             {
                                 "polymorphic_id": 2,
                                 "ptr_wrapper": {
-                                    "id": 2147483712,
+                                    "id": 2147483713,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "07b9271c-271f-4311-8d57-1fdbbc7cb70a"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_collidrType": 0,
                                         "m_size": {
@@ -1422,11 +1487,12 @@
                             {
                                 "polymorphic_id": 6,
                                 "ptr_wrapper": {
-                                    "id": 2147483713,
+                                    "id": 2147483714,
                                     "data": {
                                         "m_uuID": {
                                             "uuid": "fdefb934-35ef-4770-91c1-a49584b7b1ab"
-                                        }
+                                        },
+                                        "m_isEnable": true
                                     }
                                 }
                             }
@@ -1436,7 +1502,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483714,
+                    "id": 2147483715,
                     "data": {
                         "m_name": "NewGameObject",
                         "m_uuID": {
@@ -1448,12 +1514,13 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483715,
+                                    "id": 2147483716,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "bc28ba65-57d1-493e-af29-d3a02d3ca465"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": 0.0,
@@ -1482,12 +1549,13 @@
                             {
                                 "polymorphic_id": 2,
                                 "ptr_wrapper": {
-                                    "id": 2147483716,
+                                    "id": 2147483717,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "99ed9354-790e-4d0d-9a25-e0a91c7f8e26"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_collidrType": 0,
                                         "m_size": {
@@ -1506,12 +1574,13 @@
                             {
                                 "polymorphic_id": 3,
                                 "ptr_wrapper": {
-                                    "id": 2147483717,
+                                    "id": 2147483718,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "e490d3df-9727-4a4a-a602-819f5d5182f0"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_mass": 0.0,
                                         "m_drag": 0.0,
@@ -1530,7 +1599,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483718,
+                    "id": 2147483719,
                     "data": {
                         "m_name": "Enemy",
                         "m_uuID": {
@@ -1542,12 +1611,13 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483719,
+                                    "id": 2147483720,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "5c3e2ef9-7a2c-41fe-b86f-742c5d86f86d"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_position": {
                                             "value0": 0.0,
@@ -1576,12 +1646,13 @@
                             {
                                 "polymorphic_id": 2,
                                 "ptr_wrapper": {
-                                    "id": 2147483720,
+                                    "id": 2147483721,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "4537b44b-6486-43a9-9c35-847fa6a16def"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_collidrType": 0,
                                         "m_size": {
@@ -1600,12 +1671,13 @@
                             {
                                 "polymorphic_id": 3,
                                 "ptr_wrapper": {
-                                    "id": 2147483721,
+                                    "id": 2147483722,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "4b62903c-48e6-4d6e-895a-ae965ec748bf"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_mass": 1.0,
                                         "m_drag": 0.0,
@@ -1621,15 +1693,16 @@
                             {
                                 "polymorphic_id": 7,
                                 "ptr_wrapper": {
-                                    "id": 2147483722,
+                                    "id": 2147483723,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "a5fc4704-e30d-4607-807b-f5ee1749ac9c"
-                                            }
+                                            },
+                                            "m_isEnable": false
                                         },
-                                        "m_loadFile": "asset/Capoeira.sdkmesh",
-                                        "m_isDraw": true,
+                                        "m_loadFile": "asset/Defeated.sdkmesh",
+                                        "m_isDraw": false,
                                         "m_loadType": 2
                                     }
                                 }
@@ -1637,15 +1710,16 @@
                             {
                                 "polymorphic_id": 9,
                                 "ptr_wrapper": {
-                                    "id": 2147483723,
+                                    "id": 2147483724,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "072e66cb-48bb-4af0-9ae2-ab83a7597b55"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
-                                        "m_fileName": "asset/Capoeira.sdkmesh_anim",
-                                        "m_idlePath": "asset/Capoeira.sdkmesh_anim",
+                                        "m_fileName": "asset/Standing Melee Attack Downward.sdkmesh_anim",
+                                        "m_idlePath": "asset/Standing Melee Attack Downward.sdkmesh_anim",
                                         "m_animationSpeed": 1.0,
                                         "m_isAnimation": true
                                     }
@@ -1655,18 +1729,20 @@
                                 "polymorphic_id": 2147483665,
                                 "polymorphic_name": "TMF::PlayerStatus",
                                 "ptr_wrapper": {
-                                    "id": 2147483724,
+                                    "id": 2147483725,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "207e7477-4234-4040-959e-afbb47583b44"
-                                            }
+                                            },
+                                            "m_isEnable": true
                                         },
                                         "m_hp": 100.0,
-                                        "m_staggerAnimPath": "asset/Death From Right.sdkmesh_anim",
-                                        "m_invertAnimPath": "",
+                                        "m_staggerAnimPath": "asset/Stunned.sdkmesh_anim",
+                                        "m_invertAnimPath": "asset/Stunned.sdkmesh_anim",
                                         "m_invertAnimEndTime": 1.0,
-                                        "m_staggerAnimEndTime": 3.0
+                                        "m_staggerAnimEndTime": 3.0,
+                                        "m_standUpAnimPath": "asset/Situp To Idle.sdkmesh_anim"
                                     }
                                 }
                             }

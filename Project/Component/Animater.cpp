@@ -31,7 +31,15 @@ namespace TMF
 	{
 		if (m_timer > m_animEndTime)
 		{
-			if (m_fileName != m_idlePath)
+			if (m_isNextAnimSet == true)
+			{
+				m_timer = 0;
+				m_fileName = m_nextPath;
+				m_animEndTime = m_nextAnimEnd;
+				m_isNextAnimSet = false;
+				LoadAnimation();
+			}
+			else if (m_fileName != m_idlePath)
 			{
 				m_fileName = m_idlePath;
 				LoadAnimation();
@@ -92,7 +100,7 @@ namespace TMF
 			{
 				m_pAnimationCMO->Apply(*pLockModel, m_boneSize, m_drawBone.get());
 			}
-			if (m_pAnimationSDKMESH)
+			else if (m_pAnimationSDKMESH)
 			{
 				m_pAnimationSDKMESH->Apply(*pLockModel, m_boneSize, m_drawBone.get());
 			}
@@ -113,7 +121,7 @@ namespace TMF
 		}
 		char idleBuf[256] = "";
 		strcpy_s(idleBuf, sizeof(idleBuf), m_idlePath.c_str());
-		auto idleLabel = StringHelper::CreateLabel("idlePath", m_uuID);
+		auto idleLabel = StringHelper::CreateLabel("IdlePath", m_uuID);
 		if (ImGui::InputText(idleLabel.c_str(), idleBuf, 256))
 		{
 			m_idlePath = idleBuf;
@@ -123,11 +131,13 @@ namespace TMF
 		{
 
 		}
-		if (ImGui::Button("LoadCMO"))
+		auto loadCMOLabel = StringHelper::CreateLabel("LoadCmo", m_uuID);
+		if (ImGui::Button(loadCMOLabel.c_str()))
 		{
 			LoadCMO();
 		}
-		if (ImGui::Button("LoadSDKMESH"))
+		auto loadSDKMESHLabel = StringHelper::CreateLabel("LoadSdkMesh", m_uuID);
+		if (ImGui::Button(loadSDKMESHLabel.c_str()))
 		{
 			LoadSDKMESH();
 		}
@@ -145,10 +155,19 @@ namespace TMF
 
 	void Animater::SetFileName(std::string fileName, float endTime)
 	{
-		m_fileName = fileName;
-		m_timer = 0.0f;
-		m_animEndTime = endTime;
-		LoadAnimation();
+		if (m_timer > m_animEndTime || m_fileName == m_idlePath)
+		{
+			m_fileName = fileName;
+			m_timer = 0.0f;
+			m_animEndTime = endTime;
+			LoadAnimation();
+		}
+		else 
+		{
+			m_nextPath = fileName;
+			m_nextAnimEnd = endTime;
+			m_isNextAnimSet = true;
+		}
 	}
 
 	void Animater::LoadAnimation()

@@ -35,6 +35,10 @@ namespace TMF
 		void ClearForces();
 		void GetAngularFactor();
 		void SetAngularFactor(DirectX::SimpleMath::Vector3 angular);
+
+		// Shape‚ğİ’è‚·‚éŠÖ”‚ğì¬@collider‚ÅÀs‚³‚¹‚é
+		// void Set
+
 	private:
 		btVector3 MakebtVector3(DirectX::SimpleMath::Vector3 vec);
 		btQuaternion MakebtQuaternion(DirectX::SimpleMath::Quaternion qua);

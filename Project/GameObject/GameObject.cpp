@@ -37,7 +37,10 @@ namespace TMF
 		{
 			for (auto& component : m_pComponents)
 			{
-				component->Update();
+				if (component->GetIsEnable() == true)
+				{
+					component->Update();
+				}
 			}
 		}
 	}
@@ -46,7 +49,10 @@ namespace TMF
 	{
 		for (auto& component : m_pComponents)
 		{
-			component->Draw();
+			if (component->GetIsEnable() == true)
+			{
+				component->Draw();
+			}
 		}
 	}
 

@@ -13,8 +13,8 @@ namespace TMF
 {
 	void TestApplication::OnInitialize()
 	{
-		AddLayer<EditerLayer>();
 		AddLayer<GameLayer>();
+		AddLayer<EditerLayer>();
 		AddLayer<PhysicsLayer>();
 	}
 

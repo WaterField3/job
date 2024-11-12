@@ -1,6 +1,10 @@
 #include "PlayerStatus.h"
 
 #include <Imgui/imgui.h>
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <string>
 
 #include "Utility/StringHelper.h"
 #include "ComponentRegister.h"
@@ -52,6 +56,13 @@ namespace TMF
 		{
 			m_invertAnimPath = invertBuf;
 		}
+		char standUpBuf[256] = "";
+		strcpy_s(standUpBuf, sizeof(standUpBuf), m_standUpAnimPath.c_str());
+		auto standUpAnimPathLabel = StringHelper::CreateLabel("StandUpAnimPath", m_uuID);
+		if (ImGui::InputText(standUpAnimPathLabel.c_str(), standUpBuf, 256))
+		{
+			m_standUpAnimPath = standUpBuf;
+		}
 		// よろけるアニメーションの終了時間
 		auto staggerEndTimeLabel = StringHelper::CreateLabel("StaggerEndTime", m_uuID);
 		if (ImGui::DragFloat(staggerEndTimeLabel.c_str(), &m_staggerAnimEndTime))
@@ -70,6 +81,7 @@ namespace TMF
 		if (auto pLockAnimater = m_pAnimater.lock())
 		{
 			pLockAnimater->SetFileName(m_staggerAnimPath, m_staggerAnimEndTime);
+			pLockAnimater->SetFileName(m_standUpAnimPath, 3);
 		}
 	}
 	void PlayerStatus::Invert()

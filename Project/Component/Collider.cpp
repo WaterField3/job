@@ -20,6 +20,7 @@ namespace TMF
 	void Collider::OnInitialize()
 	{
 		//AddRigidBody();
+		m_pCompaundShape = std::make_shared<btCompoundShape>();
 	}
 	void Collider::OnFinalize()
 	{
@@ -50,7 +51,7 @@ namespace TMF
 	void Collider::OnDrawImGui()
 	{
 		const char* types[] = { "Box", "Capsule", "Sphere", "Cylinder", "Cone", "Plane","ConvexHull", "Terrain" };
-		 int selectIndex = (int)m_collidrType;
+		int selectIndex = (int)m_collidrType;
 		auto shapeLabel = StringHelper::CreateLabel("ColliderType", m_uuID);
 		if (ImGui::BeginCombo(shapeLabel.c_str(), types[selectIndex]))
 		{
@@ -174,6 +175,30 @@ namespace TMF
 		default:
 			break;
 		}
+
+
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
+			{
+				auto pos = pLockTransform->GetPosition();
+				auto rotate = pLockTransform->GetRotation();
+				btTransform btTrans;
+				btTrans.setOrigin(btVector3(pos.x, pos.y, pos.z));
+				btTrans.setRotation(btQuaternion(rotate.x, rotate.y, rotate.z, rotate.w));
+				auto size = m_pCompaundShape->getNumChildShapes();
+				if (size != 0)
+				{
+					for (auto i = 0; i < size; i++)
+					{
+						m_pCompaundShape->removeChildShapeByIndex(i);
+					}
+				}
+				m_pCompaundShape->addChildShape(btTrans, m_pCollisionShape.get());
+			}
+
+		}
 	}
 	std::weak_ptr<btCollisionShape> Collider::GetCollisionShape()
 	{
@@ -181,12 +206,14 @@ namespace TMF
 		{
 			MakeCollision();
 		}
-		return m_pCollisionShape;
+		return m_pCompaundShape;
 
 	}
 
 	void Collider::UpdateShapeInfo()
 	{
+		m_pCompaundShape->removeChildShape(m_pCollisionShape.get());
+		MakeCollision();
 		AddRigidBody();
 		AddGhostObject();
 	}
@@ -205,9 +232,9 @@ namespace TMF
 		auto rigidBody = owner->GetComponent<Rigidbody>();
 		if (auto rb = rigidBody.lock())
 		{
-			rb->RemoveRigidBody();
+			//rb->RemoveRigidBody();
 			MakeCollision();
-			rb->AddRigidBody(m_pCollisionShape, pos, rotate);
+			rb->AddRigidBody(m_pCompaundShape, pos, rotate);
 		}
 	}
 	void Collider::AddGhostObject()

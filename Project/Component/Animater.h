@@ -36,17 +36,20 @@ namespace TMF
 
 	private:
 		bool m_isAnimation = false;
+		bool m_isNextAnimSet = false;
 		float m_animationSpeed = 1.0f;
+		float m_timer = 0;
+		float m_animEndTime = 0;
+		float m_nextAnimEnd = 0;
 		size_t m_animOffset = 0;
 		size_t m_boneSize = 0;
 		std::string m_fileName = "";
 		std::string m_idlePath = "";
+		std::string m_nextPath = "";
 		std::unique_ptr<DX::AnimationCMO> m_pAnimationCMO;
 		std::unique_ptr<DX::AnimationSDKMESH> m_pAnimationSDKMESH;
 		DirectX::ModelBone::TransformArray m_drawBone;
 		std::weak_ptr<DirectX::Model> m_pModel;
-		float m_timer = 0;
-		float m_animEndTime = 0;
 
 
 		SERIALIZE_COMPONENT(m_fileName ,m_idlePath, m_animationSpeed, m_isAnimation);
