@@ -35,7 +35,9 @@ namespace TMF
 		void ClearForces();
 		void GetAngularFactor();
 		void SetAngularFactor(DirectX::SimpleMath::Vector3 angular);
-
+		void GetNowbtTransform();
+		void SetBtTransform(btTransform setBtTransform);
+		btTransform GetBtTransform();
 		// Shape‚ğİ’è‚·‚éŠÖ”‚ğì¬@collider‚ÅÀs‚³‚¹‚é
 		// void Set
 

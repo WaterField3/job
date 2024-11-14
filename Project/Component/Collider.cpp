@@ -11,6 +11,7 @@
 #include "Rigidbody.h"
 #include "GhostObject.h"
 #include "Utility/StringHelper.h"
+#include "Utility/Log.h"
 
 REGISTER_COMPONENT(TMF::Collider, "Collider");
 
@@ -21,6 +22,7 @@ namespace TMF
 	{
 		//AddRigidBody();
 		m_pCompaundShape = std::make_shared<btCompoundShape>();
+		MakeCollision();
 	}
 	void Collider::OnFinalize()
 	{
@@ -134,7 +136,7 @@ namespace TMF
 //		heightData[y * width + x] = std::sin(x * 0.1f) * std::cos(y * 0.1f) ; // U•10‚Ì”gó’nŒ`
 //	}
 //}
-
+		// m_pCollisionShape‚Ìì¬
 		switch (m_collidrType)
 		{
 		case TMF::Collider::Collider_Type::BOX:
@@ -176,29 +178,7 @@ namespace TMF
 			break;
 		}
 
-
-		if (auto pLockOwner = m_pOwner.lock())
-		{
-			auto pTransform = pLockOwner->GetComponent<Transform>();
-			if (auto pLockTransform = pTransform.lock())
-			{
-				auto pos = pLockTransform->GetPosition();
-				auto rotate = pLockTransform->GetRotation();
-				btTransform btTrans;
-				btTrans.setOrigin(btVector3(pos.x, pos.y, pos.z));
-				btTrans.setRotation(btQuaternion(rotate.x, rotate.y, rotate.z, rotate.w));
-				auto size = m_pCompaundShape->getNumChildShapes();
-				if (size != 0)
-				{
-					for (auto i = 0; i < size; i++)
-					{
-						m_pCompaundShape->removeChildShapeByIndex(i);
-					}
-				}
-				m_pCompaundShape->addChildShape(btTrans, m_pCollisionShape.get());
-			}
-
-		}
+		SetCompoundCollisionShape();
 	}
 	std::weak_ptr<btCollisionShape> Collider::GetCollisionShape()
 	{
@@ -207,15 +187,19 @@ namespace TMF
 			MakeCollision();
 		}
 		return m_pCompaundShape;
+	}
 
+	void Collider::SetCollisionCenter(DirectX::SimpleMath::Vector3 setCenter)
+	{
+		m_center = setCenter;
+		MakeCollision();
+		SetCompoundCollisionShape();
 	}
 
 	void Collider::UpdateShapeInfo()
 	{
-		m_pCompaundShape->removeChildShape(m_pCollisionShape.get());
 		MakeCollision();
-		AddRigidBody();
-		AddGhostObject();
+		SetCompoundCollisionShape();
 	}
 	void Collider::AddRigidBody()
 	{
@@ -234,7 +218,7 @@ namespace TMF
 		{
 			//rb->RemoveRigidBody();
 			MakeCollision();
-			rb->AddRigidBody(m_pCompaundShape, pos, rotate);
+			//rb->AddRigidBody(m_pCompaundShape, pos, rotate);
 		}
 	}
 	void Collider::AddGhostObject()
@@ -255,6 +239,31 @@ namespace TMF
 			ghost->RemoveGhostObject();
 			MakeCollision();
 			ghost->AddGhostObject(m_pCollisionShape, pos, rotate);
+		}
+	}
+
+	// m_pCompoundShape‚Ém_pColliderShape‚ð“o˜^ˆêŒÂ‚Ì‚Ý
+	void Collider::SetCompoundCollisionShape()
+	{
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
+			{
+				auto rotate = pLockTransform->GetRotation();
+				btTransform btTrans;
+				btTrans.setOrigin(btVector3(m_center.x, m_center.y, m_center.z));
+				btTrans.setRotation(btQuaternion(rotate.x, rotate.y, rotate.z, rotate.w));
+				auto size = m_pCompaundShape->getNumChildShapes();
+				if (size != 0)
+				{
+					for (auto i = 0; i < size; i++)
+					{
+						m_pCompaundShape->removeChildShapeByIndex(i);
+					}
+				}
+				m_pCompaundShape->addChildShape(btTrans, m_pCollisionShape.get());
+			}
 		}
 	}
 }

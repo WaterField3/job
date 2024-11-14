@@ -25,13 +25,14 @@ namespace TMF
 		void OnDrawImGui() override;
 		void MakeCollision();
 		std::weak_ptr<btCollisionShape> GetCollisionShape();
-		inline DirectX::SimpleMath::Vector3 GetCollsionCenter() const { return m_center; }
+		//inline DirectX::SimpleMath::Vector3 GetCollsionCenter() const { return m_center; }
 		inline DirectX::SimpleMath::Vector3 GetCollisionSize() const { return m_size; }
-
+		void SetCollisionCenter(DirectX::SimpleMath::Vector3 setCenter);
 	private:
 		void UpdateShapeInfo();
 		void AddRigidBody();
 		void AddGhostObject();
+		void SetCompoundCollisionShape();
 
 	private:
 		enum class Collider_Type

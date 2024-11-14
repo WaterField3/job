@@ -204,7 +204,7 @@
                                         "m_position": {
                                             "value0": 0.0,
                                             "value1": 3.299999952316284,
-                                            "value2": 11.199999809265137
+                                            "value2": 24.600000381469728
                                         },
                                         "m_scale": {
                                             "value0": 0.0,
@@ -271,7 +271,7 @@
                                         },
                                         "m_position": {
                                             "value0": 0.0,
-                                            "value1": -1.899999976158142,
+                                            "value1": 8.699999809265137,
                                             "value2": 0.0
                                         },
                                         "m_scale": {
@@ -1743,6 +1743,103 @@
                                         "m_invertAnimEndTime": 1.0,
                                         "m_staggerAnimEndTime": 3.0,
                                         "m_standUpAnimPath": "asset/Situp To Idle.sdkmesh_anim"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483726,
+                    "data": {
+                        "m_name": "Floor",
+                        "m_uuID": {
+                            "uuid": "f7cd5a33-54d1-401b-954d-c3ff2bb8ad4f"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483727,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "d9d132bd-8b8c-4bd2-85ec-abf48963b374"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": -3.4000000953674318,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2,
+                                "ptr_wrapper": {
+                                    "id": 2147483728,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "eb3e846c-46e6-4fb4-9bbf-14908c522505"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_collidrType": 5,
+                                        "m_size": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_center": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "id": 2147483729,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "00f0fed0-23d0-4f64-91f0-1e53ec77017d"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_mass": 0.0,
+                                        "m_drag": 0.0,
+                                        "m_angularDrag": 0.0,
+                                        "m_angulerSleepingThresholds": 0.0,
+                                        "m_linearSleepingThresholds": 0.0,
+                                        "m_isAngularFactorX": false,
+                                        "m_isAngularFactorY": false,
+                                        "m_isAngularFactorZ": false
                                     }
                                 }
                             }
