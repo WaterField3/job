@@ -8,6 +8,7 @@
 
 #include "Utility/StringHelper.h"
 #include "ComponentRegister.h"
+#include "Timer.h"
 #include "Animater.h"
 
 REGISTER_COMPONENT(TMF::PlayerStatus, "PlayerStatus");
@@ -33,6 +34,18 @@ namespace TMF
 	}
 	void PlayerStatus::OnUpdate()
 	{
+		if (m_isInvincible == true)
+		{
+			if (m_timer < m_invincibleTime)
+			{
+				m_timer += Timer::Instance().deltaTime.count();
+			}
+			else
+			{
+				m_timer = 0.0f;
+				m_isInvincible = false;
+			}
+		}
 	}
 	void PlayerStatus::OnLateUpdate()
 	{
@@ -75,6 +88,13 @@ namespace TMF
 		{
 
 		}
+		// –³“GŽžŠÔ‚Ì’²®
+		auto invincibleTimeLabel = StringHelper::CreateLabel("InvincibleTime", m_uuID);
+		if (ImGui::DragFloat(invincibleTimeLabel.c_str(), &m_invincibleTime))
+		{
+
+		}
+
 	}
 	void PlayerStatus::Stagger()
 	{
@@ -93,13 +113,17 @@ namespace TMF
 	}
 	void PlayerStatus::Damage(float damage)
 	{
-		m_hp -= damage;
-		// ‘Ì—Í‚ª‚È‚­‚È‚Á‚½Žž‚Ìˆ—
-		if (m_hp < 0)
+		if (m_isInvincible == false)
 		{
-			if (auto pLockOwner = m_pOwner.lock())
+			m_isInvincible = true;
+			m_hp -= damage;
+			// ‘Ì—Í‚ª‚È‚­‚È‚Á‚½Žž‚Ìˆ—
+			if (m_hp < 0)
 			{
-				pLockOwner->SetActive(false);
+				if (auto pLockOwner = m_pOwner.lock())
+				{
+					pLockOwner->SetActive(false);
+				}
 			}
 		}
 	}

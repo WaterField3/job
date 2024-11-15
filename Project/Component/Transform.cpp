@@ -69,7 +69,7 @@ namespace TMF
 		label += "## " + uuidStr;
 		if (ImGui::DragFloat3(label.c_str(), &m_scale.x, 0.1f))
 		{
-			
+
 		}
 	}
 
@@ -132,6 +132,30 @@ namespace TMF
 			rotation *= pParent->GetWorldRotation();
 		}
 		return rotation;
+	}
+	DirectX::SimpleMath::Vector3 Transform::GetForward()
+	{
+		return DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Forward, m_rotation);
+	}
+	DirectX::SimpleMath::Vector3 Transform::GetRight()
+	{
+		return DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Right, m_rotation);
+	}
+	DirectX::SimpleMath::Vector3 Transform::GetLeft()
+	{
+		return DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Left, m_rotation);
+	}
+	DirectX::SimpleMath::Vector3 Transform::GetBack()
+	{
+		return DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Backward, m_rotation);
+	}
+	DirectX::SimpleMath::Vector3 Transform::GetUp()
+	{
+		return DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Up, m_rotation);
+	}
+	DirectX::SimpleMath::Vector3 Transform::GetDown()
+	{
+		return DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Down, m_rotation);
 	}
 	void Transform::ChangeRigidBodyTransform()
 	{

@@ -21,11 +21,15 @@ namespace TMF
 		void Stagger();
 		void Invert();
 		void Damage(float damage);
+		inline bool GetIsInvincible() const { return m_isInvincible; }
 
 	private:
+		bool m_isInvincible = false;
 		float m_hp = 100;
 		float m_staggerAnimEndTime = 1.0f;
 		float m_invertAnimEndTime = 1.0f;
+		float m_timer = 0.0f;
+		float m_invincibleTime = 1.0f;
 		std::string m_staggerAnimPath = "";
 		std::string m_invertAnimPath = "";
 		std::string m_standUpAnimPath = "";

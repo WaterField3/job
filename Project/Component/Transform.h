@@ -34,6 +34,12 @@ namespace TMF
 		DirectX::SimpleMath::Matrix GetMatrixRotation();
 		DirectX::SimpleMath::Vector3 GetWorldPosition();
 		DirectX::SimpleMath::Quaternion GetWorldRotation();
+		DirectX::SimpleMath::Vector3 GetForward();
+		DirectX::SimpleMath::Vector3 GetRight();
+		DirectX::SimpleMath::Vector3 GetLeft();
+		DirectX::SimpleMath::Vector3 GetBack();
+		DirectX::SimpleMath::Vector3 GetUp();
+		DirectX::SimpleMath::Vector3 GetDown();
 		void ChangeRigidBodyTransform();
 		void ChangeGhostObjectTransform();
 		void UpdateCollisionObjectTransform();

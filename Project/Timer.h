@@ -13,7 +13,6 @@ namespace TMF
 		~Timer();
 		void Initialize();
 		void Update();
-
 		static Timer& Instance()
 		{
 			static Timer instance;

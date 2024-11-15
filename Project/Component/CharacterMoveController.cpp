@@ -8,6 +8,7 @@
 #include "Transform.h"
 #include "Melee.h"
 #include "Shot.h"
+#include "Dodge.h"
 
 REGISTER_COMPONENT(TMF::CharacterMoveController, "CharacterMoveController");
 
@@ -36,6 +37,8 @@ namespace TMF
 		auto isRotate = false;
 		auto isAttack = false;
 		auto isShot = false;
+		auto isDodge = false;
+		auto moveDirection = Dodge::Direction::FOWARD;
 		if (kb.W == true)
 		{
 			auto pOwner = m_pOwner.lock();
@@ -59,6 +62,7 @@ namespace TMF
 				auto rotate = pLockTransform->GetWorldRotation();
 				auto backward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Backward, rotate);
 				movePos += backward * m_moveSpeed;
+				moveDirection = Dodge::Direction::BACK;
 			}
 		}
 		if (kb.A == true)
@@ -73,6 +77,7 @@ namespace TMF
 				movePos += left * m_moveSpeed;
 				torque = DirectX::SimpleMath::Vector3(abs(checkvec3.x), abs(checkvec3.y), abs(checkvec3.y));
 				isRotate = true;
+				moveDirection = Dodge::Direction::LEFT;
 			}
 		}
 		if (kb.D == true)
@@ -87,6 +92,7 @@ namespace TMF
 				movePos += right * m_moveSpeed;
 				torque = DirectX::SimpleMath::Vector3(abs(checkvec3.x), -abs(checkvec3.y), abs(checkvec3.y));
 				isRotate = true;
+				moveDirection = Dodge::Direction::RIGHT;
 			}
 		}
 		if (tracker->pressed.Space == true)
@@ -100,6 +106,17 @@ namespace TMF
 		else if (tracker->pressed.Back == true)
 		{
 			isShot = true;
+		}
+		// Œ»İŠÔ
+		auto now = duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+
+		if (tracker->pressed.B == true)
+		{
+			// ˆê’èŠÔ“à‚É•¡”‰ñ‰Ÿ‚³‚ê‚Ä‚¢‚é‚©
+			if (Input::Instance().PluralGetKeyDiwn(now) == true)
+			{
+				isDodge = true;
+			}
 		}
 
 		if (auto pLockOwner = m_pOwner.lock())
@@ -153,12 +170,20 @@ namespace TMF
 					pLockMelee->Play();
 				}
 			}
-			if (isShot == true)
+			else if (isShot == true)
 			{
 				auto pShot = pLockOwner->GetComponent<Shot>();
 				if (auto pLockShot = pShot.lock())
 				{
 					pLockShot->Play();
+				}
+			}
+			else if (isDodge == true)
+			{
+				auto pDodge = pLockOwner->GetComponent<Dodge>();
+				if (auto pLockDodge = pDodge.lock())
+				{
+					pLockDodge->DodgeStart(moveDirection);
 				}
 			}
 		}
