@@ -10,6 +10,8 @@
 #include "ComponentRegister.h"
 #include "Timer.h"
 #include "Animater.h"
+#include "Collider.h"
+#include "Transform.h"
 
 REGISTER_COMPONENT(TMF::PlayerStatus, "PlayerStatus");
 
@@ -27,6 +29,12 @@ namespace TMF
 		if (auto pLockOwner = m_pOwner.lock())
 		{
 			m_pAnimater = pLockOwner->GetComponent<Animater>();
+			m_pCollider = pLockOwner->GetComponent<Collider>();
+			if (auto pLockCollider = m_pCollider.lock())
+			{
+				m_initScale = pLockCollider->GetCollisionSize();
+				m_initCenter = pLockCollider->GetCollisionCenter();
+			}
 		}
 	}
 	void PlayerStatus::OnFinalize()
@@ -44,6 +52,11 @@ namespace TMF
 			{
 				m_timer = 0.0f;
 				m_isInvincible = false;
+				if (auto pLockCollider = m_pCollider.lock())
+				{
+					pLockCollider->SetCollisionCenter(m_initCenter);
+					pLockCollider->SetCollisionScale(m_initScale);
+				}
 			}
 		}
 	}
@@ -94,21 +107,52 @@ namespace TMF
 		{
 
 		}
+		// 立ち上がるアニメーションの終了時間
+		auto standUpTimeLabel = StringHelper::CreateLabel("StandUpTime", m_uuID);
+		if (ImGui::DragFloat(standUpTimeLabel.c_str(), &m_standUpTime))
+		{
+
+		}
+		// 倒れた時の当たり判定の中心
+		auto staggerCenterLabel = StringHelper::CreateLabel("StaggerCenter", m_uuID);
+		if (ImGui::DragFloat3(staggerCenterLabel.c_str(), &m_staggerCenter.x))
+		{
+
+		}
+		// 倒れた時の当たり判定のスケール
+		auto staggerScaleLabel = StringHelper::CreateLabel("StaggerScale", m_uuID);
+		if (ImGui::DragFloat3(staggerScaleLabel.c_str(), &m_staggerScale.x))
+		{
+
+		}
 
 	}
 	void PlayerStatus::Stagger()
 	{
-		if (auto pLockAnimater = m_pAnimater.lock())
+		if (m_isInvincible == false)
 		{
-			pLockAnimater->SetFileName(m_staggerAnimPath, m_staggerAnimEndTime);
-			pLockAnimater->SetFileName(m_standUpAnimPath, 3);
+			if (auto pLockAnimater = m_pAnimater.lock())
+			{
+				pLockAnimater->SetFileName(m_staggerAnimPath, m_staggerAnimEndTime);
+				pLockAnimater->SetFileName(m_standUpAnimPath, m_standUpTime);
+			}
+			if (auto pLockCollider = m_pCollider.lock())
+			{
+				m_initScale = pLockCollider->GetCollisionSize();
+				m_initCenter = pLockCollider->GetCollisionCenter();
+				pLockCollider->SetCollisionCenter(m_staggerCenter);
+				pLockCollider->SetCollisionScale(m_staggerScale);
+			}
 		}
 	}
 	void PlayerStatus::Invert()
 	{
-		if (auto pLockAnimater = m_pAnimater.lock())
+		if (m_isInvincible == false)
 		{
-			pLockAnimater->SetFileName(m_invertAnimPath, m_invertAnimEndTime);
+			if (auto pLockAnimater = m_pAnimater.lock())
+			{
+				pLockAnimater->SetFileName(m_invertAnimPath, m_invertAnimEndTime);
+			}
 		}
 	}
 	void PlayerStatus::Damage(float damage)

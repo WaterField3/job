@@ -204,7 +204,7 @@
                                         "m_position": {
                                             "value0": 0.0,
                                             "value1": 3.299999952316284,
-                                            "value2": 24.600000381469728
+                                            "value2": 10.100000381469727
                                         },
                                         "m_scale": {
                                             "value0": 0.0,
@@ -395,7 +395,7 @@
                                         },
                                         "m_position": {
                                             "value0": 0.0,
-                                            "value1": -3.5,
+                                            "value1": 5.5,
                                             "value2": 0.0
                                         },
                                         "m_scale": {
@@ -1035,7 +1035,7 @@
                                         "m_angulerSleepingThresholds": 0.0,
                                         "m_linearSleepingThresholds": 0.0,
                                         "m_isAngularFactorX": false,
-                                        "m_isAngularFactorY": true,
+                                        "m_isAngularFactorY": false,
                                         "m_isAngularFactorZ": false
                                     }
                                 }
@@ -1109,11 +1109,43 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_fowardDodge": "asset/Falling To Roll.sdkmesh_anim",
+                                        "m_fowardDodge": "asset/Sprinting Forward Roll.sdkmesh_anim",
                                         "m_rightDodge": "",
                                         "m_leftDodge": "",
                                         "m_backDodge": "",
                                         "m_moveMagnification": 0.20000000298023225
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483662,
+                                "polymorphic_name": "TMF::PlayerStatus",
+                                "ptr_wrapper": {
+                                    "id": 2147483698,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "ebb3152f-09aa-41e2-b0ee-adfd0328f392"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_hp": 100.0,
+                                        "m_staggerAnimPath": "",
+                                        "m_invertAnimPath": "",
+                                        "m_invertAnimEndTime": 1.0,
+                                        "m_staggerAnimEndTime": 1.0,
+                                        "m_standUpAnimPath": "",
+                                        "m_standUpTime": 1.0,
+                                        "m_staggerCenter": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_staggerScale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        }
                                     }
                                 }
                             }
@@ -1123,7 +1155,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483698,
+                    "id": 2147483699,
                     "data": {
                         "m_name": "Red",
                         "m_uuID": {
@@ -1135,7 +1167,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483699,
+                                    "id": 2147483700,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1170,7 +1202,7 @@
                             {
                                 "polymorphic_id": 4,
                                 "ptr_wrapper": {
-                                    "id": 2147483700,
+                                    "id": 2147483701,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1200,7 +1232,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483701,
+                    "id": 2147483702,
                     "data": {
                         "m_name": "MeleeMoveObj",
                         "m_uuID": {
@@ -1212,7 +1244,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483702,
+                                    "id": 2147483703,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1248,10 +1280,10 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 2147483662,
+                                "polymorphic_id": 2147483663,
                                 "polymorphic_name": "TMF::MeleeMove",
                                 "ptr_wrapper": {
-                                    "id": 2147483703,
+                                    "id": 2147483704,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1271,7 +1303,7 @@
                             {
                                 "polymorphic_id": 2,
                                 "ptr_wrapper": {
-                                    "id": 2147483704,
+                                    "id": 2147483705,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1296,7 +1328,7 @@
                             {
                                 "polymorphic_id": 6,
                                 "ptr_wrapper": {
-                                    "id": 2147483705,
+                                    "id": 2147483706,
                                     "data": {
                                         "m_uuID": {
                                             "uuid": "da38cd02-176b-4f7c-bcc1-7a565d34e910"
@@ -1306,10 +1338,10 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 2147483663,
+                                "polymorphic_id": 2147483664,
                                 "polymorphic_name": "TMF::Audio",
                                 "ptr_wrapper": {
-                                    "id": 2147483706,
+                                    "id": 2147483707,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1326,10 +1358,10 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 2147483664,
+                                "polymorphic_id": 2147483665,
                                 "polymorphic_name": "TMF::Damage",
                                 "ptr_wrapper": {
-                                    "id": 2147483707,
+                                    "id": 2147483708,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1348,7 +1380,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483708,
+                    "id": 2147483709,
                     "data": {
                         "m_name": "Bullet",
                         "m_uuID": {
@@ -1360,7 +1392,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483709,
+                                    "id": 2147483710,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1398,7 +1430,7 @@
                             {
                                 "polymorphic_id": 4,
                                 "ptr_wrapper": {
-                                    "id": 2147483710,
+                                    "id": 2147483711,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1423,10 +1455,10 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 2147483665,
+                                "polymorphic_id": 2147483666,
                                 "polymorphic_name": "TMF::BulletStraightMove",
                                 "ptr_wrapper": {
-                                    "id": 2147483711,
+                                    "id": 2147483712,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1445,9 +1477,9 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 16,
+                                "polymorphic_id": 17,
                                 "ptr_wrapper": {
-                                    "id": 2147483712,
+                                    "id": 2147483713,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1461,9 +1493,9 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 15,
+                                "polymorphic_id": 16,
                                 "ptr_wrapper": {
-                                    "id": 2147483713,
+                                    "id": 2147483714,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1482,7 +1514,7 @@
                             {
                                 "polymorphic_id": 2,
                                 "ptr_wrapper": {
-                                    "id": 2147483714,
+                                    "id": 2147483715,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1507,7 +1539,7 @@
                             {
                                 "polymorphic_id": 6,
                                 "ptr_wrapper": {
-                                    "id": 2147483715,
+                                    "id": 2147483716,
                                     "data": {
                                         "m_uuID": {
                                             "uuid": "fdefb934-35ef-4770-91c1-a49584b7b1ab"
@@ -1522,7 +1554,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483716,
+                    "id": 2147483717,
                     "data": {
                         "m_name": "NewGameObject",
                         "m_uuID": {
@@ -1534,7 +1566,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483717,
+                                    "id": 2147483718,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1569,7 +1601,7 @@
                             {
                                 "polymorphic_id": 2,
                                 "ptr_wrapper": {
-                                    "id": 2147483718,
+                                    "id": 2147483719,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1594,7 +1626,7 @@
                             {
                                 "polymorphic_id": 3,
                                 "ptr_wrapper": {
-                                    "id": 2147483719,
+                                    "id": 2147483720,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1619,7 +1651,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483720,
+                    "id": 2147483721,
                     "data": {
                         "m_name": "Enemy",
                         "m_uuID": {
@@ -1631,7 +1663,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483721,
+                                    "id": 2147483722,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1666,7 +1698,7 @@
                             {
                                 "polymorphic_id": 2,
                                 "ptr_wrapper": {
-                                    "id": 2147483722,
+                                    "id": 2147483723,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1691,7 +1723,7 @@
                             {
                                 "polymorphic_id": 3,
                                 "ptr_wrapper": {
-                                    "id": 2147483723,
+                                    "id": 2147483724,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1713,7 +1745,7 @@
                             {
                                 "polymorphic_id": 7,
                                 "ptr_wrapper": {
-                                    "id": 2147483724,
+                                    "id": 2147483725,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1730,7 +1762,7 @@
                             {
                                 "polymorphic_id": 9,
                                 "ptr_wrapper": {
-                                    "id": 2147483725,
+                                    "id": 2147483726,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1746,10 +1778,9 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 2147483666,
-                                "polymorphic_name": "TMF::PlayerStatus",
+                                "polymorphic_id": 14,
                                 "ptr_wrapper": {
-                                    "id": 2147483726,
+                                    "id": 2147483727,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1762,7 +1793,18 @@
                                         "m_invertAnimPath": "asset/Stunned.sdkmesh_anim",
                                         "m_invertAnimEndTime": 1.0,
                                         "m_staggerAnimEndTime": 3.0,
-                                        "m_standUpAnimPath": "asset/Situp To Idle.sdkmesh_anim"
+                                        "m_standUpAnimPath": "asset/Situp To Idle.sdkmesh_anim",
+                                        "m_standUpTime": 1.0,
+                                        "m_staggerCenter": {
+                                            "value0": 0.0,
+                                            "value1": 0.5,
+                                            "value2": 0.0
+                                        },
+                                        "m_staggerScale": {
+                                            "value0": 40.0,
+                                            "value1": 25.0,
+                                            "value2": 80.0
+                                        }
                                     }
                                 }
                             }
@@ -1772,7 +1814,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483727,
+                    "id": 2147483728,
                     "data": {
                         "m_name": "Floor",
                         "m_uuID": {
@@ -1784,7 +1826,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483728,
+                                    "id": 2147483729,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1819,7 +1861,7 @@
                             {
                                 "polymorphic_id": 2,
                                 "ptr_wrapper": {
-                                    "id": 2147483729,
+                                    "id": 2147483730,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -1844,7 +1886,7 @@
                             {
                                 "polymorphic_id": 3,
                                 "ptr_wrapper": {
-                                    "id": 2147483730,
+                                    "id": 2147483731,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {

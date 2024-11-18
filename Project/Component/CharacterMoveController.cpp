@@ -9,6 +9,7 @@
 #include "Melee.h"
 #include "Shot.h"
 #include "Dodge.h"
+#include "PlayerStatus.h"
 
 REGISTER_COMPONENT(TMF::CharacterMoveController, "CharacterMoveController");
 
@@ -116,15 +117,23 @@ namespace TMF
 			if (Input::Instance().PluralGetKeyDiwn(now) == true)
 			{
 				isDodge = true;
+				movePos = DirectX::SimpleMath::Vector3::Zero;
 			}
 		}
 
 		if (auto pLockOwner = m_pOwner.lock())
 		{
+			auto pPlayerStatus = pLockOwner->GetComponent<PlayerStatus>();
+			auto isInvincible = false;
+			if (auto pLockPlayerStatus = pPlayerStatus.lock())
+			{
+				isInvincible = pLockPlayerStatus->GetIsInvincible();
+			}
+
 			auto rigidBodyComponent = pLockOwner->GetComponent<Rigidbody>();
 			if (auto rb = rigidBodyComponent.lock())
 			{
-				if (movePos != DirectX::SimpleMath::Vector3::Zero)
+				if (movePos != DirectX::SimpleMath::Vector3::Zero && isInvincible == false)
 				{
 					//rb->SetLinearVelocity(movePos);
 					//rb->ApplyCentralForce(movePos);

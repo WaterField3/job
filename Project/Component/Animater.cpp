@@ -41,6 +41,7 @@ namespace TMF
 			}
 			else if (m_fileName != m_idlePath)
 			{
+				m_animEndTime = 1.0f;
 				m_fileName = m_idlePath;
 				LoadAnimation();
 			}

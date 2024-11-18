@@ -25,9 +25,10 @@ namespace TMF
 		void OnDrawImGui() override;
 		void MakeCollision();
 		std::weak_ptr<btCollisionShape> GetCollisionShape();
-		//inline DirectX::SimpleMath::Vector3 GetCollsionCenter() const { return m_center; }
-		inline DirectX::SimpleMath::Vector3 GetCollisionSize() const { return m_size; }
 		void SetCollisionCenter(DirectX::SimpleMath::Vector3 setCenter);
+		void SetCollisionScale(DirectX::SimpleMath::Vector3 setScale);
+		inline DirectX::SimpleMath::Vector3 GetCollisionSize() const { return m_size; }
+		inline DirectX::SimpleMath::Vector3 GetCollisionCenter() const { return m_center; }
 	private:
 		void UpdateShapeInfo();
 		void AddRigidBody();

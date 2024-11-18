@@ -4,10 +4,11 @@
 
 #include "ComponentRegister.h"
 #include "Utility/StringHelper.h"
+#include "Timer.h"
 #include "Animater.h"
 #include "Rigidbody.h"
 #include "Transform.h"
-#include "Timer.h"
+#include "PlayerStatus.h"
 
 REGISTER_COMPONENT(TMF::Dodge, "Dodge");
 
@@ -36,6 +37,11 @@ namespace TMF
 					{
 						pLockRigidBody->SetLinearVelocity(DirectX::SimpleMath::Vector3::Zero);
 					}
+					auto pPlayerStatus = pLockOwner->GetComponent<PlayerStatus>();
+					if (auto pLockPlayerStatus = pPlayerStatus.lock())
+					{
+						pLockPlayerStatus->SetIsInvincible(false);
+					}
 				}
 				return;
 			}
@@ -43,37 +49,13 @@ namespace TMF
 			// À•W‚ÌˆÚ“®
 			if (auto pLockOwner = m_pOwner.lock())
 			{
-				// ˆÚ“®‚Ì‚½‚ß‚ÉŒü‚«‚ðŽæ“¾
-				auto pTransform = pLockOwner->GetComponent<Transform>();
-				if (auto pLockTransform = pTransform.lock())
+				// •¨—‚ÅÀ•W‚ðˆÚ“®‚·‚é
+				auto pRigidBody = pLockOwner->GetComponent<Rigidbody>();
+				if (auto pLockRigidBody = pRigidBody.lock())
 				{
-					auto moveDirection = DirectX::SimpleMath::Vector3::Zero;
-					// •¨—‚ÅÀ•W‚ðˆÚ“®‚·‚é
-					auto pRigidBody = pLockOwner->GetComponent<Rigidbody>();
-					if (auto pLockRigidBody = pRigidBody.lock())
-					{
-						switch (m_dodgeDirection)
-						{
-						case TMF::Dodge::FOWARD:
-							moveDirection = pLockTransform->GetForward();
-							break;
-						case TMF::Dodge::RIGHT:
-							moveDirection = pLockTransform->GetRight();
-							break;
-						case TMF::Dodge::LEFT:
-							moveDirection = pLockTransform->GetLeft();
-							break;
-						case TMF::Dodge::BACK:
-							moveDirection = pLockTransform->GetBack();
-							break;
-						default:
-							break;
-						}
-						moveDirection *= m_moveMagnification;
-						pLockRigidBody->ApplyImpulse(moveDirection, DirectX::SimpleMath::Vector3::Zero);
-					}
+					pLockRigidBody->ApplyImpulse(m_dodgeMoveVector, DirectX::SimpleMath::Vector3::Zero);
+					pLockRigidBody->SetAngularVelocity(DirectX::SimpleMath::Vector3::Zero);
 				}
-
 			}
 		}
 	}
@@ -140,28 +122,46 @@ namespace TMF
 
 			if (auto pLockAnimater = pAnimater.lock())
 			{
-				switch (direction)
+				auto pTransform = pLockOwner->GetComponent<Transform>();
+				if (auto pLockTransform = pTransform.lock())
 				{
-				case TMF::Dodge::FOWARD:
-					m_dodgeDirection = Direction::FOWARD;
-					break;
-				case TMF::Dodge::RIGHT:
-					m_dodgeDirection = Direction::RIGHT;
-					dodgePath = m_rightDodge;
-					break;
-				case TMF::Dodge::LEFT:
-					m_dodgeDirection = Direction::LEFT;
-					dodgePath = m_leftDodge;
-					break;
-				case TMF::Dodge::BACK:
-					m_dodgeDirection = Direction::BACK;
-					dodgePath = m_backDodge;
-					break;
-				default:
-					break;
+					switch (direction)
+					{
+					case TMF::Dodge::FOWARD:
+						m_dodgeDirection = Direction::FOWARD;
+						m_dodgeMoveVector = pLockTransform->GetForward();
+						break;
+					case TMF::Dodge::RIGHT:
+						m_dodgeDirection = Direction::RIGHT;
+						m_dodgeMoveVector = pLockTransform->GetRight();
+						dodgePath = m_rightDodge;
+						break;
+					case TMF::Dodge::LEFT:
+						m_dodgeDirection = Direction::LEFT;
+						m_dodgeMoveVector = pLockTransform->GetLeft();
+						dodgePath = m_leftDodge;
+						break;
+					case TMF::Dodge::BACK:
+						m_dodgeDirection = Direction::BACK;
+						m_dodgeMoveVector = pLockTransform->GetBack();
+						dodgePath = m_backDodge;
+						break;
+					default:
+						break;
+					}
+					m_dodgeMoveVector *= m_moveMagnification;
+					pLockAnimater->SetFileName(dodgePath, m_dodgeTime);
+					m_isDodgeMove = true;
 				}
-				pLockAnimater->SetFileName(dodgePath, m_dodgeTime);
-				m_isDodgeMove = true;
+			}
+
+			if (m_isDodgeMove == true)
+			{
+				auto pPlayerStatus = pLockOwner->GetComponent<PlayerStatus>();
+				if (auto pLockPlayerStatus = pPlayerStatus.lock())
+				{
+					pLockPlayerStatus->SetIsInvincible(true);
+				}
 			}
 
 		}

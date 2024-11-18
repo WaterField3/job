@@ -76,7 +76,7 @@ namespace TMF
 		}
 
 		auto sizeLabel = StringHelper::CreateLabel("Size", m_uuID);
-		if (ImGui::DragFloat3(sizeLabel.c_str(), &m_size.x, 0.1f))
+		if (ImGui::DragFloat3(sizeLabel.c_str(), &m_size.x, 0.1f, 0.0f))
 		{
 			UpdateShapeInfo();
 		}
@@ -192,8 +192,13 @@ namespace TMF
 	void Collider::SetCollisionCenter(DirectX::SimpleMath::Vector3 setCenter)
 	{
 		m_center = setCenter;
-		MakeCollision();
-		SetCompoundCollisionShape();
+		UpdateShapeInfo();
+	}
+
+	void Collider::SetCollisionScale(DirectX::SimpleMath::Vector3 setScale)
+	{
+		m_size = setScale;
+		UpdateShapeInfo();
 	}
 
 	void Collider::UpdateShapeInfo()
@@ -252,8 +257,8 @@ namespace TMF
 			{
 				auto rotate = pLockTransform->GetRotation();
 				btTransform btTrans;
+				btTrans.setIdentity();
 				btTrans.setOrigin(btVector3(m_center.x, m_center.y, m_center.z));
-				btTrans.setRotation(btQuaternion(rotate.x, rotate.y, rotate.z, rotate.w));
 				auto size = m_pCompaundShape->getNumChildShapes();
 				if (size != 0)
 				{

@@ -29,6 +29,7 @@ namespace TMF
 		float m_dodgeTime = 1.0f;
 		float m_timer = 0.0f;
 		float m_moveMagnification = 1.0f;
+		DirectX::SimpleMath::Vector3 m_dodgeMoveVector = DirectX::SimpleMath::Vector3::Zero;
 		Direction m_dodgeDirection = Direction::FOWARD;
 		std::string m_fowardDodge = "";
 		std::string m_rightDodge = "";

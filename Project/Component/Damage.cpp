@@ -95,7 +95,6 @@ namespace TMF
 				auto pPlayerStatus = pGameObject->GetComponent<PlayerStatus>();
 				if (auto pLockPlayerStatus = pPlayerStatus.lock())
 				{
-					pLockPlayerStatus->Damage(m_damage);
 					switch (m_reactionType)
 					{
 					case TMF::Damage::STAGGER:
@@ -109,6 +108,7 @@ namespace TMF
 					default:
 						break;
 					}
+					pLockPlayerStatus->Damage(m_damage);
 				}
 			}
 		}

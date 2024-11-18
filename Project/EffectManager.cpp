@@ -49,6 +49,7 @@ namespace TMF
 	void EffectManager::Update()
 	{
 		auto camera = GameObjectManager::Instance().GetComponent<Camera>();
+		m_pEffekseerManager->Update();
 		if (auto cam = camera.lock())
 		{
 			Effekseer::Matrix44 projMatrix;
@@ -60,7 +61,6 @@ namespace TMF
 			m_pEffectRenderer->SetProjectionMatrix(projMatrix);
 			m_pEffectRenderer->SetCameraMatrix(viewMatrix);
 		}
-		m_pEffekseerManager->Update();
 	}
 	void EffectManager::Draw()
 	{
