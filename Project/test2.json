@@ -1164,7 +1164,7 @@
                                         },
                                         "m_thrusterValue": 0.0,
                                         "m_firstUseMagnification": 0.10000000149011612,
-                                        "m_thrusterMoveSpeedMagnification": 4.0
+                                        "m_thrusterMoveSpeedMagnification": 10.0
                                     }
                                 }
                             }

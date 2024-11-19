@@ -4,6 +4,7 @@ namespace TMF
 {
 	enum MoveDirection
 	{
+		NEUTRAL,
 		FOWARD,
 		RIGHT,
 		LEFT,

@@ -80,6 +80,7 @@ namespace TMF
 			{
 				switch (moveDirection)
 				{
+				case TMF::NEUTRAL:
 				case TMF::FOWARD:
 					m_moveVector = pLockTransform->GetForward();
 					break;
@@ -195,6 +196,20 @@ namespace TMF
 	}
 	void Thruster::StopUseThruster()
 	{
+		if (auto pLockRigidBody = m_pRigidBody.lock())
+		{
+			auto velocity = pLockRigidBody->GetLinearVelocity();
+			if (velocity != DirectX::SimpleMath::Vector3::Zero)
+			{
+				velocity.x *= 0.9f;
+				velocity.z *= 0.9f;
+				if (DirectX::SimpleMath::Vector3::Distance(velocity, DirectX::SimpleMath::Vector3::Zero) < 0.1f)
+				{
+					velocity = DirectX::SimpleMath::Vector3::Zero;
+				}
+				pLockRigidBody->SetLinearVelocity(velocity);
+			}
+		}
 		if (m_isThruster == true)
 		{
 			m_isThruster = false;

@@ -147,6 +147,7 @@ namespace TMF
 				{
 					switch (direction)
 					{
+					case MoveDirection::NEUTRAL:
 					case MoveDirection::FOWARD:
 						m_dodgeDirection = MoveDirection::FOWARD;
 						m_dodgeMoveVector = pLockTransform->GetForward();

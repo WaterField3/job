@@ -42,7 +42,7 @@ namespace TMF
 		auto isShot = false;
 		auto isDodge = false;
 		auto isThruster = false;
-		auto moveDirection = MoveDirection::FOWARD;
+		auto moveDirection = MoveDirection::NEUTRAL;
 		if (kb.W == true)
 		{
 			auto pOwner = m_pOwner.lock();
