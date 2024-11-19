@@ -22,6 +22,7 @@ namespace TMF
         void OnLateUpdate() override;
         void OnDraw() override;
         void OnDrawImGui() override;
+        void SetColor(DirectX::SimpleMath::Color color);
 
     private:
         void LoadTexture();

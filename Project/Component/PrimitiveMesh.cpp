@@ -128,6 +128,10 @@ namespace TMF
 			LoadTexture();
 		}
 	}
+	void PrimitiveMesh::SetColor(DirectX::SimpleMath::Color color)
+	{
+		m_color = color;
+	}
 	void PrimitiveMesh::LoadTexture()
 	{
 		// ƒpƒX‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚«Às‚µ‚È‚¢

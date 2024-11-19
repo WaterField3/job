@@ -175,6 +175,7 @@
     <ClCompile Include="Component\Damage.cpp" />
     <ClCompile Include="Component\PlayerStatus.cpp" />
     <ClCompile Include="Component\Dodge.cpp" />
+    <ClCompile Include="Component\Fade.cpp" />
     <ClCompile Include="RenderTexture.cpp" />
     <ClCompile Include="Component\Shot.cpp" />
     <ClCompile Include="System\Animation.cpp" />
@@ -235,6 +236,7 @@
     <ClInclude Include="Component\Damage.h" />
     <ClInclude Include="Component\PlayerStatus.h" />
     <ClInclude Include="Component\Dodge.h" />
+    <ClInclude Include="Component\Fade.h" />
     <ClInclude Include="MoveInfo.h" />
     <ClInclude Include="ReadData.h" />
     <ClInclude Include="RenderTexture.h" />

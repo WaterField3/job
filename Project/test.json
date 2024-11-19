@@ -1927,6 +1927,101 @@
                         ]
                     }
                 }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483733,
+                    "data": {
+                        "m_name": "FadeObject",
+                        "m_uuID": {
+                            "uuid": "e27434ac-6a24-4d8a-a681-d9e9945298ff"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483734,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "91e61ec7-78e7-4e7e-a30b-5ff1f60e7b57"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 3.200000047683716,
+                                            "value2": 9.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 4,
+                                "ptr_wrapper": {
+                                    "id": 2147483735,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "cfe1a553-3a4d-4528-a5b7-346a4d1e8a66"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_shapeType": 0,
+                                        "m_color": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 2.0,
+                                            "value1": 2.0,
+                                            "value2": 2.0
+                                        },
+                                        "m_textureName": ""
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483668,
+                                "polymorphic_name": "TMF::Fade",
+                                "ptr_wrapper": {
+                                    "id": 2147483736,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "f01b5174-c8ac-4aee-b7f0-992e01f2ac53"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_fadeSpeed": 0.10000000149011612,
+                                        "m_isFade": true,
+                                        "m_fadeType": 1
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
             }
         ]
     }
