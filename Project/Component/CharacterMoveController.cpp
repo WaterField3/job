@@ -10,6 +10,8 @@
 #include "Shot.h"
 #include "Dodge.h"
 #include "PlayerStatus.h"
+#include "MoveInfo.h"
+#include "Thruster.h"
 
 REGISTER_COMPONENT(TMF::CharacterMoveController, "CharacterMoveController");
 
@@ -39,7 +41,8 @@ namespace TMF
 		auto isAttack = false;
 		auto isShot = false;
 		auto isDodge = false;
-		auto moveDirection = Dodge::Direction::FOWARD;
+		auto isThruster = false;
+		auto moveDirection = MoveDirection::FOWARD;
 		if (kb.W == true)
 		{
 			auto pOwner = m_pOwner.lock();
@@ -63,7 +66,7 @@ namespace TMF
 				auto rotate = pLockTransform->GetWorldRotation();
 				auto backward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Backward, rotate);
 				movePos += backward * m_moveSpeed;
-				moveDirection = Dodge::Direction::BACK;
+				moveDirection = MoveDirection::BACK;
 			}
 		}
 		if (kb.A == true)
@@ -78,7 +81,7 @@ namespace TMF
 				movePos += left * m_moveSpeed;
 				torque = DirectX::SimpleMath::Vector3(abs(checkvec3.x), abs(checkvec3.y), abs(checkvec3.y));
 				isRotate = true;
-				moveDirection = Dodge::Direction::LEFT;
+				moveDirection = MoveDirection::LEFT;
 			}
 		}
 		if (kb.D == true)
@@ -93,9 +96,16 @@ namespace TMF
 				movePos += right * m_moveSpeed;
 				torque = DirectX::SimpleMath::Vector3(abs(checkvec3.x), -abs(checkvec3.y), abs(checkvec3.y));
 				isRotate = true;
-				moveDirection = Dodge::Direction::RIGHT;
+				moveDirection = MoveDirection::RIGHT;
 			}
 		}
+
+		if (kb.V == true)
+		{
+			isThruster = true;
+		}
+
+		// uŠÔ‚ðŽæ“¾
 		if (tracker->pressed.Space == true)
 		{
 			isJump = true;
@@ -135,9 +145,12 @@ namespace TMF
 			{
 				if (movePos != DirectX::SimpleMath::Vector3::Zero && isInvincible == false)
 				{
-					//rb->SetLinearVelocity(movePos);
+					auto velocity = rb->GetLinearVelocity();
+					movePos.y = velocity.y;
+
+					rb->SetLinearVelocity(movePos);
 					//rb->ApplyCentralForce(movePos);
-					rb->ApplyForce(movePos, DirectX::SimpleMath::Vector3::Zero);
+					//rb->ApplyForce(movePos, DirectX::SimpleMath::Vector3::Zero);
 					if (isRotate == true)
 					{
 						//rb->SetAngularFactor(DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f));
@@ -193,6 +206,22 @@ namespace TMF
 				if (auto pLockDodge = pDodge.lock())
 				{
 					pLockDodge->DodgeStart(moveDirection);
+				}
+			}
+			else if (isThruster == true)
+			{
+				auto pThruster = pLockOwner->GetComponent<Thruster>();
+				if (auto pLockThruster = pThruster.lock())
+				{
+					pLockThruster->UseThruster(moveDirection);
+				}
+			}
+			else if (isThruster == false)
+			{
+				auto pThruster = pLockOwner->GetComponent<Thruster>();
+				if (auto pLockThruster = pThruster.lock())
+				{
+					pLockThruster->StopUseThruster();
 				}
 			}
 		}

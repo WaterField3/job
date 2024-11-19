@@ -186,6 +186,12 @@ namespace TMF
 		m_pRigidBody->setLinearVelocity(MakebtVector3(velocity));
 	}
 
+	DirectX::SimpleMath::Vector3 Rigidbody::GetLinearVelocity()
+	{
+		auto velocity = m_pRigidBody->getLinearVelocity();
+		return DirectX::SimpleMath::Vector3(velocity.getX(), velocity.getY(), velocity.getZ());
+	}
+
 	void Rigidbody::ApplyImpulse(DirectX::SimpleMath::Vector3 impulse, DirectX::SimpleMath::Vector3 relPos)
 	{
 		m_pRigidBody->applyImpulse(MakebtVector3(impulse), MakebtVector3(relPos));

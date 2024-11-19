@@ -235,6 +235,7 @@
     <ClInclude Include="Component\Damage.h" />
     <ClInclude Include="Component\PlayerStatus.h" />
     <ClInclude Include="Component\Dodge.h" />
+    <ClInclude Include="MoveInfo.h" />
     <ClInclude Include="ReadData.h" />
     <ClInclude Include="RenderTexture.h" />
     <ClInclude Include="Component\Shot.h" />

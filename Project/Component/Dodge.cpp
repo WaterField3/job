@@ -9,6 +9,7 @@
 #include "Rigidbody.h"
 #include "Transform.h"
 #include "PlayerStatus.h"
+#include "Thruster.h"
 
 REGISTER_COMPONENT(TMF::Dodge, "Dodge");
 
@@ -112,11 +113,30 @@ namespace TMF
 		{
 
 		}
+		// 回避時に使用するスラスターの割合
+		auto dodgeUseThrusterLabel = StringHelper::CreateLabel("DodgeUseThruster", m_uuID);
+		if (ImGui::DragFloat(dodgeUseThrusterLabel.c_str(), &m_dodgeUseThrusterMagnification, 0.1f, 0.0f, 1.0f))
+		{
+
+		}
 	}
-	void Dodge::DodgeStart(Direction direction)
+	void Dodge::DodgeStart(MoveDirection direction)
 	{
 		if (auto pLockOwner = m_pOwner.lock())
 		{
+			auto pThruster = pLockOwner->GetComponent<Thruster>();
+			if (auto pLockThruster = pThruster.lock())
+			{
+				if (pLockThruster->GetIsOverHeat() == false)
+				{
+					pLockThruster->DodgeUseThruster(m_dodgeUseThrusterMagnification);
+				}
+				else
+				{
+					return;
+				}
+			}
+
 			auto pAnimater = pLockOwner->GetComponent<Animater>();
 			auto dodgePath = m_fowardDodge;
 
@@ -127,22 +147,22 @@ namespace TMF
 				{
 					switch (direction)
 					{
-					case TMF::Dodge::FOWARD:
-						m_dodgeDirection = Direction::FOWARD;
+					case MoveDirection::FOWARD:
+						m_dodgeDirection = MoveDirection::FOWARD;
 						m_dodgeMoveVector = pLockTransform->GetForward();
 						break;
-					case TMF::Dodge::RIGHT:
-						m_dodgeDirection = Direction::RIGHT;
+					case MoveDirection::RIGHT:
+						m_dodgeDirection = MoveDirection::RIGHT;
 						m_dodgeMoveVector = pLockTransform->GetRight();
 						dodgePath = m_rightDodge;
 						break;
-					case TMF::Dodge::LEFT:
-						m_dodgeDirection = Direction::LEFT;
+					case MoveDirection::LEFT:
+						m_dodgeDirection = MoveDirection::LEFT;
 						m_dodgeMoveVector = pLockTransform->GetLeft();
 						dodgePath = m_leftDodge;
 						break;
-					case TMF::Dodge::BACK:
-						m_dodgeDirection = Direction::BACK;
+					case MoveDirection::BACK:
+						m_dodgeDirection = MoveDirection::BACK;
 						m_dodgeMoveVector = pLockTransform->GetBack();
 						dodgePath = m_backDodge;
 						break;
