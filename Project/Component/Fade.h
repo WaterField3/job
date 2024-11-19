@@ -16,6 +16,8 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		void FadeStart();
+		inline bool GetIsFadeInEnd() const { return m_isFadeInEnd; }
+		inline bool GetIsFadeOutEnd() const { return m_isFadeOutEnd; }
 
 	private:
 		enum FadeType
@@ -26,6 +28,8 @@ namespace TMF
 			FADEOUT,
 		};
 		bool m_isFade = false;
+		bool m_isFadeOutEnd = false;
+		bool m_isFadeInEnd = false;
 		float m_fadeSpeed = 1.0f;
 		float m_timer = 0.0f;
 		FadeType m_fadeType = FADEIN;

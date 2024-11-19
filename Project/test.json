@@ -2018,6 +2018,23 @@
                                         "m_fadeType": 1
                                     }
                                 }
+                            },
+                            {
+                                "polymorphic_id": 2147483669,
+                                "polymorphic_name": "TMF::SceneLoad",
+                                "ptr_wrapper": {
+                                    "id": 2147483737,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "2875c1a9-e7ad-4584-b6f8-0f42d08d52f1"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_trigger": 0,
+                                        "m_loadFile": "test"
+                                    }
+                                }
                             }
                         ]
                     }

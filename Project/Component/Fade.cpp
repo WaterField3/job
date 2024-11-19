@@ -42,6 +42,14 @@ namespace TMF
 				if (m_timer > 1.0f)
 				{
 					m_isFade = false;
+					if (m_fadeType == FadeType::FADEIN)
+					{
+						m_isFadeInEnd = true;
+					}
+					else
+					{
+						m_isFadeOutEnd = true;
+					}
 					m_timer = 0.0f;
 				}
 			}
