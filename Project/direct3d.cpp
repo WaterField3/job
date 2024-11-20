@@ -434,7 +434,7 @@ HRESULT D3D::Create(HWND hwnd)
 		&blurData, sizeof(VS_BLUR_PARAMETERS), 0);
 
 
-	m_pSpriteBatch = std::make_unique<SpriteBatch>(m_pImmediateContext);
+	m_pSpriteBatch = std::make_shared<SpriteBatch>(m_pImmediateContext);
 
 
 	m_offscreenTexture->SetDevice(m_pDevice);

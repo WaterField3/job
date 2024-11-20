@@ -5,16 +5,24 @@
 #include "Layer/EditerLayer.h"
 #include "Layer/PhysicsLayer.h"
 
-TMF::Application* CreateApplication()
+//TMF::Application* CreateApplication()
+//{
+//	return new TMF::TestApplication();
+//}
+
+std::unique_ptr<TMF::Application> CreateApplication()
 {
-	return new TMF::TestApplication();
+	auto app = std::make_unique<TMF::TestApplication>();
+	return std::move(app);
 }
+
 namespace TMF
 {
 	void TestApplication::OnInitialize()
 	{
 		AddLayer<GameLayer>();
 		AddLayer<PhysicsLayer>();
+		// ÉÅÉÇÉäÅ[ÉäÅ[ÉN
 		AddLayer<EditerLayer>();
 	}
 

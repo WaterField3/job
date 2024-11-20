@@ -43,4 +43,10 @@ namespace cereal
 	{
 		archive(c.x, c.y, c.z, c.w);
 	}
+
+	template<class Archive>
+	void serialize(Archive& archive, DirectX::SimpleMath::Vector2& v)
+	{
+		archive(v.x, v.y);
+	}
 }

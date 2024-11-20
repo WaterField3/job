@@ -2039,6 +2039,75 @@
                         ]
                     }
                 }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483738,
+                    "data": {
+                        "m_name": "Font",
+                        "m_uuID": {
+                            "uuid": "57d054f6-6aeb-4d25-92b5-6811af98f95d"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483739,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "1c17c58e-f574-4568-ba29-0f88d9d99dd0"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483670,
+                                "polymorphic_name": "TMF::Font",
+                                "ptr_wrapper": {
+                                    "id": 2147483740,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "25904ffd-fd75-4805-b8a3-7e1561fa17f6"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_spriteFontPos": {
+                                            "value0": 500.0,
+                                            "value1": 250.0
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
             }
         ]
     }

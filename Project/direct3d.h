@@ -121,6 +121,7 @@ public:
 	void PostProcess();
 	inline BloomPresets GetBloomPresets() { return g_Bloom; }
 	void SetBloomPresets(BloomPresets set);
+	inline std::weak_ptr<DirectX::SpriteBatch> GetSpriteBatch() const { return m_pSpriteBatch; }
 private:
 	D3D() {};
 
@@ -164,7 +165,7 @@ private:
 
 	std::shared_ptr<DirectX::BasicEffect> m_pEffect;
 
-	std::unique_ptr<DirectX::SpriteBatch> m_pSpriteBatch;
+	std::shared_ptr<DirectX::SpriteBatch> m_pSpriteBatch;
 
 	std::shared_ptr<DirectX::CommonStates> m_pCommonStates;
 

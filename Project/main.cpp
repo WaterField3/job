@@ -6,6 +6,9 @@
 #include <fstream>
 #include <Keyboard.h>
 #include <Mouse.h>
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 
 #include "direct3d.h"
 #include "Application/Application.h"
@@ -25,7 +28,7 @@
 #define SCREEN_HEIGHT (576)	// ウインドウの高さ
 using namespace TMF;
 
-extern Application* CreateApplication();
+extern std::unique_ptr<TMF::Application> CreateApplication();
 
 // 関数のプロトタイプ宣言
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -35,6 +38,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	// ブロック番号を記録
+	//_CrtSetBreakAlloc(3886); // 該当番号に到達するとブレークポイントで停止
+	//_CrtSetBreakAlloc(2727); // 該当番号に到達するとブレークポイントで停止
+
 	WNDCLASSEX wc;
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.style = CS_CLASSDC;
@@ -168,7 +177,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	app->OnFinalize();
 	EffectManager::Instance().Finalize();
-
 	UnregisterClass(CLASS_NAME, hInstance);
 
 	return (int)msg.wParam;
