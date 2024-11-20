@@ -46,8 +46,8 @@ namespace TMF
 	void Effect::Play()
 	{
 		auto pOwner = m_pOwner.lock();
-		auto transform = pOwner->GetComponent<Transform>();
-		if (auto pLockTransform = transform.lock())
+		auto pTransform = pOwner->GetComponent<Transform>();
+		if (auto pLockTransform = pTransform.lock())
 		{
 			auto parent = pLockTransform->GetParent();
 			auto worldMatrix = pLockTransform->GetWorldMatrix();

@@ -164,12 +164,12 @@ namespace TMF
 		}
 
 		// Transform‚ðŽæ“¾
-		if (auto gameObject = m_pOwner.lock())
+		if (auto pLockOwner = m_pOwner.lock())
 		{
-			auto Component = gameObject->GetComponent<Transform>();
-			if (auto pComponent = Component.lock())
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
 			{
-				matrixWorld = pComponent->GetWorldMatrix();
+				matrixWorld = pLockTransform->GetWorldMatrix();
 			}
 		}
 

@@ -55,7 +55,7 @@ namespace TMF
 
 	void Rigidbody::OnFinalize()
 	{
-		RemoveRigidBody();
+		RemoveRigidbody();
 	}
 
 	void Rigidbody::OnUpdate()
@@ -65,21 +65,21 @@ namespace TMF
 
 	void Rigidbody::OnLateUpdate()
 	{
-		if (auto owner = m_pOwner.lock())
+		if (auto pLockOwner = m_pOwner.lock())
 		{
-			auto transformComponent = owner->GetComponent<Transform>();
+			auto pTransform = pLockOwner->GetComponent<Transform>();
 			auto pos = Vector3::Zero;
 			auto rotate = Quaternion::Identity;
-			auto pColl = owner->GetComponent<Collider>();
+			auto pColl = pLockOwner->GetComponent<Collider>();
 
-			if (auto transform = transformComponent.lock())
+			if (auto pLockTransform = pTransform.lock())
 			{
 				btTransform trans;
 				m_pRigidBody->getMotionState()->getWorldTransform(trans);
 				pos = Vector3{ trans.getOrigin().getX(),trans.getOrigin().getY(),trans.getOrigin().getZ() };
-				transform->SetPosition(pos);
+				pLockTransform->SetPosition(pos);
 				rotate = Quaternion(trans.getRotation().getX(), trans.getRotation().getY(), trans.getRotation().getZ(), trans.getRotation().getW());
-				transform->SetRotation(rotate);
+				pLockTransform->SetRotation(rotate);
 			}
 		}
 	}
@@ -149,7 +149,7 @@ namespace TMF
 		m_pRigidBody->setWorldTransform(trans);
 	}
 
-	void Rigidbody::RemoveRigidBody()
+	void Rigidbody::RemoveRigidbody()
 	{
 		if (m_pRigidBody)
 		{
@@ -161,12 +161,12 @@ namespace TMF
 
 	void Rigidbody::AddRigidBody(std::weak_ptr<btCollisionShape> col, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua)
 	{
-		if (auto colShape = col.lock())
+		if (auto pLockColliderShape = col.lock())
 		{
 			auto inertia = btVector3(pos.x, pos.y, pos.z);
-			colShape->calculateLocalInertia(m_mass, inertia);
+			pLockColliderShape->calculateLocalInertia(m_mass, inertia);
 			m_pMotionState = std::make_unique<btDefaultMotionState>(MakebtTransform(pos, qua));
-			auto rigidBodyCI = btRigidBody::btRigidBodyConstructionInfo(m_mass, m_pMotionState.get(), colShape.get(), inertia);
+			auto rigidBodyCI = btRigidBody::btRigidBodyConstructionInfo(m_mass, m_pMotionState.get(), pLockColliderShape.get(), inertia);
 			m_pRigidBody = std::make_shared<btRigidBody>(rigidBodyCI);
 			if (auto owner = m_pOwner.lock())
 			{
@@ -214,8 +214,8 @@ namespace TMF
 
 	void Rigidbody::SetRotation(DirectX::SimpleMath::Vector3 rotation)
 	{
-		auto pOwner = m_pOwner.lock();
-		auto pTransform = pOwner->GetComponent<Transform>();
+		auto pLockOwner = m_pOwner.lock();
+		auto pTransform = pLockOwner->GetComponent<Transform>();
 		btTransform btTrans;
 		if (auto pLockTransform = pTransform.lock())
 		{

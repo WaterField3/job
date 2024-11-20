@@ -48,46 +48,46 @@ void MyBulletCollisionDispatcher::Reset()
 
 void MyBulletCollisionDispatcher::ObjectContactCheck(std::pair<const btCollisionObject*, const btCollisionObject*> pair, functionType fType)
 {
-	auto object0 = static_cast<GameObject*>(pair.first->getUserPointer());
-	auto object1 = static_cast<GameObject*>(pair.second->getUserPointer());
-	auto rig0 = object0->GetComponent<Rigidbody>();
-	auto rig1 = object1->GetComponent<Rigidbody>();
+	auto pGameObject0 = static_cast<GameObject*>(pair.first->getUserPointer());
+	auto pGameObject1 = static_cast<GameObject*>(pair.second->getUserPointer());
+	auto pRigidbody0 = pGameObject0->GetComponent<Rigidbody>();
+	auto pRigidbody1 = pGameObject1->GetComponent<Rigidbody>();
 	switch (fType)
 	{
 	case MyBulletCollisionDispatcher::ENTER:
-		if (!rig0.expired() && !rig1.expired())
+		if (!pRigidbody0.expired() && !pRigidbody1.expired())
 		{
-			object1->CollisionEnter(object0);
-			object0->CollisionEnter(object1);
+			pGameObject1->CollisionEnter(pGameObject0);
+			pGameObject0->CollisionEnter(pGameObject1);
 		}
-		else if ((!rig0.expired() && rig1.expired()) || (rig0.expired() && rig1.expired()) || (rig0.expired() && !rig1.expired()))
+		else if ((!pRigidbody0.expired() && pRigidbody1.expired()) || (pRigidbody0.expired() && pRigidbody1.expired()) || (pRigidbody0.expired() && !pRigidbody1.expired()))
 		{
-			object0->TrigerEnter(object1);
-			object1->TrigerEnter(object0);
+			pGameObject0->TrigerEnter(pGameObject1);
+			pGameObject1->TrigerEnter(pGameObject0);
 		}
 		break;
 	case MyBulletCollisionDispatcher::STAY:
-		if (!rig0.expired() && !rig1.expired())
+		if (!pRigidbody0.expired() && !pRigidbody1.expired())
 		{
-			object1->CollisionStay(object0);
-			object0->CollisionStay(object1);
+			pGameObject1->CollisionStay(pGameObject0);
+			pGameObject0->CollisionStay(pGameObject1);
 		}
-		else if ((!rig0.expired() && rig1.expired()) || (rig0.expired() && rig1.expired()) || (rig0.expired() && !rig1.expired()))
+		else if ((!pRigidbody0.expired() && pRigidbody1.expired()) || (pRigidbody0.expired() && pRigidbody1.expired()) || (pRigidbody0.expired() && !pRigidbody1.expired()))
 		{
-			object0->TrigerStay(object1);
-			object1->TrigerStay(object0);
+			pGameObject0->TrigerStay(pGameObject1);
+			pGameObject1->TrigerStay(pGameObject0);
 		}
 		break;
 	case MyBulletCollisionDispatcher::EXIT:
-		if (!rig0.expired() && !rig1.expired())
+		if (!pRigidbody0.expired() && !pRigidbody1.expired())
 		{
-			object1->CollisionExit(object0);
-			object0->CollisionExit(object1);
+			pGameObject1->CollisionExit(pGameObject0);
+			pGameObject0->CollisionExit(pGameObject1);
 		}
-		else if ((!rig0.expired() && rig1.expired()) || (rig0.expired() && rig1.expired()))
+		else if ((!pRigidbody0.expired() && pRigidbody1.expired()) || (pRigidbody0.expired() && pRigidbody1.expired()))
 		{
-			object0->TrigerExit(object1);
-			object1->TrigerExit(object0);
+			pGameObject0->TrigerExit(pGameObject1);
+			pGameObject1->TrigerExit(pGameObject0);
 		}
 		break;
 	default:

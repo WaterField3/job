@@ -22,7 +22,7 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		void SetRigidBodyTranform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua);
-		void RemoveRigidBody();
+		void RemoveRigidbody();
 		void AddRigidBody(std::weak_ptr<btCollisionShape> col, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua);
 		void ApplyCentralForce(DirectX::SimpleMath::Vector3 force);
 		void SetLinearVelocity(DirectX::SimpleMath::Vector3 velocity);

@@ -120,19 +120,6 @@ namespace TMF
 					}
 				}
 			}
-
 		}
-
-		// 生成　消去を行うとupdateの時に消去したオブジェクトを参照するので使用しない
-		// 指定ファイルのGameObjectを生成
-		//auto pGenerateObj = GameObjectManager::Instance().LoadObject(m_generatePath);
-		//if (auto pLockGenerateObj = pGenerateObj.lock())
-		//{
-		//	auto pGenerateObjMeleeMove = pLockGenerateObj->GetComponent<MeleeMove>();
-		//	if (auto pLockGenerateObjMeleeMove = pGenerateObjMeleeMove.lock())
-		//	{
-		//		pLockGenerateObjMeleeMove->Play(MeleeMove::DEFAULT, nowPosition, nowRotation);
-		//	}
-		//}
 	}
 }

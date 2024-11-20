@@ -12,6 +12,7 @@
 #include "Animater.h"
 #include "Collider.h"
 #include "Transform.h"
+#include "Rigidbody.h"
 
 REGISTER_COMPONENT(TMF::PlayerStatus, "PlayerStatus");
 
@@ -162,11 +163,16 @@ namespace TMF
 			m_isInvincible = true;
 			m_hp -= damage;
 			// ‘Ì—Í‚ª‚È‚­‚È‚Á‚½‚Ìˆ—
-			if (m_hp < 0)
+			if (m_hp <= 0)
 			{
 				if (auto pLockOwner = m_pOwner.lock())
 				{
 					pLockOwner->SetActive(false);
+					auto pRigidbody = pLockOwner->GetComponent<Rigidbody>();
+					if (auto pLockRigidbody = pRigidbody.lock())
+					{
+						pLockRigidbody->RemoveRigidbody();
+					}
 				}
 			}
 		}

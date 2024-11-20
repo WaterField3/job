@@ -45,9 +45,9 @@ namespace TMF
 		auto moveDirection = MoveDirection::NEUTRAL;
 		if (kb.W == true)
 		{
-			auto pOwner = m_pOwner.lock();
-			auto transform = pOwner->GetComponent<Transform>();
-			if (auto pLockTransform = transform.lock())
+			auto pLockOwner = m_pOwner.lock();
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
 			{
 				auto pos = pLockTransform->GetWorldPosition();
 				auto rotate = pLockTransform->GetWorldRotation();
@@ -58,9 +58,9 @@ namespace TMF
 		}
 		if (kb.S == true)
 		{
-			auto pOwner = m_pOwner.lock();
-			auto transform = pOwner->GetComponent<Transform>();
-			if (auto pLockTransform = transform.lock())
+			auto pLockOwner = m_pOwner.lock();
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
 			{
 				auto pos = pLockTransform->GetWorldPosition();
 				auto rotate = pLockTransform->GetWorldRotation();
@@ -71,9 +71,9 @@ namespace TMF
 		}
 		if (kb.A == true)
 		{
-			auto pOwner = m_pOwner.lock();
-			auto transform = pOwner->GetComponent<Transform>();
-			if (auto pLockTransform = transform.lock())
+			auto pLockOwner = m_pOwner.lock();
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
 			{
 				auto pos = pLockTransform->GetWorldPosition();
 				auto rotate = pLockTransform->GetWorldRotation();
@@ -86,9 +86,9 @@ namespace TMF
 		}
 		if (kb.D == true)
 		{
-			auto pOwner = m_pOwner.lock();
-			auto transform = pOwner->GetComponent<Transform>();
-			if (auto pLockTransform = transform.lock())
+			auto pLockOwner = m_pOwner.lock();
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
 			{
 				auto pos = pLockTransform->GetWorldPosition();
 				auto rotate = pLockTransform->GetWorldRotation();
@@ -140,15 +140,15 @@ namespace TMF
 				isInvincible = pLockPlayerStatus->GetIsInvincible();
 			}
 
-			auto rigidBodyComponent = pLockOwner->GetComponent<Rigidbody>();
-			if (auto rb = rigidBodyComponent.lock())
+			auto pRigidbody = pLockOwner->GetComponent<Rigidbody>();
+			if (auto pLockRigidbody = pRigidbody.lock())
 			{
 				if (movePos != DirectX::SimpleMath::Vector3::Zero && isInvincible == false)
 				{
-					auto velocity = rb->GetLinearVelocity();
+					auto velocity = pLockRigidbody->GetLinearVelocity();
 					movePos.y = velocity.y;
 
-					rb->SetLinearVelocity(movePos);
+					pLockRigidbody->SetLinearVelocity(movePos);
 					//rb->ApplyCentralForce(movePos);
 					//rb->ApplyForce(movePos, DirectX::SimpleMath::Vector3::Zero);
 					if (isRotate == true)
@@ -157,28 +157,28 @@ namespace TMF
 					}
 					else
 					{
-						rb->SetAngularFactor(DirectX::SimpleMath::Vector3::Zero);
+						pLockRigidbody->SetAngularFactor(DirectX::SimpleMath::Vector3::Zero);
 					}
-					rb->ApplyTorque(torque);
+					pLockRigidbody->ApplyTorque(torque);
 
 				}
 				if (isJump == true)
 				{
 					auto jumpPos = DirectX::SimpleMath::Vector3::Up * m_jumpPower;
-					rb->ApplyImpulse(jumpPos, DirectX::SimpleMath::Vector3::Zero);
-					rb->ApplyTorque(torque);
+					pLockRigidbody->ApplyImpulse(jumpPos, DirectX::SimpleMath::Vector3::Zero);
+					pLockRigidbody->ApplyTorque(torque);
 				}
 				if (kb.N == true)
 				{
-					rb->SetAngularFactor(DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f));
+					pLockRigidbody->SetAngularFactor(DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f));
 					auto torque = checkvec3;
-					rb->ApplyTorque(torque);
+					pLockRigidbody->ApplyTorque(torque);
 					//rb->GetTotalTorque();
 					//rb->SetRotation(torque);
 				}
 				if (tracker->pressed.O == true)
 				{
-					rb->SetAngularVelocity(DirectX::SimpleMath::Vector3::Zero);
+					pLockRigidbody->SetAngularVelocity(DirectX::SimpleMath::Vector3::Zero);
 					//rb->ClearForces();
 					//rb->GetAngularFactor();
 

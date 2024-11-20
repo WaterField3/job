@@ -9,6 +9,9 @@
 ## sdkmesh変換方法  
 [contentexporter](https://github.com/walbourn/contentexporter)  
 
+## 使用フォント作成 
+[MakeSpriteFont](https://github.com/microsoft/DirectXTK/wiki/MakeSpriteFont)  
+
 ## 追加 NuGet 
 [directxtk_desktop_win10](https://github.com/Microsoft/DirectXTK)  
 

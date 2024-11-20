@@ -77,17 +77,17 @@ namespace TMF
 		auto world = DirectX::SimpleMath::Matrix::Identity;
 		auto view = DirectX::SimpleMath::Matrix::Identity;
 		auto proj = DirectX::SimpleMath::Matrix::Identity;
-		auto camera = GameObjectManager::Instance().GetComponent<Camera>();
-		if (auto pLockCamera = camera.lock())
+		auto pCamera = GameObjectManager::Instance().GetComponent<Camera>();
+		if (auto pLockCamera = pCamera.lock())
 		{
 			view = pLockCamera->GetViewMatrix();
 			proj = pLockCamera->GetProjectionMatrix();
 		}
 
-		if (auto pOnwer = m_pOwner.lock())
+		if (auto pLockOnwer = m_pOwner.lock())
 		{
-			auto transform = pOnwer->GetComponent<Transform>();
-			if (auto pLockTransform = transform.lock())
+			auto pTransform = pLockOnwer->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
 			{
 				world = pLockTransform->GetWorldMatrix();
 			}
@@ -173,9 +173,9 @@ namespace TMF
 
 	void Animater::LoadAnimation()
 	{
-		if (auto pOwner = m_pOwner.lock())
+		if (auto pLockOwner = m_pOwner.lock())
 		{
-			auto pModel = pOwner->GetComponent<Model>();
+			auto pModel = pLockOwner->GetComponent<Model>();
 			if (auto pLockModel = pModel.lock())
 			{
 				auto loadType = pLockModel->GetLoadType();
@@ -198,8 +198,8 @@ namespace TMF
 
 	void Animater::LoadCMO()
 	{
-		auto pOwner = m_pOwner.lock();
-		auto pModel = pOwner->GetComponent<Model>();
+		auto pLockOwner = m_pOwner.lock();
+		auto pModel = pLockOwner->GetComponent<Model>();
 		if (auto pLockModel = pModel.lock())
 		{
 			auto model = pLockModel->GetModel();
@@ -236,8 +236,8 @@ namespace TMF
 
 	void Animater::LoadSDKMESH()
 	{
-		auto pOwner = m_pOwner.lock();
-		auto pModel = pOwner->GetComponent<Model>();
+		auto pLockOwner = m_pOwner.lock();
+		auto pModel = pLockOwner->GetComponent<Model>();
 		if (auto pLockModel = pModel.lock())
 		{
 			auto model = pLockModel->GetModel();

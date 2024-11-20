@@ -20,9 +20,11 @@ namespace TMF
 
 	private:
 		DirectX::SimpleMath::Vector2 m_spriteFontPos;
+		std::string m_text = "";
+		std::string m_fontPath = "asset/myfile.spritefont";
 		std::unique_ptr<DirectX::SpriteFont> m_pSpriteFont;
 		std::weak_ptr<DirectX::SpriteBatch> m_pSpriteBatch;
-		SERIALIZE_COMPONENT(m_spriteFontPos);
+		SERIALIZE_COMPONENT(m_spriteFontPos, m_text, m_fontPath);
 	};
 }
 

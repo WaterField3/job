@@ -16,7 +16,12 @@ namespace TMF
 		auto pDevice = D3D::Get()->GetDevice();
 		try
 		{
-			m_pSpriteFont = std::make_unique<DirectX::SpriteFont>(pDevice, L"asset/myfile.spritefont");
+			if (m_fontPath == "")
+			{
+				return;
+			}
+			auto wStringPath = std::wstring(m_fontPath.begin(), m_fontPath.end());
+			m_pSpriteFont = std::make_unique<DirectX::SpriteFont>(pDevice, wStringPath.c_str());
 
 		}
 		catch (const std::exception& e)
@@ -41,7 +46,7 @@ namespace TMF
 		{
 			pLockSpriteBatch->Begin();
 
-			const wchar_t* output = L"Hello World";
+			const char* output = m_text.c_str();
 
 			DirectX::SimpleMath::Vector2 origin = m_pSpriteFont->MeasureString(output);
 			origin /= 2.0f;
@@ -58,6 +63,33 @@ namespace TMF
 		if (ImGui::DragFloat2(fontPosLabel.c_str(), &m_spriteFontPos.x))
 		{
 
+		}
+		auto textLabel = StringHelper::CreateLabel("Text", m_uuID);
+		char buf[256] = "";
+		strcpy_s(buf, sizeof(buf), m_text.c_str());
+		if (ImGui::InputText(textLabel.c_str(), buf, 256))
+		{
+			m_text = buf;
+		}
+
+		auto fontPathLabel = StringHelper::CreateLabel("FontPath", m_uuID);
+		char fontBuf[256] = "";
+		strcpy_s(fontBuf, sizeof(fontBuf), m_fontPath.c_str());
+		if (ImGui::InputText(fontPathLabel.c_str(), fontBuf, 256))
+		{
+			m_fontPath = fontBuf;
+		}
+
+		auto loadLabel = StringHelper::CreateLabel("Load", m_uuID);
+		if (ImGui::Button(loadLabel.c_str()))
+		{
+			if (m_fontPath == "")
+			{
+				return;
+			}
+			auto pDevice = D3D::Get()->GetDevice();
+			auto wStringPath = std::wstring(m_fontPath.begin(), m_fontPath.end());
+			m_pSpriteFont = std::make_unique<DirectX::SpriteFont>(pDevice, wStringPath.c_str());
 		}
 	}
 }

@@ -83,13 +83,13 @@ namespace TMF
 	{
 		auto pos = DirectX::SimpleMath::Vector3::Zero;
 		auto tagetpos = DirectX::SimpleMath::Vector3::Zero;
-		if (auto owner = m_pOwner.lock())
+		if (auto pLockOwner = m_pOwner.lock())
 		{
-			auto transformComponent = owner->GetComponent<Transform>();
-			if (auto transform = transformComponent.lock())
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
 			{
-				pos = transform->GetWorldPosition();
-				auto rotate = transform->GetWorldRotation();
+				pos = pLockTransform->GetWorldPosition();
+				auto rotate = pLockTransform->GetWorldRotation();
 				auto forward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Forward, rotate);
 				tagetpos = pos + forward;
 			}

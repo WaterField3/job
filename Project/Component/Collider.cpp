@@ -26,16 +26,16 @@ namespace TMF
 	}
 	void Collider::OnFinalize()
 	{
-		auto owner = m_pOwner.lock();
-		auto rigidBody = owner->GetComponent<Rigidbody>();
-		if (auto rb = rigidBody.lock())
+		auto pLockOwner = m_pOwner.lock();
+		auto pRigidbody = pLockOwner->GetComponent<Rigidbody>();
+		if (auto pLockRigidbody = pRigidbody.lock())
 		{
-			rb->RemoveRigidBody();
+			pLockRigidbody->RemoveRigidbody();
 		}
-		auto ghostObject = owner->GetComponent<GhostObject>();
-		if (auto ghost = ghostObject.lock())
+		auto pGhostObject = pLockOwner->GetComponent<GhostObject>();
+		if (auto pLockGhostObject = pGhostObject.lock())
 		{
-			ghost->RemoveGhostObject();
+			pLockGhostObject->RemoveGhostObject();
 		}
 	}
 	void Collider::OnUpdate()
@@ -95,12 +95,12 @@ namespace TMF
 	void Collider::MakeCollision()
 	{
 		auto btscale = btVector3(1.0f, 1.0f, 1.0f);
-		if (auto owner = m_pOwner.lock())
+		if (auto pLockOwner = m_pOwner.lock())
 		{
-			auto transformComponent = owner->GetComponent<Transform>();
-			if (auto transform = transformComponent.lock())
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
 			{
-				auto scale = transform->GetScale();
+				auto scale = pLockTransform->GetScale();
 				scale.x = std::abs(scale.x);
 				scale.y = std::abs(scale.y);
 				scale.z = std::abs(scale.z);
@@ -208,18 +208,18 @@ namespace TMF
 	}
 	void Collider::AddRigidBody()
 	{
-		auto owner = m_pOwner.lock();
-		auto transformComponent = owner->GetComponent<Transform>();
+		auto pLockOwner = m_pOwner.lock();
+		auto pTransform = pLockOwner->GetComponent<Transform>();
 		auto pos = DirectX::SimpleMath::Vector3::Zero;
 		auto rotate = DirectX::SimpleMath::Quaternion::Identity;
-		if (auto transform = transformComponent.lock())
+		if (auto pLockTransform = pTransform.lock())
 		{
-			pos = transform->GetWorldPosition();
+			pos = pLockTransform->GetWorldPosition();
 			pos += m_center;
-			rotate = transform->GetRotation();
+			rotate = pLockTransform->GetRotation();
 		}
-		auto rigidBody = owner->GetComponent<Rigidbody>();
-		if (auto rb = rigidBody.lock())
+		auto pRigidbody = pLockOwner->GetComponent<Rigidbody>();
+		if (auto pLockRigidbody = pRigidbody.lock())
 		{
 			//rb->RemoveRigidBody();
 			MakeCollision();
@@ -228,22 +228,22 @@ namespace TMF
 	}
 	void Collider::AddGhostObject()
 	{
-		auto owner = m_pOwner.lock();
-		auto transformComponent = owner->GetComponent<Transform>();
+		auto pLockOwner = m_pOwner.lock();
+		auto pTransform = pLockOwner->GetComponent<Transform>();
 		auto pos = DirectX::SimpleMath::Vector3::Zero;
 		auto rotate = DirectX::SimpleMath::Quaternion::Identity;
-		if (auto transform = transformComponent.lock())
+		if (auto pLockTransform = pTransform.lock())
 		{
-			pos = transform->GetWorldPosition();
+			pos = pLockTransform->GetWorldPosition();
 			pos += m_center;
-			rotate = transform->GetRotation();
+			rotate = pLockTransform->GetRotation();
 		}
-		auto ghostObject = owner->GetComponent<GhostObject>();
-		if (auto ghost = ghostObject.lock())
+		auto pGhostObject = pLockOwner->GetComponent<GhostObject>();
+		if (auto pLockGhostObject = pGhostObject.lock())
 		{
-			ghost->RemoveGhostObject();
+			pLockGhostObject->RemoveGhostObject();
 			MakeCollision();
-			ghost->AddGhostObject(m_pCollisionShape, pos, rotate);
+			pLockGhostObject->AddGhostObject(m_pCollisionShape, pos, rotate);
 		}
 	}
 

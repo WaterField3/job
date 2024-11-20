@@ -12,12 +12,12 @@ namespace TMF
 	void GhostObject::OnInitialize()
 	{
 		m_pGhostObject = std::make_shared<btGhostObject>();
-		if (auto owner = m_pOwner.lock())
+		if (auto pLockOwner = m_pOwner.lock())
 		{
-			auto transform = owner->GetComponent<Transform>();
+			auto pTransform = pLockOwner->GetComponent<Transform>();
 			auto btPos = btVector3(0, 0, 0);
 			auto btQua = btQuaternion(0, 0, 0, 1);
-			if (auto trans = transform.lock())
+			if (auto trans = pTransform.lock())
 			{
 				auto pos = trans->GetPosition();
 				btPos.setValue(pos.x, pos.y, pos.z);
@@ -26,15 +26,15 @@ namespace TMF
 			}
 			btTransform btTrans(btQua, btPos);
 			m_pGhostObject->setWorldTransform(btTrans);
-			auto collider = owner->GetComponent<Collider>();
-			if (auto col = collider.lock())
+			auto pCollider = pLockOwner->GetComponent<Collider>();
+			if (auto pLockCollider = pCollider.lock())
 			{
-				auto collisionShape = col->GetCollisionShape();
-				if (auto shape = collisionShape.lock())
+				auto pCollisionShape = pLockCollider->GetCollisionShape();
+				if (auto pLockCollisionShape = pCollisionShape.lock())
 				{
-					m_pGhostObject->setCollisionShape(shape.get());
+					m_pGhostObject->setCollisionShape(pLockCollisionShape.get());
 					m_pGhostObject->setCollisionFlags(m_pGhostObject->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
-					m_pGhostObject->setUserPointer(static_cast<void*>(owner.get()));
+					m_pGhostObject->setUserPointer(static_cast<void*>(pLockOwner.get()));
 					PhysicsManager::Instance().AddGhostObject(m_pGhostObject);
 				}
 			}
@@ -82,13 +82,13 @@ namespace TMF
 		auto btQua = btQuaternion(qua.x, qua.y, qua.z, qua.w);
 		auto btTrans = btTransform(btQua, btPos);
 		m_pGhostObject->setWorldTransform(btTrans);
-		if (auto shape = col.lock())
+		if (auto pLockShape = col.lock())
 		{
-			m_pGhostObject->setCollisionShape(shape.get());
+			m_pGhostObject->setCollisionShape(pLockShape.get());
 			m_pGhostObject->setCollisionFlags(m_pGhostObject->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
-			if (auto owner = m_pOwner.lock())
+			if (auto pLockOwner = m_pOwner.lock())
 			{
-				m_pGhostObject->setUserPointer(static_cast<void*>(owner.get()));
+				m_pGhostObject->setUserPointer(static_cast<void*>(pLockOwner.get()));
 			}
 			PhysicsManager::Instance().AddGhostObject(m_pGhostObject);
 		}

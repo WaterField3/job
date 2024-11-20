@@ -5,11 +5,6 @@
 #include "Layer/EditerLayer.h"
 #include "Layer/PhysicsLayer.h"
 
-//TMF::Application* CreateApplication()
-//{
-//	return new TMF::TestApplication();
-//}
-
 std::unique_ptr<TMF::Application> CreateApplication()
 {
 	auto app = std::make_unique<TMF::TestApplication>();
@@ -22,7 +17,6 @@ namespace TMF
 	{
 		AddLayer<GameLayer>();
 		AddLayer<PhysicsLayer>();
-		// ƒƒ‚ƒŠ[ƒŠ[ƒN
 		AddLayer<EditerLayer>();
 	}
 

@@ -10,9 +10,9 @@ namespace TMF
 	{
 		ImGui::Begin("Inspector");
 
-		if (auto pObject = pGameObject.lock())
+		if (auto pLockGameObject = pGameObject.lock())
 		{
-			pObject->DrawImGui();
+			pLockGameObject->DrawImGui();
 			if (ImGui::Button("AddComponent"))
 			{
 				ImGui::OpenPopup("Components");
@@ -23,7 +23,7 @@ namespace TMF
 				{
 					if (ImGui::Button(componentName.c_str()))
 					{
-						ComponentManager::Instance().AddComponent(componentName, pObject);
+						ComponentManager::Instance().AddComponent(componentName, pLockGameObject);
 						ImGui::CloseCurrentPopup();
 					}
 				}

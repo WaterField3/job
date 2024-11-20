@@ -159,23 +159,23 @@ namespace TMF
 	}
 	void Transform::ChangeRigidBodyTransform()
 	{
-		if (auto owner = m_pOwner.lock())
+		if (auto pLockOwner = m_pOwner.lock())
 		{
-			auto rigidBody = owner->GetComponent<Rigidbody>();
-			if (auto rb = rigidBody.lock())
+			auto pRigidbody = pLockOwner->GetComponent<Rigidbody>();
+			if (auto pLockRigidbody = pRigidbody.lock())
 			{
-				rb->SetRigidBodyTranform(m_position, m_rotation);
+				pLockRigidbody->SetRigidBodyTranform(m_position, m_rotation);
 			}
 		}
 	}
 	void Transform::ChangeGhostObjectTransform()
 	{
-		if (auto owner = m_pOwner.lock())
+		if (auto pLockOwner = m_pOwner.lock())
 		{
-			auto ghostObject = owner->GetComponent<GhostObject>();
-			if (auto ghost = ghostObject.lock())
+			auto pGhostObject = pLockOwner->GetComponent<GhostObject>();
+			if (auto pLockGhostObject = pGhostObject.lock())
 			{
-				ghost->SetGhostObjectTransform(m_position, m_rotation);
+				pLockGhostObject->SetGhostObjectTransform(m_position, m_rotation);
 			}
 		}
 	}

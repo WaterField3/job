@@ -43,13 +43,13 @@ namespace TMF
 	}
 	void Hierarchy::DrawTree(std::weak_ptr<Transform> pTransform)
 	{
-		if (auto pLockedTransform = pTransform.lock())
+		if (auto pLockTransform = pTransform.lock())
 		{
-			auto pGameObject = pLockedTransform->GetOwner();
+			auto pGameObject = pLockTransform->GetOwner();
 			if (auto pObject = pGameObject.lock())
 			{
 				auto name = pObject->GetName();
-				auto uuID = pLockedTransform->GetUUID();
+				auto uuID = pLockTransform->GetUUID();
 				auto label = StringHelper::CreateLabel(name.c_str(), uuID);
 				auto flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
 				auto pChildren = GetTransformChildren(pTransform);
@@ -90,7 +90,7 @@ namespace TMF
 				auto dragDropLabel = "HierarchyDragDropTransform";
 				if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None))
 				{
-					ImGui::SetDragDropPayload(dragDropLabel, &pLockedTransform, sizeof(std::weak_ptr<Transform>));
+					ImGui::SetDragDropPayload(dragDropLabel, &pLockTransform, sizeof(std::weak_ptr<Transform>));
 					ImGui::Text("%s", name.c_str());
 					ImGui::EndDragDropSource();
 				}

@@ -33,10 +33,10 @@ namespace TMF
 				if (auto pLockOwner = m_pOwner.lock())
 				{
 					// ˆÚ“®‚ðŽ~‚ß‚é@Šµ«‚ð‚È‚­‚·
-					auto pRigidBody = pLockOwner->GetComponent<Rigidbody>();
-					if (auto pLockRigidBody = pRigidBody.lock())
+					auto pRigidbody = pLockOwner->GetComponent<Rigidbody>();
+					if (auto pLockRigidbody = pRigidbody.lock())
 					{
-						pLockRigidBody->SetLinearVelocity(DirectX::SimpleMath::Vector3::Zero);
+						pLockRigidbody->SetLinearVelocity(DirectX::SimpleMath::Vector3::Zero);
 					}
 					auto pPlayerStatus = pLockOwner->GetComponent<PlayerStatus>();
 					if (auto pLockPlayerStatus = pPlayerStatus.lock())
@@ -51,11 +51,11 @@ namespace TMF
 			if (auto pLockOwner = m_pOwner.lock())
 			{
 				// •¨—‚ÅÀ•W‚ðˆÚ“®‚·‚é
-				auto pRigidBody = pLockOwner->GetComponent<Rigidbody>();
-				if (auto pLockRigidBody = pRigidBody.lock())
+				auto pRigidbody = pLockOwner->GetComponent<Rigidbody>();
+				if (auto pLockRigidbody = pRigidbody.lock())
 				{
-					pLockRigidBody->ApplyImpulse(m_dodgeMoveVector, DirectX::SimpleMath::Vector3::Zero);
-					pLockRigidBody->SetAngularVelocity(DirectX::SimpleMath::Vector3::Zero);
+					pLockRigidbody->ApplyImpulse(m_dodgeMoveVector, DirectX::SimpleMath::Vector3::Zero);
+					pLockRigidbody->SetAngularVelocity(DirectX::SimpleMath::Vector3::Zero);
 				}
 			}
 		}
@@ -184,8 +184,6 @@ namespace TMF
 					pLockPlayerStatus->SetIsInvincible(true);
 				}
 			}
-
 		}
-
 	}
 }
