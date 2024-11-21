@@ -23,7 +23,7 @@ namespace TMF
 		m_pInspector = std::make_unique<Inspector>();
 		m_pPlayButtonBar = std::make_unique<PlayButtonBar>();
 		m_pConsole = std::make_unique<Console>();
-	
+
 
 		// Show the window
 		::ShowWindow(D3D::Get()->GetHwnd(), SW_SHOWDEFAULT);
@@ -82,10 +82,13 @@ namespace TMF
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
 
-		m_pHirarchy->DrawImGui();
+		if (ApplicationState::Instance().GetIsPlay() == false)
+		{
+			m_pHirarchy->DrawImGui();
+			m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
+			ApplicationState::Instance().DrawImGui();
+		}
 		m_pPlayButtonBar->DrawImGui(m_pHirarchy->GetSelectGameObject());
-		m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
-		ApplicationState::Instance().DrawImGui();
 		ImGui::Render();
 
 

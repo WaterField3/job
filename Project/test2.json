@@ -1388,7 +1388,7 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_damage": 101.0,
+                                        "m_damage": 1.0,
                                         "m_reactionType": 0
                                     }
                                 }

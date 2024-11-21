@@ -1,6 +1,7 @@
 #include "BulletDebugDrawer.h"
 
 #include "direct3d.h"
+#include "ApplicationState.h"
 
 BulletDebugDrawer::BulletDebugDrawer(ID3D11DeviceContext* pDeviceContext)
 {
@@ -48,7 +49,7 @@ int BulletDebugDrawer::getDebugMode() const
 
 void BulletDebugDrawer::Render()
 {
-	if (m_vertices.empty())
+	if (m_vertices.empty() || TMF::ApplicationState::Instance().GetIsPlay() == true)
 	{
 		return;
 	}
