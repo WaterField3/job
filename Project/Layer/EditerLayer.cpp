@@ -81,13 +81,13 @@ namespace TMF
 		ImGui_ImplDX11_NewFrame();
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
-
-		if (ApplicationState::Instance().GetIsPlay() == false)
-		{
-			m_pHirarchy->DrawImGui();
-			m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
-			ApplicationState::Instance().DrawImGui();
-		}
+		// •i•]‰ï‚ÌŽž‚É‚ÍŽg—p‚·‚é
+		//if (ApplicationState::Instance().GetIsPlay() == false)
+		//{
+		//}
+		m_pHirarchy->DrawImGui();
+		m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
+		ApplicationState::Instance().DrawImGui();
 		m_pPlayButtonBar->DrawImGui(m_pHirarchy->GetSelectGameObject());
 		ImGui::Render();
 

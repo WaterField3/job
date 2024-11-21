@@ -12,6 +12,7 @@
 #include "PlayerStatus.h"
 #include "MoveInfo.h"
 #include "Thruster.h"
+#include "Jump.h"
 
 REGISTER_COMPONENT(TMF::CharacterMoveController, "CharacterMoveController");
 
@@ -104,11 +105,15 @@ namespace TMF
 		{
 			isThruster = true;
 		}
+		else if (kb.Space == true)
+		{
+			isJump = true;
+		}
 
 		// èuä‘ÇéÊìæ
 		if (tracker->pressed.Space == true)
 		{
-			isJump = true;
+			//isJump = true;
 		}
 		else if (tracker->pressed.Enter == true)
 		{
@@ -121,7 +126,7 @@ namespace TMF
 		// åªç›éûä‘
 		auto now = duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 
-		if (tracker->pressed.B == true)
+		if (tracker->pressed.V == true)
 		{
 			// àÍíËéûä‘ì‡Ç…ï°êîâÒâüÇ≥ÇÍÇƒÇ¢ÇÈÇ©
 			if (Input::Instance().PluralGetKeyDiwn(now) == true)
@@ -162,12 +167,12 @@ namespace TMF
 					pLockRigidbody->ApplyTorque(torque);
 
 				}
-				if (isJump == true)
-				{
-					auto jumpPos = DirectX::SimpleMath::Vector3::Up * m_jumpPower;
-					pLockRigidbody->ApplyImpulse(jumpPos, DirectX::SimpleMath::Vector3::Zero);
-					pLockRigidbody->ApplyTorque(torque);
-				}
+				//if (isJump == true)
+				//{
+				//	auto jumpPos = DirectX::SimpleMath::Vector3::Up * m_jumpPower;
+				//	pLockRigidbody->ApplyImpulse(jumpPos, DirectX::SimpleMath::Vector3::Zero);
+				//	pLockRigidbody->ApplyTorque(torque);
+				//}
 				if (kb.N == true)
 				{
 					pLockRigidbody->SetAngularFactor(DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f));
@@ -208,7 +213,7 @@ namespace TMF
 					pLockDodge->DodgeStart(moveDirection);
 				}
 			}
-			else if (isThruster == true)
+			if (isThruster == true)
 			{
 				auto pThruster = pLockOwner->GetComponent<Thruster>();
 				if (auto pLockThruster = pThruster.lock())
@@ -224,7 +229,24 @@ namespace TMF
 					pLockThruster->StopUseThruster();
 				}
 			}
+			if (isJump == true)
+			{
+				auto pJump = pLockOwner->GetComponent<Jump>();
+				if (auto pLockJump = pJump.lock())
+				{
+					pLockJump->Chage(moveDirection);
+				}
+			}
+			else if (isJump == false && m_oldIsJump == true)
+			{
+				auto pJump = pLockOwner->GetComponent<Jump>();
+				if (auto pLockJump = pJump.lock())
+				{
+					pLockJump->ChageStop(moveDirection);
+				}
+			}
 		}
+		m_oldIsJump = isJump;
 	}
 	void CharacterMoveController::OnLateUpdate()
 	{

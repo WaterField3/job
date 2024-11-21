@@ -177,6 +177,7 @@
     <ClCompile Include="Component\Dodge.cpp" />
     <ClCompile Include="Component\Fade.cpp" />
     <ClCompile Include="Component\Font.cpp" />
+    <ClCompile Include="Component\Jump.cpp" />
     <ClCompile Include="RenderTexture.cpp" />
     <ClCompile Include="Component\Shot.cpp" />
     <ClCompile Include="Component\SceneLoad.cpp" />
@@ -240,6 +241,7 @@
     <ClInclude Include="Component\Dodge.h" />
     <ClInclude Include="Component\Fade.h" />
     <ClInclude Include="Component\Font.h" />
+    <ClInclude Include="Component\Jump.h" />
     <ClInclude Include="MoveInfo.h" />
     <ClInclude Include="ReadData.h" />
     <ClInclude Include="RenderTexture.h" />
