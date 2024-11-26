@@ -101,13 +101,14 @@ namespace TMF
 				{
 				case TMF::MeleeMove::DEFAULT:
 				{
-					auto startPos = position + forward + right + up * 5;
+					auto startPos = position + forward + left + up * 5;
 					pLockTransform->SetPosition(startPos);
-					m_endPosition = position + forward + left + down;
+					m_endPosition = position + forward + right + down;
 					m_moveVector = m_endPosition - startPos;
 					m_moveVector.Normalize();
 					auto rotate = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(m_rotate.y, m_rotate.x, m_rotate.z);
-					rotation.x = rotate.x;
+					//rotation.z = rotate.z + 2.0f;
+					rotation.x += rotate.x;
 					pLockTransform->SetRotation(rotation);
 					break;
 				}

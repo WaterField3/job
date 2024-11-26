@@ -48,13 +48,14 @@ namespace TMF
 		void LoadSdkMesh();
 
 	private:
+		bool m_isDraw = true;
+		bool m_isUseWorldMatrix = false;
 		size_t animOffset = 0;
 		std::string m_loadFile = "asset/Gun.cmo";
 		LOADTYPE m_loadType = LOADTYPE::DEFAULT;
 		std::unique_ptr<DirectX::EffectFactory> m_pEffectFactory;
 		std::shared_ptr<DirectX::Model> m_pModel;
 		std::unique_ptr<DirectX::CommonStates> m_pCommonState;
-		bool m_isDraw = true;
 
 		SERIALIZE_COMPONENT(m_loadFile, m_isDraw, m_loadType);
 	};

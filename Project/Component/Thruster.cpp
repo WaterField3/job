@@ -71,7 +71,7 @@ namespace TMF
 
 		}
 	}
-	void Thruster::UseThruster(MoveDirection moveDirection)
+	void Thruster::FastMovement(MoveDirection moveDirection)
 	{
 		if (m_isThruster == false)
 		{
@@ -194,7 +194,7 @@ namespace TMF
 			}
 		}
 	}
-	void Thruster::StopUseThruster()
+	void Thruster::StopFastMovement()
 	{
 		if (auto pLockRigidBody = m_pRigidBody.lock())
 		{
@@ -215,7 +215,7 @@ namespace TMF
 			m_isThruster = false;
 		}
 	}
-	void Thruster::DodgeUseThruster(float useMagnification)
+	void Thruster::UseThruster(float useMagnification)
 	{
 		m_thrusterValue += m_maxThrusterValue * useMagnification;
 		if (m_thrusterValue >= m_maxThrusterValue)

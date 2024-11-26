@@ -218,7 +218,7 @@ namespace TMF
 				auto pThruster = pLockOwner->GetComponent<Thruster>();
 				if (auto pLockThruster = pThruster.lock())
 				{
-					pLockThruster->UseThruster(moveDirection);
+					pLockThruster->FastMovement(moveDirection);
 				}
 			}
 			else if (isThruster == false)
@@ -226,7 +226,7 @@ namespace TMF
 				auto pThruster = pLockOwner->GetComponent<Thruster>();
 				if (auto pLockThruster = pThruster.lock())
 				{
-					pLockThruster->StopUseThruster();
+					pLockThruster->StopFastMovement();
 				}
 			}
 			if (isJump == true)

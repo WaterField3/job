@@ -49,7 +49,7 @@ int BulletDebugDrawer::getDebugMode() const
 
 void BulletDebugDrawer::Render()
 {
-	if (m_vertices.empty() || TMF::ApplicationState::Instance().GetIsPlay() == true)
+	if (m_vertices.empty() || TMF::ApplicationState::Instance().GetIsDrawDebug() == false)
 	{
 		return;
 	}

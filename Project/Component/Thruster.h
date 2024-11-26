@@ -19,9 +19,9 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
-		void UseThruster(MoveDirection moveDirection);
-		void StopUseThruster();
-		void DodgeUseThruster(float useMagnification);
+		void FastMovement(MoveDirection moveDirection);
+		void StopFastMovement();
+		void UseThruster(float useMagnification);
 		inline bool GetIsOverHeat() const { return m_isOverHeat; }
 	private:
 

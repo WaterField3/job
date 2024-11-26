@@ -9,6 +9,7 @@ namespace TMF
 {
 	class Rigidbody;
 	class Transform;
+	class Thruster;
 	class Jump : public Component
 	{
 	public:
@@ -37,6 +38,7 @@ namespace TMF
 		MoveDirection m_moveDirection = MoveDirection::NEUTRAL;
 		std::weak_ptr<Rigidbody> m_pRigidbody;
 		std::weak_ptr<Transform> m_pTransform;
+		std::weak_ptr<Thruster> m_pThruster;
 		SERIALIZE_COMPONENT(m_impact, m_maxFlightTime, m_maxMoveSpeed)
 	};
 }

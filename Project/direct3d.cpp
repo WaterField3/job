@@ -329,7 +329,7 @@ HRESULT D3D::Create(HWND hwnd)
 
 	D3D11_RASTERIZER_DESC rastraizerDesc;
 	ZeroMemory(&rastraizerDesc, sizeof(D3D11_RASTERIZER_DESC));
-	rastraizerDesc.CullMode = D3D11_CULL_FRONT;
+	rastraizerDesc.CullMode = D3D11_CULL_BACK;
 	rastraizerDesc.FillMode = D3D11_FILL_SOLID;
 
 	ID3D11RasterizerState* RasterrizeState;

@@ -51,7 +51,7 @@ namespace TMF
 		auto wideFileName = std::wstring(m_loadFile.begin(), m_loadFile.end());
 		try
 		{
-			m_pModel = DirectX::Model::CreateFromCMO(device, wideFileName.c_str(), *m_pEffectFactory, DirectX::ModelLoader_CounterClockwise | DirectX::ModelLoader_IncludeBones, &animOffset);
+			m_pModel = DirectX::Model::CreateFromCMO(device, wideFileName.c_str(), *m_pEffectFactory, DirectX::ModelLoader_Clockwise | DirectX::ModelLoader_IncludeBones, &animOffset);
 		}
 		catch (const std::exception& e)
 		{
@@ -65,7 +65,7 @@ namespace TMF
 		auto wideFileName = std::wstring(m_loadFile.begin(), m_loadFile.end());
 		try
 		{
-			m_pModel = DirectX::Model::CreateFromSDKMESH(device, wideFileName.c_str(), *m_pEffectFactory, DirectX::ModelLoader_CounterClockwise | DirectX::ModelLoader_IncludeBones);
+			m_pModel = DirectX::Model::CreateFromSDKMESH(device, wideFileName.c_str(), *m_pEffectFactory, DirectX::ModelLoader_Clockwise | DirectX::ModelLoader_IncludeBones);
 		}
 		catch (const std::exception& e)
 		{
@@ -100,7 +100,15 @@ namespace TMF
 	void Model::OnDrawImGui()
 	{
 		auto activeLabel = StringHelper::CreateLabel("Active", m_uuID);
-		ImGui::Checkbox(activeLabel.c_str(), &m_isDraw);
+		if (ImGui::Checkbox(activeLabel.c_str(), &m_isDraw))
+		{
+
+		}
+		auto useWorldMatrixLabel = StringHelper::CreateLabel("IsUseWorldMatrix", m_uuID);
+		if (ImGui::Checkbox(useWorldMatrixLabel.c_str(), &m_isUseWorldMatrix))
+		{
+
+		}
 		char buf[256] = "";
 		strcpy_s(buf, sizeof(buf), m_loadFile.c_str());
 		auto label = StringHelper::CreateLabel("FileName", m_uuID);
@@ -128,7 +136,6 @@ namespace TMF
 				}
 			}
 			ImGui::EndCombo();
-			ImGui::SameLine();
 		}
 		auto loadCmoLabel = StringHelper::CreateLabel("LoadCMO", m_uuID);
 		if (ImGui::Button(loadCmoLabel.c_str()))
@@ -169,7 +176,22 @@ namespace TMF
 			auto pTransform = pLockOwner->GetComponent<Transform>();
 			if (auto pLockTransform = pTransform.lock())
 			{
-				matrixWorld = pLockTransform->GetWorldMatrix();
+				if (m_isUseWorldMatrix == true)
+				{
+					matrixWorld = pLockTransform->GetWorldMatrix();
+				}
+				else
+				{
+					matrixWorld = pLockTransform->GetLocalMatrix();
+				}
+			}
+		}
+
+		for (auto bone : m_pModel->bones)
+		{
+			if (bone.name == L"aaa")
+			{
+				bone;
 			}
 		}
 

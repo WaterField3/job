@@ -12,6 +12,7 @@
 #include "Component/ComponentManager.h"
 #include "Component/Transform.h"
 #include "ApplicationState.h"
+#include "Input.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -68,7 +69,17 @@ namespace TMF
 
 	void EditerLayer::OnUpdate()
 	{
-
+		auto kb = Input::Instance().GetKeyState();
+		auto tracker = Input::Instance().GetTracker();
+		if (ApplicationState::Instance().GetIsPlay() == false)
+		{
+			tracker->Update(kb);
+		}
+		if (tracker->pressed.P == true)
+		{
+			auto isDrawDebug = ApplicationState::Instance().GetIsDrawDebug();
+			ApplicationState::Instance().SetIsDrawDebug(!isDrawDebug);
+		}
 	}
 
 	void EditerLayer::OnDraw()
@@ -81,13 +92,12 @@ namespace TMF
 		ImGui_ImplDX11_NewFrame();
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
-		// •i•]‰ï‚ÌŽž‚É‚ÍŽg—p‚·‚é
-		//if (ApplicationState::Instance().GetIsPlay() == false)
-		//{
-		//}
-		m_pHirarchy->DrawImGui();
-		m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
-		ApplicationState::Instance().DrawImGui();
+		if (ApplicationState::Instance().GetIsDrawDebug() == true)
+		{
+			m_pHirarchy->DrawImGui();
+			m_pInspector->DrawImGui(m_pHirarchy->GetSelectGameObject());
+			//ApplicationState::Instance().DrawImGui();
+		}
 		m_pPlayButtonBar->DrawImGui(m_pHirarchy->GetSelectGameObject());
 		ImGui::Render();
 

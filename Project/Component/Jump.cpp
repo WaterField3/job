@@ -7,6 +7,7 @@
 #include "Rigidbody.h"
 #include "Transform.h"
 #include "Timer.h"
+#include "Thruster.h"
 
 REGISTER_COMPONENT(TMF::Jump, "Jump");
 
@@ -18,6 +19,7 @@ namespace TMF
 		{
 			m_pRigidbody = pLockOwner->GetComponent<Rigidbody>();
 			m_pTransform = pLockOwner->GetComponent<Transform>();
+			m_pThruster = pLockOwner->GetComponent<Thruster>();
 		}
 	}
 	void Jump::OnFinalize()
@@ -89,10 +91,19 @@ namespace TMF
 	}
 	void Jump::Chage(MoveDirection moveDirection)
 	{
-		if (m_isChageEnd == true || m_isChage == true)
+		if (m_isChageEnd == true)
 		{
 			return;
 		}
+
+		if (auto pLockThruster = m_pThruster.lock())
+		{
+			if (pLockThruster->GetIsOverHeat() == true)
+			{
+				return;
+			}
+		}
+
 		m_chageTime += Timer::Instance().deltaTime.count();
 		if (m_chageTime >= 1)
 		{
@@ -162,6 +173,10 @@ namespace TMF
 		m_flightTime = m_maxFlightTime * m_chageTime;
 		m_moveSpeed = m_maxMoveSpeed;
 		m_moveDirection = moveDirection;
+		if (auto pLockThruster = m_pThruster.lock())
+		{
+			pLockThruster->UseThruster(m_chageTime);
+		}
 	}
 	void Jump::Fall()
 	{

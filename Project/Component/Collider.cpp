@@ -85,6 +85,12 @@ namespace TMF
 		{
 			UpdateShapeInfo();
 		}
+		auto ofsetRotationLabel = StringHelper::CreateLabel("OfsetRotation", m_uuID);
+		if (ImGui::DragFloat3(ofsetRotationLabel.c_str(), &m_editerOfsetRotation.x, 0.1f))
+		{
+			m_OfsetRotation = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(m_editerOfsetRotation.y, m_editerOfsetRotation.x, m_editerOfsetRotation.z);
+			UpdateShapeInfo();
+		}
 
 		if (ImGui::Button("Update"))
 		{
@@ -259,6 +265,7 @@ namespace TMF
 				btTransform btTrans;
 				btTrans.setIdentity();
 				btTrans.setOrigin(btVector3(m_center.x, m_center.y, m_center.z));
+				btTrans.setRotation(btQuaternion(m_OfsetRotation.x, m_OfsetRotation.y, m_OfsetRotation.z, m_OfsetRotation.w));
 				auto size = m_pCompaundShape->getNumChildShapes();
 				if (size != 0)
 				{

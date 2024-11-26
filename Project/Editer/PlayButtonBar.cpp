@@ -109,7 +109,7 @@ namespace TMF
 			ImGui::ShowDemoWindow();
 		}
 
-		const char* types[] = { "Default","Soft","Desaturated","Saturated","Blurry","Subtle","None"};
+		const char* types[] = { "Default","Soft","Desaturated","Saturated","Blurry","Subtle","None" };
 		static int selectIndex = (int)D3D::Get()->GetBloomPresets();
 		if (ImGui::BeginCombo("BoloomPresets", types[selectIndex]))
 		{

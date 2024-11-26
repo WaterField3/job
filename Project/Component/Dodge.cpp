@@ -129,7 +129,7 @@ namespace TMF
 			{
 				if (pLockThruster->GetIsOverHeat() == false)
 				{
-					pLockThruster->DodgeUseThruster(m_dodgeUseThrusterMagnification);
+					pLockThruster->UseThruster(m_dodgeUseThrusterMagnification);
 				}
 				else
 				{

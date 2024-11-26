@@ -52,10 +52,12 @@ namespace TMF
 		int m_poiygonNum = 0;
 		DirectX::SimpleMath::Vector3 m_size = DirectX::SimpleMath::Vector3::One;
 		DirectX::SimpleMath::Vector3 m_center = DirectX::SimpleMath::Vector3::Zero;
+		DirectX::SimpleMath::Vector3 m_editerOfsetRotation = DirectX::SimpleMath::Vector3::Zero;
+		DirectX::SimpleMath::Quaternion m_OfsetRotation = DirectX::SimpleMath::Quaternion::Identity;
 		std::shared_ptr<btCollisionShape> m_pCollisionShape;
 		std::shared_ptr<btCompoundShape> m_pCompaundShape;
 		Collider_Type m_collidrType = Collider_Type::BOX;
 
-		SERIALIZE_COMPONENT(m_collidrType, m_size, m_center);
+		SERIALIZE_COMPONENT(m_collidrType, m_size, m_center, m_editerOfsetRotation);
 	};
 }
