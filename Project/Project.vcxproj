@@ -128,17 +128,17 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(SolutionDir)\vcpkg_installed\x64-windows\x64-windows\include\bullet;$(ProjectDir)Vender\Effekseer\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(SolutionDir)\vcpkg_installed\x64-windows\x64-windows\include\bullet;$(ProjectDir)Vender\Effekseer\Effekseer;$(ProjectDir)Vender\DirectXTK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;Effekseerd.lib;EffekseerRendererDX11d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;Effekseerd.lib;EffekseerRendererDX11d.lib;DirectXTK.lib;DirectXTKAudioWin8.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Debug;$(ProjectDir)Vender\boost;$(ProjectDir)Vender\DirectXTK\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,19 +149,19 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(SolutionDir)\vcpkg_installed\x64-windows\x64-windows\include\bullet;$(ProjectDir)Vender\Effekseer\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(SolutionDir)\vcpkg_installed\x64-windows\x64-windows\include\bullet;$(ProjectDir)Vender\Effekseer\Effekseer;$(ProjectDir)Vender\DirectXTK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;Effekseer.lib;EffekseerRendererDX11.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;Effekseer.lib;EffekseerRendererDX11.lib;DirectXTK.lib;DirectXTKAudioWin8.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Release;$(ProjectDir)Vender\boost;$(ProjectDir)Vender\DirectXTK\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -265,6 +265,41 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Utility\BulletDebugDrawer.h" />
     <ClInclude Include="Component\Collider.h" />
+    <ClInclude Include="Vender\boost\uuid\basic_name_generator.hpp" />
+    <ClInclude Include="Vender\boost\uuid\basic_random_generator.hpp" />
+    <ClInclude Include="Vender\boost\uuid\detail\basic_name_generator.hpp" />
+    <ClInclude Include="Vender\boost\uuid\detail\chacha20.hpp" />
+    <ClInclude Include="Vender\boost\uuid\detail\config.hpp" />
+    <ClInclude Include="Vender\boost\uuid\detail\endian.hpp" />
+    <ClInclude Include="Vender\boost\uuid\detail\hash_mix.hpp" />
+    <ClInclude Include="Vender\boost\uuid\detail\md5.hpp" />
+    <ClInclude Include="Vender\boost\uuid\detail\numeric_cast.hpp" />
+    <ClInclude Include="Vender\boost\uuid\detail\random_device.hpp" />
+    <ClInclude Include="Vender\boost\uuid\detail\random_provider.hpp" />
+    <ClInclude Include="Vender\boost\uuid\detail\sha1.hpp" />
+    <ClInclude Include="Vender\boost\uuid\detail\static_assert.hpp" />
+    <ClInclude Include="Vender\boost\uuid\detail\to_chars.hpp" />
+    <ClInclude Include="Vender\boost\uuid\detail\uuid_generic.ipp" />
+    <ClInclude Include="Vender\boost\uuid\detail\uuid_uint128.ipp" />
+    <ClInclude Include="Vender\boost\uuid\detail\uuid_x86.ipp" />
+    <ClInclude Include="Vender\boost\uuid\entropy_error.hpp" />
+    <ClInclude Include="Vender\boost\uuid\namespaces.hpp" />
+    <ClInclude Include="Vender\boost\uuid\name_generator.hpp" />
+    <ClInclude Include="Vender\boost\uuid\name_generator_md5.hpp" />
+    <ClInclude Include="Vender\boost\uuid\name_generator_sha1.hpp" />
+    <ClInclude Include="Vender\boost\uuid\nil_generator.hpp" />
+    <ClInclude Include="Vender\boost\uuid\random_generator.hpp" />
+    <ClInclude Include="Vender\boost\uuid\string_generator.hpp" />
+    <ClInclude Include="Vender\boost\uuid\time_generator.hpp" />
+    <ClInclude Include="Vender\boost\uuid\time_generator_v1.hpp" />
+    <ClInclude Include="Vender\boost\uuid\time_generator_v6.hpp" />
+    <ClInclude Include="Vender\boost\uuid\time_generator_v7.hpp" />
+    <ClInclude Include="Vender\boost\uuid\uuid.hpp" />
+    <ClInclude Include="Vender\boost\uuid\uuid_clock.hpp" />
+    <ClInclude Include="Vender\boost\uuid\uuid_generators.hpp" />
+    <ClInclude Include="Vender\boost\uuid\uuid_hash.hpp" />
+    <ClInclude Include="Vender\boost\uuid\uuid_io.hpp" />
+    <ClInclude Include="Vender\boost\uuid\uuid_serialize.hpp" />
     <ClInclude Include="Vender\cereal\access.hpp" />
     <ClInclude Include="Vender\cereal\archives\adapters.hpp" />
     <ClInclude Include="Vender\cereal\archives\binary.hpp" />
@@ -379,6 +414,27 @@
     <ClInclude Include="Layer\Layer.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="Application\TestApplication.h" />
+    <ClInclude Include="Vender\DirectXTK\include\Audio.h" />
+    <ClInclude Include="Vender\DirectXTK\include\BufferHelpers.h" />
+    <ClInclude Include="Vender\DirectXTK\include\CommonStates.h" />
+    <ClInclude Include="Vender\DirectXTK\include\DDSTextureLoader.h" />
+    <ClInclude Include="Vender\DirectXTK\include\DirectXHelpers.h" />
+    <ClInclude Include="Vender\DirectXTK\include\Effects.h" />
+    <ClInclude Include="Vender\DirectXTK\include\GamePad.h" />
+    <ClInclude Include="Vender\DirectXTK\include\GeometricPrimitive.h" />
+    <ClInclude Include="Vender\DirectXTK\include\GraphicsMemory.h" />
+    <ClInclude Include="Vender\DirectXTK\include\Keyboard.h" />
+    <ClInclude Include="Vender\DirectXTK\include\Model.h" />
+    <ClInclude Include="Vender\DirectXTK\include\Mouse.h" />
+    <ClInclude Include="Vender\DirectXTK\include\PostProcess.h" />
+    <ClInclude Include="Vender\DirectXTK\include\PrimitiveBatch.h" />
+    <ClInclude Include="Vender\DirectXTK\include\ScreenGrab.h" />
+    <ClInclude Include="Vender\DirectXTK\include\SimpleMath.h" />
+    <ClInclude Include="Vender\DirectXTK\include\SpriteBatch.h" />
+    <ClInclude Include="Vender\DirectXTK\include\SpriteFont.h" />
+    <ClInclude Include="Vender\DirectXTK\include\VertexTypes.h" />
+    <ClInclude Include="Vender\DirectXTK\include\WICTextureLoader.h" />
+    <ClInclude Include="Vender\DirectXTK\include\XboxDDSTextureLoader.h" />
     <ClInclude Include="Vender\Effekseer\EffekseerRendererDX11\EffekseerRendererDX11.h" />
     <ClInclude Include="Vender\Effekseer\Effekseer\Effekseer.h" />
     <ClInclude Include="Vender\Effekseer\Effekseer\Effekseer.Modules.h" />
@@ -432,21 +488,12 @@
   <ItemGroup>
     <None Include="Bloom.hlsli" />
     <None Include="Vender\cereal\external\rapidxml\manual.html" />
-    <None Include="packages.config" />
+    <None Include="Vender\DirectXTK\include\SimpleMath.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\packages\directxtk_desktop_win10.2024.6.5.1\build\native\directxtk_desktop_win10.targets" Condition="Exists('..\packages\directxtk_desktop_win10.2024.6.5.1\build\native\directxtk_desktop_win10.targets')" />
-    <Import Project="..\packages\boost.1.85.0\build\boost.targets" Condition="Exists('..\packages\boost.1.85.0\build\boost.targets')" />
     <Import Project="$(VCTargetsPath)\BuildCustomizations\MeshContentTask.targets" />
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ShaderGraphContentTask.targets" />
   </ImportGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\directxtk_desktop_win10.2024.6.5.1\build\native\directxtk_desktop_win10.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk_desktop_win10.2024.6.5.1\build\native\directxtk_desktop_win10.targets'))" />
-    <Error Condition="!Exists('..\packages\boost.1.85.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.85.0\build\boost.targets'))" />
-  </Target>
 </Project>

@@ -3,6 +3,7 @@
 #include <Imgui/imgui.h>
 
 #include "Utility/StringHelper.h"
+#include "Utility/Log.h"
 
 REGISTER_COMPONENT(TMF::Audio, "Audio");
 
@@ -16,10 +17,23 @@ namespace TMF
 	{
 	}
 
+	// 更新をしてからシングルトンのようになっているので変更する
+
 	void Audio::OnInitialize()
 	{
-		m_pAudioEngine = std::make_unique<DirectX::AudioEngine>(DirectX::AudioEngine_Default);
-		m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(m_pAudioEngine.get(), ChangeWideString().c_str());
+		try
+		{
+			m_pAudioEngine = std::make_unique<DirectX::AudioEngine>();
+		}
+		catch (const std::exception& e)
+		{
+			Log::Info("%s", e.what());
+		}
+		if (m_pAudioEngine)
+		{
+			m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(m_pAudioEngine.get(), ChangeWideString().c_str());
+		}
+
 	}
 
 	void Audio::OnFinalize()

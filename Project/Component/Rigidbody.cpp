@@ -20,7 +20,7 @@ namespace TMF
 		if (auto owner = m_pOwner.lock())
 		{
 			auto transform = owner->GetComponent<Transform>();
-			auto pos = Vector3::Zero;
+			auto pos = DirectX::SimpleMath::Vector3::Zero;
 			auto qua = Quaternion::Identity;
 			if (auto trans = transform.lock())
 			{

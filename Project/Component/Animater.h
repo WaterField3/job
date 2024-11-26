@@ -6,7 +6,7 @@
 #include <memory>
 
 #include "ComponentCerealHelper.h"
-#include "Model.h"
+#include "DirectXTK/include/Model.h"
 
 namespace DX
 {

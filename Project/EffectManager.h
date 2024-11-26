@@ -1,5 +1,9 @@
 #pragma once
 
+// windows‚Ìmin max‚ðŽg—p‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+#undef min
+#undef max
+
 #include <Effekseer/Effekseer/Effekseer.h>
 #include <Effekseer/EffekseerRendererDX11/EffekseerRendererDX11.h>
 #include <memory>

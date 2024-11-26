@@ -3,6 +3,11 @@
 #include <memory>
 #include <string>
 #include <cereal/types/base_class.hpp>
+
+// windows‚Ìmin max‚ðŽg—p‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+#undef min
+#undef max
+
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/random_generator.hpp>
 
