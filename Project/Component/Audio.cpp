@@ -4,6 +4,7 @@
 
 #include "Utility/StringHelper.h"
 #include "Utility/Log.h"
+#include "AudioManager.h"
 
 REGISTER_COMPONENT(TMF::Audio, "Audio");
 
@@ -23,25 +24,22 @@ namespace TMF
 	{
 		try
 		{
-			m_pAudioEngine = std::make_unique<DirectX::AudioEngine>();
+			m_pAudioEngine = AudioManager::Instance().GetAudioEngine();
 		}
 		catch (const std::exception& e)
 		{
 			Log::Info("%s", e.what());
 		}
-		if (m_pAudioEngine)
+		if (auto pLockAudioEngine = m_pAudioEngine.lock())
 		{
-			m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(m_pAudioEngine.get(), ChangeWideString().c_str());
+			m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(pLockAudioEngine.get(), ChangeWideString().c_str());
 		}
 
 	}
 
 	void Audio::OnFinalize()
 	{
-		if (m_pAudioEngine)
-		{
-			m_pAudioEngine->Suspend();
-		}
+
 		if (m_pSoundEffectInstance)
 		{
 			auto state = m_pSoundEffectInstance->GetState();
@@ -54,7 +52,7 @@ namespace TMF
 
 	void Audio::OnUpdate()
 	{
-		m_pAudioEngine->Update();
+
 	}
 
 	void Audio::OnLateUpdate()
@@ -130,7 +128,10 @@ namespace TMF
 
 	void Audio::Load(std::string soundName)
 	{
-		m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(m_pAudioEngine.get(), ChangeWideString().c_str());
+		if (auto pLockAudioEngine = m_pAudioEngine.lock())
+		{
+			m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(pLockAudioEngine.get(), ChangeWideString().c_str());
+		}
 	}
 
 	void Audio::Play()

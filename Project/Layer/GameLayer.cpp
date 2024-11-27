@@ -3,6 +3,7 @@
 #include "GameObject/GameObjectManager.h"
 #include "ApplicationState.h"
 #include "EffectManager.h"
+#include "AudioManager.h"
 
 namespace TMF
 {
@@ -20,6 +21,7 @@ namespace TMF
 	{
 		GameObjectManager::Instance().Update();
 		EffectManager::Instance().Update();
+		AudioManager::Instance().Update();
 	}
 
 	void GameLayer::OnLateUpdate()

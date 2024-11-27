@@ -165,6 +165,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Component\BulletStraightMove.cpp" />
     <ClCompile Include="Component\Attack.cpp" />
     <ClCompile Include="Component\PrimitiveMesh.cpp" />
@@ -229,6 +230,7 @@
     <ClCompile Include="Vender\Imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Component\BulletStraightMove.h" />
     <ClInclude Include="Component\Attack.h" />
     <ClInclude Include="Component\PrimitiveMesh.h" />

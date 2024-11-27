@@ -33,7 +33,7 @@ namespace TMF
 
 	private:
 		std::wstring ChangeWideString();
-		std::unique_ptr<DirectX::AudioEngine> m_pAudioEngine;
+		std::weak_ptr<DirectX::AudioEngine> m_pAudioEngine;
 		std::unique_ptr<DirectX::SoundEffect> m_pSoundEffect;
 		std::unique_ptr<DirectX::SoundEffectInstance> m_pSoundEffectInstance;
 		std::string m_soundName = "C:/Users/temet/Downloads/maou_game_battle21.wav";

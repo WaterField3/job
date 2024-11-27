@@ -19,6 +19,7 @@
 #include "Input.h"
 #include "Timer.h"
 #include "EffectManager.h"
+#include "AudioManager.h"
 
 // マクロ定義
 #define CLASS_NAME    "DX21Smpl"// ウインドウクラスの名前
@@ -109,6 +110,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	D3D::Get()->Create(hWnd);
 
 	EffectManager::Instance().Initialize();
+	AudioManager::Instance().Initialize();
 	Input::Instance().Initialize(hWnd);
 	GameObjectManager::Instance().Load(MAIN_DATA);
 	PhysicsManager::Instance().Initialize();
