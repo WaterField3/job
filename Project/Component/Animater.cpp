@@ -60,6 +60,22 @@ namespace TMF
 			m_pAnimationSDKMESH->Update(deltaTime * m_animationSpeed);
 		}
 		m_timer += deltaTime * m_animationSpeed;
+
+		if (m_isBindBone == true)
+		{
+			if (auto pLockOwner = m_pOwner.lock())
+			{
+				auto pTransform = pLockOwner->GetComponent<Transform>();
+				if (auto pLockTransform = pTransform.lock())
+				{
+					if (auto pLockModel = m_pModel.lock())
+					{
+						m_pAnimationSDKMESH->GetFrameData(*pLockModel, m_boneSize, m_bindName);
+
+					}
+				}
+			}
+		}
 	}
 
 	void Animater::OnLateUpdate()
@@ -152,6 +168,19 @@ namespace TMF
 		{
 
 		}
+
+		auto isBindBoneLabel = StringHelper::CreateLabel("IsBindBone", m_uuID);
+		if (ImGui::Checkbox(isBindBoneLabel.c_str(), &m_isBindBone))
+		{
+
+		}
+		char bindBuf[256] = "";
+		strcpy_s(bindBuf, sizeof(bindBuf), m_bindName.c_str());
+		auto bindLabel = StringHelper::CreateLabel("BindBone", m_uuID);
+		if (ImGui::InputText(bindLabel.c_str(), bindBuf, 256))
+		{
+			m_bindName = bindBuf;
+		}
 	}
 
 	void Animater::SetFileName(std::string fileName, float endTime)
@@ -163,7 +192,7 @@ namespace TMF
 			m_animEndTime = endTime;
 			LoadAnimation();
 		}
-		else 
+		else
 		{
 			m_nextPath = fileName;
 			m_nextAnimEnd = endTime;
@@ -194,6 +223,42 @@ namespace TMF
 				}
 			}
 		}
+	}
+
+	DirectX::SimpleMath::Vector3 Animater::GetBonePosition(std::string findName)
+	{
+		auto position = DirectX::SimpleMath::Vector3::Zero;
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
+			{
+				if (auto pLockModel = m_pModel.lock())
+				{
+					auto data = m_pAnimationSDKMESH->GetFrameData(*pLockModel, m_boneSize, findName);
+					position = data.pAnimationData->Translation;
+				}
+			}
+		}
+		return position;
+	}
+
+	DirectX::SimpleMath::Quaternion Animater::GetBoneRotation(std::string findName)
+	{
+		auto rotation = DirectX::SimpleMath::Quaternion::Identity;
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
+			{
+				if (auto pLockModel = m_pModel.lock())
+				{
+					auto data = m_pAnimationSDKMESH->GetFrameData(*pLockModel, m_boneSize, findName);
+					rotation = data.pAnimationData->Orientation;
+				}
+			}
+		}
+		return rotation;
 	}
 
 	void Animater::LoadCMO()

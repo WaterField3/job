@@ -166,6 +166,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="Component\BoneBind.cpp" />
     <ClCompile Include="Component\BulletStraightMove.cpp" />
     <ClCompile Include="Component\Attack.cpp" />
     <ClCompile Include="Component\PrimitiveMesh.cpp" />
@@ -231,6 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="Component\BoneBind.h" />
     <ClInclude Include="Component\BulletStraightMove.h" />
     <ClInclude Include="Component\Attack.h" />
     <ClInclude Include="Component\PrimitiveMesh.h" />

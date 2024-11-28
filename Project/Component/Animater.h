@@ -12,6 +12,7 @@ namespace DX
 {
 	class AnimationCMO;
 	class AnimationSDKMESH;
+	struct SDKANIMATION_FRAME_DATA;
 }
 
 namespace TMF
@@ -27,8 +28,9 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		void SetFileName(std::string fileName, float endTime);
-
 		void LoadAnimation();
+		DirectX::SimpleMath::Vector3 GetBonePosition(std::string findName);
+		DirectX::SimpleMath::Quaternion GetBoneRotation(std::string findName);
 
 	private:
 		void LoadCMO();
@@ -37,6 +39,7 @@ namespace TMF
 	private:
 		bool m_isAnimation = false;
 		bool m_isNextAnimSet = false;
+		bool m_isBindBone = false;
 		float m_animationSpeed = 1.0f;
 		float m_timer = 0;
 		float m_animEndTime = 0;
@@ -46,6 +49,7 @@ namespace TMF
 		std::string m_fileName = "";
 		std::string m_idlePath = "";
 		std::string m_nextPath = "";
+		std::string m_bindName = "";
 		std::unique_ptr<DX::AnimationCMO> m_pAnimationCMO;
 		std::unique_ptr<DX::AnimationSDKMESH> m_pAnimationSDKMESH;
 		DirectX::ModelBone::TransformArray m_drawBone;
