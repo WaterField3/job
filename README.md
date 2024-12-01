@@ -26,5 +26,7 @@
 
 [Effekseer for C++](https://effekseer.github.io/jp/download.html)  
 
+[stb](https://github.com/nothings/stb/tree/master)  
+
 ## 追加 vcpkg  
 [bullet3](https://github.com/bulletphysics/bullet3)

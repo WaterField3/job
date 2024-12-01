@@ -33,6 +33,7 @@ namespace TMF
 		DirectX::SimpleMath::Vector3 m_endPosition = DirectX::SimpleMath::Vector3::Zero;
 		DirectX::SimpleMath::Vector3 m_moveVector = DirectX::SimpleMath::Vector3::Zero;
 		std::weak_ptr<Transform> m_pTransform;
+		std::weak_ptr<Transform> m_pParent;
 
 		SERIALIZE_COMPONENT(m_moveSpeed, m_rotate);
 	};

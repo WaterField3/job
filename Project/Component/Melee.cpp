@@ -117,6 +117,14 @@ namespace TMF
 							pLockMeleemove->Play(MeleeMove::DEFAULT, nowPosition, nowRotation);
 							m_isMelee = true;
 						}
+						if (m_isMelee == true)
+						{
+							auto pChildTransform = pLockChild->GetComponent<Transform>();
+							if (auto pLockChildTransform = pChildTransform.lock())
+							{
+								pLockChildTransform->SetParent(std::weak_ptr<Transform>());
+							}
+						}
 					}
 				}
 			}

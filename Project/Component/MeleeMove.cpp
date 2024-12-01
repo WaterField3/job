@@ -25,6 +25,10 @@ namespace TMF
 		if (auto pLockOwner = m_pOwner.lock())
 		{
 			m_pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = m_pTransform.lock())
+			{
+				m_pParent = pLockTransform->GetParent();
+			}
 		}
 	}
 	void MeleeMove::OnFinalize()
@@ -49,6 +53,7 @@ namespace TMF
 				if (auto pLockOwner = m_pOwner.lock())
 				{
 					//GameObjectManager::Instance().DestroyGameObject(pLockOwner.get());
+					pLockTransform->SetParent(m_pParent);
 					pLockOwner->SetActive(false);
 					return;
 				}
@@ -101,9 +106,9 @@ namespace TMF
 				{
 				case TMF::MeleeMove::DEFAULT:
 				{
-					auto startPos = position + forward + left + up * 5;
+					auto startPos = position + forward * 3 + left + up * 5;
 					pLockTransform->SetPosition(startPos);
-					m_endPosition = position + forward + right + down;
+					m_endPosition = position + forward * 3 + right + down;
 					m_moveVector = m_endPosition - startPos;
 					m_moveVector.Normalize();
 					auto normalForward = forward;

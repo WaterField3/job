@@ -89,7 +89,7 @@ namespace TMF
 			if (auto pLockTransform = pTransform.lock())
 			{
 				pos = pLockTransform->GetWorldPosition();
-				auto rotate = pLockTransform->GetWorldRotation();
+				auto rotate = pLockTransform->GetRotation();
 				auto forward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Forward, rotate);
 				tagetpos = pos + forward;
 			}

@@ -128,7 +128,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(SolutionDir)\vcpkg_installed\x64-windows\x64-windows\include\bullet;$(ProjectDir)Vender\Effekseer\Effekseer;$(ProjectDir)Vender\DirectXTK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(SolutionDir)\vcpkg_installed\x64-windows\x64-windows\include\bullet;$(ProjectDir)Vender\Effekseer\Effekseer;$(ProjectDir)Vender\DirectXTK\include;$(ProjectDir)Vender\stb;$(ProjectDir)Vender\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -137,8 +137,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;Effekseerd.lib;EffekseerRendererDX11d.lib;DirectXTK.lib;DirectXTKAudioWin8.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Debug;$(ProjectDir)Vender\boost;$(ProjectDir)Vender\DirectXTK\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;Effekseerd.lib;EffekseerRendererDX11d.lib;DirectXTK.lib;DirectXTKAudioWin8.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Debug;$(ProjectDir)Vender\boost;$(ProjectDir)Vender\DirectXTK\lib\Debug;$(ProjectDir)Vender\assimp\lib\Debug;$(SolutionDir)vcpkg_installed\x64-windows\x64-windows\lib\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,7 +149,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(SolutionDir)\vcpkg_installed\x64-windows\x64-windows\include\bullet;$(ProjectDir)Vender\Effekseer\Effekseer;$(ProjectDir)Vender\DirectXTK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(ProjectDir)Vender\Effekseer\Effekseer;$(ProjectDir)Vender\DirectXTK\include;$(ProjectDir)Vender\stb;$(ProjectDir)Vender\assimp\include;$(SolutionDir)\vcpkg_installed\x64-windows\x64-windows\include\bullet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -160,12 +160,19 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;Effekseer.lib;EffekseerRendererDX11.lib;DirectXTK.lib;DirectXTKAudioWin8.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Release;$(ProjectDir)Vender\boost;$(ProjectDir)Vender\DirectXTK\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;Effekseer.lib;EffekseerRendererDX11.lib;DirectXTK.lib;DirectXTKAudioWin8.lib;LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Release;$(ProjectDir)Vender\boost;$(ProjectDir)Vender\DirectXTK\lib\Release;$(ProjectDir)Vender\assimp\lib\Release;$(ProjectDir)Vender\bullet3\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationData.cpp" />
+    <ClCompile Include="AnimationMesh.cpp" />
+    <ClCompile Include="AssimpMaterial.cpp" />
+    <ClCompile Include="AssimpPerse.cpp" />
+    <ClCompile Include="AssimpTexture.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="BoneCombMatrix.cpp" />
+    <ClCompile Include="Component\AssimpAnimation.cpp" />
     <ClCompile Include="Component\BoneBind.cpp" />
     <ClCompile Include="Component\BulletStraightMove.cpp" />
     <ClCompile Include="Component\Attack.cpp" />
@@ -180,9 +187,14 @@
     <ClCompile Include="Component\Fade.cpp" />
     <ClCompile Include="Component\Font.cpp" />
     <ClCompile Include="Component\Jump.cpp" />
+    <ClCompile Include="dx11helper.cpp" />
+    <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="RenderTexture.cpp" />
     <ClCompile Include="Component\Shot.cpp" />
     <ClCompile Include="Component\SceneLoad.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="StaticMesh.cpp" />
+    <ClCompile Include="StaticMeshRenderer.cpp" />
     <ClCompile Include="System\Animation.cpp" />
     <ClCompile Include="Component\Animater.cpp" />
     <ClCompile Include="ApplicationState.cpp" />
@@ -231,7 +243,14 @@
     <ClCompile Include="Vender\Imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationData.h" />
+    <ClInclude Include="AnimationMesh.h" />
+    <ClInclude Include="AssimpMaterial.h" />
+    <ClInclude Include="AssimpPerse.h" />
+    <ClInclude Include="AssimpTexture.h" />
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="BoneCombMatrix.h" />
+    <ClInclude Include="Component\AssimpAnimation.h" />
     <ClInclude Include="Component\BoneBind.h" />
     <ClInclude Include="Component\BulletStraightMove.h" />
     <ClInclude Include="Component\Attack.h" />
@@ -246,11 +265,18 @@
     <ClInclude Include="Component\Fade.h" />
     <ClInclude Include="Component\Font.h" />
     <ClInclude Include="Component\Jump.h" />
+    <ClInclude Include="dx11helper.h" />
+    <ClInclude Include="IndexBuffer.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="MoveInfo.h" />
     <ClInclude Include="ReadData.h" />
     <ClInclude Include="RenderTexture.h" />
     <ClInclude Include="Component\Shot.h" />
     <ClInclude Include="Component\SceneLoad.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="StaticMesh.h" />
+    <ClInclude Include="StaticMeshRenderer.h" />
     <ClInclude Include="System\Animation.h" />
     <ClInclude Include="Component\Animater.h" />
     <ClInclude Include="ApplicationState.h" />
@@ -264,6 +290,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Component\CharacterMoveController.h" />
     <ClInclude Include="Component\Thruster.h" />
+    <ClInclude Include="TreeNode.h" />
     <ClInclude Include="Utility\StringHelper.h" />
     <ClInclude Include="MyBulletCollisionDispatcher.h" />
     <ClInclude Include="Timer.h" />
@@ -451,6 +478,7 @@
     <ClInclude Include="Vender\Imgui\imstb_rectpack.h" />
     <ClInclude Include="Vender\Imgui\imstb_textedit.h" />
     <ClInclude Include="Vender\Imgui\imstb_truetype.h" />
+    <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="VertexShader.h" />
     <ClInclude Include="WaveFrontReader.h" />
   </ItemGroup>
