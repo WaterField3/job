@@ -28,7 +28,8 @@ namespace TMF
 		auto wideFileName = std::wstring(m_loadFile.begin(), m_loadFile.end());
 		auto device = D3D::Get()->GetDevice();
 		m_pEffectFactory = std::make_unique<DirectX::EffectFactory>(device);
-		m_pEffectFactory->SetDirectory(L"asset");
+		auto wstringDirectry = std::wstring(m_loadDirectory.begin(), m_loadDirectory.end());
+		m_pEffectFactory->SetDirectory(wstringDirectry.c_str());
 		switch (m_loadType)
 		{
 		case TMF::Model::DEFAULT:
@@ -137,6 +138,15 @@ namespace TMF
 			}
 			ImGui::EndCombo();
 		}
+
+		char directoryBuf[256] = "";
+		strcpy_s(directoryBuf, sizeof(directoryBuf), m_loadDirectory.c_str());
+		auto directorylabel = StringHelper::CreateLabel("LoadDirectory", m_uuID);
+		if (ImGui::InputText(directorylabel.c_str(), directoryBuf, sizeof(directoryBuf)))
+		{
+			m_loadDirectory = directoryBuf;
+		}
+
 		auto loadCmoLabel = StringHelper::CreateLabel("LoadCMO", m_uuID);
 		if (ImGui::Button(loadCmoLabel.c_str()))
 		{

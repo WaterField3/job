@@ -996,7 +996,7 @@
                                             },
                                             "m_isEnable": false
                                         },
-                                        "m_loadFile": "asset/Defeated.sdkmesh",
+                                        "m_loadFile": "asset/model/Defeated.sdkmesh",
                                         "m_isDraw": false,
                                         "m_loadType": 2
                                     }
@@ -1014,8 +1014,8 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_fileName": "asset/Breathing Idle.sdkmesh_anim",
-                                        "m_idlePath": "asset/Breathing Idle.sdkmesh_anim",
+                                        "m_fileName": "asset/model/Breathing Idle.sdkmesh_anim",
+                                        "m_idlePath": "asset/model/Breathing Idle.sdkmesh_anim",
                                         "m_animationSpeed": 1.0,
                                         "m_isAnimation": true
                                     }
@@ -1107,7 +1107,7 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_meleeAnimation": "asset/Standing Melee Attack Downward.sdkmesh_anim",
+                                        "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
                                         "m_endTime": 2.0,
                                         "m_meleeObjectName": "MeleeMoveObj"
                                     }
@@ -1142,7 +1142,7 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_fowardDodge": "asset/Sprinting Forward Roll.sdkmesh_anim",
+                                        "m_fowardDodge": "asset/model/Sprinting Forward Roll.sdkmesh_anim",
                                         "m_rightDodge": "",
                                         "m_leftDodge": "",
                                         "m_backDodge": "",
@@ -1870,7 +1870,7 @@
                                             },
                                             "m_isEnable": false
                                         },
-                                        "m_loadFile": "asset/Defeated.sdkmesh",
+                                        "m_loadFile": "asset/model/Defeated.sdkmesh",
                                         "m_isDraw": false,
                                         "m_loadType": 2
                                     }
@@ -1887,8 +1887,8 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_fileName": "asset/Standing Melee Attack Downward.sdkmesh_anim",
-                                        "m_idlePath": "asset/Standing Melee Attack Downward.sdkmesh_anim",
+                                        "m_fileName": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
+                                        "m_idlePath": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
                                         "m_animationSpeed": 1.0,
                                         "m_isAnimation": true
                                     }
@@ -1906,11 +1906,11 @@
                                             "m_isEnable": true
                                         },
                                         "m_hp": 100.0,
-                                        "m_staggerAnimPath": "asset/Stunned.sdkmesh_anim",
-                                        "m_invertAnimPath": "asset/Stunned.sdkmesh_anim",
+                                        "m_staggerAnimPath": "asset/model/Stunned.sdkmesh_anim",
+                                        "m_invertAnimPath": "asset/model/Stunned.sdkmesh_anim",
                                         "m_invertAnimEndTime": 1.0,
                                         "m_staggerAnimEndTime": 3.0,
-                                        "m_standUpAnimPath": "asset/Situp To Idle.sdkmesh_anim",
+                                        "m_standUpAnimPath": "asset/model/Situp To Idle.sdkmesh_anim",
                                         "m_standUpTime": 1.0,
                                         "m_staggerCenter": {
                                             "value0": 0.0,

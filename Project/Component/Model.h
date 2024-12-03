@@ -52,11 +52,12 @@ namespace TMF
 		bool m_isUseWorldMatrix = false;
 		size_t animOffset = 0;
 		std::string m_loadFile = "asset/Gun.cmo";
+		std::string m_loadDirectory = "asset/model";
 		LOADTYPE m_loadType = LOADTYPE::DEFAULT;
 		std::unique_ptr<DirectX::EffectFactory> m_pEffectFactory;
 		std::shared_ptr<DirectX::Model> m_pModel;
 		std::unique_ptr<DirectX::CommonStates> m_pCommonState;
 
-		SERIALIZE_COMPONENT(m_loadFile, m_isDraw, m_loadType);
+		SERIALIZE_COMPONENT(m_loadFile, m_isDraw, m_loadType, m_loadDirectory);
 	};
 }
