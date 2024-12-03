@@ -15,9 +15,9 @@ namespace TMF
 {
 	void TestApplication::OnInitialize()
 	{
+		AddLayer<EditerLayer>();
 		AddLayer<GameLayer>();
 		AddLayer<PhysicsLayer>();
-		AddLayer<EditerLayer>();
 	}
 
 	void TestApplication::OnUpdate()

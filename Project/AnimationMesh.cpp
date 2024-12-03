@@ -38,14 +38,16 @@ namespace TMF
 				dxbone.weights.push_back(dxweight);
 			}
 
-			//m_BoneDictionary[asimpbone.first] = dxbone;
+			m_BoneDictionary[asimpbone.first] = dxbone;
 		}
+
+		m_AssimpNodeNameTree = std::make_shared<TreeNode<std::string>>();
 
 		// ボーン名ツリー取得
 		m_AssimpNodeNameTree = AssimpPerse::Instance().GetBoneNameTree();
 
 		// レンダラ初期化
-		m_StaticMeshRenderer.Init(*this);
+		m_StaticMeshRenderer.Init(StaticMesh::Instance());
 	}
 	void AnimationMesh::UpdateBoneMatrix(std::weak_ptr<TreeNode<std::string>> pTree, DirectX::SimpleMath::Matrix matrix)
 	{
@@ -218,6 +220,7 @@ namespace TMF
 	}
 	void AnimationMesh::Draw()
 	{
+		m_StaticMeshRenderer.Draw();
 	}
 	DirectX::SimpleMath::Matrix AnimationMesh::AiMatrixToSimpleMatrix(aiMatrix4x4 asimpmtx)
 	{

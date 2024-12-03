@@ -12,7 +12,7 @@ namespace TMF
 
 		// diffuseテクスチャ情報取得
 
-		//m_DiffuseTextures = mesh.GetDiffuseTextures();
+		m_DiffuseTextures = mesh.GetDiffuseTextures();
 
 		// マテリアル情報取得	
 		std::vector<D3D::MATERIAL> materials;
@@ -30,7 +30,6 @@ namespace TMF
 			// マテリアルオブジェクトを配列に追加
 			m_Materiales.push_back(std::move(m));
 		}
-		kari.clear();
 	}
 	void StaticMeshRenderer::Draw()
 	{

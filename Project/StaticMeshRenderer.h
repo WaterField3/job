@@ -13,7 +13,6 @@ namespace TMF
 		std::vector<D3D::SUBSET> m_Subsets;
 	std::vector<std::unique_ptr<AssimpTexture>> m_DiffuseTextures;
 	std::vector<std::shared_ptr<AssimpMaterial>> m_Materiales;
-	std::vector<D3D::MATERIAL> kari;
 public:	
 	void Init(StaticMesh& mesh);
 	void Draw();

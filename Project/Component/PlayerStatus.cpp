@@ -37,6 +37,11 @@ namespace TMF
 				m_initCenter = pLockCollider->GetCollisionCenter();
 			}
 		}
+		m_pStateMachine = std::make_unique<StateMachine>();
+		if (m_pStateMachine)
+		{
+			m_pStateMachine->ChangeState("PlayerIdleState");
+		}
 	}
 	void PlayerStatus::OnFinalize()
 	{

@@ -11,6 +11,8 @@ namespace TMF
 	{
 		m_BoneCombMatrix.Create();
 
+		m_AnimMesh = std::make_unique<AnimationMesh>();
+
 		// アニメーションメッシュ読み込み
 		m_AnimMesh->Load(m_currentFile, m_textureDirectory);
 

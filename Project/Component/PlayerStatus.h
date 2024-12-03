@@ -3,6 +3,7 @@
 #include "Component.h"
 
 #include "ComponentCerealHelper.h"
+#include "State/StateMachine.h"
 
 namespace TMF
 {
@@ -42,6 +43,7 @@ namespace TMF
 		std::string m_standUpAnimPath = "";
 		std::weak_ptr<Animater> m_pAnimater;
 		std::weak_ptr<Collider> m_pCollider;
+		std::unique_ptr<StateMachine> m_pStateMachine;
 		// 9  10
 		SERIALIZE_COMPONENT(m_hp, m_staggerAnimPath, m_invertAnimPath, m_invertAnimEndTime, m_staggerAnimEndTime, m_standUpAnimPath, m_standUpTime, m_staggerCenter, m_staggerScale);
 	};
