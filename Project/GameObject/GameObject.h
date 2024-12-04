@@ -55,17 +55,29 @@ namespace TMF
 		template <typename TComponent>
 		std::weak_ptr<TComponent> GetComponent()
 		{
-			auto cnt = 0;
 			for (auto& pComponent : m_pComponents)
 			{
 				if (auto result = std::dynamic_pointer_cast<TComponent>(pComponent))
 				{
 					return result;
 				}
-				cnt++;
 			}
 			std::weak_ptr<TComponent> nonPtr;
 			return  nonPtr;
+		}
+
+		template <typename TComponent>
+		std::vector<std::weak_ptr<TComponent>> GetComponents()
+		{
+			 auto pComponents = std::vector<std::weak_ptr<TComponent>>();;
+			for (auto& pComponent : m_pComponents) 
+			{
+				if (auto findComponent = std::dynamic_pointer_cast<TComponent>(pComponent))
+				{
+					pComponents.push_back(findComponent);
+				}
+			}
+			return pComponents;
 		}
 
 		void Initialize();

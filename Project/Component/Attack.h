@@ -3,6 +3,8 @@
 
 namespace TMF
 {
+	class Melee;
+	class Shot;
 	class Attack : public Component
 	{
 	public:
@@ -13,6 +15,9 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 	private:
+		int m_previousScrollValue = 0;
+		int m_selectIndex = 0;
+		std::vector < std::weak_ptr<Component>> m_pWepons;
 	};
 }
 

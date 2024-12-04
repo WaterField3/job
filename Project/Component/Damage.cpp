@@ -70,50 +70,55 @@ namespace TMF
 
 	void Damage::OnTrigerEnter(GameObject* pGameObject)
 	{
-
-		if (auto pLockParent = m_pParent.lock())
-		{
-			if (auto pLockParentOwner = pLockParent->GetOwner().lock())
-			{
-				if (pGameObject == pLockParentOwner.get())
-				{
-					return;
-				}
-			}
-		}
-
-		// 当たったオブジェクトを確認　プレイヤーの時
-		if (pGameObject->GetTag() == GameObject::Tag::Player)
-		{
-			if (auto pLockOwner = m_pOwner.lock())
-			{
-				auto pAudio = pLockOwner->GetComponent<Audio>();
-				if (auto pLockAudio = pAudio.lock())
-				{
-					pLockAudio->Play();
-				}
-				auto pPlayerStatus = pGameObject->GetComponent<PlayerStatus>();
-				if (auto pLockPlayerStatus = pPlayerStatus.lock())
-				{
-					switch (m_reactionType)
-					{
-					case TMF::Damage::STAGGER:
-						pLockPlayerStatus->Stagger();
-						break;
-					case TMF::Damage::INVERT:
-						pLockPlayerStatus->Invert();
-						break;
-					case TMF::Damage::NONE:
-						break;
-					default:
-						break;
-					}
-					pLockPlayerStatus->Damage(m_damage);
-				}
-			}
-		}
 		if (auto pLockOwner = m_pOwner.lock())
 		{
+			if (pLockOwner->GetActive() == false)
+			{
+				return;
+			}
+
+			if (auto pLockParent = m_pParent.lock())
+			{
+				if (auto pLockParentOwner = pLockParent->GetOwner().lock())
+				{
+					if (pGameObject == pLockParentOwner.get())
+					{
+						return;
+					}
+				}
+			}
+
+			// 当たったオブジェクトを確認　プレイヤーの時
+			if (pGameObject->GetTag() == GameObject::Tag::Player)
+			{
+				if (auto pLockOwner = m_pOwner.lock())
+				{
+					auto pAudio = pLockOwner->GetComponent<Audio>();
+					if (auto pLockAudio = pAudio.lock())
+					{
+						pLockAudio->Play();
+					}
+					auto pPlayerStatus = pGameObject->GetComponent<PlayerStatus>();
+					if (auto pLockPlayerStatus = pPlayerStatus.lock())
+					{
+						switch (m_reactionType)
+						{
+						case TMF::Damage::STAGGER:
+							pLockPlayerStatus->Stagger();
+							break;
+						case TMF::Damage::INVERT:
+							pLockPlayerStatus->Invert();
+							break;
+						case TMF::Damage::NONE:
+							break;
+						default:
+							break;
+						}
+						pLockPlayerStatus->Damage(m_damage);
+					}
+				}
+			}
+
 			// 弾での攻撃時は当たればすぐに消える
 			auto pBulletMove = pLockOwner->GetComponent<BulletStraightMove>();
 			if (auto pLockBulletMove = pBulletMove.lock())
@@ -124,6 +129,7 @@ namespace TMF
 					pLockTransform->SetParent(m_pParent);
 				}
 			}
+
 		}
 	}
 	void Damage::OnCollisionEnter(GameObject* pGameObject)

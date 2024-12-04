@@ -7,7 +7,8 @@ namespace TMF
 		m_pKeyboard = std::make_unique<DirectX::Keyboard>();
 		m_pMouse = std::make_unique<DirectX::Mouse>();
 		m_pMouse->SetWindow(hwnd);
-		m_pTracker = std::make_shared<DirectX::Keyboard::KeyboardStateTracker>();
+		m_pKeyboardTracker = std::make_shared<DirectX::Keyboard::KeyboardStateTracker>();
+		m_pButtonTracker = std::make_shared<DirectX::Mouse::ButtonStateTracker>();
 	}
 
 	bool Input::PluralGetKeyDiwn(std::chrono::milliseconds currentTime)

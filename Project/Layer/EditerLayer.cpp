@@ -70,7 +70,7 @@ namespace TMF
 	void EditerLayer::OnUpdate()
 	{
 		auto kb = Input::Instance().GetKeyState();
-		auto tracker = Input::Instance().GetTracker();
+		auto tracker = Input::Instance().GetKeyboardTracker();
 		if (ApplicationState::Instance().GetIsPlay() == false)
 		{
 			tracker->Update(kb);

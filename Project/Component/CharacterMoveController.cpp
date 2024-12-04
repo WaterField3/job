@@ -33,7 +33,7 @@ namespace TMF
 	void CharacterMoveController::OnUpdate()
 	{
 		auto kb = Input::Instance().GetKeyState();
-		auto tracker = Input::Instance().GetTracker();
+		auto tracker = Input::Instance().GetKeyboardTracker();
 		tracker->Update(kb);
 		auto movePos = DirectX::SimpleMath::Vector3::Zero;
 		auto torque = DirectX::SimpleMath::Vector3::Zero;
