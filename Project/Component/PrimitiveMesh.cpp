@@ -24,9 +24,9 @@ namespace TMF
 	void PrimitiveMesh::MakeMesh()
 	{
 		DirectX::XMFLOAT3 size = DirectX::XMFLOAT3(m_scale.x, m_scale.y, m_scale.z);
-		
+
 		auto context = D3D::Get()->GetContext();
-		
+
 		// 形状を生成
 		switch (m_shapeType)
 		{
@@ -139,13 +139,13 @@ namespace TMF
 		{
 			return;
 		}
-		
+
 		// テクスチャ読み込み
 		try
 		{
 			auto wideFileName = std::wstring(m_textureName.begin(), m_textureName.end());
 			auto context = D3D::Get()->GetContext();
-			DirectX::CreateWICTextureFromFile(D3D::Get()->GetDevice(), context, wideFileName.c_str(), nullptr, m_pTexture.GetAddressOf());
+			DirectX::CreateWICTextureFromFile(D3D::Get()->GetDevice(),nullptr, wideFileName.c_str(), nullptr, m_pTexture.ReleaseAndGetAddressOf());
 			context->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf());
 		}
 		catch (const std::exception& e)
