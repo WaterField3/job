@@ -82,7 +82,7 @@ namespace TMF
 	DirectX::SimpleMath::Matrix Camera::MakeViewMatrix()
 	{
 		auto pos = DirectX::SimpleMath::Vector3::Zero;
-		auto tagetpos = DirectX::SimpleMath::Vector3::Zero;
+		auto targetPos = DirectX::SimpleMath::Vector3::Zero;
 		if (auto pLockOwner = m_pOwner.lock())
 		{
 			auto pTransform = pLockOwner->GetComponent<Transform>();
@@ -91,10 +91,18 @@ namespace TMF
 				pos = pLockTransform->GetWorldPosition();
 				auto rotate = pLockTransform->GetRotation();
 				auto forward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Forward, rotate);
-				tagetpos = pos + forward;
+				if (auto pLockTargetTransform = m_pTargetTransform.lock())
+				{
+					targetPos = pLockTargetTransform->GetPosition() + pLockTargetTransform->GetForward() * 100;
+				}
+				else
+				{
+					targetPos = pos + forward;
+				}
+
 			}
 		}
-		auto viewMatrix = DirectX::SimpleMath::Matrix::CreateLookAt(pos, tagetpos, DirectX::SimpleMath::Vector3::UnitY);
+		auto viewMatrix = DirectX::SimpleMath::Matrix::CreateLookAt(pos, targetPos, DirectX::SimpleMath::Vector3::UnitY);
 		return viewMatrix;
 	}
 	std::string Camera::LabelChange(const char* labelName)

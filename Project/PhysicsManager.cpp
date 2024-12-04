@@ -4,6 +4,7 @@
 #include "direct3d.h"
 #include "GameObject/GameObjectManager.h"
 #include "Component/Camera.h"
+#include "Component/FreeCamera.h"
 
 namespace TMF
 {
@@ -29,7 +30,7 @@ namespace TMF
 
 	void PhysicsManager::Draw()
 	{
-		auto compoent = GameObjectManager::Instance().GetComponent<Camera>();
+		auto compoent = GameObjectManager::Instance().GetComponent<FreeCamera>();
 		if (auto camera = compoent.lock())
 		{
 			D3D::Get()->SettingEffect(camera->GetViewMatrix(), camera->GetProjectionMatrix());

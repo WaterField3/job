@@ -6,6 +6,7 @@
 #include "Model.h"
 #include "Transform.h"
 #include "Camera.h"
+#include "FreeCamera.h"
 #include "GameObject/GameObjectManager.h"
 #include "Timer.h"
 #include "System/Animation.h"
@@ -93,7 +94,7 @@ namespace TMF
 		auto world = DirectX::SimpleMath::Matrix::Identity;
 		auto view = DirectX::SimpleMath::Matrix::Identity;
 		auto proj = DirectX::SimpleMath::Matrix::Identity;
-		auto pCamera = GameObjectManager::Instance().GetComponent<Camera>();
+		auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
 		if (auto pLockCamera = pCamera.lock())
 		{
 			view = pLockCamera->GetViewMatrix();

@@ -2244,6 +2244,77 @@
                         ]
                     }
                 }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483744,
+                    "data": {
+                        "m_name": "FreeCamera",
+                        "m_uuID": {
+                            "uuid": "819676c4-3c2d-4c7e-a7ab-0fc6ff096f61"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483745,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "b4dfbeca-b541-413e-912d-246320941143"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.9318113327026367,
+                                            "value1": 3.7695112228393556,
+                                            "value2": -3.1500022411346437
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483672,
+                                "polymorphic_name": "TMF::FreeCamera",
+                                "ptr_wrapper": {
+                                    "id": 2147483746,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "810d2840-30a6-4746-bf1f-05eaa4c7b78f"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_fov": 45.0,
+                                        "m_near": 0.10000000149011612,
+                                        "m_far": 1000.0,
+                                        "m_raduis": 5.0,
+                                        "m_elevation": 7.0,
+                                        "m_azimuth": 5.0
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
             }
         ]
     }

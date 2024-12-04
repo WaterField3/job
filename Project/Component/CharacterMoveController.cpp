@@ -13,6 +13,9 @@
 #include "MoveInfo.h"
 #include "Thruster.h"
 #include "Jump.h"
+#include "Camera.h"
+#include "GameObject/GameObjectManager.h"
+#include "FreeCamera.h"
 
 REGISTER_COMPONENT(TMF::CharacterMoveController, "CharacterMoveController");
 
@@ -123,6 +126,31 @@ namespace TMF
 		{
 			isShot = true;
 		}
+		else if (tracker->pressed.Y == true)
+		{
+			auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
+			if (auto pLockCamera = pCamera.lock())
+			{
+				if (auto pLockOwner = m_pOwner.lock())
+				{
+					auto pTransform = pLockOwner->GetComponent<Transform>();
+					if (auto pLockTransform = pTransform.lock())
+					{
+						pLockCamera->SetTargetTransform(pLockTransform);
+					}
+				}
+			}
+		}
+		else if (tracker->pressed.U == true)
+		{
+			auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
+			if (auto pLockCamera = pCamera.lock())
+			{
+
+				pLockCamera->SetTargetTransform(std::shared_ptr<Transform>());
+			}
+		}
+
 		// åªç›éûä‘
 		auto now = duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 

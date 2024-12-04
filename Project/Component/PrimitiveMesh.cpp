@@ -11,6 +11,7 @@
 #include "GameObject/GameObjectManager.h"
 #include "Utility/StringHelper.h"
 #include "Utility/Log.h"
+#include "FreeCamera.h"
 
 REGISTER_COMPONENT(TMF::PrimitiveMesh, "PrimitiveMesh");
 
@@ -58,6 +59,7 @@ namespace TMF
 	}
 	void PrimitiveMesh::OnLateUpdate()
 	{
+
 	}
 	void PrimitiveMesh::OnDraw()
 	{
@@ -71,7 +73,7 @@ namespace TMF
 				world = pLockTransform->GetWorldMatrix();
 			}
 
-			auto pCamera = GameObjectManager::Instance().GetComponent<Camera>();
+			auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
 			if (auto pLockCamera = pCamera.lock())
 			{
 				auto view = pLockCamera->GetViewMatrix();
