@@ -16,6 +16,7 @@
 #include "Camera.h"
 #include "GameObject/GameObjectManager.h"
 #include "FreeCamera.h"
+#include "CameraMove.h"
 
 REGISTER_COMPONENT(TMF::CharacterMoveController, "CharacterMoveController");
 
@@ -140,6 +141,16 @@ namespace TMF
 						pLockCamera->SetTargetTransform(pLockTransform);
 					}
 				}
+
+				auto pCameraMove = GameObjectManager::Instance().GetComponent<CameraMove>();
+				if (auto pLockOwner = m_pOwner.lock())
+				{
+					if (auto pLockCameraMove = pCameraMove.lock())
+					{
+						pLockCameraMove->SetTargetRigidbody(pLockOwner->GetComponent<Rigidbody>());
+					}
+				}
+
 			}
 		}
 		else if (tracker->pressed.U == true)

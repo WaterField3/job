@@ -6,6 +6,7 @@
 namespace TMF
 {
 	class Transform;
+	class Rigidbody;
 	class CameraMove : public Component
 	{
 	public:
@@ -15,6 +16,8 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+
+		inline void SetTargetRigidbody(std::weak_ptr<Rigidbody> rigidbody) { m_pTargetRigidbody = rigidbody; }
 
 	private:
 		// ëOâÒÇÃà íuÇï€éù
@@ -27,6 +30,7 @@ namespace TMF
 		std::string m_targetName = "";
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Transform> m_pPlayerTransform;
+		std::weak_ptr<Rigidbody> m_pTargetRigidbody;
 
 		SERIALIZE_COMPONENT(m_raduis, m_elevation, m_azimuth, m_rotationSpeed, m_targetName);
 

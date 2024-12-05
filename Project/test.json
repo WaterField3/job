@@ -207,9 +207,9 @@
                                             "m_isEnable": true
                                         },
                                         "m_position": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0
+                                            "value0": 0.0,
+                                            "value1": 4.0,
+                                            "value2": 0.0
                                         },
                                         "m_scale": {
                                             "value0": 0.0,
@@ -260,16 +260,11 @@
                                             },
                                             "m_isEnable": true
                                         },
+                                        "m_raduis": 4.0,
+                                        "m_elevation": 0.0,
+                                        "m_azimuth": 0.10471975058317185,
                                         "m_rotationSpeed": 1.0,
-                                        "m_followSpeed": 1.0,
-                                        "m_pitch": 1.0,
-                                        "m_yaw": 1.0,
-                                        "m_targetName": "cube",
-                                        "m_offset": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0
-                                        }
+                                        "m_targetName": "Anim"
                                     }
                                 }
                             }
@@ -2290,9 +2285,9 @@
                                             "m_isEnable": true
                                         },
                                         "m_position": {
-                                            "value0": 0.9318113327026367,
+                                            "value0": 1.255969762802124,
                                             "value1": 3.7695112228393556,
-                                            "value2": -3.1500022411346437
+                                            "value2": -3.035346031188965
                                         },
                                         "m_scale": {
                                             "value0": 1.0,
@@ -2330,7 +2325,7 @@
                                         "m_far": 1000.0,
                                         "m_raduis": 5.0,
                                         "m_elevation": 7.0,
-                                        "m_azimuth": 5.0
+                                        "m_azimuth": 5.104719161987305
                                     }
                                 }
                             }

@@ -10,6 +10,7 @@
 #include "Input.h"
 #include "Timer.h"
 #include "Camera.h"
+#include "Rigidbody.h"
 
 REGISTER_COMPONENT(TMF::CameraMove, "CameraMove");
 
@@ -43,8 +44,9 @@ namespace TMF
 					auto pCamera = pLockOwner->GetComponent<Camera>();
 					if (auto pLockCamera = pCamera.lock())
 					{
-						pLockCamera->SetTargetTransform(m_pPlayerTransform);
+						//pLockCamera->SetTargetTransform(m_pPlayerTransform);
 					}
+					m_pTargetRigidbody = pLockOwner->GetComponent<Rigidbody>();
 				}
 			}
 		}
@@ -54,19 +56,6 @@ namespace TMF
 
 	}
 	void CameraMove::OnUpdate()
-	{
-		if (auto pLockTransform = m_pTransform.lock())
-		{
-			//m_azimuth = m_azimuth + DirectX::XM_PI / 180.0f;
-			auto azimuth = m_azimuth + DirectX::XM_PI / 180.0f;
-			auto pos = DirectX::SimpleMath::Vector3::Zero;
-			pos.x = m_raduis * sin(m_elevation) * cos(azimuth);
-			pos.y = m_raduis * cos(m_elevation);
-			pos.z = m_raduis * sin(m_elevation) * sin(azimuth);
-			pLockTransform->SetPosition(pos);
-		}
-	}
-	void CameraMove::OnLateUpdate()
 	{
 		if (auto pLockTransform = m_pTransform.lock())
 		{
@@ -84,12 +73,41 @@ namespace TMF
 				m_azimuth += deltaX * m_rotationSpeed * 0.001f;
 				m_elevation -= deltaY * m_rotationSpeed * 0.001f;
 
+				m_elevation = std::clamp(m_elevation, 0.5f, 2.0f);
+
+				auto azimuth = m_azimuth + DirectX::XM_PI / 180.0f;
+				auto pos = DirectX::SimpleMath::Vector3::Zero;
+				pos.x = m_raduis * sin(m_elevation) * cos(azimuth);
+				pos.y = m_raduis * cos(m_elevation);
+				pos.z = m_raduis * sin(m_elevation) * sin(azimuth);
+				pLockTransform->SetPosition(pos);
+
 				// Œ»Ý‚ÌˆÊ’u‚ðŽŸ‰ñ‚Ì‚½‚ß‚É•Û‘¶
 				prevMouseX = currentMouseX;
 				prevMouseY = currentMouseY;
 			}
 		}
 	}
+	void CameraMove::OnLateUpdate()
+	{
+
+
+		//if (auto pLockTargetTransfrom = m_pPlayerTransform.lock())
+		//{
+		//
+		//	auto rotation =DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll( -m_azimuth,0, 0);
+		//	pLockTargetTransfrom->SetRotation(rotation);
+		//}
+		if (auto pLockTargetRigidbody = m_pTargetRigidbody.lock())
+		{
+
+			// ‰ñ“]‚ðÝ’è‚·‚é‚ÆˆÚ“®“™‚ÌŠeˆ—‚ª“®‚©‚È‚­‚È‚é
+			auto rotation = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(-m_azimuth + 1.5f, 0, 0);
+			//pLockTargetRigidbody->SetRotation(rotation);
+		}
+	}
+
+
 	void CameraMove::OnDraw()
 	{
 
@@ -97,7 +115,7 @@ namespace TMF
 	void CameraMove::OnDrawImGui()
 	{
 		auto radiusLabel = StringHelper::CreateLabel("Radius", m_uuID);
-		if (ImGui::DragFloat(radiusLabel.c_str(), &m_raduis, 0.1f))
+		if (ImGui::DragFloat(radiusLabel.c_str(), &m_raduis, 0.1f, 0.1f))
 		{
 
 		}

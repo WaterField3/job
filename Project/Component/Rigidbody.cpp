@@ -227,6 +227,21 @@ namespace TMF
 		}
 	}
 
+	void Rigidbody::SetRotation(DirectX::SimpleMath::Quaternion rotation)
+	{
+		auto pLockOwner = m_pOwner.lock();
+		auto pTransform = pLockOwner->GetComponent<Transform>();
+		btTransform btTrans;
+		if (auto pLockTransform = pTransform.lock())
+		{
+			m_pRigidBody->getMotionState()->getWorldTransform(btTrans);
+			auto btQua = MakebtQuaternion(rotation);
+			btTrans.setRotation(btQua);
+			m_pRigidBody->getMotionState()->setWorldTransform(btTrans);
+			m_pRigidBody->setCenterOfMassTransform(btTrans);
+		}
+	}
+
 	void Rigidbody::GetTotalTorque()
 	{
 		auto torque = m_pRigidBody->getTotalTorque();
