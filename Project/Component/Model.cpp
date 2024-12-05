@@ -174,7 +174,8 @@ namespace TMF
 		auto proj = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(DirectX::XM_PI / 4.0f, float(1024) / float(576), 0.1f, 10.f);
 
 		// camera‚ðŽæ“¾
-		auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
+		auto pCamera = GameObjectManager::Instance().GetComponent<Camera>();
+		//auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
 		if (auto pLockCamera = pCamera.lock())
 		{
 			view = pLockCamera->GetViewMatrix();

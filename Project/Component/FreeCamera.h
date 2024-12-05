@@ -25,13 +25,15 @@ namespace TMF
 
 		DirectX::SimpleMath::Matrix MakeViewMatrix();
 
-
+		int	 prevMouseX;
+		int	 prevMouseY;
 		float m_fov = 45.0f;
 		float m_near = 0.1f;
 		float m_far = 1000.0f;
-		float  m_raduis = 0.0f;
+		float m_raduis = 0.0f;
 		float m_elevation = 0.0f;
 		float m_azimuth = 0.0f;
+		float m_rotationSpeed = 1.0f;
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Transform> m_pTargetTransform;
 

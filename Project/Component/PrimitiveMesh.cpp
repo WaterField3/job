@@ -73,7 +73,8 @@ namespace TMF
 				world = pLockTransform->GetWorldMatrix();
 			}
 
-			auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
+			auto pCamera = GameObjectManager::Instance().GetComponent<Camera>();
+			//auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
 			if (auto pLockCamera = pCamera.lock())
 			{
 				auto view = pLockCamera->GetViewMatrix();

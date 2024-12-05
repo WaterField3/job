@@ -128,7 +128,8 @@ namespace TMF
 		}
 		else if (tracker->pressed.Y == true)
 		{
-			auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
+			auto pCamera = GameObjectManager::Instance().GetComponent<Camera>();
+			//auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
 			if (auto pLockCamera = pCamera.lock())
 			{
 				if (auto pLockOwner = m_pOwner.lock())
@@ -143,7 +144,8 @@ namespace TMF
 		}
 		else if (tracker->pressed.U == true)
 		{
-			auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
+			auto pCamera = GameObjectManager::Instance().GetComponent<Camera>();
+			//auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
 			if (auto pLockCamera = pCamera.lock())
 			{
 

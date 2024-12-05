@@ -94,7 +94,8 @@ namespace TMF
 		auto world = DirectX::SimpleMath::Matrix::Identity;
 		auto view = DirectX::SimpleMath::Matrix::Identity;
 		auto proj = DirectX::SimpleMath::Matrix::Identity;
-		auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
+		auto pCamera = GameObjectManager::Instance().GetComponent<Camera>();
+		//auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
 		if (auto pLockCamera = pCamera.lock())
 		{
 			view = pLockCamera->GetViewMatrix();

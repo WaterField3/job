@@ -23,7 +23,8 @@ namespace TMF
 		m_pEffekseerManager->SetModelLoader(m_pEffectRenderer->CreateModelLoader());
 		m_pEffekseerManager->SetMaterialLoader(m_pEffectRenderer->CreateMaterialLoader());
 		m_pEffekseerManager->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
-		auto camera = GameObjectManager::Instance().GetComponent<FreeCamera>();
+		auto camera = GameObjectManager::Instance().GetComponent<Camera>();
+		//auto camera = GameObjectManager::Instance().GetComponent<FreeCamera>();
 		Effekseer::Matrix44 projMatrix;
 		Effekseer::Matrix44 viewMatrix;
 		if (auto cam = camera.lock())
@@ -49,7 +50,8 @@ namespace TMF
 	}
 	void EffectManager::Update()
 	{
-		auto camera = GameObjectManager::Instance().GetComponent<FreeCamera>();
+		auto camera = GameObjectManager::Instance().GetComponent<Camera>();
+		//auto camera = GameObjectManager::Instance().GetComponent<FreeCamera>();
 		m_pEffekseerManager->Update();
 		if (auto cam = camera.lock())
 		{
