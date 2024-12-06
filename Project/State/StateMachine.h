@@ -9,12 +9,12 @@
 
 namespace TMF
 {
+	class GameObject;
 	class StateMachine
 	{
-	private:
-		std::unique_ptr<State> m_pCurrentState;
-
 	public:
+		StateMachine(std::weak_ptr<GameObject> pOwner);
+		~StateMachine();
 		template <typename TState>
 		void ChangeState()
 		{
@@ -32,6 +32,10 @@ namespace TMF
 		void ChangeState(std::string name);
 
 		void Update();
+
+	private:
+		std::unique_ptr<State> m_pCurrentState;
+		std::weak_ptr<GameObject> m_pOwner;
 	};
 }
 

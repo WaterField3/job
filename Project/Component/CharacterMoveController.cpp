@@ -18,6 +18,7 @@
 #include "CameraMove.h"
 #include "EventSystem/EventSystem.h"
 #include "PlayerMove.h"
+#include "State/StateMachine.h"
 
 REGISTER_COMPONENT(TMF::CharacterMoveController, "CharacterMoveController");
 
@@ -31,13 +32,15 @@ namespace TMF
 	}
 	void CharacterMoveController::OnInitialize()
 	{
-		m_pEventSystem = std::make_unique<EventSystem>();
 		if (auto pLockOwner = m_pOwner.lock())
 		{
 			m_pTransform = pLockOwner->GetComponent<Transform>();
 			m_pRigidbody = pLockOwner->GetComponent<Rigidbody>();
-			PlayerMove playerMove(m_pTransform, m_pRigidbody, m_moveSpeed);
-			//m_pEventSystem->AddHandler()
+			m_pStateMachine = std::make_unique<StateMachine>(pLockOwner);
+			if (m_pStateMachine)
+			{
+				m_pStateMachine->ChangeState("PlayerIdleState");
+			}
 		}
 	}
 	void CharacterMoveController::OnFinalize()
@@ -57,62 +60,64 @@ namespace TMF
 		auto isDodge = false;
 		auto isThruster = false;
 		auto moveDirection = MoveDirection::NEUTRAL;
-		if (kb.W == true)
-		{
-			auto pLockOwner = m_pOwner.lock();
-			auto pTransform = pLockOwner->GetComponent<Transform>();
-			if (auto pLockTransform = pTransform.lock())
-			{
-				auto pos = pLockTransform->GetWorldPosition();
-				auto rotate = pLockTransform->GetWorldRotation();
-				auto forward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Forward, rotate);
+		//if (kb.W == true)
+		//{
+		//	auto pLockOwner = m_pOwner.lock();
+		//	auto pTransform = pLockOwner->GetComponent<Transform>();
+		//	if (auto pLockTransform = pTransform.lock())
+		//	{
+		//		auto pos = pLockTransform->GetWorldPosition();
+		//		auto rotate = pLockTransform->GetWorldRotation();
+		//		auto forward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Forward, rotate);
 
-				movePos += forward * m_moveSpeed;
-			}
-		}
-		if (kb.S == true)
-		{
-			auto pLockOwner = m_pOwner.lock();
-			auto pTransform = pLockOwner->GetComponent<Transform>();
-			if (auto pLockTransform = pTransform.lock())
-			{
-				auto pos = pLockTransform->GetWorldPosition();
-				auto rotate = pLockTransform->GetWorldRotation();
-				auto backward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Backward, rotate);
-				movePos += backward * m_moveSpeed;
-				moveDirection = MoveDirection::BACK;
-			}
-		}
-		if (kb.A == true)
-		{
-			auto pLockOwner = m_pOwner.lock();
-			auto pTransform = pLockOwner->GetComponent<Transform>();
-			if (auto pLockTransform = pTransform.lock())
-			{
-				auto pos = pLockTransform->GetWorldPosition();
-				auto rotate = pLockTransform->GetWorldRotation();
-				auto left = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Left, rotate);
-				movePos += left * m_moveSpeed;
-				torque = DirectX::SimpleMath::Vector3(abs(checkvec3.x), abs(checkvec3.y), abs(checkvec3.y));
-				isRotate = true;
-				moveDirection = MoveDirection::LEFT;
-			}
-		}
-		if (kb.D == true)
-		{
-			auto pLockOwner = m_pOwner.lock();
-			auto pTransform = pLockOwner->GetComponent<Transform>();
-			if (auto pLockTransform = pTransform.lock())
-			{
-				auto pos = pLockTransform->GetWorldPosition();
-				auto rotate = pLockTransform->GetWorldRotation();
-				auto right = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Right, rotate);
-				movePos += right * m_moveSpeed;
-				torque = DirectX::SimpleMath::Vector3(abs(checkvec3.x), -abs(checkvec3.y), abs(checkvec3.y));
-				isRotate = true;
-				moveDirection = MoveDirection::RIGHT;
-			}
-		}
+		//		movePos += forward * m_moveSpeed;
+		//	}
+		//}
+		//if (kb.S == true)
+		//{
+		//	auto pLockOwner = m_pOwner.lock();
+		//	auto pTransform = pLockOwner->GetComponent<Transform>();
+		//	if (auto pLockTransform = pTransform.lock())
+		//	{
+		//		auto pos = pLockTransform->GetWorldPosition();
+		//		auto rotate = pLockTransform->GetWorldRotation();
+		//		auto backward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Backward, rotate);
+		//		movePos += backward * m_moveSpeed;
+		//		moveDirection = MoveDirection::BACK;
+		//	}
+		//}
+		//if (kb.A == true)
+		//{
+		//	auto pLockOwner = m_pOwner.lock();
+		//	auto pTransform = pLockOwner->GetComponent<Transform>();
+		//	if (auto pLockTransform = pTransform.lock())
+		//	{
+		//		auto pos = pLockTransform->GetWorldPosition();
+		//		auto rotate = pLockTransform->GetWorldRotation();
+		//		auto left = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Left, rotate);
+		//		movePos += left * m_moveSpeed;
+		//		torque = DirectX::SimpleMath::Vector3(abs(checkvec3.x), abs(checkvec3.y), abs(checkvec3.y));
+		//		isRotate = true;
+		//		moveDirection = MoveDirection::LEFT;
+		//	}
+		//}
+		//if (kb.D == true)
+		//{
+		//	auto pLockOwner = m_pOwner.lock();
+		//	auto pTransform = pLockOwner->GetComponent<Transform>();
+		//	if (auto pLockTransform = pTransform.lock())
+		//	{
+		//		auto pos = pLockTransform->GetWorldPosition();
+		//		auto rotate = pLockTransform->GetWorldRotation();
+		//		auto right = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Right, rotate);
+		//		movePos += right * m_moveSpeed;
+		//		torque = DirectX::SimpleMath::Vector3(abs(checkvec3.x), -abs(checkvec3.y), abs(checkvec3.y));
+		//		isRotate = true;
+		//		moveDirection = MoveDirection::RIGHT;
+		//	}
+		//}
+
+		m_pStateMachine->Update();
 
 		if (kb.V == true)
 		{

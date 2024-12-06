@@ -15,7 +15,7 @@ namespace TMF
 		~PlayerMove();
 
 		void MoveForward();
-		void MoveDirection(DirectX::SimpleMath::Vector3& forward);
+		void MoveDirection(DirectX::SimpleMath::Vector3& vector);
 		void MoveBack();
 		void MoveLeft();
 		void MoveRight();

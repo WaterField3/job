@@ -8,6 +8,8 @@ namespace TMF
 	class EventSystem
 	{
 	public:
+		EventSystem();
+		~EventSystem();
 		inline void AddHandler(char key, const std::function<void()>& handler) { m_handler[key] = handler; }
 		void TriggerEvent(char key);
 

@@ -11,8 +11,8 @@ namespace TMF
 	}
 	PlayerMove::PlayerMove(std::weak_ptr<Transform> pTransform, std::weak_ptr<Rigidbody> pRigidbody, float moveSpeed)
 	{
-		m_pTransform = pTransform;
-		m_pRigidbody = pRigidbody;
+		m_pTransform = pTransform.lock();
+		m_pRigidbody = pRigidbody.lock();
 		m_moveSpeed = moveSpeed;
 	}
 
