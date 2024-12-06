@@ -15,6 +15,9 @@
 
 namespace TMF
 {
+	class Transform;
+	class Rigidbody;
+	class EventSystem;
 	class CharacterMoveController : public Component
 	{
 	public:
@@ -32,6 +35,9 @@ namespace TMF
 		float m_jumpPower = 1;
 		bool m_oldIsJump = false;
 		DirectX::SimpleMath::Vector3 checkvec3= DirectX::SimpleMath::Vector3::One;
+		std::weak_ptr<Transform> m_pTransform;
+		std::weak_ptr<Rigidbody> m_pRigidbody;
+		std::unique_ptr<EventSystem> m_pEventSystem;
 
 		SERIALIZE_COMPONENT(m_moveSpeed, m_jumpPower, checkvec3);
 	};

@@ -5,7 +5,6 @@
 #include "Transform.h"
 #include "Rigidbody.h"
 #include "Input.h"
-#include "Transform.h"
 #include "Melee.h"
 #include "Shot.h"
 #include "Dodge.h"
@@ -17,6 +16,8 @@
 #include "GameObject/GameObjectManager.h"
 #include "FreeCamera.h"
 #include "CameraMove.h"
+#include "EventSystem/EventSystem.h"
+#include "PlayerMove.h"
 
 REGISTER_COMPONENT(TMF::CharacterMoveController, "CharacterMoveController");
 
@@ -30,6 +31,14 @@ namespace TMF
 	}
 	void CharacterMoveController::OnInitialize()
 	{
+		m_pEventSystem = std::make_unique<EventSystem>();
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			m_pTransform = pLockOwner->GetComponent<Transform>();
+			m_pRigidbody = pLockOwner->GetComponent<Rigidbody>();
+			PlayerMove playerMove(m_pTransform, m_pRigidbody, m_moveSpeed);
+			//m_pEventSystem->AddHandler()
+		}
 	}
 	void CharacterMoveController::OnFinalize()
 	{

@@ -191,6 +191,8 @@
     <ClCompile Include="dx11helper.cpp" />
     <ClCompile Include="Component\FreeCamera.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
+    <ClCompile Include="EventSystem\EventSystem.cpp" />
+    <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="State\PlayerIdleState.cpp" />
     <ClCompile Include="RenderTexture.cpp" />
     <ClCompile Include="Component\Shot.cpp" />
@@ -278,6 +280,8 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="MoveInfo.h" />
+    <ClInclude Include="EventSystem\EventSystem.h" />
+    <ClInclude Include="PlayerMove.h" />
     <ClInclude Include="State\PlayerIdleState.h" />
     <ClInclude Include="ReadData.h" />
     <ClInclude Include="RenderTexture.h" />
