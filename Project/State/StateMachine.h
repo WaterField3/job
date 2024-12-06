@@ -10,7 +10,7 @@
 namespace TMF
 {
 	class GameObject;
-	class StateMachine
+	class StateMachine : public std::enable_shared_from_this<StateMachine>
 	{
 	public:
 		StateMachine(std::weak_ptr<GameObject> pOwner);

@@ -99,6 +99,10 @@ namespace TMF
 			//ApplicationState::Instance().DrawImGui();
 		}
 		m_pPlayButtonBar->DrawImGui(m_pHirarchy->GetSelectGameObject());
+		ImGui::Begin("FPS");
+		auto imGuiIO = ImGui::GetIO();
+		ImGui::Text("FPS%.1f", imGuiIO.Framerate);
+		ImGui::End();
 		ImGui::Render();
 
 

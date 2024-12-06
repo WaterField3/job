@@ -36,7 +36,7 @@ namespace TMF
 		{
 			m_pTransform = pLockOwner->GetComponent<Transform>();
 			m_pRigidbody = pLockOwner->GetComponent<Rigidbody>();
-			m_pStateMachine = std::make_unique<StateMachine>(pLockOwner);
+			m_pStateMachine = std::make_shared<StateMachine>(pLockOwner);
 			if (m_pStateMachine)
 			{
 				m_pStateMachine->ChangeState("PlayerIdleState");

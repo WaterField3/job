@@ -10,9 +10,10 @@ namespace TMF
 	{
 
 	}
-	void State::Initialize(std::weak_ptr<GameObject> pOwenr)
+	void State::Initialize(std::weak_ptr<GameObject> pOwenr, std::weak_ptr<StateMachine> pAdministerStateMachine)
 	{
 		m_pOwner = pOwenr;
+		m_pAdministratorStateMachine = pAdministerStateMachine;
 		OnInitialize();
 	}
 	void State::Enter()

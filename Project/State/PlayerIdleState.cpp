@@ -7,6 +7,7 @@
 #include "Component/Transform.h"
 #include "Component/Rigidbody.h" 
 #include "Input.h"
+#include "StateMachine.h"
 
 REGISTER_STATE(TMF::PlayerIdleState, "PlayerIdleState");
 
@@ -65,6 +66,10 @@ namespace TMF
 		if (keyState.D)
 		{
 			m_pEventSystem->TriggerEvent('d');
+			if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
+			{
+				pLockAdministratorStateMachine->ChangeState("PlayerJumpState");
+			}
 		}
 	}
 	void PlayerIdleState::OnExit()

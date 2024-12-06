@@ -37,7 +37,7 @@ namespace TMF
 		DirectX::SimpleMath::Vector3 checkvec3= DirectX::SimpleMath::Vector3::One;
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Rigidbody> m_pRigidbody;
-		std::unique_ptr<StateMachine> m_pStateMachine;
+		std::shared_ptr<StateMachine> m_pStateMachine;
 
 		SERIALIZE_COMPONENT(m_moveSpeed, m_jumpPower, checkvec3);
 	};

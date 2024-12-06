@@ -192,6 +192,7 @@
     <ClCompile Include="Component\FreeCamera.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="EventSystem\EventSystem.cpp" />
+    <ClCompile Include="PlayerJump.cpp" />
     <ClCompile Include="State\PlayerJumpState.cpp" />
     <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="State\PlayerIdleState.cpp" />
@@ -282,6 +283,7 @@
     <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="MoveInfo.h" />
     <ClInclude Include="EventSystem\EventSystem.h" />
+    <ClInclude Include="PlayerJump.h" />
     <ClInclude Include="State\PlayerJumpState.h" />
     <ClInclude Include="PlayerMove.h" />
     <ClInclude Include="State\PlayerIdleState.h" />

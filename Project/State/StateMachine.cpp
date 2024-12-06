@@ -1,6 +1,7 @@
 #include "StateMachine.h"
 
 #include "State/StateManager.h"
+#include "Utility/Log.h"
 
 namespace TMF
 {
@@ -21,7 +22,14 @@ namespace TMF
 		m_pCurrentState = StateManager::Instance().GetState(name);
 		if (m_pCurrentState)
 		{
-			m_pCurrentState->Initialize(m_pOwner);
+			try
+			{
+				m_pCurrentState->Initialize(m_pOwner, shared_from_this());
+			}
+			catch (const std::exception& e)
+			{
+				Log::Info("%s", e.what());
+			}
 			m_pCurrentState->Enter();
 		}
 	}

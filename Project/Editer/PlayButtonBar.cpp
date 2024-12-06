@@ -103,6 +103,7 @@ namespace TMF
 				GameObjectManager::Instance().LoadObject(m_loadObjectName);
 			}
 		}
+
 		ImGui::Checkbox("DemoWindow", &m_isDemoWindow);
 		if (m_isDemoWindow)
 		{
