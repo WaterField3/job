@@ -22,6 +22,7 @@ namespace TMF
 		void AddGhostObject(std::weak_ptr<btGhostObject> pGhostObject);
 		void RemoveGhostObject(std::weak_ptr<btGhostObject> pGhostObject);
 		void Reset();
+		bool RayCastHit(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end);
 
 		static PhysicsManager& Instance()
 		{

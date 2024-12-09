@@ -11,6 +11,7 @@
 #include "Component/Thruster.h"
 #include "Input.h"
 #include "State/StateMachine.h"
+#include "PhysicsManager.h"
 
 REGISTER_STATE(TMF::PlayerJumpState, ("PlayerJumpState"));
 
@@ -26,9 +27,9 @@ namespace TMF
 			{
 				isGetJump = true;
 			}
-			auto pTransform = pLockOwner->GetComponent<Transform>();
+			m_pTransform = pLockOwner->GetComponent<Transform>();
 			bool isGetTransform = false;
-			if (auto pLockTransform = pTransform.lock())
+			if (auto pLockTransform = m_pTransform.lock())
 			{
 				isGetTransform = true;
 			}
@@ -46,7 +47,7 @@ namespace TMF
 			}
 			if (isGetTransform == true && isGetRigidbody == true && isGetThruster == true && isGetJump)
 			{
-				m_pPlayerJump = std::make_unique<PlayerJump>(pTransform, pRigidbody, pThruster, pJump);
+				m_pPlayerJump = std::make_unique<PlayerJump>(m_pTransform, pRigidbody, pThruster, pJump);
 			}
 		}
 	}
@@ -77,11 +78,16 @@ namespace TMF
 				m_pPlayerJump->ChageEnd();
 			}
 
-			if (m_pPlayerJump->GetIsJumpingEnd() == true)
+			if (auto pLockTransfrom = m_pTransform.lock())
 			{
-				if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
+				auto start = pLockTransfrom->GetPosition();
+				auto end = start - DirectX::SimpleMath::Vector3(0.0f, 0.5f, 0.0f);
+				if (m_pPlayerJump->GetIsJumpingEnd() == true && PhysicsManager::Instance().RayCastHit(start, end))
 				{
-					pLockAdministratorStateMachine->ChangeState("PlayerIdleState");
+					if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
+					{
+						pLockAdministratorStateMachine->ChangeState("PlayerIdleState");
+					}
 				}
 			}
 		}

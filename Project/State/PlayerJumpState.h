@@ -6,6 +6,7 @@
 namespace TMF
 {
 	class PlayerJump;
+	class Transform;
 	class PlayerJumpState : public State
 	{
 	public:
@@ -16,6 +17,7 @@ namespace TMF
 
 	private:
 		std::unique_ptr<PlayerJump> m_pPlayerJump;
+		std::weak_ptr<Transform> m_pTransform;
 	};
 }
 

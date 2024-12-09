@@ -80,4 +80,17 @@ namespace TMF
 		m_pCollisionDispacher->Reset();
 	}
 
+	bool PhysicsManager::RayCastHit(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end)
+	{
+		auto btStart = btVector3(start.x, start.y, start.z);
+		auto btEnd = btVector3(end.x, end.y, end.z);
+		// RayResultCallback オブジェクトを作成して、レイキャスト結果を保存
+		btCollisionWorld::ClosestRayResultCallback rayCallback(btStart, btEnd);
+
+		// レイキャスティングを実行
+		m_pDynamicsWorld->rayTest(btStart, btEnd, rayCallback);
+
+		return rayCallback.hasHit();
+	}
+
 }
