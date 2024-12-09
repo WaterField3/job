@@ -51,21 +51,24 @@ namespace TMF
 	void PlayerIdleState::OnUpdate()
 	{
 		auto keyState = Input::Instance().GetKeyState();
-		if (keyState.W)
+		if (keyState.W == true)
 		{
 			m_pEventSystem->TriggerEvent('w');
 		}
-		if (keyState.A)
+		if (keyState.A == true)
 		{
 			m_pEventSystem->TriggerEvent('a');
 		}
-		if (keyState.S)
+		if (keyState.S == true)
 		{
 			m_pEventSystem->TriggerEvent('s');
 		}
-		if (keyState.D)
+		if (keyState.D == true)
 		{
 			m_pEventSystem->TriggerEvent('d');
+		}
+		if (keyState.Space == true)
+		{
 			if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
 			{
 				pLockAdministratorStateMachine->ChangeState("PlayerJumpState");

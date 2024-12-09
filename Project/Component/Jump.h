@@ -24,6 +24,11 @@ namespace TMF
 		void ChageStop(MoveDirection moveDirection);
 		void Fall();
 
+		inline float GetImpact() { return m_impact; }
+		inline float GetMoveSpeed() { return m_moveSpeed; }
+		inline float GetMaxMoveSpeed() { return m_maxMoveSpeed; }
+		inline float GetMaxFlightTime() { return m_maxFlightTime; }
+
 	private:
 		// チャージした時間（割合）
 		float m_chageTime = 0;

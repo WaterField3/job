@@ -125,7 +125,7 @@ namespace TMF
 		}
 		else if (kb.Space == true)
 		{
-			isJump = true;
+			//isJump = true;
 		}
 
 		// uŠÔ‚ğæ“¾

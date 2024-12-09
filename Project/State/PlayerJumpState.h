@@ -5,7 +5,7 @@
 
 namespace TMF
 {
-	class Jump;
+	class PlayerJump;
 	class PlayerJumpState : public State
 	{
 	public:
@@ -15,7 +15,7 @@ namespace TMF
 		void OnExit() override;
 
 	private:
-		std::weak_ptr<Jump> m_pJump;
+		std::unique_ptr<PlayerJump> m_pPlayerJump;
 	};
 }
 

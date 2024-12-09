@@ -5,6 +5,12 @@
 #include "Utility/Log.h"
 #include "Component/Jump.h"
 #include "GameObject/GameObject.h"
+#include "PlayerJump.h"
+#include "Component/Transform.h"
+#include "Component/Rigidbody.h"
+#include "Component/Thruster.h"
+#include "Input.h"
+#include "State/StateMachine.h"
 
 REGISTER_STATE(TMF::PlayerJumpState, ("PlayerJumpState"));
 
@@ -14,10 +20,33 @@ namespace TMF
 	{
 		if (auto pLockOwner = m_pOwner.lock())
 		{
-			m_pJump = pLockOwner->GetComponent<Jump>();
-			if (auto pLockJump = m_pJump.lock())
+			auto pJump = pLockOwner->GetComponent<Jump>();
+			auto isGetJump = false;
+			if (auto pLockJump = pJump.lock())
 			{
-			
+				isGetJump = true;
+			}
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			bool isGetTransform = false;
+			if (auto pLockTransform = pTransform.lock())
+			{
+				isGetTransform = true;
+			}
+			auto pRigidbody = pLockOwner->GetComponent<Rigidbody>();
+			auto isGetRigidbody = false;
+			if (auto pLockRigidbody = pRigidbody.lock())
+			{
+				isGetRigidbody = true;
+			}
+			auto pThruster = pLockOwner->GetComponent<Thruster>();
+			auto isGetThruster = false;
+			if (auto pLockThruster = pThruster.lock())
+			{
+				isGetThruster = true;
+			}
+			if (isGetTransform == true && isGetRigidbody == true && isGetThruster == true && isGetJump)
+			{
+				m_pPlayerJump = std::make_unique<PlayerJump>(pTransform, pRigidbody, pThruster, pJump);
 			}
 		}
 	}
@@ -27,7 +56,35 @@ namespace TMF
 	}
 	void PlayerJumpState::OnUpdate()
 	{
+		if (m_pPlayerJump)
+		{
+			auto keyState = Input::Instance().GetKeyState();
+			auto keyTracker = Input::Instance().GetKeyboardTracker();
 
+			keyTracker->Update(keyState);
+			if (keyState.Space == true)
+			{
+				m_pPlayerJump->Chage();
+			}
+			// チャージ解除　ジャンプ開始
+			if (keyState.IsKeyUp(DirectX::Keyboard::Space) || m_pPlayerJump->GetChageEnd() == true)
+			{
+				m_pPlayerJump->Flight();
+
+			}
+			if (keyState.IsKeyUp(DirectX::Keyboard::Space))
+			{
+				m_pPlayerJump->ChageEnd();
+			}
+
+			if (m_pPlayerJump->GetIsJumpingEnd() == true)
+			{
+				if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
+				{
+					pLockAdministratorStateMachine->ChangeState("PlayerIdleState");
+				}
+			}
+		}
 	}
 	void PlayerJumpState::OnExit()
 	{
