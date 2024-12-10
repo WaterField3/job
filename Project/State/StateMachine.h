@@ -30,7 +30,6 @@ namespace TMF
 			}
 		}
 		void ChangeState(std::string name);
-
 		void Update();
 
 	private:

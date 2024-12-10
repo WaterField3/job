@@ -117,11 +117,18 @@ namespace TMF
 		//	}
 		//}
 
+
+		//if (kb.W == true || kb.A == true || kb.S == true || kb.D == true)
+		//{
+		//	m_pStateMachine->ChangeState("PlayerIdleState");
+		//}
+
+
 		m_pStateMachine->Update();
 
 		if (kb.V == true)
 		{
-			isThruster = true;
+			//isThruster = true;
 		}
 		else if (kb.Space == true)
 		{
@@ -186,8 +193,9 @@ namespace TMF
 			// ˆê’èŽžŠÔ“à‚É•¡”‰ñ‰Ÿ‚³‚ê‚Ä‚¢‚é‚©
 			if (Input::Instance().PluralGetKeyDiwn(now) == true)
 			{
-				isDodge = true;
+				//isDodge = true;
 				movePos = DirectX::SimpleMath::Vector3::Zero;
+				m_pStateMachine->ChangeState("PlayerDodgeState");
 			}
 		}
 

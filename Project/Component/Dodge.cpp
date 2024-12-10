@@ -42,6 +42,7 @@ namespace TMF
 					if (auto pLockPlayerStatus = pPlayerStatus.lock())
 					{
 						pLockPlayerStatus->SetIsInvincible(false);
+						m_isDodgeEnd = true;
 					}
 				}
 				return;
@@ -173,6 +174,7 @@ namespace TMF
 					m_dodgeMoveVector *= m_moveMagnification;
 					pLockAnimater->SetFileName(dodgePath, m_dodgeTime);
 					m_isDodgeMove = true;
+					m_isDodgeEnd = false;
 				}
 			}
 

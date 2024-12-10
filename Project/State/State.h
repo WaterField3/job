@@ -24,7 +24,6 @@ namespace TMF
 		virtual void OnUpdate() {};
 		virtual void OnExit() {};
 
-
 		std::weak_ptr<GameObject> m_pOwner;
 		std::unique_ptr<EventSystem> m_pEventSystem;
 		std::weak_ptr<StateMachine> m_pAdministratorStateMachine;

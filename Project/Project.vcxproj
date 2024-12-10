@@ -188,10 +188,12 @@
     <ClCompile Include="Component\Fade.cpp" />
     <ClCompile Include="Component\Font.cpp" />
     <ClCompile Include="Component\Jump.cpp" />
+    <ClCompile Include="DodgeMove.cpp" />
     <ClCompile Include="dx11helper.cpp" />
     <ClCompile Include="Component\FreeCamera.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="EventSystem\EventSystem.cpp" />
+    <ClCompile Include="State\PlayerDodgeState.cpp" />
     <ClCompile Include="PlayerJump.cpp" />
     <ClCompile Include="State\PlayerJumpState.cpp" />
     <ClCompile Include="PlayerMove.cpp" />
@@ -276,6 +278,7 @@
     <ClInclude Include="Component\Fade.h" />
     <ClInclude Include="Component\Font.h" />
     <ClInclude Include="Component\Jump.h" />
+    <ClInclude Include="DodgeMove.h" />
     <ClInclude Include="dx11helper.h" />
     <ClInclude Include="Component\FreeCamera.h" />
     <ClInclude Include="IndexBuffer.h" />
@@ -283,6 +286,7 @@
     <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="MoveInfo.h" />
     <ClInclude Include="EventSystem\EventSystem.h" />
+    <ClInclude Include="State\PlayerDodgeState.h" />
     <ClInclude Include="PlayerJump.h" />
     <ClInclude Include="State\PlayerJumpState.h" />
     <ClInclude Include="PlayerMove.h" />

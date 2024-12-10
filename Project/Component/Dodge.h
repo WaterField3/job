@@ -17,8 +17,11 @@ namespace TMF
 		void OnDrawImGui() override;
 
 		void DodgeStart(MoveDirection direction);
+
+		inline bool GetIsDodgeEnd() { return m_isDodgeEnd; }
 	private:
 		bool m_isDodgeMove = false;
+		bool m_isDodgeEnd = false;
 		float m_dodgeTime = 1.0f;
 		float m_timer = 0.0f;
 		float m_moveMagnification = 1.0f;

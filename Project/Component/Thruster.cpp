@@ -196,6 +196,15 @@ namespace TMF
 	}
 	void Thruster::StopFastMovement()
 	{
+		//if (m_isThruster == false)
+		//{
+		//	return;
+		//}
+
+		if (m_isThruster == true)
+		{
+			m_isThruster = false;
+		}
 		if (auto pLockRigidBody = m_pRigidBody.lock())
 		{
 			auto velocity = pLockRigidBody->GetLinearVelocity();
@@ -209,10 +218,6 @@ namespace TMF
 				}
 				pLockRigidBody->SetLinearVelocity(velocity);
 			}
-		}
-		if (m_isThruster == true)
-		{
-			m_isThruster = false;
 		}
 	}
 	void Thruster::UseThruster(float useMagnification)
