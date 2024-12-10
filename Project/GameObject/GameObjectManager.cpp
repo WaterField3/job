@@ -121,6 +121,54 @@ namespace TMF
 		}
 	}
 
+	void GameObjectManager::Save()
+	{
+		auto fileName = m_nowSceneName + ".json";
+		std::ofstream ss(fileName.c_str(), std::ios::out);
+		{
+			cereal::JSONOutputArchive oArchive(ss);
+			oArchive(Instance());
+		}
+	}
+
+	void GameObjectManager::Load()
+	{
+		auto fileName = m_nowSceneName + ".json";
+		if (!std::filesystem::is_regular_file(fileName))
+		{
+			return;
+		}
+		std::ifstream iS(fileName.c_str(), std::ios::in);
+		{
+			cereal::JSONInputArchive inArchive(iS);
+			inArchive(GameObjectManager::Instance());
+		}
+	}
+
+	void GameObjectManager::SaveTest()
+	{
+		auto fileName = m_nowSceneName + "Test.json";
+		std::ofstream ss(fileName.c_str(), std::ios::out);
+		{
+			cereal::JSONOutputArchive oArchive(ss);
+			oArchive(Instance());
+		}
+	}
+
+	void GameObjectManager::LoadTest()
+	{
+		auto fileName = m_nowSceneName +  "Test.json";
+		if (!std::filesystem::is_regular_file(fileName))
+		{
+			return;
+		}
+		std::ifstream iS(fileName.c_str(), std::ios::in);
+		{
+			cereal::JSONInputArchive inArchive(iS);
+			inArchive(GameObjectManager::Instance());
+		}
+	}
+
 	void GameObjectManager::Save(std::string fileName)
 	{
 		fileName = fileName + ".json";
@@ -133,6 +181,7 @@ namespace TMF
 
 	void GameObjectManager::Load(std::string fileName)
 	{
+		m_nowSceneName = fileName;
 		fileName = fileName + ".json";
 		if (!std::filesystem::is_regular_file(fileName))
 		{
@@ -184,6 +233,21 @@ namespace TMF
 	std::vector<std::shared_ptr<GameObject>> GameObjectManager::GetGameObjects()
 	{
 		return m_pGameObjects;
+	}
+	std::vector<std::weak_ptr<GameObject>> GameObjectManager::GetGameObjects(int tag)
+	{
+		auto pGameObjects = std::vector<std::weak_ptr<GameObject>>();
+		if (tag < int(GameObject::Tag::Max) && 0 <= tag)
+		{
+			for (auto& pGameObject : m_pGameObjects)
+			{
+				if (pGameObject->GetTag() == GameObject::Tag(tag))
+				{
+					pGameObjects.push_back(pGameObject);
+				}
+			}
+		}
+		return pGameObjects;
 	}
 	std::weak_ptr<GameObject> GameObjectManager::GetGameObject(std::string name)
 	{

@@ -30,13 +30,18 @@ namespace TMF
 		{
 			if (!isPlay)
 			{
-				GameObjectManager::Instance().Save(TEST_DATA);
+				GameObjectManager::Instance().SaveTest();
+				//GameObjectManager::Instance().Save(TEST_DATA);
+
 			}
 			else
 			{
 				GameObjectManager::Instance().Finalize();
 				PhysicsManager::Instance().Reset();
-				GameObjectManager::Instance().Load(TEST_DATA);
+				GameObjectManager::Instance().LoadTest();
+				//GameObjectManager::Instance().Load(TEST_DATA);
+				//GameObjectManager::Instance().Load(TITLE_DATA);
+				//GameObjectManager::Instance().Load(RESULT_DATA);
 				GameObjectManager::Instance().Initialize();
 			}
 			ApplicationState::Instance().SetIsPlay(!isPlay);
@@ -74,7 +79,8 @@ namespace TMF
 		{
 			if (!isPlay)
 			{
-				GameObjectManager::Instance().Save(MAIN_DATA);
+				//GameObjectManager::Instance().Save(MAIN_DATA);
+				GameObjectManager::Instance().Save();
 			}
 		}
 		char saveBuf[256] = "";

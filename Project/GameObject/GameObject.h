@@ -107,6 +107,7 @@ namespace TMF
 			Default,
 			Player,
 			Ground,
+			Max,
 		};
 	public:
 		Tag inline GetTag() const { return m_tag; }

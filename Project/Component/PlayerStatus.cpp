@@ -174,6 +174,7 @@ namespace TMF
 						pLockRigidbody->RemoveRigidbody();
 					}
 				}
+				m_isDead = true;
 			}
 		}
 	}

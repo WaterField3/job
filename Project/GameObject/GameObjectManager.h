@@ -23,12 +23,17 @@ namespace TMF
 		void Update();
 		void LateUpdate();
 		void Draw();
+		void Save();
+		void Load();
+		void SaveTest();
+		void LoadTest();
 		void Save(std::string fileName);
 		void Load(std::string fileName);
 		void SaveObject(std::string fileName, std::weak_ptr<GameObject> obj);
 		std::weak_ptr<GameObject> LoadObject(std::string fileName);
 
 		std::vector<std::shared_ptr<GameObject>> GetGameObjects();
+		std::vector<std::weak_ptr<GameObject>> GetGameObjects(int tag);
 		std::weak_ptr<GameObject> GetGameObject(std::string name);
 
 		template<typename TComponent>
@@ -70,5 +75,7 @@ namespace TMF
 
 	private:
 		std::vector<std::shared_ptr<GameObject>> m_pGameObjects;
+
+		std::string m_nowSceneName = "";
 	};
 }

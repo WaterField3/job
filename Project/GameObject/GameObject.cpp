@@ -27,6 +27,10 @@ namespace TMF
 	{
 		for (auto& pComponent : m_pComponents)
 		{
+			if (m_pComponents.size() == 0)
+			{
+				break;
+			}
 			pComponent->Finalize();
 		}
 	}
@@ -37,6 +41,10 @@ namespace TMF
 		{
 			for (auto& component : m_pComponents)
 			{
+				if (m_pComponents.size() == 0)
+				{
+					break;
+				}
 				if (component->GetIsEnable() == true)
 				{
 					component->Update();
@@ -49,6 +57,10 @@ namespace TMF
 	{
 		for (auto& component : m_pComponents)
 		{
+			if (m_pComponents.size() == 0)
+			{
+				break;
+			}
 			if (component->GetIsEnable() == true)
 			{
 				component->Draw();

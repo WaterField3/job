@@ -262,7 +262,7 @@
                                         },
                                         "m_raduis": 4.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 0.12217304110527039,
+                                        "m_azimuth": 0.1745329350233078,
                                         "m_rotationSpeed": 1.0,
                                         "m_targetName": "Anim"
                                     }
@@ -966,7 +966,7 @@
                         "m_uuID": {
                             "uuid": "cb93c7c3-00da-463d-9f7b-ba5803ba24ce"
                         },
-                        "m_tag": 0,
+                        "m_tag": 1,
                         "m_isActive": true,
                         "m_pComponents": [
                             {
@@ -1344,7 +1344,7 @@
                                         },
                                         "m_position": {
                                             "value0": 0.859000027179718,
-                                            "value1": 3.200000047683716,
+                                            "value1": 6.400000095367432,
                                             "value2": 0.9575543999671936
                                         },
                                         "m_scale": {
@@ -1464,7 +1464,7 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_damage": 1.0,
+                                        "m_damage": 102.0,
                                         "m_reactionType": 0
                                     }
                                 }
@@ -2285,9 +2285,9 @@
                                             "m_isEnable": true
                                         },
                                         "m_position": {
-                                            "value0": 1.3087522983551026,
+                                            "value0": 1.464644193649292,
                                             "value1": 3.7695112228393556,
-                                            "value2": -3.0129640102386476
+                                            "value2": -2.940340757369995
                                         },
                                         "m_scale": {
                                             "value0": 1.0,
@@ -2325,7 +2325,7 @@
                                         "m_far": 1000.0,
                                         "m_raduis": 5.0,
                                         "m_elevation": 7.0,
-                                        "m_azimuth": 5.1221723556518559
+                                        "m_azimuth": 5.174531936645508
                                     }
                                 }
                             }
@@ -2403,6 +2403,85 @@
                                             "value2": 2.0
                                         },
                                         "m_textureName": ""
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483751,
+                    "data": {
+                        "m_name": "GameRule",
+                        "m_uuID": {
+                            "uuid": "6ac953ea-6867-4ba4-91a4-215284e180d1"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483752,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "9fa4fe59-0ee1-4503-ba7d-4d3853a6965b"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483674,
+                                "polymorphic_name": "TMF::GameRule",
+                                "ptr_wrapper": {
+                                    "id": 2147483753,
+                                    "data": {
+                                        "m_uuID": {
+                                            "uuid": "24690205-43cf-4dde-97b4-f93704eff87e"
+                                        },
+                                        "m_isEnable": true
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 23,
+                                "ptr_wrapper": {
+                                    "id": 2147483754,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "b3fa51cf-b2b5-4cc6-b7ad-b1f32a1d2025"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_trigger": 0,
+                                        "m_loadFile": "Result"
                                     }
                                 }
                             }

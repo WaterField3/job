@@ -191,6 +191,7 @@
     <ClCompile Include="DodgeMove.cpp" />
     <ClCompile Include="dx11helper.cpp" />
     <ClCompile Include="Component\FreeCamera.cpp" />
+    <ClCompile Include="Component\GameRule.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="EventSystem\EventSystem.cpp" />
     <ClCompile Include="State\PlayerDodgeState.cpp" />
@@ -281,6 +282,7 @@
     <ClInclude Include="DodgeMove.h" />
     <ClInclude Include="dx11helper.h" />
     <ClInclude Include="Component\FreeCamera.h" />
+    <ClInclude Include="Component\GameRule.h" />
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshRenderer.h" />
