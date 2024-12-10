@@ -49,7 +49,13 @@ namespace TMF
 			}
 			if (auto pLockDodge = m_pDodge.lock())
 			{
-				pLockDodge->DodgeStart(moveDirection);
+				if (pLockDodge->DodgeStart(moveDirection) == false)
+				{
+					if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
+					{
+						pLockAdministratorStateMachine->ChangeState("PlayerIdleState");
+					}
+				}
 			}
 		}
 	}

@@ -262,7 +262,7 @@
                                         },
                                         "m_raduis": 4.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 0.20943953096866609,
+                                        "m_azimuth": 0.27925270795822146,
                                         "m_rotationSpeed": 1.0,
                                         "m_targetName": "Anim"
                                     }
@@ -2285,9 +2285,9 @@
                                             "m_isEnable": true
                                         },
                                         "m_position": {
-                                            "value0": 1.566367745399475,
+                                            "value0": 1.7639683485031129,
                                             "value1": 3.7695112228393556,
-                                            "value2": -2.887434244155884
+                                            "value2": -2.771137237548828
                                         },
                                         "m_scale": {
                                             "value0": 1.0,
@@ -2325,7 +2325,7 @@
                                         "m_far": 1000.0,
                                         "m_raduis": 5.0,
                                         "m_elevation": 7.0,
-                                        "m_azimuth": 5.209438323974609
+                                        "m_azimuth": 5.2792510986328129
                                     }
                                 }
                             }

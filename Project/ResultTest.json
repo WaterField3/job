@@ -511,6 +511,56 @@
                         ]
                     }
                 }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483670,
+                    "data": {
+                        "m_name": "aaa",
+                        "m_uuID": {
+                            "uuid": "547268a4-f204-4e74-8a4e-9f0a88996956"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483671,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "ae69f74a-bbde-4518-b2b9-69ebd149dbf1"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
             }
         ]
     }

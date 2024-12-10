@@ -93,30 +93,50 @@ namespace TMF
 
 	void GameObjectManager::Update()
 	{
+
 		for (auto& pGameObject : m_pGameObjects)
 		{
+			if (m_isLoaded == true)
+			{
+				return;
+			}
 			pGameObject->Update();
 		}
+
 	}
 
 	void GameObjectManager::LateUpdate()
 	{
+
 		for (auto& pGameObject : m_pGameObjects)
 		{
+			if (m_isLoaded == true)
+			{
+				return;
+			}
 			if (pGameObject->GetActive())
 			{
+
 				pGameObject->LateUpdate();
 			}
 		}
+
 	}
 
 	void GameObjectManager::Draw()
 	{
-		for (auto& pGameObject : m_pGameObjects)
+		if (m_isLoaded == true)
 		{
-			if (pGameObject->GetActive())
+			m_isLoaded = false;
+		}
+		else
+		{
+			for (auto& pGameObject : m_pGameObjects)
 			{
-				pGameObject->Draw();
+				if (pGameObject->GetActive())
+				{
+					pGameObject->Draw();
+				}
 			}
 		}
 	}
@@ -142,6 +162,7 @@ namespace TMF
 		{
 			cereal::JSONInputArchive inArchive(iS);
 			inArchive(GameObjectManager::Instance());
+			m_isLoaded = true;
 		}
 	}
 
@@ -157,7 +178,7 @@ namespace TMF
 
 	void GameObjectManager::LoadTest()
 	{
-		auto fileName = m_nowSceneName +  "Test.json";
+		auto fileName = m_nowSceneName + "Test.json";
 		if (!std::filesystem::is_regular_file(fileName))
 		{
 			return;
@@ -166,6 +187,7 @@ namespace TMF
 		{
 			cereal::JSONInputArchive inArchive(iS);
 			inArchive(GameObjectManager::Instance());
+			m_isLoaded = true;
 		}
 	}
 
@@ -191,6 +213,7 @@ namespace TMF
 		{
 			cereal::JSONInputArchive inArchive(iS);
 			inArchive(GameObjectManager::Instance());
+			m_isLoaded = true;
 		}
 	}
 
@@ -215,6 +238,7 @@ namespace TMF
 			try
 			{
 				inArchive(pGameObject);
+				m_isLoaded = true;
 			}
 			catch (const std::exception& e)
 			{

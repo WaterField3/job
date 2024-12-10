@@ -30,6 +30,7 @@ namespace TMF
 		void Save(std::string fileName);
 		void Load(std::string fileName);
 		void SaveObject(std::string fileName, std::weak_ptr<GameObject> obj);
+		inline bool GetIsLoaded() const { return m_isLoaded; }
 		std::weak_ptr<GameObject> LoadObject(std::string fileName);
 
 		std::vector<std::shared_ptr<GameObject>> GetGameObjects();
@@ -74,6 +75,7 @@ namespace TMF
 		SERIALIZE(m_pGameObjects);
 
 	private:
+		bool m_isLoaded = false;
 		std::vector<std::shared_ptr<GameObject>> m_pGameObjects;
 
 		std::string m_nowSceneName = "";

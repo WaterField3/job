@@ -16,7 +16,7 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 
-		void DodgeStart(MoveDirection direction);
+		bool DodgeStart(MoveDirection direction);
 
 		inline bool GetIsDodgeEnd() { return m_isDodgeEnd; }
 	private:

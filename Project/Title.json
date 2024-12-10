@@ -437,6 +437,36 @@
                                         "m_fontPath": "asset/myfile.spritefont"
                                     }
                                 }
+                            },
+                            {
+                                "polymorphic_id": 2147483657,
+                                "polymorphic_name": "TMF::PressKeySceneChange",
+                                "ptr_wrapper": {
+                                    "id": 2147483667,
+                                    "data": {
+                                        "m_uuID": {
+                                            "uuid": "ee2d80c9-b2cd-47ee-9a61-bfb5fd1cf54d"
+                                        },
+                                        "m_isEnable": true
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483658,
+                                "polymorphic_name": "TMF::SceneLoad",
+                                "ptr_wrapper": {
+                                    "id": 2147483668,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "509deaba-7c89-4698-a506-85eb47d58372"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_trigger": 0,
+                                        "m_loadFile": "test"
+                                    }
+                                }
                             }
                         ]
                     }
@@ -444,7 +474,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483667,
+                    "id": 2147483669,
                     "data": {
                         "m_name": "Font",
                         "m_uuID": {
@@ -456,7 +486,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483668,
+                                    "id": 2147483670,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -491,7 +521,7 @@
                             {
                                 "polymorphic_id": 8,
                                 "ptr_wrapper": {
-                                    "id": 2147483669,
+                                    "id": 2147483671,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {

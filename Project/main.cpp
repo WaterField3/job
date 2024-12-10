@@ -112,9 +112,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	EffectManager::Instance().Initialize();
 	AudioManager::Instance().Initialize();
 	Input::Instance().Initialize(hWnd);
+	GameObjectManager::Instance().Load(TITLE_DATA);
 	//GameObjectManager::Instance().Load(MAIN_DATA);
-	//GameObjectManager::Instance().Load(TITLE_DATA);
-	GameObjectManager::Instance().Load(RESULT_DATA);
+	//GameObjectManager::Instance().Load(RESULT_DATA);
 	PhysicsManager::Instance().Initialize();
 
 	auto app = CreateApplication();

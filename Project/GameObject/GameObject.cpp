@@ -37,18 +37,15 @@ namespace TMF
 
 	void GameObject::Update()
 	{
-		if (m_isActive)
+		for (auto& component : m_pComponents)
 		{
-			for (auto& component : m_pComponents)
+			if (m_pComponents.size() == 0 || GameObjectManager::Instance().GetIsLoaded() == true)
 			{
-				if (m_pComponents.size() == 0)
-				{
-					break;
-				}
-				if (component->GetIsEnable() == true)
-				{
-					component->Update();
-				}
+				break;
+			}
+			if (component->GetIsEnable() == true)
+			{
+				component->Update();
 			}
 		}
 	}
@@ -57,7 +54,7 @@ namespace TMF
 	{
 		for (auto& component : m_pComponents)
 		{
-			if (m_pComponents.size() == 0)
+			if (m_pComponents.size() == 0 || GameObjectManager::Instance().GetIsLoaded() == true)
 			{
 				break;
 			}

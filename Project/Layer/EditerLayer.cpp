@@ -13,6 +13,8 @@
 #include "Component/Transform.h"
 #include "ApplicationState.h"
 #include "Input.h"
+#include "System/DataFileNames.h"
+#include "PhysicsManager.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -103,6 +105,31 @@ namespace TMF
 		auto imGuiIO = ImGui::GetIO();
 		ImGui::Text("FPS%.1f", imGuiIO.Framerate);
 		ImGui::End();
+
+		ImGui::Begin("SceneChange");
+		if (ImGui::Button("TitleScene"))
+		{
+			GameObjectManager::Instance().Finalize();
+			PhysicsManager::Instance().Reset();
+			GameObjectManager::Instance().Load(TITLE_DATA);
+			GameObjectManager::Instance().Initialize();
+		}
+		if (ImGui::Button("GameScene"))
+		{
+			GameObjectManager::Instance().Finalize();
+			PhysicsManager::Instance().Reset();
+			GameObjectManager::Instance().Load(TEST_DATA);
+			GameObjectManager::Instance().Initialize();
+		}
+		if (ImGui::Button("ResultScene"))
+		{
+			GameObjectManager::Instance().Finalize();
+			PhysicsManager::Instance().Reset();
+			GameObjectManager::Instance().Load(RESULT_DATA);
+			GameObjectManager::Instance().Initialize();
+		}
+		ImGui::End();
+		
 		ImGui::Render();
 
 

@@ -121,7 +121,7 @@ namespace TMF
 
 		}
 	}
-	void Dodge::DodgeStart(MoveDirection direction)
+	bool Dodge::DodgeStart(MoveDirection direction)
 	{
 		if (auto pLockOwner = m_pOwner.lock())
 		{
@@ -134,7 +134,7 @@ namespace TMF
 				}
 				else
 				{
-					return;
+					return false;
 				}
 			}
 
@@ -186,6 +186,7 @@ namespace TMF
 					pLockPlayerStatus->SetIsInvincible(true);
 				}
 			}
+			return true;
 		}
 	}
 }

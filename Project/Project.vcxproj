@@ -194,6 +194,7 @@
     <ClCompile Include="Component\GameRule.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="EventSystem\EventSystem.cpp" />
+    <ClCompile Include="Component\PressKeySceneChange.cpp" />
     <ClCompile Include="State\PlayerDodgeState.cpp" />
     <ClCompile Include="PlayerJump.cpp" />
     <ClCompile Include="State\PlayerJumpState.cpp" />
@@ -288,6 +289,7 @@
     <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="MoveInfo.h" />
     <ClInclude Include="EventSystem\EventSystem.h" />
+    <ClInclude Include="Component\PressKeySceneChange.h" />
     <ClInclude Include="State\PlayerDodgeState.h" />
     <ClInclude Include="PlayerJump.h" />
     <ClInclude Include="State\PlayerJumpState.h" />
