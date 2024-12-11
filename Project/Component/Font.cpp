@@ -52,7 +52,7 @@ namespace TMF
 			origin /= 2.0f;
 
 			m_pSpriteFont->DrawString(pLockSpriteBatch.get(), output,
-				m_spriteFontPos, DirectX::SimpleMath::Color(1.0f,1.0f,1.0f,1.0f), 0.f, origin, 3);
+				m_spriteFontPos, m_fontColor, 0.f, origin, m_fontScale);
 
 			pLockSpriteBatch->End();
 		}
@@ -64,6 +64,19 @@ namespace TMF
 		{
 
 		}
+
+		auto fontScaleLabel = StringHelper::CreateLabel("FontScale", m_uuID);
+		if (ImGui::DragFloat(fontScaleLabel.c_str(), &m_fontScale, 0.1f))
+		{
+
+		}
+
+		auto fontColorLabel = StringHelper::CreateLabel("FonstColor", m_uuID);
+		if (ImGui::DragFloat3(fontColorLabel.c_str(), &m_fontColor.x, 0.1f, 0.0f, 1.0f))
+		{
+
+		}
+
 		auto textLabel = StringHelper::CreateLabel("Text", m_uuID);
 		char buf[256] = "";
 		strcpy_s(buf, sizeof(buf), m_text.c_str());

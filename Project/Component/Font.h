@@ -19,7 +19,9 @@ namespace TMF
 		void OnDrawImGui() override;
 
 	private:
+		float m_fontScale = 1.0f;
 		DirectX::SimpleMath::Vector2 m_spriteFontPos;
+		DirectX::SimpleMath::Color m_fontColor = DirectX::SimpleMath::Color(1.0f, 1.0f, 1.0f, 1.0f);
 		std::string m_text = "";
 		std::string m_fontPath = "asset/myfile.spritefont";
 		std::unique_ptr<DirectX::SpriteFont> m_pSpriteFont;
