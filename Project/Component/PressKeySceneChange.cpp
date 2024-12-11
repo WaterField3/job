@@ -4,7 +4,7 @@
 
 #include "ComponentRegister.h"
 #include "Utility/StringHelper.h"
-#include "SceneLoad.h"
+#include "Fade.h"
 #include "Input.h"
 
 REGISTER_COMPONENT(TMF::PressKeySceneChange, "PressKeySceneChange");
@@ -15,7 +15,7 @@ namespace TMF
 	{
 		if (auto pLockOwner = m_pOwner.lock())
 		{
-			m_pSceneLoad = pLockOwner->GetComponent<SceneLoad>();
+			m_pFade = pLockOwner->GetComponent<Fade>();
 		}
 	}
 	void PressKeySceneChange::OnFinalize()
@@ -29,9 +29,9 @@ namespace TMF
 		keyTracker->Update(keyState);
 		if (keyTracker->pressed.Enter == true)
 		{
-			if (auto pLockSceneLoad = m_pSceneLoad.lock())
+			if (auto pLockFade = m_pFade.lock())
 			{
-				pLockSceneLoad->Load();
+				pLockFade->FadeStart();
 			}
 		}
 	}

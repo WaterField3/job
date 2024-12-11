@@ -219,6 +219,7 @@ public:
 	inline BloomPresets GetBloomPresets() { return g_Bloom; }
 	void SetBloomPresets(BloomPresets set);
 	inline std::weak_ptr<DirectX::SpriteBatch> GetSpriteBatch() const { return m_pSpriteBatch; }
+	inline RECT GetFullScreenRect() { return m_fullscreenRect; }
 private:
 	//D3D() {};
 

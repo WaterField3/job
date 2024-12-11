@@ -1,11 +1,13 @@
 #pragma once
 #include "Component.h"
 
+#include <wrl/client.h>
+
 #include "ComponentCerealHelper.h"
+#include "SpriteBatch.h"
 
 namespace TMF
 {
-	class PrimitiveMesh;
 	class Fade : public Component
 	{
 	public:
@@ -31,9 +33,10 @@ namespace TMF
 		bool m_isFadeOutEnd = false;
 		bool m_isFadeInEnd = false;
 		float m_fadeSpeed = 1.0f;
-		float m_timer = 0.0f;
+		float m_fadeAlpha = 1.0f;
 		FadeType m_fadeType = FADEIN;
-		std::weak_ptr<PrimitiveMesh> m_pPrimitiveMesh;
+		std::unique_ptr<DirectX::SpriteBatch> m_pSpriteBatch;
+		Microsoft::WRL::ComPtr <ID3D11ShaderResourceView> m_pFadeTexture;
 		SERIALIZE_COMPONENT(m_fadeSpeed, m_isFade, m_fadeType);
 	};
 }

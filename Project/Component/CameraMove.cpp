@@ -90,20 +90,16 @@ namespace TMF
 	}
 	void CameraMove::OnLateUpdate()
 	{
-
-
-		//if (auto pLockTargetTransfrom = m_pPlayerTransform.lock())
-		//{
-		//
-		//	auto rotation =DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll( -m_azimuth,0, 0);
-		//	pLockTargetTransfrom->SetRotation(rotation);
-		//}
 		if (auto pLockTargetRigidbody = m_pTargetRigidbody.lock())
 		{
-
-			// ‰ñ“]‚ðÝ’è‚·‚é‚ÆˆÚ“®“™‚ÌŠeˆ—‚ª“®‚©‚È‚­‚È‚é
-			auto rotation = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(-m_azimuth + 1.5f, 0, 0);
-			//pLockTargetRigidbody->SetRotation(rotation);
+			btTransform transform =  pLockTargetRigidbody->GetBtTransform();
+			btQuaternion currentRotation = transform.getRotation();
+			btScalar yaw = currentRotation.getAngle();
+			btScalar deltaAngle = -m_azimuth * 3 - yaw;
+			btQuaternion rotationDelta(btVector3(0, 1, 0), deltaAngle);
+			btQuaternion newRotation = currentRotation * rotationDelta;
+			transform.setRotation(newRotation);
+			pLockTargetRigidbody->SetBtTransform(transform);
 		}
 	}
 

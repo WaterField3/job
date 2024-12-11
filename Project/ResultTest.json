@@ -363,10 +363,7 @@
                                         },
                                         "m_pParent": {
                                             "locked_ptr": {
-                                                "polymorphic_id": 1073741824,
-                                                "ptr_wrapper": {
-                                                    "id": 2
-                                                }
+                                                "polymorphic_id": 0
                                             }
                                         }
                                     }
@@ -391,37 +388,10 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 5,
-                                "ptr_wrapper": {
-                                    "id": 2147483665,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "0bd51519-df80-4362-ab0c-f37459016a6d"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_shapeType": 0,
-                                        "m_color": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0,
-                                            "value3": 1.0
-                                        },
-                                        "m_scale": {
-                                            "value0": 2.0,
-                                            "value1": 2.0,
-                                            "value2": 2.0
-                                        },
-                                        "m_textureName": ""
-                                    }
-                                }
-                            },
-                            {
                                 "polymorphic_id": 2147483656,
                                 "polymorphic_name": "TMF::Font",
                                 "ptr_wrapper": {
-                                    "id": 2147483666,
+                                    "id": 2147483665,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -444,7 +414,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483667,
+                    "id": 2147483666,
                     "data": {
                         "m_name": "Font",
                         "m_uuID": {
@@ -456,7 +426,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483668,
+                                    "id": 2147483667,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -491,7 +461,7 @@
                             {
                                 "polymorphic_id": 8,
                                 "ptr_wrapper": {
-                                    "id": 2147483669,
+                                    "id": 2147483668,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -514,7 +484,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483670,
+                    "id": 2147483669,
                     "data": {
                         "m_name": "aaa",
                         "m_uuID": {
@@ -526,7 +496,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483671,
+                                    "id": 2147483670,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {

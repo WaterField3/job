@@ -7,6 +7,7 @@ namespace TMF
 {
 	class PlayerStatus;
 	class SceneLoad;
+	class Fade;
 	class GameRule : public Component
 	{
 	public:
@@ -19,6 +20,7 @@ namespace TMF
 	private:
 		std::vector<std::weak_ptr<PlayerStatus>> m_pPlayerStatuses;
 		std::weak_ptr<SceneLoad> m_pSceneLoad;
+		std::weak_ptr<Fade> m_pFade;
 	};
 }
 

@@ -5,6 +5,7 @@
 #include "GameObject/GameObject.h"
 #include "PlayerStatus.h"
 #include "SceneLoad.h"
+#include "Fade.h"
 
 REGISTER_COMPONENT(TMF::GameRule, "GameRule");
 
@@ -29,6 +30,7 @@ namespace TMF
 		{
 			m_pSceneLoad = pLockOwner->GetComponent<SceneLoad>();
 		}
+		m_pFade = GameObjectManager::Instance().GetComponent<Fade>();
 	}
 	void GameRule::OnFinalize()
 	{
@@ -48,7 +50,12 @@ namespace TMF
 				{
 					if (auto pLockSceneLoad = m_pSceneLoad.lock())
 					{
-						pLockSceneLoad->Load();
+						//pLockSceneLoad->Load();
+						return;
+					}
+					if (auto pLockFade = m_pFade.lock())
+					{
+						pLockFade->FadeStart();
 						return;
 					}
 				}

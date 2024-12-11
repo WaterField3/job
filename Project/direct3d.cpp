@@ -344,6 +344,13 @@ HRESULT D3D::Create(HWND hwnd)
 
 	m_hwnd = hwnd;
 
+	hr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+	if (FAILED(hr)) {
+		// COMÇÃèâä˙âªÇ…é∏îs
+		return -1;
+	}
+
+
 	const auto format = DXGI_FORMAT(10);
 	m_offscreenTexture = std::make_unique<DX::RenderTexture>(format);
 	m_renderTarget1 = std::make_unique<DX::RenderTexture>(format);

@@ -1,10 +1,13 @@
 #include "Fade.h"
 
 #include <Imgui/imgui.h>
+#include <WICTextureLoader.h>
 
 #include "ComponentRegister.h"
 #include "Utility/StringHelper.h"
-#include "PrimitiveMesh.h"
+#include "Utility/Log.h"
+#include "direct3d.h"
+#include "Timer.h"
 
 REGISTER_COMPONENT(TMF::Fade, "Fade");
 
@@ -12,10 +15,10 @@ namespace TMF
 {
 	void Fade::OnInitialize()
 	{
-		if (auto pLockOwner = m_pOwner.lock())
-		{
-			m_pPrimitiveMesh = pLockOwner->GetComponent<PrimitiveMesh>();
-		}
+		m_pSpriteBatch = std::make_unique<DirectX::SpriteBatch>(D3D::Get()->GetContext());
+		// 読み込み失敗
+		auto context = D3D::Get()->GetContext();
+		DirectX::CreateWICTextureFromFile(D3D::Get()->GetDevice(), context, L"asset/textures/sunset.jpg", nullptr, m_pFadeTexture.ReleaseAndGetAddressOf());
 	}
 	void Fade::OnFinalize()
 	{
@@ -24,35 +27,37 @@ namespace TMF
 	{
 		if (m_isFade == true)
 		{
-			if (auto pLockPrimitiveMesh = m_pPrimitiveMesh.lock())
+			auto deltaTime = Timer::Instance().deltaTime.count();
+			switch (m_fadeType)
 			{
-				switch (m_fadeType)
+			case TMF::Fade::FADEIN:
+				// アルファ値を徐々に変更 (フェードイン)
+				m_fadeAlpha +=  deltaTime * 0.5f;
+				m_fadeAlpha = std::clamp(m_fadeAlpha, 0.0f, 1.0f); // 0～1の範囲に制限
+				break;
+			case TMF::Fade::FADEOUT:
+				// アルファ値を徐々に変更 (フェードアウト)
+				m_fadeAlpha -= deltaTime * 0.5f;
+				m_fadeAlpha = std::clamp(m_fadeAlpha, 0.0f, 1.0f); // 0～1の範囲に制限
+				break;
+			default:
+				break;
+			}
+			if (m_fadeAlpha == 1.0f || m_fadeAlpha == 0.0f)
+			{
+				m_isFade = false;
+				if (m_fadeType == FadeType::FADEIN)
 				{
-				case TMF::Fade::FADEIN:
-					m_timer += 0.1f * m_fadeSpeed;
-					pLockPrimitiveMesh->SetColor(DirectX::SimpleMath::Color(0.0f, 0.0f, 0.0f, m_timer));
-					break;
-				case TMF::Fade::FADEOUT:
-					m_timer += 0.1f * m_fadeSpeed;
-					pLockPrimitiveMesh->SetColor(DirectX::SimpleMath::Color(0.0f, 0.0f, 0.0f, 1.0f - m_timer));
-					break;
-				default:
-					break;
+					m_isFadeInEnd = true;
+					m_fadeType = FADEOUT;
 				}
-				if (m_timer > 1.0f)
+				else
 				{
-					m_isFade = false;
-					if (m_fadeType == FadeType::FADEIN)
-					{
-						m_isFadeInEnd = true;
-					}
-					else
-					{
-						m_isFadeOutEnd = true;
-					}
-					m_timer = 0.0f;
+					m_isFadeOutEnd = true;
+					m_fadeType = FADEIN;
 				}
 			}
+
 		}
 	}
 	void Fade::OnLateUpdate()
@@ -60,6 +65,17 @@ namespace TMF
 	}
 	void Fade::OnDraw()
 	{
+		auto pSpriteBatch = D3D::Get()->GetSpriteBatch();
+		if (auto pLockSpriteBatch = pSpriteBatch.lock())
+		{
+			DirectX::SimpleMath::Vector4 color(0, 0, 0, m_fadeAlpha); // RGBA
+			pLockSpriteBatch->Begin();
+			pLockSpriteBatch->Draw(m_pFadeTexture.Get(), D3D::Get()->GetFullScreenRect(), color);
+			pLockSpriteBatch->End();
+		}
+
+
+
 	}
 	void Fade::OnDrawImGui()
 	{
