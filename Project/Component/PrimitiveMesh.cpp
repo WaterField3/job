@@ -27,24 +27,24 @@ namespace TMF
 		DirectX::XMFLOAT3 size = DirectX::XMFLOAT3(m_scale.x, m_scale.y, m_scale.z);
 
 		auto context = D3D::Get()->GetContext();
-
+		DirectX::GeometricPrimitive::SetDepthBufferMode(m_isSetDepthBufferMode);
 		// å`èÛÇê∂ê¨
 		switch (m_shapeType)
 		{
 		case TMF::PrimitiveMesh::CUBE:
-			m_pShape = DirectX::GeometricPrimitive::CreateBox(context, size);
+			m_pShape = DirectX::GeometricPrimitive::CreateBox(context, size, m_isRhcoords, m_isInvertn);
 			break;
 		case TMF::PrimitiveMesh::SPHER:
-			m_pShape = DirectX::GeometricPrimitive::CreateSphere(context, size.x, size_t(16));
+			m_pShape = DirectX::GeometricPrimitive::CreateSphere(context, size.x, size_t(16), m_isRhcoords, m_isInvertn);
 			break;
 		case TMF::PrimitiveMesh::CYLINDER:
-			m_pShape = DirectX::GeometricPrimitive::CreateCylinder(context, size.y, size.x);
+			m_pShape = DirectX::GeometricPrimitive::CreateCylinder(context, size.y, size.x, size_t(16), m_isRhcoords);
 			break;
 		case TMF::PrimitiveMesh::CONE:
-			m_pShape = DirectX::GeometricPrimitive::CreateCone(context, size.y, size.x);
+			m_pShape = DirectX::GeometricPrimitive::CreateCone(context, size.y, size.x, size_t(16), m_isRhcoords);
 			break;
 		case TMF::PrimitiveMesh::TORUS:
-			m_pShape = DirectX::GeometricPrimitive::CreateTorus(context, size.y, size.x);
+			m_pShape = DirectX::GeometricPrimitive::CreateTorus(context, size.y, size.x, size_t(16), m_isRhcoords);
 			break;
 		default:
 			break;
@@ -117,6 +117,21 @@ namespace TMF
 		{
 
 		}
+		auto invertnLabel = StringHelper::CreateLabel("Inverth", m_uuID);
+		if (ImGui::Checkbox(invertnLabel.c_str(), &m_isInvertn))
+		{
+
+		}
+		auto rhcoordsLabel = StringHelper::CreateLabel("Rhcoord", m_uuID);
+		if (ImGui::Checkbox(rhcoordsLabel.c_str(), &m_isRhcoords))
+		{
+
+		}
+		auto depthBufferModeLabel = StringHelper::CreateLabel("DepthBufferMode", m_uuID);
+		if (ImGui::Checkbox(depthBufferModeLabel.c_str(), &m_isSetDepthBufferMode))
+		{
+
+		}
 		char buf[256] = "";
 		strcpy_s(buf, sizeof(buf), m_textureName.c_str());
 		auto label = StringHelper::CreateLabel("FileName", m_uuID);
@@ -129,6 +144,12 @@ namespace TMF
 		if (ImGui::Button(loadLabel.c_str()))
 		{
 			LoadTexture();
+		}
+
+		auto updateLabel = StringHelper::CreateLabel("MeshUpdate", m_uuID);
+		if (ImGui::Button(updateLabel.c_str()))
+		{
+			MakeMesh();
 		}
 	}
 	void PrimitiveMesh::SetColor(DirectX::SimpleMath::Color color)

@@ -17,6 +17,8 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		inline DirectX::SimpleMath::Vector2 GetFontPosition() const { return m_spriteFontPos; }
+		inline void SetFonstPosition(DirectX::SimpleMath::Vector2 position) { m_spriteFontPos = position; }
 
 	private:
 		float m_fontScale = 1.0f;
@@ -26,7 +28,7 @@ namespace TMF
 		std::string m_fontPath = "asset/myfile.spritefont";
 		std::unique_ptr<DirectX::SpriteFont> m_pSpriteFont;
 		std::weak_ptr<DirectX::SpriteBatch> m_pSpriteBatch;
-		SERIALIZE_COMPONENT(m_spriteFontPos, m_text, m_fontPath);
+		SERIALIZE_COMPONENT(m_spriteFontPos, m_fontColor, m_fontScale, m_text, m_fontPath);
 	};
 }
 

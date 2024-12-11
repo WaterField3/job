@@ -19,6 +19,7 @@ namespace TMF
 		// “Ç‚Ýž‚ÝŽ¸”s
 		auto context = D3D::Get()->GetContext();
 		DirectX::CreateWICTextureFromFile(D3D::Get()->GetDevice(), context, L"asset/textures/sunset.jpg", nullptr, m_pFadeTexture.ReleaseAndGetAddressOf());
+		context->PSSetShaderResources(0, 1, m_pFadeTexture.GetAddressOf());
 	}
 	void Fade::OnFinalize()
 	{
