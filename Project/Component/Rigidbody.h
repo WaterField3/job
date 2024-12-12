@@ -26,6 +26,7 @@ namespace TMF
 		void AddRigidBody(std::weak_ptr<btCollisionShape> col, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua);
 		void ApplyCentralForce(DirectX::SimpleMath::Vector3 force);
 		void SetLinearVelocity(DirectX::SimpleMath::Vector3 velocity);
+		void SetLinearVelocity(btVector3 velocity);
 		DirectX::SimpleMath::Vector3 GetLinearVelocity();
 		void ApplyImpulse(DirectX::SimpleMath::Vector3 impulse, DirectX::SimpleMath::Vector3 relPos);
 		void ApplyForce(DirectX::SimpleMath::Vector3 force, DirectX::SimpleMath::Vector3 relPos);
@@ -33,6 +34,7 @@ namespace TMF
 		void SetAngularVelocity(DirectX::SimpleMath::Vector3 velocity);
 		void SetRotation(DirectX::SimpleMath::Vector3 rotation);
 		void SetRotation(DirectX::SimpleMath::Quaternion rotation);
+		void SetRotation(btQuaternion rotation);
 		void GetTotalTorque();
 		void ClearForces();
 		void GetAngularFactor();
@@ -40,6 +42,7 @@ namespace TMF
 		void GetNowbtTransform();
 		void SetBtTransform(btTransform setBtTransform);
 		btTransform GetBtTransform();
+		void SetCenterOfMassTransform(btTransform btTransform);
 
 	private:
 		btVector3 MakebtVector3(DirectX::SimpleMath::Vector3 vec);

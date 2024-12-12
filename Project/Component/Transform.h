@@ -42,8 +42,9 @@ namespace TMF
 		DirectX::SimpleMath::Vector3 GetDown();
 		void ChangeRigidBodyTransform();
 		void ChangeGhostObjectTransform();
+	private:
 		void UpdateCollisionObjectTransform();
-
+	public:
 		inline DirectX::SimpleMath::Vector3 GetPosition() const { return m_position; }
 		inline DirectX::SimpleMath::Quaternion GetRotation() const { return m_rotation; }
 		inline DirectX::SimpleMath::Vector3 GetScale() const { return m_scale; }

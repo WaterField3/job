@@ -368,6 +368,36 @@
                                         "m_fadeType": 1
                                     }
                                 }
+                            },
+                            {
+                                "polymorphic_id": 2147483654,
+                                "polymorphic_name": "TMF::PressKeySceneChange",
+                                "ptr_wrapper": {
+                                    "id": 2147483664,
+                                    "data": {
+                                        "m_uuID": {
+                                            "uuid": "607fd54d-266e-48a1-ab62-a943413b70dd"
+                                        },
+                                        "m_isEnable": true
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483655,
+                                "polymorphic_name": "TMF::SceneLoad",
+                                "ptr_wrapper": {
+                                    "id": 2147483665,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "f0183368-c976-4de3-8be9-1426cabddd11"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_trigger": 0,
+                                        "m_loadFile": "Title"
+                                    }
+                                }
                             }
                         ]
                     }

@@ -33,7 +33,7 @@ namespace TMF
 
 				auto colShape = col->GetCollisionShape();
 				auto inertia = btVector3(pos.x, pos.y, pos.z);
-				
+
 				if (auto usefullColShape = colShape.lock())
 				{
 					usefullColShape->calculateLocalInertia(m_mass, inertia);
@@ -76,6 +76,11 @@ namespace TMF
 			{
 				btTransform trans;
 				m_pRigidBody->getMotionState()->getWorldTransform(trans);
+				auto m = trans.getBasis();
+				btTransform trans2;
+				m_pMotionState->getWorldTransform(trans2);
+				auto m2 = trans2.getBasis();
+				//m_pRigidBody->setCenterOfMassTransform(trans);
 				pos = Vector3{ trans.getOrigin().getX(),trans.getOrigin().getY(),trans.getOrigin().getZ() };
 				pLockTransform->SetPosition(pos);
 				rotate = Quaternion(trans.getRotation().getX(), trans.getRotation().getY(), trans.getRotation().getZ(), trans.getRotation().getW());
@@ -117,7 +122,7 @@ namespace TMF
 
 		}
 		label = LabelChange("");
-		ImGui::LabelText(label.c_str(),"%s", "AngularFactor");
+		ImGui::LabelText(label.c_str(), "%s", "AngularFactor");
 		label = LabelChange("X");
 		if (ImGui::Checkbox(label.c_str(), &m_isAngularFactorX))
 		{
@@ -186,6 +191,11 @@ namespace TMF
 		m_pRigidBody->setLinearVelocity(MakebtVector3(velocity));
 	}
 
+	void Rigidbody::SetLinearVelocity(btVector3 velocity)
+	{
+		m_pRigidBody->setLinearVelocity(velocity);
+	}
+
 	DirectX::SimpleMath::Vector3 Rigidbody::GetLinearVelocity()
 	{
 		auto velocity = m_pRigidBody->getLinearVelocity();
@@ -223,7 +233,6 @@ namespace TMF
 			auto btQua = btQuaternion(MakebtVector3(rotation), SIMD_PI / 2);
 			btTrans.setRotation(btQua);
 			m_pRigidBody->getMotionState()->setWorldTransform(btTrans);
-			m_pRigidBody->setCenterOfMassTransform(btTrans);
 		}
 	}
 
@@ -238,7 +247,19 @@ namespace TMF
 			auto btQua = MakebtQuaternion(rotation);
 			btTrans.setRotation(btQua);
 			m_pRigidBody->getMotionState()->setWorldTransform(btTrans);
-			m_pRigidBody->setCenterOfMassTransform(btTrans);
+		}
+	}
+
+	void Rigidbody::SetRotation(btQuaternion rotation)
+	{
+		auto pLockOwner = m_pOwner.lock();
+		auto pTransform = pLockOwner->GetComponent<Transform>();
+		btTransform btTrans;
+		if (auto pLockTransform = pTransform.lock())
+		{
+			m_pRigidBody->getMotionState()->getWorldTransform(btTrans);
+			btTrans.setRotation(rotation);
+			m_pRigidBody->getMotionState()->setWorldTransform(btTrans);
 		}
 	}
 
@@ -281,6 +302,16 @@ namespace TMF
 	void Rigidbody::SetBtTransform(btTransform setBtTransform)
 	{
 		m_pRigidBody->getMotionState()->setWorldTransform(setBtTransform);
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
+			{
+				auto rotation = Quaternion(setBtTransform.getRotation().getX(), setBtTransform.getRotation().getY(), setBtTransform.getRotation().getZ(), setBtTransform.getRotation().getW());
+				pLockTransform->SetRotation(rotation);
+
+			}
+		}
 	}
 
 	btTransform Rigidbody::GetBtTransform()
@@ -288,6 +319,11 @@ namespace TMF
 		btTransform btTrans;
 		m_pRigidBody->getMotionState()->getWorldTransform(btTrans);
 		return btTrans;
+	}
+
+	void Rigidbody::SetCenterOfMassTransform(btTransform btTransform)
+	{
+		m_pRigidBody->setCenterOfMassTransform(btTransform);
 	}
 
 	btVector3 Rigidbody::MakebtVector3(DirectX::SimpleMath::Vector3 vec)
