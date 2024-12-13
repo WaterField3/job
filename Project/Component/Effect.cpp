@@ -12,6 +12,10 @@ namespace TMF
 {
 	void Effect::OnInitialize()
 	{
+		if (m_effectPath != "")
+		{
+			Play();
+		}
 	}
 	void Effect::OnFinalize()
 	{
@@ -28,13 +32,14 @@ namespace TMF
 	void Effect::OnDrawImGui()
 	{
 		char buf[256] = "";
+		auto effectPathLabel = StringHelper::CreateLabel("EffectPath", m_uuID);
 		strcpy_s(buf, sizeof(buf), m_effectPath.c_str());
-		if (ImGui::InputText("EffectPath", buf, 256))
+		if (ImGui::InputText(effectPathLabel.c_str(), buf, 256))
 		{
 			m_effectPath = buf;
 		}
-		auto label = StringHelper::CreateLabel("EffectPos", m_uuID);
-		if (ImGui::DragFloat3(label.c_str(), &m_effectPos.x, 0.1f))
+		auto effectPosLabel = StringHelper::CreateLabel("EffectPos", m_uuID);
+		if (ImGui::DragFloat3(effectPosLabel.c_str(), &m_effectPos.x, 0.1f))
 		{
 
 		}

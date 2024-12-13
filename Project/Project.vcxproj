@@ -160,7 +160,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;Effekseer.lib;EffekseerRendererDX11.lib;DirectXTK.lib;DirectXTKAudioWin8.lib;LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;Effekseer.lib;EffekseerRendererDX11.lib;DirectXTK.lib;DirectXTKAudioWin8.lib;LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Release;$(ProjectDir)Vender\boost;$(ProjectDir)Vender\DirectXTK\lib\Release;$(ProjectDir)Vender\assimp\lib\Release;$(ProjectDir)Vender\bullet3\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

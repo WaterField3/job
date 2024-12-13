@@ -187,7 +187,7 @@ namespace TMF
 		{
 			cereal::JSONInputArchive inArchive(iS);
 			inArchive(GameObjectManager::Instance());
-			m_isLoaded = true;
+			//m_isLoaded = true;
 		}
 	}
 
@@ -213,7 +213,7 @@ namespace TMF
 		{
 			cereal::JSONInputArchive inArchive(iS);
 			inArchive(GameObjectManager::Instance());
-			m_isLoaded = true;
+			//m_isLoaded = true;
 		}
 	}
 

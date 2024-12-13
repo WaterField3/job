@@ -93,8 +93,7 @@ namespace TMF
 				currentRotation.normalize();
 
 				// 新しい位置を計算
-				float movementSpeed = 5.0f; // 移動速度
-				btVector3 velocity = direction * movementSpeed;
+				btVector3 velocity = direction * m_moveSpeed;
 				btVector3 newPosition = currentPosition + velocity;
 
 				// トランスフォームを更新
@@ -104,32 +103,6 @@ namespace TMF
 				// モーションステートと剛体にトランスフォームを反映
 				pLockRigidbody->SetBtTransform(currentTransform);
 				pLockRigidbody->SetLinearVelocity(velocity);
-
-				//auto playerPos = pLockPlayerRigidbody->GetBtTransform().getOrigin();
-
-				//// 現在位置とターゲット位置
-				//auto currentPosition = pLockRigidbody->GetBtTransform().getOrigin();
-				//auto currentVelocity = pLockRigidbody->GetLinearVelocity();
-
-				//auto direction = playerPos - currentPosition;
-				//direction.normalize();
-
-				//// 現在の前方向と回転の計算
-				//auto currentForward = pLockRigidbody->GetBtTransform().getBasis() * btVector3(0, 1, 0);
-				//if (!direction.fuzzyZero())
-				//{
-
-				//	btQuaternion rotation = btQuaternion(currentForward.cross(direction).normalize(),currentForward.angle(direction));
-				//	btTransform transform = pLockRigidbody->GetBtTransform();
-				//	//pLockRigidbody->SetRotation(rotation);
-				//	transform.setRotation(rotation);
-				//	pLockRigidbody->SetBtTransform(transform);
-				//}
-				//// 移動速度の設定
-				//btVector3 velocity = direction * m_moveSpeed;
-				//velocity.setY(currentVelocity.y);
-				//pLockRigidbody->SetLinearVelocity(velocity);
-
 			}
 		}
 	}

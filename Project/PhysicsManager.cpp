@@ -31,7 +31,6 @@ namespace TMF
 	void PhysicsManager::Draw()
 	{
 		auto compoent = GameObjectManager::Instance().GetComponent<Camera>();
-		//auto compoent = GameObjectManager::Instance().GetComponent<FreeCamera>();
 		if (auto camera = compoent.lock())
 		{
 			D3D::Get()->SettingEffect(camera->GetViewMatrix(), camera->GetProjectionMatrix());
@@ -39,8 +38,10 @@ namespace TMF
 		auto collisionObjects = m_pDynamicsWorld->getCollisionObjectArray();
 		if (collisionObjects.size() > 0)
 		{
+#if _DEBUG
 			m_pDynamicsWorld->debugDrawWorld();
 			m_pBulletDebugDrawer->Render();
+#endif // _DEBUG
 		}
 	}
 	void PhysicsManager::AddRigidBody(std::weak_ptr<btRigidBody> pRigidBody)

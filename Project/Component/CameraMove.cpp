@@ -44,9 +44,9 @@ namespace TMF
 					auto pCamera = pLockOwner->GetComponent<Camera>();
 					if (auto pLockCamera = pCamera.lock())
 					{
-						//pLockCamera->SetTargetTransform(m_pPlayerTransform);
+						pLockCamera->SetTargetTransform(m_pPlayerTransform);
 					}
-					m_pTargetRigidbody = pLockOwner->GetComponent<Rigidbody>();
+					m_pTargetRigidbody = pLockTargetObject->GetComponent<Rigidbody>();
 				}
 			}
 		}
@@ -95,7 +95,7 @@ namespace TMF
 			btTransform transform =  pLockTargetRigidbody->GetBtTransform();
 			btQuaternion currentRotation = transform.getRotation();
 			btScalar yaw = currentRotation.getAngle();
-			btScalar deltaAngle = -m_azimuth * 3 - yaw;
+			btScalar deltaAngle = -m_azimuth  - yaw + 1.5f;
 			btQuaternion rotationDelta(btVector3(0, 1, 0), deltaAngle);
 			btQuaternion newRotation = currentRotation * rotationDelta;
 			transform.setRotation(newRotation);

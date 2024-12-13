@@ -118,7 +118,7 @@ namespace TMF
 		{
 			GameObjectManager::Instance().Finalize();
 			PhysicsManager::Instance().Reset();
-			GameObjectManager::Instance().Load(TEST_DATA);
+			GameObjectManager::Instance().Load(MAIN_DATA);
 			GameObjectManager::Instance().Initialize();
 		}
 		if (ImGui::Button("ResultScene"))

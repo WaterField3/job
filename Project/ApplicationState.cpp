@@ -20,6 +20,11 @@ namespace TMF
 	}
 	bool ApplicationState::GetIsUpdate()
 	{
+#if _DEBUG
 		return (m_isPlay && !m_isPause) || (m_isPlay && m_isNextFrame);
+#else 
+		return true;
+#endif
+
 	}
 }

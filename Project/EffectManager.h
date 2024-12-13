@@ -19,7 +19,7 @@ namespace TMF
 		void Update();
 		void Draw();
 		void Play(std::string name, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Matrix matrix = DirectX::SimpleMath::Matrix::Identity);
-
+		void Reset();
 		static EffectManager& Instance()
 		{
 			static EffectManager instance;
@@ -34,5 +34,6 @@ namespace TMF
 		Effekseer::ManagerRef m_pEffekseerManager;
 		EffekseerRendererDX11::RendererRef m_pEffectRenderer;
 		Effekseer::EffectRef m_pEffect;
+		Effekseer::Handle m_handle;
 	};
 }

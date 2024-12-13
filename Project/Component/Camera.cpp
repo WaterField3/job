@@ -90,11 +90,11 @@ namespace TMF
 			if (auto pLockTransform = pTransform.lock())
 			{
 				pos = pLockTransform->GetWorldPosition();
-				auto rotate = pLockTransform->GetRotation();
+				auto rotate = pLockTransform->GetWorldRotation();
 				auto forward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Forward, rotate);
 				if (auto pLockTargetTransform = m_pTargetTransform.lock())
 				{
-					targetPos = pLockTargetTransform->GetPosition() /*+ pLockTargetTransform->GetForward() * 4 + DirectX::SimpleMath::Vector3::UnitY * 3*/;
+					targetPos = pLockTargetTransform->GetPosition() /*+ pLockTargetTransform->GetForward() * 4 */+ DirectX::SimpleMath::Vector3::UnitY * 3;
 					up = pLockTargetTransform->GetUp();
 				}
 				else

@@ -219,7 +219,7 @@
                                             "value3": 1.0
                                         },
                                         "m_fontScale": 3.0,
-                                        "m_text": "title",
+                                        "m_text": "the Battle",
                                         "m_fontPath": "asset/myfile.spritefont"
                                     }
                                 }
@@ -253,104 +253,7 @@
                 "ptr_wrapper": {
                     "id": 2147483659,
                     "data": {
-                        "m_name": "PressEnter",
-                        "m_uuID": {
-                            "uuid": "b5b4c272-74b9-4b2d-a323-e86d2258e173"
-                        },
-                        "m_tag": 0,
-                        "m_isActive": true,
-                        "m_pComponents": [
-                            {
-                                "polymorphic_id": 1,
-                                "ptr_wrapper": {
-                                    "id": 2147483660,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "d24c2b38-2038-4466-81a6-d4269f75c93d"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_position": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0
-                                        },
-                                        "m_scale": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0
-                                        },
-                                        "m_rotation": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0,
-                                            "value3": 1.0
-                                        },
-                                        "m_pParent": {
-                                            "locked_ptr": {
-                                                "polymorphic_id": 0
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 4,
-                                "ptr_wrapper": {
-                                    "id": 2147483661,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "6f98236e-41a9-4f94-9bf0-e410dfffbcf2"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_spriteFontPos": {
-                                            "value0": 500.0,
-                                            "value1": 700.0
-                                        },
-                                        "m_fontColor": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0,
-                                            "value3": 1.0
-                                        },
-                                        "m_fontScale": 1.2000000476837159,
-                                        "m_text": "Press Enter",
-                                        "m_fontPath": "asset/myfile.spritefont"
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 5,
-                                "ptr_wrapper": {
-                                    "id": 2147483662,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "deb07234-537c-4ee0-a0b4-05a989dfd50e"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_maxMoveSpeed": 2.200000047683716,
-                                        "m_moveTime": 0.5,
-                                        "m_targetPosition": {
-                                            "value0": 500.0,
-                                            "value1": 450.0
-                                        }
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "id": 2147483663,
-                    "data": {
-                        "m_name": "FadeObject",
+                        "m_name": "Effect",
                         "m_uuID": {
                             "uuid": "bc8364db-4553-4bb5-8639-a89fe78a03da"
                         },
@@ -360,7 +263,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483664,
+                                    "id": 2147483660,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -394,49 +297,531 @@
                             },
                             {
                                 "polymorphic_id": 2147483654,
-                                "polymorphic_name": "TMF::Fade",
+                                "polymorphic_name": "TMF::Effect",
+                                "ptr_wrapper": {
+                                    "id": 2147483661,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "97456e7b-0489-42f7-921b-9009e6ac290a"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_effectPath": "asset/effect/Atmosphere.efk",
+                                        "m_effectPos": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483662,
+                    "data": {
+                        "m_name": "Floor",
+                        "m_uuID": {
+                            "uuid": "d6ea5998-824b-4fc4-a173-de185d7b2652"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483663,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "e5ab7df6-568b-4cf0-a110-9ec86e0cac84"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483655,
+                                "polymorphic_name": "TMF::Collider",
+                                "ptr_wrapper": {
+                                    "id": 2147483664,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "6a4c5df0-a303-40de-b926-39cf6c7d071f"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_collidrType": 5,
+                                        "m_size": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_center": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_editerOfsetRotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483656,
+                                "polymorphic_name": "TMF::Rigidbody",
                                 "ptr_wrapper": {
                                     "id": 2147483665,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
-                                                "uuid": "82c7795a-a08c-458e-ba5f-c4ae1436029b"
+                                                "uuid": "579fc053-257e-4d39-842d-8eedeb100a72"
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_fadeSpeed": 1.0,
+                                        "m_mass": 0.0,
+                                        "m_drag": 0.0,
+                                        "m_angularDrag": 0.0,
+                                        "m_angulerSleepingThresholds": 0.0,
+                                        "m_linearSleepingThresholds": 0.0,
+                                        "m_isAngularFactorX": false,
+                                        "m_isAngularFactorY": false,
+                                        "m_isAngularFactorZ": false
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483666,
+                    "data": {
+                        "m_name": "Box",
+                        "m_uuID": {
+                            "uuid": "5ff9156e-cf1d-4bdf-8935-32467bacc360"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483667,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "ef727f19-dab4-474a-ae5c-ad98544238be"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 7.0,
+                                            "value1": 24.399999618530275,
+                                            "value2": 1.5
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 7,
+                                "ptr_wrapper": {
+                                    "id": 2147483668,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "1201da71-edff-4ac4-8a15-9c881260203d"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_collidrType": 0,
+                                        "m_size": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_center": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_editerOfsetRotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 8,
+                                "ptr_wrapper": {
+                                    "id": 2147483669,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "81c82c35-0f1f-482b-aa19-b581371dc9e2"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_mass": 1.0,
+                                        "m_drag": 0.0,
+                                        "m_angularDrag": 0.0,
+                                        "m_angulerSleepingThresholds": 0.0,
+                                        "m_linearSleepingThresholds": 0.0,
+                                        "m_isAngularFactorX": false,
+                                        "m_isAngularFactorY": false,
+                                        "m_isAngularFactorZ": false
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "id": 2147483670,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "086fae78-f8ad-4293-ac88-6466c01bd8bc"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_isInvertn": false,
+                                        "m_isRhcoords": true,
+                                        "m_shapeType": 0,
+                                        "m_color": {
+                                            "value0": 1.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 2.0,
+                                            "value1": 2.0,
+                                            "value2": 2.0
+                                        },
+                                        "m_textureName": ""
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483671,
+                    "data": {
+                        "m_name": "FloorMesh",
+                        "m_uuID": {
+                            "uuid": "15c56929-807c-49dd-94de-b709683c1af9"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483672,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "c58e6c6c-c877-4802-b394-862cb9d67a3e"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.8999999761581421,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 40.0,
+                                            "value1": 0.10000000149011612,
+                                            "value2": 40.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "id": 2147483673,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "7d967244-081d-490d-8874-614cfa82fbb4"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_isInvertn": false,
+                                        "m_isRhcoords": true,
+                                        "m_shapeType": 0,
+                                        "m_color": {
+                                            "value0": 0.0,
+                                            "value1": 1.0,
+                                            "value2": 0.20000000298023225,
+                                            "value3": 0.6000000238418579
+                                        },
+                                        "m_scale": {
+                                            "value0": 2.0,
+                                            "value1": 2.0,
+                                            "value2": 2.0
+                                        },
+                                        "m_textureName": ""
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483674,
+                    "data": {
+                        "m_name": "EnterKey",
+                        "m_uuID": {
+                            "uuid": "4fc57996-b71e-4ea2-9dfa-93f5b7027262"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483675,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "78f6842b-acd9-4bf6-9bf4-ba51113ed9f6"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 4,
+                                "ptr_wrapper": {
+                                    "id": 2147483676,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "ed2cf926-a142-40c9-b914-01515ca6b1e6"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_spriteFontPos": {
+                                            "value0": 500.0,
+                                            "value1": 700.0
+                                        },
+                                        "m_fontColor": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_fontScale": 1.2000000476837159,
+                                        "m_text": "Press Enter",
+                                        "m_fontPath": "asset/myfile.spritefont"
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 5,
+                                "ptr_wrapper": {
+                                    "id": 2147483677,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "74f9336c-287e-4bfa-a752-f633e2fb750d"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_maxMoveSpeed": 2.200000047683716,
+                                        "m_moveTime": 0.5,
+                                        "m_targetPosition": {
+                                            "value0": 500.0,
+                                            "value1": 450.0
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483678,
+                    "data": {
+                        "m_name": "Fade",
+                        "m_uuID": {
+                            "uuid": "689046b9-ca7e-42f9-84a4-8427d934c794"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483679,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "9cdbec58-4863-4773-b0ee-88ea807e5a3a"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483657,
+                                "polymorphic_name": "TMF::Fade",
+                                "ptr_wrapper": {
+                                    "id": 2147483680,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "893dac6e-1e4e-4d2b-95d1-edb1b1d3928d"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_fadeSpeed": 0.10000000149011612,
                                         "m_isFade": true,
                                         "m_fadeType": 1
                                     }
                                 }
                             },
                             {
-                                "polymorphic_id": 2147483655,
+                                "polymorphic_id": 2147483658,
                                 "polymorphic_name": "TMF::PressKeySceneChange",
                                 "ptr_wrapper": {
-                                    "id": 2147483666,
+                                    "id": 2147483681,
                                     "data": {
                                         "m_uuID": {
-                                            "uuid": "8a998325-53cd-4946-9146-f2640577ba58"
+                                            "uuid": "5f80445b-186c-4155-a8d8-fd6137eb51c2"
                                         },
                                         "m_isEnable": true
                                     }
                                 }
                             },
                             {
-                                "polymorphic_id": 2147483656,
+                                "polymorphic_id": 2147483659,
                                 "polymorphic_name": "TMF::SceneLoad",
                                 "ptr_wrapper": {
-                                    "id": 2147483667,
+                                    "id": 2147483682,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
-                                                "uuid": "7b12de1a-059e-48cb-8100-bc334ccd23d5"
+                                                "uuid": "8bf01b85-0b48-474e-a7af-3c95d5fab584"
                                             },
                                             "m_isEnable": true
                                         },
                                         "m_trigger": 0,
-                                        "m_loadFile": "test"
+                                        "m_loadFile": "Game"
                                     }
                                 }
                             }

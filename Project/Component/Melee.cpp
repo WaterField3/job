@@ -90,12 +90,6 @@ namespace TMF
 
 		if (auto pLockOwner = m_pOwner.lock())
 		{
-			auto pAnimater = pLockOwner->GetComponent<Animater>();
-			if (auto pLockAnimater = pAnimater.lock())
-			{
-				// アニメーションのパスの変更
-				pLockAnimater->SetFileName(m_meleeAnimation, m_endTime);
-			}
 
 			// 座標の取得
 			auto pTransform = pLockOwner->GetComponent<Transform>();
@@ -126,6 +120,15 @@ namespace TMF
 							}
 						}
 					}
+				}
+			}
+			if (m_isMelee == true)
+			{
+				auto pAnimater = pLockOwner->GetComponent<Animater>();
+				if (auto pLockAnimater = pAnimater.lock())
+				{
+					// アニメーションのパスの変更
+					pLockAnimater->SetFileName(m_meleeAnimation, m_endTime);
 				}
 			}
 		}

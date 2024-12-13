@@ -7,6 +7,7 @@
 #include "Fade.h"
 #include "GameObject/GameObjectManager.h"
 #include "PhysicsManager.h"
+#include "EffectManager.h"
 
 REGISTER_COMPONENT(TMF::SceneLoad, "SceneLoad");
 
@@ -98,6 +99,7 @@ namespace TMF
 	{
 		GameObjectManager::Instance().Finalize();
 		PhysicsManager::Instance().Reset();
+		EffectManager::Instance().Reset();
 		GameObjectManager::Instance().Load(m_loadFile);
 		GameObjectManager::Instance().Initialize();
 	}

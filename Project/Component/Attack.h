@@ -17,7 +17,7 @@ namespace TMF
 	private:
 		int m_previousScrollValue = 0;
 		int m_selectIndex = 0;
-		std::vector < std::weak_ptr<Component>> m_pWepons;
+		std::vector<std::weak_ptr<Component>> m_pWepons;
 	};
 }
 

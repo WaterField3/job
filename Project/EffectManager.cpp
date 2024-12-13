@@ -24,7 +24,6 @@ namespace TMF
 		m_pEffekseerManager->SetMaterialLoader(m_pEffectRenderer->CreateMaterialLoader());
 		m_pEffekseerManager->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
 		auto camera = GameObjectManager::Instance().GetComponent<Camera>();
-		//auto camera = GameObjectManager::Instance().GetComponent<FreeCamera>();
 		Effekseer::Matrix44 projMatrix;
 		Effekseer::Matrix44 viewMatrix;
 		if (auto cam = camera.lock())
@@ -39,19 +38,11 @@ namespace TMF
 	}
 	void EffectManager::Finalize()
 	{
-		//if (m_pEffect != nullptr)
-		//{
-			//m_pEffect->Release();
-		//}
-		//m_pEffectRenderer->Release();
-		//m_pEffectRenderer = nullptr;
-		//m_pEffekseerManager->Release();
-		//m_pEffekseerManager = nullptr;
+
 	}
 	void EffectManager::Update()
 	{
 		auto camera = GameObjectManager::Instance().GetComponent<Camera>();
-		//auto camera = GameObjectManager::Instance().GetComponent<FreeCamera>();
 		m_pEffekseerManager->Update();
 		if (auto cam = camera.lock())
 		{
@@ -75,10 +66,14 @@ namespace TMF
 	{
 		auto uName = std::u16string(name.begin(), name.end());
 		m_pEffect = Effekseer::Effect::Create(m_pEffekseerManager, uName.c_str());
-		auto handle = m_pEffekseerManager->Play(m_pEffect, pos.x, pos.y, pos.z);
+		m_handle = m_pEffekseerManager->Play(m_pEffect, pos.x, pos.y, pos.z);
 		Effekseer::Matrix43 rotatematrix;
 		CopyMatrix(matrix, rotatematrix);
-		m_pEffekseerManager->SetMatrix(handle, rotatematrix);
+		m_pEffekseerManager->SetMatrix(m_handle, rotatematrix);
+	}
+	void EffectManager::Reset()
+	{
+		m_pEffekseerManager->StopAllEffects();
 	}
 	void EffectManager::CopyMatrix(const DirectX::SimpleMath::Matrix& tkMatrix, Effekseer::Matrix44& efMatrix)
 	{

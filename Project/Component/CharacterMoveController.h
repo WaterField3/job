@@ -33,7 +33,6 @@ namespace TMF
 	private:
 		float m_moveSpeed = 1;
 		float m_jumpPower = 1;
-		bool m_oldIsJump = false;
 		DirectX::SimpleMath::Vector3 checkvec3= DirectX::SimpleMath::Vector3::One;
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Rigidbody> m_pRigidbody;
