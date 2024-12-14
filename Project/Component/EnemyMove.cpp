@@ -2,10 +2,11 @@
 
 #include "Imgui/imgui.h"
 
-#include "GameObject/GameObjectManager.h"
 #include "ComponentRegister.h"
 #include "Utility/StringHelper.h"
+#include "GameObject/GameObjectManager.h"
 #include "Rigidbody.h"
+#include "Transform.h"
 
 REGISTER_COMPONENT(TMF::EnemyMove, "EnemyMove");
 
@@ -16,6 +17,7 @@ namespace TMF
 		if (auto pLockOwner = m_pOwner.lock())
 		{
 			m_pRigidbody = pLockOwner->GetComponent<Rigidbody>();
+			m_pTransform = pLockOwner->GetComponent<Transform>();
 			auto playerObjects = GameObjectManager::Instance().GetGameObjects(GameObject::Tag::Player);
 			auto size = playerObjects.size();
 			for (auto i = 0; i < size; i++)
@@ -25,6 +27,7 @@ namespace TMF
 					if (pLockOwner != pPlayerObject)
 					{
 						m_pPlayerRigidbody = pPlayerObject->GetComponent<Rigidbody>();
+						m_pPlayerTransform = pPlayerObject->GetComponent<Transform>();
 					}
 				}
 			}
@@ -36,10 +39,19 @@ namespace TMF
 	}
 	void EnemyMove::OnUpdate()
 	{
+		if (auto pLockTransform = m_pTransform.lock())
+		{
+			if (auto pLockPlayerTransform = m_pPlayerTransform.lock())
+			{
+				auto thisPosition = pLockTransform->GetPosition();
+				auto playerPosition = pLockPlayerTransform->GetPosition();
+				m_playerDistance = DirectX::SimpleMath::Vector3::Distance(thisPosition, playerPosition);
+			}
+		}
 	}
 	void EnemyMove::OnLateUpdate()
 	{
-		Move();
+
 	}
 	void EnemyMove::OnDraw()
 	{
@@ -55,7 +67,6 @@ namespace TMF
 	}
 	void EnemyMove::Move()
 	{
-
 		if (auto pLockRigidbody = m_pRigidbody.lock())
 		{
 			if (auto pLockPlayerRigidbody = m_pPlayerRigidbody.lock())

@@ -32,6 +32,7 @@ namespace TMF
 		void ApplyForce(DirectX::SimpleMath::Vector3 force, DirectX::SimpleMath::Vector3 relPos);
 		void ApplyTorque(DirectX::SimpleMath::Vector3 torque);
 		void SetAngularVelocity(DirectX::SimpleMath::Vector3 velocity);
+		void SetAngularVelocity(btVector3 velocity);
 		void SetRotation(DirectX::SimpleMath::Vector3 rotation);
 		void SetRotation(DirectX::SimpleMath::Quaternion rotation);
 		void SetRotation(btQuaternion rotation);

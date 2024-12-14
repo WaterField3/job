@@ -92,6 +92,10 @@ namespace TMF
 			}
 		}
 	}
+	void PlayerJumpState::OnLateUpdate()
+	{
+
+	}
 	void PlayerJumpState::OnExit()
 	{
 

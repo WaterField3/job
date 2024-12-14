@@ -2,8 +2,6 @@
 
 #include "GameObject/GameObject.h"
 
-#include "EventSystem/EventSystem.h"
-
 namespace TMF
 {
 	State::State() : m_pEventSystem(std::make_unique<EventSystem>())
@@ -23,6 +21,10 @@ namespace TMF
 	void State::Update()
 	{
 		OnUpdate();
+	}
+	void State::LateUpdate()
+	{
+		OnLateUpdate();
 	}
 	void State::Exit()
 	{

@@ -1,6 +1,9 @@
 #include "EnemyController.h"
 
 #include "State/StateMachine.h"
+#include "ComponentRegister.h"
+
+REGISTER_COMPONENT(TMF::EnemyController, "EnemyController");
 
 namespace TMF
 {
@@ -9,6 +12,7 @@ namespace TMF
 		if (auto pLockOwner = m_pOwner.lock())
 		{
 			m_pStateMachine = std::make_shared<StateMachine>(pLockOwner);
+			m_pStateMachine->ChangeState("EnemyMoveState");
 		}
 	}
 	void EnemyController::OnFinalize()
@@ -24,7 +28,10 @@ namespace TMF
 	}
 	void EnemyController::OnLateUpdate()
 	{
-
+		if (m_pStateMachine)
+		{
+			m_pStateMachine->LateUpdate();
+		}
 	}
 	void EnemyController::OnDraw()
 	{

@@ -15,7 +15,7 @@ namespace TMF
 {
 	void Shot::OnInitialize()
 	{
-
+		
 	}
 	void Shot::OnFinalize()
 	{
@@ -30,7 +30,10 @@ namespace TMF
 				m_isShot = false;
 				m_timer = 0.0f;
 			}
-
+		}
+		else
+		{
+			m_changeTime -=Timer::Instance().deltaTime.count();
 		}
 	}
 	void Shot::OnLateUpdate()
@@ -53,6 +56,11 @@ namespace TMF
 		{
 
 		}
+		auto changeTimeLabel = StringHelper::CreateLabel("ChangeTime", m_uuID);
+		if (ImGui::DragFloat(changeTimeLabel.c_str(), &m_initChangeTime))
+		{
+
+		}
 		if (ImGui::Button("Play"))
 		{
 			Play();
@@ -66,7 +74,7 @@ namespace TMF
 		//{
 
 		//}
-		if (m_isShot)
+		if (m_isShot || m_changeTime > 0)
 		{
 			return;
 		}
@@ -102,5 +110,8 @@ namespace TMF
 		}
 	}
 
-
+	void Shot::Select()
+	{
+		m_changeTime = m_initChangeTime;
+	}
 }

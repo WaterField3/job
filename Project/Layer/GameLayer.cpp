@@ -26,7 +26,7 @@ namespace TMF
 
 	void GameLayer::OnLateUpdate()
 	{
-		GameObjectManager::Instance().LateUpdate();
+		
 	}
 
 	void GameLayer::OnDraw()

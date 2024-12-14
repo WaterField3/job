@@ -37,4 +37,8 @@ namespace TMF
 	{
 		m_pCurrentState->Update();
 	}
+	void StateMachine::LateUpdate()
+	{
+		m_pCurrentState->LateUpdate();
+	}
 }

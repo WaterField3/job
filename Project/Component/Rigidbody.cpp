@@ -32,7 +32,7 @@ namespace TMF
 			{
 
 				auto colShape = col->GetCollisionShape();
-				auto inertia = btVector3(pos.x, pos.y, pos.z);
+				auto inertia = btVector3(0, 0, 0);
 
 				if (auto usefullColShape = colShape.lock())
 				{
@@ -76,15 +76,12 @@ namespace TMF
 			{
 				btTransform trans;
 				m_pRigidBody->getMotionState()->getWorldTransform(trans);
-				auto m = trans.getBasis();
-				btTransform trans2;
-				m_pMotionState->getWorldTransform(trans2);
-				auto m2 = trans2.getBasis();
 				//m_pRigidBody->setCenterOfMassTransform(trans);
 				pos = Vector3{ trans.getOrigin().getX(),trans.getOrigin().getY(),trans.getOrigin().getZ() };
 				pLockTransform->SetPosition(pos);
 				rotate = Quaternion(trans.getRotation().getX(), trans.getRotation().getY(), trans.getRotation().getZ(), trans.getRotation().getW());
 				pLockTransform->SetRotation(rotate);
+
 			}
 		}
 	}
@@ -220,6 +217,11 @@ namespace TMF
 	void Rigidbody::SetAngularVelocity(DirectX::SimpleMath::Vector3 velocity)
 	{
 		m_pRigidBody->setAngularVelocity(MakebtVector3(velocity));
+	}
+
+	void Rigidbody::SetAngularVelocity(btVector3 velocity)
+	{
+		m_pRigidBody->setAngularVelocity(velocity);
 	}
 
 	void Rigidbody::SetRotation(DirectX::SimpleMath::Vector3 rotation)

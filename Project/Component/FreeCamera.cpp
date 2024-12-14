@@ -8,7 +8,7 @@
 #include "Transform.h"
 #include "Input.h"
 
-REGISTER_COMPONENT(TMF::FreeCamera, "FreeCamera");
+//REGISTER_COMPONENT(TMF::FreeCamera, "FreeCamera");
 
 namespace TMF
 {

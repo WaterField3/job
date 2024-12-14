@@ -120,6 +120,9 @@ namespace TMF
 			}
 		}
 	}
+	void PlayerIdleState::OnLateUpdate()
+	{
+	}
 	void PlayerIdleState::OnExit()
 	{
 

@@ -72,6 +72,9 @@ namespace TMF
 			}
 		}
 	}
+	void PlayerDodgeState::OnLateUpdate()
+	{
+	}
 	void PlayerDodgeState::OnExit()
 	{
 

@@ -30,6 +30,19 @@ namespace TMF
 			{
 				m_isDodgeMove = false;
 				m_timer = 0.0f;
+
+						m_isDodgeEnd = true;
+				return;
+			}
+			m_timer += Timer::Instance().deltaTime.count();
+		}
+	}
+	void Dodge::OnLateUpdate()
+	{
+		if (m_isDodgeMove == true)
+		{
+			if (m_timer > m_dodgeTime)
+			{
 				if (auto pLockOwner = m_pOwner.lock())
 				{
 					// ˆÚ“®‚ğ~‚ß‚é@Šµ«‚ğ‚È‚­‚·
@@ -42,12 +55,10 @@ namespace TMF
 					if (auto pLockPlayerStatus = pPlayerStatus.lock())
 					{
 						pLockPlayerStatus->SetIsInvincible(false);
-						m_isDodgeEnd = true;
 					}
 				}
 				return;
 			}
-			m_timer += Timer::Instance().deltaTime.count();
 			// À•W‚ÌˆÚ“®
 			if (auto pLockOwner = m_pOwner.lock())
 			{
@@ -60,9 +71,6 @@ namespace TMF
 				}
 			}
 		}
-	}
-	void Dodge::OnLateUpdate()
-	{
 	}
 	void Dodge::OnDraw()
 	{

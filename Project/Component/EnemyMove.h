@@ -5,6 +5,7 @@
 
 namespace TMF
 {
+	class Transform;
 	class Rigidbody;
 	class EnemyMove : public Component
 	{
@@ -16,8 +17,14 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		void Move();
+
+		inline float GetPlayerDistance() const { return m_playerDistance; }
+
 	private:
+		float m_playerDistance = 0.0f;
 		float m_moveSpeed = 1.0f;
+		std::weak_ptr<Transform> m_pTransform;
+		std::weak_ptr<Transform> m_pPlayerTransform;
 		std::weak_ptr<Rigidbody> m_pRigidbody;
 		std::weak_ptr<Rigidbody> m_pPlayerRigidbody;
 

@@ -8,7 +8,7 @@
 #include "Model.h"
 #include "Animater.h"
 
-REGISTER_COMPONENT(TMF::BoneBind, "BoneBind");
+//REGISTER_COMPONENT(TMF::BoneBind, "BoneBind");
 
 namespace TMF
 {

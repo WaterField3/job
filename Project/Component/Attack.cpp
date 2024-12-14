@@ -70,6 +70,15 @@ namespace TMF
 			{
 				m_selectIndex = int(maxSize) - 1;
 			}
+			if (auto pLockSelectComponent = m_pWepons[m_selectIndex].lock())
+			{
+				// Shotクラスに変換できるか確認
+				if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
+				{
+					pLockShot->Select();
+
+				}
+			}
 		}
 		else if (adjustedScroll < 0)
 		{
@@ -77,6 +86,15 @@ namespace TMF
 			if (m_selectIndex <= -1)
 			{
 				m_selectIndex = 0;
+			}
+			if (auto pLockSelectComponent = m_pWepons[m_selectIndex].lock())
+			{
+				// Shotクラスに変換できるか確認
+				if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
+				{
+					pLockShot->Select();
+
+				}
 			}
 		}
 		m_previousScrollValue = currentScrollValue;

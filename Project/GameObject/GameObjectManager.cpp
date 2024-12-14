@@ -93,15 +93,18 @@ namespace TMF
 
 	void GameObjectManager::Update()
 	{
-
-		for (auto& pGameObject : m_pGameObjects)
+		for (auto index = 0; index < m_pGameObjects.size(); index++)
 		{
-			if (m_isLoaded == true)
-			{
-				return;
-			}
-			pGameObject->Update();
+			m_pGameObjects[index]->Update();
 		}
+		//for (auto& pGameObject : m_pGameObjects)
+		//{
+		//	if (m_isLoaded == true)
+		//	{
+		//		return;
+		//	}
+		//	pGameObject->Update();
+		//}
 
 	}
 

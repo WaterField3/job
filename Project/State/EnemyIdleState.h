@@ -12,6 +12,7 @@ namespace TMF
 		void OnInitialize() override;
 		void OnEnter() override;
 		void OnUpdate() override;
+		void OnLateUpdate() override;
 		void OnExit() override;
 
 	private:

@@ -67,6 +67,11 @@ namespace TMF
 			}
 		}
 
+		if (tracker->pressed.H)
+		{
+			GameObjectManager::Instance().LoadObject("box");
+		}
+
 		if (auto pLockOwner = m_pOwner.lock())
 		{
 			auto pPlayerStatus = pLockOwner->GetComponent<PlayerStatus>();

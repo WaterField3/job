@@ -1,8 +1,11 @@
 #include "EnemyIdleState.h"
 
+#include "StateRegister.h"
 #include "Component/Transform.h"
 #include "GameObject/GameObjectManager.h"
 #include "GameObject/GameObject.h"
+
+REGISTER_STATE(TMF::EnemyIdleState, "EnemyIdleState");
 
 namespace TMF
 {
@@ -30,6 +33,10 @@ namespace TMF
 
 	}
 	void EnemyIdleState::OnUpdate()
+	{
+		
+	}
+	void EnemyIdleState::OnLateUpdate()
 	{
 
 	}

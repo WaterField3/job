@@ -31,6 +31,7 @@ namespace TMF
 		}
 		void ChangeState(std::string name);
 		void Update();
+		void LateUpdate();
 
 	private:
 		std::unique_ptr<State> m_pCurrentState;
