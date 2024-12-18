@@ -1,18 +1,16 @@
-#include "EnemyIdleState.h"
+#include "EnemyAttackState.h"
 
-#include "StateRegister.h"
-#include "Component/Transform.h"
 #include "GameObject/GameObjectManager.h"
-#include "GameObject/GameObject.h"
-
-REGISTER_STATE(TMF::EnemyIdleState, "EnemyIdleState");
+#include "Component/Transform.h"
+#include "Component/EnemyAttack.h"
 
 namespace TMF
 {
-	void EnemyIdleState::OnInitialize()
+	void EnemyAttackState::OnInitialize()
 	{
 		if (auto pLockOwner = m_pOwner.lock())
 		{
+			m_pTransform = pLockOwner->GetComponent<Transform>();
 			auto playerTagObjects = GameObjectManager::Instance().GetGameObjects(static_cast<int>(GameObject::Tag::Player));
 			auto size = playerTagObjects.size();
 			for (auto i = 0; i < size; i++)
@@ -25,22 +23,22 @@ namespace TMF
 					}
 				}
 			}
-			
+			m_pEnemyAttack = pLockOwner->GetComponent<EnemyAttack>();
 		}
 	}
-	void EnemyIdleState::OnEnter()
+	void EnemyAttackState::OnEnter()
 	{
 
 	}
-	void EnemyIdleState::OnUpdate()
+	void EnemyAttackState::OnUpdate()
 	{
 		
 	}
-	void EnemyIdleState::OnLateUpdate()
+	void EnemyAttackState::OnLateUpdate()
 	{
 
 	}
-	void EnemyIdleState::OnExit()
+	void EnemyAttackState::OnExit()
 	{
 
 	}

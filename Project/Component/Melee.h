@@ -17,10 +17,13 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		void Play();
+		void Select();
 
 	private:
 		float m_endTime = 0;
 		float m_coolTime = 1.0f;
+		float m_changeTime = 1.0f;
+		float m_initChangeTime = 1.0f;
 		float m_timer = 0.0f;
 		bool m_isMelee = false;
 		std::string m_meleeAnimation = "";
