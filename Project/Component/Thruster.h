@@ -1,6 +1,9 @@
 #pragma once
-
 #include "Component.h"
+
+#include <d3d11.h>
+#include <wrl.h>
+
 #include "ComponentCerealHelper.h"
 #include "MoveInfo.h"
 
@@ -23,6 +26,8 @@ namespace TMF
 		void StopFastMovement();
 		void UseThruster(float useMagnification);
 		inline bool GetIsOverHeat() const { return m_isOverHeat; }
+		inline float GetThrusterValue() const { return m_thrusterValue; }
+		inline float GetMaxThrusterValue() const { return m_maxThrusterValue; }
 	private:
 
 		bool m_isThruster = false;
@@ -32,10 +37,13 @@ namespace TMF
 		float m_maxThrusterValue = 10.0f;
 		float m_thrusterValue = 0.0;
 		float m_thrusterMoveSpeedMagnification = 4.0f;
+		std::string m_barTextureName = "asset/textures/sunset.jpg";
 		DirectX::SimpleMath::Vector3 m_moveVector = DirectX::SimpleMath::Vector3::Zero;
+		DirectX::SimpleMath::Vector2 m_drawUIPosition = DirectX::SimpleMath::Vector2::Zero;
 		MoveDirection m_moveDirection = MoveDirection::FOWARD;
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Rigidbody> m_pRigidBody;
-		SERIALIZE_COMPONENT(m_thrusterValue, m_firstUseMagnification, m_thrusterMoveSpeedMagnification);
+		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pBarTexture;
+		SERIALIZE_COMPONENT(m_thrusterValue, m_firstUseMagnification, m_thrusterMoveSpeedMagnification, m_barTextureName, m_drawUIPosition);
 	};
 }

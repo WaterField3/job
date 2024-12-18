@@ -229,6 +229,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Component\CharacterMoveController.cpp" />
     <ClCompile Include="Component\Thruster.cpp" />
+    <ClCompile Include="Component\ThrusterUI.cpp" />
     <ClCompile Include="Utility\StringHelper.cpp" />
     <ClCompile Include="MyBulletCollisionDispatcher.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -336,6 +337,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Component\CharacterMoveController.h" />
     <ClInclude Include="Component\Thruster.h" />
+    <ClInclude Include="Component\ThrusterUI.h" />
     <ClInclude Include="TreeNode.h" />
     <ClInclude Include="Utility\StringHelper.h" />
     <ClInclude Include="MyBulletCollisionDispatcher.h" />

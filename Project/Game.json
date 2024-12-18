@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 4.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 2.42600679397583,
+                                        "m_azimuth": 2.513272762298584,
                                         "m_rotationSpeed": 1.0,
                                         "m_targetName": "Anim"
                                     }
@@ -471,7 +471,12 @@
                                         },
                                         "m_thrusterValue": 0.0,
                                         "m_firstUseMagnification": 0.009999999776482582,
-                                        "m_thrusterMoveSpeedMagnification": 10.0
+                                        "m_thrusterMoveSpeedMagnification": 10.0,
+                                        "m_barTextureName": "asset/textures/sunset.jpg",
+                                        "m_drawUIPosition": {
+                                            "value0": 0.0,
+                                            "value1": 0.0
+                                        }
                                     }
                                 }
                             },
@@ -2248,6 +2253,79 @@
                                             "value2": 2.0
                                         },
                                         "m_textureName": ""
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483746,
+                    "data": {
+                        "m_name": "UI",
+                        "m_uuID": {
+                            "uuid": "21ddf69f-2f34-4d1e-9f03-e4152a5e1b99"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483747,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "c5744566-b74e-46e8-8c7f-f2a02d420f6e"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483677,
+                                "polymorphic_name": "TMF::ThrusterUI",
+                                "ptr_wrapper": {
+                                    "id": 2147483748,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "25d88ca3-c4d7-4901-9f93-872d99c59c2b"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_barWidth": 40.0,
+                                        "m_barHeight": 15.0,
+                                        "m_barTextureName": "asset/textures/sunset.jpg",
+                                        "m_targetName": "Anim",
+                                        "m_drawPosition": {
+                                            "value0": 275.0,
+                                            "value1": 465.0
+                                        }
                                     }
                                 }
                             }

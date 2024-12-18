@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 4.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 2.443459987640381,
+                                        "m_azimuth": 2.513272762298584,
                                         "m_rotationSpeed": 1.0,
                                         "m_targetName": "Anim"
                                     }
@@ -471,7 +471,12 @@
                                         },
                                         "m_thrusterValue": 0.0,
                                         "m_firstUseMagnification": 0.009999999776482582,
-                                        "m_thrusterMoveSpeedMagnification": 10.0
+                                        "m_thrusterMoveSpeedMagnification": 10.0,
+                                        "m_barTextureName": "asset/textures/sunset.jpg",
+                                        "m_drawUIPosition": {
+                                            "value0": 0.0,
+                                            "value1": 0.0
+                                        }
                                     }
                                 }
                             },
@@ -1245,7 +1250,7 @@
                             "uuid": "e27434ac-6a24-4d8a-a681-d9e9945298ff"
                         },
                         "m_tag": 0,
-                        "m_isActive": false,
+                        "m_isActive": true,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -2259,9 +2264,9 @@
                 "ptr_wrapper": {
                     "id": 2147483746,
                     "data": {
-                        "m_name": "NewGameObject",
+                        "m_name": "UI",
                         "m_uuID": {
-                            "uuid": "149c1803-402f-4bbd-932d-8e50900be2aa"
+                            "uuid": "21ddf69f-2f34-4d1e-9f03-e4152a5e1b99"
                         },
                         "m_tag": 0,
                         "m_isActive": true,
@@ -2273,7 +2278,7 @@
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
-                                                "uuid": "b0f57573-bbbf-427d-9748-2d1dee48e89d"
+                                                "uuid": "c5744566-b74e-46e8-8c7f-f2a02d420f6e"
                                             },
                                             "m_isEnable": true
                                         },
@@ -2303,14 +2308,24 @@
                             },
                             {
                                 "polymorphic_id": 2147483677,
-                                "polymorphic_name": "TMF::AssimpAnimation",
+                                "polymorphic_name": "TMF::ThrusterUI",
                                 "ptr_wrapper": {
                                     "id": 2147483748,
                                     "data": {
-                                        "m_uuID": {
-                                            "uuid": "3a4c93f7-471a-4a41-90fa-3613de9d9557"
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "25d88ca3-c4d7-4901-9f93-872d99c59c2b"
+                                            },
+                                            "m_isEnable": true
                                         },
-                                        "m_isEnable": true
+                                        "m_barWidth": 40.0,
+                                        "m_barHeight": 15.0,
+                                        "m_barTextureName": "asset/textures/sunset.jpg",
+                                        "m_targetName": "Anim",
+                                        "m_drawPosition": {
+                                            "value0": 275.0,
+                                            "value1": 465.0
+                                        }
                                     }
                                 }
                             }

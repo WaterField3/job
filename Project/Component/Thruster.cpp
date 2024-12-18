@@ -1,9 +1,11 @@
 #include "Thruster.h"
 
 #include <Imgui/imgui.h>
+#include <WICTextureLoader.h>
 
 #include "ComponentRegister.h"
 #include "Utility/StringHelper.h"
+#include "direct3d.h"
 #include "Timer.h"
 #include "Transform.h"
 #include "Rigidbody.h"
@@ -25,9 +27,12 @@ namespace TMF
 			m_pTransform = pLockOwner->GetComponent<Transform>();
 			m_pRigidBody = pLockOwner->GetComponent<Rigidbody>();
 		}
+	
+
 	}
 	void Thruster::OnFinalize()
 	{
+
 	}
 	void Thruster::OnUpdate()
 	{
@@ -44,9 +49,11 @@ namespace TMF
 	}
 	void Thruster::OnLateUpdate()
 	{
+
 	}
 	void Thruster::OnDraw()
 	{
+
 	}
 	void Thruster::OnDrawImGui()
 	{
@@ -62,6 +69,11 @@ namespace TMF
 		}
 		auto thrusterMoveSpeedLabel = StringHelper::CreateLabel("ThrusterMoveSpeed", m_uuID);
 		if (ImGui::DragFloat(thrusterMoveSpeedLabel.c_str(), &m_thrusterMoveSpeedMagnification))
+		{
+
+		}
+		auto drawUILabelPosition = StringHelper::CreateLabel("DrawPosition", m_uuID);
+		if (ImGui::DragFloat2(drawUILabelPosition.c_str(), &m_drawUIPosition.x))
 		{
 
 		}
