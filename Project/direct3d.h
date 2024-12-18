@@ -220,6 +220,12 @@ public:
 	void SetBloomPresets(BloomPresets set);
 	inline std::weak_ptr<DirectX::SpriteBatch> GetSpriteBatch() const { return m_pSpriteBatch; }
 	inline RECT GetFullScreenRect() { return m_fullscreenRect; }
+
+	//void SetWorldViewProjection2D();
+	void SetWorldMatrix(DirectX::SimpleMath::Matrix* WorldMatrix);
+	void SetViewMatrix(DirectX::SimpleMath::Matrix* ViewMatrix);
+	void SetProjectionMatrix(DirectX::SimpleMath::Matrix* ProjectionMatrix);
+	void SetMaterial(MATERIAL Material);
 private:
 	//D3D() {};
 
@@ -256,6 +262,10 @@ private:
 
 	// 定数バッファ用変数
 	ID3D11Buffer* m_pConstantBuffer;
+	ID3D11Buffer* m_pWorldBuffer;
+	ID3D11Buffer* m_pProjectionBuffer;
+	ID3D11Buffer* m_pMaterialBuffer;
+	ID3D11Buffer* m_pViewBuffer;
 
 	ID3D11Resource* m_pResource;
 

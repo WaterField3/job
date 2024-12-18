@@ -2,6 +2,7 @@
 
 #include "ComponentRegister.h"
 #include "Timer.h"
+#include "Utility/Log.h"
 
 //REGISTER_COMPONENT(TMF::AssimpAnimation, "AssimpAnimation");
 
@@ -16,20 +17,20 @@ namespace TMF
 		// アニメーションメッシュ読み込み
 		m_AnimMesh->Load(m_currentFile, m_textureDirectory);
 
-		m_shader.Create("Shader/vertexLightingOneSkinVS.hlsl", "Shader/vertexLightingPS.hlsl");
+		m_shader.Create("shader/vertexLightingOneSkinVS.hlsl", "shader/vertexLightingPS.hlsl");
 
 		auto anim = std::make_shared<AnimationData>();
 		try
 		{
 			anim->LoadAnimation(m_motionFile, "Idle");
-			m_animationData.push_back(anim);
-
-			m_CurrentAnimation = m_animationData[0]->GetAnimation("Idle");
 		}
 		catch (const std::exception& e)
 		{
-
+			Log::Info("%s", e.what());
 		}
+		m_animationData.push_back(anim);
+
+		m_CurrentAnimation = m_animationData[0]->GetAnimation("Idle");
 
 	}
 	void AssimpAnimation::OnFinalize()
@@ -76,7 +77,7 @@ namespace TMF
 			return;
 		}
 
-		m_shader.SetGPU();
+		// m_shader.SetGPU();
 
 		// ボーンコンビネーション行列用定数バッファ更新
 		m_BoneCombMatrix.Update();

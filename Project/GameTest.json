@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 4.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 2.4085536003112795,
+                                        "m_azimuth": 2.443459987640381,
                                         "m_rotationSpeed": 1.0,
                                         "m_targetName": "Anim"
                                     }
@@ -1245,7 +1245,7 @@
                             "uuid": "e27434ac-6a24-4d8a-a681-d9e9945298ff"
                         },
                         "m_tag": 0,
-                        "m_isActive": true,
+                        "m_isActive": false,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
@@ -2248,6 +2248,69 @@
                                             "value2": 2.0
                                         },
                                         "m_textureName": ""
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483746,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "uuid": "149c1803-402f-4bbd-932d-8e50900be2aa"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483747,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "b0f57573-bbbf-427d-9748-2d1dee48e89d"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483677,
+                                "polymorphic_name": "TMF::AssimpAnimation",
+                                "ptr_wrapper": {
+                                    "id": 2147483748,
+                                    "data": {
+                                        "m_uuID": {
+                                            "uuid": "3a4c93f7-471a-4a41-90fa-3613de9d9557"
+                                        },
+                                        "m_isEnable": true
                                     }
                                 }
                             }

@@ -47,9 +47,6 @@ private:
 	std::vector<D3D::MATERIAL> m_materials;					// マテリアル情報
 	std::vector<std::string> m_diffuseTextureNames;		// ディフューズテクスチャ名
 	std::vector<D3D::SUBSET> m_subsets;						// サブセット情報
-
-	std::vector<int> a;
-
 	std::vector<std::unique_ptr<AssimpTexture>>	m_diffuseTextures;	// ディフューズテクスチャ群
 
 	};

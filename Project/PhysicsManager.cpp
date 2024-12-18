@@ -18,6 +18,7 @@ namespace TMF
 		m_pDynamicsWorld = std::make_unique<btDiscreteDynamicsWorld>(m_pCollisionDispacher.get(), m_pBroadphaseInterface.get(), m_pConstrainSolver.get(), m_pCollisionConfig.get());
 		m_pBulletDebugDrawer = std::make_unique<BulletDebugDrawer>(D3D::Get()->GetContext());
 		m_pDynamicsWorld->setDebugDrawer(m_pBulletDebugDrawer.get());
+		m_pDynamicsWorld->performDiscreteCollisionDetection();
 	}
 	void PhysicsManager::Finalize()
 	{

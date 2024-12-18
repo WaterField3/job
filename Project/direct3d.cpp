@@ -296,7 +296,7 @@ HRESULT D3D::Create(HWND hwnd)
 	}
 
 	// 定数バッファ作成
-	D3D11_BUFFER_DESC cbDesc;
+	D3D11_BUFFER_DESC cbDesc{};
 	cbDesc.ByteWidth = sizeof(ConstBuffer);// 今から作る定数バッファのサイズ
 	cbDesc.Usage = D3D11_USAGE_DEFAULT;
 	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;// 定数バッファ作成を指定
@@ -306,6 +306,26 @@ HRESULT D3D::Create(HWND hwnd)
 
 	hr = m_pDevice->CreateBuffer(&cbDesc, NULL, &m_pConstantBuffer);
 
+	m_pDevice->CreateBuffer(&cbDesc, NULL, &m_pWorldBuffer);
+	m_pImmediateContext->VSSetConstantBuffers(0, 1, &m_pWorldBuffer);
+
+	m_pDevice->CreateBuffer(&cbDesc, NULL, &m_pViewBuffer);
+	m_pImmediateContext->VSSetConstantBuffers(1, 1, &m_pViewBuffer);
+
+	m_pDevice->CreateBuffer(&cbDesc, NULL, &m_pProjectionBuffer);
+	m_pImmediateContext->VSSetConstantBuffers(2, 1, &m_pProjectionBuffer);
+
+
+	cbDesc.ByteWidth = sizeof(MATERIAL);
+
+	m_pDevice->CreateBuffer(&cbDesc, NULL, &m_pMaterialBuffer);
+	m_pImmediateContext->VSSetConstantBuffers(3, 1, &m_pMaterialBuffer);
+	m_pImmediateContext->PSSetConstantBuffers(3, 1, &m_pMaterialBuffer);
+	// マテリアル初期化
+	MATERIAL material{};
+	material.Diffuse = DirectX::SimpleMath::Color(1.0f, 1.0f, 1.0f, 1.0f);
+	material.Ambient = DirectX::SimpleMath::Color(1.0f, 1.0f, 1.0f, 1.0f);
+	SetMaterial(material);
 
 	// ブレンドステート作成
 	// →透過処理や加算合成を可能にする色の合成方法
@@ -327,14 +347,15 @@ HRESULT D3D::Create(HWND hwnd)
 
 	m_pImmediateContext->OMSetBlendState(m_pBlendStateAlpha, NULL, 0xffffffff);
 
-	D3D11_RASTERIZER_DESC rastraizerDesc;
-	ZeroMemory(&rastraizerDesc, sizeof(D3D11_RASTERIZER_DESC));
-	rastraizerDesc.CullMode = D3D11_CULL_BACK;
-	rastraizerDesc.FillMode = D3D11_FILL_SOLID;
+	D3D11_RASTERIZER_DESC rasterizerDesc;
+	ZeroMemory(&rasterizerDesc, sizeof(D3D11_RASTERIZER_DESC));
+	rasterizerDesc.CullMode = D3D11_CULL_BACK;
+	rasterizerDesc.FillMode = D3D11_FILL_SOLID;
+	rasterizerDesc.FrontCounterClockwise = FALSE;
 
 	ID3D11RasterizerState* RasterrizeState;
 
-	hr = m_pDevice->CreateRasterizerState(&rastraizerDesc, &RasterrizeState);
+	hr = m_pDevice->CreateRasterizerState(&rasterizerDesc, &RasterrizeState);
 	m_pImmediateContext->RSSetState(RasterrizeState);
 
 	// 加算合成の設定を作る
@@ -505,6 +526,10 @@ D3D::~D3D()
 	m_bloomParams.Reset();
 	m_blurParamsWidth.Reset();
 	m_blurParamsHeight.Reset();
+	m_pWorldBuffer->Release();
+	m_pProjectionBuffer->Release();
+	m_pMaterialBuffer->Release();
+	m_pViewBuffer->Release();
 	//m_pBackGround.Reset();
 }
 
@@ -835,6 +860,36 @@ void D3D::SetBloomPresets(BloomPresets set)
 		&blurData, sizeof(VS_BLUR_PARAMETERS), 0);
 }
 
+
+void D3D::SetWorldMatrix(DirectX::SimpleMath::Matrix* WorldMatrix)
+{
+	DirectX::SimpleMath::Matrix world;
+	world = WorldMatrix->Transpose();					// 転置
+
+	m_pImmediateContext->UpdateSubresource(m_pWorldBuffer, 0, NULL, &world, 0, 0);
+}
+
+void D3D::SetViewMatrix(DirectX::SimpleMath::Matrix* ViewMatrix)
+{
+	DirectX::SimpleMath::Matrix view;
+	view = ViewMatrix->Transpose();						// 転置
+
+	m_pImmediateContext->UpdateSubresource(m_pViewBuffer, 0, NULL, &view, 0, 0);
+}
+
+void D3D::SetProjectionMatrix(DirectX::SimpleMath::Matrix* ProjectionMatrix)
+{
+	DirectX::SimpleMath::Matrix projection;
+	projection = ProjectionMatrix->Transpose();
+
+	m_pImmediateContext->UpdateSubresource(m_pProjectionBuffer, 0, NULL, &projection, 0, 0);
+}
+
+void D3D::SetMaterial(MATERIAL Material)
+{
+	m_pImmediateContext->UpdateSubresource(m_pMaterialBuffer, 0, NULL, &Material, 0, 0);
+}
+
 void D3D::ClearScreen()
 {
 	// 画面塗りつぶし色
@@ -859,20 +914,20 @@ void D3D::ClearScreen()
 	UINT offsets = 0;
 	m_pImmediateContext->IASetInputLayout(m_pInputLayout);
 
-	m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	m_pImmediateContext->VSSetShader(m_pVertexShader, NULL, 0);
+	//m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	//m_pImmediateContext->VSSetShader(m_pVertexShader, NULL, 0);
 	m_pImmediateContext->RSSetViewports(1, &m_Viewport);
-	m_pImmediateContext->PSSetShader(m_pPixelShader, NULL, 0);
+	//m_pImmediateContext->PSSetShader(m_pPixelShader, NULL, 0);
 
-	//// ピクセルシェーダーにサンプラーを渡す
-	m_pImmediateContext->PSSetSamplers(0, 1, &m_pSampler);
+	////// ピクセルシェーダーにサンプラーを渡す
+	//m_pImmediateContext->PSSetSamplers(0, 1, &m_pSampler);
 
-	//// 定数バッファを頂点シェーダーにセットする
-	m_pImmediateContext->VSSetConstantBuffers(
-		0, 1, &m_pConstantBuffer);
-	// 定数バッファをピクセルシェーダーにセットする
-	m_pImmediateContext->PSSetConstantBuffers(
-		0, 1, &m_pConstantBuffer);
+	////// 定数バッファを頂点シェーダーにセットする
+	//m_pImmediateContext->VSSetConstantBuffers(
+	//	0, 1, &m_pConstantBuffer);
+	//// 定数バッファをピクセルシェーダーにセットする
+	//m_pImmediateContext->PSSetConstantBuffers(
+	//	0, 1, &m_pConstantBuffer);
 
 	//m_pSpriteBatch->Begin();
 	//m_pSpriteBatch->Draw(m_pBackGround.Get(), m_fullscreenRect);
@@ -886,7 +941,7 @@ void D3D::ClearScreen()
 void D3D::UpdateScreen()
 {
 	// ダブルバッファの切り替えを行い画面を更新する
-	PostProcess();
+	//PostProcess();
 	m_pSwapChain->Present(1, 0);
 }
 

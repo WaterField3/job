@@ -7,7 +7,7 @@ namespace TMF
 	void AnimationMesh::Load(std::string filename, std::string texturedirectory)
 	{
 		// メッシュ読み込み
-		StaticMesh::Instance().Load(filename, texturedirectory);
+		StaticMesh::Load(filename, texturedirectory);
 
 		// アニメーションデータ(ASSIMP用）
 		std::unordered_map<std::string, AssimpPerse::BONE> assimp_BoneDictionary{};
@@ -47,7 +47,7 @@ namespace TMF
 		m_AssimpNodeNameTree = AssimpPerse::Instance().GetBoneNameTree();
 
 		// レンダラ初期化
-		m_StaticMeshRenderer.Init(StaticMesh::Instance());
+		m_StaticMeshRenderer.Init(*this);
 	}
 	void AnimationMesh::UpdateBoneMatrix(std::weak_ptr<TreeNode<std::string>> pTree, DirectX::SimpleMath::Matrix matrix)
 	{

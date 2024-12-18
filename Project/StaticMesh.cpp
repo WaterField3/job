@@ -19,8 +19,6 @@ namespace TMF
 		std::vector<AssimpPerse::MATERIAL> materials{};						// マテリアル
 		std::vector<std::unique_ptr<AssimpTexture>> embededtextures{};			// 内蔵テクスチャ群
 
-		std::vector<int> k;
-
 		// assimpを使用してモデルデータを取得
 		AssimpPerse::Instance().GetModelData(fileName, textureDirectory);
 
@@ -34,8 +32,6 @@ namespace TMF
 
 		auto data = AssimpPerse::Instance().MoveDiffuseTextures();
 		auto size = data.size();
-
-		m_diffuseTextures = AssimpPerse::Instance().MoveDiffuseTextures();
 		
 		m_diffuseTextures.clear();
 		m_diffuseTextures.resize(size);

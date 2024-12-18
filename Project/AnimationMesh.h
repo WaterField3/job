@@ -28,11 +28,11 @@ namespace TMF
 
 	public:
 
-		static AnimationMesh& Instance()
-		{
-			static AnimationMesh instance;
-			return instance;
-		}
+		//static AnimationMesh& Instance()
+		//{
+		//	static AnimationMesh instance;
+		//	return instance;
+		//}
 
 		inline void SetCurentAnimation(std::shared_ptr<aiAnimation> currentanimation) { m_CurrentAnimation = std::move(currentanimation); }
 		inline void SetFromAnimation(std::shared_ptr<aiAnimation> animation) { m_FromAnimation = std::move(animation); }

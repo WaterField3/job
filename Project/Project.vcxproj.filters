@@ -171,7 +171,7 @@
     <ClCompile Include="Component\Shot.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Component\DebrisBody.cpp">
+    <ClCompile Include="Component\ColorChange.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Component\MeleeMove.cpp">
@@ -764,7 +764,7 @@
     <ClInclude Include="Component\Shot.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Component\DebrisBody.h">
+    <ClInclude Include="Component\ColorChange.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Component\MeleeMove.h">
@@ -1089,6 +1089,11 @@
     <FxCompile Include="BloomCombine.hlsl" />
     <FxCompile Include="BloomExtract.hlsl" />
     <FxCompile Include="GaussianBlur.hlsl" />
+    <FxCompile Include="Shader\unlitTexturePS.hlsl" />
+    <FxCompile Include="Shader\unlitTextureVS.hlsl" />
+    <FxCompile Include="Shader\vertexLightingOneSkinVS.hlsl" />
+    <FxCompile Include="Shader\vertexLightingPS.hlsl" />
+    <FxCompile Include="Shader\vertexLightingVS.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vender\cereal\external\rapidxml\manual.html" />

@@ -63,9 +63,6 @@ namespace TMF
 	public:
 
 		void SetAnimationMesh(std::unique_ptr<AnimationMesh> animmesh) { m_AnimMesh = std::move(animmesh); }
-		//void SetPosition(DirectX::SimpleMath::Vector3 pos) { m_Position = pos; }
-		//void SetScale(DirectX::SimpleMath::Vector3 scale) { m_Scale = scale; }
-		//void SetRotation(DirectX::SimpleMath::Vector3 rotation) { m_Rotation = rotation; }
 
 		void SetCurrentAnimation(std::shared_ptr<aiAnimation> anim) { m_CurrentAnimation = anim; }
 

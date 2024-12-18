@@ -26,7 +26,7 @@ namespace TMF
 			//			aiProcess_ConvertToLeftHanded |	// ¶èÀ•WŒn‚É•ÏŠ·‚·‚é
 			//			aiProcess_Triangulate);			// OŠpŒ`‰»‚·‚é
 			aiProcessPreset_TargetRealtime_MaxQuality |
-			aiProcess_ConvertToLeftHanded |
+			aiProcess_MakeLeftHanded |
 			aiProcess_PopulateArmatureData);		// 20231225’Ç‰Á
 
 		if (pScene == nullptr)
