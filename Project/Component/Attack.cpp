@@ -9,6 +9,7 @@
 #include "Shot.h"
 #include "Melee.h"
 #include "CoolTimeUI.h"
+#include "ChangeTimeUI.h"
 
 REGISTER_COMPONENT(TMF::Attack, "Attack");
 
@@ -30,11 +31,16 @@ namespace TMF
 			}
 		}
 		m_pCoolTimeUI = GameObjectManager::Instance().GetComponent<CoolTimeUI>();
+		m_pChangeTimeUI = GameObjectManager::Instance().GetComponent<ChangeTimeUI>();
 		if (auto pLockWepon = m_pWepons[0].lock())
 		{
 			if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
 			{
-				pLockCoolTimeUI->SetSelectWepon(m_pWepons[0]);
+				pLockCoolTimeUI->SetSelectWepon(pLockWepon);
+			}
+			if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
+			{
+				pLockChangeTimeUI->SetSelectWepon(pLockWepon);
 			}
 		}
 	}
@@ -55,12 +61,20 @@ namespace TMF
 				if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
 				{
 					pLockShot->Play();
+					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+					{
+						pLockCoolTimeUI->SetSelectWepon(pLockShot);
+					}
 
 				}
 				// Meleeクラスに変換できるか確認
 				else if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
 				{
 					pLockMelee->Play();
+					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+					{
+						pLockCoolTimeUI->SetSelectWepon(pLockMelee);
+					}
 				}
 			}
 		}
@@ -86,9 +100,18 @@ namespace TMF
 				if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
 				{
 					pLockShot->Select();
-					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+
+					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
 					{
-						pLockCoolTimeUI->SetSelectWepon(pLockShot);
+						pLockChangeTimeUI->SetSelectWepon(pLockShot);
+					}
+				}
+				if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
+				{
+					pLockMelee->Select();
+					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
+					{
+						pLockChangeTimeUI->SetSelectWepon(pLockMelee);
 					}
 				}
 			}
@@ -106,9 +129,18 @@ namespace TMF
 				if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
 				{
 					pLockShot->Select();
-					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+
+					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
 					{
-						pLockCoolTimeUI->SetSelectWepon(pLockShot);
+						pLockChangeTimeUI->SetSelectWepon(pLockShot);
+					}
+				}
+				if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
+				{
+					pLockMelee->Select();
+					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
+					{
+						pLockChangeTimeUI->SetSelectWepon(pLockMelee);
 					}
 				}
 			}

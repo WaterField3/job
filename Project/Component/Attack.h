@@ -6,6 +6,7 @@ namespace TMF
 	class Melee;
 	class Shot;
 	class CoolTimeUI;
+	class ChangeTimeUI;
 	class Attack : public Component
 	{
 	public:
@@ -20,6 +21,7 @@ namespace TMF
 		int m_selectIndex = 0;
 		std::vector<std::weak_ptr<Component>> m_pWepons;
 		std::weak_ptr<CoolTimeUI> m_pCoolTimeUI;
+		std::weak_ptr<ChangeTimeUI> m_pChangeTimeUI;
 	};
 }
 

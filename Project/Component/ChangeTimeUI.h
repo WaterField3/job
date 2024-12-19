@@ -4,11 +4,11 @@
 #include <wrl.h>
 
 #include "ComponentCerealHelper.h"
-#include "direct3d.h"
 
+struct ID3D11ShaderResourceView;
 namespace TMF
 {
-	class CoolTimeUI : public Component
+	class ChangeTimeUI : public Component
 	{
 	public:
 		void OnInitialize() override;
@@ -17,7 +17,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
-		void SetSelectWepon(std::weak_ptr<Component> wepon);
+		void SetSelectWepon(std::weak_ptr<Component> pWepon);
 
 	private:
 		float m_barWidth = 100.0f;
@@ -29,7 +29,6 @@ namespace TMF
 		std::weak_ptr<Component> m_pWepon;
 
 		SERIALIZE_COMPONENT(m_barWidth, m_barHeight, m_barTextureName, m_drawPosition);
-
 	};
 }
 

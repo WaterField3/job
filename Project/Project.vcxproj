@@ -174,6 +174,7 @@
     <ClCompile Include="AssimpTexture.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BoneCombMatrix.cpp" />
+    <ClCompile Include="Component\ChangeTimeUI.cpp" />
     <ClCompile Include="Component\CameraMove.cpp" />
     <ClCompile Include="Component\AssimpAnimation.cpp" />
     <ClCompile Include="Component\BoneBind.cpp" />
@@ -276,6 +277,7 @@
     <ClInclude Include="AssimpTexture.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BoneCombMatrix.h" />
+    <ClInclude Include="Component\ChangeTimeUI.h" />
     <ClInclude Include="Component\CameraMove.h" />
     <ClInclude Include="Component\AssimpAnimation.h" />
     <ClInclude Include="Component\BoneBind.h" />

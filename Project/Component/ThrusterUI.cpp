@@ -43,16 +43,33 @@ namespace TMF
 			if (auto pLockThruster = m_pThruster.lock())
 			{
 
-				pLockSpriteBatch->Begin();
-				// ”wŒi‚ð•`‰æ
-				//pLockSpriteBatch->Draw(backgroundTexture.Get(), DirectX::XMFLOAT2(50, 50)); // ˆÊ’u‚ðŽw’è
-				//pLockSpriteBatch->Draw(m_pBarTexture.Get(), DirectX::XMFLOAT2(50, 50));
 
 				auto currentValue = pLockThruster->GetThrusterValue();
-				auto maxValue =pLockThruster->GetMaxThrusterValue();
+				auto maxValue = pLockThruster->GetMaxThrusterValue();
 
-				if (currentValue < 0.0f) currentValue = 0.0f;
-				if (maxValue <= 0.0f) maxValue = 1.0f; // maxValue‚ª0ˆÈ‰º‚Ìê‡‚ð‰ñ”ð
+				if (currentValue == 0.0f)
+				{
+					return;
+				}
+				pLockSpriteBatch->Begin();
+
+				if (currentValue < 0.0f)
+				{
+					currentValue = 0.0f;
+				}
+				if (maxValue <= 0.0f)
+				{
+					maxValue = 1.0f;
+				}
+				// RECT‚Å•`‰æ”ÍˆÍ‚ðŽw’è
+				RECT barBackRect = {};
+				barBackRect.left = 0;
+				barBackRect.top = 0;
+				barBackRect.right = static_cast<LONG>(m_barWidth);
+				barBackRect.bottom = static_cast<LONG>(m_barHeight);
+				// ”wŒi‚ð•`‰æ
+				pLockSpriteBatch->Draw(m_pBarTexture.Get(), m_drawPosition, &barBackRect, DirectX::Colors::Gray); // ˆÊ’u‚ðŽw’è
+
 
 				// Œ»Ý’l‚ÌŠ„‡‚ðŒvŽZ
 				float percentage = currentValue / maxValue; // ’l‚ÌŠ„‡
@@ -60,6 +77,21 @@ namespace TMF
 
 				// ƒo[‚Ì•‚ðŒvŽZiÅ‘å•‚ÉŠ„‡‚ðŠ|‚¯‚éj
 				float barWidth = m_barWidth * percentage;
+
+				auto color = DirectX::Colors::White;
+
+				if (percentage > 0.7f)
+				{
+					color = DirectX::Colors::Orange;
+				}
+				else if (percentage > 0.3f)
+				{
+					color = DirectX::Colors::Yellow;
+				}
+				if (pLockThruster->GetIsOverHeat() == true)
+				{
+					color = DirectX::Colors::Red;
+				}
 
 				// RECT‚Å•`‰æ”ÍˆÍ‚ðŽw’è
 				RECT barRect = {};
@@ -69,7 +101,7 @@ namespace TMF
 				barRect.bottom = static_cast<LONG>(m_barHeight);
 
 				// ƒo[‚Ì•`‰æ
-				pLockSpriteBatch->Draw(m_pBarTexture.Get(),	m_drawPosition,	&barRect);
+				pLockSpriteBatch->Draw(m_pBarTexture.Get(), m_drawPosition, &barRect, color);
 
 				pLockSpriteBatch->End();
 			}

@@ -17,6 +17,7 @@ namespace TMF
 {
 	void Melee::OnInitialize()
 	{
+		m_changeTime = m_initChangeTime;
 	}
 	void Melee::OnFinalize()
 	{
@@ -34,9 +35,9 @@ namespace TMF
 		}
 		else
 		{
-			if (m_changeTime > 0)
+			if (m_changeTime < m_initChangeTime)
 			{
-				m_changeTime -= Timer::Instance().deltaTime.count();
+				m_changeTime += Timer::Instance().deltaTime.count();
 			}
 		}
 	}
@@ -88,7 +89,7 @@ namespace TMF
 		{
 			return;
 		}
-		if (m_isMelee == true || m_changeTime > 0)
+		if (m_isMelee == true || m_changeTime < m_initChangeTime)
 		{
 			return;
 		}
@@ -142,6 +143,6 @@ namespace TMF
 	}
 	void Melee::Select()
 	{
-		m_changeTime = m_initChangeTime;
+		m_changeTime = 0.0f;;
 	}
 }

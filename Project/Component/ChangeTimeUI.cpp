@@ -1,19 +1,19 @@
-#include "CoolTimeUI.h"
+#include "ChangeTimeUI.h"
 
-#include <Imgui/imgui.h>
 #include <WICTextureLoader.h>
+#include <Imgui/imgui.h>
 
 #include "ComponentRegister.h"
-#include "GameObject/GameObjectManager.h"
 #include "Utility/StringHelper.h"
+#include "direct3d.h"
 #include "Shot.h"
 #include "Melee.h"
 
-REGISTER_COMPONENT(TMF::CoolTimeUI, "CoolTimeUI");
+REGISTER_COMPONENT(TMF::ChangeTimeUI, "ChangeTimeUI");
 
 namespace TMF
 {
-	void CoolTimeUI::OnInitialize()
+	void ChangeTimeUI::OnInitialize()
 	{
 		if (m_barTextureName != "")
 		{
@@ -21,19 +21,19 @@ namespace TMF
 			DirectX::CreateWICTextureFromFile(D3D::Get()->GetDevice(), nullptr, wideString.c_str(), nullptr, m_pBarTexture.ReleaseAndGetAddressOf());
 		}
 	}
-	void CoolTimeUI::OnFinalize()
+	void ChangeTimeUI::OnFinalize()
 	{
 
 	}
-	void CoolTimeUI::OnUpdate()
+	void ChangeTimeUI::OnUpdate()
 	{
 
 	}
-	void CoolTimeUI::OnLateUpdate()
+	void ChangeTimeUI::OnLateUpdate()
 	{
 
 	}
-	void CoolTimeUI::OnDraw()
+	void ChangeTimeUI::OnDraw()
 	{
 		auto pSpriteBatch = D3D::Get()->GetSpriteBatch();
 		if (auto pLockSpriteBatch = pSpriteBatch.lock())
@@ -44,15 +44,14 @@ namespace TMF
 				auto maxValue = 10.0f;
 				if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockWepon))
 				{
-					currentValue = pLockMelee->GetCurrentCollTime();
-					maxValue = pLockMelee->GetCoolTime();
+					currentValue = pLockMelee->GetCurrentChangeTime();
+					maxValue = pLockMelee->GetChangeTime();
 				}
 				else if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockWepon))
 				{
-					currentValue = pLockShot->GetCurrentCollTime();
-					maxValue = pLockShot->GetCoolTime();
+					currentValue = pLockShot->GetCurrentChangeTime();
+					maxValue = pLockShot->GetChangeTime();
 				}
-				pLockSpriteBatch->Begin();
 				// 背景を描画
 				//pLockSpriteBatch->Draw(backgroundTexture.Get(), DirectX::XMFLOAT2(50, 50)); // 位置を指定
 				//pLockSpriteBatch->Draw(m_pBarTexture.Get(), DirectX::XMFLOAT2(50, 50));
@@ -65,14 +64,14 @@ namespace TMF
 				{
 					maxValue = 1.0f;
 				}
-
 				// 現在値の割合を計算
-				float percentage = currentValue / maxValue;
-				// 割合が1を超えないように制限
+				float percentage = currentValue / maxValue; // 値の割合
 				if (percentage > 1.0f)
 				{
-					percentage = 1.0f;
+					percentage = 1.0f;  // 割合が1を超えないように制限
+					return;
 				}
+				pLockSpriteBatch->Begin();
 
 				// バーの幅を計算（最大幅に割合を掛ける）
 				float barWidth = m_barWidth * percentage;
@@ -85,14 +84,14 @@ namespace TMF
 				barRect.bottom = static_cast<LONG>(m_barHeight);
 
 				// バーの描画
-				pLockSpriteBatch->Draw(m_pBarTexture.Get(), m_drawPosition, &barRect, DirectX::Colors::Red);
+				pLockSpriteBatch->Draw(m_pBarTexture.Get(),m_drawPosition,&barRect, DirectX::Colors::Red);
 
 				pLockSpriteBatch->End();
 
 			}
 		}
 	}
-	void CoolTimeUI::OnDrawImGui()
+	void ChangeTimeUI::OnDrawImGui()
 	{
 		char barTextureNameBuf[256] = "";
 		strcpy_s(barTextureNameBuf, sizeof(barTextureNameBuf), m_barTextureName.c_str());
@@ -117,7 +116,7 @@ namespace TMF
 
 		}
 	}
-	void CoolTimeUI::SetSelectWepon(std::weak_ptr<Component> pWepon)
+	void ChangeTimeUI::SetSelectWepon(std::weak_ptr<Component> pWepon)
 	{
 		m_pWepon = pWepon;
 	}

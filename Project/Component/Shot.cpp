@@ -15,7 +15,7 @@ namespace TMF
 {
 	void Shot::OnInitialize()
 	{
-		
+		m_changeTime = m_initChangeTime;
 	}
 	void Shot::OnFinalize()
 	{
@@ -33,7 +33,10 @@ namespace TMF
 		}
 		else
 		{
-			m_changeTime -=Timer::Instance().deltaTime.count();
+			if (m_changeTime < m_initChangeTime)
+			{
+				m_changeTime += Timer::Instance().deltaTime.count();
+			}
 		}
 	}
 	void Shot::OnLateUpdate()
@@ -74,7 +77,7 @@ namespace TMF
 		//{
 
 		//}
-		if (m_isShot || m_changeTime > 0)
+		if (m_isShot || m_changeTime < m_initChangeTime)
 		{
 			return;
 		}
@@ -112,6 +115,6 @@ namespace TMF
 
 	void Shot::Select()
 	{
-		m_changeTime = m_initChangeTime;
+		m_changeTime = 0;
 	}
 }

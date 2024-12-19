@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 4.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 2.670351505279541,
+                                        "m_azimuth": 2.7925238609313967,
                                         "m_rotationSpeed": 1.0,
                                         "m_targetName": "Anim"
                                     }
@@ -2320,7 +2320,7 @@
                                         },
                                         "m_barWidth": 300.0,
                                         "m_barHeight": 15.0,
-                                        "m_barTextureName": "asset/textures/sunset.jpg",
+                                        "m_barTextureName": "asset/textures/white.png",
                                         "m_targetName": "Anim",
                                         "m_drawPosition": {
                                             "value0": 330.0,
@@ -2393,7 +2393,79 @@
                                         },
                                         "m_barWidth": 50.0,
                                         "m_barHeight": 7.0,
-                                        "m_barTextureName": "asset/textures/sunset.jpg",
+                                        "m_barTextureName": "asset/textures/white.png",
+                                        "m_drawPosition": {
+                                            "value0": 470.0,
+                                            "value1": 350.0
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483752,
+                    "data": {
+                        "m_name": "ChangeTimeUI",
+                        "m_uuID": {
+                            "uuid": "c35ad849-9682-4ae4-81c1-f3fa5d651e44"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483753,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "709be4ed-d7d4-4a12-bfbf-4461935ea66a"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483679,
+                                "polymorphic_name": "TMF::ChangeTimeUI",
+                                "ptr_wrapper": {
+                                    "id": 2147483754,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "6c0f1a99-03d9-47a6-9c29-ea3ad3dda1ad"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_barWidth": 50.0,
+                                        "m_barHeight": 7.0,
+                                        "m_barTextureName": "asset/textures/white.png",
                                         "m_drawPosition": {
                                             "value0": 470.0,
                                             "value1": 350.0
