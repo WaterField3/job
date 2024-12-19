@@ -4,9 +4,11 @@
 
 #include "ComponentRegister.h"
 #include "Utility/StringHelper.h"
+#include "GameObject/GameObjectManager.h"
+#include "Input.h"
 #include "Shot.h"
 #include "Melee.h"
-#include "Input.h"
+#include "CoolTimeUI.h"
 
 REGISTER_COMPONENT(TMF::Attack, "Attack");
 
@@ -25,6 +27,14 @@ namespace TMF
 			for (auto pMelee : pMelees)
 			{
 				m_pWepons.push_back(pMelee);
+			}
+		}
+		m_pCoolTimeUI = GameObjectManager::Instance().GetComponent<CoolTimeUI>();
+		if (auto pLockWepon = m_pWepons[0].lock())
+		{
+			if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+			{
+				pLockCoolTimeUI->SetSelectWepon(m_pWepons[0]);
 			}
 		}
 	}
@@ -76,7 +86,10 @@ namespace TMF
 				if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
 				{
 					pLockShot->Select();
-
+					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+					{
+						pLockCoolTimeUI->SetSelectWepon(pLockShot);
+					}
 				}
 			}
 		}
@@ -93,7 +106,10 @@ namespace TMF
 				if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
 				{
 					pLockShot->Select();
-
+					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+					{
+						pLockCoolTimeUI->SetSelectWepon(pLockShot);
+					}
 				}
 			}
 		}

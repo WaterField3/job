@@ -1,4 +1,4 @@
-#include "ThrusterUI.h"
+#include "CoolTimeUI.h"
 
 #include <Imgui/imgui.h>
 #include <WICTextureLoader.h>
@@ -6,50 +6,56 @@
 #include "ComponentRegister.h"
 #include "GameObject/GameObjectManager.h"
 #include "Utility/StringHelper.h"
-#include "Thruster.h"
+#include "Shot.h"
+#include "Melee.h"
 
-
-REGISTER_COMPONENT(TMF::ThrusterUI, "ThrusterUI");
+REGISTER_COMPONENT(TMF::CoolTimeUI, "CoolTimeUI");
 
 namespace TMF
 {
-	void ThrusterUI::OnInitialize()
+	void CoolTimeUI::OnInitialize()
 	{
-		auto pTargetObject = GameObjectManager::Instance().GetGameObject(m_targetName);
-		if (auto pLockTargetObject = pTargetObject.lock())
-		{
-			m_pThruster = pLockTargetObject->GetComponent<Thruster>();
-		}
 		if (m_barTextureName != "")
 		{
 			auto wideString = std::wstring(m_barTextureName.begin(), m_barTextureName.end());
 			DirectX::CreateWICTextureFromFile(D3D::Get()->GetDevice(), nullptr, wideString.c_str(), nullptr, m_pBarTexture.ReleaseAndGetAddressOf());
 		}
 	}
-	void ThrusterUI::OnFinalize()
+	void CoolTimeUI::OnFinalize()
 	{
+
 	}
-	void ThrusterUI::OnUpdate()
+	void CoolTimeUI::OnUpdate()
 	{
+
 	}
-	void ThrusterUI::OnLateUpdate()
+	void CoolTimeUI::OnLateUpdate()
 	{
+
 	}
-	void ThrusterUI::OnDraw()
+	void CoolTimeUI::OnDraw()
 	{
 		auto pSpriteBatch = D3D::Get()->GetSpriteBatch();
 		if (auto pLockSpriteBatch = pSpriteBatch.lock())
 		{
-			if (auto pLockThruster = m_pThruster.lock())
+			if (auto pLockWepon = m_pWepon.lock())
 			{
-
+				auto currentValue = 10.0f;
+				auto maxValue = 10.0f;
+				if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockWepon))
+				{
+					currentValue = pLockMelee->GetCurrentCollTime();
+					maxValue = pLockMelee->GetCoolTime();
+				}
+				else if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockWepon))
+				{
+					currentValue = pLockShot->GetCurrentCollTime();
+					maxValue = pLockShot->GetCoolTime();
+				}
 				pLockSpriteBatch->Begin();
 				// ”wŒi‚ð•`‰æ
 				//pLockSpriteBatch->Draw(backgroundTexture.Get(), DirectX::XMFLOAT2(50, 50)); // ˆÊ’u‚ðŽw’è
 				//pLockSpriteBatch->Draw(m_pBarTexture.Get(), DirectX::XMFLOAT2(50, 50));
-
-				auto currentValue = pLockThruster->GetThrusterValue();
-				auto maxValue =pLockThruster->GetMaxThrusterValue();
 
 				if (currentValue < 0.0f) currentValue = 0.0f;
 				if (maxValue <= 0.0f) maxValue = 1.0f; // maxValue‚ª0ˆÈ‰º‚Ìê‡‚ð‰ñ”ð
@@ -69,13 +75,18 @@ namespace TMF
 				barRect.bottom = static_cast<LONG>(m_barHeight);
 
 				// ƒo[‚Ì•`‰æ
-				pLockSpriteBatch->Draw(m_pBarTexture.Get(),	m_drawPosition,	&barRect);
+				pLockSpriteBatch->Draw(
+					m_pBarTexture.Get(),          // ƒeƒNƒXƒ`ƒƒ
+					m_drawPosition, // •`‰æˆÊ’u
+					&barRect                    // •`‰æ”ÍˆÍ
+				);
 
 				pLockSpriteBatch->End();
+
 			}
 		}
 	}
-	void ThrusterUI::OnDrawImGui()
+	void CoolTimeUI::OnDrawImGui()
 	{
 		char barTextureNameBuf[256] = "";
 		strcpy_s(barTextureNameBuf, sizeof(barTextureNameBuf), m_barTextureName.c_str());
@@ -83,13 +94,6 @@ namespace TMF
 		if (ImGui::InputText(barTextureNameLabel.c_str(), barTextureNameBuf, 256))
 		{
 			m_barTextureName = barTextureNameBuf;
-		}
-		char targetNameBuf[256] = "";
-		strcpy_s(targetNameBuf, sizeof(targetNameBuf), m_targetName.c_str());
-		auto targetNameLabel = StringHelper::CreateLabel("TargetName", m_uuID);
-		if (ImGui::InputText(targetNameLabel.c_str(), targetNameBuf, 256))
-		{
-			m_targetName = targetNameBuf;
 		}
 		auto drawPositionLabel = StringHelper::CreateLabel("DrawPosition", m_uuID);
 		if (ImGui::DragFloat2(drawPositionLabel.c_str(), &m_drawPosition.x))
@@ -106,5 +110,9 @@ namespace TMF
 		{
 
 		}
+	}
+	void CoolTimeUI::SetSelectWepon(std::weak_ptr<Component> pWepon)
+	{
+		m_pWepon = pWepon;
 	}
 }

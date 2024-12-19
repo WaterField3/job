@@ -34,7 +34,10 @@ namespace TMF
 		}
 		else
 		{
-			m_changeTime -= Timer::Instance().deltaTime.count();
+			if (m_changeTime > 0)
+			{
+				m_changeTime -= Timer::Instance().deltaTime.count();
+			}
 		}
 	}
 	void Melee::OnLateUpdate()

@@ -18,6 +18,8 @@ namespace TMF
 		void OnDrawImGui() override;
 		void Play();
 		void Select();
+		inline float GetCoolTime() const { return m_coolTime; }
+		inline float GetCurrentCollTime() const { return m_timer; }
 
 	private:
 		float m_endTime = 0;

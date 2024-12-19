@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 4.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 2.513272762298584,
+                                        "m_azimuth": 2.687804698944092,
                                         "m_rotationSpeed": 1.0,
                                         "m_targetName": "Anim"
                                     }
@@ -2318,13 +2318,85 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_barWidth": 40.0,
+                                        "m_barWidth": 300.0,
                                         "m_barHeight": 15.0,
                                         "m_barTextureName": "asset/textures/sunset.jpg",
                                         "m_targetName": "Anim",
                                         "m_drawPosition": {
-                                            "value0": 275.0,
-                                            "value1": 465.0
+                                            "value0": 330.0,
+                                            "value1": 450.0
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483749,
+                    "data": {
+                        "m_name": "CoolTIme",
+                        "m_uuID": {
+                            "uuid": "7f7844af-fb68-4a99-b33a-9fb736057fe9"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483750,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "2d8d83a9-4a07-4af3-b91e-658f33b152f3"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483678,
+                                "polymorphic_name": "TMF::CoolTimeUI",
+                                "ptr_wrapper": {
+                                    "id": 2147483751,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "20e5618e-73f3-4941-8be9-69b74de80760"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_barWidth": 50.0,
+                                        "m_barHeight": 7.0,
+                                        "m_barTextureName": "asset/textures/sunset.jpg",
+                                        "m_drawPosition": {
+                                            "value0": 470.0,
+                                            "value1": 350.0
                                         }
                                     }
                                 }

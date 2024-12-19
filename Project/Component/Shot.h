@@ -19,6 +19,8 @@ namespace TMF
 		void Play();
 		void Select();
 		inline float GetChangeTime() const { return m_changeTime; }
+		inline float GetCoolTime() const { return m_coolTime; }
+		inline float GetCurrentCollTime() const { return m_timer; }
 
 	private:
 		float m_coolTime = 1.0f;
