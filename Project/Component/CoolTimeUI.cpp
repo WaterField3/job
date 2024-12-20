@@ -52,10 +52,11 @@ namespace TMF
 					currentValue = pLockShot->GetCurrentCollTime();
 					maxValue = pLockShot->GetCoolTime();
 				}
-				pLockSpriteBatch->Begin();
-				// ”wŒi‚ğ•`‰æ
-				//pLockSpriteBatch->Draw(backgroundTexture.Get(), DirectX::XMFLOAT2(50, 50)); // ˆÊ’u‚ğw’è
-				//pLockSpriteBatch->Draw(m_pBarTexture.Get(), DirectX::XMFLOAT2(50, 50));
+
+				if (currentValue == 0.0f)
+				{
+					return;
+				}
 
 				if (currentValue < 0.0f)
 				{
@@ -65,6 +66,16 @@ namespace TMF
 				{
 					maxValue = 1.0f;
 				}
+				pLockSpriteBatch->Begin();
+
+				// RECT‚Å•`‰æ”ÍˆÍ‚ğw’è
+				RECT barBackRect = {};
+				barBackRect.left = 0;
+				barBackRect.top = 0;
+				barBackRect.right = static_cast<LONG>(m_barWidth);
+				barBackRect.bottom = static_cast<LONG>(m_barHeight);
+				// ”wŒi‚ğ•`‰æ
+				pLockSpriteBatch->Draw(m_pBarTexture.Get(), m_drawPosition, &barBackRect, DirectX::Colors::Gray); // ˆÊ’u‚ğw’è
 
 				// Œ»İ’l‚ÌŠ„‡‚ğŒvZ
 				float percentage = currentValue / maxValue;

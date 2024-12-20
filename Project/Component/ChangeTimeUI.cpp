@@ -52,9 +52,7 @@ namespace TMF
 					currentValue = pLockShot->GetCurrentChangeTime();
 					maxValue = pLockShot->GetChangeTime();
 				}
-				// 背景を描画
-				//pLockSpriteBatch->Draw(backgroundTexture.Get(), DirectX::XMFLOAT2(50, 50)); // 位置を指定
-				//pLockSpriteBatch->Draw(m_pBarTexture.Get(), DirectX::XMFLOAT2(50, 50));
+
 
 				if (currentValue < 0.0f)
 				{
@@ -64,6 +62,12 @@ namespace TMF
 				{
 					maxValue = 1.0f;
 				}
+
+				if (currentValue == 0.0f)
+				{
+					return;
+				}
+
 				// 現在値の割合を計算
 				float percentage = currentValue / maxValue; // 値の割合
 				if (percentage > 1.0f)
@@ -72,6 +76,15 @@ namespace TMF
 					return;
 				}
 				pLockSpriteBatch->Begin();
+
+				// RECTで描画範囲を指定
+				RECT barBackRect = {};
+				barBackRect.left = 0;
+				barBackRect.top = 0;
+				barBackRect.right = static_cast<LONG>(m_barWidth);
+				barBackRect.bottom = static_cast<LONG>(m_barHeight);
+				// 背景を描画
+				pLockSpriteBatch->Draw(m_pBarTexture.Get(), m_drawPosition, &barBackRect, DirectX::Colors::Gray); // 位置を指定
 
 				// バーの幅を計算（最大幅に割合を掛ける）
 				float barWidth = m_barWidth * percentage;
@@ -84,7 +97,7 @@ namespace TMF
 				barRect.bottom = static_cast<LONG>(m_barHeight);
 
 				// バーの描画
-				pLockSpriteBatch->Draw(m_pBarTexture.Get(),m_drawPosition,&barRect, DirectX::Colors::Red);
+				pLockSpriteBatch->Draw(m_pBarTexture.Get(), m_drawPosition, &barRect, DirectX::Colors::Red);
 
 				pLockSpriteBatch->End();
 

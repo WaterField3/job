@@ -13,6 +13,8 @@
 
 REGISTER_COMPONENT(TMF::Attack, "Attack");
 
+/// 切り替え
+
 namespace TMF
 {
 	void Attack::OnInitialize()
@@ -99,8 +101,10 @@ namespace TMF
 				// Shotクラスに変換できるか確認
 				if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
 				{
-					pLockShot->Select();
-
+					if (pLockShot != m_pOldWepon.lock())
+					{
+						pLockShot->Select();
+					}
 					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
 					{
 						pLockChangeTimeUI->SetSelectWepon(pLockShot);
@@ -108,7 +112,10 @@ namespace TMF
 				}
 				if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
 				{
-					pLockMelee->Select();
+					if (pLockMelee != m_pOldWepon.lock())
+					{
+						pLockMelee->Select();
+					}
 					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
 					{
 						pLockChangeTimeUI->SetSelectWepon(pLockMelee);
@@ -128,8 +135,10 @@ namespace TMF
 				// Shotクラスに変換できるか確認
 				if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
 				{
-					pLockShot->Select();
-
+					if (pLockShot != m_pOldWepon.lock())
+					{
+						pLockShot->Select();
+					}
 					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
 					{
 						pLockChangeTimeUI->SetSelectWepon(pLockShot);
@@ -137,7 +146,10 @@ namespace TMF
 				}
 				if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
 				{
-					pLockMelee->Select();
+					if (pLockMelee != m_pOldWepon.lock())
+					{
+						pLockMelee->Select();
+					}
 					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
 					{
 						pLockChangeTimeUI->SetSelectWepon(pLockMelee);
@@ -146,6 +158,7 @@ namespace TMF
 			}
 		}
 		m_previousScrollValue = currentScrollValue;
+		m_pOldWepon = m_pWepons[m_selectIndex];
 	}
 	void Attack::OnLateUpdate()
 	{
