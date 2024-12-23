@@ -1,6 +1,6 @@
 #pragma once
 
-#include <bullet/btBulletDynamicsCommon.h>
+#include <btBulletDynamicsCommon.h>
 #include <set>
 
 class MyBulletCollisionDispatcher : public btCollisionDispatcher

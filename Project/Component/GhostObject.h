@@ -3,8 +3,8 @@
 #include "Component.h"
 
 #include <cereal/types/polymorphic.hpp>
-#include <bullet/btBulletDynamicsCommon.h>
-#include <bullet/BulletCollision/CollisionDispatch/btGhostObject.h>
+#include <btBulletDynamicsCommon.h>
+#include <BulletCollision/CollisionDispatch/btGhostObject.h>
 
 #include <boost/uuid/uuid_generators.hpp>
 #include <memory>

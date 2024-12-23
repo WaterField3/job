@@ -1,5 +1,5 @@
 #pragma once
-#include "bullet/btBulletDynamicsCommon.h"
+#include <btBulletDynamicsCommon.h>
 
 #include <d3d11.h>
 #include <DirectXMath.h>

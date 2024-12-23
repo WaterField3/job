@@ -2,7 +2,7 @@
 #include "Component.h"
 
 #include <memory>
-#include <bullet/btBulletDynamicsCommon.h>
+#include <btBulletDynamicsCommon.h>
 #include <cereal/types/polymorphic.hpp>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>

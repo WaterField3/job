@@ -1,6 +1,7 @@
 #include "PhysicsManager.h"
 
-#include "bullet/BulletCollision/CollisionDispatch/btGhostObject.h"
+#include <BulletCollision/CollisionDispatch/btGhostObject.h>
+
 #include "direct3d.h"
 #include "GameObject/GameObjectManager.h"
 #include "Component/Camera.h"
