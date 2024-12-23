@@ -24,13 +24,18 @@ namespace TMF
 		inline float GetCurrentCollTime() const { return m_timer; }
 
 	private:
+		int m_bulletNum = 1;
+		int m_bulletMaxNum = 10;
 		float m_coolTime = 1.0f;
 		float m_timer = 0.0f;
 		float m_changeTime = 1.0f;
 		float m_initChangeTime = 1.0f;
+		float m_reloadTime = 1.0f;
+		float m_reloadMaxTime = 10.0f;
 		bool m_isShot = false;
+		bool m_isUsePlayer = false;
 		std::string m_objectFilePath = "";
-		SERIALIZE_COMPONENT(m_objectFilePath, m_coolTime);
+		SERIALIZE_COMPONENT(m_objectFilePath, m_coolTime, m_initChangeTime, m_reloadMaxTime, m_bulletMaxNum, m_isUsePlayer);
 	};
 }
 

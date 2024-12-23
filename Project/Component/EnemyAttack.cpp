@@ -63,13 +63,7 @@ namespace TMF
 		std::uniform_int_distribution<int> dist(0, size);
 
 		m_selectIndex = dist(gen);
-		if (auto pLockWepon = m_pWepons[m_selectIndex].lock())
-		{
-			if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockWepon))
-			{
-				pLockShot->Select();
-			}
-		}
+
 	}
 
 	void EnemyAttack::SelectMelee()
@@ -120,6 +114,18 @@ namespace TMF
 				pLockMelee->Play();
 			}
 		}
+	}
+
+	bool EnemyAttack::GetIsMeleeEnd()
+	{
+		if (auto pLockSelectComponent = m_pWepons[m_selectIndex].lock())
+		{
+			if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
+			{
+				return pLockMelee->GetIsMeleeEnd();
+			}
+		}
+		return false;
 	}
 
 

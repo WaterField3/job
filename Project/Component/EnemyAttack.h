@@ -17,6 +17,7 @@ namespace TMF
 		void SelectShot();
 		void SelectMelee();
 		void Play();
+		bool GetIsMeleeEnd();
 
 	private:
 		int m_selectIndex = 0;

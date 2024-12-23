@@ -27,6 +27,10 @@ namespace TMF
 		if (m_isMelee == true)
 		{
 			m_timer += Timer::Instance().deltaTime.count();
+			if (m_timer > m_endTime)
+			{
+				m_isMeleeEnd = true;
+			}
 			if (m_timer > m_coolTime)
 			{
 				m_isMelee = false;
@@ -135,6 +139,7 @@ namespace TMF
 					// アニメーションのパスの変更
 					pLockAnimater->SetFileName(m_meleeAnimation, m_endTime);
 				}
+				m_isMeleeEnd = false;
 			}
 		}
 	}

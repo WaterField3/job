@@ -22,6 +22,7 @@ namespace TMF
 		inline float GetCurrentChangeTime() { return m_changeTime; }
 		inline float GetCoolTime() const { return m_coolTime; }
 		inline float GetCurrentCollTime() const { return m_timer; }
+		inline bool GetIsMeleeEnd() const { return m_isMeleeEnd; }
 
 	private:
 		float m_endTime = 0;
@@ -30,6 +31,7 @@ namespace TMF
 		float m_initChangeTime = 1.0f;
 		float m_timer = 0.0f;
 		bool m_isMelee = false;
+		bool m_isMeleeEnd = false;
 		std::string m_meleeAnimation = "";
 		std::string m_meleeObjectName = "";
 

@@ -17,10 +17,12 @@ namespace TMF
 		void OnExit() override;
 
 	private:
+		float m_shotDistance = 3.0f;
+		bool m_isMeleePlay = false;
+
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Transform> m_pPlayerTransform;
 		std::weak_ptr<EnemyAttack> m_pEnemyAttack;
-		float m_shotDistance = 3.0f;
 	};
 }
 

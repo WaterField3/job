@@ -28,7 +28,8 @@ namespace TMF
 			{
 				if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
 				{
-					pLockAdministratorStateMachine->ChangeState("EnemyIdleState");
+					//pLockAdministratorStateMachine->ChangeState("EnemyIdleState");
+					pLockAdministratorStateMachine->ChangeState("EnemyAttackState");
 				}
 			}
 		}

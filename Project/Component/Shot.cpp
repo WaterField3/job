@@ -16,15 +16,17 @@ namespace TMF
 	void Shot::OnInitialize()
 	{
 		m_changeTime = m_initChangeTime;
+		m_bulletNum = m_bulletMaxNum;
 	}
 	void Shot::OnFinalize()
 	{
 	}
 	void Shot::OnUpdate()
 	{
+		auto deltaTime =Timer::Instance().deltaTime.count();
 		if (m_isShot == true)
 		{
-			m_timer += Timer::Instance().deltaTime.count();
+			m_timer += deltaTime;
 			if (m_timer > m_coolTime)
 			{
 				m_isShot = false;
@@ -35,12 +37,22 @@ namespace TMF
 		{
 			m_changeTime += Timer::Instance().deltaTime.count();
 		}
+		if (m_bulletNum == 0)
+		{
+			m_reloadTime += deltaTime;
+			if (m_reloadTime > m_reloadMaxTime)
+			{
+				m_bulletNum = m_bulletMaxNum;
+				m_reloadTime = 0.0f;
+			}
+		}
 	}
 	void Shot::OnLateUpdate()
 	{
 	}
 	void Shot::OnDraw()
 	{
+
 	}
 	void Shot::OnDrawImGui()
 	{
@@ -61,6 +73,21 @@ namespace TMF
 		{
 
 		}
+		auto maxBulletNumLabel = StringHelper::CreateLabel("MaxBulletNum", m_uuID);
+		if (ImGui::DragInt(maxBulletNumLabel.c_str(), &m_bulletMaxNum))
+		{
+
+		}
+		auto reloadTimeLabel = StringHelper::CreateLabel("ReloadTime", m_uuID);
+		if (ImGui::DragFloat(reloadTimeLabel.c_str(), &m_reloadMaxTime))
+		{
+
+		}
+		auto isUsePlayerLabel = StringHelper::CreateLabel("IsUsePlayer", m_uuID);
+		if (ImGui::Checkbox(isUsePlayerLabel.c_str(), &m_isUsePlayer))
+		{
+
+		}
 		if (ImGui::Button("Play"))
 		{
 			Play();
@@ -74,7 +101,14 @@ namespace TMF
 		//{
 
 		//}
-		if (m_isShot || m_changeTime < m_initChangeTime)
+		if (m_isUsePlayer == true)
+		{
+			if (m_changeTime < m_initChangeTime)
+			{
+				return;
+			}
+		}
+		if (m_isShot == true || m_bulletNum == 0)
 		{
 			return;
 		}
@@ -99,6 +133,7 @@ namespace TMF
 							if (auto pLockTrancform = pTransform.lock())
 							{
 								m_isShot = true;
+								m_bulletNum--;
 								auto nowPosition = pLockTrancform->GetPosition();
 								auto nowRotation = pLockTrancform->GetRotation();
 								pLockBulletMove->MoveStart(nowPosition, nowRotation);
