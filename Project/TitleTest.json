@@ -378,7 +378,7 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_collidrType": 7,
+                                        "m_collidrType": 5,
                                         "m_size": {
                                             "value0": 1.0,
                                             "value1": 1.0,

@@ -57,12 +57,12 @@ struct VS_IN
 
 struct VSONESKIN_IN
 {
-    float4 Position		: POSITION0;
-    float4 Normal		: NORMAL0;
-    float4 Diffuse		: COLOR0;
-    float2 TexCoord		: TEXCOORD0;
-    int4   BoneIndex	: BONEINDEX;
-    float4 BoneWeight	: BONEWEIGHT;
+    float4 Position : POSITION0;
+    float4 Normal : NORMAL0;
+    float4 Diffuse : COLOR0;
+    float2 TexCoord : TEXCOORD0;
+    int4 BoneIndex : BONEINDEX;
+    float4 BoneWeight : BONEWEIGHT;
 };
 
 struct PS_IN
