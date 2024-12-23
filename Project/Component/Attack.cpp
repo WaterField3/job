@@ -13,8 +13,6 @@
 
 REGISTER_COMPONENT(TMF::Attack, "Attack");
 
-/// Ø‚è‘Ö‚¦
-
 namespace TMF
 {
 	void Attack::OnInitialize()
@@ -109,6 +107,10 @@ namespace TMF
 					{
 						pLockChangeTimeUI->SetSelectWepon(pLockShot);
 					}
+					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+					{
+						pLockCoolTimeUI->SetSelectWepon(pLockShot);
+					}
 				}
 				if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
 				{
@@ -119,6 +121,10 @@ namespace TMF
 					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
 					{
 						pLockChangeTimeUI->SetSelectWepon(pLockMelee);
+					}
+					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+					{
+						pLockCoolTimeUI->SetSelectWepon(pLockMelee);
 					}
 				}
 			}
@@ -143,6 +149,10 @@ namespace TMF
 					{
 						pLockChangeTimeUI->SetSelectWepon(pLockShot);
 					}
+					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+					{
+						pLockCoolTimeUI->SetSelectWepon(pLockShot);
+					}
 				}
 				if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
 				{
@@ -153,6 +163,10 @@ namespace TMF
 					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
 					{
 						pLockChangeTimeUI->SetSelectWepon(pLockMelee);
+					}
+					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+					{
+						pLockCoolTimeUI->SetSelectWepon(pLockMelee);
 					}
 				}
 			}

@@ -31,12 +31,9 @@ namespace TMF
 				m_timer = 0.0f;
 			}
 		}
-		else
+		if (m_changeTime < m_initChangeTime)
 		{
-			if (m_changeTime < m_initChangeTime)
-			{
-				m_changeTime += Timer::Instance().deltaTime.count();
-			}
+			m_changeTime += Timer::Instance().deltaTime.count();
 		}
 	}
 	void Shot::OnLateUpdate()

@@ -70,7 +70,7 @@ namespace TMF
 
 				// Œ»İ’l‚ÌŠ„‡‚ğŒvZ
 				float percentage = currentValue / maxValue; // ’l‚ÌŠ„‡
-				if (percentage > 1.0f)
+				if (percentage >= 1.0f)
 				{
 					percentage = 1.0f;  // Š„‡‚ª1‚ğ’´‚¦‚È‚¢‚æ‚¤‚É§ŒÀ
 					return;

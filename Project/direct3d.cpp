@@ -941,7 +941,7 @@ void D3D::ClearScreen()
 void D3D::UpdateScreen()
 {
 	// ダブルバッファの切り替えを行い画面を更新する
-	//PostProcess();
+	PostProcess();
 	m_pSwapChain->Present(1, 0);
 }
 
