@@ -9,6 +9,7 @@
 #include "PrimitiveMesh.h"
 #include "Animater.h"
 #include "MeleeMove.h"
+#include "MeleeFollowMove.h"
 #include "Timer.h"
 
 REGISTER_COMPONENT(TMF::Melee, "Melee");
@@ -117,6 +118,12 @@ namespace TMF
 						auto pMeleeMove = pLockChild->GetComponent<MeleeMove>();
 						if (auto pLockMeleemove = pMeleeMove.lock())
 						{
+							// ’Ç]‚ð‰ðœ
+							auto pMeleeFollowMove = pLockChild->GetComponent<MeleeFollowMove>();
+							if (auto pLockMeleeFollowMove = pMeleeFollowMove.lock())
+							{
+								pLockMeleeFollowMove->SetIsEnable(false);
+							}
 							pLockMeleemove->Play(MeleeMove::DEFAULT, nowPosition, nowRotation);
 							m_isMelee = true;
 						}

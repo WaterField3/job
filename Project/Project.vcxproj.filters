@@ -318,7 +318,7 @@
     <ClCompile Include="Component\ChangeTimeUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Component\FollowMove.cpp">
+    <ClCompile Include="Component\MeleeFollowMove.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1115,7 +1115,7 @@
     <ClInclude Include="Component\ChangeTimeUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Component\FollowMove.h">
+    <ClInclude Include="Component\MeleeFollowMove.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

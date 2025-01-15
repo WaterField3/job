@@ -1,4 +1,4 @@
-#include "FollowMove.h"
+#include "MeleeFollowMove.h"
 
 #include <Imgui/imgui.h>
 
@@ -6,11 +6,11 @@
 #include "Utility/StringHelper.h"
 #include "Transform.h"
 
-REGISTER_COMPONENT(TMF::FollowMove, "FollowMove");
+REGISTER_COMPONENT(TMF::MeleeFollowMove, "MeleeFollowMove");
 
 namespace TMF
 {
-	void FollowMove::OnInitialize()
+	void MeleeFollowMove::OnInitialize()
 	{
 		if (auto pLockOwner = m_pOwner.lock())
 		{
@@ -26,11 +26,11 @@ namespace TMF
 			}
 		}
 	}
-	void FollowMove::OnFinalize()
+	void MeleeFollowMove::OnFinalize()
 	{
 
 	}
-	void FollowMove::OnUpdate()
+	void MeleeFollowMove::OnUpdate()
 	{
 		if (auto pLockTransform = m_pTransform.lock())
 		{
@@ -50,13 +50,13 @@ namespace TMF
 			}
 		}
 	}
-	void FollowMove::OnLateUpdate()
+	void MeleeFollowMove::OnLateUpdate()
 	{
 	}
-	void FollowMove::OnDraw()
+	void MeleeFollowMove::OnDraw()
 	{
 	}
-	void FollowMove::OnDrawImGui()
+	void MeleeFollowMove::OnDrawImGui()
 	{
 		auto offsetLabel = StringHelper::CreateLabel("Offset", m_uuID);
 		if (ImGui::DragFloat3(offsetLabel.c_str(), &m_offsetPos.x, 0.1f))

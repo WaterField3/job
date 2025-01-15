@@ -726,7 +726,7 @@
                             },
                             {
                                 "polymorphic_id": 2147483670,
-                                "polymorphic_name": "TMF::FollowMove",
+                                "polymorphic_name": "TMF::MeleeFollowMove",
                                 "ptr_wrapper": {
                                     "id": 2147483682,
                                     "data": {

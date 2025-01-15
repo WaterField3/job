@@ -8,8 +8,7 @@
 #include "Input.h"
 #include "Shot.h"
 #include "Melee.h"
-#include "CoolTimeUI.h"
-#include "ChangeTimeUI.h"
+#include "MeleeFollowMove.h"
 
 REGISTER_COMPONENT(TMF::Attack, "Attack");
 
@@ -78,101 +77,8 @@ namespace TMF
 				}
 			}
 		}
-		int currentScrollValue = mouseState.scrollWheelValue;
-		int scrollDelta = currentScrollValue - m_previousScrollValue;
-		float scrollSensitivity = 0.001f;
-		float adjustedScroll = scrollDelta * scrollSensitivity;
-		if (adjustedScroll > 2 || adjustedScroll < -2)
-		{
-			m_previousScrollValue = 0;
-		}
-		if (adjustedScroll > 0)
-		{
-			m_selectIndex++;
-			auto maxSize = m_pWepons.size();
-			if (m_selectIndex >= maxSize)
-			{
-				m_selectIndex = int(maxSize) - 1;
-			}
-			if (auto pLockSelectComponent = m_pWepons[m_selectIndex].lock())
-			{
-				// Shotクラスに変換できるか確認
-				if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
-				{
-					if (pLockShot != m_pOldWepon.lock())
-					{
-						pLockShot->Select();
-					}
-					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
-					{
-						pLockChangeTimeUI->SetSelectWepon(pLockShot);
-					}
-					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
-					{
-						pLockCoolTimeUI->SetSelectWepon(pLockShot);
-					}
-				}
-				if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
-				{
-					if (pLockMelee != m_pOldWepon.lock())
-					{
-						pLockMelee->Select();
-					}
-					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
-					{
-						pLockChangeTimeUI->SetSelectWepon(pLockMelee);
-					}
-					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
-					{
-						pLockCoolTimeUI->SetSelectWepon(pLockMelee);
-					}
-				}
-			}
-		}
-		else if (adjustedScroll < 0)
-		{
-			m_selectIndex--;
-			if (m_selectIndex <= -1)
-			{
-				m_selectIndex = 0;
-			}
-			if (auto pLockSelectComponent = m_pWepons[m_selectIndex].lock())
-			{
-				// Shotクラスに変換できるか確認
-				if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
-				{
-					if (pLockShot != m_pOldWepon.lock())
-					{
-						pLockShot->Select();
-					}
-					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
-					{
-						pLockChangeTimeUI->SetSelectWepon(pLockShot);
-					}
-					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
-					{
-						pLockCoolTimeUI->SetSelectWepon(pLockShot);
-					}
-				}
-				if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
-				{
-					if (pLockMelee != m_pOldWepon.lock())
-					{
-						pLockMelee->Select();
-					}
-					if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
-					{
-						pLockChangeTimeUI->SetSelectWepon(pLockMelee);
-					}
-					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
-					{
-						pLockCoolTimeUI->SetSelectWepon(pLockMelee);
-					}
-				}
-			}
-		}
-		m_previousScrollValue = currentScrollValue;
-		m_pOldWepon = m_pWepons[m_selectIndex];
+		UpdateWeaponSelection(mouseState.scrollWheelValue);
+
 	}
 	void Attack::OnLateUpdate()
 	{
@@ -188,6 +94,56 @@ namespace TMF
 		if (ImGui::SliderInt(selectIndexLabel.c_str(), &m_selectIndex, -100, 100))
 		{
 
+		}
+	}
+	void Attack::UpdateWeaponSelection(int currentScrollValue)
+	{
+		int scrollDelta = currentScrollValue - m_previousScrollValue;
+		float scrollSensitivity = 0.001f;
+		float adjustedScroll = scrollDelta * scrollSensitivity;
+
+		if (adjustedScroll > 2 || adjustedScroll < -2)
+		{
+			m_previousScrollValue = 0;
+			return;
+		}
+
+		if (adjustedScroll != 0)
+		{
+			m_selectIndex = std::clamp(m_selectIndex + (adjustedScroll > 0 ? 1 : -1), 0, static_cast<int>(m_pWepons.size()) - 1);
+
+			if (auto pLockSelectComponent = m_pWepons[m_selectIndex].lock())
+			{
+				HandleWeaponSelection(pLockSelectComponent);
+			}
+		}
+
+		m_previousScrollValue = currentScrollValue;
+		m_pOldWepon = m_pWepons[m_selectIndex];
+	}
+	void Attack::HandleWeaponSelection(const std::shared_ptr<Component>& pLockSelectComponent)
+	{
+		if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
+		{
+			SelectWeapon(pLockShot);
+		}
+		else if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
+		{
+			if (pLockMelee->GetIsMelee() == false)
+			{
+				auto meleeObjectName = pLockMelee->GetMeleeObjectName();
+				auto pMeleeObject = GameObjectManager::Instance().GetGameObject(meleeObjectName);
+				if (auto pLockMeleeObjectOwner = pMeleeObject.lock())
+				{
+					auto pMeleeFollowMove = pLockMeleeObjectOwner->GetComponent<MeleeFollowMove>();
+					if (auto pLockMeleeFollowMove = pMeleeFollowMove.lock())
+					{
+						pLockMeleeObjectOwner->SetActive(true);
+						pLockMeleeFollowMove->SetIsEnable(true);
+					}
+				}
+			}
+			SelectWeapon(pLockMelee);
 		}
 	}
 }

@@ -23,7 +23,8 @@ namespace TMF
 		inline float GetCoolTime() const { return m_coolTime; }
 		inline float GetCurrentCollTime() const { return m_timer; }
 		inline bool GetIsMeleeEnd() const { return m_isMeleeEnd; }
-
+		inline bool GetIsMelee() const { return m_isMelee; }
+		inline std::string GetMeleeObjectName() const { return m_meleeObjectName; }
 	private:
 		float m_endTime = 0;
 		float m_coolTime = 1.0f;

@@ -6,7 +6,7 @@
 namespace TMF
 {
 	class Transform;
-	class FollowMove : public Component
+	class MeleeFollowMove : public Component
 	{
 	public:
 		void OnInitialize() override;
