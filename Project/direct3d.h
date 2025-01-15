@@ -227,6 +227,8 @@ public:
 	void SetProjectionMatrix(DirectX::SimpleMath::Matrix* ProjectionMatrix);
 	void SetMaterial(MATERIAL Material);
 	void SetLight(LIGHT Light);
+
+	//void CreateSkinnedEffect();
 private:
 	//D3D() {};
 
@@ -274,6 +276,7 @@ private:
 	HWND m_hwnd;
 
 	std::shared_ptr<DirectX::BasicEffect> m_pEffect;
+	std::vector<std::shared_ptr<DirectX::SkinnedEffect>> m_pSkinnedEffects;
 
 	std::shared_ptr<DirectX::SpriteBatch> m_pSpriteBatch;
 

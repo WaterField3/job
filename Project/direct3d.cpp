@@ -967,6 +967,7 @@ void D3D::UpdateScreen()
 
 void D3D::SettingEffect(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj)
 {
+	m_pEffect->SetVertexColorEnabled(true);
 	m_pEffect->SetView(view);
 	m_pEffect->SetProjection(proj);
 	m_pEffect->SetWorld(DirectX::SimpleMath::Matrix::Identity);

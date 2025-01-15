@@ -204,6 +204,7 @@
     <ClCompile Include="Component\EnemyController.cpp" />
     <ClCompile Include="Component\EnemyMove.cpp" />
     <ClCompile Include="Component\EnemyAttack.cpp" />
+    <ClCompile Include="Component\FollowMove.cpp" />
     <ClCompile Include="State\EnemyAttackState.cpp" />
     <ClCompile Include="State\EnemyMoveState.cpp" />
     <ClCompile Include="State\EnemyIdleState.cpp" />
@@ -307,6 +308,7 @@
     <ClInclude Include="Component\EnemyController.h" />
     <ClInclude Include="Component\EnemyMove.h" />
     <ClInclude Include="Component\EnemyAttack.h" />
+    <ClInclude Include="Component\FollowMove.h" />
     <ClInclude Include="State\EnemyAttackState.h" />
     <ClInclude Include="State\EnemyMoveState.h" />
     <ClInclude Include="State\EnemyIdleState.h" />
