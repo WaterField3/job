@@ -34,7 +34,7 @@ namespace TMF
 		float m_CurrentFrame = 0;
 
 		// ブレンドレイト
-		float m_BlendRate = 0.0f;									// モーションのブレンド率
+		float m_BlendRate = 1.0f;									// モーションのブレンド率
 
 		Shader m_shader;
 
@@ -48,12 +48,12 @@ namespace TMF
 		std::vector<std::shared_ptr<AnimationData>> m_animationData;
 
 		// モデルファイル
-		std::string m_currentFile = "asset/model/Ch36_nonPBR.fbx";
+		std::string m_currentFile = "asset/model/03.fbx";
 
 		// テクスチャファイル
 		std::string m_textureDirectory = "asset/model";
 
-		std::string m_motionFile = "asset/model/Idle.fbx";
+		std::string m_motionFile = "asset/model/03Idle.fbx";
 
 		// 現在のアニメーション
 		std::shared_ptr<aiAnimation> m_CurrentAnimation;

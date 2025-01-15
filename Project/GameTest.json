@@ -26,7 +26,7 @@
                                         },
                                         "m_position": {
                                             "value0": -0.0,
-                                            "value1": 4.0,
+                                            "value1": 6.0,
                                             "value2": 0.0
                                         },
                                         "m_scale": {
@@ -110,10 +110,10 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_raduis": 4.0,
+                                        "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 2.9321494102478029,
-                                        "m_rotationSpeed": 1.0,
+                                        "m_azimuth": 2.9670557975769045,
+                                        "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
                                 }
@@ -530,7 +530,7 @@
                                         "m_coolTime": 5.0,
                                         "m_initChangeTime": 1.0,
                                         "m_reloadMaxTime": 10.0,
-                                        "m_bulletMaxNum": 1,
+                                        "m_bulletMaxNum": 10,
                                         "m_isUsePlayer": true
                                     }
                                 }
@@ -707,31 +707,20 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 5,
+                                "polymorphic_id": 6,
                                 "ptr_wrapper": {
                                     "id": 2147483681,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
-                                                "uuid": "c740a576-505e-46df-89b5-d2c1811b507d"
+                                                "uuid": "e37d711f-518d-4edf-983a-2f90adaf1961"
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_isInvertn": false,
-                                        "m_isRhcoords": true,
-                                        "m_shapeType": 0,
-                                        "m_color": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0,
-                                            "value3": 1.0
-                                        },
-                                        "m_scale": {
-                                            "value0": 20.0,
-                                            "value1": 3.0,
-                                            "value2": 2.0
-                                        },
-                                        "m_textureName": ""
+                                        "m_loadFile": "asset/model/sword.sdkmesh",
+                                        "m_isDraw": true,
+                                        "m_loadType": 2,
+                                        "m_loadDirectory": "asset/model"
                                     }
                                 }
                             }
@@ -2670,6 +2659,101 @@
                                     "data": {
                                         "m_uuID": {
                                             "uuid": "574d94af-f4f7-497e-9ead-a82fe53464bc"
+                                        },
+                                        "m_isEnable": true
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483764,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "uuid": "86c6ab3d-730c-4d44-99d6-d38f420814fb"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483765,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "90c99a73-0825-4caa-9e83-7be2da3a3c49"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 50.0,
+                                            "value1": 50.0,
+                                            "value2": 50.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 1073741824,
+                                                "ptr_wrapper": {
+                                                    "id": 3
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 5,
+                                "ptr_wrapper": {
+                                    "id": 2147483766,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "d4c8908a-7404-4474-b0db-cf1640644646"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_isInvertn": false,
+                                        "m_isRhcoords": true,
+                                        "m_shapeType": 0,
+                                        "m_color": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 2.0,
+                                            "value1": 2.0,
+                                            "value2": 2.0
+                                        },
+                                        "m_textureName": ""
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483681,
+                                "polymorphic_name": "TMF::BoneBind",
+                                "ptr_wrapper": {
+                                    "id": 2147483767,
+                                    "data": {
+                                        "m_uuID": {
+                                            "uuid": "61a0260d-fcb4-4555-8bd5-25b880023ead"
                                         },
                                         "m_isEnable": true
                                     }

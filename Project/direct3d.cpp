@@ -158,7 +158,6 @@ HRESULT D3D::Create(HWND hwnd)
 	// HRESULT型・・・Windowsプログラムで関数実行の成功/失敗を受け取る
 	HRESULT  hr;
 
-
 	UINT flags = 0;
 	//#ifdef _DEBUG
 	//    flags |= D3D11_CREATE_DEVICE_DEBUG;
@@ -263,13 +262,13 @@ HRESULT D3D::Create(HWND hwnd)
 
 	// シェーダーのオブジェクトを作成
 	// コンパイル済みシェーダーをVRAMに配置してGPUが実行できるようにする
-	hr = m_pDevice->CreateVertexShader(&g_vs_main, sizeof(g_vs_main), NULL, &m_pVertexShader);
-	if (FAILED(hr))
-		return hr;
+	//hr = m_pDevice->CreateVertexShader(&g_vs_main, sizeof(g_vs_main), NULL, &m_pVertexShader);
+	//if (FAILED(hr))
+	//	return hr;
 
-	hr = m_pDevice->CreatePixelShader(&g_ps_main, sizeof(g_ps_main), NULL, &m_pPixelShader);
-	if (FAILED(hr))
-		return hr;
+	//hr = m_pDevice->CreatePixelShader(&g_ps_main, sizeof(g_ps_main), NULL, &m_pPixelShader);
+	//if (FAILED(hr))
+	//	return hr;
 
 	// ビューポートを作成
 	// →画面分割などに使う、描画領域の指定のこと
@@ -326,6 +325,22 @@ HRESULT D3D::Create(HWND hwnd)
 	material.Diffuse = DirectX::SimpleMath::Color(1.0f, 1.0f, 1.0f, 1.0f);
 	material.Ambient = DirectX::SimpleMath::Color(1.0f, 1.0f, 1.0f, 1.0f);
 	SetMaterial(material);
+
+	cbDesc.ByteWidth = sizeof(LIGHT);
+	m_pDevice->CreateBuffer(&cbDesc, NULL, &m_pLightBuffer);
+	m_pImmediateContext->VSSetConstantBuffers( 4, 1, &m_pLightBuffer );
+	m_pImmediateContext->PSSetConstantBuffers( 4, 1, &m_pLightBuffer );
+
+	LIGHT light{};
+	light.Enable = true;
+	light.Direction = DirectX::SimpleMath::Vector4(0.5f, -1.0f, 0.8f, 0.0f);
+	light.Direction.Normalize();
+	light.Ambient = DirectX::SimpleMath::Color(0.2f, 0.2f, 0.2f, 1.0f);
+	light.Diffuse = DirectX::SimpleMath::Color(1.5f, 1.5f, 1.5f, 1.0f);
+
+	SetLight(light);
+
+	m_pCommonStates = std::make_shared<CommonStates>(m_pDevice);
 
 	// ブレンドステート作成
 	// →透過処理や加算合成を可能にする色の合成方法
@@ -465,9 +480,9 @@ HRESULT D3D::Create(HWND hwnd)
 	m_pSpriteBatch = std::make_shared<SpriteBatch>(m_pImmediateContext);
 
 
-	m_offscreenTexture->SetDevice(m_pDevice);
-	m_renderTarget1->SetDevice(m_pDevice);
-	m_renderTarget2->SetDevice(m_pDevice);
+	//m_offscreenTexture->SetDevice(m_pDevice);
+	//m_renderTarget1->SetDevice(m_pDevice);
+	//m_renderTarget2->SetDevice(m_pDevice);
 
 
 	m_fullscreenRect = m_bloomRect;
@@ -480,13 +495,13 @@ HRESULT D3D::Create(HWND hwnd)
 void D3D::Init()
 {
 
-	m_offscreenTexture->SetWindow(m_size);
+	//m_offscreenTexture->SetWindow(m_size);
 
-	// Half-size blurring render targets
-	m_bloomRect = { 0, 0, m_size.right / 2, m_size.bottom / 2 };
+	//// Half-size blurring render targets
+	//m_bloomRect = { 0, 0, m_size.right / 2, m_size.bottom / 2 };
 
-	m_renderTarget1->SetWindow(m_bloomRect);
-	m_renderTarget2->SetWindow(m_bloomRect);
+	//m_renderTarget1->SetWindow(m_bloomRect);
+	//m_renderTarget2->SetWindow(m_bloomRect);
 
 
 
@@ -890,6 +905,11 @@ void D3D::SetMaterial(MATERIAL Material)
 	m_pImmediateContext->UpdateSubresource(m_pMaterialBuffer, 0, NULL, &Material, 0, 0);
 }
 
+void D3D::SetLight(LIGHT Light)
+{
+	m_pImmediateContext->UpdateSubresource(m_pLightBuffer, 0, NULL, &Light, 0, 0);
+}
+
 void D3D::ClearScreen()
 {
 	// 画面塗りつぶし色
@@ -902,17 +922,17 @@ void D3D::ClearScreen()
 	// 深度バッファをリセットする
 	m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-	if (g_Bloom != None)
-	{
-		float checkColor[4] = { 0.0f,0.0f,0.0f,0.0f };
-		auto renderTarget = m_offscreenTexture->GetRenderTargetView();
-		m_pImmediateContext->OMSetRenderTargets(1, &renderTarget, m_pDepthStencilView);
-		m_pImmediateContext->ClearRenderTargetView(renderTarget, checkColor);
-	}
+	//if (g_Bloom != None)
+	//{
+	//	float checkColor[4] = { 0.0f,0.0f,0.0f,0.0f };
+	//	auto renderTarget = m_offscreenTexture->GetRenderTargetView();
+	//	m_pImmediateContext->OMSetRenderTargets(1, &renderTarget, m_pDepthStencilView);
+	//	m_pImmediateContext->ClearRenderTargetView(renderTarget, checkColor);
+	//}
 
 	UINT strides = sizeof(Vertex);
 	UINT offsets = 0;
-	m_pImmediateContext->IASetInputLayout(m_pInputLayout);
+	//m_pImmediateContext->IASetInputLayout(m_pInputLayout);
 
 	//m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	//m_pImmediateContext->VSSetShader(m_pVertexShader, NULL, 0);
@@ -922,7 +942,7 @@ void D3D::ClearScreen()
 	////// ピクセルシェーダーにサンプラーを渡す
 	//m_pImmediateContext->PSSetSamplers(0, 1, &m_pSampler);
 
-	////// 定数バッファを頂点シェーダーにセットする
+	//// 定数バッファを頂点シェーダーにセットする
 	//m_pImmediateContext->VSSetConstantBuffers(
 	//	0, 1, &m_pConstantBuffer);
 	//// 定数バッファをピクセルシェーダーにセットする
@@ -941,7 +961,7 @@ void D3D::ClearScreen()
 void D3D::UpdateScreen()
 {
 	// ダブルバッファの切り替えを行い画面を更新する
-	PostProcess();
+	//PostProcess();
 	m_pSwapChain->Present(1, 0);
 }
 
@@ -957,9 +977,8 @@ void D3D::SettingEffect(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::M
 		VertexPositionColor::InputElements, VertexPositionColor::InputElementCount,
 		shaderByteCode, byteCodeLength,
 		&m_pInputLayout);
-	m_pCommonStates = std::make_shared<CommonStates>(m_pDevice);
+	//m_pCommonStates = std::make_shared<CommonStates>(m_pDevice);
 	m_pImmediateContext->OMSetBlendState(m_pCommonStates->Opaque(), nullptr, 0xFFFFFFFF);
-	//m_pImmediateContext->OMSetDepthStencilState(states.DepthNone(), 0);
 	m_pEffect->Apply(m_pImmediateContext);
 	m_pImmediateContext->IASetInputLayout(m_pInputLayout);
 }

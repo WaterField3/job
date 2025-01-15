@@ -109,10 +109,10 @@ namespace TMF
 
 			}
 			// Meleeクラスに変換できるか確認
-			else if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
-			{
-				pLockMelee->Play();
-			}
+			//else if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
+			//{
+			//	pLockMelee->Play();
+			//}
 		}
 	}
 

@@ -1121,7 +1121,6 @@
     <FxCompile Include="GaussianBlur.hlsl" />
     <FxCompile Include="Shader\unlitTexturePS.hlsl" />
     <FxCompile Include="Shader\unlitTextureVS.hlsl" />
-    <FxCompile Include="Shader\vertexLightingOneSkinVS.hlsl" />
     <FxCompile Include="Shader\vertexLightingPS.hlsl" />
     <FxCompile Include="Shader\vertexLightingVS.hlsl" />
   </ItemGroup>

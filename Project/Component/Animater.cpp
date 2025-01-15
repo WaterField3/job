@@ -61,22 +61,6 @@ namespace TMF
 			m_pAnimationSDKMESH->Update(deltaTime * m_animationSpeed);
 		}
 		m_timer += deltaTime * m_animationSpeed;
-
-		if (m_isBindBone == true)
-		{
-			if (auto pLockOwner = m_pOwner.lock())
-			{
-				auto pTransform = pLockOwner->GetComponent<Transform>();
-				if (auto pLockTransform = pTransform.lock())
-				{
-					if (auto pLockModel = m_pModel.lock())
-					{
-						m_pAnimationSDKMESH->GetFrameData(*pLockModel, m_boneSize, m_bindName);
-
-					}
-				}
-			}
-		}
 	}
 
 	void Animater::OnLateUpdate()

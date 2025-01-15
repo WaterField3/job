@@ -114,6 +114,8 @@ namespace TMF
 				// モーションステートと剛体にトランスフォームを反映
 				pLockRigidbody->SetBtTransform(currentTransform);
 				pLockRigidbody->SetLinearVelocity(velocity);
+
+				//pLockPlayerRigidbody->SetRigidBodyTranform(DirectX::SimpleMath::Vector3(newPosition), DirectX::SimpleMath::Quaternion(currentRotation));
 			}
 		}
 	}

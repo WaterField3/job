@@ -3,8 +3,11 @@
 #include "ComponentRegister.h"
 #include "Timer.h"
 #include "Utility/Log.h"
+#include "Transform.h"
+#include "GameObject/GameObjectManager.h"
+#include "Camera.h"
 
-//REGISTER_COMPONENT(TMF::AssimpAnimation, "AssimpAnimation");
+REGISTER_COMPONENT(TMF::AssimpAnimation, "AssimpAnimation");
 
 namespace TMF
 {
@@ -17,21 +20,35 @@ namespace TMF
 		// アニメーションメッシュ読み込み
 		m_AnimMesh->Load(m_currentFile, m_textureDirectory);
 
-		m_shader.Create("shader/vertexLightingOneSkinVS.hlsl", "shader/vertexLightingPS.hlsl");
+		m_shader.Create("Shader/vertexLightingOneSkinVS.hlsl", "Shader/vertexLightingPS.hlsl");
 
 		auto anim = std::make_shared<AnimationData>();
 		try
 		{
 			anim->LoadAnimation(m_motionFile, "Idle");
+			m_animationData.push_back(move(anim));
 		}
 		catch (const std::exception& e)
 		{
 			Log::Info("%s", e.what());
 		}
-		m_animationData.push_back(anim);
+		try
+		{
+			auto anim2 = std::make_shared<AnimationData>();
+			anim2->LoadAnimation("asset/model/03Run.fbx", "Run");
+			m_animationData.push_back(move(anim2));
+		}
+		catch (const std::exception&)
+		{
+
+		}
 
 		m_CurrentAnimation = m_animationData[0]->GetAnimation("Idle");
+		m_ToAnimation = m_CurrentAnimation;
+		m_FromAnimation = m_animationData[1]->GetAnimation("Run");
 
+		// アニメーションメッシュのカレントアニメーションをセット
+		m_AnimMesh->SetCurentAnimation(m_CurrentAnimation);
 	}
 	void AssimpAnimation::OnFinalize()
 	{
@@ -45,10 +62,6 @@ namespace TMF
 		}
 
 		auto frame = static_cast<int>(m_CurrentFrame);
-
-
-		// アニメーションメッシュのカレントアニメーションをセット
-		m_AnimMesh->SetCurentAnimation(m_CurrentAnimation);
 
 		// アニメーションメッシュ更新
 		m_AnimMesh->Update(m_BoneCombMatrix, frame);
@@ -77,7 +90,7 @@ namespace TMF
 			return;
 		}
 
-		// m_shader.SetGPU();
+		m_shader.SetGPU();
 
 		// ボーンコンビネーション行列用定数バッファ更新
 		m_BoneCombMatrix.Update();

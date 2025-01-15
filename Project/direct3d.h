@@ -226,6 +226,7 @@ public:
 	void SetViewMatrix(DirectX::SimpleMath::Matrix* ViewMatrix);
 	void SetProjectionMatrix(DirectX::SimpleMath::Matrix* ProjectionMatrix);
 	void SetMaterial(MATERIAL Material);
+	void SetLight(LIGHT Light);
 private:
 	//D3D() {};
 
@@ -266,6 +267,7 @@ private:
 	ID3D11Buffer* m_pProjectionBuffer;
 	ID3D11Buffer* m_pMaterialBuffer;
 	ID3D11Buffer* m_pViewBuffer;
+	ID3D11Buffer* m_pLightBuffer;
 
 	ID3D11Resource* m_pResource;
 

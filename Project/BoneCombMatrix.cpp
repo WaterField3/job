@@ -11,7 +11,7 @@ namespace TMF
 		// コンスタントバッファ作成
 		auto sts = CreateConstantBufferWrite(
 			device,								// デバイス
-			sizeof(D3D::CBBoneCombMatrix),			// サイズ
+			sizeof(D3D::CBBoneCombMatrix),		// サイズ
 			ConstantBuffer.GetAddressOf());		// コンスタントバッファ
 		if (!sts) {
 			MessageBox(NULL, L"CreateBuffer(constant buffer BoneMatrices) error", L"Error", MB_OK);

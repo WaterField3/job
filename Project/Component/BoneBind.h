@@ -24,6 +24,8 @@ namespace TMF
 		bool m_isBindBone = false;
 		std::string m_bindName = "";
 		size_t m_boneSize = 0;
+		DirectX::ModelBone::TransformArray m_drawBones;
+		DirectX::ModelBone::TransformArray m_animBones;
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Transform> m_pParent;
 		std::weak_ptr<DirectX::DX11::Model> m_pModel;

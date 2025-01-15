@@ -110,10 +110,10 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_raduis": 4.0,
+                                        "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 2.897243022918701,
-                                        "m_rotationSpeed": 1.0,
+                                        "m_azimuth": 2.9496026039123537,
+                                        "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
                                 }
@@ -401,6 +401,9 @@
                                         },
                                         "m_objectFilePath": "Bullet",
                                         "m_coolTime": 1.0,
+                                        "m_initChangeTime": 1.0,
+                                        "m_reloadMaxTime": 10.0,
+                                        "m_bulletMaxNum": 10,
                                         "m_isUsePlayer": true
                                     }
                                 }
@@ -525,6 +528,9 @@
                                         },
                                         "m_objectFilePath": "bullet2",
                                         "m_coolTime": 5.0,
+                                        "m_initChangeTime": 1.0,
+                                        "m_reloadMaxTime": 10.0,
+                                        "m_bulletMaxNum": 10,
                                         "m_isUsePlayer": true
                                     }
                                 }
@@ -701,31 +707,20 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 5,
+                                "polymorphic_id": 6,
                                 "ptr_wrapper": {
                                     "id": 2147483681,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
-                                                "uuid": "c740a576-505e-46df-89b5-d2c1811b507d"
+                                                "uuid": "e37d711f-518d-4edf-983a-2f90adaf1961"
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_isInvertn": false,
-                                        "m_isRhcoords": true,
-                                        "m_shapeType": 0,
-                                        "m_color": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0,
-                                            "value3": 1.0
-                                        },
-                                        "m_scale": {
-                                            "value0": 20.0,
-                                            "value1": 3.0,
-                                            "value2": 2.0
-                                        },
-                                        "m_textureName": ""
+                                        "m_loadFile": "asset/model/sword.sdkmesh",
+                                        "m_isDraw": true,
+                                        "m_loadType": 2,
+                                        "m_loadDirectory": "asset/model"
                                     }
                                 }
                             }
@@ -1134,6 +1129,9 @@
                                         },
                                         "m_objectFilePath": "EBullet",
                                         "m_coolTime": 1.0,
+                                        "m_initChangeTime": 1.0,
+                                        "m_reloadMaxTime": 10.0,
+                                        "m_bulletMaxNum": 10,
                                         "m_isUsePlayer": false
                                     }
                                 }

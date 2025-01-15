@@ -113,15 +113,11 @@ namespace TMF
 					m_moveVector.Normalize();
 					auto normalForward = forward;
 					normalForward.Normalize();
-					//m_rotate *= normalForward;
 					auto kari = m_rotate * normalForward;
+					//kari.x = 0.0f;
 					auto rotate = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(kari.y, kari.x, kari.z);
-					//rotation.z = rotate.z + 2.0f;
-					//forward.Normalize();
-					//rotate = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(forward.y, forward.x, forward.z);
-					rotation *= rotate /** DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(m_rotate.y, m_rotate.x, m_rotate.z)*/;
-					//rotation = rotate;
-					pLockTransform->SetRotation(rotation);
+
+					pLockTransform->SetRotation(rotate);
 					break;
 				}
 				case TMF::MeleeMove::SPECIAL:

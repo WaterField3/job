@@ -39,7 +39,7 @@ namespace TMF
 		// マテリアル数分ループ 
 		for (int i = 0; i < m_Subsets.size(); i++)
 		{
-			// マテリアルをセット(サブセット情報の中にあるマテリアルインデックを使用する)
+			// マテリアルをセット(サブセット情報の中にあるマテリアルインデックスを使用する)
 			m_Materiales[m_Subsets[i].MaterialIdx]->SetGPU();
 
 			if (m_Materiales[m_Subsets[i].MaterialIdx]->isDiffuseTextureEnable())

@@ -50,6 +50,8 @@ namespace TMF
 		std::string m_idlePath = "";
 		std::string m_nextPath = "";
 		std::string m_bindName = "";
+		DirectX::ModelBone::TransformArray m_drawBones;
+		DirectX::ModelBone::TransformArray m_animBones;
 		std::unique_ptr<DX::AnimationCMO> m_pAnimationCMO;
 		std::unique_ptr<DX::AnimationSDKMESH> m_pAnimationSDKMESH;
 		DirectX::ModelBone::TransformArray m_drawBone;

@@ -402,6 +402,69 @@
                         ]
                     }
                 }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483666,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "uuid": "75c0c1a9-4c48-4ee1-ad03-ac2e4316d675"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483667,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "798942ce-ca97-4909-8175-d292b33097ef"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483656,
+                                "polymorphic_name": "TMF::AssimpAnimation",
+                                "ptr_wrapper": {
+                                    "id": 2147483668,
+                                    "data": {
+                                        "m_uuID": {
+                                            "uuid": "4cbfb9de-d8ea-426d-a2fa-ca06b8ceeb5d"
+                                        },
+                                        "m_isEnable": true
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
             }
         ]
     }

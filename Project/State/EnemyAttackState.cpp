@@ -69,6 +69,7 @@ namespace TMF
 					if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
 					{
 						pLockAdministratorStateMachine->ChangeState("EnemyMoveState");
+						m_isMeleePlay = false;
 					}
 				}
 			}

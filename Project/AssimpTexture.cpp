@@ -133,6 +133,12 @@ namespace TMF
 
 	void AssimpTexture::SetGPU()
 	{
+
+		if (m_srv == nullptr)
+		{
+			return;
+		}
+
 		auto devicecontext = D3D::Get()->GetContext();
 		devicecontext->PSSetShaderResources(0, 1, m_srv.GetAddressOf());
 	}
