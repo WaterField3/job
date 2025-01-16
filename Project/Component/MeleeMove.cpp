@@ -54,7 +54,7 @@ namespace TMF
 			{
 				if (auto pLockOwner = m_pOwner.lock())
 				{
-					//GameObjectManager::Instance().DestroyGameObject(pLockOwner.get());
+					m_isPlay = false;
 					pLockTransform->SetParent(m_pParent);
 					pLockOwner->SetActive(false);
 					return;
@@ -89,6 +89,11 @@ namespace TMF
 		{
 
 		}
+		auto rotationOffsetLabel = StringHelper::CreateLabel("RotationOffset", m_uuID);
+		if (ImGui::DragFloat(rotationOffsetLabel.c_str(), &m_rotationOffset, 0.1f))
+		{
+
+		}
 
 	}
 	void MeleeMove::Play(MoveType type, DirectX::SimpleMath::Vector3 position, DirectX::SimpleMath::Quaternion rotation)
@@ -113,13 +118,11 @@ namespace TMF
 					m_endPosition = position + forward * 3 + right + down;
 					m_moveVector = m_endPosition - startPos;
 					m_moveVector.Normalize();
-					auto normalForward = forward;
-					normalForward.Normalize();
-					auto kari = m_rotate * normalForward;
-					//kari.x = 0.0f;
-					auto rotate = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(kari.y, kari.x, kari.z);
-
-					pLockTransform->SetRotation(rotate);
+					auto Up = rotation.ToEuler().y;
+					auto rotation = DirectX::SimpleMath::Vector3(0.0f, Up, m_rotationOffset);
+					auto qua = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(rotation.y, rotation.x, rotation.z);
+					pLockTransform->SetRotation(qua);
+					//pLockTransform->SetRotation(rotate);
 					break;
 				}
 				case TMF::MeleeMove::SPECIAL:
@@ -138,10 +141,7 @@ namespace TMF
 			{
 				pLockEffect->Play();
 			}
+			m_isPlay = true;
 		}
-	}
-	void MeleeMove::OnTrigerEnter(GameObject* pGameObject)
-	{
-		//if (pGameObject->GetTag() == )
 	}
 }

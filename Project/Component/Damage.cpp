@@ -77,6 +77,15 @@ namespace TMF
 				return;
 			}
 
+			auto pMeleeMove = pLockOwner->GetComponent<MeleeMove>();
+			if (auto pLockMeleeMove = pMeleeMove.lock())
+			{
+				if (pLockMeleeMove->GetIsPlay() == false)
+				{
+					return;
+				}
+			}
+
 			if (auto pLockParent = m_pParent.lock())
 			{
 				if (auto pLockParentOwner = pLockParent->GetOwner().lock())

@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 3.071774959564209,
+                                        "m_azimuth": 3.1066813468933107,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -622,7 +622,8 @@
                                             "value0": -0.5,
                                             "value1": 0.0,
                                             "value2": 3.9000000953674318
-                                        }
+                                        },
+                                        "m_rotationOffset": 2.200000047683716
                                     }
                                 }
                             },
@@ -2137,7 +2138,8 @@
                                             "value0": -0.5,
                                             "value1": 0.0,
                                             "value2": 3.9000000953674318
-                                        }
+                                        },
+                                        "m_rotationOffset": 1.0
                                     }
                                 }
                             },

@@ -24,18 +24,22 @@ namespace TMF
 		};
 		void Play(MoveType type, DirectX::SimpleMath::Vector3 position, DirectX::SimpleMath::Quaternion rotation);
 
-	private:
-		void OnTrigerEnter(GameObject* pGameObject) override;
+		inline bool GetIsPlay() const { return m_isPlay; }
 
 	private:
+		bool m_isPlay = false;
 		float m_moveSpeed = 1.0f;
+		float m_rotationOffset = 1.0f;
+		float m_rotationOffsetX = 1.0f;
+		float m_playerUp = 1.0f;
+		float t = 3.0f;
 		DirectX::SimpleMath::Vector3 m_rotate = DirectX::SimpleMath::Vector3::Zero;
 		DirectX::SimpleMath::Vector3 m_endPosition = DirectX::SimpleMath::Vector3::Zero;
 		DirectX::SimpleMath::Vector3 m_moveVector = DirectX::SimpleMath::Vector3::Zero;
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Transform> m_pParent;
 
-		SERIALIZE_COMPONENT(m_moveSpeed, m_rotate);
+		SERIALIZE_COMPONENT(m_moveSpeed, m_rotate, m_rotationOffset);
 	};
 }
 
