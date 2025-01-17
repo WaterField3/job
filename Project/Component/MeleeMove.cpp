@@ -49,6 +49,16 @@ namespace TMF
 			{
 				auto movePos = nowPosition + m_moveVector * m_moveSpeed;
 				pLockTransform->SetPosition(movePos);
+				auto Up = m_playerUp;
+				if (m_time < 1.0f)
+				{
+					m_time += 0.01f * m_rotationSpeed;
+				}
+				auto rotateOffsetX = std::lerp(0.0f, m_targetRotationOffset.x, m_time);
+				auto rotateOffsetZ = std::lerp(m_rotationOffset, m_targetRotationOffset.z, m_time);
+				auto rotation = DirectX::SimpleMath::Vector3(rotateOffsetX, Up, rotateOffsetZ);
+				auto qua = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(rotation.y, rotation.x, rotation.z);
+				pLockTransform->SetRotation(qua);
 			}
 			else
 			{
@@ -94,7 +104,16 @@ namespace TMF
 		{
 
 		}
+		auto rotationOffsetXLabel = StringHelper::CreateLabel("RotationOffsetX", m_uuID);
+		if (ImGui::DragFloat3(rotationOffsetXLabel.c_str(), &m_targetRotationOffset.x, 0.1f))
+		{
 
+		}
+		auto rotationSpeed = StringHelper::CreateLabel("RotationSpeed", m_uuID);
+		if (ImGui::DragFloat(rotationSpeed.c_str(), &m_rotationSpeed, 0.1f))
+		{
+
+		}
 	}
 	void MeleeMove::Play(MoveType type, DirectX::SimpleMath::Vector3 position, DirectX::SimpleMath::Quaternion rotation)
 	{
@@ -119,6 +138,7 @@ namespace TMF
 					m_moveVector = m_endPosition - startPos;
 					m_moveVector.Normalize();
 					auto Up = rotation.ToEuler().y;
+					m_playerUp = Up;
 					auto rotation = DirectX::SimpleMath::Vector3(0.0f, Up, m_rotationOffset);
 					auto qua = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(rotation.y, rotation.x, rotation.z);
 					pLockTransform->SetRotation(qua);
@@ -142,6 +162,7 @@ namespace TMF
 				pLockEffect->Play();
 			}
 			m_isPlay = true;
+			m_time = 0.0f;
 		}
 	}
 }

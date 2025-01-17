@@ -42,6 +42,7 @@ namespace TMF
 				pLockChangeTimeUI->SetSelectWepon(pLockWepon);
 			}
 		}
+		m_previousScrollValue = 0;
 	}
 	void Attack::OnFinalize()
 	{
@@ -98,6 +99,7 @@ namespace TMF
 	}
 	void Attack::UpdateWeaponSelection(int currentScrollValue)
 	{
+
 		int scrollDelta = currentScrollValue - m_previousScrollValue;
 		float scrollSensitivity = 0.001f;
 		float adjustedScroll = scrollDelta * scrollSensitivity;
@@ -105,6 +107,7 @@ namespace TMF
 		if (adjustedScroll > 2 || adjustedScroll < -2)
 		{
 			m_previousScrollValue = 0;
+			Input::Instance().ResetScrollWheelValue();
 			return;
 		}
 

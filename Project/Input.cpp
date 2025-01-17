@@ -11,6 +11,14 @@ namespace TMF
 		m_pButtonTracker = std::make_shared<DirectX::Mouse::ButtonStateTracker>();
 	}
 
+	void Input::ResetScrollWheelValue()
+	{
+		if (m_pMouse->IsConnected() == true)
+		{
+			m_pMouse->ResetScrollWheelValue();
+		}
+	}
+
 	bool Input::PluralGetKeyDiwn(std::chrono::milliseconds currentTime)
 	{
 		if (currentTime - m_lastTapTime < m_tapIntertval)

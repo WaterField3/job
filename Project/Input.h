@@ -14,6 +14,7 @@ namespace TMF
 		Input() = default;
 		~Input() = default;
 		void Initialize(HWND hwnd);
+		void ResetScrollWheelValue();
 
 		inline DirectX::Keyboard::State GetKeyState() const { return m_pKeyboard->GetState(); }
 		inline DirectX::Mouse::State GetMouseState() const { return m_pMouse->GetState(); }
