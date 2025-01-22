@@ -19,6 +19,7 @@ namespace TMF
 		void OnDrawImGui() override;
 		inline DirectX::SimpleMath::Vector2 GetFontPosition() const { return m_spriteFontPos; }
 		inline void SetFonstPosition(DirectX::SimpleMath::Vector2 position) { m_spriteFontPos = position; }
+		inline void SetText(std::string text) { m_text = text; }
 
 	private:
 		float m_fontScale = 1.0f;

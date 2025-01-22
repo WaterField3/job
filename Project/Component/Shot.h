@@ -18,10 +18,13 @@ namespace TMF
 		void OnDrawImGui() override;
 		void Play();
 		void Select();
+		inline int GetBulletNum() const { return m_bulletNum; }
+		inline int GetBulletMaxNum() const { return m_bulletMaxNum; }
 		inline float GetChangeTime() const { return m_initChangeTime; }
 		inline float GetCurrentChangeTime() const { return m_changeTime; }
 		inline float GetCoolTime() const { return m_coolTime; }
 		inline float GetCurrentCollTime() const { return m_timer; }
+		inline std::string GetShotObjectName() const { return m_shotObjectName; }
 
 	private:
 		int m_bulletNum = 1;
@@ -34,8 +37,8 @@ namespace TMF
 		float m_reloadMaxTime = 10.0f;
 		bool m_isShot = false;
 		bool m_isUsePlayer = false;
-		std::string m_objectFilePath = "";
-		SERIALIZE_COMPONENT(m_objectFilePath, m_coolTime, m_initChangeTime, m_reloadMaxTime, m_bulletMaxNum, m_isUsePlayer);
+		std::string m_shotObjectName = "";
+		SERIALIZE_COMPONENT(m_shotObjectName, m_coolTime, m_initChangeTime, m_reloadMaxTime, m_bulletMaxNum, m_isUsePlayer);
 	};
 }
 

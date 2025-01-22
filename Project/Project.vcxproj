@@ -272,6 +272,7 @@
     <ClCompile Include="Vender\Imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="Vender\Imgui\imgui_tables.cpp" />
     <ClCompile Include="Vender\Imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Component\WeponUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationData.h" />
@@ -539,6 +540,7 @@
     <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="VertexShader.h" />
     <ClInclude Include="WaveFrontReader.h" />
+    <ClInclude Include="Component\WeponUI.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="BloomCombine.hlsl">

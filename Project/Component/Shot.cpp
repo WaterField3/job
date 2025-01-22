@@ -57,11 +57,11 @@ namespace TMF
 	void Shot::OnDrawImGui()
 	{
 		char buf[256] = "";
-		strcpy_s(buf, sizeof(buf), m_objectFilePath.c_str());
+		strcpy_s(buf, sizeof(buf), m_shotObjectName.c_str());
 		auto label = StringHelper::CreateLabel("FileName", m_uuID);
 		if (ImGui::InputText(label.c_str(), buf, 256))
 		{
-			m_objectFilePath = buf;
+			m_shotObjectName = buf;
 		}
 		auto coolTimeLabel = StringHelper::CreateLabel("CoolTime", m_uuID);
 		if (ImGui::DragFloat(coolTimeLabel.c_str(), &m_coolTime))
@@ -119,7 +119,7 @@ namespace TMF
 			{
 				if (auto pLockChild = pChild.lock())
 				{
-					if (pLockChild->GetName() == m_objectFilePath)
+					if (pLockChild->GetName() == m_shotObjectName)
 					{
 						auto pChildTransform = pLockChild->GetComponent<Transform>();
 						if (auto pLockTransform = pChildTransform.lock())

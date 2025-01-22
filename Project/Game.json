@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 3.31611967086792,
+                                        "m_azimuth": 3.4382920265197756,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -399,7 +399,7 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_objectFilePath": "Bullet",
+                                        "m_shotObjectName": "Bullet",
                                         "m_coolTime": 1.0,
                                         "m_initChangeTime": 1.0,
                                         "m_reloadMaxTime": 10.0,
@@ -526,7 +526,7 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_objectFilePath": "bullet2",
+                                        "m_shotObjectName": "bullet2",
                                         "m_coolTime": 5.0,
                                         "m_initChangeTime": 1.0,
                                         "m_reloadMaxTime": 10.0,
@@ -1155,7 +1155,7 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_objectFilePath": "EBullet",
+                                        "m_shotObjectName": "",
                                         "m_coolTime": 1.0,
                                         "m_initChangeTime": 1.0,
                                         "m_reloadMaxTime": 10.0,
@@ -2734,6 +2734,123 @@
                                             "uuid": "574d94af-f4f7-497e-9ead-a82fe53464bc"
                                         },
                                         "m_isEnable": true
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483767,
+                    "data": {
+                        "m_name": "WeponUI",
+                        "m_uuID": {
+                            "uuid": "d3ab57dc-2dd1-4b10-8ce8-e4be508bd325"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483768,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "4a9c3bc0-79c7-46fc-9a47-d0e2877df715"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483682,
+                                "polymorphic_name": "TMF::WeponUI",
+                                "ptr_wrapper": {
+                                    "id": 2147483769,
+                                    "data": {
+                                        "m_uuID": {
+                                            "uuid": "24daa1f9-bfa0-47f1-8171-4efb5aa47bb6"
+                                        },
+                                        "m_isEnable": true
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 29,
+                                "ptr_wrapper": {
+                                    "id": 2147483770,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "e8f844cc-9772-4ff9-91d2-c10c9751c76b"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_spriteFontPos": {
+                                            "value0": 920.0,
+                                            "value1": 365.0
+                                        },
+                                        "m_fontColor": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_fontScale": 0.5,
+                                        "m_text": "Name",
+                                        "m_fontPath": "asset/myfile.spritefont"
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 29,
+                                "ptr_wrapper": {
+                                    "id": 2147483771,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "9ba823a4-b08b-40a1-99c3-6dd76523b410"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_spriteFontPos": {
+                                            "value0": 835.0,
+                                            "value1": 400.0
+                                        },
+                                        "m_fontColor": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_fontScale": 1.0,
+                                        "m_text": "bullet",
+                                        "m_fontPath": "asset/myfile.spritefont"
                                     }
                                 }
                             }

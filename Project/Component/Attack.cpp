@@ -9,6 +9,7 @@
 #include "Shot.h"
 #include "Melee.h"
 #include "MeleeFollowMove.h"
+#include "WeponUI.h"
 
 REGISTER_COMPONENT(TMF::Attack, "Attack");
 
@@ -31,8 +32,10 @@ namespace TMF
 		}
 		m_pCoolTimeUI = GameObjectManager::Instance().GetComponent<CoolTimeUI>();
 		m_pChangeTimeUI = GameObjectManager::Instance().GetComponent<ChangeTimeUI>();
+		m_pWeponUI = GameObjectManager::Instance().GetComponent<WeponUI>();
 		if (auto pLockWepon = m_pWepons[0].lock())
 		{
+			//SelectWeapon(pLockWepon);
 			if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
 			{
 				pLockCoolTimeUI->SetSelectWepon(pLockWepon);
@@ -40,6 +43,10 @@ namespace TMF
 			if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
 			{
 				pLockChangeTimeUI->SetSelectWepon(pLockWepon);
+			}
+			if (auto pLockWeponUI = m_pWeponUI.lock())
+			{
+				pLockWeponUI->SetSelectWepon(pLockWepon);
 			}
 		}
 		m_previousScrollValue = 0;

@@ -3,6 +3,7 @@
 
 #include "ChangeTimeUI.h"
 #include "CoolTimeUI.h"
+#include "WeponUI.h"
 
 namespace TMF
 {
@@ -22,21 +23,25 @@ namespace TMF
 		void HandleWeaponSelection(const std::shared_ptr<Component>& pLockSelectComponent);
 
 		template <typename T>
-		void SelectWeapon(const std::shared_ptr<T>& weapon)
+		void SelectWeapon(const std::shared_ptr<T>& wepon)
 		{
-			if (weapon != m_pOldWepon.lock())
+			if (wepon != m_pOldWepon.lock())
 			{
-				weapon->Select();
+				wepon->Select();
 			}
 
 			if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
 			{
-				pLockChangeTimeUI->SetSelectWepon(weapon);
+				pLockChangeTimeUI->SetSelectWepon(wepon);
 			}
 
 			if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
 			{
-				pLockCoolTimeUI->SetSelectWepon(weapon);
+				pLockCoolTimeUI->SetSelectWepon(wepon);
+			}
+			if (auto pLockWeponUI = m_pWeponUI.lock())
+			{
+				pLockWeponUI->SetSelectWepon(wepon);
 			}
 		}
 
@@ -47,6 +52,7 @@ namespace TMF
 		std::weak_ptr<Component> m_pOldWepon;
 		std::weak_ptr<CoolTimeUI> m_pCoolTimeUI;
 		std::weak_ptr<ChangeTimeUI> m_pChangeTimeUI;
+		std::weak_ptr<WeponUI> m_pWeponUI;
 	};
 }
 
