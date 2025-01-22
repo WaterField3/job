@@ -262,13 +262,13 @@ HRESULT D3D::Create(HWND hwnd)
 
 	// シェーダーのオブジェクトを作成
 	// コンパイル済みシェーダーをVRAMに配置してGPUが実行できるようにする
-	//hr = m_pDevice->CreateVertexShader(&g_vs_main, sizeof(g_vs_main), NULL, &m_pVertexShader);
-	//if (FAILED(hr))
-	//	return hr;
+	hr = m_pDevice->CreateVertexShader(&g_vs_main, sizeof(g_vs_main), NULL, &m_pVertexShader);
+	if (FAILED(hr))
+		return hr;
 
-	//hr = m_pDevice->CreatePixelShader(&g_ps_main, sizeof(g_ps_main), NULL, &m_pPixelShader);
-	//if (FAILED(hr))
-	//	return hr;
+	hr = m_pDevice->CreatePixelShader(&g_ps_main, sizeof(g_ps_main), NULL, &m_pPixelShader);
+	if (FAILED(hr))
+		return hr;
 
 	// ビューポートを作成
 	// →画面分割などに使う、描画領域の指定のこと
@@ -480,9 +480,9 @@ HRESULT D3D::Create(HWND hwnd)
 	m_pSpriteBatch = std::make_shared<SpriteBatch>(m_pImmediateContext);
 
 
-	//m_offscreenTexture->SetDevice(m_pDevice);
-	//m_renderTarget1->SetDevice(m_pDevice);
-	//m_renderTarget2->SetDevice(m_pDevice);
+	m_offscreenTexture->SetDevice(m_pDevice);
+	m_renderTarget1->SetDevice(m_pDevice);
+	m_renderTarget2->SetDevice(m_pDevice);
 
 
 	m_fullscreenRect = m_bloomRect;
@@ -495,13 +495,13 @@ HRESULT D3D::Create(HWND hwnd)
 void D3D::Init()
 {
 
-	//m_offscreenTexture->SetWindow(m_size);
+	m_offscreenTexture->SetWindow(m_size);
 
-	//// Half-size blurring render targets
-	//m_bloomRect = { 0, 0, m_size.right / 2, m_size.bottom / 2 };
+	// Half-size blurring render targets
+	m_bloomRect = { 0, 0, m_size.right / 2, m_size.bottom / 2 };
 
-	//m_renderTarget1->SetWindow(m_bloomRect);
-	//m_renderTarget2->SetWindow(m_bloomRect);
+	m_renderTarget1->SetWindow(m_bloomRect);
+	m_renderTarget2->SetWindow(m_bloomRect);
 
 
 
@@ -922,13 +922,13 @@ void D3D::ClearScreen()
 	// 深度バッファをリセットする
 	m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-	//if (g_Bloom != None)
-	//{
-	//	float checkColor[4] = { 0.0f,0.0f,0.0f,0.0f };
-	//	auto renderTarget = m_offscreenTexture->GetRenderTargetView();
-	//	m_pImmediateContext->OMSetRenderTargets(1, &renderTarget, m_pDepthStencilView);
-	//	m_pImmediateContext->ClearRenderTargetView(renderTarget, checkColor);
-	//}
+	if (g_Bloom != None)
+	{
+		float checkColor[4] = { 0.0f,0.0f,0.0f,0.0f };
+		auto renderTarget = m_offscreenTexture->GetRenderTargetView();
+		m_pImmediateContext->OMSetRenderTargets(1, &renderTarget, m_pDepthStencilView);
+		m_pImmediateContext->ClearRenderTargetView(renderTarget, checkColor);
+	}
 
 	UINT strides = sizeof(Vertex);
 	UINT offsets = 0;
@@ -961,7 +961,7 @@ void D3D::ClearScreen()
 void D3D::UpdateScreen()
 {
 	// ダブルバッファの切り替えを行い画面を更新する
-	//PostProcess();
+	PostProcess();
 	m_pSwapChain->Present(1, 0);
 }
 

@@ -428,137 +428,6 @@
                 "ptr_wrapper": {
                     "id": 2147483666,
                     "data": {
-                        "m_name": "Box",
-                        "m_uuID": {
-                            "uuid": "5ff9156e-cf1d-4bdf-8935-32467bacc360"
-                        },
-                        "m_tag": 0,
-                        "m_isActive": true,
-                        "m_pComponents": [
-                            {
-                                "polymorphic_id": 1,
-                                "ptr_wrapper": {
-                                    "id": 2147483667,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "ef727f19-dab4-474a-ae5c-ad98544238be"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_position": {
-                                            "value0": 7.0,
-                                            "value1": 24.399999618530275,
-                                            "value2": 1.5
-                                        },
-                                        "m_scale": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0
-                                        },
-                                        "m_rotation": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0,
-                                            "value3": 1.0
-                                        },
-                                        "m_pParent": {
-                                            "locked_ptr": {
-                                                "polymorphic_id": 0
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 7,
-                                "ptr_wrapper": {
-                                    "id": 2147483668,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "1201da71-edff-4ac4-8a15-9c881260203d"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_collidrType": 0,
-                                        "m_size": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0
-                                        },
-                                        "m_center": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0
-                                        },
-                                        "m_editerOfsetRotation": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 8,
-                                "ptr_wrapper": {
-                                    "id": 2147483669,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "81c82c35-0f1f-482b-aa19-b581371dc9e2"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_mass": 1.0,
-                                        "m_drag": 0.0,
-                                        "m_angularDrag": 0.0,
-                                        "m_angulerSleepingThresholds": 0.0,
-                                        "m_linearSleepingThresholds": 0.0,
-                                        "m_isAngularFactorX": false,
-                                        "m_isAngularFactorY": false,
-                                        "m_isAngularFactorZ": false
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 3,
-                                "ptr_wrapper": {
-                                    "id": 2147483670,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "086fae78-f8ad-4293-ac88-6466c01bd8bc"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_isInvertn": false,
-                                        "m_isRhcoords": true,
-                                        "m_shapeType": 0,
-                                        "m_color": {
-                                            "value0": 1.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0,
-                                            "value3": 1.0
-                                        },
-                                        "m_scale": {
-                                            "value0": 2.0,
-                                            "value1": 2.0,
-                                            "value2": 2.0
-                                        },
-                                        "m_textureName": ""
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "id": 2147483671,
-                    "data": {
                         "m_name": "FloorMesh",
                         "m_uuID": {
                             "uuid": "15c56929-807c-49dd-94de-b709683c1af9"
@@ -569,7 +438,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483672,
+                                    "id": 2147483667,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -604,7 +473,7 @@
                             {
                                 "polymorphic_id": 3,
                                 "ptr_wrapper": {
-                                    "id": 2147483673,
+                                    "id": 2147483668,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -636,7 +505,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483674,
+                    "id": 2147483669,
                     "data": {
                         "m_name": "EnterKey",
                         "m_uuID": {
@@ -648,7 +517,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483675,
+                                    "id": 2147483670,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -683,7 +552,7 @@
                             {
                                 "polymorphic_id": 4,
                                 "ptr_wrapper": {
-                                    "id": 2147483676,
+                                    "id": 2147483671,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -710,7 +579,7 @@
                             {
                                 "polymorphic_id": 5,
                                 "ptr_wrapper": {
-                                    "id": 2147483677,
+                                    "id": 2147483672,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -733,7 +602,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483678,
+                    "id": 2147483673,
                     "data": {
                         "m_name": "Fade",
                         "m_uuID": {
@@ -745,7 +614,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483679,
+                                    "id": 2147483674,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -781,7 +650,7 @@
                                 "polymorphic_id": 2147483657,
                                 "polymorphic_name": "TMF::Fade",
                                 "ptr_wrapper": {
-                                    "id": 2147483680,
+                                    "id": 2147483675,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -799,7 +668,7 @@
                                 "polymorphic_id": 2147483658,
                                 "polymorphic_name": "TMF::PressKeySceneChange",
                                 "ptr_wrapper": {
-                                    "id": 2147483681,
+                                    "id": 2147483676,
                                     "data": {
                                         "m_uuID": {
                                             "uuid": "5f80445b-186c-4155-a8d8-fd6137eb51c2"
@@ -812,7 +681,7 @@
                                 "polymorphic_id": 2147483659,
                                 "polymorphic_name": "TMF::SceneLoad",
                                 "ptr_wrapper": {
-                                    "id": 2147483682,
+                                    "id": 2147483677,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -822,111 +691,6 @@
                                         },
                                         "m_trigger": 0,
                                         "m_loadFile": "Game"
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "id": 2147483683,
-                    "data": {
-                        "m_name": "NewGameObject",
-                        "m_uuID": {
-                            "uuid": "8d381553-ee69-40e5-9cbc-f73b96cd6e51"
-                        },
-                        "m_tag": 0,
-                        "m_isActive": true,
-                        "m_pComponents": [
-                            {
-                                "polymorphic_id": 1,
-                                "ptr_wrapper": {
-                                    "id": 2147483684,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "a726aef4-87f8-45ea-9a1d-fb8938b88892"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_position": {
-                                            "value0": 7.0,
-                                            "value1": 4.099999904632568,
-                                            "value2": 1.5
-                                        },
-                                        "m_scale": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0
-                                        },
-                                        "m_rotation": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0,
-                                            "value3": 1.0
-                                        },
-                                        "m_pParent": {
-                                            "locked_ptr": {
-                                                "polymorphic_id": 0
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 3,
-                                "ptr_wrapper": {
-                                    "id": 2147483685,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "c54f0e4f-b851-45af-83b1-d2080944f75a"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_isInvertn": false,
-                                        "m_isRhcoords": true,
-                                        "m_shapeType": 0,
-                                        "m_color": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0,
-                                            "value3": 1.0
-                                        },
-                                        "m_scale": {
-                                            "value0": 2.0,
-                                            "value1": 2.0,
-                                            "value2": 2.0
-                                        },
-                                        "m_textureName": ""
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 2147483660,
-                                "polymorphic_name": "TMF::GhostObject",
-                                "ptr_wrapper": {
-                                    "id": 2147483686,
-                                    "data": {
-                                        "m_uuID": {
-                                            "uuid": "4f409d91-0920-4e4b-9d9e-86d182d82fc3"
-                                        },
-                                        "m_isEnable": true
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 2147483661,
-                                "polymorphic_name": "TMF::AssimpAnimation",
-                                "ptr_wrapper": {
-                                    "id": 2147483687,
-                                    "data": {
-                                        "m_uuID": {
-                                            "uuid": "d93333c0-bae4-4299-84fe-0d835a3d9a10"
-                                        },
-                                        "m_isEnable": true
                                     }
                                 }
                             }

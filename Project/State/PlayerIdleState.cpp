@@ -91,7 +91,6 @@ namespace TMF
 			m_pEventSystem->TriggerEvent('d');
 		}
 
-		m_pEventSystem->TriggerEvent('N');
 		if (keyState.V == true)
 		{
 			if (keyState.A == true)
@@ -111,6 +110,10 @@ namespace TMF
 				m_pEventSystem->TriggerEvent('W');
 			}
 
+		}
+		else
+		{
+			m_pEventSystem->TriggerEvent('N');
 		}
 		if (keyState.Space == true)
 		{

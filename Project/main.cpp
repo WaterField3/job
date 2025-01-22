@@ -23,7 +23,7 @@
 
 // マクロ定義
 #define CLASS_NAME    "DX21Smpl"// ウインドウクラスの名前
-#define WINDOW_NAME  "窓"// ウィンドウの名前
+#define WINDOW_NAME  "the Battle"// ウィンドウの名前
 
 #define SCREEN_WIDTH (1024)	// ウインドウの幅
 #define SCREEN_HEIGHT (576)	// ウインドウの高さ

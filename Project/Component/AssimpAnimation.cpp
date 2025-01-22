@@ -7,7 +7,7 @@
 #include "GameObject/GameObjectManager.h"
 #include "Camera.h"
 
-REGISTER_COMPONENT(TMF::AssimpAnimation, "AssimpAnimation");
+//REGISTER_COMPONENT(TMF::AssimpAnimation, "AssimpAnimation");
 
 namespace TMF
 {
