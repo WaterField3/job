@@ -33,6 +33,7 @@ namespace TMF
 		m_pCoolTimeUI = GameObjectManager::Instance().GetComponent<CoolTimeUI>();
 		m_pChangeTimeUI = GameObjectManager::Instance().GetComponent<ChangeTimeUI>();
 		m_pWeponUI = GameObjectManager::Instance().GetComponent<WeponUI>();
+		m_pReloadUI = GameObjectManager::Instance().GetComponent<ReloadUI>();
 		if (auto pLockWepon = m_pWepons[0].lock())
 		{
 			//SelectWeapon(pLockWepon);
@@ -47,6 +48,10 @@ namespace TMF
 			if (auto pLockWeponUI = m_pWeponUI.lock())
 			{
 				pLockWeponUI->SetSelectWepon(pLockWepon);
+			}
+			if (auto pLockReloadUI = m_pReloadUI.lock())
+			{
+				pLockReloadUI->SetSelectWepon(pLockWepon);
 			}
 		}
 		m_previousScrollValue = 0;

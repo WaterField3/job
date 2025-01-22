@@ -4,6 +4,7 @@
 #include "ChangeTimeUI.h"
 #include "CoolTimeUI.h"
 #include "WeponUI.h"
+#include "ReloadUI.h"
 
 namespace TMF
 {
@@ -43,6 +44,10 @@ namespace TMF
 			{
 				pLockWeponUI->SetSelectWepon(wepon);
 			}
+			if (auto pLockReloadUI = m_pReloadUI.lock())
+			{
+				pLockReloadUI->SetSelectWepon(wepon);
+			}
 		}
 
 	private:
@@ -53,6 +58,7 @@ namespace TMF
 		std::weak_ptr<CoolTimeUI> m_pCoolTimeUI;
 		std::weak_ptr<ChangeTimeUI> m_pChangeTimeUI;
 		std::weak_ptr<WeponUI> m_pWeponUI;
+		std::weak_ptr<ReloadUI> m_pReloadUI;
 	};
 }
 

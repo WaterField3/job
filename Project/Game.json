@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 3.4382920265197756,
+                                        "m_azimuth": 3.473198413848877,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -2851,6 +2851,78 @@
                                         "m_fontScale": 1.0,
                                         "m_text": "bullet",
                                         "m_fontPath": "asset/myfile.spritefont"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483772,
+                    "data": {
+                        "m_name": "ReloadUI",
+                        "m_uuID": {
+                            "uuid": "5059df44-23d6-4152-a6f3-dc47404241ea"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483773,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "6f352d7f-4267-4316-b3fe-05cba23e501b"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483683,
+                                "polymorphic_name": "TMF::ReloadUI",
+                                "ptr_wrapper": {
+                                    "id": 2147483774,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "53048e91-0fe0-4e4b-a23d-05d0d49eaff5"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_barWidth": 150.0,
+                                        "m_barHeight": 10.0,
+                                        "m_barTextureName": "asset/textures/white.png",
+                                        "m_drawPosition": {
+                                            "value0": 744.0,
+                                            "value1": 418.0
+                                        }
                                     }
                                 }
                             }

@@ -24,6 +24,8 @@ namespace TMF
 		inline float GetCurrentChangeTime() const { return m_changeTime; }
 		inline float GetCoolTime() const { return m_coolTime; }
 		inline float GetCurrentCollTime() const { return m_timer; }
+		inline float GetReloadTime() const { return m_reloadTime; }
+		inline float GetReloadMaxTime() const { return m_reloadMaxTime; }
 		inline std::string GetShotObjectName() const { return m_shotObjectName; }
 
 	private:
@@ -33,7 +35,7 @@ namespace TMF
 		float m_timer = 0.0f;
 		float m_changeTime = 1.0f;
 		float m_initChangeTime = 1.0f;
-		float m_reloadTime = 1.0f;
+		float m_reloadTime = 0.0f;
 		float m_reloadMaxTime = 10.0f;
 		bool m_isShot = false;
 		bool m_isUsePlayer = false;
