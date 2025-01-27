@@ -62,6 +62,11 @@ namespace TMF
 		{
 
 		}
+		auto useMagnificationLabel = StringHelper::CreateLabel("UseMagnification", m_uuID);
+		if (ImGui::DragFloat(useMagnificationLabel.c_str(), &m_useMagnification, 0.1f, 0.0f, 1.0f))
+		{
+
+		}
 		auto firstUseMagnificationLabel = StringHelper::CreateLabel("FirstUseMagnification", m_uuID);
 		if (ImGui::DragFloat(firstUseMagnificationLabel.c_str(), &m_firstUseMagnification, 0.1f, 0.0f, 1.0f))
 		{
@@ -85,9 +90,9 @@ namespace TMF
 	}
 	void Thruster::FastMovement(MoveDirection moveDirection)
 	{
+		// ‰‰ñ
 		if (m_isThruster == false)
 		{
-			// ‰‰ñ
 			if (auto pLockTransform = m_pTransform.lock())
 			{
 				switch (moveDirection)
@@ -196,7 +201,7 @@ namespace TMF
 				pLockRigdBody->SetLinearVelocity(m_moveVector);
 				if (m_isDontUseThruster == false)
 				{
-					m_thrusterValue += 0.05f;
+					m_thrusterValue += m_maxThrusterValue * m_useMagnification;
 					if (m_thrusterValue >= m_maxThrusterValue)
 					{
 						m_isOverHeat = true;

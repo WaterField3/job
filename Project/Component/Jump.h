@@ -24,6 +24,7 @@ namespace TMF
 		void ChageStop(MoveDirection moveDirection);
 		void Fall();
 
+		bool GetIsLanding() { return m_isChageEnd == true && m_isChage == false; }
 		inline float GetImpact() { return m_impact; }
 		inline float GetMoveSpeed() { return m_moveSpeed; }
 		inline float GetMaxMoveSpeed() { return m_maxMoveSpeed; }

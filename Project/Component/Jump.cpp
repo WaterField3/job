@@ -29,7 +29,7 @@ namespace TMF
 	{
 		if (m_isChageEnd == true)
 		{
-			m_flightTime -= 0.1f;
+			m_flightTime -= Timer::Instance().deltaTime.count();
 			if (m_flightTime <= 0)
 			{
 				m_flightTime = m_maxFlightTime;

@@ -34,6 +34,7 @@ namespace TMF
 		bool m_isOverHeat = false;
 		bool m_isDontUseThruster = false;
 		float m_firstUseMagnification = 1.0f;
+		float m_useMagnification = 0.05f;
 		float m_maxThrusterValue = 10.0f;
 		float m_thrusterValue = 0.0;
 		float m_thrusterMoveSpeedMagnification = 4.0f;
@@ -44,6 +45,6 @@ namespace TMF
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Rigidbody> m_pRigidBody;
 		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pBarTexture;
-		SERIALIZE_COMPONENT(m_thrusterValue, m_firstUseMagnification, m_thrusterMoveSpeedMagnification, m_barTextureName, m_drawUIPosition);
+		SERIALIZE_COMPONENT(m_thrusterValue, m_firstUseMagnification, m_useMagnification,m_thrusterMoveSpeedMagnification, m_barTextureName, m_drawUIPosition);
 	};
 }
