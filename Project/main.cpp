@@ -41,10 +41,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	// ブロック番号を記録
-	//_CrtSetBreakAlloc(3886); // 該当番号に到達するとブレークポイントで停止
-	//_CrtSetBreakAlloc(2727); // 該当番号に到達するとブレークポイントで停止
-
 	WNDCLASSEX wc;
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.style = CS_CLASSDC;
@@ -80,41 +76,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// ウィンドウの状態を直ちに反映(ウィンドウのクライアント領域を更新)
 	UpdateWindow(hWnd);
 
+	MSG msg;
+
 	// ゲームループに入る前に
 	// DirectXの初期化をする
-
-	// Inputクラスの初期化
-
-	// FPS表示用変数
-	int fpsCounter = 0;
-	float elapsedTime = 0.0f;
-	float fps = 0.0f;
-	long long oldTick = GetTickCount64();//現在時間を保存
-	long long nowTick = oldTick; // 現在時間取得用
-
-	// FPS固定用変数
-	LARGE_INTEGER liWork; // 関数から値を受け取る用
-	long long frequency; // 計測精度
-	// 計測精度を取得
-	QueryPerformanceFrequency(&liWork);
-	frequency = liWork.QuadPart; // １秒あたりの解像度が入る
-	// １フレームあたりのカウント値を計算
-	long long numCount_1frame = frequency / 60; // 60FPSで計算
-	// 現在時間（単位：カウント）を取得
-	QueryPerformanceCounter(&liWork);
-	long long oldCount = liWork.QuadPart;
-	long long nowCount = oldCount;
-
-	MSG msg;
 	Timer::Instance().Initialize();
 	D3D::Get()->Create(hWnd);
 
 	EffectManager::Instance().Initialize();
 	AudioManager::Instance().Initialize();
+	// Inputクラスの初期化
 	Input::Instance().Initialize(hWnd);
 	GameObjectManager::Instance().Load(TITLE_DATA);
-	//GameObjectManager::Instance().Load(MAIN_DATA);
-	//GameObjectManager::Instance().Load(RESULT_DATA);
 	PhysicsManager::Instance().Initialize();
 
 	auto app = CreateApplication();
@@ -139,6 +112,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		else
 		{
 			Timer::Instance().Update();
+
 			// ゲーム処理実行
 
 			app->OnUpdate();
@@ -147,35 +121,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 			app->OnDrawImGui();
 
-			//// 1/60秒経過したか？
-			//QueryPerformanceCounter(&liWork);
-			//nowCount = liWork.QuadPart; // 現在時間を取得（単位：カウント）
-			//if (nowCount >= oldCount + numCount_1frame)
-			//{
-			//	// ゲーム処理実行
-
-			//	app->OnUpdate();
-
-			//	app->OnDraw();
-
-			//	app->OnDrawImGui();
-
-			//	fpsCounter++; // ゲームループ実行回数をカウント＋１
-			//	oldCount = nowCount;
-			//}
-
-			//nowTick = GetTickCount64(); // 現在時間取得
-			//// １秒経過したか？
-			//if (nowTick >= oldTick + 1000)
-			//{
-				// FPSを表示する
-				//char str[32];
-				//wsprintfA(str, "FPS=%d", targetFrameTime);
-				//SetWindowTextA(hWnd, str);
-			//	// カウンターをリセット
-			//	fpsCounter = 0;
-			//	oldTick = nowTick;
-			//}
 		}
 	} // ゲームループの閉じカッコ
 

@@ -25,6 +25,7 @@ namespace TMF
 		/// <returns>UŒ‚‚ÌŠÔ ¦ËŒ‚‚Í‚O</returns>
 		float Play();
 	private:
+		void UpdateHandleWeaponSelection();
 		void UpdateWeaponSelection(int currentScrollValue);
 		void HandleWeaponSelection(const std::shared_ptr<Component>& pLockSelectComponent);
 

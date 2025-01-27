@@ -19,6 +19,18 @@ namespace TMF
 		}
 	}
 
+	void Input::Update()
+	{
+		if (m_pKeyboardTracker)
+		{
+			m_pKeyboardTracker->Update(m_pKeyboard->GetState());
+		}
+		if (m_pButtonTracker)
+		{
+			m_pButtonTracker->Update(m_pMouse->GetState());
+		}
+	}
+
 	bool Input::PluralGetKeyDiwn(std::chrono::milliseconds currentTime)
 	{
 		if (currentTime - m_lastTapTime < m_tapIntertval)
