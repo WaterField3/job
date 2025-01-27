@@ -65,33 +65,40 @@ namespace TMF
 		auto tracker = Input::Instance().GetMouseTracker();
 		auto mouseState = Input::Instance().GetMouseState();
 		tracker->Update(mouseState);
-		if (tracker->leftButton == DirectX::Mouse::ButtonStateTracker::ButtonState::PRESSED)
-		{
-			if (auto pLockSelectComponent = m_pWepons[m_selectIndex].lock())
-			{
-				// Shotクラスに変換できるか確認
-				if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
-				{
-					pLockShot->Play();
-					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
-					{
-						pLockCoolTimeUI->SetSelectWepon(pLockShot);
-					}
+		//if (tracker->leftButton == DirectX::Mouse::ButtonStateTracker::ButtonState::PRESSED)
+		//{
+		//	Play();
+		//}
+		UpdateWeaponSelection(mouseState.scrollWheelValue);
 
-				}
-				// Meleeクラスに変換できるか確認
-				else if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
+	}
+	float Attack::Play()
+	{
+		if (auto pLockSelectComponent = m_pWepons[m_selectIndex].lock())
+		{
+			// Shotクラスに変換できるか確認
+			if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
+			{
+				pLockShot->Play();
+				if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
 				{
-					pLockMelee->Play();
-					if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
-					{
-						pLockCoolTimeUI->SetSelectWepon(pLockMelee);
-					}
+					pLockCoolTimeUI->SetSelectWepon(pLockShot);
+					return 0.0f;
+				}
+				
+			}
+			// Meleeクラスに変換できるか確認
+			else if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
+			{
+				pLockMelee->Play();
+				if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+				{
+					pLockCoolTimeUI->SetSelectWepon(pLockMelee);
+					return pLockMelee->GetEndTime();
 				}
 			}
 		}
-		UpdateWeaponSelection(mouseState.scrollWheelValue);
-
+		return 0.0f;
 	}
 	void Attack::OnLateUpdate()
 	{

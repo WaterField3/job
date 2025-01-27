@@ -13,7 +13,7 @@
 #include "State/StateMachine.h"
 #include "PhysicsManager.h"
 
-REGISTER_STATE(TMF::PlayerJumpState, ("PlayerJumpState"));
+REGISTER_STATE(TMF::PlayerJumpState, "PlayerJumpState");
 
 namespace TMF
 {

@@ -19,6 +19,11 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		/// <summary>
+		/// UŒ‚
+		/// </summary>
+		/// <returns>UŒ‚‚ÌŠÔ ¦ËŒ‚‚Í‚O</returns>
+		float Play();
 	private:
 		void UpdateWeaponSelection(int currentScrollValue);
 		void HandleWeaponSelection(const std::shared_ptr<Component>& pLockSelectComponent);

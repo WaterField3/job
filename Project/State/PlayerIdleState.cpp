@@ -73,7 +73,9 @@ namespace TMF
 	{
 		auto keyState = Input::Instance().GetKeyState();
 
-
+		auto mouseTracker = Input::Instance().GetMouseTracker();
+		auto mouseState = Input::Instance().GetMouseState();
+		mouseTracker->Update(mouseState);
 		if (keyState.W == true)
 		{
 			m_pEventSystem->TriggerEvent('w');
@@ -120,6 +122,13 @@ namespace TMF
 			if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
 			{
 				pLockAdministratorStateMachine->ChangeState("PlayerJumpState");
+			}
+		}
+		if (mouseTracker->leftButton == DirectX::Mouse::ButtonStateTracker::ButtonState::PRESSED)
+		{
+			if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
+			{
+				pLockAdministratorStateMachine->ChangeState("PlayerAttackState");
 			}
 		}
 	}
