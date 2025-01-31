@@ -697,6 +697,72 @@
                         ]
                     }
                 }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483678,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "uuid": "16c3087f-ad31-4295-87c0-b239a470d202"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483679,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "f80c254b-0dcf-479f-9b42-be2d8b765aff"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483660,
+                                "polymorphic_name": "TMF::GenerateWepon",
+                                "ptr_wrapper": {
+                                    "id": 2147483680,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "f3dc9a3f-f336-46bc-95ea-83c04c4d5cae"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_file": "WeponDatas"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
             }
         ]
     }

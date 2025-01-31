@@ -7,10 +7,35 @@
 #include "GameObject/GameObjectManager.h"
 #include "Component/Transform.h"
 #include "Utility/StringHelper.h"
+#include "Utility/Log.h"
 
 namespace TMF
 {
-	void GameObject::Initialize()
+	GameObject::GameObject(const std::shared_ptr<GameObject> obj)
+	{
+		//m_pComponents = obj->m_pComponents;
+		//m_name = obj->m_name;
+		//m_uuID = boost::uuids::random_generator()();
+
+		// 各メンバ変数をコピー（新しいインスタンスとして独立させる）
+		m_name = obj->m_name;
+		m_uuID = boost::uuids::random_generator()(); // UUIDは新規生成
+		m_tag = obj->m_tag;
+		m_isActive = obj->m_isActive;
+
+		for (const auto& component : obj->m_pComponents)
+		{
+			if (component)
+			{
+				auto newComponent = component->Clone();
+				//auto newComponent = std::make_shared<std::remove_pointer_t<decltype(component.get())>>(*component);
+				//newComponent->Initialize(shared_from_this()); // 親の参照をセット
+				m_pComponents.push_back(move(newComponent));
+			}
+		}
+
+	}
+	void GameObject::Initialize(bool isChangeComponentUUID)
 	{
 		if (m_uuID.is_nil())
 		{
@@ -19,6 +44,10 @@ namespace TMF
 		m_pTransform = GetComponent<Transform>();
 		for (auto& pComponent : m_pComponents)
 		{
+			if (isChangeComponentUUID == true)
+			{
+				pComponent->ChangeUUID();
+			}
 			pComponent->Initialize(shared_from_this());
 		}
 	}

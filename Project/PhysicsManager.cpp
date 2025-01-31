@@ -41,7 +41,7 @@ namespace TMF
 		if (collisionObjects.size() > 0)
 		{
 #if _DEBUG
-			m_pDynamicsWorld->debugDrawWorld();
+			//m_pDynamicsWorld->debugDrawWorld();
 			m_pBulletDebugDrawer->Render();
 #endif // _DEBUG
 		}

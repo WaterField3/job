@@ -5,7 +5,6 @@
 #undef min
 #undef max
 #include <BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h>
-#include <random>
 
 #include "Transform.h"
 #include "Rigidbody.h"

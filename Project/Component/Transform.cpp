@@ -5,6 +5,7 @@
 #include "Rigidbody.h"
 #include "GhostObject.h"
 #include "GameObject/GameObjectManager.h"
+#include "Utility/Log.h"
 
 using namespace DirectX::SimpleMath;
 
@@ -25,6 +26,8 @@ namespace TMF
 	void Transform::OnInitialize()
 	{
 		m_editorRotation = m_rotation.ToEuler();
+		auto str = "TransformUUID:" + boost::uuids::to_string(m_uuID);
+		Log::Info("Transform:OnInitialize\n");
 	}
 
 	void Transform::OnFinalize()
@@ -71,6 +74,31 @@ namespace TMF
 		{
 
 		}
+
+		auto changeUUIDLabel = "ChangeUUID## " + uuidStr;
+		if (ImGui::Button(changeUUIDLabel.c_str()))
+		{
+			OnChangeUUID();
+		}
+	}
+
+	void Transform::OnChangeUUID()
+	{
+		auto str = "TransformïœçXëO:" + boost::uuids::to_string(m_uuID);
+		Log::DebugInfo(str);
+		m_uuID = boost::uuids::random_generator_pure()();
+		str = "TransformïœçXå„:" + boost::uuids::to_string(m_uuID);
+		Log::DebugInfo(str);
+	}
+
+	std::shared_ptr<Component> Transform::OnClone() const
+	{
+		auto clone = std::make_shared<Transform>();
+		clone->m_position = this->m_position;
+		clone->m_rotation = this->m_rotation;
+		clone->m_editorRotation = this->m_editorRotation;
+		clone->m_scale = this->m_scale;
+		return move(clone);
 	}
 
 	void Transform::SetPosition(DirectX::SimpleMath::Vector3 pos)

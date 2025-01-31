@@ -1,6 +1,7 @@
 #include "Component.h"
 
 #include "GameObject/GameObject.h"
+#include "Utility/Log.h"
 
 CEREAL_REGISTER_TYPE(TMF::Component);
 
@@ -54,7 +55,7 @@ namespace TMF
 
 	void Component::CollisionEnter(GameObject* pGameObject)
 	{
-			OnCollisionEnter(pGameObject);
+		OnCollisionEnter(pGameObject);
 	}
 
 	void Component::CollisionStay(GameObject* pGameObject)
@@ -80,6 +81,18 @@ namespace TMF
 	void Component::TrigerExit(GameObject* pGameObject)
 	{
 		OnTrigerExit(pGameObject);
+	}
+
+	void Component::ChangeUUID()
+	{
+		m_uuID = boost::uuids::random_generator()();
+		//OnChangeUUID();
+	}
+
+	std::shared_ptr<Component> Component::Clone() const
+	{
+		auto pClone = OnClone();
+		return move(pClone);
 	}
 
 	void Component::OnInitialize()
@@ -130,14 +143,26 @@ namespace TMF
 	{
 
 	}
-	
+
 	void Component::OnTrigerStay(GameObject* pGameObject)
 	{
 
 	}
-	
+
 	void Component::OnTrigerExit(GameObject* pGameObject)
 	{
 
+	}
+	void Component::OnChangeUUID()
+	{
+		auto str = "ïœçXëO:" + boost::uuids::to_string(m_uuID);
+		//Log::DebugInfo(str);
+		m_uuID = boost::uuids::random_generator()();
+		str = "ïœçXå„:" + boost::uuids::to_string(m_uuID);
+		//Log::DebugInfo(str);
+	}
+	std::shared_ptr<Component> Component::OnClone() const
+	{
+		return std::make_shared<Component>(*this);
 	}
 }

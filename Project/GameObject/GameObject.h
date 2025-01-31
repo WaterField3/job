@@ -21,6 +21,7 @@ namespace TMF
 	{
 	public:
 		GameObject() = default;
+		GameObject(const std::shared_ptr<GameObject> obj);
 		~GameObject() = default;
 		template <typename TComponent>
 		std::weak_ptr<TComponent> AddComponent()
@@ -80,7 +81,7 @@ namespace TMF
 			return pComponents;
 		}
 
-		void Initialize();
+		void Initialize(bool isChangeComponentUUID = false);
 		void Finalize();
 		void Update();
 		void LateUpdate();

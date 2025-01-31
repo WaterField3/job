@@ -109,7 +109,20 @@ namespace TMF
 				GameObjectManager::Instance().LoadObject(m_loadObjectName);
 			}
 		}
-
+		if (ImGui::Button("ObjectsSave"))
+		{
+			if (!isPlay)
+			{
+				GameObjectManager::Instance().SaveObjects(m_saveObjectName);
+			}
+		}
+		if (ImGui::Button("ObjectsLoad"))
+		{
+			if (!isPlay)
+			{
+				GameObjectManager::Instance().LoadObjects(m_loadObjectName);
+			}
+		}
 		ImGui::Checkbox("DemoWindow", &m_isDemoWindow);
 		if (m_isDemoWindow)
 		{

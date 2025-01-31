@@ -26,11 +26,6 @@ namespace TMF
 	void GameObjectManager::CreateGameObject(std::string fileName, std::weak_ptr<GameObject> obj)
 	{
 		fileName = fileName + ".json";
-		//std::ofstream ss(fileName.c_str(), std::ios::out);
-		//{
-		//	cereal::JSONOutputArchive oArchive(ss);
-		//	oArchive(obj);
-		//}
 
 		if (!std::filesystem::is_regular_file(fileName))
 		{
@@ -55,6 +50,17 @@ namespace TMF
 		pGameObject->Initialize();
 
 		m_pGameObjects.push_back(pGameObject);
+	}
+
+	void GameObjectManager::CreateGameObject(std::weak_ptr<GameObject> obj)
+	{
+		if (auto pLockObj = obj.lock())
+		{
+			auto pGameObject = std::make_shared<GameObject>(pLockObj);
+			pGameObject->Initialize(true);
+
+			m_pGameObjects.push_back(pGameObject);
+		}
 	}
 
 	void GameObjectManager::DestroyGameObject(GameObject* pGameObject)
@@ -227,6 +233,30 @@ namespace TMF
 		{
 			cereal::JSONOutputArchive oArchive(ss);
 			oArchive(obj);
+		}
+	}
+
+	void GameObjectManager::SaveObjects(std::string fileName)
+	{
+		fileName = fileName + ".json";
+		std::ofstream ss(fileName.c_str(), std::ios::out);
+		{
+			cereal::JSONOutputArchive oArchive(ss);
+			oArchive(m_pGameObjects);
+		}
+	}
+
+	void GameObjectManager::LoadObjects(std::string fileName)
+	{
+		fileName = fileName + ".json";
+		if (!std::filesystem::is_regular_file(fileName))
+		{
+			return;
+		}
+		std::ifstream iS(fileName.c_str(), std::ios::in);
+		{
+			cereal::JSONInputArchive inArchive(iS);
+			inArchive(m_pGameObjects);
 		}
 	}
 

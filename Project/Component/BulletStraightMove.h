@@ -18,6 +18,7 @@ namespace TMF
 
 	public:
 		void MoveStart(DirectX::SimpleMath::Vector3 position, DirectX::SimpleMath::Quaternion rotation);
+		void MoveStart(DirectX::SimpleMath::Vector3 position, DirectX::SimpleMath::Vector3 moveVector);
 		inline void SetMoveVector(DirectX::SimpleMath::Vector3 set) { m_moveVector = set; }
 		inline void SetEndTime(float setTime) { m_endTime = setTime; }
 		inline void ResetTimer() { m_timer = 0.0f; }

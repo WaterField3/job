@@ -9,6 +9,7 @@
 #undef max
 
 #include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_io.hpp>
 #include <boost/uuid/random_generator.hpp>
 
 #include "Utility/CerealHelper.h"
@@ -34,6 +35,8 @@ namespace TMF
 		void TrigerEnter(GameObject* pGameObject);
 		void TrigerStay(GameObject* pGameObject);
 		void TrigerExit(GameObject* pGameObject);
+		void ChangeUUID();
+		std::shared_ptr<Component> Clone() const;
 
 		// Remove‰Â”\‚©
 		inline virtual bool IsRemovable() { return true; }
@@ -55,6 +58,8 @@ namespace TMF
 		virtual void OnTrigerEnter(GameObject* pGameObject);
 		virtual void OnTrigerStay(GameObject* pGameObject);
 		virtual void OnTrigerExit(GameObject* pGameObject);
+		virtual void OnChangeUUID();
+		virtual std::shared_ptr<Component> OnClone() const;
 
 		template <typename TComponent>
 		std::shared_ptr<TComponent> GetComponent(TComponent component)

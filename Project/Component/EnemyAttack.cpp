@@ -57,12 +57,12 @@ namespace TMF
 		{
 			--size;
 		}
-		std::random_device randomDevice;
-		std::mt19937 gen(randomDevice());
+		//std::random_device randomDevice;
+		//std::mt19937 gen(randomDevice());
 
-		std::uniform_int_distribution<int> dist(0, size);
+		//std::uniform_int_distribution<int> dist(0, size);
 
-		m_selectIndex = dist(gen);
+		//m_selectIndex = dist(gen);
 
 	}
 

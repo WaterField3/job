@@ -24,6 +24,8 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		void OnChangeUUID() override;
+		std::shared_ptr<Component> OnClone() const override;
 		inline bool IsRemovable() override { return false; }
 
 		void SetPosition(DirectX::SimpleMath::Vector3 pos);

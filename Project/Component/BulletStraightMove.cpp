@@ -111,4 +111,26 @@ namespace TMF
 			}
 		}
 	}
+	void BulletStraightMove::MoveStart(DirectX::SimpleMath::Vector3 position, DirectX::SimpleMath::Vector3 moveVector)
+	{
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
+			{
+				pLockOwner->SetActive(true);
+				ResetTimer();
+				m_moveVector = moveVector;
+				moveVector.Normalize();
+				auto rotation = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(moveVector.y, moveVector.x, moveVector.z);
+				auto forward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Forward, rotation);
+				forward.Normalize();
+				auto quaternionForward = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(forward.y, forward.x, forward.z);
+				//rotation = DirectX::SimpleMath::Quaternion::LookRotation(moveVector, DirectX::SimpleMath::Vector3::Up);
+				pLockTransform->SetPosition(position);
+				pLockTransform->SetRotation(rotation);
+
+			}
+		}
+	}
 }

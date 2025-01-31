@@ -17,6 +17,7 @@ namespace TMF
 
 		std::weak_ptr<GameObject> CreateGameObject();
 		void CreateGameObject(std::string fileName, std::weak_ptr<GameObject> obj);
+		void CreateGameObject(std::weak_ptr<GameObject> obj);
 		void DestroyGameObject(GameObject* pGameObject);
 		void Initialize();
 		void Finalize();
@@ -30,6 +31,8 @@ namespace TMF
 		void Save(std::string fileName);
 		void Load(std::string fileName);
 		void SaveObject(std::string fileName, std::weak_ptr<GameObject> obj);
+		void SaveObjects(std::string fileName);
+		void LoadObjects(std::string fileName);
 		inline bool GetIsLoaded() const { return m_isLoaded; }
 		std::weak_ptr<GameObject> LoadObject(std::string fileName);
 

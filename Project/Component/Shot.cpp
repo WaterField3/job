@@ -8,6 +8,7 @@
 #include "Transform.h"
 #include "BulletStraightMove.h"
 #include "Timer.h"
+#include "Camera.h"
 
 REGISTER_COMPONENT(TMF::Shot, "Shot");
 
@@ -129,14 +130,26 @@ namespace TMF
 						auto pBulletMove = pLockChild->GetComponent<BulletStraightMove>();
 						if (auto pLockBulletMove = pBulletMove.lock())
 						{
+							auto pCameraObject = GameObjectManager::Instance().GetGameObject("CameraObject");
+							auto cameraPosition = DirectX::SimpleMath::Vector3::Zero;
+							if (auto pLockCameraObject = pCameraObject.lock())
+							{
+								auto pCameraTransform = pLockCameraObject->GetComponent<Transform>();
+								if (auto pLockCameraTransform = pCameraTransform.lock())
+								{
+									cameraPosition = pLockCameraTransform->GetWorldPosition();
+								}
+							}
 							auto pTransform = pLockOwner->GetComponent<Transform>();
 							if (auto pLockTrancform = pTransform.lock())
 							{
 								m_isShot = true;
 								m_bulletNum--;
 								auto nowPosition = pLockTrancform->GetPosition();
+								nowPosition.y += 3;
 								auto nowRotation = pLockTrancform->GetRotation();
-								pLockBulletMove->MoveStart(nowPosition, nowRotation);
+								auto moveVector = nowPosition - cameraPosition;
+								pLockBulletMove->MoveStart(nowPosition, moveVector);
 							}
 						}
 					}

@@ -1,0 +1,367 @@
+{
+    "value0": [
+        {
+            "ptr_wrapper": {
+                "id": 2147483649,
+                "data": {
+                    "m_name": "CameraObject",
+                    "m_uuID": {
+                        "uuid": "468820d2-2d29-413e-8f96-89c7bfaa77fd"
+                    },
+                    "m_tag": 0,
+                    "m_isActive": true,
+                    "m_pComponents": [
+                        {
+                            "polymorphic_id": 2147483649,
+                            "polymorphic_name": "TMF::Transform",
+                            "ptr_wrapper": {
+                                "id": 2147483650,
+                                "data": {
+                                    "value0": {
+                                        "m_uuID": {
+                                            "uuid": "b8b6a6db-0dd3-4207-822c-a19e6911b206"
+                                        },
+                                        "m_isEnable": true
+                                    },
+                                    "m_position": {
+                                        "value0": 0.0,
+                                        "value1": 6.0,
+                                        "value2": 22.0
+                                    },
+                                    "m_scale": {
+                                        "value0": 1.0,
+                                        "value1": 1.0,
+                                        "value2": 1.0
+                                    },
+                                    "m_rotation": {
+                                        "value0": 0.0,
+                                        "value1": 0.0,
+                                        "value2": 0.0,
+                                        "value3": 1.0
+                                    },
+                                    "m_pParent": {
+                                        "locked_ptr": {
+                                            "polymorphic_id": 0
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "polymorphic_id": 2147483650,
+                            "polymorphic_name": "TMF::Camera",
+                            "ptr_wrapper": {
+                                "id": 2147483651,
+                                "data": {
+                                    "value0": {
+                                        "m_uuID": {
+                                            "uuid": "a4618974-1c67-4b10-95a1-8d5bee6370d0"
+                                        },
+                                        "m_isEnable": true
+                                    },
+                                    "m_fov": 45.0,
+                                    "m_near": 0.10000000149011612,
+                                    "m_far": 1000.0
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "ptr_wrapper": {
+                "id": 2147483652,
+                "data": {
+                    "m_name": "Sword1",
+                    "m_uuID": {
+                        "uuid": "f86e59fa-5885-47b0-8d9e-14243453fbb5"
+                    },
+                    "m_tag": 0,
+                    "m_isActive": true,
+                    "m_pComponents": [
+                        {
+                            "polymorphic_id": 1,
+                            "ptr_wrapper": {
+                                "id": 2147483653,
+                                "data": {
+                                    "value0": {
+                                        "m_uuID": {
+                                            "uuid": "3ec99f11-2e9e-4712-8b83-8c7dd389ef44"
+                                        },
+                                        "m_isEnable": true
+                                    },
+                                    "m_position": {
+                                        "value0": 0.0,
+                                        "value1": 6.0,
+                                        "value2": 0.0
+                                    },
+                                    "m_scale": {
+                                        "value0": 1.0,
+                                        "value1": 1.0,
+                                        "value2": 1.0
+                                    },
+                                    "m_rotation": {
+                                        "value0": 0.0,
+                                        "value1": 0.0,
+                                        "value2": 0.0,
+                                        "value3": 1.0
+                                    },
+                                    "m_pParent": {
+                                        "locked_ptr": {
+                                            "polymorphic_id": 0
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "polymorphic_id": 2147483651,
+                            "polymorphic_name": "TMF::MeleeMove",
+                            "ptr_wrapper": {
+                                "id": 2147483654,
+                                "data": {
+                                    "value0": {
+                                        "m_uuID": {
+                                            "uuid": "23c8ded2-e20b-43c0-a565-b3de7c706812"
+                                        },
+                                        "m_isEnable": true
+                                    },
+                                    "m_moveSpeed": 0.05000000074505806,
+                                    "m_rotate": {
+                                        "value0": -0.5,
+                                        "value1": 0.0,
+                                        "value2": 3.9000000953674318
+                                    },
+                                    "m_rotationOffset": 2.200000047683716,
+                                    "m_rotationSpeed": 1.0,
+                                    "m_targetRotationOffset": {
+                                        "value0": -1.5,
+                                        "value1": 0.0,
+                                        "value2": 1.2999999523162842
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "polymorphic_id": 2147483652,
+                            "polymorphic_name": "TMF::Collider",
+                            "ptr_wrapper": {
+                                "id": 2147483655,
+                                "data": {
+                                    "value0": {
+                                        "m_uuID": {
+                                            "uuid": "7caf2c10-ebbf-4fab-8f77-8ed9fba1924a"
+                                        },
+                                        "m_isEnable": true
+                                    },
+                                    "m_collidrType": 0,
+                                    "m_size": {
+                                        "value0": 10.0,
+                                        "value1": 1.0,
+                                        "value2": 1.5
+                                    },
+                                    "m_center": {
+                                        "value0": 0.0,
+                                        "value1": 0.0,
+                                        "value2": 0.0
+                                    },
+                                    "m_editerOfsetRotation": {
+                                        "value0": 0.0,
+                                        "value1": 0.0,
+                                        "value2": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "polymorphic_id": 2147483653,
+                            "polymorphic_name": "TMF::GhostObject",
+                            "ptr_wrapper": {
+                                "id": 2147483656,
+                                "data": {
+                                    "m_uuID": {
+                                        "uuid": "74fe256d-9710-4fed-9e0a-35377774c759"
+                                    },
+                                    "m_isEnable": true
+                                }
+                            }
+                        },
+                        {
+                            "polymorphic_id": 2147483654,
+                            "polymorphic_name": "TMF::Audio",
+                            "ptr_wrapper": {
+                                "id": 2147483657,
+                                "data": {
+                                    "value0": {
+                                        "m_uuID": {
+                                            "uuid": "4f7c31a5-8b4b-4447-90be-ed457109b4f4"
+                                        },
+                                        "m_isEnable": true
+                                    },
+                                    "m_soundName": "asset/sound/se/sword.wav",
+                                    "m_volume": 1.0,
+                                    "m_pitch": 0.0,
+                                    "m_pan": 0.0,
+                                    "m_isLoop": false
+                                }
+                            }
+                        },
+                        {
+                            "polymorphic_id": 2147483655,
+                            "polymorphic_name": "TMF::Damage",
+                            "ptr_wrapper": {
+                                "id": 2147483658,
+                                "data": {
+                                    "value0": {
+                                        "m_uuID": {
+                                            "uuid": "d25194c4-98e7-4346-967b-8fc0fc777ed6"
+                                        },
+                                        "m_isEnable": true
+                                    },
+                                    "m_damage": 35.0,
+                                    "m_reactionType": 0
+                                }
+                            }
+                        },
+                        {
+                            "polymorphic_id": 2147483656,
+                            "polymorphic_name": "TMF::Model",
+                            "ptr_wrapper": {
+                                "id": 2147483659,
+                                "data": {
+                                    "value0": {
+                                        "m_uuID": {
+                                            "uuid": "36355ec2-4484-4801-8a19-a0805873afd9"
+                                        },
+                                        "m_isEnable": true
+                                    },
+                                    "m_loadFile": "asset/model/sword.sdkmesh",
+                                    "m_isDraw": true,
+                                    "m_loadType": 2,
+                                    "m_loadDirectory": "asset/model"
+                                }
+                            }
+                        },
+                        {
+                            "polymorphic_id": 2147483657,
+                            "polymorphic_name": "TMF::MeleeFollowMove",
+                            "ptr_wrapper": {
+                                "id": 2147483660,
+                                "data": {
+                                    "value0": {
+                                        "m_uuID": {
+                                            "uuid": "d1d90e8a-0f3f-4276-a610-7fab8cd0af47"
+                                        },
+                                        "m_isEnable": true
+                                    },
+                                    "m_offsetPos": {
+                                        "value0": 1.5,
+                                        "value1": -0.10000000149011612,
+                                        "value2": 1.5
+                                    },
+                                    "m_rotationOffset": 4.300000190734863
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "ptr_wrapper": {
+                "id": 2147483661,
+                "data": {
+                    "m_name": "Sword2",
+                    "m_uuID": {
+                        "uuid": "1c1e601d-2a86-48e9-9ff0-b041bb68260f"
+                    },
+                    "m_tag": 0,
+                    "m_isActive": true,
+                    "m_pComponents": [
+                        {
+                            "polymorphic_id": 1,
+                            "ptr_wrapper": {
+                                "id": 2147483662,
+                                "data": {
+                                    "value0": {
+                                        "m_uuID": {
+                                            "uuid": "aef948a7-95fa-4e5d-ac5d-b12856d9a920"
+                                        },
+                                        "m_isEnable": true
+                                    },
+                                    "m_position": {
+                                        "value0": 0.0,
+                                        "value1": 3.299999952316284,
+                                        "value2": 0.0
+                                    },
+                                    "m_scale": {
+                                        "value0": 0.5,
+                                        "value1": 1.0,
+                                        "value2": 1.0
+                                    },
+                                    "m_rotation": {
+                                        "value0": 0.0,
+                                        "value1": 0.0,
+                                        "value2": 0.0,
+                                        "value3": 1.0
+                                    },
+                                    "m_pParent": {
+                                        "locked_ptr": {
+                                            "polymorphic_id": 0
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "polymorphic_id": 8,
+                            "ptr_wrapper": {
+                                "id": 2147483663,
+                                "data": {
+                                    "value0": {
+                                        "m_uuID": {
+                                            "uuid": "9c581c0f-4157-4db9-b488-5b8ef5380155"
+                                        },
+                                        "m_isEnable": true
+                                    },
+                                    "m_loadFile": "asset/model/sword.sdkmesh",
+                                    "m_isDraw": true,
+                                    "m_loadType": 2,
+                                    "m_loadDirectory": "asset/model"
+                                }
+                            }
+                        },
+                        {
+                            "polymorphic_id": 3,
+                            "ptr_wrapper": {
+                                "id": 2147483664,
+                                "data": {
+                                    "value0": {
+                                        "m_uuID": {
+                                            "uuid": "858e156a-3898-4d78-819b-724063bf1494"
+                                        },
+                                        "m_isEnable": true
+                                    },
+                                    "m_moveSpeed": 4.0,
+                                    "m_rotate": {
+                                        "value0": -0.5,
+                                        "value1": 0.0,
+                                        "value2": 3.9000000953674318
+                                    },
+                                    "m_rotationOffset": 2.200000047683716,
+                                    "m_rotationSpeed": 1.2000000476837159,
+                                    "m_targetRotationOffset": {
+                                        "value0": -1.5,
+                                        "value1": 0.0,
+                                        "value2": 1.2999999523162842
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
