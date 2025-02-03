@@ -160,6 +160,18 @@ namespace TMF
 		}
 	}
 
+	std::shared_ptr<Component> Model::OnClone() const
+	{
+		//m_loadFile, m_isDraw, m_loadType, m_loadDirectory
+		auto pClone = std::make_shared<Model>();
+		pClone->m_loadFile = this->m_loadFile;
+		pClone->m_isDraw = this->m_isDraw;
+		pClone->m_loadType = this->m_loadType;
+		pClone->m_loadDirectory = this->m_loadDirectory;
+
+		return move(pClone);
+	}
+
 	void Model::ModelDraw()
 	{
 		if (!m_pModel)

@@ -27,6 +27,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		std::shared_ptr<Component> OnClone() const override;
 		void SetFileName(std::string fileName, float endTime);
 		void LoadAnimation();
 		DirectX::SimpleMath::Vector3 GetBonePosition(std::string findName);

@@ -78,6 +78,12 @@ namespace TMF
 	{
 	}
 
+	std::shared_ptr<Component> WeponUI::OnClone() const
+	{
+		auto pClone = std::make_shared<WeponUI>();
+		return move(pClone);
+	}
+
 	void WeponUI::SetSelectWepon(std::weak_ptr<Component> pWepon)
 	{
 		m_maxBulletNum = 1;

@@ -35,7 +35,6 @@ namespace TMF
 		void TrigerEnter(GameObject* pGameObject);
 		void TrigerStay(GameObject* pGameObject);
 		void TrigerExit(GameObject* pGameObject);
-		void ChangeUUID();
 		std::shared_ptr<Component> Clone() const;
 
 		// Remove可能か
@@ -58,7 +57,10 @@ namespace TMF
 		virtual void OnTrigerEnter(GameObject* pGameObject);
 		virtual void OnTrigerStay(GameObject* pGameObject);
 		virtual void OnTrigerExit(GameObject* pGameObject);
-		virtual void OnChangeUUID();
+		/// <summary>
+		/// 同じデータの新しいコンポーネントを作成
+		/// </summary>
+		/// <returns>各コンポーネントのShared_ptr</returns>
 		virtual std::shared_ptr<Component> OnClone() const;
 
 		template <typename TComponent>

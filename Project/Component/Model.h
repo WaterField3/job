@@ -38,6 +38,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		std::shared_ptr<Component> OnClone() const override;
 		inline std::weak_ptr<DirectX::Model> GetModel() { return m_pModel; }
 		inline size_t GetAnimOffset() const { return animOffset; }
 		inline LOADTYPE GetLoadType() const { return m_loadType; }

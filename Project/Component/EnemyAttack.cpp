@@ -50,6 +50,12 @@ namespace TMF
 
 	}
 
+	std::shared_ptr<Component> EnemyAttack::OnClone() const
+	{
+		auto pClone = std::make_shared<EnemyAttack>();
+		return move(pClone);
+	}
+
 	void EnemyAttack::SelectShot()
 	{
 		auto size = static_cast<int>(m_shotIndices.size());

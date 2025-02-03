@@ -128,6 +128,15 @@ namespace TMF
 
 		}
 	}
+	std::shared_ptr<Component> CoolTimeUI::OnClone() const
+	{
+		auto pClone = std::make_shared<CoolTimeUI>();
+		pClone->m_barWidth = this->m_barWidth;
+		pClone->m_barHeight = this->m_barHeight;
+		pClone->m_barTextureName = this->m_barTextureName;
+		pClone->m_drawPosition = this->m_drawPosition;
+		return move(pClone);
+	}
 	void CoolTimeUI::SetSelectWepon(std::weak_ptr<Component> pWepon)
 	{
 		m_pWepon = pWepon;

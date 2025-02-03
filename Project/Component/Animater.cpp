@@ -169,6 +169,16 @@ namespace TMF
 		}
 	}
 
+	std::shared_ptr<Component> Animater::OnClone() const
+	{
+		auto pClone = std::make_shared<Animater>();
+		pClone->m_fileName = this->m_fileName;
+		pClone->m_idlePath = this->m_idlePath;
+		pClone->m_animationSpeed = this->m_animationSpeed;
+		pClone->m_isAnimation = this->m_isAnimation;
+		return move(pClone);
+	}
+
 	void Animater::SetFileName(std::string fileName, float endTime)
 	{
 		if (m_timer > m_animEndTime || m_fileName == m_idlePath)

@@ -83,12 +83,6 @@ namespace TMF
 		OnTrigerExit(pGameObject);
 	}
 
-	void Component::ChangeUUID()
-	{
-		m_uuID = boost::uuids::random_generator()();
-		//OnChangeUUID();
-	}
-
 	std::shared_ptr<Component> Component::Clone() const
 	{
 		auto pClone = OnClone();
@@ -153,14 +147,7 @@ namespace TMF
 	{
 
 	}
-	void Component::OnChangeUUID()
-	{
-		auto str = "ïœçXëO:" + boost::uuids::to_string(m_uuID);
-		//Log::DebugInfo(str);
-		m_uuID = boost::uuids::random_generator()();
-		str = "ïœçXå„:" + boost::uuids::to_string(m_uuID);
-		//Log::DebugInfo(str);
-	}
+
 	std::shared_ptr<Component> Component::OnClone() const
 	{
 		return std::make_shared<Component>(*this);

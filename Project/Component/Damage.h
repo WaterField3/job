@@ -17,6 +17,7 @@ namespace TMF
 		void OnDrawImGui() override;
 		void OnTrigerEnter(GameObject* pGameObject) override;
 		void OnCollisionEnter(GameObject* pGameObject) override;
+		std::shared_ptr<Component> OnClone() const override;
 
 		inline void SetDamageValue(float setDamage) { m_damage = setDamage; }
 	private:

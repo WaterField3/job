@@ -82,6 +82,15 @@ namespace TMF
 
 		}
 	}
+	std::shared_ptr<Component> Jump::OnClone() const
+	{
+		// m_impact, m_maxFlightTime, m_maxMoveSpeed
+		auto pClone = std::make_shared<Jump>();
+		pClone->m_impact = this->m_impact;
+		pClone->m_maxFlightTime = this->m_maxFlightTime;
+		pClone->m_maxMoveSpeed = this->m_maxMoveSpeed;
+		return move(pClone);
+	}
 	void Jump::OnCollisionEnter(GameObject* pGameObject)
 	{
 		if (pGameObject->GetTag() == GameObject::Tag::Ground)

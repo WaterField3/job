@@ -77,16 +77,16 @@ namespace TMF
 		{
 
 		}
-		auto drawUILabelPosition = StringHelper::CreateLabel("DrawPosition", m_uuID);
-		if (ImGui::DragFloat2(drawUILabelPosition.c_str(), &m_drawUIPosition.x))
-		{
-
-		}
-		auto isDontUseThrusterLabel = StringHelper::CreateLabel("IsUseThruster", m_uuID);
-		if (ImGui::Checkbox(isDontUseThrusterLabel.c_str(), &m_isDontUseThruster))
-		{
-
-		}
+	}
+	std::shared_ptr<Component> Thruster::OnClone() const
+	{
+		//m_thrusterValue, m_firstUseMagnification, m_useMagnification, m_thrusterMoveSpeedMagnification
+		auto pClone = std::make_shared<Thruster>();
+		pClone->m_thrusterValue = this->m_thrusterValue;
+		pClone->m_firstUseMagnification = this->m_firstUseMagnification;
+		pClone->m_useMagnification = this->m_useMagnification;
+		pClone->m_thrusterMoveSpeedMagnification = this->m_thrusterMoveSpeedMagnification;
+		return move(pClone);
 	}
 	void Thruster::FastMovement(MoveDirection moveDirection)
 	{

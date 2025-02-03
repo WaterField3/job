@@ -22,6 +22,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		std::shared_ptr<Component> OnClone() const override;
 		void FastMovement(MoveDirection moveDirection);
 		void StopFastMovement();
 		void UseThruster(float useMagnification);
@@ -45,6 +46,6 @@ namespace TMF
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Rigidbody> m_pRigidBody;
 		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pBarTexture;
-		SERIALIZE_COMPONENT(m_thrusterValue, m_firstUseMagnification, m_useMagnification,m_thrusterMoveSpeedMagnification, m_barTextureName, m_drawUIPosition);
+		SERIALIZE_COMPONENT(m_thrusterValue, m_firstUseMagnification, m_useMagnification,m_thrusterMoveSpeedMagnification);
 	};
 }

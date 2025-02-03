@@ -128,6 +128,20 @@ namespace TMF
 		}
 
 	}
+	std::shared_ptr<Component> PlayerStatus::OnClone() const
+	{
+		auto pClone = std::make_shared<PlayerStatus>();
+		pClone->m_hp = this->m_hp;
+		pClone->m_staggerAnimPath = this->m_staggerAnimPath;
+		pClone->m_invertAnimPath = this->m_invertAnimPath;
+		pClone->m_invertAnimEndTime = this->m_invertAnimEndTime;
+		pClone->m_staggerAnimEndTime = this->m_staggerAnimEndTime;
+		pClone->m_standUpAnimPath = this->m_standUpAnimPath;
+		pClone->m_standUpTime = this->m_standUpTime;
+		pClone->m_staggerCenter = this->m_staggerCenter;
+		pClone->m_staggerScale = this->m_staggerScale;
+		return move(pClone);
+	}
 	void PlayerStatus::Stagger()
 	{
 		if (m_isInvincible == false)

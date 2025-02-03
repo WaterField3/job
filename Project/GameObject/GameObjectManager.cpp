@@ -57,7 +57,7 @@ namespace TMF
 		if (auto pLockObj = obj.lock())
 		{
 			auto pGameObject = std::make_shared<GameObject>(pLockObj);
-			pGameObject->Initialize(true);
+			pGameObject->Initialize();
 
 			m_pGameObjects.push_back(pGameObject);
 		}

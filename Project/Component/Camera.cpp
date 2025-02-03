@@ -69,6 +69,15 @@ namespace TMF
 
 	}
 
+	std::shared_ptr<Component> Camera::OnClone() const
+	{
+		auto pClone = std::make_shared<Camera>();
+		pClone->m_fov = this->m_fov;
+		pClone->m_near = this->m_near;
+		pClone->m_far = this->m_far;
+		return move(pClone);
+	}
+
 	DirectX::SimpleMath::Matrix Camera::GetProjectionMatrix()
 	{
 		auto fovRadian = DirectX::XMConvertToRadians(m_fov);

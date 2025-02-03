@@ -74,6 +74,12 @@ namespace TMF
 
 	}
 
+	std::shared_ptr<Component> GhostObject::OnClone() const
+	{
+		auto pClone = std::make_shared<GhostObject>();
+		return move(pClone);
+	}
+
 
 
 	void GhostObject::AddGhostObject(std::weak_ptr<btCollisionShape> col, DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua)

@@ -139,4 +139,14 @@ namespace TMF
 			m_targetName = targetBuf;
 		}
 	}
+	std::shared_ptr<Component> CameraMove::OnClone() const
+	{
+		auto pClone = std::make_shared<CameraMove>();
+		pClone->m_raduis = this->m_raduis;
+		pClone->m_elevation = this->m_elevation;
+		pClone->m_azimuth = this->m_azimuth;
+		pClone->m_rotationSpeed = this->m_rotationSpeed;
+		pClone->m_targetName = this->m_targetName;
+		return move(pClone);
+	}
 }

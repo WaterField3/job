@@ -129,6 +129,16 @@ namespace TMF
 
 		}
 	}
+	std::shared_ptr<Component> ChangeTimeUI::OnClone() const
+	{
+		//m_barWidth, m_barHeight, m_barTextureName, m_drawPosition
+		auto pClone = std::make_shared<ChangeTimeUI>();
+		pClone->m_barWidth = this->m_barWidth;
+		pClone->m_barHeight = this->m_barHeight;
+		pClone->m_barTextureName = this->m_barTextureName;
+		pClone->m_drawPosition = this->m_drawPosition;
+		return move(pClone);
+	}
 	void ChangeTimeUI::SetSelectWepon(std::weak_ptr<Component> pWepon)
 	{
 		m_pWepon = pWepon;

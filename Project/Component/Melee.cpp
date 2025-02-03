@@ -85,6 +85,15 @@ namespace TMF
 			Play();
 		}
 	}
+	std::shared_ptr<Component> Melee::OnClone() const
+	{
+		// m_meleeAnimation, m_endTime, m_meleeObjectName
+		auto pClone = std::make_shared<Melee>();
+		pClone->m_meleeAnimation = this->m_meleeAnimation;
+		pClone->m_endTime = this->m_endTime;
+		pClone->m_meleeObjectName = this->m_meleeObjectName;
+		return move(pClone);
+	}
 	void Melee::Play()
 	{
 		if (m_meleeObjectName == "")

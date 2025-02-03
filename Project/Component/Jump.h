@@ -19,6 +19,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		std::shared_ptr<Component> OnClone() const override;
 		void OnCollisionEnter(GameObject* pGameObject) override;
 		void Chage(MoveDirection moveDirection);
 		void ChageStop(MoveDirection moveDirection);

@@ -23,6 +23,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		std::shared_ptr<Component> OnClone() const override;
 		void MakeCollision();
 		std::weak_ptr<btCollisionShape> GetCollisionShape();
 		void SetCollisionCenter(DirectX::SimpleMath::Vector3 setCenter);

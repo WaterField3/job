@@ -129,6 +129,17 @@ namespace TMF
 
 		}
 	}
+	std::shared_ptr<Component> FreeCamera::OnClone() const
+	{
+		auto pClone = std::make_shared<FreeCamera>();
+		pClone->m_fov = this->m_fov;
+		pClone->m_near = this->m_near;
+		pClone->m_far = this->m_far;
+		pClone->m_raduis = this->m_raduis;
+		pClone->m_elevation = this->m_elevation;
+		pClone->m_azimuth = this->m_azimuth;
+		return move(pClone);
+	}
 	DirectX::SimpleMath::Matrix FreeCamera::GetProjectionMatrix()
 	{
 		auto fovRadian = DirectX::XMConvertToRadians(m_fov);

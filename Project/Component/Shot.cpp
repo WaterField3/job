@@ -95,6 +95,18 @@ namespace TMF
 		}
 	}
 
+	std::shared_ptr<Component> Shot::OnClone() const
+	{
+		auto pClone = std::make_shared<Shot>();
+		pClone->m_shotObjectName = this->m_shotObjectName;
+		pClone->m_coolTime = this->m_coolTime;
+		pClone->m_initChangeTime = this->m_initChangeTime;
+		pClone->m_reloadMaxTime = this->m_reloadMaxTime;
+		pClone->m_bulletMaxNum = this->m_bulletMaxNum;
+		pClone->m_isUsePlayer = this->m_isUsePlayer;
+		return move(pClone);
+	}
+
 	void Shot::Play()
 	{
 		//auto obj = GameObjectManager::Instance().LoadObject(m_objectFilePath);

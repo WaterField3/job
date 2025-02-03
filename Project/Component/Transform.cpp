@@ -74,21 +74,6 @@ namespace TMF
 		{
 
 		}
-
-		auto changeUUIDLabel = "ChangeUUID## " + uuidStr;
-		if (ImGui::Button(changeUUIDLabel.c_str()))
-		{
-			OnChangeUUID();
-		}
-	}
-
-	void Transform::OnChangeUUID()
-	{
-		auto str = "TransformïœçXëO:" + boost::uuids::to_string(m_uuID);
-		Log::DebugInfo(str);
-		m_uuID = boost::uuids::random_generator_pure()();
-		str = "TransformïœçXå„:" + boost::uuids::to_string(m_uuID);
-		Log::DebugInfo(str);
 	}
 
 	std::shared_ptr<Component> Transform::OnClone() const

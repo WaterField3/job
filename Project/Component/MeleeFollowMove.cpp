@@ -70,4 +70,11 @@ namespace TMF
 		}
 
 	}
+	std::shared_ptr<Component> MeleeFollowMove::OnClone() const
+	{
+		auto pClone = std::make_shared<MeleeFollowMove>();
+		pClone->m_offsetPos = this->m_offsetPos;
+		pClone->m_rotationOffset = this->m_rotationOffset;
+		return move(pClone);
+	}
 }

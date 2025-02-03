@@ -65,6 +65,12 @@ namespace TMF
 
 		}
 	}
+	std::shared_ptr<Component> EnemyMove::OnClone() const
+	{
+		auto pClone = std::make_shared<EnemyMove>();
+		pClone->m_moveSpeed = this->m_moveSpeed;
+		return move(pClone);
+	}
 	void EnemyMove::Move()
 	{
 		if (auto pLockRigidbody = m_pRigidbody.lock())

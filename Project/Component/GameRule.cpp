@@ -71,4 +71,9 @@ namespace TMF
 	void GameRule::OnDrawImGui()
 	{
 	}
+	std::shared_ptr<Component> GameRule::OnClone() const
+	{
+		auto pClone = std::make_shared<GameRule>();
+		return move(pClone);
+	}
 }

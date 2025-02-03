@@ -81,4 +81,9 @@ namespace TMF
 
 		}
 	}
+	std::shared_ptr<Component> BoneBind::OnClone() const
+	{
+		auto pClone = std::make_shared<BoneBind>();
+		return move(pClone);
+	}
 }

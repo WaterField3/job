@@ -97,6 +97,16 @@ namespace TMF
 		}
 	}
 
+	std::shared_ptr<Component> Collider::OnClone() const
+	{
+		auto pClone = std::make_shared<Collider>();
+		pClone->m_collidrType = this->m_collidrType;
+		pClone->m_size = this->m_size;
+		pClone->m_center = this->m_center;
+		pClone->m_editerOfsetRotation = this->m_editerOfsetRotation;
+		return move(pClone);
+	}
+
 	void Collider::MakeCollision()
 	{
 		auto btscale = btVector3(1.0f, 1.0f, 1.0f);

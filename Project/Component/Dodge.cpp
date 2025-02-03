@@ -129,6 +129,17 @@ namespace TMF
 
 		}
 	}
+	std::shared_ptr<Component> Dodge::OnClone() const
+	{
+		auto pClone = std::make_shared<Dodge>();
+		pClone->m_fowardDodge = this->m_fowardDodge;
+		pClone->m_rightDodge = this->m_rightDodge;
+		pClone->m_leftDodge = this->m_leftDodge;
+		pClone->m_backDodge = this->m_backDodge;
+		pClone->m_moveMagnification = this->m_moveMagnification;
+		pClone->m_dodgeUseThrusterMagnification = this->m_dodgeUseThrusterMagnification;
+		return move(pClone);
+	}
 	bool Dodge::DodgeStart(MoveDirection direction)
 	{
 		if (auto pLockOwner = m_pOwner.lock())
@@ -196,5 +207,6 @@ namespace TMF
 			}
 			return true;
 		}
+		return false;
 	}
 }

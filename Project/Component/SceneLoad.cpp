@@ -95,6 +95,14 @@ namespace TMF
 		}
 	}
 
+	std::shared_ptr<Component> SceneLoad::OnClone() const
+	{
+		auto pClone = std::make_shared<SceneLoad>();
+		pClone->m_trigger = this->m_trigger;
+		pClone->m_loadFile = this->m_loadFile;
+		return move(pClone);
+	}
+
 	void SceneLoad::Load()
 	{
 		GameObjectManager::Instance().Finalize();

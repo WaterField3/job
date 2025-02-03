@@ -115,6 +115,17 @@ namespace TMF
 
 		}
 	}
+	std::shared_ptr<Component> MeleeMove::OnClone() const
+	{
+		//m_moveSpeed, m_rotate, m_rotationOffset, m_rotationSpeed, m_targetRotationOffset
+		auto pClone = std::make_shared<MeleeMove>();
+		pClone->m_moveSpeed = this->m_moveSpeed;
+		pClone->m_rotate = this->m_rotate;
+		pClone->m_rotationOffset = this->m_rotationOffset;
+		pClone->m_rotationSpeed = this->m_rotationSpeed;
+		pClone->m_targetRotationOffset = this->m_targetRotationOffset;
+		return move(pClone);
+	}
 	void MeleeMove::Play(MoveType type, DirectX::SimpleMath::Vector3 position, DirectX::SimpleMath::Quaternion rotation)
 	{
 		if (auto pLockOwner = m_pOwner.lock())

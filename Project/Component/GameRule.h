@@ -17,6 +17,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		std::shared_ptr<Component> OnClone() const override;
 	private:
 		std::vector<std::weak_ptr<PlayerStatus>> m_pPlayerStatuses;
 		std::weak_ptr<SceneLoad> m_pSceneLoad;

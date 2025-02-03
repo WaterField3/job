@@ -105,4 +105,9 @@ namespace TMF
 	{
 
 	}
+	std::shared_ptr<Component> AssimpAnimation::OnClone() const
+	{
+		auto pClone = std::make_shared<AssimpAnimation>();
+		return move(pClone);
+	}
 }

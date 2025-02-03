@@ -17,6 +17,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		std::shared_ptr<Component> OnClone() const override;
 		void FadeStart();
 		inline bool GetIsFadeInEnd() const { return m_isFadeInEnd; }
 		inline bool GetIsFadeOutEnd() const { return m_isFadeOutEnd; }

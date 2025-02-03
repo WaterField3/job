@@ -47,4 +47,9 @@ namespace TMF
 	{
 
 	}
+	std::shared_ptr<Component> PressKeySceneChange::OnClone() const
+	{
+		auto pClone = std::make_shared<PressKeySceneChange>();
+		return move(pClone);
+	}
 }

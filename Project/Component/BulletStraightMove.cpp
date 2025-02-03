@@ -60,7 +60,6 @@ namespace TMF
 				pLockTransform->SetParent(m_pParent);
 			}
 
-			//GameObjectManager::Instance().DestroyGameObject(pLockOwner.get());
 		}
 	}
 	void BulletStraightMove::OnLateUpdate()
@@ -88,6 +87,13 @@ namespace TMF
 		{
 
 		}
+	}
+	std::shared_ptr<Component> BulletStraightMove::OnClone() const
+	{
+		auto pClone = std::make_shared<BulletStraightMove>();
+		pClone->m_moveSpeed = this->m_moveSpeed;
+		pClone->m_endTime = this->m_endTime;
+		return move(pClone);
 	}
 	void BulletStraightMove::MoveStart(DirectX::SimpleMath::Vector3 position, DirectX::SimpleMath::Quaternion rotation)
 	{

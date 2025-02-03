@@ -15,6 +15,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		std::shared_ptr<Component> OnClone() const override;
 
 	public:
 		void MoveStart(DirectX::SimpleMath::Vector3 position, DirectX::SimpleMath::Quaternion rotation);
@@ -25,14 +26,13 @@ namespace TMF
 
 	private:
 		float m_moveSpeed = 0.0f;
-		float m_damage = 1.0f;
 		DirectX::SimpleMath::Vector3 m_moveVector = DirectX::SimpleMath::Vector3::Zero;
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Transform> m_pParent;
 		float m_timer = 0;
 		float m_endTime = 1.0f;
 
-		SERIALIZE_COMPONENT(m_moveSpeed, m_moveVector, m_endTime);
+		SERIALIZE_COMPONENT(m_moveSpeed, m_endTime);
 	};
 }
 

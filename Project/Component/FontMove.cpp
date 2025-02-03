@@ -65,4 +65,13 @@ namespace TMF
 
 		}
 	}
+	std::shared_ptr<Component> FontMove::OnClone() const
+	{
+		// m_maxMoveSpeed, m_moveTime, m_targetPosition
+		auto pClone = std::make_shared<FontMove>();
+		pClone->m_maxMoveSpeed = this->m_maxMoveSpeed;
+		pClone->m_moveTime = this->m_moveTime;
+		pClone->m_targetPosition = this->m_targetPosition;
+		return move(pClone);
+	}
 }

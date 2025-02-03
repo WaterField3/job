@@ -104,4 +104,11 @@ namespace TMF
 
 		}
 	}
+	std::shared_ptr<Component> CharacterMoveController::OnClone() const
+	{
+		auto pClone = std::make_shared<CharacterMoveController>();
+		pClone->m_moveSpeed = this->m_moveSpeed;
+		pClone->m_jumpPower = this->m_jumpPower;
+		return move(pClone);
+	}
 }

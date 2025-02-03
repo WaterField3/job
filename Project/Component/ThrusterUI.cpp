@@ -139,4 +139,14 @@ namespace TMF
 
 		}
 	}
+	std::shared_ptr<Component> ThrusterUI::OnClone() const
+	{
+		auto pClone = std::make_shared<ThrusterUI>();
+		pClone->m_barWidth = this->m_barWidth;
+		pClone->m_barHeight = this->m_barHeight;
+		pClone->m_barTextureName = this->m_barTextureName;
+		pClone->m_targetName = this->m_targetName;
+		pClone->m_drawPosition = this->m_drawPosition;
+		return move(pClone);
+	}
 }

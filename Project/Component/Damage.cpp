@@ -167,4 +167,12 @@ namespace TMF
 			}
 		}
 	}
+	std::shared_ptr<Component> Damage::OnClone() const
+	{
+		//m_damage, m_reactionType
+		auto pClone = std::make_shared<Damage>();
+		pClone->m_damage = this->m_damage;
+		pClone->m_reactionType = this->m_reactionType;
+		return move(pClone);
+	}
 }

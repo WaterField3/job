@@ -48,6 +48,13 @@ namespace TMF
 			Play();
 		}
 	}
+	std::shared_ptr<Component> Effect::OnClone() const
+	{
+		auto pClone = std::make_shared<Effect>();
+		pClone->m_effectPath = this->m_effectPath;
+		pClone->m_effectPos = this->m_effectPos;
+		return move(pClone);
+	}
 	void Effect::Play()
 	{
 		auto pOwner = m_pOwner.lock();

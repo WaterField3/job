@@ -105,4 +105,14 @@ namespace TMF
 			m_pSpriteFont = std::make_unique<DirectX::SpriteFont>(pDevice, wStringPath.c_str());
 		}
 	}
+	std::shared_ptr<Component> Font::OnClone() const
+	{
+		auto pClone = std::make_shared<Font>();
+		pClone->m_spriteFontPos = this->m_spriteFontPos;
+		pClone->m_fontColor = this->m_fontColor;
+		pClone->m_fontScale = this->m_fontScale;
+		pClone->m_text = this->m_text;
+		pClone->m_fontPath = this->m_fontPath;
+		return move(pClone);
+	}
 }

@@ -81,7 +81,7 @@ namespace TMF
 			return pComponents;
 		}
 
-		void Initialize(bool isChangeComponentUUID = false);
+		void Initialize();
 		void Finalize();
 		void Update();
 		void LateUpdate();

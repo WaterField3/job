@@ -145,6 +145,20 @@ namespace TMF
 		//}
 	}
 
+	std::shared_ptr<Component> Rigidbody::OnClone() const
+	{
+		auto pClone = std::make_shared<Rigidbody>();
+		pClone->m_mass = this->m_mass;
+		pClone->m_drag = this->m_drag;
+		pClone->m_angularDrag = this->m_angularDrag;
+		pClone->m_angulerSleepingThresholds = this->m_angulerSleepingThresholds;
+		pClone->m_linearSleepingThresholds = this->m_linearSleepingThresholds;
+		pClone->m_isAngularFactorX = this->m_isAngularFactorX;
+		pClone->m_isAngularFactorY = this->m_isAngularFactorY;
+		pClone->m_isAngularFactorZ = this->m_isAngularFactorZ;
+		return move(pClone);
+	}
+
 	void Rigidbody::SetRigidBodyTranform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua)
 	{
 		auto trans = btTransform(MakebtQuaternion(qua), MakebtVector3(pos));

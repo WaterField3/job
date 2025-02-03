@@ -152,6 +152,17 @@ namespace TMF
 			MakeMesh();
 		}
 	}
+	std::shared_ptr<Component> PrimitiveMesh::OnClone() const
+	{
+		auto pClone = std::make_shared<PrimitiveMesh>();
+		pClone->m_isInvertn = this->m_isInvertn;
+		pClone->m_isRhcoords = this->m_isRhcoords;
+		pClone->m_shapeType = this->m_shapeType;
+		pClone->m_color = this->m_color;
+		pClone->m_scale = this->m_scale;
+		pClone->m_textureName = this->m_textureName;
+		return move(pClone);
+	}
 	void PrimitiveMesh::SetColor(DirectX::SimpleMath::Color color)
 	{
 		m_color = color;

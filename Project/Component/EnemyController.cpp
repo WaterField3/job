@@ -41,4 +41,9 @@ namespace TMF
 	{
 
 	}
+	std::shared_ptr<Component> EnemyController::OnClone() const
+	{
+		auto pClone = std::make_shared<EnemyController>();
+		return move(pClone);
+	}
 }

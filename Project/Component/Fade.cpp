@@ -114,6 +114,15 @@ namespace TMF
 
 		}
 	}
+	std::shared_ptr<Component> Fade::OnClone() const
+	{
+		//m_fadeSpeed, m_isFade, m_fadeType
+		auto pClone = std::make_shared<Fade>();
+		pClone->m_fadeSpeed = this->m_fadeSpeed;
+		pClone->m_isFade = this->m_isFade;
+		pClone->m_fadeType = this->m_fadeType;
+		return move(pClone);
+	}
 	void Fade::FadeStart()
 	{
 		m_isFade = true;

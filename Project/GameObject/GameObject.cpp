@@ -35,7 +35,7 @@ namespace TMF
 		}
 
 	}
-	void GameObject::Initialize(bool isChangeComponentUUID)
+	void GameObject::Initialize()
 	{
 		if (m_uuID.is_nil())
 		{
@@ -44,10 +44,6 @@ namespace TMF
 		m_pTransform = GetComponent<Transform>();
 		for (auto& pComponent : m_pComponents)
 		{
-			if (isChangeComponentUUID == true)
-			{
-				pComponent->ChangeUUID();
-			}
 			pComponent->Initialize(shared_from_this());
 		}
 	}

@@ -145,6 +145,11 @@ namespace TMF
 
 		}
 	}
+	std::shared_ptr<Component> Attack::OnClone() const
+	{
+		auto pClone = std::make_shared<Attack>();
+		return move(pClone);
+	}
 	void Attack::UpdateWeaponSelection(int currentScrollValue)
 	{
 

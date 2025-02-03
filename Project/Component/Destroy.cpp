@@ -43,6 +43,13 @@ namespace TMF
 		}
 	}
 
+	std::shared_ptr<Component> Destroy::OnClone() const
+	{
+		auto pClone = std::make_shared<Destroy>();
+		pClone->m_destroyTime = this->m_destroyTime;
+		return move(pClone);
+	}
+
 	void Destroy::Play(float time)
 	{
 		std::this_thread::sleep_for(std::chrono::seconds((int)time));

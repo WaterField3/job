@@ -126,6 +126,17 @@ namespace TMF
 
 	}
 
+	std::shared_ptr<Component> Audio::OnClone() const
+	{
+		auto pClone = std::make_shared<Audio>();
+		pClone->m_soundName = this->m_soundName;
+		pClone->m_volume = this->m_volume;
+		pClone->m_pitch = this->m_pitch;
+		pClone->m_pan = this->m_pan;
+		pClone->m_isLoop = this->m_isLoop;
+		return move(pClone);
+	}
+
 	void Audio::Load(std::string soundName)
 	{
 		if (auto pLockAudioEngine = m_pAudioEngine.lock())

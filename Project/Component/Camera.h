@@ -23,6 +23,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		std::shared_ptr<Component> OnClone() const override;
 
 		DirectX::SimpleMath::Matrix GetProjectionMatrix();
 		DirectX::SimpleMath::Matrix GetViewMatrix();

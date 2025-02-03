@@ -29,6 +29,12 @@ namespace TMF
 	void ColorChange::OnDrawImGui()
 	{
 	}
+	std::shared_ptr<Component> ColorChange::OnClone() const
+	{
+		auto pClone = std::make_shared<ColorChange>();
+
+		return move(pClone);
+	}
 	void ColorChange::OnCollisionEnter(GameObject* pGameObject)
 	{
 		if (pGameObject->GetTag() == GameObject::Tag::Ground)

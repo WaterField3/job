@@ -15,6 +15,7 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		std::shared_ptr<Component> OnClone() const override;
 
 		float m_rotationOffset = 1.0f;
 		DirectX::SimpleMath::Vector3 m_offsetPos = DirectX::SimpleMath::Vector3::Zero;

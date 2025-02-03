@@ -52,6 +52,12 @@ namespace TMF
 			Generate();
 		}
 	}
+	std::shared_ptr<Component> GenerateWepon::OnClone() const
+	{
+		auto pClone = std::make_shared<GenerateWepon>();
+		pClone->m_file = this->m_file;
+		return move(pClone);
+	}
 	void GenerateWepon::Load()
 	{
 		auto fileName = m_file + ".json";
@@ -75,17 +81,16 @@ namespace TMF
 			{
 				--size;
 			}
-			//std::random_device randomDevice;
-			//std::mt19937 gen(randomDevice());
+			std::random_device randomDevice;
+			std::mt19937 gen(randomDevice());
 
-			//std::uniform_int_distribution<int> dist(0, size);
+			std::uniform_int_distribution<int> dist(0, size);
 
-			//auto selectIndex = dist(gen);
-			//while (selectIndex == 0)
-			//{
-			//	selectIndex = dist(gen);
-			//}
-			auto selectIndex = 1;
+			auto selectIndex = dist(gen);
+			while (selectIndex == 0)
+			{
+				selectIndex = dist(gen);
+			}
 			GameObjectManager::Instance().CreateGameObject(m_pOriginWepons[selectIndex]);
 		}
 	}

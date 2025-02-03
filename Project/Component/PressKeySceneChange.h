@@ -15,15 +15,10 @@ namespace TMF
 		void OnLateUpdate() override;
 		void OnDraw() override;
 		void OnDrawImGui() override;
+		std::shared_ptr<Component> OnClone() const override;
 
 	private:
 		std::weak_ptr<Fade> m_pFade;
-		//enum Key : unsigned char
-		//{
-		//	A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Enter = 0x20,SPACE,
-		//};
-
-		//Key m_key = Key::Enter;
 	};
 }
 
