@@ -57,6 +57,8 @@ namespace TMF
 	{
 		if (auto rb = pRigidBody.lock())
 		{
+			// íœ‘O‚É•¨—‹““®‚ð‚µ‚È‚¢‚æ‚¤‚É’†g‚ð‰Šú‰»
+			Reset();
 			m_pDynamicsWorld->removeRigidBody(rb.get());
 		}
 	}

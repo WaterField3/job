@@ -77,7 +77,7 @@
                     "m_uuID": {
                         "uuid": "f86e59fa-5885-47b0-8d9e-14243453fbb5"
                     },
-                    "m_tag": 0,
+                    "m_tag": 3,
                     "m_isActive": true,
                     "m_pComponents": [
                         {
@@ -176,9 +176,22 @@
                         },
                         {
                             "polymorphic_id": 2147483653,
-                            "polymorphic_name": "TMF::Audio",
+                            "polymorphic_name": "TMF::GhostObject",
                             "ptr_wrapper": {
                                 "id": 2147483656,
+                                "data": {
+                                    "m_uuID": {
+                                        "uuid": "74fe256d-9710-4fed-9e0a-35377774c759"
+                                    },
+                                    "m_isEnable": true
+                                }
+                            }
+                        },
+                        {
+                            "polymorphic_id": 2147483654,
+                            "polymorphic_name": "TMF::Audio",
+                            "ptr_wrapper": {
+                                "id": 2147483657,
                                 "data": {
                                     "value0": {
                                         "m_uuID": {
@@ -195,10 +208,10 @@
                             }
                         },
                         {
-                            "polymorphic_id": 2147483654,
+                            "polymorphic_id": 2147483655,
                             "polymorphic_name": "TMF::Damage",
                             "ptr_wrapper": {
-                                "id": 2147483657,
+                                "id": 2147483658,
                                 "data": {
                                     "value0": {
                                         "m_uuID": {
@@ -212,10 +225,10 @@
                             }
                         },
                         {
-                            "polymorphic_id": 2147483655,
+                            "polymorphic_id": 2147483656,
                             "polymorphic_name": "TMF::Model",
                             "ptr_wrapper": {
-                                "id": 2147483658,
+                                "id": 2147483659,
                                 "data": {
                                     "value0": {
                                         "m_uuID": {
@@ -231,10 +244,10 @@
                             }
                         },
                         {
-                            "polymorphic_id": 2147483656,
+                            "polymorphic_id": 2147483657,
                             "polymorphic_name": "TMF::MeleeFollowMove",
                             "ptr_wrapper": {
-                                "id": 2147483659,
+                                "id": 2147483660,
                                 "data": {
                                     "value0": {
                                         "m_uuID": {
@@ -250,29 +263,6 @@
                                     "m_rotationOffset": 4.300000190734863
                                 }
                             }
-                        },
-                        {
-                            "polymorphic_id": 2147483657,
-                            "polymorphic_name": "TMF::Rigidbody",
-                            "ptr_wrapper": {
-                                "id": 2147483660,
-                                "data": {
-                                    "value0": {
-                                        "m_uuID": {
-                                            "uuid": "42049e9d-e81d-4c89-ba37-f24804303eff"
-                                        },
-                                        "m_isEnable": true
-                                    },
-                                    "m_mass": 1.0,
-                                    "m_drag": 0.0,
-                                    "m_angularDrag": 0.0,
-                                    "m_angulerSleepingThresholds": 0.0,
-                                    "m_linearSleepingThresholds": 0.0,
-                                    "m_isAngularFactorX": false,
-                                    "m_isAngularFactorY": false,
-                                    "m_isAngularFactorZ": false
-                                }
-                            }
                         }
                     ]
                 }
@@ -286,7 +276,7 @@
                     "m_uuID": {
                         "uuid": "4f13c9ad-b024-4140-bd39-38939f4c2ece"
                     },
-                    "m_tag": 0,
+                    "m_tag": 3,
                     "m_isActive": true,
                     "m_pComponents": [
                         {
@@ -325,7 +315,7 @@
                             }
                         },
                         {
-                            "polymorphic_id": 7,
+                            "polymorphic_id": 8,
                             "ptr_wrapper": {
                                 "id": 2147483663,
                                 "data": {
@@ -373,7 +363,8 @@
                             }
                         },
                         {
-                            "polymorphic_id": 9,
+                            "polymorphic_id": 2147483658,
+                            "polymorphic_name": "TMF::Rigidbody",
                             "ptr_wrapper": {
                                 "id": 2147483665,
                                 "data": {
@@ -422,7 +413,7 @@
                             }
                         },
                         {
-                            "polymorphic_id": 8,
+                            "polymorphic_id": 9,
                             "ptr_wrapper": {
                                 "id": 2147483667,
                                 "data": {
@@ -430,7 +421,7 @@
                                         "m_uuID": {
                                             "uuid": "6979976b-e1cb-4393-b215-43e955dd009a"
                                         },
-                                        "m_isEnable": false
+                                        "m_isEnable": true
                                     },
                                     "m_offsetPos": {
                                         "value0": 0.0,

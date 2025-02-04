@@ -65,23 +65,26 @@ namespace TMF
 
 	void Rigidbody::OnLateUpdate()
 	{
-		if (auto pLockOwner = m_pOwner.lock())
+		if (m_pRigidBody)
 		{
-			auto pTransform = pLockOwner->GetComponent<Transform>();
-			auto pos = Vector3::Zero;
-			auto rotate = Quaternion::Identity;
-			auto pColl = pLockOwner->GetComponent<Collider>();
-
-			if (auto pLockTransform = pTransform.lock())
+			if (auto pLockOwner = m_pOwner.lock())
 			{
-				btTransform trans;
-				m_pRigidBody->getMotionState()->getWorldTransform(trans);
-				//m_pRigidBody->setCenterOfMassTransform(trans);
-				pos = Vector3{ trans.getOrigin().getX(),trans.getOrigin().getY(),trans.getOrigin().getZ() };
-				pLockTransform->SetPosition(pos);
-				rotate = Quaternion(trans.getRotation().getX(), trans.getRotation().getY(), trans.getRotation().getZ(), trans.getRotation().getW());
-				pLockTransform->SetRotation(rotate);
+				auto pTransform = pLockOwner->GetComponent<Transform>();
+				auto pos = Vector3::Zero;
+				auto rotate = Quaternion::Identity;
+				auto pColl = pLockOwner->GetComponent<Collider>();
 
+				if (auto pLockTransform = pTransform.lock())
+				{
+					btTransform trans;
+					m_pRigidBody->getMotionState()->getWorldTransform(trans);
+					//m_pRigidBody->setCenterOfMassTransform(trans);
+					pos = Vector3{ trans.getOrigin().getX(),trans.getOrigin().getY(),trans.getOrigin().getZ() };
+					pLockTransform->SetPosition(pos);
+					rotate = Quaternion(trans.getRotation().getX(), trans.getRotation().getY(), trans.getRotation().getZ(), trans.getRotation().getW());
+					pLockTransform->SetRotation(rotate);
+
+				}
 			}
 		}
 	}

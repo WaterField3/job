@@ -7,7 +7,7 @@ using namespace TMF;
 
 void MyBulletCollisionDispatcher::dispatchAllCollisionPairs(btOverlappingPairCache* pairCache, const btDispatcherInfo& dispatchInfo, btDispatcher* dispatcher)
 {
-	std::set<std::pair<const btCollisionObject*, const btCollisionObject*>> currentCollisions;
+	;
 
 	int numManifolds = getNumManifolds();
 	for (int i = 0; i < numManifolds; i++)
@@ -16,10 +16,14 @@ void MyBulletCollisionDispatcher::dispatchAllCollisionPairs(btOverlappingPairCac
 		auto objA = manifold->getBody0();
 		auto objB = manifold->getBody1();
 
-		currentCollisions.insert(std::make_pair(objA, objB));
+		m_currentCollisions.insert(std::make_pair(objA, objB));
 	}
-	for (const auto& pair : currentCollisions)
+
+	for (auto i = 0; i < m_currentCollisions.size(); i++)
 	{
+		auto it = m_currentCollisions.begin();
+		std::advance(it, i); // i”Ô–Ú‚Ì—v‘f‚Éi‚ß‚é
+		const auto& pair = *it;	
 		if (m_previousCollisions.find(pair) == m_previousCollisions.end())
 		{
 			ObjectContactCheck(pair, functionType::ENTER);
@@ -29,20 +33,44 @@ void MyBulletCollisionDispatcher::dispatchAllCollisionPairs(btOverlappingPairCac
 			ObjectContactCheck(pair, functionType::STAY);
 		}
 	}
-	for (const auto& pair : m_previousCollisions)
+	for (auto i = 0; i < m_previousCollisions.size(); i++)
 	{
-		if (currentCollisions.find(pair) == currentCollisions.end())
+		auto it = m_currentCollisions.begin();
+		std::advance(it, i); // i”Ô–Ú‚Ì—v‘f‚Éi‚ß‚é
+		const auto& pair = *it;	
+		if (m_currentCollisions.find(pair) == m_currentCollisions.end())
 		{
 			ObjectContactCheck(pair, functionType::EXIT);
 		}
 	}
-	m_previousCollisions = currentCollisions;
+
+
+	//for (const auto& pair : currentCollisions)
+	//{
+	//	if (m_previousCollisions.find(pair) == m_previousCollisions.end())
+	//	{
+	//		ObjectContactCheck(pair, functionType::ENTER);
+	//	}
+	//	else
+	//	{
+	//		ObjectContactCheck(pair, functionType::STAY);
+	//	}
+	//}
+	//for (const auto& pair : m_previousCollisions)
+	//{
+	//	if (currentCollisions.find(pair) == currentCollisions.end())
+	//	{
+	//		ObjectContactCheck(pair, functionType::EXIT);
+	//	}
+	//}
+	m_previousCollisions = m_currentCollisions;
 	btCollisionDispatcher::dispatchAllCollisionPairs(pairCache, dispatchInfo, dispatcher);
 }
 
 void MyBulletCollisionDispatcher::Reset()
 {
 	std::set<std::pair<const btCollisionObject*, const btCollisionObject*>> currentCollisions;
+	m_currentCollisions = currentCollisions;
 	m_previousCollisions = currentCollisions;
 }
 

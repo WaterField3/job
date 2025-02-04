@@ -763,6 +763,121 @@
                         ]
                     }
                 }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483681,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "uuid": "4f61d547-d406-484c-8c54-498148b095a3"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483682,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "2e02643d-d303-483c-9332-385aa4e52083"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 7,
+                                "ptr_wrapper": {
+                                    "id": 2147483683,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "3078058e-f6c7-47c9-b76a-dfa2f9130d41"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_collidrType": 0,
+                                        "m_size": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_center": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_editerOfsetRotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 8,
+                                "ptr_wrapper": {
+                                    "id": 2147483684,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "e198fbaf-eca0-4bfd-afe3-08dcd63341f1"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_mass": 1.0,
+                                        "m_drag": 0.0,
+                                        "m_angularDrag": 0.0,
+                                        "m_angulerSleepingThresholds": 0.0,
+                                        "m_linearSleepingThresholds": 0.0,
+                                        "m_isAngularFactorX": false,
+                                        "m_isAngularFactorY": false,
+                                        "m_isAngularFactorZ": false
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483661,
+                                "polymorphic_name": "TMF::GetWepon",
+                                "ptr_wrapper": {
+                                    "id": 2147483685,
+                                    "data": {
+                                        "m_uuID": {
+                                            "uuid": "649fbeb6-4d34-4544-bdb0-820693bea583"
+                                        },
+                                        "m_isEnable": true
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
             }
         ]
     }

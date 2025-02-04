@@ -11,25 +11,19 @@
 
 namespace TMF
 {
-	GameObject::GameObject(const std::shared_ptr<GameObject> obj)
+	GameObject::GameObject(const std::shared_ptr<GameObject> pObject)
 	{
-		//m_pComponents = obj->m_pComponents;
-		//m_name = obj->m_name;
-		//m_uuID = boost::uuids::random_generator()();
-
 		// 各メンバ変数をコピー（新しいインスタンスとして独立させる）
-		m_name = obj->m_name;
+		m_name = pObject->m_name;
 		m_uuID = boost::uuids::random_generator()(); // UUIDは新規生成
-		m_tag = obj->m_tag;
-		m_isActive = obj->m_isActive;
+		m_tag = pObject->m_tag;
+		m_isActive = pObject->m_isActive;
 
-		for (const auto& component : obj->m_pComponents)
+		for (const auto& pComponent : pObject->m_pComponents)
 		{
-			if (component)
+			if (pComponent)
 			{
-				auto newComponent = component->Clone();
-				//auto newComponent = std::make_shared<std::remove_pointer_t<decltype(component.get())>>(*component);
-				//newComponent->Initialize(shared_from_this()); // 親の参照をセット
+				auto newComponent = pComponent->Clone();
 				m_pComponents.push_back(move(newComponent));
 			}
 		}

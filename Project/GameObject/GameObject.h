@@ -35,10 +35,28 @@ namespace TMF
 		}
 
 		template <typename TComponent>
+		void RemoveComponent()
+		{
+			std::erase_if(m_pComponents, [](std::shared_ptr<Component> pComponent)
+			{
+				if (pComponent->IsRemovable() == false)
+				{
+					return false;
+				}
+				if (typeid(*pComponent) == typeid(TComponent))
+				{
+					pComponent->Finalize();
+					return true;
+				}
+				return false;
+			});
+		}
+
+		template <typename TComponent>
 		void RemoveComponent(int index)
 		{
 			auto count = 0;
-			std::erase_if(m_pComponents, [&count,index](std::shared_ptr<Component> pComponent)
+			std::erase_if(m_pComponents, [&count, index](std::shared_ptr<Component> pComponent)
 				{
 					count++;
 					if (pComponent->IsRemovable() == false && count == index)
@@ -70,8 +88,8 @@ namespace TMF
 		template <typename TComponent>
 		std::vector<std::weak_ptr<TComponent>> GetComponents()
 		{
-			 auto pComponents = std::vector<std::weak_ptr<TComponent>>();;
-			for (auto& pComponent : m_pComponents) 
+			auto pComponents = std::vector<std::weak_ptr<TComponent>>();;
+			for (auto& pComponent : m_pComponents)
 			{
 				if (auto findComponent = std::dynamic_pointer_cast<TComponent>(pComponent))
 				{
@@ -101,7 +119,7 @@ namespace TMF
 		inline void SetName(std::string name) { m_name = name; }
 		inline std::string GetName() const { return m_name; }
 		inline std::string GetStrUUID() const { return boost::uuids::to_string(m_uuID); }
-		
+
 	public:
 		enum Tag
 		{
@@ -113,6 +131,7 @@ namespace TMF
 		};
 	public:
 		Tag inline GetTag() const { return m_tag; }
+		inline void SetTag(const Tag tag) { m_tag = tag; }
 
 	private:
 		std::vector<std::shared_ptr<Component>> m_pComponents;

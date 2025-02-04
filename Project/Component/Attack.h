@@ -25,10 +25,12 @@ namespace TMF
 		/// </summary>
 		/// <returns>UŒ‚‚ÌŠÔ ¦ËŒ‚‚Í‚O</returns>
 		float Play();
+		void WeponsUpdate();
 	private:
 		void UpdateHandleWeaponSelection();
 		void UpdateWeaponSelection(int currentScrollValue);
 		void HandleWeaponSelection(const std::shared_ptr<Component>& pLockSelectComponent);
+		void CheckWepons();
 
 		template <typename T>
 		void SelectWeapon(const std::shared_ptr<T>& wepon)

@@ -19,5 +19,6 @@ private:
 	};
 	void ObjectContactCheck(std::pair<const btCollisionObject*, const btCollisionObject*> pair, functionType fType);
 	std::set<std::pair<const btCollisionObject*, const btCollisionObject*>> m_previousCollisions;
+	std::set<std::pair<const btCollisionObject*, const btCollisionObject*>> m_currentCollisions;
 
 };
