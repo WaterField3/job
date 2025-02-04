@@ -12,6 +12,7 @@
 #include "Utility/StringHelper.h"
 #include "ComponentRegister.h"
 #include "Transform.h"
+#include "Font.h"
 #include "Timer.h"
 
 REGISTER_COMPONENT(TMF::GenerateWepon, "GenarateWepon");
@@ -20,6 +21,14 @@ namespace TMF
 {
 	void GenerateWepon::OnInitialize()
 	{
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pFont = pLockOwner->GetComponent<Font>();
+			if (auto pLockFont = pFont.lock())
+			{
+				m_pFont = pLockFont;
+			}
+		}
 		Load();
 	}
 	void GenerateWepon::OnFinalize()
@@ -27,6 +36,11 @@ namespace TMF
 	}
 	void GenerateWepon::OnUpdate()
 	{
+		if (auto pLockFont = m_pFont.lock())
+		{
+			auto str = std::to_string(m_generateCount);
+			pLockFont->SetText(str);
+		}
 	}
 	void GenerateWepon::OnLateUpdate()
 	{
@@ -92,6 +106,7 @@ namespace TMF
 				selectIndex = dist(gen);
 			}
 			GameObjectManager::Instance().CreateGameObject(m_pOriginWepons[selectIndex]);
+			m_generateCount++;
 		}
 	}
 }

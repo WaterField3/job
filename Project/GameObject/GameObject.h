@@ -108,6 +108,7 @@ namespace TMF
 			Default,
 			Player,
 			Ground,
+			Item,
 			Max,
 		};
 	public:

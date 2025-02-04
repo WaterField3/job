@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 4.258592128753662,
+                                        "m_azimuth": 4.276045322418213,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -340,7 +340,7 @@
                                         "m_drag": 0.0,
                                         "m_angularDrag": 0.0,
                                         "m_angulerSleepingThresholds": 0.0,
-                                        "m_linearSleepingThresholds": 0.0,
+                                        "m_linearSleepingThresholds": 1.0,
                                         "m_isAngularFactorX": false,
                                         "m_isAngularFactorY": false,
                                         "m_isAngularFactorZ": false
@@ -476,12 +476,7 @@
                                         "m_thrusterValue": 0.0,
                                         "m_firstUseMagnification": 0.15000000596046449,
                                         "m_useMagnification": 0.004999999888241291,
-                                        "m_thrusterMoveSpeedMagnification": 10.0,
-                                        "m_barTextureName": "asset/textures/sunset.jpg",
-                                        "m_drawUIPosition": {
-                                            "value0": 0.0,
-                                            "value1": 0.0
-                                        }
+                                        "m_thrusterMoveSpeedMagnification": 10.0
                                     }
                                 }
                             },
@@ -848,11 +843,6 @@
                                             "m_isEnable": true
                                         },
                                         "m_moveSpeed": 1.100000023841858,
-                                        "m_moveVector": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 1.0
-                                        },
                                         "m_endTime": 1.0
                                     }
                                 }
@@ -2039,11 +2029,6 @@
                                             "m_isEnable": true
                                         },
                                         "m_moveSpeed": 1.0,
-                                        "m_moveVector": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0
-                                        },
                                         "m_endTime": 1.0
                                     }
                                 }
@@ -2506,11 +2491,6 @@
                                             "m_isEnable": true
                                         },
                                         "m_moveSpeed": 6.0,
-                                        "m_moveVector": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0
-                                        },
                                         "m_endTime": 1.0
                                     }
                                 }

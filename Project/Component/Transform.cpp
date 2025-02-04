@@ -26,8 +26,6 @@ namespace TMF
 	void Transform::OnInitialize()
 	{
 		m_editorRotation = m_rotation.ToEuler();
-		auto str = "TransformUUID:" + boost::uuids::to_string(m_uuID);
-		Log::Info("Transform:OnInitialize\n");
 	}
 
 	void Transform::OnFinalize()

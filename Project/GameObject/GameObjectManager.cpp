@@ -52,11 +52,11 @@ namespace TMF
 		m_pGameObjects.push_back(pGameObject);
 	}
 
-	void GameObjectManager::CreateGameObject(std::weak_ptr<GameObject> obj)
+	void GameObjectManager::CreateGameObject(std::weak_ptr<GameObject> pGameObject)
 	{
-		if (auto pLockObj = obj.lock())
+		if (auto pLockGameObject = pGameObject.lock())
 		{
-			auto pGameObject = std::make_shared<GameObject>(pLockObj);
+			auto pGameObject = std::make_shared<GameObject>(pLockGameObject);
 			pGameObject->Initialize();
 
 			m_pGameObjects.push_back(pGameObject);

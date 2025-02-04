@@ -158,13 +158,13 @@
                                         },
                                         "m_collidrType": 0,
                                         "m_size": {
-                                            "value0": 10.0,
-                                            "value1": 1.0,
-                                            "value2": 1.5
+                                            "value0": 9.600000381469727,
+                                            "value1": 0.10000000149011612,
+                                            "value2": 0.800000011920929
                                         },
                                         "m_center": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
+                                            "value0": 4.599999904632568,
+                                            "value1": 0.3499999940395355,
                                             "value2": 0.0
                                         },
                                         "m_editerOfsetRotation": {
@@ -262,6 +262,174 @@
                                             "value2": 1.5
                                         },
                                         "m_rotationOffset": 4.300000190734863
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483661,
+                    "data": {
+                        "m_name": "Sword2",
+                        "m_uuID": {
+                            "uuid": "4f13c9ad-b024-4140-bd39-38939f4c2ece"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483662,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "06db163f-52d9-45fa-b911-778a05272760"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 3.4000000953674318,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 0.4000000059604645,
+                                            "value1": 1.0,
+                                            "value2": 0.6000000238418579
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 8,
+                                "ptr_wrapper": {
+                                    "id": 2147483663,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "a49d1e3c-ed77-490c-b6cc-3392352fee7e"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_loadFile": "asset/model/sword.sdkmesh",
+                                        "m_isDraw": true,
+                                        "m_loadType": 2,
+                                        "m_loadDirectory": "asset/model"
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 4,
+                                "ptr_wrapper": {
+                                    "id": 2147483664,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "79ec35a3-eab5-46d2-adde-426f5d740cd5"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_collidrType": 0,
+                                        "m_size": {
+                                            "value0": 9.5,
+                                            "value1": 0.10000000149011612,
+                                            "value2": 0.800000011920929
+                                        },
+                                        "m_center": {
+                                            "value0": 1.7000000476837159,
+                                            "value1": 0.3499999940395355,
+                                            "value2": 0.0
+                                        },
+                                        "m_editerOfsetRotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483658,
+                                "polymorphic_name": "TMF::Rigidbody",
+                                "ptr_wrapper": {
+                                    "id": 2147483665,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "c57dbc7a-dbd2-45fc-9eac-5b65a1345388"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_mass": 1.0,
+                                        "m_drag": 0.0,
+                                        "m_angularDrag": 0.0,
+                                        "m_angulerSleepingThresholds": 0.0,
+                                        "m_linearSleepingThresholds": 0.0,
+                                        "m_isAngularFactorX": false,
+                                        "m_isAngularFactorY": true,
+                                        "m_isAngularFactorZ": false
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "id": 2147483666,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "25bec7cd-80d7-4cdc-ba8e-44460ef718f3"
+                                            },
+                                            "m_isEnable": false
+                                        },
+                                        "m_moveSpeed": 1.0,
+                                        "m_rotate": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_rotationOffset": 1.0,
+                                        "m_rotationSpeed": 1.0,
+                                        "m_targetRotationOffset": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 9,
+                                "ptr_wrapper": {
+                                    "id": 2147483667,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "6979976b-e1cb-4393-b215-43e955dd009a"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_offsetPos": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_rotationOffset": 1.0
                                     }
                                 }
                             }
