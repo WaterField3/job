@@ -436,6 +436,106 @@
                         ]
                     }
                 }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483668,
+                    "data": {
+                        "m_name": "Sword3",
+                        "m_uuID": {
+                            "uuid": "b28c6d70-0889-4975-ba74-1f90dee8ff18"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483669,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "dfa384c9-794e-44a8-ac61-67b9093a9d1a"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483670,
+                    "data": {
+                        "m_name": "aaa",
+                        "m_uuID": {
+                            "uuid": "2b05fc4f-8295-4edb-b3bb-b680fb16dc2e"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483671,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "042158d4-97ae-4584-af9a-82225da9b1d5"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
             }
         ]
     }

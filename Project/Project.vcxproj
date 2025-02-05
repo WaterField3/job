@@ -229,6 +229,7 @@
     <ClCompile Include="State\StateManager.cpp" />
     <ClCompile Include="StaticMesh.cpp" />
     <ClCompile Include="StaticMeshRenderer.cpp" />
+    <ClCompile Include="Component\Sword.cpp" />
     <ClCompile Include="System\Animation.cpp" />
     <ClCompile Include="Component\Animater.cpp" />
     <ClCompile Include="ApplicationState.cpp" />
@@ -277,6 +278,7 @@
     <ClCompile Include="Vender\Imgui\imgui_tables.cpp" />
     <ClCompile Include="Vender\Imgui\imgui_widgets.cpp" />
     <ClCompile Include="Component\WeponUI.cpp" />
+    <ClCompile Include="Component\WeponBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationData.h" />
@@ -343,6 +345,7 @@
     <ClInclude Include="State\StateRegister.h" />
     <ClInclude Include="StaticMesh.h" />
     <ClInclude Include="StaticMeshRenderer.h" />
+    <ClInclude Include="Component\Sword.h" />
     <ClInclude Include="System\Animation.h" />
     <ClInclude Include="Component\Animater.h" />
     <ClInclude Include="ApplicationState.h" />
@@ -549,6 +552,7 @@
     <ClInclude Include="VertexShader.h" />
     <ClInclude Include="WaveFrontReader.h" />
     <ClInclude Include="Component\WeponUI.h" />
+    <ClInclude Include="Component\WeponBase.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="BloomCombine.hlsl">

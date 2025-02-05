@@ -1,13 +1,9 @@
 #pragma once
-
-#include "WeponBase.h"
-
-#include "ComponentCerealHelper.h"
-#include "ComponentRegister.h"
+#include "Component.h"
 
 namespace TMF
 {
-	class Melee : public WeponBase
+	class WeponBase : public Component
 	{
 	public:
 		void OnInitialize() override;
@@ -17,29 +13,20 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void Play() override;
-		void Select() override;
+		virtual void Play();
+		virtual void Select();
 		inline float GetChangeTime() const { return m_initChangeTime; }
 		inline float GetCurrentChangeTime() { return m_changeTime; }
 		inline float GetCoolTime() const { return m_coolTime; }
 		inline float GetCurrentCollTime() const { return m_timer; }
-		inline float GetEndTime() const { return m_endTime; }
-		inline bool GetIsMeleeEnd() const { return m_isMeleeEnd; }
-		inline bool GetIsMelee() const { return m_isMelee; }
-		inline std::string GetMeleeObjectName() const { return m_meleeObjectName; }
-	private:
+	protected:
+
 		float m_endTime = 0;
 		float m_coolTime = 1.0f;
 		float m_changeTime = 1.0f;
 		float m_initChangeTime = 1.0f;
 		float m_timer = 0.0f;
-		bool m_isMelee = false;
-		bool m_isMeleeEnd = false;
-		std::string m_meleeAnimation = "";
-		std::string m_meleeObjectName = "";
 
-
-		SERIALIZE_COMPONENT(m_meleeAnimation, m_endTime, m_meleeObjectName);
 	};
 }
 

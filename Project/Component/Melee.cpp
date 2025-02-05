@@ -161,6 +161,6 @@ namespace TMF
 	}
 	void Melee::Select()
 	{
-		m_changeTime = 0.0f;;
+		m_changeTime = 0.0f;
 	}
 }

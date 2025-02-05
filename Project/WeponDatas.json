@@ -77,7 +77,7 @@
                     "m_uuID": {
                         "uuid": "f86e59fa-5885-47b0-8d9e-14243453fbb5"
                     },
-                    "m_tag": 3,
+                    "m_tag": 0,
                     "m_isActive": true,
                     "m_pComponents": [
                         {
@@ -276,7 +276,7 @@
                     "m_uuID": {
                         "uuid": "4f13c9ad-b024-4140-bd39-38939f4c2ece"
                     },
-                    "m_tag": 3,
+                    "m_tag": 0,
                     "m_isActive": true,
                     "m_pComponents": [
                         {

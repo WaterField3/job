@@ -878,6 +878,92 @@
                         ]
                     }
                 }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483686,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "uuid": "115800e5-9d8a-45f9-80cd-346857a963e8"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483687,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "d1670fe6-d84c-4f19-82ac-54896498202c"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483662,
+                                "polymorphic_name": "TMF::Melee",
+                                "ptr_wrapper": {
+                                    "id": 2147483688,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "2677c2ae-164e-4a29-a56d-a9845c7982e1"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_meleeAnimation": "qqqq",
+                                        "m_endTime": 0.0,
+                                        "m_meleeObjectName": "aaa"
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483663,
+                                "polymorphic_name": "TMF::Sword",
+                                "ptr_wrapper": {
+                                    "id": 2147483689,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "7583f9c1-cdd1-4d4b-80c6-e967dc7acd1d"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_meleeAnimation": "wwww",
+                                        "m_endTime": 0.0,
+                                        "m_meleeObjectName": ""
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
             }
         ]
     }
