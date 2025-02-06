@@ -71,7 +71,7 @@ namespace TMF
 		auto playLabel = StringHelper::CreateLabel("Play", m_uuID);
 		if (ImGui::Button(playLabel.c_str()))
 		{
-			Play();
+			OnAttack();
 		}
 	}
 	std::shared_ptr<Component> Sword::OnClone() const
@@ -81,7 +81,7 @@ namespace TMF
 		pClone->m_endTime = this->m_endTime;
 		return move(pClone);
 	}
-	void Sword::Play()
+	void Sword::OnAttack()
 	{
 		if (m_isMelee == true || m_changeTime < m_initChangeTime)
 		{
@@ -139,7 +139,7 @@ namespace TMF
 			}
 		}
 	}
-	void Sword::Select()
+	void Sword::OnSelect()
 	{
 		m_changeTime = 0.0f;
 	}

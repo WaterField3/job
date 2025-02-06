@@ -24,10 +24,19 @@ namespace TMF
 		auto pClone = std::make_shared<WeponBase>();
 		return move(pClone);
 	}
-	void WeponBase::Play()
+	void WeponBase::Attack()
 	{
+		OnAttack();
+	}
+	void WeponBase::OnAttack()
+	{
+
 	}
 	void WeponBase::Select()
+	{
+		OnSelect();
+	}
+	void WeponBase::OnSelect()
 	{
 	}
 }

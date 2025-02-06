@@ -83,7 +83,7 @@ namespace TMF
 			// Meleeクラスに変換できるか確認
 			else if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
 			{
-				pLockMelee->Play();
+				pLockMelee->Attack();
 				if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
 				{
 					pLockCoolTimeUI->SetSelectWepon(pLockMelee);

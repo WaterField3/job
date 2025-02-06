@@ -208,6 +208,7 @@
     <ClCompile Include="Component\ReloadUI.cpp" />
     <ClCompile Include="Component\GenerateWepon.cpp" />
     <ClCompile Include="Component\GetWepon.cpp" />
+    <ClCompile Include="Component\Gun.cpp" />
     <ClCompile Include="State\PlayerAttackState.cpp" />
     <ClCompile Include="State\EnemyAttackState.cpp" />
     <ClCompile Include="State\EnemyMoveState.cpp" />
@@ -319,6 +320,7 @@
     <ClInclude Include="Component\ReloadUI.h" />
     <ClInclude Include="Component\GenerateWepon.h" />
     <ClInclude Include="Component\GetWepon.h" />
+    <ClInclude Include="Component\Gun.h" />
     <ClInclude Include="State\PlayerAttackState.h" />
     <ClInclude Include="State\EnemyAttackState.h" />
     <ClInclude Include="State\EnemyMoveState.h" />

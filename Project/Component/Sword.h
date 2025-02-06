@@ -15,8 +15,8 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void Play() override;
-		void Select() override;
+		void OnAttack() override;
+		void OnSelect() override;
 		inline bool GetIsMeleeEnd() const { return m_isMeleeEnd; }
 		inline bool GetIsMelee() const { return m_isMelee; }
 	private:

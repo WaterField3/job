@@ -17,8 +17,8 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void Play() override;
-		void Select() override;
+		void OnAttack() override;
+		void OnSelect() override;
 		inline float GetChangeTime() const { return m_initChangeTime; }
 		inline float GetCurrentChangeTime() { return m_changeTime; }
 		inline float GetCoolTime() const { return m_coolTime; }
