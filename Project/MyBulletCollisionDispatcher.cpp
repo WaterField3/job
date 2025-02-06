@@ -7,8 +7,7 @@ using namespace TMF;
 
 void MyBulletCollisionDispatcher::dispatchAllCollisionPairs(btOverlappingPairCache* pairCache, const btDispatcherInfo& dispatchInfo, btDispatcher* dispatcher)
 {
-	;
-
+	m_currentCollisions.clear();
 	int numManifolds = getNumManifolds();
 	for (int i = 0; i < numManifolds; i++)
 	{
@@ -35,7 +34,7 @@ void MyBulletCollisionDispatcher::dispatchAllCollisionPairs(btOverlappingPairCac
 	}
 	for (auto i = 0; i < m_previousCollisions.size(); i++)
 	{
-		auto it = m_currentCollisions.begin();
+		auto it = m_previousCollisions.begin();
 		std::advance(it, i); // i”Ô–Ú‚Ì—v‘f‚Éi‚ß‚é
 		const auto& pair = *it;	
 		if (m_currentCollisions.find(pair) == m_currentCollisions.end())
@@ -112,7 +111,7 @@ void MyBulletCollisionDispatcher::ObjectContactCheck(std::pair<const btCollision
 			pGameObject1->CollisionExit(pGameObject0);
 			pGameObject0->CollisionExit(pGameObject1);
 		}
-		else if ((!pRigidbody0.expired() && pRigidbody1.expired()) || (pRigidbody0.expired() && pRigidbody1.expired()))
+		else if ((!pRigidbody0.expired() && pRigidbody1.expired()) || (pRigidbody0.expired() && pRigidbody1.expired()) || (pRigidbody0.expired() && !pRigidbody1.expired()))
 		{
 			pGameObject0->TrigerExit(pGameObject1);
 			pGameObject1->TrigerExit(pGameObject0);

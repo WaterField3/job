@@ -328,7 +328,7 @@
                         "m_uuID": {
                             "uuid": "d6ea5998-824b-4fc4-a173-de185d7b2652"
                         },
-                        "m_tag": 0,
+                        "m_tag": 2,
                         "m_isActive": true,
                         "m_pComponents": [
                             {
@@ -673,7 +673,7 @@
                                         "m_uuID": {
                                             "uuid": "5f80445b-186c-4155-a8d8-fd6137eb51c2"
                                         },
-                                        "m_isEnable": true
+                                        "m_isEnable": false
                                     }
                                 }
                             },
@@ -956,8 +956,7 @@
                                             "m_isEnable": true
                                         },
                                         "m_meleeAnimation": "wwww",
-                                        "m_endTime": 0.0,
-                                        "m_meleeObjectName": ""
+                                        "m_endTime": 0.0
                                     }
                                 }
                             }

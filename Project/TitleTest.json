@@ -328,7 +328,7 @@
                         "m_uuID": {
                             "uuid": "d6ea5998-824b-4fc4-a173-de185d7b2652"
                         },
-                        "m_tag": 0,
+                        "m_tag": 2,
                         "m_isActive": true,
                         "m_pComponents": [
                             {
@@ -673,7 +673,7 @@
                                         "m_uuID": {
                                             "uuid": "5f80445b-186c-4155-a8d8-fd6137eb51c2"
                                         },
-                                        "m_isEnable": true
+                                        "m_isEnable": false
                                     }
                                 }
                             },
@@ -919,10 +919,7 @@
                                         },
                                         "m_pParent": {
                                             "locked_ptr": {
-                                                "polymorphic_id": 1073741824,
-                                                "ptr_wrapper": {
-                                                    "id": 34
-                                                }
+                                                "polymorphic_id": 0
                                             }
                                         }
                                     }
@@ -960,71 +957,6 @@
                                         },
                                         "m_meleeAnimation": "wwww",
                                         "m_endTime": 0.0
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 3,
-                                "ptr_wrapper": {
-                                    "id": 2147483690,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "df3cc3e9-7e7f-4928-8e1d-aeaf27889ba4"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_isInvertn": false,
-                                        "m_isRhcoords": true,
-                                        "m_shapeType": 0,
-                                        "m_color": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0,
-                                            "value3": 1.0
-                                        },
-                                        "m_scale": {
-                                            "value0": 2.0,
-                                            "value1": 2.0,
-                                            "value2": 2.0
-                                        },
-                                        "m_textureName": ""
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 2147483664,
-                                "polymorphic_name": "TMF::Gun",
-                                "ptr_wrapper": {
-                                    "id": 2147483691,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "ea29d94e-55ea-43e5-b13c-e65ee5206bd1"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_coolTime": 1.0,
-                                        "m_initChangeTime": 1.0,
-                                        "m_reloadMaxTime": 10.0,
-                                        "m_bulletMaxNum": 10
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 2147483665,
-                                "polymorphic_name": "TMF::BulletStraightMove",
-                                "ptr_wrapper": {
-                                    "id": 2147483692,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "83d9694e-58f0-4991-b795-3240b15712d3"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_moveSpeed": 0.0,
-                                        "m_endTime": 1.0
                                     }
                                 }
                             }
