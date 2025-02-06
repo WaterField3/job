@@ -82,7 +82,7 @@ namespace TMF
 		auto playLabel = StringHelper::CreateLabel("Play", m_uuID);
 		if (ImGui::Button(playLabel.c_str()))
 		{
-			Attack();
+			Play();
 		}
 	}
 	std::shared_ptr<Component> Melee::OnClone() const

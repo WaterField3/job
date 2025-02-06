@@ -10,6 +10,7 @@
 #include "Melee.h"
 #include "MeleeFollowMove.h"
 #include "WeponUI.h"
+#include "WeponBase.h"
 
 REGISTER_COMPONENT(TMF::Attack, "Attack");
 
@@ -67,8 +68,14 @@ namespace TMF
 	}
 	float Attack::Play()
 	{
+		if (m_pWepons.size() == 0)
+		{
+			return 0.0f;
+		}
+
 		if (auto pLockSelectComponent = m_pWepons[m_selectIndex].lock())
 		{
+			pLockSelectComponent->Play();
 			// Shotクラスに変換できるか確認
 			if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
 			{
@@ -83,7 +90,7 @@ namespace TMF
 			// Meleeクラスに変換できるか確認
 			else if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
 			{
-				pLockMelee->Attack();
+				pLockMelee->Play();
 				if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
 				{
 					pLockCoolTimeUI->SetSelectWepon(pLockMelee);
@@ -111,6 +118,11 @@ namespace TMF
 		if (ImGui::SliderInt(selectIndexLabel.c_str(), &m_selectIndex, -100, 100))
 		{
 
+		}
+
+		if (ImGui::Button("Check"))
+		{
+			CheckWepons();
 		}
 	}
 	std::shared_ptr<Component> Attack::OnClone() const
@@ -143,71 +155,67 @@ namespace TMF
 		}
 
 		m_previousScrollValue = currentScrollValue;
-		m_pOldWepon = m_pWepons[m_selectIndex];
+		if (m_pWepons.size() > 0)
+		{
+			m_pOldWepon = m_pWepons[m_selectIndex];
+		}
 	}
-	void Attack::HandleWeaponSelection(const std::shared_ptr<Component>& pLockSelectComponent)
+	void Attack::HandleWeaponSelection(const std::shared_ptr<WeponBase>& pLockSelectComponent)
 	{
-		if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
+
+		auto pWeponOwner = pLockSelectComponent->GetOwner();
+		if (auto pLockWeponOwner = pWeponOwner.lock())
 		{
-			SelectWeapon(pLockShot);
+			pLockWeponOwner->SetActive(true);
+			SelectWeapon(pLockSelectComponent);
 		}
-		else if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
-		{
-			if (pLockMelee->GetIsMelee() == false)
-			{
-				auto meleeObjectName = pLockMelee->GetMeleeObjectName();
-				auto pMeleeObject = GameObjectManager::Instance().GetGameObject(meleeObjectName);
-				if (auto pLockMeleeObjectOwner = pMeleeObject.lock())
-				{
-					auto pMeleeFollowMove = pLockMeleeObjectOwner->GetComponent<MeleeFollowMove>();
-					if (auto pLockMeleeFollowMove = pMeleeFollowMove.lock())
-					{
-						pLockMeleeObjectOwner->SetActive(true);
-						pLockMeleeFollowMove->SetIsEnable(true);
-					}
-				}
-			}
-			SelectWeapon(pLockMelee);
-		}
+
 	}
 	void Attack::CheckWepons()
 	{
 		if (auto pLockOwner = m_pOwner.lock())
 		{
 			m_pWepons.clear();
-			auto pShots = pLockOwner->GetComponents<Shot>();
-			for (auto pShot : pShots)
+
+			auto pChildren = pLockOwner->GetChildren();
+			for (auto& pChild : pChildren)
 			{
-				m_pWepons.push_back(pShot);
-			}
-			auto pMelees = pLockOwner->GetComponents<Melee>();
-			for (auto pMelee : pMelees)
-			{
-				m_pWepons.push_back(pMelee);
+				if (auto pLockChild = pChild.lock())
+				{
+					auto pWepon = pLockChild->GetComponent<WeponBase>();
+					if (auto pLockWepon = pWepon.lock())
+					{
+						m_pWepons.push_back(pLockWepon);
+					}
+				}
+
 			}
 		}
 		m_pCoolTimeUI = GameObjectManager::Instance().GetComponent<CoolTimeUI>();
 		m_pChangeTimeUI = GameObjectManager::Instance().GetComponent<ChangeTimeUI>();
 		m_pWeponUI = GameObjectManager::Instance().GetComponent<WeponUI>();
 		m_pReloadUI = GameObjectManager::Instance().GetComponent<ReloadUI>();
-		if (auto pLockWepon = m_pWepons[0].lock())
+		if (m_pWepons.size() > 0)
 		{
-			//SelectWeapon(pLockWepon);
-			if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+			if (auto pLockWepon = m_pWepons[0].lock())
 			{
-				pLockCoolTimeUI->SetSelectWepon(pLockWepon);
-			}
-			if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
-			{
-				pLockChangeTimeUI->SetSelectWepon(pLockWepon);
-			}
-			if (auto pLockWeponUI = m_pWeponUI.lock())
-			{
-				pLockWeponUI->SetSelectWepon(pLockWepon);
-			}
-			if (auto pLockReloadUI = m_pReloadUI.lock())
-			{
-				pLockReloadUI->SetSelectWepon(pLockWepon);
+				//SelectWeapon(pLockWepon);
+				if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
+				{
+					pLockCoolTimeUI->SetSelectWepon(pLockWepon);
+				}
+				if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
+				{
+					pLockChangeTimeUI->SetSelectWepon(pLockWepon);
+				}
+				if (auto pLockWeponUI = m_pWeponUI.lock())
+				{
+					pLockWeponUI->SetSelectWepon(pLockWepon);
+				}
+				if (auto pLockReloadUI = m_pReloadUI.lock())
+				{
+					pLockReloadUI->SetSelectWepon(pLockWepon);
+				}
 			}
 		}
 		m_previousScrollValue = 0;

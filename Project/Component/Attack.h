@@ -10,6 +10,7 @@ namespace TMF
 {
 	class Melee;
 	class Shot;
+	class WeponBase;
 	class Attack : public Component
 	{
 	public:
@@ -29,7 +30,7 @@ namespace TMF
 	private:
 		void UpdateHandleWeaponSelection();
 		void UpdateWeaponSelection(int currentScrollValue);
-		void HandleWeaponSelection(const std::shared_ptr<Component>& pLockSelectComponent);
+		void HandleWeaponSelection(const std::shared_ptr<WeponBase>& pLockSelectComponent);
 		void CheckWepons();
 
 		template <typename T>
@@ -62,8 +63,9 @@ namespace TMF
 	private:
 		int m_previousScrollValue = 0;
 		int m_selectIndex = 0;
-		std::vector<std::weak_ptr<Component>> m_pWepons;
-		std::weak_ptr<Component> m_pOldWepon;
+		//std::vector<std::weak_ptr<Component>> m_pWepons;
+		std::vector<std::weak_ptr<WeponBase>> m_pWepons;
+		std::weak_ptr<WeponBase> m_pOldWepon;
 		std::weak_ptr<CoolTimeUI> m_pCoolTimeUI;
 		std::weak_ptr<ChangeTimeUI> m_pChangeTimeUI;
 		std::weak_ptr<WeponUI> m_pWeponUI;

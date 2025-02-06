@@ -6,8 +6,7 @@
 #include "ComponentRegister.h"
 #include "Utility/StringHelper.h"
 #include "direct3d.h"
-#include "Shot.h"
-#include "Melee.h"
+#include "WeponBase.h"
 
 REGISTER_COMPONENT(TMF::ChangeTimeUI, "ChangeTimeUI");
 
@@ -42,17 +41,8 @@ namespace TMF
 			{
 				auto currentValue = 10.0f;
 				auto maxValue = 10.0f;
-				if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockWepon))
-				{
-					currentValue = pLockMelee->GetCurrentChangeTime();
-					maxValue = pLockMelee->GetChangeTime();
-				}
-				else if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockWepon))
-				{
-					currentValue = pLockShot->GetCurrentChangeTime();
-					maxValue = pLockShot->GetChangeTime();
-				}
-
+				currentValue = pLockWepon->GetCurrentChangeTime();
+				maxValue = pLockWepon->GetChangeTime();
 
 				if (currentValue < 0.0f)
 				{
@@ -139,7 +129,7 @@ namespace TMF
 		pClone->m_drawPosition = this->m_drawPosition;
 		return move(pClone);
 	}
-	void ChangeTimeUI::SetSelectWepon(std::weak_ptr<Component> pWepon)
+	void ChangeTimeUI::SetSelectWepon(std::weak_ptr<WeponBase> pWepon)
 	{
 		m_pWepon = pWepon;
 	}

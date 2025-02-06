@@ -5,8 +5,7 @@
 #include "Utility/StringHelper.h"
 #include "ComponentRegister.h"
 #include "Font.h"
-#include "Melee.h"
-#include "Shot.h"
+#include "WeponBase.h"
 
 REGISTER_COMPONENT(TMF::WeponUI, "WeponUI");
 
@@ -46,10 +45,7 @@ namespace TMF
 		}
 		if (auto pLockWepon = m_pWepon.lock())
 		{
-			if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockWepon))
-			{
-				m_bulletNum = pLockShot->GetBulletNum();
-			}
+			m_bulletNum = pLockWepon->GetBulletNum();
 		}
 		if (auto pLockWeponBulletNumFont = m_pWeponBulletNumFont.lock())
 		{
@@ -84,23 +80,23 @@ namespace TMF
 		return move(pClone);
 	}
 
-	void WeponUI::SetSelectWepon(std::weak_ptr<Component> pWepon)
+	void WeponUI::SetSelectWepon(std::weak_ptr<WeponBase> pWepon)
 	{
 		m_maxBulletNum = 1;
 		m_bulletNum = 0;
 		if (auto pLockWepon = pWepon.lock())
 		{
+			// 武器の情報を取得
 			m_pWepon = pLockWepon;
-			if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockWepon))
+			pLockWepon->GetBulletMaxNum();
+			pLockWepon->GetBulletNum();
+			m_bulletNum = pLockWepon->GetBulletNum();
+			m_maxBulletNum = pLockWepon->GetBulletMaxNum();
+			// オブジェクトの名前を取得
+			auto pWeponOwner = pLockWepon->GetOwner();
+			if (auto pLockWeponOwner = pWeponOwner.lock())
 			{
-				m_weponName = pLockMelee->GetMeleeObjectName();
-				m_bulletNum = -1;
-			}
-			else if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockWepon))
-			{
-				m_weponName = pLockShot->GetShotObjectName();
-				m_bulletNum = pLockShot->GetBulletNum();
-				m_maxBulletNum = pLockShot->GetBulletMaxNum();
+				m_weponName = pLockWeponOwner->GetName();
 			}
 		}
 	}

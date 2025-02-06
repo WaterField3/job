@@ -8,6 +8,7 @@
 struct ID3D11ShaderResourceView;
 namespace TMF
 {
+	class WeponBase;
 	class ChangeTimeUI : public Component
 	{
 	public:
@@ -18,7 +19,7 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void SetSelectWepon(std::weak_ptr<Component> pWepon);
+		void SetSelectWepon(std::weak_ptr<WeponBase> pWepon);
 
 	private:
 		float m_barWidth = 100.0f;
@@ -27,7 +28,7 @@ namespace TMF
 		DirectX::SimpleMath::Vector2 m_drawPosition = DirectX::SimpleMath::Vector2::Zero;
 		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pBarTexture;
 
-		std::weak_ptr<Component> m_pWepon;
+		std::weak_ptr<WeponBase> m_pWepon;
 
 		SERIALIZE_COMPONENT(m_barWidth, m_barHeight, m_barTextureName, m_drawPosition);
 	};

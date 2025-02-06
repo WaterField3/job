@@ -15,12 +15,17 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void Attack();
+		void Play();
 		void Select();
 		inline float GetChangeTime() const { return m_initChangeTime; }
 		inline float GetCurrentChangeTime() { return m_changeTime; }
 		inline float GetCoolTime() const { return m_coolTime; }
 		inline float GetCurrentCollTime() const { return m_timer; }
+
+		inline int GetBulletNum() const { return m_bulletNum; }
+		inline int GetBulletMaxNum() const { return m_bulletMaxNum; }
+		inline float GetReloadTime() const { return m_reloadTime; }
+		inline float GetReloadMaxTime() const { return m_reloadMaxTime; }
 	protected:
 		virtual void OnAttack();
 		virtual void OnSelect();
@@ -32,6 +37,11 @@ namespace TMF
 		float m_changeTime = 1.0f;
 		float m_initChangeTime = 1.0f;
 		float m_timer = 0.0f;
+
+		int m_bulletNum = -1;
+		int m_bulletMaxNum = -1;
+		float m_reloadTime = 0.0f;
+		float m_reloadMaxTime = 10.0f;
 
 		SERIALIZE_COMPONENT(m_coolTime, m_initChangeTime);
 

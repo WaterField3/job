@@ -9,6 +9,7 @@
 #include "Transform.h"
 #include "BulletStraightMove.h"
 #include "Timer.h"
+#include "Attack.h"
 
 REGISTER_COMPONENT(TMF::Gun, "Gun");
 
@@ -16,6 +17,11 @@ namespace TMF
 {
 	void Gun::OnInitialize()
 	{
+		auto pAttack = GameObjectManager::Instance().GetComponent<Attack>();
+		if (auto pLockAttack = pAttack.lock())
+		{
+			pLockAttack->WeponsUpdate();
+		}
 		m_changeTime = m_initChangeTime;
 		m_bulletNum = m_bulletMaxNum;
 	}
@@ -98,7 +104,7 @@ namespace TMF
 	}
 	void Gun::OnAttack()
 	{
-		if (m_isUsePlayer == true)
+		if (m_isUsePlayer == false)
 		{
 			if (m_changeTime < m_initChangeTime)
 			{
@@ -148,5 +154,6 @@ namespace TMF
 	}
 	void Gun::OnSelect()
 	{
+		m_changeTime = 0.0f;
 	}
 }

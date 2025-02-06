@@ -6,8 +6,7 @@
 #include "ComponentRegister.h"
 #include "GameObject/GameObjectManager.h"
 #include "Utility/StringHelper.h"
-#include "Shot.h"
-#include "Melee.h"
+#include "WeponBase.h"
 
 REGISTER_COMPONENT(TMF::CoolTimeUI, "CoolTimeUI");
 
@@ -40,18 +39,8 @@ namespace TMF
 		{
 			if (auto pLockWepon = m_pWepon.lock())
 			{
-				auto currentValue = 10.0f;
-				auto maxValue = 10.0f;
-				if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockWepon))
-				{
-					currentValue = pLockMelee->GetCurrentCollTime();
-					maxValue = pLockMelee->GetCoolTime();
-				}
-				else if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockWepon))
-				{
-					currentValue = pLockShot->GetCurrentCollTime();
-					maxValue = pLockShot->GetCoolTime();
-				}
+				auto currentValue = pLockWepon->GetCurrentCollTime();;
+				auto maxValue = pLockWepon->GetCoolTime();
 
 				if (currentValue == 0.0f)
 				{
@@ -137,7 +126,7 @@ namespace TMF
 		pClone->m_drawPosition = this->m_drawPosition;
 		return move(pClone);
 	}
-	void CoolTimeUI::SetSelectWepon(std::weak_ptr<Component> pWepon)
+	void CoolTimeUI::SetSelectWepon(std::weak_ptr<WeponBase> pWepon)
 	{
 		m_pWepon = pWepon;
 	}

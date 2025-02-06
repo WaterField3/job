@@ -4,11 +4,13 @@
 
 #include "ComponentRegister.h"
 #include "Utility/StringHelper.h"
+#include "GameObject/GameObjectManager.h"
 #include "Transform.h"
 #include "MeleeFollowMove.h"
 #include "MeleeMove.h"
 #include "Animater.h"
 #include "Timer.h"
+#include "Attack.h"
 
 REGISTER_COMPONENT(TMF::Sword, "Sword");
 
@@ -16,6 +18,11 @@ namespace TMF
 {
 	void Sword::OnInitialize()
 	{
+		auto pAttack = GameObjectManager::Instance().GetComponent<Attack>();
+		if (auto pLockAttack = pAttack.lock())
+		{
+			pLockAttack->WeponsUpdate();
+		}
 	}
 	void Sword::OnFinalize()
 	{

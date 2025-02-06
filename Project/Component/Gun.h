@@ -27,10 +27,6 @@ namespace TMF
 		inline float GetReloadMaxTime() const { return m_reloadMaxTime; }
 
 	private:
-		int m_bulletNum = 1;
-		int m_bulletMaxNum = 10;
-		float m_reloadTime = 0.0f;
-		float m_reloadMaxTime = 10.0f;
 		bool m_isShot = false;
 		bool m_isUsePlayer = false;
 		SERIALIZE_COMPONENT(m_coolTime, m_initChangeTime, m_reloadMaxTime, m_bulletMaxNum);
