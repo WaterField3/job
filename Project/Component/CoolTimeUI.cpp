@@ -126,7 +126,7 @@ namespace TMF
 		pClone->m_drawPosition = this->m_drawPosition;
 		return move(pClone);
 	}
-	void CoolTimeUI::SetSelectWepon(std::weak_ptr<WeponBase> pWepon)
+	void CoolTimeUI::OnSetSelectWepon(std::weak_ptr<WeponBase> pWepon)
 	{
 		m_pWepon = pWepon;
 	}

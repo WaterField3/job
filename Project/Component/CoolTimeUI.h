@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "WeponUI.h"
 
 #include <wrl.h>
 
@@ -9,7 +9,7 @@
 namespace TMF
 {
 	class WeponBase;
-	class CoolTimeUI : public Component
+	class CoolTimeUI : public WeponUI
 	{
 	public:
 		void OnInitialize() override;
@@ -19,18 +19,10 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void SetSelectWepon(std::weak_ptr<WeponBase> wepon);
+		void OnSetSelectWepon(std::weak_ptr<WeponBase> wepon) override;
 
 	private:
-		float m_barWidth = 100.0f;
-		float m_barHeight = 40.0f;
-		std::string m_barTextureName = "";
-		DirectX::SimpleMath::Vector2 m_drawPosition = DirectX::SimpleMath::Vector2::Zero;
-		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pBarTexture;
 
-		std::weak_ptr<WeponBase> m_pWepon;
-
-		SERIALIZE_COMPONENT(m_barWidth, m_barHeight, m_barTextureName, m_drawPosition);
 
 	};
 }

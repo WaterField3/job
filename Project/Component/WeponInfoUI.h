@@ -1,15 +1,10 @@
 #pragma once
 #include "WeponUI.h"
 
-#include <wrl.h>
-
-#include "ComponentCerealHelper.h"
-#include "direct3d.h"
-
 namespace TMF
 {
-	class WeponBase;
-	class ReloadUI : public WeponUI
+
+	class WeponInfoUI : public WeponUI
 	{
 	public:
 		void OnInitialize() override;
@@ -19,8 +14,15 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void OnSetSelectWepon(std::weak_ptr<WeponBase> wepon) override;
+		void OnSetSelectWepon(std::weak_ptr<WeponBase> pWepon) override;
+
 	private:
+		int m_bulletNum = 1;
+		int m_maxBulletNum = 2;
+		std::string m_weponName = "";
+		std::weak_ptr<Font> m_pWeponNameFont;
+		std::weak_ptr<Font> m_pWeponBulletNumFont;
+
 	};
 }
 

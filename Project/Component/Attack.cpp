@@ -77,26 +77,13 @@ namespace TMF
 		{
 			pLockSelectComponent->Play();
 			// Shotクラスに変換できるか確認
-			if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
-			{
-				pLockShot->Play();
-				if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
-				{
-					pLockCoolTimeUI->SetSelectWepon(pLockShot);
-					return 0.0f;
-				}
 
-			}
-			// Meleeクラスに変換できるか確認
-			else if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
+			if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
 			{
-				pLockMelee->Play();
-				if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
-				{
-					pLockCoolTimeUI->SetSelectWepon(pLockMelee);
-					return pLockMelee->GetEndTime();
-				}
+				pLockCoolTimeUI->SetSelectWepon(pLockSelectComponent);
+				return pLockSelectComponent->GetEndTime();
 			}
+
 		}
 		return 0.0f;
 	}
@@ -193,7 +180,7 @@ namespace TMF
 		}
 		m_pCoolTimeUI = GameObjectManager::Instance().GetComponent<CoolTimeUI>();
 		m_pChangeTimeUI = GameObjectManager::Instance().GetComponent<ChangeTimeUI>();
-		m_pWeponUI = GameObjectManager::Instance().GetComponent<WeponUI>();
+		m_pWeponUI = GameObjectManager::Instance().GetComponent<WeponInfoUI>();
 		m_pReloadUI = GameObjectManager::Instance().GetComponent<ReloadUI>();
 		if (m_pWepons.size() > 0)
 		{

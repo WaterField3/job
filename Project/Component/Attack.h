@@ -3,7 +3,7 @@
 
 #include "ChangeTimeUI.h"
 #include "CoolTimeUI.h"
-#include "WeponUI.h"
+#include "WeponInfoUI.h"
 #include "ReloadUI.h"
 
 namespace TMF
@@ -68,7 +68,7 @@ namespace TMF
 		std::weak_ptr<WeponBase> m_pOldWepon;
 		std::weak_ptr<CoolTimeUI> m_pCoolTimeUI;
 		std::weak_ptr<ChangeTimeUI> m_pChangeTimeUI;
-		std::weak_ptr<WeponUI> m_pWeponUI;
+		std::weak_ptr<WeponInfoUI> m_pWeponUI;
 		std::weak_ptr<ReloadUI> m_pReloadUI;
 	};
 }

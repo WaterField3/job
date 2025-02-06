@@ -243,6 +243,7 @@
     <ClCompile Include="Component\CharacterMoveController.cpp" />
     <ClCompile Include="Component\Thruster.cpp" />
     <ClCompile Include="Component\ThrusterUI.cpp" />
+    <ClCompile Include="Component\UIBase.cpp" />
     <ClCompile Include="Utility\StringHelper.cpp" />
     <ClCompile Include="MyBulletCollisionDispatcher.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -280,6 +281,7 @@
     <ClCompile Include="Vender\Imgui\imgui_widgets.cpp" />
     <ClCompile Include="Component\WeponUI.cpp" />
     <ClCompile Include="Component\WeponBase.cpp" />
+    <ClCompile Include="Component\WeponInfoUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationData.h" />
@@ -363,6 +365,7 @@
     <ClInclude Include="Component\Thruster.h" />
     <ClInclude Include="Component\ThrusterUI.h" />
     <ClInclude Include="TreeNode.h" />
+    <ClInclude Include="Component\UIBase.h" />
     <ClInclude Include="Utility\StringHelper.h" />
     <ClInclude Include="MyBulletCollisionDispatcher.h" />
     <ClInclude Include="Timer.h" />
@@ -555,6 +558,7 @@
     <ClInclude Include="WaveFrontReader.h" />
     <ClInclude Include="Component\WeponUI.h" />
     <ClInclude Include="Component\WeponBase.h" />
+    <ClInclude Include="Component\WeponInfoUI.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="BloomCombine.hlsl">

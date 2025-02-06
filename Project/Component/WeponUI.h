@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "UIBase.h"
 
 #include "ComponentCerealHelper.h"
 
@@ -7,7 +7,7 @@ namespace TMF
 {
 	class Font;
 	class WeponBase;
-	class WeponUI : public Component
+	class WeponUI : public UIBase
 	{
 	public:
 		void OnInitialize() override;
@@ -20,13 +20,12 @@ namespace TMF
 
 		void SetSelectWepon(std::weak_ptr<WeponBase> wepon);
 
-	private:
-		int m_bulletNum = 1;
-		int m_maxBulletNum = 2;
-		std::string m_weponName = "";
-		std::weak_ptr<Font> m_pWeponNameFont;
-		std::weak_ptr<Font> m_pWeponBulletNumFont;
+	protected:
+		virtual void OnSetSelectWepon(std::weak_ptr<WeponBase> wepon);
+
+	protected:
 		std::weak_ptr<WeponBase> m_pWepon;
+
 		//SERIALIZE_COMPONENT();
 	};
 }

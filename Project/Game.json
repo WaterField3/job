@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 4.276045322418213,
+                                        "m_azimuth": 4.398217678070068,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -761,7 +761,7 @@
                                             "m_isEnable": true
                                         },
                                         "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
-                                        "m_endTime": 0.0
+                                        "m_endTime": 2.0
                                     }
                                 }
                             }
@@ -2332,7 +2332,7 @@
                                             "m_isEnable": true
                                         },
                                         "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
-                                        "m_endTime": 0.0
+                                        "m_endTime": 2.0
                                     }
                                 }
                             }
@@ -3284,22 +3284,9 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 2147483684,
-                                "polymorphic_name": "TMF::WeponUI",
-                                "ptr_wrapper": {
-                                    "id": 2147483790,
-                                    "data": {
-                                        "m_uuID": {
-                                            "uuid": "98446e43-ff31-40bd-9b9d-841bc2fa2b3d"
-                                        },
-                                        "m_isEnable": true
-                                    }
-                                }
-                            },
-                            {
                                 "polymorphic_id": 31,
                                 "ptr_wrapper": {
-                                    "id": 2147483791,
+                                    "id": 2147483790,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -3326,7 +3313,7 @@
                             {
                                 "polymorphic_id": 31,
                                 "ptr_wrapper": {
-                                    "id": 2147483792,
+                                    "id": 2147483791,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -3347,6 +3334,28 @@
                                         "m_fontScale": 1.0,
                                         "m_text": "bullet",
                                         "m_fontPath": "asset/myfile.spritefont"
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483684,
+                                "polymorphic_name": "TMF::WeponInfoUI",
+                                "ptr_wrapper": {
+                                    "id": 2147483792,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "74be4bd4-28aa-41b2-8123-9671d67cb40f"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_barWidth": 100.0,
+                                        "m_barHeight": 40.0,
+                                        "m_barTextureName": "",
+                                        "m_drawPosition": {
+                                            "value0": 0.0,
+                                            "value1": 0.0
+                                        }
                                     }
                                 }
                             }

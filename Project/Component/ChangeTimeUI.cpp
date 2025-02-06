@@ -34,6 +34,7 @@ namespace TMF
 	}
 	void ChangeTimeUI::OnDraw()
 	{
+
 		auto pSpriteBatch = D3D::Get()->GetSpriteBatch();
 		if (auto pLockSpriteBatch = pSpriteBatch.lock())
 		{
@@ -92,6 +93,7 @@ namespace TMF
 				pLockSpriteBatch->End();
 
 			}
+
 		}
 	}
 	void ChangeTimeUI::OnDrawImGui()
@@ -121,7 +123,6 @@ namespace TMF
 	}
 	std::shared_ptr<Component> ChangeTimeUI::OnClone() const
 	{
-		//m_barWidth, m_barHeight, m_barTextureName, m_drawPosition
 		auto pClone = std::make_shared<ChangeTimeUI>();
 		pClone->m_barWidth = this->m_barWidth;
 		pClone->m_barHeight = this->m_barHeight;
@@ -129,7 +130,7 @@ namespace TMF
 		pClone->m_drawPosition = this->m_drawPosition;
 		return move(pClone);
 	}
-	void ChangeTimeUI::SetSelectWepon(std::weak_ptr<WeponBase> pWepon)
+	void ChangeTimeUI::OnSetSelectWepon(std::weak_ptr<WeponBase> pWepon)
 	{
 		m_pWepon = pWepon;
 	}
