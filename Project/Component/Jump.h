@@ -25,13 +25,15 @@ namespace TMF
 		void ChageStop(MoveDirection moveDirection);
 		void Fall();
 
-		bool GetIsLanding() { return m_isChageEnd == true && m_isChage == false; }
+		inline int GetMaxJumpNum() { return m_maxJumpNum; }
+		inline bool GetIsLanding() { return m_isChageEnd == true && m_isChage == false; }
 		inline float GetImpact() { return m_impact; }
 		inline float GetMoveSpeed() { return m_moveSpeed; }
 		inline float GetMaxMoveSpeed() { return m_maxMoveSpeed; }
 		inline float GetMaxFlightTime() { return m_maxFlightTime; }
 
 	private:
+		int m_maxJumpNum = 1;
 		// チャージした時間（割合）
 		float m_chageTime = 0;
 		float m_impact = 1.0f;
@@ -46,6 +48,6 @@ namespace TMF
 		std::weak_ptr<Rigidbody> m_pRigidbody;
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Thruster> m_pThruster;
-		SERIALIZE_COMPONENT(m_impact, m_maxFlightTime, m_maxMoveSpeed)
+		SERIALIZE_COMPONENT(m_impact, m_maxFlightTime, m_maxMoveSpeed, m_maxJumpNum)
 	};
 }

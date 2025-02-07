@@ -43,6 +43,14 @@ namespace TMF
 			auto isGetThruster = false;
 			if (auto pLockThruster = pThruster.lock())
 			{
+				if (pLockThruster->GetIsOverHeat() == true)
+				{
+					if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
+					{
+						pLockAdministratorStateMachine->ChangeState("PlayerIdleState");
+						return;
+					}
+				}
 				isGetThruster = true;
 			}
 			if (isGetTransform == true && isGetRigidbody == true && isGetThruster == true && isGetJump)
@@ -70,7 +78,7 @@ namespace TMF
 			// チャージ解除　ジャンプ開始
 			if (keyState.IsKeyUp(DirectX::Keyboard::Space) || m_pPlayerJump->GetChageEnd() == true)
 			{
-				m_pPlayerJump->Flight();
+  				m_pPlayerJump->Flight();
 
 			}
 			if (keyState.IsKeyUp(DirectX::Keyboard::Space))

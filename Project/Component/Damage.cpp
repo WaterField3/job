@@ -10,6 +10,7 @@
 #include "MeleeMove.h"
 #include "Transform.h"
 #include "PlayerStatus.h"
+#include "Effect.h"
 
 REGISTER_COMPONENT(TMF::Damage, "Damage");
 
@@ -106,6 +107,11 @@ namespace TMF
 					if (auto pLockAudio = pAudio.lock())
 					{
 						pLockAudio->Play();
+					}
+					auto pEffect = pLockOwner->GetComponent<Effect>();
+					if (auto pLockEffect = pEffect.lock())
+					{
+						pLockEffect->Play();
 					}
 					auto pPlayerStatus = pGameObject->GetComponent<PlayerStatus>();
 					if (auto pLockPlayerStatus = pPlayerStatus.lock())

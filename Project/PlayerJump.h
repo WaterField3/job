@@ -26,7 +26,8 @@ namespace TMF
 		inline bool GetChageEnd() { return m_isChageEnd; }
 		inline bool GetIsJumpingEnd() { return m_isJumpingEnd; }
 	private:
-
+		int m_max_jump = 2;
+		int m_jump = 0;
 		float m_chageTime = 0;
 		float m_impact = 1.0f;
 		float m_maxFlightTime = 2.0f;

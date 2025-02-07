@@ -104,7 +104,7 @@ namespace TMF
 		{
 
 		}
-		auto rotationOffsetXLabel = StringHelper::CreateLabel("RotationOffsetX", m_uuID);
+		auto rotationOffsetXLabel = StringHelper::CreateLabel("TargetRotationOffset", m_uuID);
 		if (ImGui::DragFloat3(rotationOffsetXLabel.c_str(), &m_targetRotationOffset.x, 0.1f))
 		{
 
@@ -117,7 +117,6 @@ namespace TMF
 	}
 	std::shared_ptr<Component> MeleeMove::OnClone() const
 	{
-		//m_moveSpeed, m_rotate, m_rotationOffset, m_rotationSpeed, m_targetRotationOffset
 		auto pClone = std::make_shared<MeleeMove>();
 		pClone->m_moveSpeed = this->m_moveSpeed;
 		pClone->m_rotate = this->m_rotate;
@@ -153,7 +152,6 @@ namespace TMF
 					auto rotation = DirectX::SimpleMath::Vector3(0.0f, Up, m_rotationOffset);
 					auto qua = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(rotation.y, rotation.x, rotation.z);
 					pLockTransform->SetRotation(qua);
-					//pLockTransform->SetRotation(rotate);
 					break;
 				}
 				case TMF::MeleeMove::SPECIAL:
@@ -174,6 +172,27 @@ namespace TMF
 			}
 			m_isPlay = true;
 			m_time = 0.0f;
+		}
+	}
+	void MeleeMove::CheckParent()
+	{
+		if (auto pLockTransform = m_pTransform.lock())
+		{
+			if (auto pLockOwner = m_pOwner.lock())
+			{
+				m_pTransform = pLockOwner->GetComponent<Transform>();
+				if (auto pLockTransform = m_pTransform.lock())
+				{
+					m_pParent = pLockTransform->GetParent();
+				}
+			}
+		}
+		else
+		{
+			if (auto pLockTransform = m_pTransform.lock())
+			{
+				m_pParent = pLockTransform->GetParent();
+			}
 		}
 	}
 }

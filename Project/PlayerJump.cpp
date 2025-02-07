@@ -12,7 +12,7 @@ namespace TMF
 {
 	PlayerJump::PlayerJump()
 	{
-
+		m_jump = 0;
 	}
 	PlayerJump::PlayerJump(std::weak_ptr<Transform> pTransform, std::weak_ptr<Rigidbody> pRigidbody, std::weak_ptr<Thruster> pThruster, std::weak_ptr<Jump> pJump)
 	{
@@ -25,6 +25,7 @@ namespace TMF
 			m_moveSpeed = pLockJump->GetMoveSpeed();
 			m_maxFlightTime = pLockJump->GetMaxFlightTime();
 			m_maxMoveSpeed = pLockJump->GetMaxMoveSpeed();
+			m_max_jump = pLockJump->GetMaxJumpNum();
 		}
 		m_jumpVector = DirectX::SimpleMath::Vector3::Up;
 	}
@@ -35,7 +36,7 @@ namespace TMF
 	void PlayerJump::Chage()
 	{
 		// チャージ済みなら行わない
-		if (m_isChageEnd == true)
+		if (m_isChageEnd == true || m_max_jump < m_jump)
 		{
 			return;
 		}
@@ -53,6 +54,7 @@ namespace TMF
 		m_isJumpingEnd = false;
 		if (m_chageTime >= 1)
 		{
+			m_jump++;
 			m_chageTime = 1.0f;
 			m_isChageEnd = true;
 			JumpSetting();
@@ -94,6 +96,7 @@ namespace TMF
 		if (m_isCharging == true)
 		{
 			m_isJumpingEnd = false;
+			m_jump++;
 			JumpSetting();
 		}
 	}

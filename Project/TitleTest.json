@@ -673,7 +673,7 @@
                                         "m_uuID": {
                                             "uuid": "5f80445b-186c-4155-a8d8-fd6137eb51c2"
                                         },
-                                        "m_isEnable": false
+                                        "m_isEnable": true
                                     }
                                 }
                             },

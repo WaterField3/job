@@ -76,6 +76,13 @@ namespace TMF
 		{
 
 		}
+
+		auto jumpNumLabel = StringHelper::CreateLabel("MaxJumpNum", m_uuID);
+		if (ImGui::DragInt(jumpNumLabel.c_str(), &m_maxJumpNum, 0))
+		{
+
+		}
+
 		auto isChageLabel = StringHelper::CreateLabel("IsChage", m_uuID);
 		if (ImGui::Checkbox(isChageLabel.c_str(), &m_isChage))
 		{

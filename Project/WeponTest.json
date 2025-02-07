@@ -78,7 +78,7 @@
                         "m_uuID": {
                             "uuid": "f86e59fa-5885-47b0-8d9e-14243453fbb5"
                         },
-                        "m_tag": 0,
+                        "m_tag": 3,
                         "m_isActive": true,
                         "m_pComponents": [
                             {
@@ -98,9 +98,9 @@
                                             "value2": 0.0
                                         },
                                         "m_scale": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0
+                                            "value0": 0.20000000298023225,
+                                            "value1": 0.20000000298023225,
+                                            "value2": 0.20000000298023225
                                         },
                                         "m_rotation": {
                                             "value0": 0.0,
@@ -126,7 +126,7 @@
                                             "m_uuID": {
                                                 "uuid": "23c8ded2-e20b-43c0-a565-b3de7c706812"
                                             },
-                                            "m_isEnable": true
+                                            "m_isEnable": false
                                         },
                                         "m_moveSpeed": 0.05000000074505806,
                                         "m_rotate": {
@@ -158,13 +158,13 @@
                                         },
                                         "m_collidrType": 0,
                                         "m_size": {
-                                            "value0": 9.600000381469727,
-                                            "value1": 0.10000000149011612,
-                                            "value2": 0.800000011920929
+                                            "value0": 12.800000190734864,
+                                            "value1": 0.6000000238418579,
+                                            "value2": 1.5
                                         },
                                         "m_center": {
-                                            "value0": 4.599999904632568,
-                                            "value1": 0.3499999940395355,
+                                            "value0": 0.5,
+                                            "value1": 0.10000000149011612,
                                             "value2": 0.0
                                         },
                                         "m_editerOfsetRotation": {
@@ -254,13 +254,30 @@
                             },
                             {
                                 "polymorphic_id": 2147483657,
-                                "polymorphic_name": "TMF::Rigidbody",
+                                "polymorphic_name": "TMF::Sword",
                                 "ptr_wrapper": {
                                     "id": 2147483660,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
-                                                "uuid": "42049e9d-e81d-4c89-ba37-f24804303eff"
+                                                "uuid": "ec438460-965c-4ddd-b562-e3b01c86e8fb"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
+                                        "m_endTime": 0.0
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483658,
+                                "polymorphic_name": "TMF::Rigidbody",
+                                "ptr_wrapper": {
+                                    "id": 2147483661,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "8a7621bf-bd71-4041-8d69-86a596504453"
                                             },
                                             "m_isEnable": true
                                         },
@@ -281,19 +298,19 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483661,
+                    "id": 2147483662,
                     "data": {
                         "m_name": "Sword2",
                         "m_uuID": {
                             "uuid": "4f13c9ad-b024-4140-bd39-38939f4c2ece"
                         },
-                        "m_tag": 0,
+                        "m_tag": 3,
                         "m_isActive": true,
                         "m_pComponents": [
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483662,
+                                    "id": 2147483663,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -328,7 +345,7 @@
                             {
                                 "polymorphic_id": 7,
                                 "ptr_wrapper": {
-                                    "id": 2147483663,
+                                    "id": 2147483664,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -346,7 +363,7 @@
                             {
                                 "polymorphic_id": 4,
                                 "ptr_wrapper": {
-                                    "id": 2147483664,
+                                    "id": 2147483665,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -374,9 +391,9 @@
                                 }
                             },
                             {
-                                "polymorphic_id": 9,
+                                "polymorphic_id": 10,
                                 "ptr_wrapper": {
-                                    "id": 2147483665,
+                                    "id": 2147483666,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -398,7 +415,7 @@
                             {
                                 "polymorphic_id": 3,
                                 "ptr_wrapper": {
-                                    "id": 2147483666,
+                                    "id": 2147483667,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -406,18 +423,18 @@
                                             },
                                             "m_isEnable": false
                                         },
-                                        "m_moveSpeed": 1.0,
+                                        "m_moveSpeed": 0.05000000074505806,
                                         "m_rotate": {
-                                            "value0": 0.0,
+                                            "value0": -0.5,
                                             "value1": 0.0,
-                                            "value2": 0.0
+                                            "value2": 3.9000000953674318
                                         },
-                                        "m_rotationOffset": 1.0,
+                                        "m_rotationOffset": 2.200000047683716,
                                         "m_rotationSpeed": 1.0,
                                         "m_targetRotationOffset": {
-                                            "value0": 0.0,
+                                            "value0": -1.600000023841858,
                                             "value1": 0.0,
-                                            "value2": 0.0
+                                            "value2": 1.600000023841858
                                         }
                                     }
                                 }
@@ -425,20 +442,36 @@
                             {
                                 "polymorphic_id": 8,
                                 "ptr_wrapper": {
-                                    "id": 2147483667,
+                                    "id": 2147483668,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
                                                 "uuid": "6979976b-e1cb-4393-b215-43e955dd009a"
                                             },
-                                            "m_isEnable": false
+                                            "m_isEnable": true
                                         },
                                         "m_offsetPos": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0
+                                            "value0": 1.5,
+                                            "value1": -0.10000000149011612,
+                                            "value2": 1.5
                                         },
-                                        "m_rotationOffset": 1.0
+                                        "m_rotationOffset": 4.300000190734863
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 9,
+                                "ptr_wrapper": {
+                                    "id": 2147483669,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "e2dc1fde-09cb-4358-ba8a-b6c7a5019978"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
+                                        "m_endTime": 0.0
                                     }
                                 }
                             }

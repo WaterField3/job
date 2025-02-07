@@ -24,6 +24,7 @@ namespace TMF
 			SPECIAL,
 		};
 		void Play(MoveType type, DirectX::SimpleMath::Vector3 position, DirectX::SimpleMath::Quaternion rotation);
+		void CheckParent();
 
 		inline bool GetIsPlay() const { return m_isPlay; }
 
