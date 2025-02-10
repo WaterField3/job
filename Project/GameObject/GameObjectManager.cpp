@@ -52,7 +52,7 @@ namespace TMF
 		m_pGameObjects.push_back(pGameObject);
 	}
 
-	void GameObjectManager::CreateGameObject(std::weak_ptr<GameObject> pGameObject)
+	std::weak_ptr<GameObject> GameObjectManager::CreateGameObject(std::weak_ptr<GameObject> pGameObject)
 	{
 		if (auto pLockGameObject = pGameObject.lock())
 		{
@@ -60,7 +60,9 @@ namespace TMF
 			pGameObject->Initialize();
 
 			m_pGameObjects.push_back(pGameObject);
+			return pGameObject;
 		}
+		return std::weak_ptr<GameObject>();
 	}
 
 	void GameObjectManager::DestroyGameObject(GameObject* pGameObject)

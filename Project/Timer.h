@@ -20,6 +20,7 @@ namespace TMF
 		}
 
 		std::chrono::duration<float> deltaTime;
+		float fps = 0.0f;
 	private:
 		// 前のフレームの終了時間を記憶する変数
 		std::chrono::steady_clock::time_point m_previousTime;

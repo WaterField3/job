@@ -33,6 +33,7 @@ namespace TMF
 	protected:
 		virtual void OnAttack();
 		virtual void OnSelect();
+		void OwnerWeponCheck();
 
 	protected:
 

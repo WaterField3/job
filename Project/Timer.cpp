@@ -21,5 +21,7 @@ namespace TMF
 		// 前のフレームからの時間差を計算（デルタタイム）
 		deltaTime = currentTime - m_previousTime;
 		m_previousTime = currentTime;
+
+		fps = 1.0f / deltaTime.count();
 	}
 }

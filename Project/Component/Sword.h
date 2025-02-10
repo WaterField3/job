@@ -23,9 +23,10 @@ namespace TMF
 
 		bool m_isMelee = false;
 		bool m_isMeleeEnd = false;
+		float m_animationSpeed = 1.0f;
 		std::string m_meleeAnimation = "";
 
-		SERIALIZE_COMPONENT(m_meleeAnimation, m_endTime);
+		SERIALIZE_COMPONENT(m_meleeAnimation, m_endTime, m_animationSpeed);
 	};
 }
 

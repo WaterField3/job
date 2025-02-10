@@ -41,6 +41,8 @@ namespace TMF
 			auto str = std::to_string(m_generateCount);
 			pLockFont->SetText(str);
 		}
+
+		Generate();
 	}
 	void GenerateWepon::OnLateUpdate()
 	{
@@ -87,7 +89,12 @@ namespace TMF
 	}
 	void GenerateWepon::Generate()
 	{
-		m_timer += Timer::Instance().deltaTime.count();
+		//if (Timer::Instance().fps < 55.0f)
+		//{
+		//	return;
+		//}
+		auto deltaTime = Timer::Instance().deltaTime.count();
+		m_timer += deltaTime;
 		if (m_generateRate < m_timer)
 		{
 			auto size = static_cast<int>(m_pOriginWepons.size());
@@ -105,8 +112,21 @@ namespace TMF
 			{
 				selectIndex = dist(gen);
 			}
-			GameObjectManager::Instance().CreateGameObject(m_pOriginWepons[selectIndex]);
+			auto pGenerateObject = GameObjectManager::Instance().CreateGameObject(m_pOriginWepons[selectIndex]);
+			if (auto pLockGenerateObject = pGenerateObject.lock())
+			{
+				auto pGenerateTransform = pLockGenerateObject->GetComponent<Transform>();
+				if (auto pLockGenerateTransform = pGenerateTransform.lock())
+				{
+					std::uniform_real_distribution<float> dist_x(-m_generateRange.x, m_generateRange.x);
+					std::uniform_real_distribution<float> dist_y(0, m_generateRange.y);
+					std::uniform_real_distribution<float> dist_z(-m_generateRange.z, m_generateRange.z);
+					auto randomPosition = DirectX::SimpleMath::Vector3(dist_x(gen), dist_y(gen), dist_z(gen));
+					pLockGenerateTransform->SetPosition(randomPosition);
+				}
+			}
 			m_generateCount++;
+			m_timer = 0.0f;
 		}
 	}
 }

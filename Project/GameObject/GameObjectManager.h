@@ -17,7 +17,7 @@ namespace TMF
 
 		std::weak_ptr<GameObject> CreateGameObject();
 		void CreateGameObject(std::string fileName, std::weak_ptr<GameObject> obj);
-		void CreateGameObject(std::weak_ptr<GameObject> obj);
+		std::weak_ptr<GameObject> CreateGameObject(std::weak_ptr<GameObject> obj);
 		void DestroyGameObject(GameObject* pGameObject);
 		void Initialize();
 		void Finalize();

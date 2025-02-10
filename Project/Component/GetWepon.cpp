@@ -9,6 +9,7 @@
 #include "GhostObject.h"
 #include "Attack.h"
 #include "MeleeMove.h"
+#include "Damage.h"
 
 REGISTER_COMPONENT(TMF::GetWepon, "GetWepon");
 
@@ -59,6 +60,12 @@ namespace TMF
 						pLockMeleeMove->CheckParent();
 					}
 				}
+			}
+
+			auto pDamage = pGameObject->GetComponent<Damage>();
+			if (auto pLockDamage = pDamage.lock())
+			{
+				pLockDamage->OwnerCheck();
 			}
 
 			pGameObject->RemoveComponent<Rigidbody>();

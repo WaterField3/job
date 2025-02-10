@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 4.537843227386475,
+                                        "m_azimuth": 4.607656002044678,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -563,6 +563,11 @@
                                             "value0": -1.5,
                                             "value1": 0.0,
                                             "value2": 1.399999976158142
+                                        },
+                                        "m_moveOfset": {
+                                            "value0": 2.0,
+                                            "value1": 5.0,
+                                            "value2": 3.0
                                         }
                                     }
                                 }
@@ -699,7 +704,8 @@
                                             "m_isEnable": true
                                         },
                                         "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
-                                        "m_endTime": 2.0
+                                        "m_endTime": 2.0,
+                                        "m_animationSpeed": 1.0
                                     }
                                 }
                             }
@@ -2130,6 +2136,11 @@
                                             "value0": -1.600000023841858,
                                             "value1": 0.0,
                                             "value2": 1.600000023841858
+                                        },
+                                        "m_moveOfset": {
+                                            "value0": 2.0,
+                                            "value1": 5.0,
+                                            "value2": 3.0
                                         }
                                     }
                                 }
@@ -2271,7 +2282,8 @@
                                             "m_isEnable": true
                                         },
                                         "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
-                                        "m_endTime": 2.0
+                                        "m_endTime": 2.0,
+                                        "m_animationSpeed": 1.0
                                     }
                                 }
                             }
@@ -3432,7 +3444,13 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_file": "WeponDatas"
+                                        "m_file": "WeponDatas",
+                                        "m_generateRate": 5.0,
+                                        "m_generateRange": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        }
                                     }
                                 }
                             }

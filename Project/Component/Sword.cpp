@@ -18,11 +18,7 @@ namespace TMF
 {
 	void Sword::OnInitialize()
 	{
-		auto pAttack = GameObjectManager::Instance().GetComponent<Attack>();
-		if (auto pLockAttack = pAttack.lock())
-		{
-			pLockAttack->WeponsUpdate();
-		}
+		OwnerWeponCheck();
 	}
 	void Sword::OnFinalize()
 	{
@@ -75,6 +71,12 @@ namespace TMF
 
 		}
 
+		auto animationSpeedLabel = StringHelper::CreateLabel("AnimationSpeed", m_uuID);
+		if (ImGui::DragFloat(animationSpeedLabel.c_str(), &m_animationSpeed))
+		{
+
+		}
+
 		auto playLabel = StringHelper::CreateLabel("Play", m_uuID);
 		if (ImGui::Button(playLabel.c_str()))
 		{
@@ -86,6 +88,7 @@ namespace TMF
 		auto pClone = std::make_shared<Sword>();
 		pClone->m_meleeAnimation = this->m_meleeAnimation;
 		pClone->m_endTime = this->m_endTime;
+		pClone->m_animationSpeed = this->m_animationSpeed;
 		return move(pClone);
 	}
 	void Sword::OnAttack()
@@ -139,7 +142,7 @@ namespace TMF
 					if (auto pLockAnimater = pAnimater.lock())
 					{
 						// アニメーションのパスの変更
-						pLockAnimater->SetFileName(m_meleeAnimation, m_endTime);
+						pLockAnimater->SetFileName(m_meleeAnimation, m_endTime, m_animationSpeed);
 					}
 					m_isMeleeEnd = false;
 				}

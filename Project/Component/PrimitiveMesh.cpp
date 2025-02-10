@@ -180,7 +180,7 @@ namespace TMF
 		{
 			auto wideFileName = std::wstring(m_textureName.begin(), m_textureName.end());
 			auto context = D3D::Get()->GetContext();
-			DirectX::CreateWICTextureFromFile(D3D::Get()->GetDevice(), nullptr, wideFileName.c_str(), nullptr, m_pTexture.ReleaseAndGetAddressOf());
+			DirectX::CreateWICTextureFromFile(D3D::Get()->GetDevice(), context, wideFileName.c_str(), nullptr, m_pTexture.ReleaseAndGetAddressOf());
 			context->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf());
 		}
 		catch (const std::exception& e)

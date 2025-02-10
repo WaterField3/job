@@ -28,7 +28,7 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void SetFileName(std::string fileName, float endTime);
+		void SetFileName(std::string fileName, float endTime, float animSpeed = 0.0f);
 		void LoadAnimation();
 		DirectX::SimpleMath::Vector3 GetBonePosition(std::string findName);
 		DirectX::SimpleMath::Quaternion GetBoneRotation(std::string findName);
@@ -42,6 +42,8 @@ namespace TMF
 		bool m_isNextAnimSet = false;
 		bool m_isBindBone = false;
 		float m_animationSpeed = 1.0f;
+		float m_initAnimationSpeed = 1.0f;
+		float m_nextAnimationSpeed = 1.0f;
 		float m_timer = 0;
 		float m_animEndTime = 0;
 		float m_nextAnimEnd = 0;

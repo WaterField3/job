@@ -30,6 +30,6 @@ namespace TMF
 		int m_generateCount = 0;
 		std::weak_ptr<Font> m_pFont;
 
-		SERIALIZE_COMPONENT(m_file);
+		SERIALIZE_COMPONENT(m_file, m_generateRate, m_generateRange);
 	};
 }

@@ -90,7 +90,12 @@ namespace TMF
 	void MeleeMove::OnDrawImGui()
 	{
 		auto moveSpeedLabel = StringHelper::CreateLabel("MoveSpeed", m_uuID);
-		if (ImGui::DragFloat(moveSpeedLabel.c_str(), &m_moveSpeed))
+		if (ImGui::DragFloat(moveSpeedLabel.c_str(), &m_moveSpeed, 0.01f))
+		{
+
+		}
+		auto moveOfsetLabel = StringHelper::CreateLabel("MoveOfset", m_uuID);
+		if (ImGui::DragFloat3(moveOfsetLabel.c_str(), &m_moveOfset.x, 0.1f))
 		{
 
 		}
@@ -119,6 +124,7 @@ namespace TMF
 	{
 		auto pClone = std::make_shared<MeleeMove>();
 		pClone->m_moveSpeed = this->m_moveSpeed;
+		pClone->m_moveOfset = this->m_moveOfset;
 		pClone->m_rotate = this->m_rotate;
 		pClone->m_rotationOffset = this->m_rotationOffset;
 		pClone->m_rotationSpeed = this->m_rotationSpeed;
@@ -142,9 +148,9 @@ namespace TMF
 				{
 				case TMF::MeleeMove::DEFAULT:
 				{
-					auto startPos = position + forward * 3 + left + up * 5;
+					auto startPos = position + forward * m_moveOfset.z + left * m_moveOfset.x + up * m_moveOfset.y;
 					pLockTransform->SetPosition(startPos);
-					m_endPosition = position + forward * 3 + right + down;
+					m_endPosition = position + forward *  m_moveOfset.z + right * m_moveOfset.x + down;
 					m_moveVector = m_endPosition - startPos;
 					m_moveVector.Normalize();
 					auto Up = rotation.ToEuler().y;

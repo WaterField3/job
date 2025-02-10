@@ -140,6 +140,11 @@
                                             "value0": -1.5,
                                             "value1": 0.0,
                                             "value2": 1.2999999523162842
+                                        },
+                                        "m_moveOfset": {
+                                            "value0": 2.0,
+                                            "value1": 5.0,
+                                            "value2": 3.0
                                         }
                                     }
                                 }
@@ -265,7 +270,8 @@
                                             "m_isEnable": true
                                         },
                                         "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
-                                        "m_endTime": 0.0
+                                        "m_endTime": 3.0,
+                                        "m_animationSpeed": 1.0
                                     }
                                 }
                             },
@@ -300,7 +306,7 @@
                 "ptr_wrapper": {
                     "id": 2147483662,
                     "data": {
-                        "m_name": "Sword2",
+                        "m_name": "ShortSword",
                         "m_uuID": {
                             "uuid": "4f13c9ad-b024-4140-bd39-38939f4c2ece"
                         },
@@ -320,13 +326,13 @@
                                         },
                                         "m_position": {
                                             "value0": 0.0,
-                                            "value1": 3.4000000953674318,
-                                            "value2": 0.0
+                                            "value1": 5.800000190734863,
+                                            "value2": 20.799999237060548
                                         },
                                         "m_scale": {
-                                            "value0": 0.4000000059604645,
-                                            "value1": 1.0,
-                                            "value2": 0.6000000238418579
+                                            "value0": 0.05000000074505806,
+                                            "value1": 0.05000000074505806,
+                                            "value2": 0.05000000074505806
                                         },
                                         "m_rotation": {
                                             "value0": 0.0,
@@ -378,8 +384,8 @@
                                             "value2": 0.800000011920929
                                         },
                                         "m_center": {
-                                            "value0": 1.7000000476837159,
-                                            "value1": 0.3499999940395355,
+                                            "value0": 0.23000000417232514,
+                                            "value1": 0.019999999552965165,
                                             "value2": 0.0
                                         },
                                         "m_editerOfsetRotation": {
@@ -423,7 +429,7 @@
                                             },
                                             "m_isEnable": false
                                         },
-                                        "m_moveSpeed": 0.05000000074505806,
+                                        "m_moveSpeed": 0.07999999821186066,
                                         "m_rotate": {
                                             "value0": -0.5,
                                             "value1": 0.0,
@@ -435,6 +441,11 @@
                                             "value0": -1.600000023841858,
                                             "value1": 0.0,
                                             "value2": 1.600000023841858
+                                        },
+                                        "m_moveOfset": {
+                                            "value0": 2.0,
+                                            "value1": 5.0,
+                                            "value2": 3.0
                                         }
                                     }
                                 }
@@ -471,7 +482,24 @@
                                             "m_isEnable": true
                                         },
                                         "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
-                                        "m_endTime": 0.0
+                                        "m_endTime": 1.0,
+                                        "m_animationSpeed": 5.0
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 6,
+                                "ptr_wrapper": {
+                                    "id": 2147483670,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "490911da-8e00-4a7d-80e4-8eec0886d3b2"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_damage": 10.0,
+                                        "m_reactionType": 1
                                     }
                                 }
                             }

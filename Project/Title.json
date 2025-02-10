@@ -756,7 +756,40 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_file": "WeponDatas"
+                                        "m_file": "WeponDatas",
+                                        "m_generateRate": 1.0,
+                                        "m_generateRange": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 4,
+                                "ptr_wrapper": {
+                                    "id": 2147483681,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "c43eb368-bae9-4251-ab46-56e9569f8a96"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_spriteFontPos": {
+                                            "value0": 97.0,
+                                            "value1": 478.0
+                                        },
+                                        "m_fontColor": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_fontScale": 1.0,
+                                        "m_text": "a",
+                                        "m_fontPath": "asset/myfile.spritefont"
                                     }
                                 }
                             }
@@ -766,7 +799,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483681,
+                    "id": 2147483682,
                     "data": {
                         "m_name": "NewGameObject",
                         "m_uuID": {
@@ -778,7 +811,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483682,
+                                    "id": 2147483683,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -813,7 +846,7 @@
                             {
                                 "polymorphic_id": 7,
                                 "ptr_wrapper": {
-                                    "id": 2147483683,
+                                    "id": 2147483684,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -843,7 +876,7 @@
                             {
                                 "polymorphic_id": 8,
                                 "ptr_wrapper": {
-                                    "id": 2147483684,
+                                    "id": 2147483685,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -866,7 +899,7 @@
                                 "polymorphic_id": 2147483661,
                                 "polymorphic_name": "TMF::GetWepon",
                                 "ptr_wrapper": {
-                                    "id": 2147483685,
+                                    "id": 2147483686,
                                     "data": {
                                         "m_uuID": {
                                             "uuid": "649fbeb6-4d34-4544-bdb0-820693bea583"
@@ -881,7 +914,7 @@
             },
             {
                 "ptr_wrapper": {
-                    "id": 2147483686,
+                    "id": 2147483687,
                     "data": {
                         "m_name": "NewGameObject",
                         "m_uuID": {
@@ -893,7 +926,7 @@
                             {
                                 "polymorphic_id": 1,
                                 "ptr_wrapper": {
-                                    "id": 2147483687,
+                                    "id": 2147483688,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -929,7 +962,7 @@
                                 "polymorphic_id": 2147483662,
                                 "polymorphic_name": "TMF::Melee",
                                 "ptr_wrapper": {
-                                    "id": 2147483688,
+                                    "id": 2147483689,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {
@@ -947,7 +980,7 @@
                                 "polymorphic_id": 2147483663,
                                 "polymorphic_name": "TMF::Sword",
                                 "ptr_wrapper": {
-                                    "id": 2147483689,
+                                    "id": 2147483690,
                                     "data": {
                                         "value0": {
                                             "m_uuID": {

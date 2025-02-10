@@ -68,22 +68,23 @@ namespace TMF
 	}
 	float Attack::Play()
 	{
+		// 武器が無ければ行わない
 		if (m_pWepons.size() == 0)
 		{
 			return 0.0f;
 		}
 
+		// WeponBaseを継承したクラスがあるか
 		if (auto pLockSelectComponent = m_pWepons[m_selectIndex].lock())
 		{
+			// あれば攻撃を行う
 			pLockSelectComponent->Play();
-			// Shotクラスに変換できるか確認
-
 			if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
 			{
+				// CoolTimeUIに使用したウェポンを設定
 				pLockCoolTimeUI->SetSelectWepon(pLockSelectComponent);
 				return pLockSelectComponent->GetEndTime();
 			}
-
 		}
 		return 0.0f;
 	}
@@ -160,22 +161,28 @@ namespace TMF
 	}
 	void Attack::CheckWepons()
 	{
+		// 自身を保持しているゲームオブジェクトがあるか確認
 		if (auto pLockOwner = m_pOwner.lock())
 		{
+			// 保持している武器をクリア
 			m_pWepons.clear();
-
+			// 自身の子オブジェクトを取得
 			auto pChildren = pLockOwner->GetChildren();
+			// 子オブジェクトの数分ループ
 			for (auto& pChild : pChildren)
 			{
+				// 子オブジェクトがSharedに変換できるか確認
 				if (auto pLockChild = pChild.lock())
 				{
+					// 子オブジェクトからWeponBaseを取得する
 					auto pWepon = pLockChild->GetComponent<WeponBase>();
+					// 取得したWeponBaseがSharedに変換できる(存在している)か確認
 					if (auto pLockWepon = pWepon.lock())
 					{
+						// 武器として格納
 						m_pWepons.push_back(pLockWepon);
 					}
 				}
-
 			}
 		}
 		m_pCoolTimeUI = GameObjectManager::Instance().GetComponent<CoolTimeUI>();

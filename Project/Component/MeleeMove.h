@@ -35,6 +35,7 @@ namespace TMF
 		float m_playerUp = 1.0f;
 		float m_time = 0.0f;
 		float m_rotationSpeed = 1.0f;
+		DirectX::SimpleMath::Vector3 m_moveOfset = DirectX::SimpleMath::Vector3::Zero;
 		DirectX::SimpleMath::Vector3 m_targetRotationOffset = DirectX::SimpleMath::Vector3::Zero;
 		DirectX::SimpleMath::Vector3 m_rotate = DirectX::SimpleMath::Vector3::Zero;
 		DirectX::SimpleMath::Vector3 m_endPosition = DirectX::SimpleMath::Vector3::Zero;
@@ -42,7 +43,7 @@ namespace TMF
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Transform> m_pParent;
 
-		SERIALIZE_COMPONENT(m_moveSpeed, m_rotate, m_rotationOffset, m_rotationSpeed, m_targetRotationOffset);
+		SERIALIZE_COMPONENT(m_moveSpeed, m_rotate, m_rotationOffset, m_rotationSpeed, m_targetRotationOffset, m_moveOfset);
 	};
 }
 

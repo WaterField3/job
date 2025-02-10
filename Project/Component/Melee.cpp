@@ -87,7 +87,6 @@ namespace TMF
 	}
 	std::shared_ptr<Component> Melee::OnClone() const
 	{
-		// m_meleeAnimation, m_endTime, m_meleeObjectName
 		auto pClone = std::make_shared<Melee>();
 		pClone->m_meleeAnimation = this->m_meleeAnimation;
 		pClone->m_endTime = this->m_endTime;

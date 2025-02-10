@@ -123,6 +123,13 @@ namespace TMF
 				GameObjectManager::Instance().LoadObjects(m_loadObjectName);
 			}
 		}
+		if (ImGui::Button("WeponDataSave"))
+		{
+			if (!isPlay)
+			{
+				GameObjectManager::Instance().SaveObjects("WeponDatas");
+			}
+		}
 		ImGui::Checkbox("DemoWindow", &m_isDemoWindow);
 		if (m_isDemoWindow)
 		{

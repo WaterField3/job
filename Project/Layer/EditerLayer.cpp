@@ -77,7 +77,7 @@ namespace TMF
 		{
 			tracker->Update(kb);
 		}
-		if (tracker->pressed.P == true)
+		if (tracker->pressed.F9 == true)
 		{
 			auto isDrawDebug = ApplicationState::Instance().GetIsDrawDebug();
 			ApplicationState::Instance().SetIsDrawDebug(!isDrawDebug);
@@ -147,8 +147,6 @@ namespace TMF
 			ImGui::UpdatePlatformWindows();
 			ImGui::RenderPlatformWindowsDefault();
 		}
-
-		//D3D::Get()->UpdateScreen();
 	}
 	bool EditerLayer::GetIsUpdate()
 	{

@@ -19,6 +19,7 @@ namespace TMF
 {
 	void Animater::OnInitialize()
 	{
+		m_initAnimationSpeed = m_animationSpeed;
 		// アニメーションの読み込み
 		LoadAnimation();
 	}
@@ -37,6 +38,7 @@ namespace TMF
 				m_timer = 0;
 				m_fileName = m_nextPath;
 				m_animEndTime = m_nextAnimEnd;
+				m_animationSpeed = m_nextAnimationSpeed;
 				m_isNextAnimSet = false;
 				LoadAnimation();
 			}
@@ -44,6 +46,7 @@ namespace TMF
 			{
 				m_animEndTime = 1.0f;
 				m_fileName = m_idlePath;
+				m_animationSpeed = m_initAnimationSpeed;
 				LoadAnimation();
 			}
 			else
@@ -179,13 +182,17 @@ namespace TMF
 		return move(pClone);
 	}
 
-	void Animater::SetFileName(std::string fileName, float endTime)
+	void Animater::SetFileName(std::string fileName, float endTime, float animSpeed)
 	{
 		if (m_timer > m_animEndTime || m_fileName == m_idlePath)
 		{
 			m_fileName = fileName;
 			m_timer = 0.0f;
 			m_animEndTime = endTime;
+			if (animSpeed != 0.0f)
+			{
+				m_animationSpeed = animSpeed;
+			}
 			LoadAnimation();
 		}
 		else
@@ -193,6 +200,10 @@ namespace TMF
 			m_nextPath = fileName;
 			m_nextAnimEnd = endTime;
 			m_isNextAnimSet = true;
+			if (animSpeed != 0.0f)
+			{
+				m_nextAnimationSpeed = animSpeed;
+			}
 		}
 	}
 

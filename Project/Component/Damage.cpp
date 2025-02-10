@@ -18,14 +18,7 @@ namespace TMF
 {
 	void Damage::OnInitialize()
 	{
-		if (auto pLockOwner = m_pOwner.lock())
-		{
-			m_pTransform = pLockOwner->GetComponent<Transform>();
-			if (auto pLockTransform = m_pTransform.lock())
-			{
-				m_pParent = pLockTransform->GetParent();
-			}
-		}
+		OwnerCheck();
 	}
 	void Damage::OnFinalize()
 	{
@@ -46,7 +39,7 @@ namespace TMF
 		{
 
 		}
-		const char* types[] = { "Stagger","Invert","None" };
+		const char* types[] = { "Stagger", "Invert", "None" };
 		int selectIndex = (int)m_reactionType;
 		auto shapeLabel = StringHelper::CreateLabel("ReactionType", m_uuID);
 		if (ImGui::BeginCombo(shapeLabel.c_str(), types[selectIndex]))
@@ -175,10 +168,20 @@ namespace TMF
 	}
 	std::shared_ptr<Component> Damage::OnClone() const
 	{
-		//m_damage, m_reactionType
 		auto pClone = std::make_shared<Damage>();
 		pClone->m_damage = this->m_damage;
 		pClone->m_reactionType = this->m_reactionType;
 		return move(pClone);
+	}
+	void Damage::OwnerCheck()
+	{
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			m_pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = m_pTransform.lock())
+			{
+				m_pParent = pLockTransform->GetParent();
+			}
+		}
 	}
 }
