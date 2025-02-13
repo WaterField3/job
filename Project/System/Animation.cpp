@@ -13,6 +13,7 @@
 #include <cassert>
 #include <fstream>
 #include <stdexcept>
+#include <SimpleMath.h>
 
 using namespace DX;
 using namespace DirectX;
@@ -126,6 +127,65 @@ HRESULT AnimationSDKMESH::Load(_In_z_ const wchar_t* fileName)
 	return S_OK;
 }
 
+HRESULT DX::AnimationSDKMESH::Load(const wchar_t* fromFileName, const wchar_t* toFileName)
+{
+	auto status = Load(fromFileName);
+	if (status != S_OK)
+	{
+		return status;
+	}
+
+	if (!toFileName)
+		return E_INVALIDARG;
+
+	std::ifstream inFile(toFileName, std::ios::in | std::ios::binary | std::ios::ate);
+	if (!inFile)
+		return E_FAIL;
+
+	const std::streampos len = inFile.tellg();
+	if (!inFile)
+		return E_FAIL;
+
+	if (len > UINT32_MAX)
+		return HRESULT_FROM_WIN32(ERROR_FILE_TOO_LARGE);
+
+	if (static_cast<size_t>(len) < sizeof(SDKANIMATION_FILE_HEADER))
+		return HRESULT_FROM_WIN32(ERROR_HANDLE_EOF);
+
+	std::unique_ptr<uint8_t[]> blob(new (std::nothrow) uint8_t[size_t(len)]);
+	if (!blob)
+		return E_OUTOFMEMORY;
+
+	inFile.seekg(0, std::ios::beg);
+	if (!inFile)
+		return E_FAIL;
+
+	inFile.read(reinterpret_cast<char*>(blob.get()), len);
+	if (!inFile)
+		return E_FAIL;
+
+	inFile.close();
+
+	auto header = reinterpret_cast<const SDKANIMATION_FILE_HEADER*>(blob.get());
+
+	if (header->Version != SDKMESH_FILE_VERSION
+		|| header->IsBigEndian != 0
+		|| header->FrameTransformType != 0 /*FTT_RELATIVE*/
+		|| header->NumAnimationKeys == 0
+		|| header->NumFrames == 0
+		|| header->AnimationFPS == 0)
+		return HRESULT_FROM_WIN32(ERROR_NOT_SUPPORTED);
+
+	uint64_t dataSize = header->AnimationDataOffset + header->AnimationDataSize;
+	if (dataSize > uint64_t(len))
+		return HRESULT_FROM_WIN32(ERROR_HANDLE_EOF);
+
+	m_toAnimData.swap(blob);
+	//m_animSize = static_cast<size_t>(len);
+
+	return S_OK;
+}
+
 bool AnimationSDKMESH::Bind(const Model& model)
 {
 	assert(m_animData && m_animSize > 0);
@@ -215,31 +275,91 @@ void AnimationSDKMESH::Apply(
 	// Compute local bone transforms
 	auto frameData = reinterpret_cast<SDKANIMATION_FRAME_DATA*>(m_animData.get() + header->AnimationDataOffset);
 
-	for (size_t j = 0; j < nbones; ++j)
+	if (m_toAnimData)
 	{
-		if (m_boneToTrack[j] == ModelBone::c_Invalid)
-		{
-			m_animBones[j] = model.boneMatrices[j];
-		}
-		else
-		{
-			auto frame = &frameData[m_boneToTrack[j]];
-			auto data = &frame->pAnimationData[tick];
+		auto toHeader = reinterpret_cast<const SDKANIMATION_FILE_HEADER*>(m_toAnimData.get());
+		assert(toHeader->Version == SDKMESH_FILE_VERSION);
 
-			XMVECTOR quat = XMVectorSet(data->Orientation.x, data->Orientation.y, data->Orientation.z, data->Orientation.w);
-			if (XMVector4Equal(quat, g_XMZero))
-				quat = XMQuaternionIdentity();
+		auto toFrameData = reinterpret_cast<SDKANIMATION_FRAME_DATA*>(m_toAnimData.get() + toHeader->AnimationDataOffset);
+
+		for (size_t j = 0; j < nbones; ++j)
+		{
+			if (m_boneToTrack[j] == ModelBone::c_Invalid)
+			{
+				m_animBones[j] = model.boneMatrices[j];
+			}
 			else
-				quat = XMQuaternionNormalize(quat);
+			{
+				auto frame = &frameData[m_boneToTrack[j]];
+				auto data = &frame->pAnimationData[tick];
 
-			XMMATRIX trans = XMMatrixTranslation(data->Translation.x, data->Translation.y, data->Translation.z);
-			XMMATRIX rotation = XMMatrixRotationQuaternion(quat);
-			XMMATRIX scale = XMMatrixScaling(data->Scaling.x, data->Scaling.y, data->Scaling.z);
+				auto toFram = &frameData[m_boneToTrack[j]];
+				auto toData = &frameData->pAnimationData[tick];
 
-			m_animBones[j] = XMMatrixMultiply(XMMatrixMultiply(rotation, scale), trans);
+				XMVECTOR fromQuat = XMVectorSet(data->Orientation.x, data->Orientation.y, data->Orientation.z, data->Orientation.w);
+				if (XMVector4Equal(fromQuat, g_XMZero))
+					fromQuat = XMQuaternionIdentity();
+				else
+					fromQuat = XMQuaternionNormalize(fromQuat);
+
+				XMVECTOR toQuat = XMVectorSet(toData->Orientation.x, toData->Orientation.y, toData->Orientation.z, toData->Orientation.w);
+				if (XMVector4Equal(toQuat, g_XMZero))
+					toQuat = XMQuaternionIdentity();
+				else
+					toQuat = XMQuaternionNormalize(toQuat);
+
+				auto blendQuat = DirectX::SimpleMath::Quaternion::Slerp(fromQuat, toQuat, m_blendRate);
+				auto blendTrans = DirectX::SimpleMath::Vector3::Lerp(data->Translation, toData->Translation, m_blendRate);
+				auto blendScale = DirectX::SimpleMath::Vector3::Lerp(data->Scaling, toData->Scaling, m_blendRate);
+
+				auto a = XMMatrixTranslation(blendTrans.x, blendTrans.y, blendTrans.z);
+				auto b = XMMatrixRotationQuaternion(blendQuat);
+				auto c = XMMatrixScaling(blendScale.x, blendScale.y, blendScale.z);
+				m_animBones[j] = XMMatrixMultiply(XMMatrixMultiply(b, c), a);
+
+				//XMVECTOR quat = XMVectorSet(data->Orientation.x, data->Orientation.y, data->Orientation.z, data->Orientation.w);
+				//if (XMVector4Equal(quat, g_XMZero))
+				//	quat = XMQuaternionIdentity();
+				//else
+				//	quat = XMQuaternionNormalize(quat);
+
+				//XMMATRIX trans = XMMatrixTranslation(data->Translation.x, data->Translation.y, data->Translation.z);
+				//XMMATRIX rotation = XMMatrixRotationQuaternion(quat);
+				//XMMATRIX scale = XMMatrixScaling(data->Scaling.x, data->Scaling.y, data->Scaling.z);
+
+				//m_animBones[j] = XMMatrixMultiply(XMMatrixMultiply(rotation, scale), trans);
+			}
 		}
 	}
+	else
+	{
 
+
+		for (size_t j = 0; j < nbones; ++j)
+		{
+			if (m_boneToTrack[j] == ModelBone::c_Invalid)
+			{
+				m_animBones[j] = model.boneMatrices[j];
+			}
+			else
+			{
+				auto frame = &frameData[m_boneToTrack[j]];
+				auto data = &frame->pAnimationData[tick];
+
+				XMVECTOR quat = XMVectorSet(data->Orientation.x, data->Orientation.y, data->Orientation.z, data->Orientation.w);
+				if (XMVector4Equal(quat, g_XMZero))
+					quat = XMQuaternionIdentity();
+				else
+					quat = XMQuaternionNormalize(quat);
+
+				XMMATRIX trans = XMMatrixTranslation(data->Translation.x, data->Translation.y, data->Translation.z);
+				XMMATRIX rotation = XMMatrixRotationQuaternion(quat);
+				XMMATRIX scale = XMMatrixScaling(data->Scaling.x, data->Scaling.y, data->Scaling.z);
+
+				m_animBones[j] = XMMatrixMultiply(XMMatrixMultiply(rotation, scale), trans);
+			}
+		}
+	}
 	// Compute absolute locations
 	model.CopyAbsoluteBoneTransforms(nbones, m_animBones.get(), boneTransforms);
 

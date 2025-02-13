@@ -36,22 +36,23 @@ namespace TMF
 			if (m_isNextAnimSet == true)
 			{
 				m_timer = 0;
-				m_fileName = m_nextPath;
+				m_fromAnimName = m_nextPath;
 				m_animEndTime = m_nextAnimEnd;
 				m_animationSpeed = m_nextAnimationSpeed;
 				m_isNextAnimSet = false;
 				LoadAnimation();
 			}
-			else if (m_fileName != m_idlePath)
+			else if (m_fromAnimName != m_idlePath)
 			{
 				m_animEndTime = 1.0f;
-				m_fileName = m_idlePath;
+				m_fromAnimName = m_idlePath;
 				m_animationSpeed = m_initAnimationSpeed;
 				LoadAnimation();
 			}
 			else
 			{
 				m_timer = 0;
+				//m_animationBlendRate = 0.0f;
 			}
 		}
 		auto deltaTime = Timer::Instance().deltaTime.count();
@@ -64,6 +65,15 @@ namespace TMF
 			m_pAnimationSDKMESH->Update(deltaTime * m_animationSpeed);
 		}
 		m_timer += deltaTime * m_animationSpeed;
+		//m_animationBlendRate += deltaTime;
+		if (m_pAnimationSDKMESH)
+		{
+			m_pAnimationSDKMESH->SetBlendRate(m_animationBlendRate);
+		}
+		//if (m_animationBlendRate > 1)
+		//{
+		//	m_animationBlendRate = 0.0f;
+		//}
 	}
 
 	void Animater::OnLateUpdate()
@@ -119,12 +129,20 @@ namespace TMF
 	void Animater::OnDrawImGui()
 	{
 		char buf[256] = "";
-		strcpy_s(buf, sizeof(buf), m_fileName.c_str());
-		auto label = StringHelper::CreateLabel("FileName", m_uuID);
+		strcpy_s(buf, sizeof(buf), m_fromAnimName.c_str());
+		auto label = StringHelper::CreateLabel("FromAnimName", m_uuID);
 		if (ImGui::InputText(label.c_str(), buf, 256))
 		{
-			m_fileName = buf;
+			m_fromAnimName = buf;
 		}
+		char toBuf[256] = "";
+		strcpy_s(toBuf, sizeof(toBuf), m_toAnimName.c_str());
+		auto toAnimlabel = StringHelper::CreateLabel("ToAnimName", m_uuID);
+		if (ImGui::InputText(toAnimlabel.c_str(), toBuf, 256))
+		{
+			m_toAnimName = toBuf;
+		}
+
 		char idleBuf[256] = "";
 		strcpy_s(idleBuf, sizeof(idleBuf), m_idlePath.c_str());
 		auto idleLabel = StringHelper::CreateLabel("IdlePath", m_uuID);
@@ -136,6 +154,15 @@ namespace TMF
 		if (ImGui::DragFloat(animSpeedLabel.c_str(), &m_animationSpeed, 0.1f))
 		{
 
+		}
+
+		auto animBlendRateLabel = StringHelper::CreateLabel("BlendRate",m_uuID);
+		if (ImGui::DragFloat(animBlendRateLabel.c_str(), &m_animationBlendRate, 0.1f))
+		{
+			if (m_pAnimationSDKMESH)
+			{
+				m_pAnimationSDKMESH->SetBlendRate(m_animationBlendRate);
+			}
 		}
 		auto loadCMOLabel = StringHelper::CreateLabel("LoadCmo", m_uuID);
 		if (ImGui::Button(loadCMOLabel.c_str()))
@@ -175,7 +202,7 @@ namespace TMF
 	std::shared_ptr<Component> Animater::OnClone() const
 	{
 		auto pClone = std::make_shared<Animater>();
-		pClone->m_fileName = this->m_fileName;
+		pClone->m_fromAnimName = this->m_fromAnimName;
 		pClone->m_idlePath = this->m_idlePath;
 		pClone->m_animationSpeed = this->m_animationSpeed;
 		pClone->m_isAnimation = this->m_isAnimation;
@@ -184,9 +211,9 @@ namespace TMF
 
 	void Animater::SetFileName(std::string fileName, float endTime, float animSpeed)
 	{
-		if (m_timer > m_animEndTime || m_fileName == m_idlePath)
+		if (m_timer > m_animEndTime || m_fromAnimName == m_idlePath)
 		{
-			m_fileName = fileName;
+			m_fromAnimName = fileName;
 			m_timer = 0.0f;
 			m_animEndTime = endTime;
 			if (animSpeed != 0.0f)
@@ -275,7 +302,7 @@ namespace TMF
 		if (auto pLockModel = pModel.lock())
 		{
 			auto model = pLockModel->GetModel();
-			if (m_fileName == "")
+			if (m_fromAnimName == "")
 			{
 				return;
 			}
@@ -285,7 +312,7 @@ namespace TMF
 			{
 				try
 				{
-					auto wideString = std::wstring(m_fileName.begin(), m_fileName.end());
+					auto wideString = std::wstring(m_fromAnimName.begin(), m_fromAnimName.end());
 					m_boneSize = lockModel->bones.size();
 					m_pAnimationCMO = std::make_unique<DX::AnimationCMO>();
 					m_pAnimationCMO->Load(wideString.c_str(), m_animOffset);
@@ -313,7 +340,7 @@ namespace TMF
 		if (auto pLockModel = pModel.lock())
 		{
 			auto model = pLockModel->GetModel();
-			if (m_fileName == "")
+			if (m_fromAnimName == "")
 			{
 				return;
 			}
@@ -323,10 +350,18 @@ namespace TMF
 			{
 				try
 				{
-					auto wideString = std::wstring(m_fileName.begin(), m_fileName.end());
+					auto wideString = std::wstring(m_fromAnimName.begin(), m_fromAnimName.end());
 					m_boneSize = lockModel->bones.size();
 					m_pAnimationSDKMESH = std::make_unique<DX::AnimationSDKMESH>();
-					m_pAnimationSDKMESH->Load(wideString.c_str());
+					if (m_toAnimName == "")
+					{
+						m_pAnimationSDKMESH->Load(wideString.c_str());
+					}
+					else
+					{
+						auto toAnimWideString = std::wstring(m_toAnimName.begin(), m_toAnimName.end());
+						m_pAnimationSDKMESH->Load(wideString.c_str(), toAnimWideString.c_str());
+					}
 					m_pAnimationSDKMESH->Bind(*lockModel);
 					m_drawBone = DirectX::ModelBone::MakeArray(m_boneSize);
 					m_timer = 0;

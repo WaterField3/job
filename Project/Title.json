@@ -989,7 +989,79 @@
                                             "m_isEnable": true
                                         },
                                         "m_meleeAnimation": "wwww",
-                                        "m_endTime": 0.0
+                                        "m_endTime": 0.0,
+                                        "m_animationSpeed": 1.0
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483691,
+                    "data": {
+                        "m_name": "Audio",
+                        "m_uuID": {
+                            "uuid": "7fbf6e9d-b6a9-4f9d-ba3f-136769f7974b"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483692,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "5204b8e3-ffce-487c-acd1-7d8350671688"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483664,
+                                "polymorphic_name": "TMF::Audio",
+                                "ptr_wrapper": {
+                                    "id": 2147483693,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "177e5468-4a1c-4456-8167-b5eb91089800"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_soundName": "asset/sound/bgm/n51.wav",
+                                        "m_volume": 1.0,
+                                        "m_pitch": 0.0,
+                                        "m_pan": 0.0,
+                                        "m_isLoop": false,
+                                        "m_isStartPlay": true
                                     }
                                 }
                             }

@@ -34,12 +34,14 @@ namespace DX
 		AnimationSDKMESH& operator= (AnimationSDKMESH const&) = delete;
 
 		HRESULT Load(_In_z_ const wchar_t* fileName);
+		HRESULT Load(_In_z_ const wchar_t* fromFileName, _In_z_ const wchar_t* toFileName);
 
 		void Release()
 		{
 			m_animTime = 0.0;
 			m_animSize = 0;
 			m_animData.reset();
+			m_toAnimData.reset();
 			m_boneToTrack.clear();
 			m_animBones.reset();
 		}
@@ -70,6 +72,8 @@ namespace DX
 			};
 		};
 
+		void SetBlendRate(const float blendRate) { m_blendRate = blendRate; }
+
 		SDKANIMATION_FRAME_DATA& GetFrameData(const DirectX::Model& model, size_t nbones, std::string boneName);
 
 	private:
@@ -78,6 +82,10 @@ namespace DX
 		size_t                              m_animSize;
 		std::vector<uint32_t>               m_boneToTrack;
 		DirectX::ModelBone::TransformArray  m_animBones;
+
+		
+		std::unique_ptr<uint8_t[]>          m_toAnimData;
+		float                               m_blendRate;
 	};
 
 	class AnimationCMO

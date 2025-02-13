@@ -32,10 +32,18 @@ namespace TMF
 		}
 		if (auto pLockAudioEngine = m_pAudioEngine.lock())
 		{
-			m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(pLockAudioEngine.get(), ChangeWideString().c_str());
+			Load(m_soundName);
+			auto wideStringSoundName = std::wstring(m_soundName.begin(), m_soundName.end());
+			m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(pLockAudioEngine.get(), wideStringSoundName.c_str());
+			// Å‰‚É‚È‚ç‚·‚Ì‚ªÝ’è‚³‚ê‚Ä‚¢‚é‚©
+			if (m_isStartPlay == true)
+			{
+				Play();
+			}
 		}
 
 	}
+
 
 	void Audio::OnFinalize()
 	{
@@ -103,6 +111,11 @@ namespace TMF
 		{
 
 		}
+		auto isStarPlayLabel = StringHelper::CreateLabel("IsStartPlay", m_uuID);
+		if (ImGui::Checkbox(isStarPlayLabel.c_str(), &m_isStartPlay))
+		{
+
+		}
 		if (ImGui::Button("Play"))
 		{
 			Play();
@@ -134,6 +147,7 @@ namespace TMF
 		pClone->m_pitch = this->m_pitch;
 		pClone->m_pan = this->m_pan;
 		pClone->m_isLoop = this->m_isLoop;
+		pClone->m_isStartPlay = this->m_isStartPlay;
 		return move(pClone);
 	}
 
@@ -141,7 +155,12 @@ namespace TMF
 	{
 		if (auto pLockAudioEngine = m_pAudioEngine.lock())
 		{
-			m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(pLockAudioEngine.get(), ChangeWideString().c_str());
+			if (soundName != "")
+			{
+				m_soundName = soundName;
+			}
+			auto wideStringSoundName = std::wstring(m_soundName.begin(), m_soundName.end());
+			m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(pLockAudioEngine.get(), wideStringSoundName.c_str());
 		}
 	}
 
@@ -176,11 +195,5 @@ namespace TMF
 		{
 			m_pSoundEffectInstance->Resume();
 		}
-	}
-
-	std::wstring Audio::ChangeWideString()
-	{
-		auto wideString = std::wstring(m_soundName.begin(), m_soundName.end());
-		return wideString;
 	}
 }

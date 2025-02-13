@@ -32,7 +32,7 @@ namespace TMF
 			{
 
 				auto colShape = col->GetCollisionShape();
-				auto inertia = btVector3(1, 1, 1);
+				auto inertia = btVector3(0, 0, 0);
 
 				if (auto usefullColShape = colShape.lock())
 				{

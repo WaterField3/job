@@ -42,6 +42,7 @@ namespace TMF
 		bool m_isNextAnimSet = false;
 		bool m_isBindBone = false;
 		float m_animationSpeed = 1.0f;
+		float m_animationBlendRate = 1.0f;
 		float m_initAnimationSpeed = 1.0f;
 		float m_nextAnimationSpeed = 1.0f;
 		float m_timer = 0;
@@ -49,7 +50,8 @@ namespace TMF
 		float m_nextAnimEnd = 0;
 		size_t m_animOffset = 0;
 		size_t m_boneSize = 0;
-		std::string m_fileName = "";
+		std::string m_fromAnimName = "";
+		std::string m_toAnimName = "";
 		std::string m_idlePath = "";
 		std::string m_nextPath = "";
 		std::string m_bindName = "";
@@ -61,6 +63,6 @@ namespace TMF
 		std::weak_ptr<DirectX::Model> m_pModel;
 
 
-		SERIALIZE_COMPONENT(m_fileName ,m_idlePath, m_animationSpeed, m_isAnimation);
+		SERIALIZE_COMPONENT(m_fromAnimName ,m_idlePath, m_animationSpeed, m_isAnimation, m_toAnimName, m_animationBlendRate);
 	};
 }

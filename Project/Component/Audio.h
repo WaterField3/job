@@ -26,23 +26,23 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void Load(std::string soundName);
+		void Load(std::string soundName = "");
 		void Play();
 		void Stop();
 		void Pause();
 		void Resume();
 
 	private:
-		std::wstring ChangeWideString();
 		std::weak_ptr<DirectX::AudioEngine> m_pAudioEngine;
 		std::unique_ptr<DirectX::SoundEffect> m_pSoundEffect;
 		std::unique_ptr<DirectX::SoundEffectInstance> m_pSoundEffectInstance;
-		std::string m_soundName = "C:/Users/temet/Downloads/maou_game_battle21.wav";
+		std::string m_soundName = "";
 		float m_volume = 1;
 		float m_pitch = 0;
 		float m_pan = 0;
 		bool m_isLoop = false;
-		SERIALIZE_COMPONENT(m_soundName, m_volume, m_pitch, m_pan, m_isLoop);
+		bool m_isStartPlay = false;
+		SERIALIZE_COMPONENT(m_soundName, m_volume, m_pitch, m_pan, m_isLoop, m_isStartPlay);
 
 	};
 }
