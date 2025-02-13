@@ -70,10 +70,10 @@ namespace TMF
 		{
 			m_pAnimationSDKMESH->SetBlendRate(m_animationBlendRate);
 		}
-		//if (m_animationBlendRate > 1)
-		//{
-		//	m_animationBlendRate = 0.0f;
-		//}
+		if (m_animationBlendRate > 1)
+		{
+			m_animationBlendRate = 0.0f;
+		}
 	}
 
 	void Animater::OnLateUpdate()
@@ -92,7 +92,6 @@ namespace TMF
 		auto view = DirectX::SimpleMath::Matrix::Identity;
 		auto proj = DirectX::SimpleMath::Matrix::Identity;
 		auto pCamera = GameObjectManager::Instance().GetComponent<Camera>();
-		//auto pCamera = GameObjectManager::Instance().GetComponent<FreeCamera>();
 		if (auto pLockCamera = pCamera.lock())
 		{
 			view = pLockCamera->GetViewMatrix();

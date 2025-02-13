@@ -633,7 +633,8 @@
                                         "m_volume": 1.0,
                                         "m_pitch": 0.0,
                                         "m_pan": 0.0,
-                                        "m_isLoop": false
+                                        "m_isLoop": false,
+                                        "m_isStartPlay": false
                                     }
                                 }
                             },
@@ -841,7 +842,8 @@
                                         "m_volume": 0.10000000149011612,
                                         "m_pitch": 0.0,
                                         "m_pan": 0.0,
-                                        "m_isLoop": false
+                                        "m_isLoop": false,
+                                        "m_isStartPlay": false
                                     }
                                 }
                             },

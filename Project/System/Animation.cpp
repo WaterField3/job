@@ -127,7 +127,7 @@ HRESULT AnimationSDKMESH::Load(_In_z_ const wchar_t* fileName)
 	return S_OK;
 }
 
-HRESULT DX::AnimationSDKMESH::Load(const wchar_t* fromFileName, const wchar_t* toFileName)
+HRESULT AnimationSDKMESH::Load(_In_z_ const wchar_t* fromFileName, _In_z_ const wchar_t* toFileName)
 {
 	auto status = Load(fromFileName);
 	if (status != S_OK)
@@ -234,6 +234,41 @@ bool AnimationSDKMESH::Bind(const Model& model)
 
 	m_animBones = ModelBone::MakeArray(model.bones.size());
 
+	if (result == true && m_toAnimData)
+	{
+		auto toHeader = reinterpret_cast<const SDKANIMATION_FILE_HEADER*>(m_toAnimData.get());
+		assert(toHeader->Version == SDKMESH_FILE_VERSION);
+		auto toFrameData = reinterpret_cast<SDKANIMATION_FRAME_DATA*>(m_toAnimData.get() + toHeader->AnimationDataOffset);
+
+		bool result = false;
+
+		for (size_t j = 0; j < toHeader->NumFrames; ++j)
+		{
+			uint64_t offset = sizeof(SDKANIMATION_FILE_HEADER) + toFrameData[j].DataOffset;
+			uint64_t end = offset + sizeof(SDKANIMATION_DATA) * uint64_t(toHeader->NumAnimationKeys);
+			if (end > UINT32_MAX
+				|| end > m_animSize)
+				throw std::runtime_error("Animation file invalid");
+
+			toFrameData[j].pAnimationData = reinterpret_cast<SDKANIMATION_DATA*>(m_toAnimData.get() + offset);
+
+			wchar_t toFrameName[MAX_FRAME_NAME] = {};
+			MultiByteToWideChar(CP_UTF8, 0, toFrameData[j].FrameName, -1, toFrameName, MAX_FRAME_NAME);
+
+			size_t count = 0;
+			for (const auto& it : model.bones)
+			{
+				if (_wcsicmp(toFrameName, it.name.c_str()) == 0)
+				{
+					//m_boneToTrack[count] = static_cast<uint32_t>(j);
+					result = true;
+					break;
+				}
+
+				++count;
+			}
+		}
+	}
 	return result;
 }
 
@@ -293,8 +328,8 @@ void AnimationSDKMESH::Apply(
 				auto frame = &frameData[m_boneToTrack[j]];
 				auto data = &frame->pAnimationData[tick];
 
-				auto toFram = &frameData[m_boneToTrack[j]];
-				auto toData = &frameData->pAnimationData[tick];
+				auto toFrame = &toFrameData[m_boneToTrack[j]];
+				auto toData = &toFrame->pAnimationData[tick];
 
 				XMVECTOR fromQuat = XMVectorSet(data->Orientation.x, data->Orientation.y, data->Orientation.z, data->Orientation.w);
 				if (XMVector4Equal(fromQuat, g_XMZero))
@@ -312,29 +347,15 @@ void AnimationSDKMESH::Apply(
 				auto blendTrans = DirectX::SimpleMath::Vector3::Lerp(data->Translation, toData->Translation, m_blendRate);
 				auto blendScale = DirectX::SimpleMath::Vector3::Lerp(data->Scaling, toData->Scaling, m_blendRate);
 
-				auto a = XMMatrixTranslation(blendTrans.x, blendTrans.y, blendTrans.z);
-				auto b = XMMatrixRotationQuaternion(blendQuat);
-				auto c = XMMatrixScaling(blendScale.x, blendScale.y, blendScale.z);
-				m_animBones[j] = XMMatrixMultiply(XMMatrixMultiply(b, c), a);
-
-				//XMVECTOR quat = XMVectorSet(data->Orientation.x, data->Orientation.y, data->Orientation.z, data->Orientation.w);
-				//if (XMVector4Equal(quat, g_XMZero))
-				//	quat = XMQuaternionIdentity();
-				//else
-				//	quat = XMQuaternionNormalize(quat);
-
-				//XMMATRIX trans = XMMatrixTranslation(data->Translation.x, data->Translation.y, data->Translation.z);
-				//XMMATRIX rotation = XMMatrixRotationQuaternion(quat);
-				//XMMATRIX scale = XMMatrixScaling(data->Scaling.x, data->Scaling.y, data->Scaling.z);
-
-				//m_animBones[j] = XMMatrixMultiply(XMMatrixMultiply(rotation, scale), trans);
+				auto trans = XMMatrixTranslation(blendTrans.x, blendTrans.y, blendTrans.z);
+				auto rotation = XMMatrixRotationQuaternion(blendQuat);
+				auto scale = XMMatrixScaling(blendScale.x, blendScale.y, blendScale.z);
+				m_animBones[j] = XMMatrixMultiply(XMMatrixMultiply(rotation, scale), trans);
 			}
 		}
 	}
 	else
 	{
-
-
 		for (size_t j = 0; j < nbones; ++j)
 		{
 			if (m_boneToTrack[j] == ModelBone::c_Invalid)

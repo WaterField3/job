@@ -96,16 +96,20 @@ namespace TMF
 			{
 				if (auto pLockOwner = m_pOwner.lock())
 				{
+					// Audio‚ðŽæ“¾
 					auto pAudio = pLockOwner->GetComponent<Audio>();
 					if (auto pLockAudio = pAudio.lock())
 					{
+						// ‰¹‚ð–Â‚ç‚·
 						pLockAudio->Play();
 					}
+					// Effect‚ðŽæ“¾
 					auto pEffect = pLockOwner->GetComponent<Effect>();
 					if (auto pLockEffect = pEffect.lock())
 					{
 						pLockEffect->Play();
 					}
+
 					auto pPlayerStatus = pGameObject->GetComponent<PlayerStatus>();
 					if (auto pLockPlayerStatus = pPlayerStatus.lock())
 					{
