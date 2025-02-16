@@ -31,7 +31,7 @@ namespace TMF
 				m_isDodgeMove = false;
 				m_timer = 0.0f;
 
-						m_isDodgeEnd = true;
+				m_isDodgeEnd = true;
 				return;
 			}
 			m_timer += Timer::Instance().deltaTime.count();
@@ -203,6 +203,7 @@ namespace TMF
 				if (auto pLockPlayerStatus = pPlayerStatus.lock())
 				{
 					pLockPlayerStatus->SetIsInvincible(true);
+					return true;
 				}
 			}
 			return true;

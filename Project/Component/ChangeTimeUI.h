@@ -1,5 +1,5 @@
 #pragma once
-#include "WeponUI.h"
+#include "WeaponUI.h"
 
 #include <wrl.h>
 
@@ -8,8 +8,8 @@
 struct ID3D11ShaderResourceView;
 namespace TMF
 {
-	class WeponBase;
-	class ChangeTimeUI : public WeponUI
+	class WeaponBase;
+	class ChangeTimeUI : public WeaponUI
 	{
 	public:
 		void OnInitialize() override;
@@ -19,7 +19,7 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void OnSetSelectWepon(std::weak_ptr<WeponBase> pWepon) override;
+		void OnSetSelectWepon(std::weak_ptr<WeaponBase> pWeapon) override;
 
 	private:
 	};

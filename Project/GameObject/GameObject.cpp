@@ -58,6 +58,7 @@ namespace TMF
 	{
 		for (auto& component : m_pComponents)
 		{
+			// コンポーネントが無いもしくはデータを読み込んだ時は実行しない
 			if (m_pComponents.size() == 0 || GameObjectManager::Instance().GetIsLoaded() == true)
 			{
 				break;
@@ -189,7 +190,7 @@ namespace TMF
 	{
 		for (auto& component : m_pComponents)
 		{
-			component->TrigerEnter(pGameObject);
+			component->TriggerEnter(pGameObject);
 		}
 	}
 
@@ -197,7 +198,7 @@ namespace TMF
 	{
 		for (auto& component : m_pComponents)
 		{
-			component->TrigerStay(pGameObject);
+			component->TriggerStay(pGameObject);
 		}
 	}
 
@@ -205,7 +206,7 @@ namespace TMF
 	{
 		for (auto& component : m_pComponents)
 		{
-			component->TrigerExit(pGameObject);
+			component->TriggerExit(pGameObject);
 		}
 	}
 

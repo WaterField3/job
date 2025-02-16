@@ -6,7 +6,7 @@
 #include "Utility/StringHelper.h"
 #include "ComponentRegister.h"
 #include "GameObject/GameObjectManager.h"
-#include "WeponBase.h"
+#include "WeaponBase.h"
 
 REGISTER_COMPONENT(TMF::ReloadUI, "ReloadUI");
 
@@ -37,7 +37,7 @@ namespace TMF
 		auto pSpriteBatch = D3D::Get()->GetSpriteBatch();
 		if (auto pLockSpriteBatch = pSpriteBatch.lock())
 		{
-			if (auto pLockWepon = m_pWepon.lock())
+			if (auto pLockWepon = m_pWeapon.lock())
 			{
 				auto currentValue = pLockWepon->GetReloadTime();
 				auto maxValue = pLockWepon->GetReloadMaxTime();
@@ -123,11 +123,11 @@ namespace TMF
 		pClone->m_drawPosition = this->m_drawPosition;
 		return move(pClone);
 	}
-	void ReloadUI::OnSetSelectWepon(std::weak_ptr<WeponBase> wepon)
+	void ReloadUI::OnSetSelectWepon(std::weak_ptr<WeaponBase> wepon)
 	{
 		if (auto pLockWepon = wepon.lock())
 		{
-			m_pWepon = pLockWepon;
+			m_pWeapon = pLockWepon;
 		}
 	}
 }

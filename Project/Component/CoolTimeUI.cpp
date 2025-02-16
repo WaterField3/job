@@ -6,7 +6,7 @@
 #include "ComponentRegister.h"
 #include "GameObject/GameObjectManager.h"
 #include "Utility/StringHelper.h"
-#include "WeponBase.h"
+#include "WeaponBase.h"
 
 REGISTER_COMPONENT(TMF::CoolTimeUI, "CoolTimeUI");
 
@@ -37,7 +37,7 @@ namespace TMF
 		auto pSpriteBatch = D3D::Get()->GetSpriteBatch();
 		if (auto pLockSpriteBatch = pSpriteBatch.lock())
 		{
-			if (auto pLockWepon = m_pWepon.lock())
+			if (auto pLockWepon = m_pWeapon.lock())
 			{
 				auto currentValue = pLockWepon->GetCurrentCollTime();;
 				auto maxValue = pLockWepon->GetCoolTime();
@@ -126,8 +126,8 @@ namespace TMF
 		pClone->m_drawPosition = this->m_drawPosition;
 		return move(pClone);
 	}
-	void CoolTimeUI::OnSetSelectWepon(std::weak_ptr<WeponBase> pWepon)
+	void CoolTimeUI::OnSetSelectWepon(std::weak_ptr<WeaponBase> pWepon)
 	{
-		m_pWepon = pWepon;
+		m_pWeapon = pWepon;
 	}
 }

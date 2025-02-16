@@ -6,8 +6,8 @@
 namespace TMF
 {
 	class Font;
-	class WeponBase;
-	class WeponUI : public UIBase
+	class WeaponBase;
+	class WeaponUI : public UIBase
 	{
 	public:
 		void OnInitialize() override;
@@ -18,13 +18,13 @@ namespace TMF
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
 
-		void SetSelectWepon(std::weak_ptr<WeponBase> wepon);
+		void SetSelectWepon(std::weak_ptr<WeaponBase> weapon);
 
 	protected:
-		virtual void OnSetSelectWepon(std::weak_ptr<WeponBase> wepon);
+		virtual void OnSetSelectWepon(std::weak_ptr<WeaponBase> weapon);
 
 	protected:
-		std::weak_ptr<WeponBase> m_pWepon;
+		std::weak_ptr<WeaponBase> m_pWeapon;
 
 		//SERIALIZE_COMPONENT();
 	};

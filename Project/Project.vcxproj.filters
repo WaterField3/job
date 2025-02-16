@@ -321,7 +321,7 @@
     <ClCompile Include="Component\MeleeFollowMove.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Component\WeponUI.cpp">
+    <ClCompile Include="Component\WeaponUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Component\ReloadUI.cpp">
@@ -336,7 +336,7 @@
     <ClCompile Include="Component\GetWepon.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Component\WeponBase.cpp">
+    <ClCompile Include="Component\WeaponBase.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Component\Sword.cpp">
@@ -348,7 +348,7 @@
     <ClCompile Include="Component\UIBase.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Component\WeponInfoUI.cpp">
+    <ClCompile Include="Component\WeaponInfoUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1148,7 +1148,7 @@
     <ClInclude Include="Component\MeleeFollowMove.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Component\WeponUI.h">
+    <ClInclude Include="Component\WeaponUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Component\ReloadUI.h">
@@ -1163,7 +1163,7 @@
     <ClInclude Include="Component\GetWepon.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Component\WeponBase.h">
+    <ClInclude Include="Component\WeaponBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Component\Sword.h">
@@ -1175,7 +1175,7 @@
     <ClInclude Include="Component\UIBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Component\WeponInfoUI.h">
+    <ClInclude Include="Component\WeaponInfoUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

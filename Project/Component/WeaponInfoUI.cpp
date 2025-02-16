@@ -1,21 +1,21 @@
-#include "WeponInfoUI.h"
+#include "WeaponInfoUI.h"
 
 #include "Imgui/imgui.h"
 
 #include "GameObject/GameObject.h"
 #include "ComponentRegister.h"
 #include "Utility/StringHelper.h"
-#include "WeponBase.h"
+#include "WeaponBase.h"
 #include "Font.h"
 
-REGISTER_COMPONENT(TMF::WeponInfoUI, "WeponInfoUI");
+REGISTER_COMPONENT(TMF::WeaponInfoUI, "WeaponInfoUI");
 
 namespace TMF
 {
-	void WeponInfoUI::OnInitialize()
+	void WeaponInfoUI::OnInitialize()
 	{
 		// 生成されていなければ生成する
-		if (m_pWeponBulletNumFont.expired() == true && m_pWeponNameFont.expired() == true)
+		if (m_pWeaponBulletNumFont.expired() == true && m_pWeaponNameFont.expired() == true)
 		{
 			if (auto pLockOwner = m_pOwner.lock())
 			{
@@ -24,30 +24,30 @@ namespace TMF
 				{
 					if (auto pLockWeponFont = pFonts[0].lock())
 					{
-						m_pWeponNameFont = pLockWeponFont;
+						m_pWeaponNameFont = pLockWeponFont;
 					}
 					if (auto pLockBulletNumFont = pFonts[1].lock())
 					{
-						m_pWeponBulletNumFont = pLockBulletNumFont;
+						m_pWeaponBulletNumFont = pLockBulletNumFont;
 					}
 				}
 			}
 		}
 	}
-	void WeponInfoUI::OnFinalize()
+	void WeaponInfoUI::OnFinalize()
 	{
 	}
-	void WeponInfoUI::OnUpdate()
+	void WeaponInfoUI::OnUpdate()
 	{
-		if (auto pLockWepon = m_pWeponNameFont.lock())
+		if (auto pLockWepon = m_pWeaponNameFont.lock())
 		{
-			pLockWepon->SetText(m_weponName);
+			pLockWepon->SetText(m_weaponName);
 		}
-		if (auto pLockWepon = m_pWepon.lock())
+		if (auto pLockWepon = m_pWeapon.lock())
 		{
 			m_bulletNum = pLockWepon->GetBulletNum();
 		}
-		if (auto pLockWeponBulletNumFont = m_pWeponBulletNumFont.lock())
+		if (auto pLockWeponBulletNumFont = m_pWeaponBulletNumFont.lock())
 		{
 			// 近接武器が選択されているか
 			if (m_bulletNum == -1)
@@ -61,13 +61,13 @@ namespace TMF
 			}
 		}
 	}
-	void WeponInfoUI::OnLateUpdate()
+	void WeaponInfoUI::OnLateUpdate()
 	{
 	}
-	void WeponInfoUI::OnDraw()
+	void WeaponInfoUI::OnDraw()
 	{
 	}
-	void WeponInfoUI::OnDrawImGui()
+	void WeaponInfoUI::OnDrawImGui()
 	{
 		char barTextureNameBuf[256] = "";
 		strcpy_s(barTextureNameBuf, sizeof(barTextureNameBuf), m_barTextureName.c_str());
@@ -92,26 +92,26 @@ namespace TMF
 
 		}
 	}
-	std::shared_ptr<Component> WeponInfoUI::OnClone() const
+	std::shared_ptr<Component> WeaponInfoUI::OnClone() const
 	{
-		auto pClone = std::make_shared<WeponInfoUI>();
+		auto pClone = std::make_shared<WeaponInfoUI>();
 		return move(pClone);
 	}
-	void WeponInfoUI::OnSetSelectWepon(std::weak_ptr<WeponBase> pWepon)
+	void WeaponInfoUI::OnSetSelectWepon(std::weak_ptr<WeaponBase> pWepon)
 	{
 		m_maxBulletNum = 1;
 		m_bulletNum = 0;
 		if (auto pLockWepon = pWepon.lock())
 		{
 			// 武器の情報を取得
-			m_pWepon = pLockWepon;
+			m_pWeapon = pLockWepon;
 			m_bulletNum = pLockWepon->GetBulletNum();
 			m_maxBulletNum = pLockWepon->GetBulletMaxNum();
 			// オブジェクトの名前を取得
 			auto pWeponOwner = pLockWepon->GetOwner();
 			if (auto pLockWeponOwner = pWeponOwner.lock())
 			{
-				m_weponName = pLockWeponOwner->GetName();
+				m_weaponName = pLockWeponOwner->GetName();
 			}
 		}
 	}

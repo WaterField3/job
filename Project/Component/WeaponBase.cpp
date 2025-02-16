@@ -1,4 +1,4 @@
-#include "WeponBase.h"
+#include "WeaponBase.h"
 
 #include "GameObject/GameObject.h"
 #include "Transform.h"
@@ -6,45 +6,45 @@
 
 namespace TMF
 {
-	void WeponBase::OnInitialize()
+	void WeaponBase::OnInitialize()
 	{
 	}
-	void WeponBase::OnFinalize()
+	void WeaponBase::OnFinalize()
 	{
 	}
-	void WeponBase::OnUpdate()
+	void WeaponBase::OnUpdate()
 	{
 	}
-	void WeponBase::OnLateUpdate()
+	void WeaponBase::OnLateUpdate()
 	{
 	}
-	void WeponBase::OnDraw()
+	void WeaponBase::OnDraw()
 	{
 	}
-	void WeponBase::OnDrawImGui()
+	void WeaponBase::OnDrawImGui()
 	{
 	}
-	std::shared_ptr<Component> WeponBase::OnClone() const
+	std::shared_ptr<Component> WeaponBase::OnClone() const
 	{
-		auto pClone = std::make_shared<WeponBase>();
+		auto pClone = std::make_shared<WeaponBase>();
 		return move(pClone);
 	}
-	void WeponBase::Play()
+	void WeaponBase::Play()
 	{
 		OnAttack();
 	}
-	void WeponBase::OnAttack()
+	void WeaponBase::OnAttack()
 	{
 
 	}
-	void WeponBase::Select()
+	void WeaponBase::Select()
 	{
 		OnSelect();
 	}
-	void WeponBase::OnSelect()
+	void WeaponBase::OnSelect()
 	{
 	}
-	void WeponBase::OwnerWeponCheck()
+	void WeaponBase::OwnerWeponCheck()
 	{
 		if (auto pLockOwner = m_pOwner.lock())
 		{

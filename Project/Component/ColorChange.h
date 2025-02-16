@@ -19,9 +19,9 @@ namespace TMF
 		void OnCollisionEnter(GameObject* pGameObject) override;
 		void OnCollisionStay(GameObject* pGameObject) override;
 		void OnCollisionExit(GameObject* pGameObject) override;
-		void OnTrigerEnter(GameObject* pGameObject) override;
-		void OnTrigerStay(GameObject* pGameObject) override;
-		void OnTrigerExit(GameObject* pGameObject) override;
+		void OnTriggerEnter(GameObject* pGameObject) override;
+		void OnTriggerStay(GameObject* pGameObject) override;
+		void OnTriggerExit(GameObject* pGameObject) override;
 
 	private:
 		std::weak_ptr<PrimitiveMesh> m_pPrimitiveMesh;

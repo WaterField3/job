@@ -5,7 +5,7 @@
 
 namespace TMF
 {
-	class WeponBase : public Component
+	class WeaponBase : public Component
 	{
 	public:
 		void OnInitialize() override;

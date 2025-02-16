@@ -279,9 +279,9 @@
     <ClCompile Include="Vender\Imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="Vender\Imgui\imgui_tables.cpp" />
     <ClCompile Include="Vender\Imgui\imgui_widgets.cpp" />
-    <ClCompile Include="Component\WeponUI.cpp" />
-    <ClCompile Include="Component\WeponBase.cpp" />
-    <ClCompile Include="Component\WeponInfoUI.cpp" />
+    <ClCompile Include="Component\WeaponUI.cpp" />
+    <ClCompile Include="Component\WeaponBase.cpp" />
+    <ClCompile Include="Component\WeaponInfoUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationData.h" />
@@ -556,9 +556,9 @@
     <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="VertexShader.h" />
     <ClInclude Include="WaveFrontReader.h" />
-    <ClInclude Include="Component\WeponUI.h" />
-    <ClInclude Include="Component\WeponBase.h" />
-    <ClInclude Include="Component\WeponInfoUI.h" />
+    <ClInclude Include="Component\WeaponUI.h" />
+    <ClInclude Include="Component\WeaponBase.h" />
+    <ClInclude Include="Component\WeaponInfoUI.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="BloomCombine.hlsl">

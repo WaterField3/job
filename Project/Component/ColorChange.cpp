@@ -60,7 +60,7 @@ namespace TMF
 			pLockPrimitiveMesh->SetColor(DirectX::SimpleMath::Color(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 	}
-	void ColorChange::OnTrigerEnter(GameObject* pGameObject)
+	void ColorChange::OnTriggerEnter(GameObject* pGameObject)
 	{
 		if (pGameObject->GetTag() == GameObject::Tag::Ground)
 		{
@@ -71,10 +71,10 @@ namespace TMF
 			pLockPrimitiveMesh->SetColor(DirectX::SimpleMath::Color(1.0f, 0.0f, 0.0f, 1.0f));
 		}
 	}
-	void ColorChange::OnTrigerStay(GameObject* pGameObject)
+	void ColorChange::OnTriggerStay(GameObject* pGameObject)
 	{
 	}
-	void ColorChange::OnTrigerExit(GameObject* pGameObject)
+	void ColorChange::OnTriggerExit(GameObject* pGameObject)
 	{
 		if (pGameObject->GetTag() == GameObject::Tag::Ground)
 		{

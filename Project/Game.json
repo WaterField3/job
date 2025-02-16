@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 4.607656002044678,
+                                        "m_azimuth": 4.6251091957092289,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -633,7 +633,8 @@
                                         "m_volume": 1.0,
                                         "m_pitch": 0.0,
                                         "m_pan": 0.0,
-                                        "m_isLoop": false
+                                        "m_isLoop": false,
+                                        "m_isStartPlay": false
                                     }
                                 }
                             },
@@ -841,7 +842,8 @@
                                         "m_volume": 0.10000000149011612,
                                         "m_pitch": 0.0,
                                         "m_pan": 0.0,
-                                        "m_isLoop": false
+                                        "m_isLoop": false,
+                                        "m_isStartPlay": false
                                     }
                                 }
                             },
@@ -3196,7 +3198,7 @@
                 "ptr_wrapper": {
                     "id": 2147483785,
                     "data": {
-                        "m_name": "WeponUI",
+                        "m_name": "WeaponUI",
                         "m_uuID": {
                             "uuid": "553d9746-5af2-4a4d-8b35-09af222bd639"
                         },
@@ -3294,7 +3296,7 @@
                             },
                             {
                                 "polymorphic_id": 2147483684,
-                                "polymorphic_name": "TMF::WeponInfoUI",
+                                "polymorphic_name": "TMF::WeaponInfoUI",
                                 "ptr_wrapper": {
                                     "id": 2147483789,
                                     "data": {

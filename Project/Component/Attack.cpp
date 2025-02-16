@@ -9,8 +9,8 @@
 #include "Shot.h"
 #include "Melee.h"
 #include "MeleeFollowMove.h"
-#include "WeponUI.h"
-#include "WeponBase.h"
+#include "WeaponUI.h"
+#include "WeaponBase.h"
 
 REGISTER_COMPONENT(TMF::Attack, "Attack");
 
@@ -49,7 +49,7 @@ namespace TMF
 
 		for (size_t i = 0; i < keyStates.size(); ++i)
 		{
-			if (keyStates[i] && m_pWepons.size() > i)
+			if (keyStates[i] && m_pWeapons.size() > i)
 			{
 				m_selectIndex = static_cast<int>(i);
 				UpdateHandleWeaponSelection();
@@ -61,7 +61,7 @@ namespace TMF
 	}
 	void Attack::UpdateHandleWeaponSelection()
 	{
-		if (auto pLockSelectComponent = m_pWepons[m_selectIndex].lock())
+		if (auto pLockSelectComponent = m_pWeapons[m_selectIndex].lock())
 		{
 			HandleWeaponSelection(pLockSelectComponent);
 		}
@@ -69,13 +69,26 @@ namespace TMF
 	float Attack::Play()
 	{
 		// 武器が無ければ行わない
-		if (m_pWepons.size() == 0)
+		if (m_pWeapons.size() == 0)
 		{
+			// 攻撃にかかる時間を返す
 			return 0.0f;
 		}
+		// 武器選択用のインデックスが武器の最大数を超えているか
+		if (m_selectIndex > m_pWeapons.size() - 1)
+		{
+			// 超えていたら最大数に
+			m_selectIndex = m_pWeapons.size() - 1;
+		}
+		// 武器選択用のインデックスがマイナスの値になっているか
+		else if (m_selectIndex < 0)
+		{
+			// マイナスであれば0に
+			m_selectIndex = 0;
+		}
 
-		// WeponBaseを継承したクラスがあるか
-		if (auto pLockSelectComponent = m_pWepons[m_selectIndex].lock())
+		// WeaponBaseを継承したクラスがあるか
+		if (auto pLockSelectComponent = m_pWeapons[m_selectIndex].lock())
 		{
 			// あれば攻撃を行う
 			pLockSelectComponent->Play();
@@ -86,6 +99,7 @@ namespace TMF
 				return pLockSelectComponent->GetEndTime();
 			}
 		}
+		// 攻撃にかかる時間を返す
 		return 0.0f;
 	}
 	void Attack::WeponsUpdate()
@@ -134,21 +148,21 @@ namespace TMF
 
 		if (adjustedScroll != 0)
 		{
-			m_selectIndex = std::clamp(m_selectIndex + (adjustedScroll > 0 ? 1 : -1), 0, static_cast<int>(m_pWepons.size()) - 1);
+			m_selectIndex = std::clamp(m_selectIndex + (adjustedScroll > 0 ? 1 : -1), 0, static_cast<int>(m_pWeapons.size()) - 1);
 
-			if (auto pLockSelectComponent = m_pWepons[m_selectIndex].lock())
+			if (auto pLockSelectComponent = m_pWeapons[m_selectIndex].lock())
 			{
 				HandleWeaponSelection(pLockSelectComponent);
 			}
 		}
 
 		m_previousScrollValue = currentScrollValue;
-		if (m_pWepons.size() > 0)
+		if (m_pWeapons.size() > 0)
 		{
-			m_pOldWepon = m_pWepons[m_selectIndex];
+			m_pOldWepon = m_pWeapons[m_selectIndex];
 		}
 	}
-	void Attack::HandleWeaponSelection(const std::shared_ptr<WeponBase>& pLockSelectComponent)
+	void Attack::HandleWeaponSelection(const std::shared_ptr<WeaponBase>& pLockSelectComponent)
 	{
 
 		auto pWeponOwner = pLockSelectComponent->GetOwner();
@@ -165,7 +179,7 @@ namespace TMF
 		if (auto pLockOwner = m_pOwner.lock())
 		{
 			// 保持している武器をクリア
-			m_pWepons.clear();
+			m_pWeapons.clear();
 			// 自身の子オブジェクトを取得
 			auto pChildren = pLockOwner->GetChildren();
 			// 子オブジェクトの数分ループ
@@ -175,23 +189,23 @@ namespace TMF
 				if (auto pLockChild = pChild.lock())
 				{
 					// 子オブジェクトからWeponBaseを取得する
-					auto pWepon = pLockChild->GetComponent<WeponBase>();
+					auto pWepon = pLockChild->GetComponent<WeaponBase>();
 					// 取得したWeponBaseがSharedに変換できる(存在している)か確認
 					if (auto pLockWepon = pWepon.lock())
 					{
 						// 武器として格納
-						m_pWepons.push_back(pLockWepon);
+						m_pWeapons.push_back(pLockWepon);
 					}
 				}
 			}
 		}
 		m_pCoolTimeUI = GameObjectManager::Instance().GetComponent<CoolTimeUI>();
 		m_pChangeTimeUI = GameObjectManager::Instance().GetComponent<ChangeTimeUI>();
-		m_pWeponUI = GameObjectManager::Instance().GetComponent<WeponInfoUI>();
+		m_pWeaponUI = GameObjectManager::Instance().GetComponent<WeaponInfoUI>();
 		m_pReloadUI = GameObjectManager::Instance().GetComponent<ReloadUI>();
-		if (m_pWepons.size() > 0)
+		if (m_pWeapons.size() > 0)
 		{
-			if (auto pLockWepon = m_pWepons[0].lock())
+			if (auto pLockWepon = m_pWeapons[0].lock())
 			{
 				//SelectWeapon(pLockWepon);
 				if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
@@ -202,7 +216,7 @@ namespace TMF
 				{
 					pLockChangeTimeUI->SetSelectWepon(pLockWepon);
 				}
-				if (auto pLockWeponUI = m_pWeponUI.lock())
+				if (auto pLockWeponUI = m_pWeaponUI.lock())
 				{
 					pLockWeponUI->SetSelectWepon(pLockWepon);
 				}

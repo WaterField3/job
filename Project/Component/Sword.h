@@ -1,11 +1,11 @@
 #pragma once
-#include "WeponBase.h"
+#include "WeaponBase.h"
 
 #include "ComponentCerealHelper.h"
 
 namespace TMF
 {
-	class Sword : public WeponBase
+	class Sword : public WeaponBase
 	{
 	public:
 		void OnInitialize() override;

@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 4.6251091957092289,
+                                        "m_azimuth": 4.642562389373779,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -291,7 +291,7 @@
                                         "m_animationSpeed": 1.0,
                                         "m_isAnimation": true,
                                         "m_toAnimName": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
-                                        "m_animationBlendRate": 1.0
+                                        "m_animationBlendRate": 0.0
                                     }
                                 }
                             },
@@ -3198,7 +3198,7 @@
                 "ptr_wrapper": {
                     "id": 2147483785,
                     "data": {
-                        "m_name": "WeponUI",
+                        "m_name": "WeaponUI",
                         "m_uuID": {
                             "uuid": "553d9746-5af2-4a4d-8b35-09af222bd639"
                         },
@@ -3296,7 +3296,7 @@
                             },
                             {
                                 "polymorphic_id": 2147483684,
-                                "polymorphic_name": "TMF::WeponInfoUI",
+                                "polymorphic_name": "TMF::WeaponInfoUI",
                                 "ptr_wrapper": {
                                     "id": 2147483789,
                                     "data": {

@@ -27,7 +27,7 @@ namespace TMF
 			m_pTransform = pLockOwner->GetComponent<Transform>();
 			m_pRigidBody = pLockOwner->GetComponent<Rigidbody>();
 		}
-	
+
 
 	}
 	void Thruster::OnFinalize()
@@ -118,11 +118,12 @@ namespace TMF
 			{
 				return;
 			}
-
+			// 現在のスタミナがスタミナの最大値より少ない時は実行
 			if (m_maxThrusterValue > m_thrusterValue && m_isOverHeat == false)
 			{
 				if (auto pLockRigdBody = m_pRigidBody.lock())
 				{
+					// 移動の方向と量を調整
 					m_moveVector *= m_thrusterMoveSpeedMagnification;
 					auto currentVelocity = pLockRigdBody->GetLinearVelocity();
 					if (currentVelocity.y < 0)
@@ -139,7 +140,7 @@ namespace TMF
 				{
 					return;
 				}
-
+				// 高速移動した
 				m_isThruster = true;
 				m_moveDirection = moveDirection;
 
@@ -150,52 +151,16 @@ namespace TMF
 				}
 				if (m_thrusterValue >= m_maxThrusterValue)
 				{
+
 					m_isOverHeat = true;
 					m_thrusterValue = m_maxThrusterValue;
 					m_isThruster = false;
 				}
-				return;
 			}
 		}
+		// 継続時
 		else
 		{
-			if (auto pLockTransform = m_pTransform.lock())
-			{
-				switch (moveDirection)
-				{
-				case TMF::FOWARD:
-					if (m_moveDirection != moveDirection)
-					{
-						m_moveVector += pLockTransform->GetForward();
-						m_moveDirection = moveDirection;
-					}
-					break;
-				case TMF::RIGHT:
-					if (m_moveDirection != moveDirection)
-					{
-						m_moveVector += pLockTransform->GetRight();
-						m_moveDirection = moveDirection;
-					}
-					break;
-				case TMF::LEFT:
-					if (m_moveDirection != moveDirection)
-					{
-						m_moveVector += pLockTransform->GetLeft();
-						m_moveDirection = moveDirection;
-					}
-					break;
-				case TMF::BACK:
-					if (m_moveDirection != moveDirection)
-					{
-						m_moveVector += pLockTransform->GetBack();
-						m_moveDirection = moveDirection;
-					}
-					break;
-				default:
-					break;
-				}
-			}
-			// 継続時
 			if (auto pLockRigdBody = m_pRigidBody.lock())
 			{
 				pLockRigdBody->SetLinearVelocity(m_moveVector);

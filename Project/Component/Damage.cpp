@@ -62,7 +62,7 @@ namespace TMF
 		}
 	}
 
-	void Damage::OnTrigerEnter(GameObject* pGameObject)
+	void Damage::OnTriggerEnter(GameObject* pGameObject)
 	{
 		if (auto pLockOwner = m_pOwner.lock())
 		{

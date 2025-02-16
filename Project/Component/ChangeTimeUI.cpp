@@ -6,7 +6,7 @@
 #include "ComponentRegister.h"
 #include "Utility/StringHelper.h"
 #include "direct3d.h"
-#include "WeponBase.h"
+#include "WeaponBase.h"
 
 REGISTER_COMPONENT(TMF::ChangeTimeUI, "ChangeTimeUI");
 
@@ -38,7 +38,7 @@ namespace TMF
 		auto pSpriteBatch = D3D::Get()->GetSpriteBatch();
 		if (auto pLockSpriteBatch = pSpriteBatch.lock())
 		{
-			if (auto pLockWepon = m_pWepon.lock())
+			if (auto pLockWepon = m_pWeapon.lock())
 			{
 				auto currentValue = 10.0f;
 				auto maxValue = 10.0f;
@@ -130,8 +130,8 @@ namespace TMF
 		pClone->m_drawPosition = this->m_drawPosition;
 		return move(pClone);
 	}
-	void ChangeTimeUI::OnSetSelectWepon(std::weak_ptr<WeponBase> pWepon)
+	void ChangeTimeUI::OnSetSelectWepon(std::weak_ptr<WeaponBase> pWepon)
 	{
-		m_pWepon = pWepon;
+		m_pWeapon = pWepon;
 	}
 }

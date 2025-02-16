@@ -68,19 +68,19 @@ namespace TMF
 		OnCollisionExit(pGameObject);
 	}
 
-	void Component::TrigerEnter(GameObject* pGameObject)
+	void Component::TriggerEnter(GameObject* pGameObject)
 	{
-		OnTrigerEnter(pGameObject);
+		OnTriggerEnter(pGameObject);
 	}
 
-	void Component::TrigerStay(GameObject* pGameObject)
+	void Component::TriggerStay(GameObject* pGameObject)
 	{
-		OnTrigerStay(pGameObject);
+		OnTriggerStay(pGameObject);
 	}
 
-	void Component::TrigerExit(GameObject* pGameObject)
+	void Component::TriggerExit(GameObject* pGameObject)
 	{
-		OnTrigerExit(pGameObject);
+		OnTriggerExit(pGameObject);
 	}
 
 	std::shared_ptr<Component> Component::Clone() const
@@ -133,17 +133,17 @@ namespace TMF
 
 	}
 
-	void Component::OnTrigerEnter(GameObject* pGameObject)
+	void Component::OnTriggerEnter(GameObject* pGameObject)
 	{
 
 	}
 
-	void Component::OnTrigerStay(GameObject* pGameObject)
+	void Component::OnTriggerStay(GameObject* pGameObject)
 	{
 
 	}
 
-	void Component::OnTrigerExit(GameObject* pGameObject)
+	void Component::OnTriggerExit(GameObject* pGameObject)
 	{
 
 	}

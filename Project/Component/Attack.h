@@ -3,14 +3,14 @@
 
 #include "ChangeTimeUI.h"
 #include "CoolTimeUI.h"
-#include "WeponInfoUI.h"
+#include "WeaponInfoUI.h"
 #include "ReloadUI.h"
 
 namespace TMF
 {
 	class Melee;
 	class Shot;
-	class WeponBase;
+	class WeaponBase;
 	class Attack : public Component
 	{
 	public:
@@ -30,7 +30,7 @@ namespace TMF
 	private:
 		void UpdateHandleWeaponSelection();
 		void UpdateWeaponSelection(int currentScrollValue);
-		void HandleWeaponSelection(const std::shared_ptr<WeponBase>& pLockSelectComponent);
+		void HandleWeaponSelection(const std::shared_ptr<WeaponBase>& pLockSelectComponent);
 		void CheckWepons();
 
 		template <typename T>
@@ -50,7 +50,7 @@ namespace TMF
 			{
 				pLockCoolTimeUI->SetSelectWepon(wepon);
 			}
-			if (auto pLockWeponUI = m_pWeponUI.lock())
+			if (auto pLockWeponUI = m_pWeaponUI.lock())
 			{
 				pLockWeponUI->SetSelectWepon(wepon);
 			}
@@ -63,11 +63,13 @@ namespace TMF
 	private:
 		int m_previousScrollValue = 0;
 		int m_selectIndex = 0;
-		std::vector<std::weak_ptr<WeponBase>> m_pWepons;
-		std::weak_ptr<WeponBase> m_pOldWepon;
+		// ïêäÌÇäiî[Ç∑ÇÈïœêî
+		std::vector<std::weak_ptr<WeaponBase>> m_pWeapons;
+
+		std::weak_ptr<WeaponBase> m_pOldWepon;
 		std::weak_ptr<CoolTimeUI> m_pCoolTimeUI;
 		std::weak_ptr<ChangeTimeUI> m_pChangeTimeUI;
-		std::weak_ptr<WeponInfoUI> m_pWeponUI;
+		std::weak_ptr<WeaponInfoUI> m_pWeaponUI;
 		std::weak_ptr<ReloadUI> m_pReloadUI;
 	};
 }

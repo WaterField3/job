@@ -1,5 +1,5 @@
 #pragma once
-#include "WeponBase.h"
+#include "WeaponBase.h"
 
 #include <string>
 
@@ -7,7 +7,7 @@
 
 namespace TMF
 {
-	class Shot : public WeponBase
+	class Shot : public WeaponBase
 	{
 	public:
 		void OnInitialize() override;

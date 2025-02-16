@@ -1,5 +1,5 @@
 #pragma once
-#include "WeponUI.h"
+#include "WeaponUI.h"
 
 #include <wrl.h>
 
@@ -8,8 +8,8 @@
 
 namespace TMF
 {
-	class WeponBase;
-	class CoolTimeUI : public WeponUI
+	class WeaponBase;
+	class CoolTimeUI : public WeaponUI
 	{
 	public:
 		void OnInitialize() override;
@@ -19,7 +19,7 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void OnSetSelectWepon(std::weak_ptr<WeponBase> wepon) override;
+		void OnSetSelectWepon(std::weak_ptr<WeaponBase> weapon) override;
 
 	private:
 

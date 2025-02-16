@@ -32,9 +32,9 @@ namespace TMF
 		void CollisionEnter(GameObject* pGameObject);
 		void CollisionStay(GameObject* pGameObject);
 		void CollisionExit(GameObject* pGameObject);
-		void TrigerEnter(GameObject* pGameObject);
-		void TrigerStay(GameObject* pGameObject);
-		void TrigerExit(GameObject* pGameObject);
+		void TriggerEnter(GameObject* pGameObject);
+		void TriggerStay(GameObject* pGameObject);
+		void TriggerExit(GameObject* pGameObject);
 		std::shared_ptr<Component> Clone() const;
 
 		// Remove可能か
@@ -54,23 +54,14 @@ namespace TMF
 		virtual void OnCollisionEnter(GameObject* pGameObject);
 		virtual void OnCollisionStay(GameObject* pGameObject);
 		virtual void OnCollisionExit(GameObject* pGameObject);
-		virtual void OnTrigerEnter(GameObject* pGameObject);
-		virtual void OnTrigerStay(GameObject* pGameObject);
-		virtual void OnTrigerExit(GameObject* pGameObject);
+		virtual void OnTriggerEnter(GameObject* pGameObject);
+		virtual void OnTriggerStay(GameObject* pGameObject);
+		virtual void OnTriggerExit(GameObject* pGameObject);
 		/// <summary>
 		/// 同じデータの新しいコンポーネントを作成
 		/// </summary>
 		/// <returns>各コンポーネントのShared_ptr</returns>
 		virtual std::shared_ptr<Component> OnClone() const;
-
-		template <typename TComponent>
-		std::shared_ptr<TComponent> GetComponent(TComponent component)
-		{
-			if (auto pLockOwner = m_pOwner.lock())
-			{
-
-			}
-		}
 
 	protected:
 		std::weak_ptr<GameObject> m_pOwner;
