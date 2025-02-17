@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 4.6251091957092289,
+                                        "m_azimuth": 4.642562389373779,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -477,7 +477,7 @@
                             },
                             {
                                 "polymorphic_id": 2147483664,
-                                "polymorphic_name": "TMF::GetWepon",
+                                "polymorphic_name": "TMF::GetWeapon",
                                 "ptr_wrapper": {
                                     "id": 2147483670,
                                     "data": {
@@ -3396,7 +3396,7 @@
                 "ptr_wrapper": {
                     "id": 2147483793,
                     "data": {
-                        "m_name": "WeponGenerater",
+                        "m_name": "WeaponGenerater",
                         "m_uuID": {
                             "uuid": "dc4d7bb4-a3c5-4093-9cb2-206267d83f99"
                         },
@@ -3440,7 +3440,7 @@
                             },
                             {
                                 "polymorphic_id": 2147483686,
-                                "polymorphic_name": "TMF::GenerateWepon",
+                                "polymorphic_name": "TMF::GenerateWeapon",
                                 "ptr_wrapper": {
                                     "id": 2147483795,
                                     "data": {
@@ -3450,7 +3450,7 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_file": "WeponDatas",
+                                        "m_file": "WeaponDatas",
                                         "m_generateRate": 5.0,
                                         "m_generateRange": {
                                             "value0": 1.0,

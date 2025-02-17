@@ -1,4 +1,4 @@
-#include "GetWepon.h"
+#include "GetWeapon.h"
 
 #include "ComponentRegister.h"
 #include "GameObject/GameObject.h"
@@ -11,11 +11,11 @@
 #include "MeleeMove.h"
 #include "Damage.h"
 
-REGISTER_COMPONENT(TMF::GetWepon, "GetWepon");
+REGISTER_COMPONENT(TMF::GetWeapon, "GetWeapon");
 
 namespace TMF
 {
-	void GetWepon::OnInitialize()
+	void GetWeapon::OnInitialize()
 	{
 		if (auto pLockOwner = m_pOwner.lock())
 		{
@@ -26,22 +26,22 @@ namespace TMF
 			}
 		}
 	}
-	void GetWepon::OnFinalize()
+	void GetWeapon::OnFinalize()
 	{
 	}
-	void GetWepon::OnUpdate()
+	void GetWeapon::OnUpdate()
 	{
 	}
-	void GetWepon::OnLateUpdate()
+	void GetWeapon::OnLateUpdate()
 	{
 	}
-	void GetWepon::OnDraw()
+	void GetWeapon::OnDraw()
 	{
 	}
-	void GetWepon::OnDrawImGui()
+	void GetWeapon::OnDrawImGui()
 	{
 	}
-	void GetWepon::OnCollisionEnter(GameObject* pGameObject)
+	void GetWeapon::OnCollisionEnter(GameObject* pGameObject)
 	{
 		if (pGameObject->GetTag() == GameObject::Tag::Item)
 		{
@@ -80,9 +80,9 @@ namespace TMF
 			}
 		}
 	}
-	std::shared_ptr<Component> GetWepon::OnClone() const
+	std::shared_ptr<Component> GetWeapon::OnClone() const
 	{
-		auto pClone = std::make_shared<GetWepon>();
+		auto pClone = std::make_shared<GetWeapon>();
 		return move(pClone);
 	}
 }

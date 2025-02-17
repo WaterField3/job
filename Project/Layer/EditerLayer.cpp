@@ -128,11 +128,11 @@ namespace TMF
 			GameObjectManager::Instance().Load(RESULT_DATA);
 			GameObjectManager::Instance().Initialize();
 		}
-		if (ImGui::Button("WeponScene"))
+		if (ImGui::Button("WeaponScene"))
 		{
 			GameObjectManager::Instance().Finalize();
 			PhysicsManager::Instance().Reset();
-			GameObjectManager::Instance().Load(WEPON_DATA);
+			GameObjectManager::Instance().Load(WEAPON_DATA);
 			GameObjectManager::Instance().Initialize();
 		}
 		ImGui::End();

@@ -213,9 +213,6 @@
     <ClCompile Include="dx11helper.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="MeshRenderer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -306,10 +303,10 @@
     <ClCompile Include="State\PlayerAttackState.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Component\GenerateWepon.cpp">
+    <ClCompile Include="Component\GenerateWeapon.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Component\GetWepon.cpp">
+    <ClCompile Include="Component\GetWeapon.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Component\WeaponBase.cpp">
@@ -995,9 +992,6 @@
     <ClInclude Include="Component\BoneBind.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="TreeNode.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -1011,9 +1005,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="IndexBuffer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
@@ -1109,10 +1100,10 @@
     <ClInclude Include="State\PlayerAttackState.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Component\GenerateWepon.h">
+    <ClInclude Include="Component\GenerateWeapon.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Component\GetWepon.h">
+    <ClInclude Include="Component\GetWeapon.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Component\WeaponBase.h">

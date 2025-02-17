@@ -7,7 +7,7 @@ namespace TMF
 {
 	class GameObject;
 	class Font;
-	class GenerateWepon : public Component
+	class GenerateWeapon : public Component
 	{
 	public:
 		void OnInitialize() override;
@@ -24,8 +24,8 @@ namespace TMF
 		float m_timer = 0.0f;
 		float m_generateRate = 5.0f;
 		DirectX::SimpleMath::Vector3 m_generateRange = DirectX::SimpleMath::Vector3::One;
-		std::vector<std::shared_ptr<GameObject>> m_pOriginWepons;
-		std::string m_file = "WeponDatas";
+		std::vector<std::shared_ptr<GameObject>> m_pOriginWeapons;
+		std::string m_file = "WeaponDatas";
 		// デバッグ用　最大個数チェック
 		int m_generateCount = 0;
 		std::weak_ptr<Font> m_pFont;

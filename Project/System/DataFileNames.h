@@ -6,5 +6,5 @@
 #define TITLE_TEST ("TitleTest")
 #define RESULT_DATA ("Result")
 #define RESULT_TEST ("ResultTest")
-#define WEPON_DATA ("Wepon")
-#define WEPON_TEST ("WeponTest")
+#define WEAPON_DATA ("Weapon")
+#define WEAPON_TEST ("WeaponTest")

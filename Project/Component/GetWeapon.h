@@ -4,7 +4,7 @@
 namespace TMF
 {
 	class Transform;
-	class GetWepon : public Component
+	class GetWeapon : public Component
 	{
 	public:
 		void OnInitialize() override;
