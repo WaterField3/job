@@ -41,11 +41,11 @@ namespace TMF
 		return move(pClone);
 	}
 
-	void WeaponUI::SetSelectWepon(std::weak_ptr<WeaponBase> pWepon)
+	void WeaponUI::SetSelectWeapon(std::weak_ptr<WeaponBase> pWepon)
 	{
-		OnSetSelectWepon(pWepon);
+		OnSetSelectWeapon(pWepon);
 	}
-	void WeaponUI::OnSetSelectWepon(std::weak_ptr<WeaponBase> wepon)
+	void WeaponUI::OnSetSelectWeapon(std::weak_ptr<WeaponBase> pWepon)
 	{
 
 	}

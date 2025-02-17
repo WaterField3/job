@@ -75,7 +75,7 @@ namespace TMF
 				auto pAttack = pLockOwner->GetComponent<Attack>();
 				if (auto pLockAttack = pAttack.lock())
 				{
-					pLockAttack->WeponsUpdate();
+					pLockAttack->WeaponsUpdate();
 				}
 			}
 		}

@@ -18,10 +18,10 @@ namespace TMF
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
 
-		void SetSelectWepon(std::weak_ptr<WeaponBase> weapon);
+		void SetSelectWeapon(std::weak_ptr<WeaponBase> pWeapon);
 
 	protected:
-		virtual void OnSetSelectWepon(std::weak_ptr<WeaponBase> weapon);
+		virtual void OnSetSelectWeapon(std::weak_ptr<WeaponBase> pWeapon);
 
 	protected:
 		std::weak_ptr<WeaponBase> m_pWeapon;

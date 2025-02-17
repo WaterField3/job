@@ -123,9 +123,9 @@ namespace TMF
 		pClone->m_drawPosition = this->m_drawPosition;
 		return move(pClone);
 	}
-	void ReloadUI::OnSetSelectWepon(std::weak_ptr<WeaponBase> wepon)
+	void ReloadUI::OnSetSelectWeapon(std::weak_ptr<WeaponBase> pWeapon)
 	{
-		if (auto pLockWepon = wepon.lock())
+		if (auto pLockWepon = pWeapon.lock())
 		{
 			m_pWeapon = pLockWepon;
 		}

@@ -18,7 +18,7 @@ namespace TMF
 {
 	void Attack::OnInitialize()
 	{
-		CheckWepons();
+		CheckWeapons();
 	}
 
 	void Attack::OnFinalize()
@@ -78,7 +78,7 @@ namespace TMF
 		if (m_selectIndex > m_pWeapons.size() - 1)
 		{
 			// 超えていたら最大数に
-			m_selectIndex = m_pWeapons.size() - 1;
+			m_selectIndex = int(m_pWeapons.size() - 1);
 		}
 		// 武器選択用のインデックスがマイナスの値になっているか
 		else if (m_selectIndex < 0)
@@ -95,16 +95,16 @@ namespace TMF
 			if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
 			{
 				// CoolTimeUIに使用したウェポンを設定
-				pLockCoolTimeUI->SetSelectWepon(pLockSelectComponent);
+				pLockCoolTimeUI->SetSelectWeapon(pLockSelectComponent);
 				return pLockSelectComponent->GetEndTime();
 			}
 		}
 		// 攻撃にかかる時間を返す
 		return 0.0f;
 	}
-	void Attack::WeponsUpdate()
+	void Attack::WeaponsUpdate()
 	{
-		CheckWepons();
+		CheckWeapons();
 	}
 	void Attack::OnLateUpdate()
 	{
@@ -124,7 +124,7 @@ namespace TMF
 
 		if (ImGui::Button("Check"))
 		{
-			CheckWepons();
+			CheckWeapons();
 		}
 	}
 	std::shared_ptr<Component> Attack::OnClone() const
@@ -173,7 +173,7 @@ namespace TMF
 		}
 
 	}
-	void Attack::CheckWepons()
+	void Attack::CheckWeapons()
 	{
 		// 自身を保持しているゲームオブジェクトがあるか確認
 		if (auto pLockOwner = m_pOwner.lock())
@@ -210,19 +210,19 @@ namespace TMF
 				//SelectWeapon(pLockWepon);
 				if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
 				{
-					pLockCoolTimeUI->SetSelectWepon(pLockWepon);
+					pLockCoolTimeUI->SetSelectWeapon(pLockWepon);
 				}
 				if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
 				{
-					pLockChangeTimeUI->SetSelectWepon(pLockWepon);
+					pLockChangeTimeUI->SetSelectWeapon(pLockWepon);
 				}
 				if (auto pLockWeponUI = m_pWeaponUI.lock())
 				{
-					pLockWeponUI->SetSelectWepon(pLockWepon);
+					pLockWeponUI->SetSelectWeapon(pLockWepon);
 				}
 				if (auto pLockReloadUI = m_pReloadUI.lock())
 				{
-					pLockReloadUI->SetSelectWepon(pLockWepon);
+					pLockReloadUI->SetSelectWeapon(pLockWepon);
 				}
 			}
 		}

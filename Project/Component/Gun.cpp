@@ -20,7 +20,7 @@ namespace TMF
 		auto pAttack = GameObjectManager::Instance().GetComponent<Attack>();
 		if (auto pLockAttack = pAttack.lock())
 		{
-			pLockAttack->WeponsUpdate();
+			pLockAttack->WeaponsUpdate();
 		}
 		m_changeTime = m_initChangeTime;
 		m_bulletNum = m_bulletMaxNum;

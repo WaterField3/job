@@ -26,37 +26,37 @@ namespace TMF
 		/// </summary>
 		/// <returns>UŒ‚‚ÌŠÔ ¦ËŒ‚‚Í‚O</returns>
 		float Play();
-		void WeponsUpdate();
+		void WeaponsUpdate();
 	private:
 		void UpdateHandleWeaponSelection();
 		void UpdateWeaponSelection(int currentScrollValue);
 		void HandleWeaponSelection(const std::shared_ptr<WeaponBase>& pLockSelectComponent);
-		void CheckWepons();
+		void CheckWeapons();
 
 		template <typename T>
-		void SelectWeapon(const std::shared_ptr<T>& wepon)
+		void SelectWeapon(const std::shared_ptr<T>& pWeapon)
 		{
-			if (wepon != m_pOldWepon.lock())
+			if (pWeapon != m_pOldWepon.lock())
 			{
-				wepon->Select();
+				pWeapon->Select();
 			}
 
 			if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
 			{
-				pLockChangeTimeUI->SetSelectWepon(wepon);
+				pLockChangeTimeUI->SetSelectWeapon(pWeapon);
 			}
 
 			if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
 			{
-				pLockCoolTimeUI->SetSelectWepon(wepon);
+				pLockCoolTimeUI->SetSelectWeapon(pWeapon);
 			}
 			if (auto pLockWeponUI = m_pWeaponUI.lock())
 			{
-				pLockWeponUI->SetSelectWepon(wepon);
+				pLockWeponUI->SetSelectWeapon(pWeapon);
 			}
 			if (auto pLockReloadUI = m_pReloadUI.lock())
 			{
-				pLockReloadUI->SetSelectWepon(wepon);
+				pLockReloadUI->SetSelectWeapon(pWeapon);
 			}
 		}
 

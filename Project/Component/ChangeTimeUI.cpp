@@ -130,7 +130,7 @@ namespace TMF
 		pClone->m_drawPosition = this->m_drawPosition;
 		return move(pClone);
 	}
-	void ChangeTimeUI::OnSetSelectWepon(std::weak_ptr<WeaponBase> pWepon)
+	void ChangeTimeUI::OnSetSelectWeapon(std::weak_ptr<WeaponBase> pWepon)
 	{
 		m_pWeapon = pWepon;
 	}

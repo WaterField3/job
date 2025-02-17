@@ -60,7 +60,7 @@ namespace TMF
 						auto pParentAttack = pLockParentOwner->GetComponent<Attack>();
 						if (auto pLockParentAttack = pParentAttack.lock())
 						{
-							pLockParentAttack->WeponsUpdate();
+							pLockParentAttack->WeaponsUpdate();
 						}
 					}
 				}

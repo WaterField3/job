@@ -97,7 +97,7 @@ namespace TMF
 		auto pClone = std::make_shared<WeaponInfoUI>();
 		return move(pClone);
 	}
-	void WeaponInfoUI::OnSetSelectWepon(std::weak_ptr<WeaponBase> pWepon)
+	void WeaponInfoUI::OnSetSelectWeapon(std::weak_ptr<WeaponBase> pWepon)
 	{
 		m_maxBulletNum = 1;
 		m_bulletNum = 0;
