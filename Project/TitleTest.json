@@ -761,7 +761,7 @@
                                         "m_pitch": 0.0,
                                         "m_pan": 0.0,
                                         "m_isLoop": false,
-                                        "m_isStartPlay": true
+                                        "m_isStartPlay": false
                                     }
                                 }
                             }

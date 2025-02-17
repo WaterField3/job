@@ -22,7 +22,3 @@
 [bullet3](https://github.com/bulletphysics/bullet3)
 
 [Effekseer for C++](https://effekseer.github.io/jp/download.html)  
-
-[assimp](https://github.com/assimp/assimp)
-
-[stb](https://github.com/nothings/stb/tree/master)  

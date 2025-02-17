@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 4.642562389373779,
+                                        "m_azimuth": 4.677468776702881,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -290,7 +290,7 @@
                                         "m_idlePath": "asset/model/Breathing Idle.sdkmesh_anim",
                                         "m_animationSpeed": 1.0,
                                         "m_isAnimation": true,
-                                        "m_toAnimName": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
+                                        "m_toAnimName": "",
                                         "m_animationBlendRate": 0.0
                                     }
                                 }
@@ -3384,78 +3384,6 @@
                                         "m_drawPosition": {
                                             "value0": 744.0,
                                             "value1": 418.0
-                                        }
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            {
-                "ptr_wrapper": {
-                    "id": 2147483793,
-                    "data": {
-                        "m_name": "WeponGenerater",
-                        "m_uuID": {
-                            "uuid": "dc4d7bb4-a3c5-4093-9cb2-206267d83f99"
-                        },
-                        "m_tag": 0,
-                        "m_isActive": true,
-                        "m_pComponents": [
-                            {
-                                "polymorphic_id": 1,
-                                "ptr_wrapper": {
-                                    "id": 2147483794,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "65b368f0-2147-4261-a2b1-a1a46b568040"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_position": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0
-                                        },
-                                        "m_scale": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0
-                                        },
-                                        "m_rotation": {
-                                            "value0": 0.0,
-                                            "value1": 0.0,
-                                            "value2": 0.0,
-                                            "value3": 1.0
-                                        },
-                                        "m_pParent": {
-                                            "locked_ptr": {
-                                                "polymorphic_id": 0
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                "polymorphic_id": 2147483686,
-                                "polymorphic_name": "TMF::GenerateWepon",
-                                "ptr_wrapper": {
-                                    "id": 2147483795,
-                                    "data": {
-                                        "value0": {
-                                            "m_uuID": {
-                                                "uuid": "a6c3e49e-d587-4d24-8ccf-9eb7537659f9"
-                                            },
-                                            "m_isEnable": true
-                                        },
-                                        "m_file": "WeponDatas",
-                                        "m_generateRate": 5.0,
-                                        "m_generateRange": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0
                                         }
                                     }
                                 }
