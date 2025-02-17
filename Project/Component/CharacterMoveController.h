@@ -31,6 +31,8 @@ namespace TMF
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
 
+		inline float GetMoveSpeed() const { return m_moveSpeed; }
+
 	private:
 		float m_moveSpeed = 1;
 		float m_jumpPower = 1;

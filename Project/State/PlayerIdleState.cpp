@@ -7,6 +7,7 @@
 #include "Component/Transform.h"
 #include "Component/Rigidbody.h"
 #include "Component/Thruster.h"
+#include "Component/CharacterMoveController.h"
 #include "Input.h"
 #include "StateMachine.h"
 
@@ -47,10 +48,16 @@ namespace TMF
 			{
 				isGetThruster = true;
 			}
-
+			auto moveSpeed = 1.0f;
+			auto pCharacterMoveController = pLockOwner->GetComponent<CharacterMoveController>();
+			if (auto pLockCharacterMoveController = pCharacterMoveController.lock())
+			{
+				moveSpeed = pLockCharacterMoveController->GetMoveSpeed();
+			}
+		
 			if (isGetTransform == true && isGetRigidbody == true && isGetThruster == true)
 			{
-				m_pPlayerMove = std::make_unique<PlayerMove>(pTransform, pRigidbody, pThruster, 1.0f);
+				m_pPlayerMove = std::make_unique<PlayerMove>(pTransform, pRigidbody, pThruster, moveSpeed);
 				m_pEventSystem->AddHandler('w', [this]() {m_pPlayerMove->MoveForward(); });
 				m_pEventSystem->AddHandler('a', [this]() {m_pPlayerMove->MoveLeft(); });
 				m_pEventSystem->AddHandler('s', [this]() {m_pPlayerMove->MoveBack(); });

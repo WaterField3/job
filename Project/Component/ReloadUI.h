@@ -19,7 +19,7 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void OnSetSelectWeapon(std::weak_ptr<WeaponBase> pWepon) override;
+		void OnSetSelectWeapon(std::weak_ptr<WeaponBase> pWeapon) override;
 	private:
 	};
 }
