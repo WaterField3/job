@@ -6,7 +6,9 @@
 #include "StateRegister.h"
 #include "Component/Attack.h"
 #include "Component/Rigidbody.h"
+#include "Component/Thruster.h"
 #include "Timer.h"
+#include "Input.h"
 
 REGISTER_STATE(TMF::PlayerAttackState, "PlayerAttackState");
 
@@ -28,18 +30,43 @@ namespace TMF
 			auto pAttack = pLockOwner->GetComponent<Attack>();
 			if (auto pLockAttack = pAttack.lock())
 			{
-				m_endTime = pLockAttack->Play();
+				auto weaponActionTiming = pLockAttack->Play();
+				m_endTime = weaponActionTiming.attackEndTiming;
+				m_cancelTime = weaponActionTiming.attackCancelTiming;
+			}
+			auto pThruster = pLockOwner->GetComponent<Thruster>();
+			if (auto pLockThruster = pThruster.lock())
+			{
+				m_pThruster = pLockThruster;
 			}
 		}
 	}
 	void PlayerAttackState::OnUpdate()
 	{
-		m_endTime -= Timer::Instance().deltaTime.count();
-		if (m_endTime <= 0)
+		auto deltaTime = Timer::Instance().deltaTime.count();
+		m_endTime -= deltaTime;
+		m_cancelTime -= deltaTime;
+		if (m_endTime <= 0.0f)
 		{
 			if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
 			{
 				pLockAdministratorStateMachine->ChangeState("PlayerIdleState");
+				return;
+			}
+		}
+		if (auto pLockThruster = m_pThruster.lock())
+		{
+			if (m_cancelTime <= 0.0f)
+			{
+				auto keyState = Input::Instance().GetKeyState();
+				if (keyState.V == true && pLockThruster->GetIsOverHeat() == false)
+				{
+					if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
+					{
+						pLockAdministratorStateMachine->ChangeState("PlayerIdleState");
+						return;
+					}
+				}
 			}
 		}
 	}

@@ -18,6 +18,7 @@ namespace TMF
 {
 	void Sword::OnInitialize()
 	{
+		m_weaponType = WeaponType::MELEE;
 		OwnerWeponCheck();
 	}
 	void Sword::OnFinalize()
@@ -25,22 +26,46 @@ namespace TMF
 	}
 	void Sword::OnUpdate()
 	{
+		auto deltaTime = Timer::Instance().deltaTime.count();
 		if (m_isMelee == true)
 		{
-			m_timer += Timer::Instance().deltaTime.count();
+			m_meleeTimer += deltaTime;
+			if (m_meleeTimer > m_endTime)
+			{
+				m_isMeleeEnd = true;
+				m_isMelee = false;
+			}
 			if (m_timer > m_endTime)
 			{
 				m_isMeleeEnd = true;
 			}
-			if (m_timer > m_coolTime)
+
+		}
+		else
+		{
+			if (m_meleeTimer != 0.0f)
 			{
-				m_isMelee = false;
-				m_timer = 0.0f;
+				m_timer += deltaTime;
+				if (m_timer > m_coolTime)
+				{
+					m_timer = 0.0f;
+					m_meleeTimer = 0.0f;
+				}
 			}
 		}
-		if (m_changeTime < m_initChangeTime)
+		if (m_lateTimer > 0.0f)
 		{
-			m_changeTime += Timer::Instance().deltaTime.count();
+			m_lateTimer -= deltaTime;
+		}
+		else
+		{
+			if (m_lateTimer <= 0.0f)
+			{
+				if (m_changeTime < m_initChangeTime)
+				{
+					m_changeTime += deltaTime;
+				}
+			}
 		}
 	}
 	void Sword::OnLateUpdate()
@@ -61,6 +86,12 @@ namespace TMF
 
 		auto endTimeLabel = StringHelper::CreateLabel("EndTime", m_uuID);
 		if (ImGui::DragFloat(endTimeLabel.c_str(), &m_endTime))
+		{
+
+		}
+
+		auto cancelTimeLabel = StringHelper::CreateLabel("CancelTime", m_uuID);
+		if (ImGui::DragFloat(cancelTimeLabel.c_str(), &m_cancelTime))
 		{
 
 		}
@@ -91,9 +122,13 @@ namespace TMF
 		pClone->m_animationSpeed = this->m_animationSpeed;
 		return move(pClone);
 	}
+	float Sword::GetMeleeTime()
+	{
+		return m_meleeTimer;
+	}
 	void Sword::OnAttack()
 	{
-		if (m_isMelee == true || m_changeTime < m_initChangeTime)
+		if (m_meleeTimer != 0.0f || m_changeTime < m_initChangeTime)
 		{
 			return;
 		}
@@ -126,6 +161,7 @@ namespace TMF
 				}
 				pLockMeleemove->Play(MeleeMove::DEFAULT, parentPosition, parentRotation);
 				m_isMelee = true;
+				m_meleeTimer = 0;
 			}
 			// 親子関係を外す　親を
 			if (m_isMelee == true)
@@ -143,6 +179,8 @@ namespace TMF
 					{
 						// アニメーションのパスの変更
 						pLockAnimater->SetFileName(m_meleeAnimation, m_endTime, m_animationSpeed);
+
+						// 変更　攻撃の全体フレーム時間とアニメーションを止める時間を設定するように
 					}
 					m_isMeleeEnd = false;
 				}

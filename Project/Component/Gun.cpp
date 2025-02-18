@@ -17,13 +17,10 @@ namespace TMF
 {
 	void Gun::OnInitialize()
 	{
-		auto pAttack = GameObjectManager::Instance().GetComponent<Attack>();
-		if (auto pLockAttack = pAttack.lock())
-		{
-			pLockAttack->WeaponsUpdate();
-		}
+		OwnerWeponCheck();
 		m_changeTime = m_initChangeTime;
 		m_bulletNum = m_bulletMaxNum;
+		m_weaponType = WeaponType::SHOT;
 	}
 	void Gun::OnFinalize()
 	{
@@ -40,9 +37,19 @@ namespace TMF
 				m_timer = 0.0f;
 			}
 		}
-		if (m_changeTime < m_initChangeTime)
+		if (m_lateTimer > 0.0f)
 		{
-			m_changeTime += Timer::Instance().deltaTime.count();
+			m_lateTimer -= deltaTime;
+		}
+		else
+		{
+			if (m_lateTimer <= 0.0f)
+			{
+				if (m_changeTime < m_initChangeTime)
+				{
+					m_changeTime += deltaTime;
+				}
+			}
 		}
 		if (m_bulletNum == 0)
 		{

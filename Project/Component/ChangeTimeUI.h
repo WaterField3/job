@@ -20,8 +20,11 @@ namespace TMF
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
 		void OnSetSelectWeapon(std::weak_ptr<WeaponBase> pWeapon) override;
+		void SetLateChangeTime(float lateChangeTime) { m_lateChangeTime = lateChangeTime; }
 
 	private:
+		float m_lateChangeTime = 0.0f;
+		bool m_isDrawUI = false;
 	};
 }
 

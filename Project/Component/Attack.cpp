@@ -51,6 +51,10 @@ namespace TMF
 		{
 			if (keyStates[i] && m_pWeapons.size() > i)
 			{
+				if (auto pLockWepon = m_pWeapons[m_selectIndex].lock())
+				{
+					m_lateTime = pLockWepon->GetMeleeTime();
+				}
 				m_selectIndex = static_cast<int>(i);
 				UpdateHandleWeaponSelection();
 			}
@@ -66,13 +70,15 @@ namespace TMF
 			HandleWeaponSelection(pLockSelectComponent);
 		}
 	}
-	float Attack::Play()
+	Attack::WeaponActionTiming Attack::Play()
 	{
+		// 攻撃に関わる時間を作成
+		auto weaponActionTiming = WeaponActionTiming();
 		// 武器が無ければ行わない
 		if (m_pWeapons.size() == 0)
 		{
 			// 攻撃にかかる時間を返す
-			return 0.0f;
+			return weaponActionTiming;
 		}
 		// 武器選択用のインデックスが武器の最大数を超えているか
 		if (m_selectIndex > m_pWeapons.size() - 1)
@@ -92,15 +98,17 @@ namespace TMF
 		{
 			// あれば攻撃を行う
 			pLockSelectComponent->Play();
+			weaponActionTiming.attackEndTiming = pLockSelectComponent->GetEndTime();
+			weaponActionTiming.attackCancelTiming = pLockSelectComponent->GetCancelTime();
 			if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
 			{
 				// CoolTimeUIに使用したウェポンを設定
 				pLockCoolTimeUI->SetSelectWeapon(pLockSelectComponent);
-				return pLockSelectComponent->GetEndTime();
+				return weaponActionTiming;
 			}
 		}
 		// 攻撃にかかる時間を返す
-		return 0.0f;
+		return weaponActionTiming;
 	}
 	void Attack::WeaponsUpdate()
 	{
@@ -148,6 +156,11 @@ namespace TMF
 
 		if (adjustedScroll != 0)
 		{
+			if (auto pLockCurrentComponent = m_pWeapons[m_selectIndex].lock())
+			{
+				m_lateTime = pLockCurrentComponent->GetMeleeTime();
+			}
+
 			m_selectIndex = std::clamp(m_selectIndex + (adjustedScroll > 0 ? 1 : -1), 0, static_cast<int>(m_pWeapons.size()) - 1);
 
 			if (auto pLockSelectComponent = m_pWeapons[m_selectIndex].lock())
@@ -164,7 +177,20 @@ namespace TMF
 	}
 	void Attack::HandleWeaponSelection(const std::shared_ptr<WeaponBase>& pLockSelectComponent)
 	{
-
+		auto late = 0.0f;
+		if (pLockSelectComponent != m_pOldWepon.lock())
+		{
+			if (auto pLockOldWeapon = m_pOldWepon.lock())
+			{
+				auto meleeTime = pLockOldWeapon->GetMeleeTime();
+				if (meleeTime != 0.0f)
+				{
+					late = pLockOldWeapon->GetEndTime() - meleeTime;
+				}
+				m_lateTime = late;
+			}
+		}
+		pLockSelectComponent->SetLateTimer(late);
 		auto pWeponOwner = pLockSelectComponent->GetOwner();
 		if (auto pLockWeponOwner = pWeponOwner.lock())
 		{

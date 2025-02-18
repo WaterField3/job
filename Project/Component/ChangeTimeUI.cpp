@@ -7,6 +7,7 @@
 #include "Utility/StringHelper.h"
 #include "direct3d.h"
 #include "WeaponBase.h"
+#include "Timer.h"
 
 REGISTER_COMPONENT(TMF::ChangeTimeUI, "ChangeTimeUI");
 
@@ -26,7 +27,19 @@ namespace TMF
 	}
 	void ChangeTimeUI::OnUpdate()
 	{
-
+		if (m_lateChangeTime != 0.0f)
+		{
+			m_lateChangeTime -= Timer::Instance().deltaTime.count();
+			if (m_lateChangeTime <= 0.0f)
+			{
+				m_isDrawUI = true;
+				m_lateChangeTime = 0.0f;
+			}
+		}
+		else
+		{
+			m_isDrawUI = true;
+		}
 	}
 	void ChangeTimeUI::OnLateUpdate()
 	{
@@ -34,6 +47,10 @@ namespace TMF
 	}
 	void ChangeTimeUI::OnDraw()
 	{
+		if (m_isDrawUI == false)
+		{
+			return;
+		}
 
 		auto pSpriteBatch = D3D::Get()->GetSpriteBatch();
 		if (auto pLockSpriteBatch = pSpriteBatch.lock())
@@ -133,5 +150,6 @@ namespace TMF
 	void ChangeTimeUI::OnSetSelectWeapon(std::weak_ptr<WeaponBase> pWepon)
 	{
 		m_pWeapon = pWepon;
+		m_isDrawUI = false;
 	}
 }

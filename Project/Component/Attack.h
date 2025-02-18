@@ -21,12 +21,20 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
+		void WeaponsUpdate();
+		// UŒ‚‚ÌI—¹ŠÔ‚ÆUŒ‚“®ì‚ğƒLƒƒƒ“ƒZƒ‹‚Å‚«‚éŠÔ
+		class WeaponActionTiming
+		{
+		public:
+			float attackEndTiming = 0.0f;
+			float attackCancelTiming = 0.0f;
+		};
+
 		/// <summary>
 		/// UŒ‚
 		/// </summary>
-		/// <returns>UŒ‚‚ÌŠÔ ¦ËŒ‚‚Í‚O</returns>
-		float Play();
-		void WeaponsUpdate();
+		/// <returns>UŒ‚‚ÉŠÖ‚í‚éŠÔ ¦ËŒ‚‚Í‚O</returns>
+		WeaponActionTiming Play();
 	private:
 		void UpdateHandleWeaponSelection();
 		void UpdateWeaponSelection(int currentScrollValue);
@@ -44,6 +52,7 @@ namespace TMF
 			if (auto pLockChangeTimeUI = m_pChangeTimeUI.lock())
 			{
 				pLockChangeTimeUI->SetSelectWeapon(pWeapon);
+				pLockChangeTimeUI->SetLateChangeTime(m_lateTime);
 			}
 
 			if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
@@ -63,6 +72,7 @@ namespace TMF
 	private:
 		int m_previousScrollValue = 0;
 		int m_selectIndex = 0;
+		float m_lateTime = 0.0f;
 		// •Ší‚ğŠi”[‚·‚é•Ï”
 		std::vector<std::weak_ptr<WeaponBase>> m_pWeapons;
 

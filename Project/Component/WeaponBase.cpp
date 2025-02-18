@@ -3,6 +3,7 @@
 #include "GameObject/GameObject.h"
 #include "Transform.h"
 #include "Attack.h"
+#include "EnemyAttack.h"
 
 namespace TMF
 {
@@ -33,6 +34,10 @@ namespace TMF
 	{
 		OnAttack();
 	}
+	float WeaponBase::GetMeleeTime()
+	{
+		return 0.0f;
+	}
 	void WeaponBase::OnAttack()
 	{
 
@@ -61,6 +66,14 @@ namespace TMF
 						if (auto pLockParentAttack = pParentAttack.lock())
 						{
 							pLockParentAttack->WeaponsUpdate();
+						}
+						else
+						{
+							auto pParentEnemyAttack = pLockParentOwner->GetComponent<EnemyAttack>();
+							if (auto pLockParentEnemyAttack = pParentEnemyAttack.lock())
+							{
+								pLockParentEnemyAttack->WeaponsUpdate();
+							}
 						}
 					}
 				}

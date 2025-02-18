@@ -21,6 +21,7 @@ namespace TMF
 		inline float GetCurrentChangeTime() { return m_changeTime; }
 		inline float GetCoolTime() const { return m_coolTime; }
 		inline float GetCurrentCollTime() const { return m_timer; }
+		inline void SetLateTimer(float lateTimer) { m_lateTimer = lateTimer; }
 
 		// 遠距離
 		inline int GetBulletNum() const { return m_bulletNum; }
@@ -30,6 +31,19 @@ namespace TMF
 
 		// 近距離
 		inline float GetEndTime() const { return m_endTime; }
+		inline float GetCancelTime() const { return m_cancelTime; }
+		virtual float GetMeleeTime();
+		inline bool GetIsMeleeEnd() const { return m_isMeleeEnd; }
+		inline bool GetIsMelee() const { return m_isMelee; }
+	public:
+		enum WeaponType
+		{
+			MELEE,
+			SHOT,
+		};
+
+		inline WeaponType GetWeaponType() const { return m_weaponType; }
+
 	protected:
 		virtual void OnAttack();
 		virtual void OnSelect();
@@ -38,12 +52,16 @@ namespace TMF
 	protected:
 
 		float m_timer = 0.0f;
+		float m_lateTimer = 0.0f;
 		float m_coolTime = 1.0f;
 		float m_changeTime = 1.0f;
 		float m_initChangeTime = 1.0f;
 		// 近距離
 		// アニメーション時間
+		float m_cancelTime = 0.0f;
 		float m_endTime = 0;
+		bool m_isMelee = false;
+		bool m_isMeleeEnd = false;
 
 		// 遠距離
 		int m_bulletNum = -1;
@@ -51,7 +69,9 @@ namespace TMF
 		float m_reloadTime = 0.0f;
 		float m_reloadMaxTime = 10.0f;
 
-		SERIALIZE_COMPONENT(m_coolTime, m_initChangeTime);
+		WeaponType m_weaponType;
+
+		SERIALIZE_COMPONENT(m_coolTime, m_initChangeTime, m_weaponType);
 
 	};
 }

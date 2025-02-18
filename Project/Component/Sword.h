@@ -15,18 +15,16 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
+		float GetMeleeTime() override;
 		void OnAttack() override;
 		void OnSelect() override;
-		inline bool GetIsMeleeEnd() const { return m_isMeleeEnd; }
-		inline bool GetIsMelee() const { return m_isMelee; }
-	private:
 
-		bool m_isMelee = false;
-		bool m_isMeleeEnd = false;
+	private:
+		float m_meleeTimer = 0.0f;
 		float m_animationSpeed = 1.0f;
 		std::string m_meleeAnimation = "";
 
-		SERIALIZE_COMPONENT(m_meleeAnimation, m_endTime, m_animationSpeed);
+		SERIALIZE_COMPONENT(m_meleeAnimation, m_endTime, m_animationSpeed, m_cancelTime);
 	};
 }
 

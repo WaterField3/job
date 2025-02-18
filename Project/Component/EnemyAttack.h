@@ -5,6 +5,7 @@
 
 namespace TMF
 {
+	class WeaponBase;
 	class EnemyAttack : public Component
 	{
 	public:
@@ -18,11 +19,16 @@ namespace TMF
 		void SelectShot();
 		void SelectMelee();
 		void Play();
+		void WeaponsUpdate();
 		bool GetIsMeleeEnd();
 
 	private:
+		void CheckWepons();
+
+	private:
 		int m_selectIndex = 0;
-		std::vector<std::weak_ptr<Component>> m_pWepons;
+		//std::vector<std::weak_ptr<Component>> m_pWepons;
+		std::vector<std::weak_ptr<WeaponBase>> m_pWeapons;
 		std::vector<int> m_shotIndices;
 
 		//SERIALIZE_COMPONENT();
