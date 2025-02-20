@@ -15,8 +15,9 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void OnAttack() override;
+		bool OnAttack() override;
 		void OnSelect() override;
+		void OnCancel() override;
 		inline int GetBulletNum() const { return m_bulletNum; }
 		inline int GetBulletMaxNum() const { return m_bulletMaxNum; }
 		inline float GetChangeTime() const { return m_initChangeTime; }

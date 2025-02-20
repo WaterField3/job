@@ -109,18 +109,18 @@ namespace TMF
 		pClone->m_isUsePlayer = this->m_isUsePlayer;
 		return move(pClone);
 	}
-	void Gun::OnAttack()
+	bool Gun::OnAttack()
 	{
 		if (m_isUsePlayer == false)
 		{
 			if (m_changeTime < m_initChangeTime)
 			{
-				return;
+				return false;
 			}
 		}
 		if (m_isShot == true || m_bulletNum == 0)
 		{
-			return;
+			return false;
 		}
 
 		// Ž©•ª‚ÅŽ©•ª‚ð”ò‚Î‚·‚æ‚¤‚É
@@ -154,13 +154,22 @@ namespace TMF
 						auto moveVector = nowPosition - cameraPosition;
 						pLockTrancform->SetParent(std::weak_ptr<Transform>());
 						pLockBulletMove->MoveStart(nowPosition, moveVector);
+						m_isCancel = false;
+						return true;
 					}
 				}
 			}
 		}
+		return false;
 	}
 	void Gun::OnSelect()
 	{
 		m_changeTime = 0.0f;
+	}
+	void Gun::OnCancel()
+	{
+		m_lateTimer = 0.0f;
+		m_timer = 0.0f;
+		m_isCancel = true;
 	}
 }

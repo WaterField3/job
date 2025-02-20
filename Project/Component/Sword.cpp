@@ -30,12 +30,12 @@ namespace TMF
 		if (m_isMelee == true)
 		{
 			m_meleeTimer += deltaTime;
-			if (m_meleeTimer > m_endTime)
+			if (m_meleeTimer > m_endTime + m_animationStopTime)
 			{
 				m_isMeleeEnd = true;
 				m_isMelee = false;
 			}
-			if (m_timer > m_endTime)
+			if (m_timer > m_endTime + m_animationStopTime)
 			{
 				m_isMeleeEnd = true;
 			}
@@ -102,6 +102,12 @@ namespace TMF
 
 		}
 
+		auto animationStopTimeLabel = StringHelper::CreateLabel("AnimationStopTime", m_uuID);
+		if (ImGui::DragFloat(animationStopTimeLabel.c_str(), &m_animationStopTime, 0.1f))
+		{
+
+		}
+
 		auto animationSpeedLabel = StringHelper::CreateLabel("AnimationSpeed", m_uuID);
 		if (ImGui::DragFloat(animationSpeedLabel.c_str(), &m_animationSpeed))
 		{
@@ -111,8 +117,10 @@ namespace TMF
 		auto playLabel = StringHelper::CreateLabel("Play", m_uuID);
 		if (ImGui::Button(playLabel.c_str()))
 		{
-			OnAttack();
+			//OnAttack();
+			Cancel();
 		}
+
 	}
 	std::shared_ptr<Component> Sword::OnClone() const
 	{
@@ -126,18 +134,21 @@ namespace TMF
 	{
 		return m_meleeTimer;
 	}
-	void Sword::OnAttack()
+	float Sword::GetMeleeStopTime()
+	{
+		return m_animationStopTime;
+	}
+	bool Sword::OnAttack()
 	{
 		if (m_meleeTimer != 0.0f || m_changeTime < m_initChangeTime)
 		{
-			return;
+			return false;
 		}
 
 		if (auto pLockOwner = m_pOwner.lock())
 		{
 			auto parentPosition = DirectX::SimpleMath::Vector3::Zero;
 			auto parentRotation = DirectX::SimpleMath::Quaternion::Identity;
-			auto pParentOwner = std::weak_ptr<GameObject>();
 			auto pTransform = pLockOwner->GetComponent<Transform>();
 			if (auto pLockTransform = pTransform.lock())
 			{
@@ -147,11 +158,11 @@ namespace TMF
 					// 親の座標を取得
 					parentPosition = pLockParentTranform->GetPosition();
 					parentRotation = pLockParentTranform->GetRotation();
-					pParentOwner = pLockParentTranform->GetOwner();
+					m_pParent = pLockParentTranform->GetOwner();
 				}
 			}
-			auto pMeleeMove = pLockOwner->GetComponent<MeleeMove>();
-			if (auto pLockMeleemove = pMeleeMove.lock())
+			m_pMeleeMove = pLockOwner->GetComponent<MeleeMove>();
+			if (auto pLockMeleemove = m_pMeleeMove.lock())
 			{
 				// 追従を解除
 				auto pMeleeFollowMove = pLockOwner->GetComponent<MeleeFollowMove>();
@@ -172,23 +183,47 @@ namespace TMF
 					pLockTransform->SetParent(std::weak_ptr<Transform>());
 				}
 
-				if (auto pLockParentOwner = pParentOwner.lock())
+				if (auto pLockParentOwner = m_pParent.lock())
 				{
 					auto pAnimater = pLockParentOwner->GetComponent<Animater>();
 					if (auto pLockAnimater = pAnimater.lock())
 					{
 						// アニメーションのパスの変更
-						pLockAnimater->SetFileName(m_meleeAnimation, m_endTime, m_animationSpeed);
+						pLockAnimater->SetFileName(m_meleeAnimation, m_endTime, m_animationSpeed, m_animationStopTime);
 
 						// 変更　攻撃の全体フレーム時間とアニメーションを止める時間を設定するように
 					}
 					m_isMeleeEnd = false;
+					m_isCancel = false;
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 	void Sword::OnSelect()
 	{
 		m_changeTime = 0.0f;
+	}
+	void Sword::OnCancel()
+	{
+		if (auto pLockParentOwner = m_pParent.lock())
+		{
+			auto pParentAnimater = pLockParentOwner->GetComponent<Animater>();
+			if (auto pLockParentAnimater = pParentAnimater.lock())
+			{
+				if (auto pLockMeleeMove = m_pMeleeMove.lock())
+				{
+					pLockMeleeMove->Cancel();
+				}
+
+				pLockParentAnimater->LoadDefaltAnimation();
+				m_isMelee = false;
+				m_lateTimer = 0.0f;
+				//m_meleeTimer = 0.0f;
+				m_timer = 0.0f;
+				m_isCancel = true;
+			}
+		}
 	}
 }

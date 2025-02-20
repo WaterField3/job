@@ -5,6 +5,7 @@
 
 namespace TMF
 {
+	class MeleeMove;
 	class Sword : public WeaponBase
 	{
 	public:
@@ -16,15 +17,20 @@ namespace TMF
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
 		float GetMeleeTime() override;
-		void OnAttack() override;
+		float GetMeleeStopTime() override;
+		bool OnAttack() override;
 		void OnSelect() override;
+		void OnCancel() override;
 
 	private:
 		float m_meleeTimer = 0.0f;
 		float m_animationSpeed = 1.0f;
+		float m_animationStopTime = 0.0f;
 		std::string m_meleeAnimation = "";
+		std::weak_ptr<GameObject> m_pParent;
+		std::weak_ptr<MeleeMove> m_pMeleeMove;
 
-		SERIALIZE_COMPONENT(m_meleeAnimation, m_endTime, m_animationSpeed, m_cancelTime);
+		SERIALIZE_COMPONENT(m_meleeAnimation, m_endTime, m_animationSpeed, m_cancelTime, m_animationStopTime);
 	};
 }
 

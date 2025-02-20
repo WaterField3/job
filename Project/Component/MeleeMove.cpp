@@ -38,46 +38,50 @@ namespace TMF
 	}
 	void MeleeMove::OnUpdate()
 	{
-		auto nowPosition = DirectX::SimpleMath::Vector3::One;
-		auto nowRotation = DirectX::SimpleMath::Quaternion::Identity;
-		if (auto pLockTransform = m_pTransform.lock())
+		if (m_isPlay == true)
 		{
-			nowPosition = pLockTransform->GetPosition();
-			nowRotation = pLockTransform->GetRotation();
-			auto distance = DirectX::SimpleMath::Vector3::Distance(nowPosition, m_endPosition);
-			if (distance > 0.2f)
+
+			auto nowPosition = DirectX::SimpleMath::Vector3::One;
+			auto nowRotation = DirectX::SimpleMath::Quaternion::Identity;
+			if (auto pLockTransform = m_pTransform.lock())
 			{
-				auto movePos = nowPosition + m_moveVector * m_moveSpeed;
-				pLockTransform->SetPosition(movePos);
-				auto Up = m_playerUp;
-				if (m_time < 1.0f)
+				nowPosition = pLockTransform->GetPosition();
+				nowRotation = pLockTransform->GetRotation();
+				auto distance = DirectX::SimpleMath::Vector3::Distance(nowPosition, m_endPosition);
+				if (distance > 0.2f)
 				{
-					m_time += 0.01f * m_rotationSpeed;
+					auto movePos = nowPosition + m_moveVector * m_moveSpeed;
+					pLockTransform->SetPosition(movePos);
+					auto Up = m_playerUp;
+					if (m_time < 1.0f)
+					{
+						m_time += 0.01f * m_rotationSpeed;
+					}
+					auto rotateOffsetX = std::lerp(0.0f, m_targetRotationOffset.x, m_time);
+					auto rotateOffsetZ = std::lerp(m_rotationOffset, m_targetRotationOffset.z, m_time);
+					auto rotation = DirectX::SimpleMath::Vector3(rotateOffsetX, Up, rotateOffsetZ);
+					auto qua = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(rotation.y, rotation.x, rotation.z);
+					pLockTransform->SetRotation(qua);
 				}
-				auto rotateOffsetX = std::lerp(0.0f, m_targetRotationOffset.x, m_time);
-				auto rotateOffsetZ = std::lerp(m_rotationOffset, m_targetRotationOffset.z, m_time);
-				auto rotation = DirectX::SimpleMath::Vector3(rotateOffsetX, Up, rotateOffsetZ);
-				auto qua = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(rotation.y, rotation.x, rotation.z);
-				pLockTransform->SetRotation(qua);
-			}
-			else
-			{
-				if (auto pLockOwner = m_pOwner.lock())
+				else
 				{
-					m_isPlay = false;
-					pLockTransform->SetParent(m_pParent);
-					pLockOwner->SetActive(false);
-					return;
+					if (auto pLockOwner = m_pOwner.lock())
+					{
+						m_isPlay = false;
+						pLockTransform->SetParent(m_pParent);
+						pLockOwner->SetActive(false);
+						return;
+					}
 				}
 			}
-		}
-		if (auto pLockOwner = m_pOwner.lock())
-		{
-			auto pGhostObjct = pLockOwner->GetComponent<GhostObject>();
-			if (auto pLockGhostObject = pGhostObjct.lock())
+			if (auto pLockOwner = m_pOwner.lock())
 			{
-				auto movePos = nowPosition + m_moveVector * m_moveSpeed;
-				pLockGhostObject->SetGhostObjectTransform(movePos, nowRotation);
+				auto pGhostObjct = pLockOwner->GetComponent<GhostObject>();
+				if (auto pLockGhostObject = pGhostObjct.lock())
+				{
+					auto movePos = nowPosition + m_moveVector * m_moveSpeed;
+					pLockGhostObject->SetGhostObjectTransform(movePos, nowRotation);
+				}
 			}
 		}
 	}
@@ -131,6 +135,19 @@ namespace TMF
 		pClone->m_targetRotationOffset = this->m_targetRotationOffset;
 		return move(pClone);
 	}
+	void MeleeMove::Cancel()
+	{
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			pLockOwner->SetActive(false);
+			if (auto pLockTransform = m_pTransform.lock())
+			{
+				m_isPlay = false;
+				pLockTransform->SetParent(m_pParent);
+				pLockOwner->SetActive(false);
+			}
+		}
+	}
 	void MeleeMove::Play(MoveType type, DirectX::SimpleMath::Vector3 position, DirectX::SimpleMath::Quaternion rotation)
 	{
 		if (auto pLockOwner = m_pOwner.lock())
@@ -150,7 +167,7 @@ namespace TMF
 				{
 					auto startPos = position + forward * m_moveOfset.z + left * m_moveOfset.x + up * m_moveOfset.y;
 					pLockTransform->SetPosition(startPos);
-					m_endPosition = position + forward *  m_moveOfset.z + right * m_moveOfset.x + down;
+					m_endPosition = position + forward * m_moveOfset.z + right * m_moveOfset.x + down;
 					m_moveVector = m_endPosition - startPos;
 					m_moveVector.Normalize();
 					auto Up = rotation.ToEuler().y;

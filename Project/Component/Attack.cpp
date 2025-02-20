@@ -97,9 +97,12 @@ namespace TMF
 		if (auto pLockSelectComponent = m_pWeapons[m_selectIndex].lock())
 		{
 			// あれば攻撃を行う
-			pLockSelectComponent->Play();
-			weaponActionTiming.attackEndTiming = pLockSelectComponent->GetEndTime();
-			weaponActionTiming.attackCancelTiming = pLockSelectComponent->GetCancelTime();
+			auto isAttack = pLockSelectComponent->Play();
+			if (isAttack == true)
+			{
+				weaponActionTiming.attackEndTiming = pLockSelectComponent->GetEndTime() + pLockSelectComponent->GetMeleeStopTime();
+				weaponActionTiming.attackCancelTiming = pLockSelectComponent->GetCancelTime();
+			}
 			if (auto pLockCoolTimeUI = m_pCoolTimeUI.lock())
 			{
 				// CoolTimeUIに使用したウェポンを設定
@@ -183,12 +186,12 @@ namespace TMF
 			if (auto pLockOldWeapon = m_pOldWepon.lock())
 			{
 				auto meleeTime = pLockOldWeapon->GetMeleeTime();
-				if (meleeTime != 0.0f)
+				if (meleeTime != 0.0f && pLockOldWeapon->GetIsCancel() == false)
 				{
-					late = pLockOldWeapon->GetEndTime() - meleeTime;
+					late = pLockOldWeapon->GetEndTime();
 				}
-				m_lateTime = late;
 			}
+			m_lateTime = late;
 		}
 		pLockSelectComponent->SetLateTimer(late);
 		auto pWeponOwner = pLockSelectComponent->GetOwner();
@@ -253,5 +256,23 @@ namespace TMF
 			}
 		}
 		m_previousScrollValue = 0;
+	}
+	void Attack::CancelWepons()
+	{
+		auto size = m_pWeapons.size();
+		if (size > 0)
+		{
+			for (auto i = 0; i < size; i++)
+			{
+				if (auto pLockWepon = m_pWeapons[i].lock())
+				{
+					pLockWepon->Cancel();
+				}
+			}
+		}
+		if (auto pLockWeapon = m_pWeapons[m_selectIndex].lock())
+		{
+			pLockWeapon->SetLateTimer(0.0f);
+		}
 	}
 }

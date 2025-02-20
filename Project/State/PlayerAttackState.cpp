@@ -33,6 +33,7 @@ namespace TMF
 				auto weaponActionTiming = pLockAttack->Play();
 				m_endTime = weaponActionTiming.attackEndTiming;
 				m_cancelTime = weaponActionTiming.attackCancelTiming;
+				m_pAttack = pLockAttack;
 			}
 			auto pThruster = pLockOwner->GetComponent<Thruster>();
 			if (auto pLockThruster = pThruster.lock())
@@ -63,6 +64,10 @@ namespace TMF
 				{
 					if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
 					{
+						if (auto pLockAttack = m_pAttack.lock())
+						{
+							pLockAttack->CancelWepons();
+						}
 						pLockAdministratorStateMachine->ChangeState("PlayerIdleState");
 						return;
 					}

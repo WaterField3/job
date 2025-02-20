@@ -18,6 +18,7 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
+		void Cancel();
 		enum MoveType
 		{
 			DEFAULT,

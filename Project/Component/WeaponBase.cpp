@@ -30,17 +30,29 @@ namespace TMF
 		auto pClone = std::make_shared<WeaponBase>();
 		return move(pClone);
 	}
-	void WeaponBase::Play()
+	bool WeaponBase::Play()
 	{
-		OnAttack();
+		return OnAttack();
+	}
+	void WeaponBase::Cancel()
+	{
+		OnCancel();
+	}
+	void WeaponBase::OnCancel()
+	{
+
 	}
 	float WeaponBase::GetMeleeTime()
 	{
 		return 0.0f;
 	}
-	void WeaponBase::OnAttack()
+	float WeaponBase::GetMeleeStopTime()
 	{
-
+		return 0.0f;
+	}
+	bool WeaponBase::OnAttack()
+	{
+		return false;
 	}
 	void WeaponBase::Select()
 	{

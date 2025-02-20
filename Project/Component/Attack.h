@@ -22,6 +22,7 @@ namespace TMF
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
 		void WeaponsUpdate();
+		void CancelWepons();
 		// UŒ‚‚ÌI—¹ŠÔ‚ÆUŒ‚“®ì‚ğƒLƒƒƒ“ƒZƒ‹‚Å‚«‚éŠÔ
 		class WeaponActionTiming
 		{

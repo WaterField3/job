@@ -3,6 +3,7 @@
 
 namespace TMF
 {
+	class Attack;
 	class Thruster;
 	class PlayerAttackState : public State
 	{
@@ -17,7 +18,8 @@ namespace TMF
 		float m_endTime = 1.0f;
 		float m_cancelTime = 1.0f;
 		float m_timer = 0.0f;
-		std::weak_ptr <Thruster> m_pThruster;
+		std::weak_ptr<Attack> m_pAttack;
+		std::weak_ptr<Thruster> m_pThruster;
 	};
 }
 

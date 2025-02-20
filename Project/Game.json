@@ -25,7 +25,7 @@
                                             "m_isEnable": true
                                         },
                                         "m_position": {
-                                            "value0": -0.0,
+                                            "value0": 0.0,
                                             "value1": 6.0,
                                             "value2": -0.0
                                         },
@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 4.712375164031982,
+                                        "m_azimuth": 4.729828357696533,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -672,7 +672,9 @@
                                         },
                                         "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
                                         "m_endTime": 2.0,
-                                        "m_animationSpeed": 1.0
+                                        "m_animationSpeed": 1.0,
+                                        "m_cancelTime": 0.0,
+                                        "m_animationStopTime": 1.100000023841858
                                     }
                                 }
                             }
@@ -2253,7 +2255,9 @@
                                         },
                                         "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
                                         "m_endTime": 2.0,
-                                        "m_animationSpeed": 1.0
+                                        "m_animationSpeed": 1.0,
+                                        "m_cancelTime": 0.0,
+                                        "m_animationStopTime": 0.0
                                     }
                                 }
                             }

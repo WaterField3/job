@@ -93,15 +93,15 @@ namespace TMF
 		pClone->m_meleeObjectName = this->m_meleeObjectName;
 		return move(pClone);
 	}
-	void Melee::OnAttack()
+	bool Melee::OnAttack()
 	{
 		if (m_meleeObjectName == "")
 		{
-			return;
+			return false;
 		}
 		if (m_isMelee == true || m_changeTime < m_initChangeTime)
 		{
-			return;
+			return false;
 		}
 		auto nowPosition = DirectX::SimpleMath::Vector3::Zero;
 		auto nowRotation = DirectX::SimpleMath::Quaternion::Identity;
@@ -152,11 +152,13 @@ namespace TMF
 				if (auto pLockAnimater = pAnimater.lock())
 				{
 					// アニメーションのパスの変更
-					pLockAnimater->SetFileName(m_meleeAnimation, m_endTime);
+					//pLockAnimater->SetFileName(m_meleeAnimation, m_endTime);
 				}
 				m_isMeleeEnd = false;
+				return true;
 			}
 		}
+		return false;
 	}
 	void Melee::OnSelect()
 	{

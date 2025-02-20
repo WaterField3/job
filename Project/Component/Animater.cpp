@@ -31,6 +31,9 @@ namespace TMF
 
 	void Animater::OnUpdate()
 	{
+		auto deltaTime = Timer::Instance().deltaTime.count();
+
+		auto isUpdate = true;
 		if (m_timer > m_animEndTime)
 		{
 			if (m_isNextAnimSet == true)
@@ -52,19 +55,36 @@ namespace TMF
 			else
 			{
 				m_timer = 0;
-				//m_animationBlendRate = 0.0f;
 			}
 		}
-		auto deltaTime = Timer::Instance().deltaTime.count();
-		if (m_pAnimationCMO)
+		else
 		{
-			m_pAnimationCMO->Update(deltaTime * m_animationSpeed);
+			if (m_animEndTime != 0.0f)
+			{
+				if (m_timer > m_animStopTime && m_animStopEndTime > 0.0f)
+				{
+					m_animStopTime -= deltaTime;
+					m_animStopEndTime -= deltaTime;
+					if (m_animStopEndTime > 0.0f)
+					{
+						isUpdate = false;
+					}
+				}
+			}
 		}
-		else if (m_pAnimationSDKMESH)
+
+		if (isUpdate == true)
 		{
-			m_pAnimationSDKMESH->Update(deltaTime * m_animationSpeed);
+			m_timer += deltaTime * m_animationSpeed;
+			if (m_pAnimationCMO)
+			{
+				m_pAnimationCMO->Update(deltaTime * m_animationSpeed);
+			}
+			else if (m_pAnimationSDKMESH)
+			{
+				m_pAnimationSDKMESH->Update(deltaTime * m_animationSpeed);
+			}
 		}
-		m_timer += deltaTime * m_animationSpeed;
 		//m_animationBlendRate += deltaTime;
 		if (m_pAnimationSDKMESH)
 		{
@@ -155,7 +175,7 @@ namespace TMF
 
 		}
 
-		auto animBlendRateLabel = StringHelper::CreateLabel("BlendRate",m_uuID);
+		auto animBlendRateLabel = StringHelper::CreateLabel("BlendRate", m_uuID);
 		if (ImGui::DragFloat(animBlendRateLabel.c_str(), &m_animationBlendRate, 0.1f))
 		{
 			if (m_pAnimationSDKMESH)
@@ -183,19 +203,6 @@ namespace TMF
 		{
 
 		}
-
-		auto isBindBoneLabel = StringHelper::CreateLabel("IsBindBone", m_uuID);
-		if (ImGui::Checkbox(isBindBoneLabel.c_str(), &m_isBindBone))
-		{
-
-		}
-		char bindBuf[256] = "";
-		strcpy_s(bindBuf, sizeof(bindBuf), m_bindName.c_str());
-		auto bindLabel = StringHelper::CreateLabel("BindBone", m_uuID);
-		if (ImGui::InputText(bindLabel.c_str(), bindBuf, 256))
-		{
-			m_bindName = bindBuf;
-		}
 	}
 
 	std::shared_ptr<Component> Animater::OnClone() const
@@ -215,6 +222,8 @@ namespace TMF
 			m_fromAnimName = fileName;
 			m_timer = 0.0f;
 			m_animEndTime = endTime;
+			m_animStopEndTime = 0.0f;
+			m_animStopTime = 0.0f;
 			if (animSpeed != 0.0f)
 			{
 				m_animationSpeed = animSpeed;
@@ -226,6 +235,35 @@ namespace TMF
 			m_nextPath = fileName;
 			m_nextAnimEnd = endTime;
 			m_isNextAnimSet = true;
+			if (animSpeed != 0.0f)
+			{
+				m_nextAnimationSpeed = animSpeed;
+			}
+		}
+	}
+
+	void Animater::SetFileName(std::string fileName, float endTime, float animSpeed, float animStopTime)
+	{
+		if (m_timer > m_animEndTime || m_fromAnimName == m_idlePath)
+		{
+			m_fromAnimName = fileName;
+			m_timer = 0.0f;
+			m_animEndTime = endTime;
+			m_animStopTime = animStopTime;
+			m_animStopEndTime = endTime - animStopTime;
+			if (animSpeed != 0.0f)
+			{
+				m_animationSpeed = animSpeed;
+			}
+			LoadAnimation();
+		}
+		else
+		{
+			m_nextPath = fileName;
+			m_nextAnimEnd = endTime;
+			m_isNextAnimSet = true;
+			m_animStopTime = animStopTime;
+			m_animStopEndTime = endTime - animStopTime;
 			if (animSpeed != 0.0f)
 			{
 				m_nextAnimationSpeed = animSpeed;
@@ -256,6 +294,12 @@ namespace TMF
 				}
 			}
 		}
+	}
+
+	void Animater::LoadDefaltAnimation()
+	{
+		m_fromAnimName = m_idlePath;
+		LoadAnimation();
 	}
 
 	DirectX::SimpleMath::Vector3 Animater::GetBonePosition(std::string findName)
