@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 4.764734745025635,
+                                        "m_azimuth": 4.88690710067749,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -3443,6 +3443,106 @@
                                             "value1": 1.0,
                                             "value2": 50.0
                                         }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483795,
+                    "data": {
+                        "m_name": "HPUI",
+                        "m_uuID": {
+                            "uuid": "9e483249-b802-449c-b186-a4b595500cea"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483796,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "9446c236-44b7-430b-bec6-579c1b83f2b0"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483686,
+                                "polymorphic_name": "TMF::HPUI",
+                                "ptr_wrapper": {
+                                    "id": 2147483797,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "dc01596e-4f29-4f84-90f9-2c46349930cf"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_barWidth": 225.0,
+                                        "m_barHeight": 25.0,
+                                        "m_barTextureName": "asset/textures/white.png",
+                                        "m_drawPosition": {
+                                            "value0": 716.0,
+                                            "value1": 458.0
+                                        },
+                                        "m_targetName": "Anim"
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 30,
+                                "ptr_wrapper": {
+                                    "id": 2147483798,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "5f708019-aa76-4e8e-95aa-0213b4a92601"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_spriteFontPos": {
+                                            "value0": 827.0,
+                                            "value1": 472.0
+                                        },
+                                        "m_fontColor": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_fontScale": 0.800000011920929,
+                                        "m_text": "100/100",
+                                        "m_fontPath": "asset/myfile.spritefont"
                                     }
                                 }
                             }

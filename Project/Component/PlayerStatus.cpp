@@ -69,6 +69,11 @@ namespace TMF
 	}
 	void PlayerStatus::OnDrawImGui()
 	{
+		auto hpLabel = StringHelper::CreateLabel("HP", m_uuID);
+		if (ImGui::DragFloat(hpLabel.c_str(), &m_hp))
+		{
+
+		}
 		char staggerBuf[256] = "";
 		strcpy_s(staggerBuf, sizeof(staggerBuf), m_staggerAnimPath.c_str());
 		auto staggerAnimPathLabel = StringHelper::CreateLabel("StaggerAnimPath", m_uuID);

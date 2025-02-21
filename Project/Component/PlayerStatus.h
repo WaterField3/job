@@ -24,9 +24,12 @@ namespace TMF
 		void Stagger();
 		void Invert();
 		void Damage(float damage);
-		inline bool GetIsInvincible() const { return m_isInvincible; }
+
+		inline float GetHP() const { return m_hp; }
 		inline void SetIsInvincible(bool isInvincible) { m_isInvincible = isInvincible; }
+		inline bool GetIsInvincible() const { return m_isInvincible; }
 		inline bool GetIsDead() const { return m_isDead; }
+		
 
 	private:
 		bool m_isInvincible = false;
