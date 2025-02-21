@@ -4,6 +4,7 @@
 
 #include "ComponentRegister.h"
 #include "Utility/StringHelper.h"
+#include "PhysicsManager.h"
 #include "Rigidbody.h"
 #include "Transform.h"
 #include "Timer.h"
@@ -27,32 +28,54 @@ namespace TMF
 	}
 	void Jump::OnUpdate()
 	{
-		if (m_isChageEnd == true)
+		if (m_isFlight == true)
 		{
-			m_flightTime -= Timer::Instance().deltaTime.count();
+			if (m_flightTime > 0.0f)
+			{
+				m_flightTime -= Timer::Instance().deltaTime.count();
+			}
+			auto fall = false;
 			if (m_flightTime <= 0)
 			{
-				m_flightTime = m_maxFlightTime;
+				m_jumpVector = DirectX::SimpleMath::Vector3::Zero;
 				m_isChageEnd = false;
-				m_chageTime = 0.0f;
-				m_moveSpeed = m_maxMoveSpeed;
-				m_isChage = true;
-				return;
-			}
-			if (auto pLockRigidbody = m_pRigidbody.lock())
-			{
-				auto jumpPower = m_jumpVector * m_impact * m_moveSpeed;
-				pLockRigidbody->SetLinearVelocity(jumpPower);
+				//m_chageTime = 0.0f;
+				//m_isChage = true;
+				fall = true;
 			}
 			m_moveSpeed = m_moveSpeed * 0.7f;
 			if (m_moveSpeed <= 1.0f)
 			{
 				m_moveSpeed = 1.0f;
 			}
+			if (auto pLockTransfrom = m_pTransform.lock())
+			{
+				auto start = pLockTransfrom->GetPosition();
+				auto end = start - DirectX::SimpleMath::Vector3(0.0f, 0.5f, 0.0f);
+				if (PhysicsManager::Instance().RayCastHit(start, end) && fall == true)
+				{
+					m_isFlight = false;
+					m_isFall = false;
+					m_IsLanding = true;
+					m_jumpNum = 0;
+				}
+			}
+		}
+		else
+		{
+			m_IsLanding = false;
 		}
 	}
 	void Jump::OnLateUpdate()
 	{
+		if (m_flightTime > 0.0f && m_isFlight == true)
+		{
+			if (auto pLockRigidbody = m_pRigidbody.lock())
+			{
+				auto jumpPower = m_jumpVector * m_impact * m_moveSpeed;
+				pLockRigidbody->SetLinearVelocity(jumpPower);
+			}
+		}
 	}
 	void Jump::OnDraw()
 	{
@@ -77,8 +100,20 @@ namespace TMF
 
 		}
 
-		auto jumpNumLabel = StringHelper::CreateLabel("MaxJumpNum", m_uuID);
-		if (ImGui::DragInt(jumpNumLabel.c_str(), &m_maxJumpNum, 0))
+		auto maxJumpNumLabel = StringHelper::CreateLabel("MaxJumpNum", m_uuID);
+		if (ImGui::DragInt(maxJumpNumLabel.c_str(), &m_maxJumpNum, 0))
+		{
+
+		}
+
+		auto chageTimeLabel = StringHelper::CreateLabel("ChageTime", m_uuID);
+		if (ImGui::DragFloat(chageTimeLabel.c_str(), &m_chageTime))
+		{
+
+		}
+
+		auto jumpNumLabel = StringHelper::CreateLabel("JumpNum", m_uuID);
+		if (ImGui::DragInt(jumpNumLabel.c_str(), &m_jumpNum))
 		{
 
 		}
@@ -107,7 +142,12 @@ namespace TMF
 	}
 	void Jump::Chage(MoveDirection moveDirection)
 	{
-		if (m_isChageEnd == true)
+		//if (m_isChageEnd == true)
+		//{
+		//	return;
+		//}
+
+		if (m_jumpNum >= m_maxJumpNum)
 		{
 			return;
 		}
@@ -121,6 +161,7 @@ namespace TMF
 		}
 
 		m_chageTime += Timer::Instance().deltaTime.count();
+		m_isChage = true;
 		if (m_chageTime >= 1)
 		{
 			m_chageTime = 1.0f;
@@ -152,12 +193,18 @@ namespace TMF
 				m_jumpVector.y = pLockTransform->GetUp().y;
 			}
 			m_moveDirection = moveDirection;
+			m_isFlight = true;
+			if (auto pLockThruster = m_pThruster.lock())
+			{
+				pLockThruster->UseThruster(m_chageTime);
+				m_chageTime = 0.0f;
+			}
 		}
 	}
 	void Jump::ChageStop(MoveDirection moveDirection)
 	{
 
-		if (m_chageTime < 0.1f)
+		if (m_chageTime < 0.1f || m_isChage == false)
 		{
 			return;
 		}
@@ -186,21 +233,29 @@ namespace TMF
 			}
 			m_jumpVector.y = pLockTransform->GetUp().y;
 		}
-		m_flightTime = m_maxFlightTime * m_chageTime;
+		m_flightTime += m_maxFlightTime * m_chageTime;
 		m_moveSpeed = m_maxMoveSpeed;
 		m_moveDirection = moveDirection;
+		m_isFlight = true;
+		m_isChage = false;
 		if (auto pLockThruster = m_pThruster.lock())
 		{
 			pLockThruster->UseThruster(m_chageTime);
 		}
+		m_chageTime = 0.0f;
+		m_jumpNum++;
 	}
 	void Jump::Fall()
 	{
-		if (m_isChageEnd == true)
+		if (m_isFlight == true && m_isFall == false)
 		{
 			if (auto pLockRigidbody = m_pRigidbody.lock())
 			{
 				pLockRigidbody->SetLinearVelocity(DirectX::SimpleMath::Vector3::Zero);
+				pLockRigidbody->ClearForces();
+				m_jumpVector = DirectX::SimpleMath::Vector3::Zero;
+				m_isFall = true;
+				//m_isChageEnd = false;
 			}
 		}
 	}

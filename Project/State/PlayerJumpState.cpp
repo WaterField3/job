@@ -25,6 +25,7 @@ namespace TMF
 			auto isGetJump = false;
 			if (auto pLockJump = pJump.lock())
 			{
+				m_pJump = pLockJump;
 				isGetJump = true;
 			}
 			m_pTransform = pLockOwner->GetComponent<Transform>();
@@ -71,26 +72,24 @@ namespace TMF
 			auto keyTracker = Input::Instance().GetKeyboardTracker();
 
 			keyTracker->Update(keyState);
-			if (keyState.Space == true)
+			if (auto pLockJump = m_pJump.lock())
 			{
-				m_pPlayerJump->Chage();
-			}
-			// チャージ解除　ジャンプ開始
-			if (keyState.IsKeyUp(DirectX::Keyboard::Space) || m_pPlayerJump->GetChageEnd() == true)
-			{
-  				m_pPlayerJump->Flight();
+				if (keyState.Space == true)
+				{
+					pLockJump->Chage(m_moveDirection);
+				}
+				// チャージ解除　ジャンプ開始
+				if (keyState.IsKeyUp(DirectX::Keyboard::Space))
+				{
+					pLockJump->ChageStop(m_moveDirection);
+				}
 
-			}
-			if (keyState.IsKeyUp(DirectX::Keyboard::Space))
-			{
-				m_pPlayerJump->ChageEnd();
-			}
+				if (keyState.LeftControl)
+				{
+					pLockJump->Fall();
+				}
 
-			if (auto pLockTransfrom = m_pTransform.lock())
-			{
-				auto start = pLockTransfrom->GetPosition();
-				auto end = start - DirectX::SimpleMath::Vector3(0.0f, 0.5f, 0.0f);
-				if (m_pPlayerJump->GetIsJumpingEnd() == true && PhysicsManager::Instance().RayCastHit(start, end))
+				if (pLockJump->GetIsLanding() == true)
 				{
 					if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
 					{

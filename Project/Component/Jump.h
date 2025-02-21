@@ -26,7 +26,8 @@ namespace TMF
 		void Fall();
 
 		inline int GetMaxJumpNum() { return m_maxJumpNum; }
-		inline bool GetIsLanding() { return m_isChageEnd == true && m_isChage == false; }
+		inline bool GetIsChageEnd() { return m_isChageEnd; }
+		inline bool GetIsLanding() { return m_IsLanding; }
 		inline float GetImpact() { return m_impact; }
 		inline float GetMoveSpeed() { return m_moveSpeed; }
 		inline float GetMaxMoveSpeed() { return m_maxMoveSpeed; }
@@ -34,6 +35,7 @@ namespace TMF
 
 	private:
 		int m_maxJumpNum = 1;
+		int m_jumpNum = 0;
 		// チャージした時間（割合）
 		float m_chageTime = 0;
 		float m_impact = 1.0f;
@@ -43,6 +45,9 @@ namespace TMF
 		float m_moveSpeed = 1.0f;
 		bool m_isChage = false;
 		bool m_isChageEnd = false;
+		bool m_isFlight = false;
+		bool m_isFall = false;
+		bool m_IsLanding = false;
 		DirectX::SimpleMath::Vector3 m_jumpVector = DirectX::SimpleMath::Vector3::Zero;
 		MoveDirection m_moveDirection = MoveDirection::NEUTRAL;
 		std::weak_ptr<Rigidbody> m_pRigidbody;

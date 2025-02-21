@@ -3,10 +3,13 @@
 
 #include <memory>
 
+#include "MoveInfo.h"
+
 namespace TMF
 {
 	class PlayerJump;
 	class Transform;
+	class Jump;
 	class PlayerJumpState : public State
 	{
 	public:
@@ -19,6 +22,8 @@ namespace TMF
 	private:
 		std::unique_ptr<PlayerJump> m_pPlayerJump;
 		std::weak_ptr<Transform> m_pTransform;
+		std::weak_ptr<Jump> m_pJump;
+		MoveDirection m_moveDirection = MoveDirection::FOWARD;
 	};
 }
 

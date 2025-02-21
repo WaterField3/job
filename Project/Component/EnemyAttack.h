@@ -18,7 +18,7 @@ namespace TMF
 		std::shared_ptr<Component> OnClone() const override;
 		void SelectShot();
 		void SelectMelee();
-		void Play();
+		bool Play();
 		void WeaponsUpdate();
 		bool GetIsMeleeEnd();
 
@@ -27,7 +27,6 @@ namespace TMF
 
 	private:
 		int m_selectIndex = 0;
-		//std::vector<std::weak_ptr<Component>> m_pWepons;
 		std::vector<std::weak_ptr<WeaponBase>> m_pWeapons;
 		std::vector<int> m_shotIndices;
 

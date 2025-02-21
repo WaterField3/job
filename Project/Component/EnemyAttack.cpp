@@ -97,29 +97,19 @@ namespace TMF
 		}
 	}
 
-	void EnemyAttack::Play()
+	bool EnemyAttack::Play()
 	{
 		auto weponSize = static_cast<int>(m_pWeapons.size());
 		if (weponSize <= 0)
 		{
-			return;
+			return false;
 		}
 		if (auto pLockSelectComponent = m_pWeapons[m_selectIndex].lock())
 		{
 			pLockSelectComponent->Play();
-
-			//// Shotクラスに変換できるか確認
-			//if (auto pLockShot = std::dynamic_pointer_cast<Shot>(pLockSelectComponent))
-			//{
-			//	pLockShot->Play();
-
-			//}
-			//// Meleeクラスに変換できるか確認
-			////else if (auto pLockMelee = std::dynamic_pointer_cast<Melee>(pLockSelectComponent))
-			////{
-			////	pLockMelee->Play();
-			////}
+			return true;
 		}
+		return false;
 	}
 
 	void EnemyAttack::WeaponsUpdate()
