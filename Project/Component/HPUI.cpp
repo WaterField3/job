@@ -27,12 +27,15 @@ namespace TMF
 				m_pPlayerStatus = pLockPlayerStatus;
 			}
 		}
-		if (auto pLockOwner = m_pOwner.lock())
+		if (m_isFontDraw == true)
 		{
-			auto pFont = pLockOwner->GetComponent<Font>();
-			if (auto pLockFont = pFont.lock())
+			if (auto pLockOwner = m_pOwner.lock())
 			{
-				m_pFont = pLockFont;
+				auto pFont = pLockOwner->GetComponent<Font>();
+				if (auto pLockFont = pFont.lock())
+				{
+					m_pFont = pLockFont;
+				}
 			}
 		}
 		if (m_barTextureName != "")
@@ -152,7 +155,11 @@ namespace TMF
 		{
 
 		}
+		auto isFontDrawLabel = StringHelper::CreateLabel("IsFontDraw", m_uuID);
+		if (ImGui::Checkbox(isFontDrawLabel.c_str(), &m_isFontDraw))
+		{
 
+		}
 	}
 	std::shared_ptr<Component> HPUI::OnClone() const
 	{

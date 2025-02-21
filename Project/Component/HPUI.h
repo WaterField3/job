@@ -19,12 +19,13 @@ namespace TMF
 		std::shared_ptr<Component> OnClone() const override;
 
 	private:
+		bool m_isFontDraw = false;
 		float m_maxHP = 1.0f;
 		std::string m_targetName = "";
 		std::weak_ptr<PlayerStatus> m_pPlayerStatus;
 		std::weak_ptr<Font> m_pFont;
 		
-		SERIALIZE_COMPONENT(m_barWidth, m_barHeight, m_barTextureName, m_drawPosition, m_targetName);
+		SERIALIZE_COMPONENT(m_barWidth, m_barHeight, m_barTextureName, m_drawPosition, m_targetName, m_isFontDraw);
 
 	};
 }

@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 4.88690710067749,
+                                        "m_azimuth": 4.956719875335693,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -3515,7 +3515,8 @@
                                             "value0": 716.0,
                                             "value1": 458.0
                                         },
-                                        "m_targetName": "Anim"
+                                        "m_targetName": "Anim",
+                                        "m_isFontDraw": false
                                     }
                                 }
                             },
@@ -3541,7 +3542,7 @@
                                             "value3": 1.0
                                         },
                                         "m_fontScale": 0.800000011920929,
-                                        "m_text": "100/100",
+                                        "m_text": "",
                                         "m_fontPath": "asset/myfile.spritefont"
                                     }
                                 }
