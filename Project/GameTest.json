@@ -3516,7 +3516,13 @@
                                             "value1": 458.0
                                         },
                                         "m_targetName": "Anim",
-                                        "m_isFontDraw": false
+                                        "m_isFontDraw": false,
+                                        "m_backGroundDrawPosition": {
+                                            "value0": 715.0,
+                                            "value1": 369.0
+                                        },
+                                        "m_backGroundDrawWidth": 226.0,
+                                        "m_backGroundDrawHeight": 114.0
                                     }
                                 }
                             },

@@ -204,6 +204,14 @@ namespace TMF
 	void Sword::OnSelect()
 	{
 		m_changeTime = 0.0f;
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pFollowMove = pLockOwner->GetComponent<MeleeFollowMove>();
+			if (auto pLockFollowMove = pFollowMove.lock())
+			{
+				pLockFollowMove->SetIsEnable(true);
+			}
+		}
 	}
 	void Sword::OnCancel()
 	{

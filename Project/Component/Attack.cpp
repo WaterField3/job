@@ -6,9 +6,6 @@
 #include "Utility/StringHelper.h"
 #include "GameObject/GameObjectManager.h"
 #include "Input.h"
-#include "Shot.h"
-#include "Melee.h"
-#include "MeleeFollowMove.h"
 #include "WeaponUI.h"
 #include "WeaponBase.h"
 
