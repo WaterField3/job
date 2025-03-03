@@ -93,6 +93,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	auto app = CreateApplication();
 	app->OnInitialize();
 	D3D::Get()->Init();
+
+	int result = MessageBox(NULL,"フルスクリーンにしますか？", "確認", MB_YESNO | MB_ICONQUESTION);
+	if (result == IDYES) {
+		// Yesが押された場合の処理
+		BOOL state = FALSE;
+		D3D::Get()->ChangeSwapChainFullScreenState(state);
+	}
+	else {
+		// Noが押された場合の処理
+		BOOL state = TRUE;
+		D3D::Get()->ChangeSwapChainFullScreenState(state);
+	}
 	// ゲームループ
 	for (;;)
 	{
@@ -115,12 +127,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 			// ゲーム処理実行
 
+
 			app->OnUpdate();
 
 			app->OnDraw();
 
 			app->OnDrawImGui();
 
+
+
+			if (Input::Instance().GetKeyState().Escape == true)
+			{
+				break;
+			}
 		}
 	} // ゲームループの閉じカッコ
 

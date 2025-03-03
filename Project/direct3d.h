@@ -212,7 +212,7 @@ public:
 	ID3D11InputLayout* GetInputLayout() { return m_pInputLayout; }
 	inline HWND GetHwnd() const { return m_hwnd; }
 	inline std::shared_ptr<DirectX::CommonStates> GetCommonStates() { return m_pCommonStates; }
-	inline void GetSwapChainFullScreenState(BOOL fullscreenState) const { m_pSwapChain->GetFullscreenState(&fullscreenState, nullptr); }
+	inline void GetSwapChainFullScreenState(BOOL &fullscreenState) { m_pSwapChain->GetFullscreenState(&fullscreenState, nullptr); }
 	void ChangeSwapChainFullScreenState(BOOL fullscreenState) const { m_pSwapChain->SetFullscreenState(!fullscreenState, nullptr); }
 
 	// 頂点データ１つあたりのバイトサイズを返す
