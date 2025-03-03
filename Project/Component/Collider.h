@@ -28,6 +28,8 @@ namespace TMF
 		std::weak_ptr<btCollisionShape> GetCollisionShape();
 		void SetCollisionCenter(DirectX::SimpleMath::Vector3 setCenter);
 		void SetCollisionScale(DirectX::SimpleMath::Vector3 setScale);
+		void SetCollisionOfsetRotation(DirectX::SimpleMath::Vector3 setOfsetRotation);
+		void SetCollisionOfsetRotation(DirectX::SimpleMath::Quaternion setOfsetRotation);
 		inline DirectX::SimpleMath::Vector3 GetCollisionSize() const { return m_size; }
 		inline DirectX::SimpleMath::Vector3 GetCollisionCenter() const { return m_center; }
 	private:

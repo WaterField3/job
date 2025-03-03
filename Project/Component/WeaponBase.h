@@ -64,7 +64,7 @@ namespace TMF
 		// 近距離
 		// アニメーション時間
 		float m_cancelTime = 0.0f;
-		float m_endTime = 0;
+		float m_endTime = 0.0f;
 		bool m_isMelee = false;
 		bool m_isMeleeEnd = false;
 

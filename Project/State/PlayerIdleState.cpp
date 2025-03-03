@@ -8,6 +8,7 @@
 #include "Component/Rigidbody.h"
 #include "Component/Thruster.h"
 #include "Component/CharacterMoveController.h"
+#include "Component/PlayerStatus.h"
 #include "Input.h"
 #include "StateMachine.h"
 
@@ -54,6 +55,11 @@ namespace TMF
 			{
 				moveSpeed = pLockCharacterMoveController->GetMoveSpeed();
 			}
+			auto pPlayerStatus = pLockOwner->GetComponent<PlayerStatus>();
+			if (auto pLockPlayerStatus = pPlayerStatus.lock())
+			{
+				m_pPlayerStatus = pLockPlayerStatus;
+			}
 		
 			if (isGetTransform == true && isGetRigidbody == true && isGetThruster == true)
 			{
@@ -83,6 +89,15 @@ namespace TMF
 		auto mouseTracker = Input::Instance().GetMouseTracker();
 		auto mouseState = Input::Instance().GetMouseState();
 		mouseTracker->Update(mouseState);
+
+		if (auto pLockPlayerStatus = m_pPlayerStatus.lock())
+		{
+			if (pLockPlayerStatus->GetIsMove() == false)
+			{
+				return;
+			}
+		}
+
 		if (keyState.W == true)
 		{
 			m_pEventSystem->TriggerEvent('w');

@@ -11,6 +11,7 @@
 #include "Timer.h"
 #include "Camera.h"
 #include "Rigidbody.h"
+#include "PlayerStatus.h"
 
 REGISTER_COMPONENT(TMF::CameraMove, "CameraMove");
 
@@ -47,6 +48,7 @@ namespace TMF
 						pLockCamera->SetTargetTransform(m_pPlayerTransform);
 					}
 					m_pTargetRigidbody = pLockTargetObject->GetComponent<Rigidbody>();
+					m_pTargetPlayerStatus = pLockTargetObject->GetComponent<PlayerStatus>();
 				}
 			}
 		}
@@ -92,10 +94,10 @@ namespace TMF
 	{
 		if (auto pLockTargetRigidbody = m_pTargetRigidbody.lock())
 		{
-			btTransform transform =  pLockTargetRigidbody->GetBtTransform();
+			btTransform transform = pLockTargetRigidbody->GetBtTransform();
 			btQuaternion currentRotation = transform.getRotation();
 			btScalar yaw = currentRotation.getAngle();
-			btScalar deltaAngle = -m_azimuth  - yaw + 1.5f;
+			btScalar deltaAngle = -m_azimuth - yaw + 1.5f;
 			btQuaternion rotationDelta(btVector3(0, 1, 0), deltaAngle);
 			btQuaternion newRotation = currentRotation * rotationDelta;
 			transform.setRotation(newRotation);

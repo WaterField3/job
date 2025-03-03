@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 4.939266681671143,
+                                        "m_azimuth": 5.131251811981201,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -369,21 +369,21 @@
                                             "m_isEnable": true
                                         },
                                         "m_hp": 100.0,
-                                        "m_staggerAnimPath": "",
-                                        "m_invertAnimPath": "",
+                                        "m_staggerAnimPath": "asset/model/Stunned.sdkmesh_anim",
+                                        "m_invertAnimPath": "asset/model/Hit To Body.sdkmesh_anim",
                                         "m_invertAnimEndTime": 1.0,
-                                        "m_staggerAnimEndTime": 1.0,
-                                        "m_standUpAnimPath": "",
+                                        "m_staggerAnimEndTime": 3.0,
+                                        "m_standUpAnimPath": "asset/model/Situp To Idle.sdkmesh_anim",
                                         "m_standUpTime": 1.0,
                                         "m_staggerCenter": {
                                             "value0": 0.0,
-                                            "value1": 0.0,
+                                            "value1": 0.5,
                                             "value2": 0.0
                                         },
                                         "m_staggerScale": {
-                                            "value0": 1.0,
-                                            "value1": 1.0,
-                                            "value2": 1.0
+                                            "value0": 40.0,
+                                            "value1": 25.0,
+                                            "value2": 80.0
                                         }
                                     }
                                 }
@@ -3544,6 +3544,206 @@
                                         "m_fontScale": 0.800000011920929,
                                         "m_text": "",
                                         "m_fontPath": "asset/myfile.spritefont"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483799,
+                    "data": {
+                        "m_name": "ESword",
+                        "m_uuID": {
+                            "uuid": "6ad6f24d-7bf5-4b34-9952-5c318b45838b"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483800,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "e3201509-6b76-4a93-9c8b-86cb184a3698"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 0.20000000298023225,
+                                            "value1": 0.20000000298023225,
+                                            "value2": 0.20000000298023225
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 1073741824,
+                                                "ptr_wrapper": {
+                                                    "id": 41
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 16,
+                                "ptr_wrapper": {
+                                    "id": 2147483801,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "aac416f6-4cf3-4150-ac26-6a5dbd162208"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_moveSpeed": 0.05000000074505806,
+                                        "m_rotate": {
+                                            "value0": -0.5,
+                                            "value1": 0.0,
+                                            "value2": 3.9000000953674318
+                                        },
+                                        "m_rotationOffset": 2.200000047683716,
+                                        "m_rotationSpeed": 1.2999999523162842,
+                                        "m_targetRotationOffset": {
+                                            "value0": -1.5,
+                                            "value1": 0.0,
+                                            "value2": 1.399999976158142
+                                        },
+                                        "m_moveOfset": {
+                                            "value0": 2.0,
+                                            "value1": 5.0,
+                                            "value2": 3.0
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 7,
+                                "ptr_wrapper": {
+                                    "id": 2147483802,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "bba5818e-5a7f-47bc-a2e7-fbcaf8346e23"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_collidrType": 0,
+                                        "m_size": {
+                                            "value0": 10.0,
+                                            "value1": 1.0,
+                                            "value2": 1.5
+                                        },
+                                        "m_center": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_editerOfsetRotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 17,
+                                "ptr_wrapper": {
+                                    "id": 2147483803,
+                                    "data": {
+                                        "m_uuID": {
+                                            "uuid": "b768e0b2-9d5a-46af-ae6f-980a989a80d7"
+                                        },
+                                        "m_isEnable": true
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 5,
+                                "ptr_wrapper": {
+                                    "id": 2147483804,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "98e178db-1421-4699-b0fb-d89dc7c7500d"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_loadFile": "asset/model/sword.sdkmesh",
+                                        "m_isDraw": true,
+                                        "m_loadType": 2,
+                                        "m_loadDirectory": "asset/model"
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 20,
+                                "ptr_wrapper": {
+                                    "id": 2147483805,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "83a917c6-a199-45b7-90af-dacbd605c163"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_offsetPos": {
+                                            "value0": 1.5,
+                                            "value1": -0.10000000149011612,
+                                            "value2": 1.5
+                                        },
+                                        "m_rotationOffset": 4.300000190734863
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 21,
+                                "ptr_wrapper": {
+                                    "id": 2147483806,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "29d3379a-053b-46ad-988c-6641e8b6ba85"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
+                                        "m_endTime": 2.0,
+                                        "m_animationSpeed": 1.0,
+                                        "m_cancelTime": 0.0,
+                                        "m_animationStopTime": 1.100000023841858
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 19,
+                                "ptr_wrapper": {
+                                    "id": 2147483807,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "1dd423f7-187d-4d73-af34-f152ffbe064f"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_damage": 1.0,
+                                        "m_reactionType": 0
                                     }
                                 }
                             }

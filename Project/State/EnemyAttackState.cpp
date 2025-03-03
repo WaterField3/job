@@ -3,8 +3,10 @@
 #include "GameObject/GameObjectManager.h"
 #include "Component/Transform.h"
 #include "Component/EnemyAttack.h"
+#include "Component/EnemyMove.h"
 #include "StateMachine.h"
 #include "StateRegister.h"
+#include "Timer.h"
 
 REGISTER_STATE(TMF::EnemyAttackState, "EnemyAttackState");
 
@@ -28,64 +30,58 @@ namespace TMF
 					}
 				}
 			}
-			m_pEnemyAttack = pLockOwner->GetComponent<EnemyAttack>();
+			auto pEnemyAttack = pLockOwner->GetComponent<EnemyAttack>();
+			if (auto pLockEnemyAttack = pEnemyAttack.lock())
+			{
+				m_pEnemyAttack = pLockEnemyAttack;
+				if (pLockEnemyAttack->Play() == true)
+				{
+					m_isPlay = true;
+				}
+			}
+			m_pEnemyMove = pLockOwner->GetComponent<EnemyMove>();
+
 		}
 	}
 	void EnemyAttackState::OnEnter()
 	{
-		if (auto pLockTransform = m_pTransform.lock())
-		{
-			if (auto pLockPlayerTransform = m_pPlayerTransform.lock())
-			{
-				auto pos = pLockTransform->GetPosition();
-				auto playerPos = pLockPlayerTransform->GetPosition();
 
-				auto distance = DirectX::SimpleMath::Vector3::Distance(pos, playerPos);
-
-				if (auto pLockEnemyAttack = m_pEnemyAttack.lock())
-				{
-					if (distance < m_shotDistance)
-					{
-						pLockEnemyAttack->SelectMelee();
-						m_isMeleePlay = true;
-					}
-					else
-					{
-						pLockEnemyAttack->SelectShot();
-					}
-					pLockEnemyAttack->Play();
-				}
-			}
-		}
 	}
 	void EnemyAttackState::OnUpdate()
 	{
-		if (m_isMeleePlay == true)
+		if (m_isPlay == true)
 		{
-			if (auto pLockEnemyAttack = m_pEnemyAttack.lock())
+			auto deltaTime = Timer::Instance().deltaTime.count();
+			m_endTime -= deltaTime;
+			if (m_endTime <= 0.0f)
 			{
-				if (pLockEnemyAttack->GetIsMeleeEnd() == true)
+				if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
 				{
-					if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
-					{
-						pLockAdministratorStateMachine->ChangeState("EnemyMoveState");
-						m_isMeleePlay = false;
-					}
+					pLockAdministratorStateMachine->ChangeState("EnemyIdleState");
+					return;
 				}
 			}
 		}
 		else
 		{
-			if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
+			if (auto pLockEnemyAttack = m_pEnemyAttack.lock())
 			{
-				pLockAdministratorStateMachine->ChangeState("EnemyMoveState");
+				if (pLockEnemyAttack->Play() == true)
+				{
+					m_isPlay = true;
+				}
 			}
 		}
-
 	}
 	void EnemyAttackState::OnLateUpdate()
 	{
-
+		if (m_isPlay == false)
+		{
+			if (auto pLockEnemyMove = m_pEnemyMove.lock())
+			{
+				pLockEnemyMove->Move();
+			}
+		}
 	}
 	void EnemyAttackState::OnExit()
 	{

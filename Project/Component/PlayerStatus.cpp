@@ -31,10 +31,15 @@ namespace TMF
 		{
 			m_pAnimater = pLockOwner->GetComponent<Animater>();
 			m_pCollider = pLockOwner->GetComponent<Collider>();
+			m_pTransform = pLockOwner->GetComponent<Transform>();
 			if (auto pLockCollider = m_pCollider.lock())
 			{
 				m_initScale = pLockCollider->GetCollisionSize();
 				m_initCenter = pLockCollider->GetCollisionCenter();
+			}
+			if (auto pLockTransform = m_pTransform.lock())
+			{
+				m_initRotation = pLockTransform->GetRotation();
 			}
 		}
 	}
@@ -43,21 +48,36 @@ namespace TMF
 	}
 	void PlayerStatus::OnUpdate()
 	{
+		if (m_isDamaged == true && m_isInvincible == false)
+		{
+			m_timer += Timer::Instance().deltaTime.count();
+			if (m_timer > m_staggerAnimEndTime)
+			{
+				m_isInvincible = true;
+				m_timer = 0.0f;
+				m_isDamaged = false;
+			}
+		}
 		if (m_isInvincible == true)
 		{
 			if (m_timer < m_invincibleTime)
 			{
 				m_timer += Timer::Instance().deltaTime.count();
+				if (m_timer > m_standUpTime)
+				{
+					if (auto pLockCollider = m_pCollider.lock())
+					{
+						pLockCollider->SetCollisionCenter(m_initCenter);
+						pLockCollider->SetCollisionScale(m_initScale);
+						pLockCollider->SetCollisionOfsetRotation(m_initRotation);
+					}
+					m_isMove = true;
+				}
 			}
 			else
 			{
 				m_timer = 0.0f;
 				m_isInvincible = false;
-				if (auto pLockCollider = m_pCollider.lock())
-				{
-					pLockCollider->SetCollisionCenter(m_initCenter);
-					pLockCollider->SetCollisionScale(m_initScale);
-				}
 			}
 		}
 	}
@@ -151,6 +171,11 @@ namespace TMF
 	{
 		if (m_isInvincible == false)
 		{
+			auto rotation = DirectX::SimpleMath::Quaternion::Identity;
+			if (auto pLockTransform = m_pTransform.lock())
+			{
+				rotation = pLockTransform->GetRotation();
+			}
 			if (auto pLockAnimater = m_pAnimater.lock())
 			{
 				pLockAnimater->SetFileName(m_staggerAnimPath, m_staggerAnimEndTime);
@@ -158,11 +183,14 @@ namespace TMF
 			}
 			if (auto pLockCollider = m_pCollider.lock())
 			{
-				m_initScale = pLockCollider->GetCollisionSize();
-				m_initCenter = pLockCollider->GetCollisionCenter();
+				//m_initScale = pLockCollider->GetCollisionSize();
+				//m_initCenter = pLockCollider->GetCollisionCenter();
 				pLockCollider->SetCollisionCenter(m_staggerCenter);
 				pLockCollider->SetCollisionScale(m_staggerScale);
+				pLockCollider->SetCollisionOfsetRotation(rotation);
+
 			}
+			m_isMove = false;
 		}
 	}
 	void PlayerStatus::Invert()
@@ -179,11 +207,12 @@ namespace TMF
 	{
 		if (m_isInvincible == false)
 		{
-			m_isInvincible = true;
+			m_isDamaged = true;
 			m_hp -= damage;
 			// ‘Ì—Í‚ª‚È‚­‚È‚Á‚½‚Ìˆ—
-			if (m_hp <= 0)
+			if (m_hp <= 0.0f)
 			{
+				m_hp = 0.0f;
 				if (auto pLockOwner = m_pOwner.lock())
 				{
 					pLockOwner->SetActive(false);

@@ -96,23 +96,13 @@ namespace TMF
 			{
 				if (auto pLockOwner = m_pOwner.lock())
 				{
-					// Audio‚ðŽæ“¾
-					auto pAudio = pLockOwner->GetComponent<Audio>();
-					if (auto pLockAudio = pAudio.lock())
-					{
-						// ‰¹‚ð–Â‚ç‚·
-						pLockAudio->Play();
-					}
-					// Effect‚ðŽæ“¾
-					auto pEffect = pLockOwner->GetComponent<Effect>();
-					if (auto pLockEffect = pEffect.lock())
-					{
-						pLockEffect->Play();
-					}
-
 					auto pPlayerStatus = pGameObject->GetComponent<PlayerStatus>();
 					if (auto pLockPlayerStatus = pPlayerStatus.lock())
 					{
+						if (pLockPlayerStatus->GetIsInvincible() == true)
+						{
+							return;
+						}
 						switch (m_reactionType)
 						{
 						case TMF::Damage::STAGGER:
@@ -128,6 +118,20 @@ namespace TMF
 						}
 						pLockPlayerStatus->Damage(m_damage);
 					}
+					// Audio‚ðŽæ“¾
+					auto pAudio = pLockOwner->GetComponent<Audio>();
+					if (auto pLockAudio = pAudio.lock())
+					{
+						// ‰¹‚ð–Â‚ç‚·
+						pLockAudio->Play();
+					}
+					// Effect‚ðŽæ“¾
+					auto pEffect = pLockOwner->GetComponent<Effect>();
+					if (auto pLockEffect = pEffect.lock())
+					{
+						pLockEffect->Play();
+					}
+
 				}
 			}
 

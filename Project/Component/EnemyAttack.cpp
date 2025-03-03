@@ -106,8 +106,7 @@ namespace TMF
 		}
 		if (auto pLockSelectComponent = m_pWeapons[m_selectIndex].lock())
 		{
-			pLockSelectComponent->Play();
-			return true;
+			return pLockSelectComponent->Play();
 		}
 		return false;
 	}
@@ -132,6 +131,15 @@ namespace TMF
 			}
 		}
 		return false;
+	}
+
+	float EnemyAttack::GetEndTime()
+	{
+		if (auto pLockSelectComponent = m_pWeapons[m_selectIndex].lock())
+		{
+			return pLockSelectComponent->GetEndTime();
+		}
+		return 0.0f;
 	}
 
 	void EnemyAttack::CheckWepons()

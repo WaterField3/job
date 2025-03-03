@@ -12,7 +12,7 @@ namespace TMF
 		if (auto pLockOwner = m_pOwner.lock())
 		{
 			m_pStateMachine = std::make_shared<StateMachine>(pLockOwner);
-			m_pStateMachine->ChangeState("EnemyMoveState");
+			m_pStateMachine->ChangeState("EnemyIdleState");
 		}
 	}
 	void EnemyController::OnFinalize()

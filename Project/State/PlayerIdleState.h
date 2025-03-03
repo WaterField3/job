@@ -5,6 +5,7 @@
 namespace TMF
 {
 	class PlayerMove;
+	class PlayerStatus;
 	class PlayerIdleState : public State
 	{
 	public:
@@ -19,6 +20,7 @@ namespace TMF
 
 	private:
 		std::unique_ptr<PlayerMove> m_pPlayerMove;
+		std::weak_ptr<PlayerStatus> m_pPlayerStatus;
 
 	};
 }

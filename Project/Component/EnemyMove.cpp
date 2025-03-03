@@ -91,7 +91,6 @@ namespace TMF
 				direction.normalize();
 
 				// 現在のY軸に対する回転角度を計算
-				auto s = currentTransform.getBasis();
 				btVector3 currentForward = currentTransform.getBasis() * btVector3(0, 0, -1); // 前方向ベクトル
 				currentForward.setY(0); // Y成分を無視して水平面上で計算
 				currentForward.normalize();

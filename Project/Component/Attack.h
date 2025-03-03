@@ -23,6 +23,8 @@ namespace TMF
 		std::shared_ptr<Component> OnClone() const override;
 		void WeaponsUpdate();
 		void CancelWepons();
+
+	private:
 		// UŒ‚‚ÌI—¹ŠÔ‚ÆUŒ‚“®ì‚ğƒLƒƒƒ“ƒZƒ‹‚Å‚«‚éŠÔ
 		class WeaponActionTiming
 		{
@@ -30,7 +32,7 @@ namespace TMF
 			float attackEndTiming = 0.0f;
 			float attackCancelTiming = 0.0f;
 		};
-
+	public:
 		/// <summary>
 		/// UŒ‚
 		/// </summary>

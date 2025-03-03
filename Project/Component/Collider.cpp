@@ -216,6 +216,18 @@ namespace TMF
 		UpdateShapeInfo();
 	}
 
+	void Collider::SetCollisionOfsetRotation(DirectX::SimpleMath::Vector3 setOfsetRotation)
+	{
+		m_OfsetRotation = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(setOfsetRotation.y, setOfsetRotation.x, setOfsetRotation.z);
+		UpdateShapeInfo();
+	}
+
+	void Collider::SetCollisionOfsetRotation(DirectX::SimpleMath::Quaternion setOfsetRotation)
+	{
+		m_OfsetRotation = setOfsetRotation;
+		UpdateShapeInfo();
+	}
+
 	void Collider::UpdateShapeInfo()
 	{
 		MakeCollision();
@@ -224,15 +236,6 @@ namespace TMF
 	void Collider::AddRigidBody()
 	{
 		auto pLockOwner = m_pOwner.lock();
-		auto pTransform = pLockOwner->GetComponent<Transform>();
-		auto pos = DirectX::SimpleMath::Vector3::Zero;
-		auto rotate = DirectX::SimpleMath::Quaternion::Identity;
-		if (auto pLockTransform = pTransform.lock())
-		{
-			pos = pLockTransform->GetWorldPosition();
-			pos += m_center;
-			rotate = pLockTransform->GetRotation();
-		}
 		auto pRigidbody = pLockOwner->GetComponent<Rigidbody>();
 		if (auto pLockRigidbody = pRigidbody.lock())
 		{

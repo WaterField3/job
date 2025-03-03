@@ -21,15 +21,17 @@ namespace TMF
 		bool Play();
 		void WeaponsUpdate();
 		bool GetIsMeleeEnd();
+		float GetEndTime();
+		inline float GetShotDinstance() const { return m_shotDistance; }
 
 	private:
 		void CheckWepons();
 
 	private:
 		int m_selectIndex = 0;
+		float m_shotDistance = 3.0f;
 		std::vector<std::weak_ptr<WeaponBase>> m_pWeapons;
 		std::vector<int> m_shotIndices;
-
 		//SERIALIZE_COMPONENT();
 	};
 }

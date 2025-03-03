@@ -9,6 +9,7 @@ namespace TMF
 {
 	class Animater;
 	class Collider;
+	class Transform;
 	class PlayerStatus : public Component
 	{
 	public:
@@ -28,10 +29,13 @@ namespace TMF
 		inline float GetHP() const { return m_hp; }
 		inline void SetIsInvincible(bool isInvincible) { m_isInvincible = isInvincible; }
 		inline bool GetIsInvincible() const { return m_isInvincible; }
+		inline bool GetIsMove() const { return m_isMove; }
 		inline bool GetIsDead() const { return m_isDead; }
 		
 
 	private:
+		bool m_isMove = true;
+		bool m_isDamaged = false;
 		bool m_isInvincible = false;
 		bool m_isDead = false;
 		float m_hp = 100;
@@ -44,11 +48,13 @@ namespace TMF
 		DirectX::SimpleMath::Vector3 m_initScale = DirectX::SimpleMath::Vector3::One;
 		DirectX::SimpleMath::Vector3 m_staggerCenter = DirectX::SimpleMath::Vector3::Zero;
 		DirectX::SimpleMath::Vector3 m_staggerScale = DirectX::SimpleMath::Vector3::One;
+		DirectX::SimpleMath::Quaternion m_initRotation = DirectX::SimpleMath::Quaternion::Identity;
 		std::string m_staggerAnimPath = "";
 		std::string m_invertAnimPath = "";
 		std::string m_standUpAnimPath = "";
 		std::weak_ptr<Animater> m_pAnimater;
 		std::weak_ptr<Collider> m_pCollider;
+		std::weak_ptr<Transform> m_pTransform;
 		std::unique_ptr<StateMachine> m_pStateMachine;
 		// 9  10
 		SERIALIZE_COMPONENT(m_hp, m_staggerAnimPath, m_invertAnimPath, m_invertAnimEndTime, m_staggerAnimEndTime, m_standUpAnimPath, m_standUpTime, m_staggerCenter, m_staggerScale);
