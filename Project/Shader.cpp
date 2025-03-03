@@ -56,7 +56,7 @@ namespace TMF
 	{
 		auto devicecontext = D3D::Get()->GetContext();
 
-		devicecontext->VSSetShader(m_pVertexShader.Get(), nullptr, 0);		// 頂点シェーダーをセット
+		//devicecontext->VSSetShader(m_pVertexShader.Get(), nullptr, 0);		// 頂点シェーダーをセット
 		devicecontext->PSSetShader(m_pPixelShader.Get(), nullptr, 0);		// ピクセルシェーダーをセット
 		devicecontext->IASetInputLayout(m_pVertexLayout.Get());				// 頂点レイアウトセット
 	}

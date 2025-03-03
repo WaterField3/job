@@ -129,7 +129,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(ProjectDir)Vender\Effekseer\Effekseer;$(ProjectDir)Vender\DirectXTK\include;$(ProjectDir)Vender\bullet3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(ProjectDir)Vender\Effekseer\Effekseer;$(ProjectDir)Vender\DirectXTK\include;$(ProjectDir)Vender\bullet3\include;$(ProjectDir)Vender\assimp\include;$(ProjectDir)Vender\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -139,8 +139,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;Effekseerd.lib;EffekseerRendererDX11d.lib;DirectXTK.lib;DirectXTKAudioWin8.lib;Bullet3Common_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletInverseDynamics_Debug.lib;BulletSoftBody_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Debug;$(ProjectDir)Vender\boost;$(ProjectDir)Vender\DirectXTK\lib\Debug;$(ProjectDir)Vender\bullet3\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;Effekseerd.lib;EffekseerRendererDX11d.lib;DirectXTK.lib;DirectXTKAudioWin8.lib;Bullet3Common_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletInverseDynamics_Debug.lib;BulletSoftBody_Debug.lib;LinearMath_Debug.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Debug;$(ProjectDir)Vender\boost;$(ProjectDir)Vender\DirectXTK\lib\Debug;$(ProjectDir)Vender\bullet3\lib\Debug;$(ProjectDir)Vender\assimp\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <FxCompile>
       <ShaderModel>5.0</ShaderModel>
@@ -170,9 +170,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationData.cpp" />
+    <ClCompile Include="AnimationMesh.cpp" />
     <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="AssimpMaterial.cpp" />
+    <ClCompile Include="AssimpPerse.cpp" />
+    <ClCompile Include="AssimpTexture.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BoneCombMatrix.cpp" />
+    <ClCompile Include="Component\AssimpAnimation.cpp" />
     <ClCompile Include="Component\ChangeTimeUI.cpp" />
     <ClCompile Include="Component\CameraMove.cpp" />
     <ClCompile Include="Component\BoneBind.cpp" />
@@ -204,6 +210,7 @@
     <ClCompile Include="Component\GetWeapon.cpp" />
     <ClCompile Include="Component\Gun.cpp" />
     <ClCompile Include="Component\HPUI.cpp" />
+    <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="State\PlayerAttackState.cpp" />
     <ClCompile Include="State\EnemyAttackState.cpp" />
     <ClCompile Include="State\EnemyMoveState.cpp" />
@@ -223,6 +230,8 @@
     <ClCompile Include="State\StateMachine.cpp" />
     <ClCompile Include="State\StateManager.cpp" />
     <ClCompile Include="Component\Sword.cpp" />
+    <ClCompile Include="StaticMesh.cpp" />
+    <ClCompile Include="StaticMeshRenderer.cpp" />
     <ClCompile Include="System\Animation.cpp" />
     <ClCompile Include="Component\Animater.cpp" />
     <ClCompile Include="ApplicationState.cpp" />
@@ -276,9 +285,15 @@
     <ClCompile Include="Component\WeaponInfoUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationData.h" />
+    <ClInclude Include="AnimationMesh.h" />
     <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="AssimpMaterial.h" />
+    <ClInclude Include="AssimpPerse.h" />
+    <ClInclude Include="AssimpTexture.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BoneCombMatrix.h" />
+    <ClInclude Include="Component\AssimpAnimation.h" />
     <ClInclude Include="Component\ChangeTimeUI.h" />
     <ClInclude Include="Component\CameraMove.h" />
     <ClInclude Include="Component\BoneBind.h" />
@@ -310,6 +325,8 @@
     <ClInclude Include="Component\GetWeapon.h" />
     <ClInclude Include="Component\Gun.h" />
     <ClInclude Include="Component\HPUI.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="State\PlayerAttackState.h" />
     <ClInclude Include="State\EnemyAttackState.h" />
     <ClInclude Include="State\EnemyMoveState.h" />
@@ -333,6 +350,8 @@
     <ClInclude Include="State\StateManager.h" />
     <ClInclude Include="State\StateRegister.h" />
     <ClInclude Include="Component\Sword.h" />
+    <ClInclude Include="StaticMesh.h" />
+    <ClInclude Include="StaticMeshRenderer.h" />
     <ClInclude Include="System\Animation.h" />
     <ClInclude Include="Component\Animater.h" />
     <ClInclude Include="ApplicationState.h" />
