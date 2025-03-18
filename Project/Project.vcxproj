@@ -154,7 +154,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(ProjectDir)Vender\Effekseer\Effekseer;$(ProjectDir)Vender\DirectXTK\include;$(ProjectDir)Vender\bullet3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Vender;$(ProjectDir)Vender\Effekseer\Effekseer;$(ProjectDir)Vender\DirectXTK\include;$(ProjectDir)Vender\bullet3\include;$(ProjectDir)Vender\assimp\include;$(ProjectDir)Vender\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -165,8 +165,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;Effekseer.lib;EffekseerRendererDX11.lib;DirectXTK.lib;DirectXTKAudioWin8.lib;LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Release;$(ProjectDir)Vender\boost;$(ProjectDir)Vender\DirectXTK\lib\Release;$(ProjectDir)Vender\bullet3\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;Effekseer.lib;EffekseerRendererDX11.lib;DirectXTK.lib;DirectXTKAudioWin8.lib;LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Vender\Effekseer\lib\Release;$(ProjectDir)Vender\boost;$(ProjectDir)Vender\DirectXTK\lib\Release;$(ProjectDir)Vender\bullet3\lib\Release;$(ProjectDir)Vender\assimp\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

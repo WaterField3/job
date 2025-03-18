@@ -14,6 +14,7 @@
 #include "RenderTexture.h"
 #include "SpriteBatch.h"
 #include "VertexTypes.h"
+#include "Shader.h"
 
 // Direct3D解放の簡略化マクロ
 #define SAFE_RELEASE(p)      { if( NULL != p ) { p->Release(); p = NULL; } }
@@ -26,7 +27,6 @@ constexpr int MAX_BONE = 400;
 // Direct3Dの機能をカプセル化したクラス
 class D3D
 {
-
 public:
 	// 構造体の定義
 	// 色を表す
@@ -218,6 +218,7 @@ public:
 	// 頂点データ１つあたりのバイトサイズを返す
 	UINT GetVertexStride();
 	void PostProcess();
+	void ShaderSetGPU();
 	inline BloomPresets GetBloomPresets() { return g_Bloom; }
 	void SetBloomPresets(BloomPresets set);
 	inline std::weak_ptr<DirectX::SpriteBatch> GetSpriteBatch() const { return m_pSpriteBatch; }
@@ -278,7 +279,7 @@ private:
 	HWND m_hwnd;
 
 	std::shared_ptr<DirectX::BasicEffect> m_pEffect;
-	std::vector<std::shared_ptr<DirectX::SkinnedEffect>> m_pSkinnedEffects;
+	//std::shared_ptr<DirectX::SkinnedEffect> m_pSkinnedEffects;
 
 	std::shared_ptr<DirectX::SpriteBatch> m_pSpriteBatch;
 
@@ -303,5 +304,6 @@ private:
 	RECT m_size;
 
 	BloomPresets g_Bloom = None;
+	TMF::Shader m_shader;
 };
 

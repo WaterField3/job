@@ -10,9 +10,22 @@ namespace TMF
 	}
 	AnimationData::~AnimationData()
 	{
+		for (auto anim : m_Animation)
+		{
+			//delete anim.second;
+		}
 	}
 	const aiScene* AnimationData::LoadAnimation(const std::string filename, const std::string name)
 	{
+		//Assimp::Importer importer;
+
+
+
+		//importer.ReadFile(filename.c_str(), aiProcess_ConvertToLeftHanded);
+
+		//auto orphanedAiScene = importer.GetOrphanedScene();
+		//m_Animation.emplace(name, orphanedAiScene);
+		//assert(m_Animation[name]);
 
 		try
 		{
@@ -32,12 +45,11 @@ namespace TMF
 			std::cout << " animation load error " << filename << " " << m_importer.GetErrorString();
 		}
 
-		return m_Animation[name];
+		return std::move(m_Animation[name]);
 	}
 	std::shared_ptr<aiAnimation> AnimationData::GetAnimation(const char* name, int idx)
 	{
 		auto anim = m_Animation[name]->mAnimations[idx];
-		std::shared_ptr<aiAnimation> animation = std::shared_ptr<aiAnimation>(anim);
-		return animation;
+		return move(std::shared_ptr<aiAnimation>(anim));
 	}
 }

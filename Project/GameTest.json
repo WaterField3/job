@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 5.148705005645752,
+                                        "m_azimuth": 5.253424167633057,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -2169,10 +2169,10 @@
                                             "m_isEnable": true
                                         },
                                         "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
-                                        "m_endTime": 2.0,
-                                        "m_animationSpeed": 1.0,
+                                        "m_endTime": 12.0,
+                                        "m_animationSpeed": 11.0,
                                         "m_cancelTime": 0.0,
-                                        "m_animationStopTime": 0.0
+                                        "m_animationStopTime": 2.0
                                     }
                                 }
                             }
@@ -3722,7 +3722,7 @@
                                             "m_uuID": {
                                                 "uuid": "bdf40740-bbad-4048-97fb-b0a6050d12d3"
                                             },
-                                            "m_isEnable": true
+                                            "m_isEnable": false
                                         },
                                         "m_fadeSpeed": 0.10000000149011612,
                                         "m_isFade": true,

@@ -9,10 +9,10 @@
 #include "BoneCombMatrix.h"
 #include "AnimationMesh.h"
 #include "AnimationData.h"
-#include "Shader.h"
 
 namespace TMF
 {
+	class Transform;
 	class AssimpAnimation : public Component
 	{
 	public:
@@ -24,6 +24,15 @@ namespace TMF
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
 
+		inline void SetAnimationMesh(std::unique_ptr<AnimationMesh> animmesh) { m_AnimMesh = std::move(animmesh); }
+
+		inline void SetCurrentAnimation(std::shared_ptr<aiAnimation> anim) { m_CurrentAnimation = anim; }
+
+		inline void SetFromAnimation(std::shared_ptr<aiAnimation> anim) { m_FromAnimation = anim; }
+
+		inline void SetToAnimation(std::shared_ptr<aiAnimation> anim) { m_ToAnimation = anim; }
+
+		inline void SetBlendRate(float rate) { m_BlendRate = rate; }
 	private:
 
 		// SRT情報
@@ -36,8 +45,6 @@ namespace TMF
 
 		// ブレンドレイト
 		float m_BlendRate = 1.0f;									// モーションのブレンド率
-
-		Shader m_shader;
 
 		// ボーンコンビネーション行列用定数バッファ内容
 		BoneCombMatrix m_BoneCombMatrix{};							// 20240723
@@ -56,22 +63,12 @@ namespace TMF
 
 		std::string m_motionFile = "asset/model/03Idle.fbx";
 
+		std::weak_ptr<Transform> m_pTransform;
+
 		// 現在のアニメーション
 		std::shared_ptr<aiAnimation> m_CurrentAnimation;
 		std::shared_ptr<aiAnimation> m_FromAnimation;
 		std::shared_ptr<aiAnimation> m_ToAnimation;
-
-	public:
-
-		void SetAnimationMesh(std::unique_ptr<AnimationMesh> animmesh) { m_AnimMesh = std::move(animmesh); }
-
-		void SetCurrentAnimation(std::shared_ptr<aiAnimation> anim) { m_CurrentAnimation = anim; }
-
-		void SetFromAnimation(std::shared_ptr<aiAnimation> anim) { m_FromAnimation = anim; }
-
-		void SetToAnimation(std::shared_ptr<aiAnimation> anim) { m_ToAnimation = anim; }
-
-		void SetBlendRate(float rate) { m_BlendRate = rate; }
 	};
 }
 

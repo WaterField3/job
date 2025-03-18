@@ -48,8 +48,8 @@ namespace TMF
 		{
 			if (auto pLockTransform = m_pTransform.lock())
 			{
-				auto bonePosition = DirectX::SimpleMath::Vector3::Zero;
-				auto boneRotation = DirectX::SimpleMath::Quaternion::Identity;
+				auto bonePosition = pLockTransform->GetWorldPosition();
+				auto boneRotation = pLockTransform->GetRotation();
 				if (auto pLockAnimater = m_pAnimater.lock())
 				{
 					bonePosition = pLockAnimater->GetBonePosition(m_bindName);

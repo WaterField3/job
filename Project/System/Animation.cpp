@@ -433,6 +433,7 @@ DX::AnimationSDKMESH::SDKANIMATION_FRAME_DATA& DX::AnimationSDKMESH::GetFrameDat
 			{
 				return frameData[j];
 			}
+
 		}
 	}
 	return frameData[m_boneToTrack[0]];

@@ -7,7 +7,7 @@
 #include "GameObject/GameObjectManager.h"
 #include "Camera.h"
 
-REGISTER_COMPONENT(TMF::AssimpAnimation, "AssimpAnimation");
+//REGISTER_COMPONENT(TMF::AssimpAnimation, "AssimpAnimation");
 
 namespace TMF
 {
@@ -19,8 +19,6 @@ namespace TMF
 
 		// アニメーションメッシュ読み込み
 		m_AnimMesh->Load(m_currentFile, m_textureDirectory);
-
-		m_shader.Create("Shader/vertexLightingOneSkinVS.hlsl", "Shader/vertexLightingPS.hlsl");
 
 		auto anim = std::make_shared<AnimationData>();
 		try
@@ -49,6 +47,15 @@ namespace TMF
 
 		// アニメーションメッシュのカレントアニメーションをセット
 		m_AnimMesh->SetCurentAnimation(m_CurrentAnimation);
+
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
+			{
+				m_pTransform = pLockTransform;
+			}
+		}
 	}
 	void AssimpAnimation::OnFinalize()
 	{
@@ -89,8 +96,15 @@ namespace TMF
 		{
 			return;
 		}
+		auto view = DirectX::SimpleMath::Matrix::Identity;
+		auto proj = DirectX::SimpleMath::Matrix::Identity;
+		if (auto pLockTransform = m_pTransform.lock())
+		{
+			auto world = pLockTransform->GetWorldMatrix();
+			D3D::Get()->SetWorldMatrix(&world);
+		}
 
-		m_shader.SetGPU();
+		D3D::Get()->ShaderSetGPU();
 
 		// ボーンコンビネーション行列用定数バッファ更新
 		m_BoneCombMatrix.Update();
@@ -100,6 +114,8 @@ namespace TMF
 
 		// メッシュ描画
 		m_AnimMesh->Draw();
+
+		D3D::Get()->SettingEffect(view, proj);
 	}
 	void AssimpAnimation::OnDrawImGui()
 	{

@@ -14,6 +14,8 @@ namespace TMF
 	{
 		std::string m_filename;
 
+
+		// スマートポインタにして中身はimporterか接続を外す
 		// アニメーションデータ格納辞書（キーはモーション名）
 		std::unordered_map<std::string, const aiScene*> m_Animation;
 

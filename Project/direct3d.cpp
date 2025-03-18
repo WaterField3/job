@@ -237,38 +237,7 @@ HRESULT D3D::Create(HWND hwnd)
 	if (FAILED(hr))
 		return hr;
 
-	// インプットレイアウト作成
-	// →頂点１つあたりにどんなデータが含まれるかをDirect3Dに教える
-	D3D11_INPUT_ELEMENT_DESC g_VertexDesc[]
-	{
-		// 位置座標があるということを伝える
-		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,
-			D3D11_INPUT_PER_VERTEX_DATA, 0 },
-
-			// UV座標があるということを伝える
-			{ "TEX",    0, DXGI_FORMAT_R32G32_FLOAT, 0,
-				D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-
-				// 法線ベクトルがあるということを伝える
-				{ "NORMAL",    0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-					D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-	};
-
-	hr = m_pDevice->CreateInputLayout(g_VertexDesc, ARRAYSIZE(g_VertexDesc),
-		g_vs_main, sizeof(g_vs_main),
-		&m_pInputLayout);
-	if (FAILED(hr))
-		return hr;
-
-	// シェーダーのオブジェクトを作成
-	// コンパイル済みシェーダーをVRAMに配置してGPUが実行できるようにする
-	hr = m_pDevice->CreateVertexShader(&g_vs_main, sizeof(g_vs_main), NULL, &m_pVertexShader);
-	if (FAILED(hr))
-		return hr;
-
-	hr = m_pDevice->CreatePixelShader(&g_ps_main, sizeof(g_ps_main), NULL, &m_pPixelShader);
-	if (FAILED(hr))
-		return hr;
+	m_shader.Create("shader/vertexLightingOneSkinVS.hlsl", "shader/vertexLightingPS.hlsl");
 
 	// ビューポートを作成
 	// →画面分割などに使う、描画領域の指定のこと
@@ -279,6 +248,7 @@ HRESULT D3D::Create(HWND hwnd)
 	m_Viewport.MinDepth = 0.0f;
 	m_Viewport.MaxDepth = 1.0f;
 
+	m_pImmediateContext->RSSetViewports(1, &m_Viewport);
 	// サンプラー作成
 	// →テクスチャ拡大縮小時のアルゴリズム
 	D3D11_SAMPLER_DESC smpDesc;
@@ -293,6 +263,8 @@ HRESULT D3D::Create(HWND hwnd)
 	if (FAILED(hr)) {
 		return hr;
 	}
+
+	m_pImmediateContext->PSSetSamplers(0, 1, &m_pSampler);
 
 	// 定数バッファ作成
 	D3D11_BUFFER_DESC cbDesc{};
@@ -387,76 +359,78 @@ HRESULT D3D::Create(HWND hwnd)
 	}
 
 
-	const auto format = DXGI_FORMAT(10);
-	m_offscreenTexture = std::make_unique<DX::RenderTexture>(format);
-	m_renderTarget1 = std::make_unique<DX::RenderTexture>(format);
-	m_renderTarget2 = std::make_unique<DX::RenderTexture>(format);
+	//const auto format = DXGI_FORMAT(10);
+	//m_offscreenTexture = std::make_unique<DX::RenderTexture>(format);
+	//m_renderTarget1 = std::make_unique<DX::RenderTexture>(format);
+	//m_renderTarget2 = std::make_unique<DX::RenderTexture>(format);
 
 	m_pEffect = std::make_shared<DirectX::BasicEffect>(m_pDevice);
 	m_pEffect->SetVertexColorEnabled(true);
-	CreateInputLayoutFromEffect<VertexPositionColor>(m_pDevice, m_pEffect.get(),
-		&m_pInputLayout);
+	//CreateInputLayoutFromEffect<VertexPositionColor>(m_pDevice, m_pEffect.get(),&m_pInputLayout);
+	CreateInputLayoutFromEffect<VertexPositionNormalTexture>(m_pDevice, m_pEffect.get(),&m_pInputLayout);
 
-	auto blob = DX::ReadData(L"BloomExtract.cso");
-	try
-	{
-		m_pDevice->CreatePixelShader(blob.data(), blob.size(),
-			nullptr, m_bloomExtractPS.ReleaseAndGetAddressOf());
-	}
-	catch (const std::exception& e)
-	{
-		TMF::Log::Info("%s", e.what());
-	}
-	blob = DX::ReadData(L"BloomCombine.cso");
-	try
-	{
-		m_pDevice->CreatePixelShader(blob.data(), blob.size(),
-			nullptr, m_bloomCombinePS.ReleaseAndGetAddressOf());
+	//m_pImmediateContext->IAGetInputLayout(&m_pInputLayout);
 
-	}
-	catch (const std::exception&)
-	{
+	//auto blob = DX::ReadData(L"BloomExtract.cso");
+	//try
+	//{
+	//	m_pDevice->CreatePixelShader(blob.data(), blob.size(),
+	//		nullptr, m_bloomExtractPS.ReleaseAndGetAddressOf());
+	//}
+	//catch (const std::exception& e)
+	//{
+	//	TMF::Log::Info("%s", e.what());
+	//}
+	//blob = DX::ReadData(L"BloomCombine.cso");
+	//try
+	//{
+	//	m_pDevice->CreatePixelShader(blob.data(), blob.size(),
+	//		nullptr, m_bloomCombinePS.ReleaseAndGetAddressOf());
 
-	}
+	//}
+	//catch (const std::exception&)
+	//{
 
-	try
-	{
-		blob = DX::ReadData(L"GaussianBlur.cso");
-		m_pDevice->CreatePixelShader(blob.data(), blob.size(),
-			nullptr, m_gaussianBlurPS.ReleaseAndGetAddressOf());
-	}
-	catch (const std::exception&)
-	{
+	//}
 
-	}
+	//try
+	//{
+	//	blob = DX::ReadData(L"GaussianBlur.cso");
+	//	m_pDevice->CreatePixelShader(blob.data(), blob.size(),
+	//		nullptr, m_gaussianBlurPS.ReleaseAndGetAddressOf());
+	//}
+	//catch (const std::exception&)
+	//{
+
+	//}
 
 
 
-	CD3D11_BUFFER_DESC cbBloomDesc(sizeof(VS_BLOOM_PARAMETERS),
-		D3D11_BIND_CONSTANT_BUFFER);
-	D3D11_SUBRESOURCE_DATA initData = { &g_BloomPresets[g_Bloom], 0, 0 };
-	try
-	{
-		m_pDevice->CreateBuffer(&cbBloomDesc, &initData,
-			m_bloomParams.ReleaseAndGetAddressOf());
-	}
-	catch (const std::exception&)
-	{
+	//CD3D11_BUFFER_DESC cbBloomDesc(sizeof(VS_BLOOM_PARAMETERS),
+	//	D3D11_BIND_CONSTANT_BUFFER);
+	//D3D11_SUBRESOURCE_DATA initData = { &g_BloomPresets[g_Bloom], 0, 0 };
+	//try
+	//{
+	//	m_pDevice->CreateBuffer(&cbBloomDesc, &initData,
+	//		m_bloomParams.ReleaseAndGetAddressOf());
+	//}
+	//catch (const std::exception&)
+	//{
 
-	}
-	CD3D11_BUFFER_DESC cbBlurDesc(sizeof(VS_BLUR_PARAMETERS),
-		D3D11_BIND_CONSTANT_BUFFER);
-	try
-	{
-		m_pDevice->CreateBuffer(&cbBlurDesc, nullptr,
-			m_blurParamsWidth.ReleaseAndGetAddressOf());
-		m_pDevice->CreateBuffer(&cbBlurDesc, nullptr,
-			m_blurParamsHeight.ReleaseAndGetAddressOf());
-	}
-	catch (const std::exception&)
-	{
+	//}
+	//CD3D11_BUFFER_DESC cbBlurDesc(sizeof(VS_BLUR_PARAMETERS),
+	//	D3D11_BIND_CONSTANT_BUFFER);
+	//try
+	//{
+	//	m_pDevice->CreateBuffer(&cbBlurDesc, nullptr,
+	//		m_blurParamsWidth.ReleaseAndGetAddressOf());
+	//	m_pDevice->CreateBuffer(&cbBlurDesc, nullptr,
+	//		m_blurParamsHeight.ReleaseAndGetAddressOf());
+	//}
+	//catch (const std::exception&)
+	//{
 
-	}
+	//}
 
 	m_bloomRect.left = rect.left;
 	m_bloomRect.right = rect.right;
@@ -465,24 +439,24 @@ HRESULT D3D::Create(HWND hwnd)
 
 	m_size = m_bloomRect;
 
-	VS_BLUR_PARAMETERS blurData = {};
-	blurData.SetBlurEffectParameters(1.f / (float(m_size.right) / 2), 0,
-		g_BloomPresets[g_Bloom]);
-	m_pImmediateContext->UpdateSubresource(m_blurParamsWidth.Get(), 0, nullptr,
-		&blurData, sizeof(VS_BLUR_PARAMETERS), 0);
+	//VS_BLUR_PARAMETERS blurData = {};
+	//blurData.SetBlurEffectParameters(1.f / (float(m_size.right) / 2), 0,
+	//	g_BloomPresets[g_Bloom]);
+	//m_pImmediateContext->UpdateSubresource(m_blurParamsWidth.Get(), 0, nullptr,
+	//	&blurData, sizeof(VS_BLUR_PARAMETERS), 0);
 
-	blurData.SetBlurEffectParameters(0, 1.f / (float(m_size.bottom) / 2),
-		g_BloomPresets[g_Bloom]);
-	m_pImmediateContext->UpdateSubresource(m_blurParamsHeight.Get(), 0, nullptr,
-		&blurData, sizeof(VS_BLUR_PARAMETERS), 0);
+	//blurData.SetBlurEffectParameters(0, 1.f / (float(m_size.bottom) / 2),
+	//	g_BloomPresets[g_Bloom]);
+	//m_pImmediateContext->UpdateSubresource(m_blurParamsHeight.Get(), 0, nullptr,
+	//	&blurData, sizeof(VS_BLUR_PARAMETERS), 0);
 
 
 	m_pSpriteBatch = std::make_shared<SpriteBatch>(m_pImmediateContext);
 
 
-	m_offscreenTexture->SetDevice(m_pDevice);
-	m_renderTarget1->SetDevice(m_pDevice);
-	m_renderTarget2->SetDevice(m_pDevice);
+	//m_offscreenTexture->SetDevice(m_pDevice);
+	//m_renderTarget1->SetDevice(m_pDevice);
+	//m_renderTarget2->SetDevice(m_pDevice);
 
 
 	m_fullscreenRect = m_bloomRect;
@@ -495,13 +469,13 @@ HRESULT D3D::Create(HWND hwnd)
 void D3D::Init()
 {
 
-	m_offscreenTexture->SetWindow(m_size);
+	//m_offscreenTexture->SetWindow(m_size);
 
 	// Half-size blurring render targets
-	m_bloomRect = { 0, 0, m_size.right / 2, m_size.bottom / 2 };
+	//m_bloomRect = { 0, 0, m_size.right / 2, m_size.bottom / 2 };
 
-	m_renderTarget1->SetWindow(m_bloomRect);
-	m_renderTarget2->SetWindow(m_bloomRect);
+	//m_renderTarget1->SetWindow(m_bloomRect);
+	//m_renderTarget2->SetWindow(m_bloomRect);
 
 
 
@@ -833,6 +807,12 @@ void D3D::PostProcess()
 	m_pImmediateContext->PSSetShaderResources(0, 2, null);
 }
 
+void D3D::ShaderSetGPU()
+{
+	m_shader.SetGPU();
+	m_pEffect->Apply(m_pImmediateContext);
+}
+
 void D3D::SetBloomPresets(BloomPresets set)
 {
 	g_Bloom = set;
@@ -882,6 +862,8 @@ void D3D::SetWorldMatrix(DirectX::SimpleMath::Matrix* WorldMatrix)
 	world = WorldMatrix->Transpose();					// 転置
 
 	m_pImmediateContext->UpdateSubresource(m_pWorldBuffer, 0, NULL, &world, 0, 0);
+	m_pEffect->SetWorld(world);
+	//m_pEffect->Apply(m_pImmediateContext);
 }
 
 void D3D::SetViewMatrix(DirectX::SimpleMath::Matrix* ViewMatrix)
@@ -933,19 +915,19 @@ void D3D::ClearScreen()
 	UINT strides = sizeof(Vertex);
 	UINT offsets = 0;
 	//m_pImmediateContext->IASetInputLayout(m_pInputLayout);
-
+	//m_shader.SetGPU();
 	//m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	//m_pImmediateContext->VSSetShader(m_pVertexShader, NULL, 0);
-	m_pImmediateContext->RSSetViewports(1, &m_Viewport);
+	//m_pImmediateContext->RSSetViewports(1, &m_Viewport);
 	//m_pImmediateContext->PSSetShader(m_pPixelShader, NULL, 0);
 
-	////// ピクセルシェーダーにサンプラーを渡す
+	//// ピクセルシェーダーにサンプラーを渡す
 	//m_pImmediateContext->PSSetSamplers(0, 1, &m_pSampler);
 
-	//// 定数バッファを頂点シェーダーにセットする
+	// 定数バッファを頂点シェーダーにセットする
 	//m_pImmediateContext->VSSetConstantBuffers(
 	//	0, 1, &m_pConstantBuffer);
-	//// 定数バッファをピクセルシェーダーにセットする
+	// 定数バッファをピクセルシェーダーにセットする
 	//m_pImmediateContext->PSSetConstantBuffers(
 	//	0, 1, &m_pConstantBuffer);
 
@@ -961,7 +943,7 @@ void D3D::ClearScreen()
 void D3D::UpdateScreen()
 {
 	// ダブルバッファの切り替えを行い画面を更新する
-	PostProcess();
+	//PostProcess();
 	m_pSwapChain->Present(1, 0);
 }
 
@@ -971,15 +953,15 @@ void D3D::SettingEffect(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::M
 	m_pEffect->SetView(view);
 	m_pEffect->SetProjection(proj);
 	m_pEffect->SetWorld(DirectX::SimpleMath::Matrix::Identity);
-	void const* shaderByteCode;
-	size_t byteCodeLength;
-	m_pEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
-	m_pDevice->CreateInputLayout(
-		VertexPositionColor::InputElements, VertexPositionColor::InputElementCount,
-		shaderByteCode, byteCodeLength,
-		&m_pInputLayout);
-	//m_pCommonStates = std::make_shared<CommonStates>(m_pDevice);
+	//void const* shaderByteCode;
+	//size_t byteCodeLength;
+	//m_pEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
+	//m_pDevice->CreateInputLayout(
+	//	VertexPositionColor::InputElements, VertexPositionColor::InputElementCount,
+	//	shaderByteCode, byteCodeLength,
+	//	&m_pInputLayout);
+	m_pCommonStates = std::make_shared<CommonStates>(m_pDevice);
 	m_pImmediateContext->OMSetBlendState(m_pCommonStates->Opaque(), nullptr, 0xFFFFFFFF);
-	m_pEffect->Apply(m_pImmediateContext);
-	m_pImmediateContext->IASetInputLayout(m_pInputLayout);
+	//m_pEffect->Apply(m_pImmediateContext);
+	//m_pImmediateContext->IASetInputLayout(m_pInputLayout);
 }
