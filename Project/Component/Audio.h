@@ -33,16 +33,25 @@ namespace TMF
 		void Resume();
 
 	private:
+		enum SOUNDTYPE
+		{
+			DEFAULT,
+			BGM,
+			SE
+		};
+		
+	private:
 		std::weak_ptr<DirectX::AudioEngine> m_pAudioEngine;
 		std::unique_ptr<DirectX::SoundEffect> m_pSoundEffect;
 		std::unique_ptr<DirectX::SoundEffectInstance> m_pSoundEffectInstance;
 		std::string m_soundName = "";
+		SOUNDTYPE m_soundType = SOUNDTYPE::DEFAULT;
 		float m_volume = 1;
 		float m_pitch = 0;
 		float m_pan = 0;
 		bool m_isLoop = false;
 		bool m_isStartPlay = false;
-		SERIALIZE_COMPONENT(m_soundName, m_volume, m_pitch, m_pan, m_isLoop, m_isStartPlay);
+		SERIALIZE_COMPONENT(m_soundName, m_soundType, m_volume, m_pitch, m_pan, m_isLoop, m_isStartPlay);
 
 	};
 }

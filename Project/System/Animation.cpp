@@ -439,6 +439,66 @@ DX::AnimationSDKMESH::SDKANIMATION_FRAME_DATA& DX::AnimationSDKMESH::GetFrameDat
 	return frameData[m_boneToTrack[0]];
 }
 
+DirectX::XMMATRIX DX::AnimationSDKMESH::GetBoneMatrix(const DirectX::Model& model, size_t nbones, std::string boneName)
+{
+
+	assert(m_animData && m_animSize > 0);
+
+	if (!nbones)
+	{
+		throw std::invalid_argument("Bone transforms array required");
+	}
+
+	auto header = reinterpret_cast<const SDKANIMATION_FILE_HEADER*>(m_animData.get());
+	assert(header->Version == SDKMESH_FILE_VERSION);
+
+	// Determine animation time
+	auto tick = static_cast<uint32_t>(static_cast<double>(header->AnimationFPS) * m_animTime);
+	tick %= header->NumAnimationKeys;
+
+	// Compute local bone transforms
+	auto frameData = reinterpret_cast<SDKANIMATION_FRAME_DATA*>(m_animData.get() + header->AnimationDataOffset);
+
+	for (size_t j = 0; j < nbones; ++j)
+	{
+		if (m_boneToTrack[j] == ModelBone::c_Invalid)
+		{
+			m_animBones[j] = model.boneMatrices[j];
+		}
+		else
+		{
+			auto frame = &frameData[m_boneToTrack[j]];
+			auto data = &frame->pAnimationData[tick];
+			wchar_t frameName[MAX_FRAME_NAME] = {};
+			MultiByteToWideChar(CP_UTF8, 0, frameData[j].FrameName, -1, frameName, MAX_FRAME_NAME);
+			int bufferSize = WideCharToMultiByte(CP_UTF8, 0, frameName, -1, nullptr, 0, nullptr, nullptr);
+			std::string result(bufferSize, '\0');
+			WideCharToMultiByte(CP_UTF8, 0, frameName, -1, &result[0], bufferSize, nullptr, nullptr);
+			result.pop_back(); // null文字を削除
+			auto strFrameName = result;
+			auto strCheckName = std::string(boneName);
+			// ボーンの検索
+			if (strFrameName.find(strCheckName) != std::string::npos)
+			{
+				XMVECTOR quat = XMVectorSet(data->Orientation.x, data->Orientation.y, data->Orientation.z, data->Orientation.w);
+				if (XMVector4Equal(quat, g_XMZero))
+					quat = XMQuaternionIdentity();
+				else
+					quat = XMQuaternionNormalize(quat);
+
+				XMMATRIX trans = XMMatrixTranslation(data->Translation.x, data->Translation.y, data->Translation.z);
+				XMMATRIX rotation = XMMatrixRotationQuaternion(quat);
+				XMMATRIX scale = XMMatrixScaling(data->Scaling.x, data->Scaling.y, data->Scaling.z);
+				return XMMatrixMultiply(XMMatrixMultiply(rotation, scale), trans);
+			}
+
+		}
+	}
+
+	// TODO: return ステートメントをここに挿入します
+	return DirectX::SimpleMath::Matrix::Identity;
+}
+
 
 //--------------------------------------------------------------------------------------
 // Visual Studio Starter Kit CMO animation

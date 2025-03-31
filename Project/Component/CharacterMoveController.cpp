@@ -48,9 +48,9 @@ namespace TMF
 	}
 	void CharacterMoveController::OnUpdate()
 	{
-		auto kb = Input::Instance().GetKeyState();
-		auto tracker = Input::Instance().GetKeyboardTracker();
-		tracker->Update(kb);
+		//auto kb = Input::Instance().GetKeyState();
+		//auto tracker = Input::Instance().GetKeyboardTracker();
+		//tracker->Update(kb);
 
 
 		m_pStateMachine->Update();
@@ -58,19 +58,14 @@ namespace TMF
 		// åªç›éûä‘
 		auto now = duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 
-		if (tracker->pressed.V == true)
-		{
-			// àÍíËéûä‘ì‡Ç…ï°êîâÒâüÇ≥ÇÍÇƒÇ¢ÇÈÇ©
-			if (Input::Instance().PluralGetKeyDiwn(now) == true)
-			{
-				m_pStateMachine->ChangeState("PlayerDodgeState");
-			}
-		}
-
-		if (tracker->pressed.H)
-		{
-			GameObjectManager::Instance().LoadObject("box");
-		}
+		//if (tracker->pressed.Space == true)
+		//{
+		//	// àÍíËéûä‘ì‡Ç…ï°êîâÒâüÇ≥ÇÍÇƒÇ¢ÇÈÇ©
+		//	if (Input::Instance().PluralGetKeyDiwn(now) == true)
+		//	{
+		//		m_pStateMachine->ChangeState("PlayerDodgeState");
+		//	}
+		//}
 
 		if (auto pLockOwner = m_pOwner.lock())
 		{

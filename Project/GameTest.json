@@ -112,7 +112,7 @@
                                         },
                                         "m_raduis": 6.0,
                                         "m_elevation": 0.0,
-                                        "m_azimuth": 5.253424167633057,
+                                        "m_azimuth": 5.235970973968506,
                                         "m_rotationSpeed": 11.0,
                                         "m_targetName": "Anim"
                                     }
@@ -593,7 +593,8 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_soundName": "asset/sound/se/sword.wav",
+                                        "m_soundName": "sword.wav",
+                                        "m_soundType": 2,
                                         "m_volume": 1.0,
                                         "m_pitch": 0.0,
                                         "m_pan": 0.0,
@@ -805,6 +806,7 @@
                                             "m_isEnable": true
                                         },
                                         "m_soundName": "asset/sound/se/hit.wav",
+                                        "m_soundType": 0,
                                         "m_volume": 0.10000000149011612,
                                         "m_pitch": 0.0,
                                         "m_pan": 0.0,
@@ -2169,10 +2171,10 @@
                                             "m_isEnable": true
                                         },
                                         "m_meleeAnimation": "asset/model/Standing Melee Attack Downward.sdkmesh_anim",
-                                        "m_endTime": 12.0,
-                                        "m_animationSpeed": 11.0,
+                                        "m_endTime": 2.0,
+                                        "m_animationSpeed": 1.0,
                                         "m_cancelTime": 0.0,
-                                        "m_animationStopTime": 2.0
+                                        "m_animationStopTime": 0.0
                                     }
                                 }
                             }
@@ -3722,7 +3724,7 @@
                                             "m_uuID": {
                                                 "uuid": "bdf40740-bbad-4048-97fb-b0a6050d12d3"
                                             },
-                                            "m_isEnable": false
+                                            "m_isEnable": true
                                         },
                                         "m_fadeSpeed": 0.10000000149011612,
                                         "m_isFade": true,
@@ -3744,6 +3746,77 @@
                                         },
                                         "m_trigger": 0,
                                         "m_loadFile": "Result"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483808,
+                    "data": {
+                        "m_name": "BGM",
+                        "m_uuID": {
+                            "uuid": "2677770e-d4b6-4fdf-98d6-7a78c45d909c"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483809,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "754abe1a-3237-40cd-ab39-1fbb0388dcdc"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 18,
+                                "ptr_wrapper": {
+                                    "id": 2147483810,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "57a881f6-4f60-499e-b54d-fd4da407f5a3"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_soundName": "n51.wav",
+                                        "m_soundType": 1,
+                                        "m_volume": 0.10000000149011612,
+                                        "m_pitch": 0.0,
+                                        "m_pan": 0.0,
+                                        "m_isLoop": false,
+                                        "m_isStartPlay": false
                                     }
                                 }
                             }

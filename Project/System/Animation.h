@@ -76,6 +76,8 @@ namespace DX
 
 		SDKANIMATION_FRAME_DATA& GetFrameData(const DirectX::Model& model, size_t nbones, std::string boneName);
 
+		DirectX::XMMATRIX GetBoneMatrix(const DirectX::Model& model, size_t nbones, std::string boneName);
+
 	private:
 		double                              m_animTime;
 		std::unique_ptr<uint8_t[]>          m_animData;

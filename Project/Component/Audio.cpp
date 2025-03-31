@@ -33,8 +33,11 @@ namespace TMF
 		if (auto pLockAudioEngine = m_pAudioEngine.lock())
 		{
 			Load(m_soundName);
-			auto wideStringSoundName = std::wstring(m_soundName.begin(), m_soundName.end());
-			m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(pLockAudioEngine.get(), wideStringSoundName.c_str());
+			//auto wideStringSoundName = std::wstring(m_soundName.begin(), m_soundName.end());
+			//if (!m_pSoundEffect)
+			//{
+			//	m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(pLockAudioEngine.get(), wideStringSoundName.c_str());
+			//}
 			// ç≈èâÇ…Ç»ÇÁÇ∑ÇÃÇ™ê›íËÇ≥ÇÍÇƒÇ¢ÇÈÇ©
 			if (m_isStartPlay == true)
 			{
@@ -75,6 +78,28 @@ namespace TMF
 
 	void Audio::OnDrawImGui()
 	{
+		const char* types[] = { "DEFAULT","BGM","SE"};
+		int selectIndex = (int)m_soundType;
+		auto loadTypeCombo = StringHelper::CreateLabel("SoundType", m_uuID);
+		if (ImGui::BeginCombo(loadTypeCombo.c_str(), types[selectIndex]))
+		{
+			for (int i = 0; i < IM_ARRAYSIZE(types); i++)
+			{
+				auto selected = ((int)m_soundType == i);
+				if (ImGui::Selectable(types[i], selected))
+				{
+					m_soundType = SOUNDTYPE(i);
+					selectIndex = i;
+
+				}
+				if (selected)
+				{
+					ImGui::SetItemDefaultFocus();
+				}
+			}
+			ImGui::EndCombo();
+		}
+
 		char buf[256] = "";
 		strcpy_s(buf, sizeof(buf), m_soundName.c_str());
 		auto soundNameLabel = StringHelper::CreateLabel("SoundName", m_uuID);
@@ -155,22 +180,45 @@ namespace TMF
 	{
 		if (auto pLockAudioEngine = m_pAudioEngine.lock())
 		{
-			if (soundName != "")
+			auto loadSoundName = std::string("");
+			if (soundName == "")
 			{
-				m_soundName = soundName;
+				return;
 			}
-			auto wideStringSoundName = std::wstring(m_soundName.begin(), m_soundName.end());
+			else
+			{
+				auto soundpath = std::string("asset/sound/");
+				switch (m_soundType)
+				{
+				case TMF::Audio::DEFAULT:
+					soundpath = "";
+					break;
+				case TMF::Audio::BGM:
+					soundpath += "bgm/";
+					break;
+				case TMF::Audio::SE:
+					soundpath += "se/";
+					break;
+				default:
+					break;
+				}
+				loadSoundName = soundpath + soundName;
+			}
+			auto wideStringSoundName = std::wstring(loadSoundName.begin(), loadSoundName.end());
 			m_pSoundEffect = std::make_unique<DirectX::SoundEffect>(pLockAudioEngine.get(), wideStringSoundName.c_str());
 		}
 	}
 
 	void Audio::Play()
 	{
-		m_pSoundEffectInstance = m_pSoundEffect->CreateInstance();
-		m_pSoundEffectInstance->SetVolume(m_volume);
-		m_pSoundEffectInstance->SetPitch(m_pitch);
-		m_pSoundEffectInstance->SetPan(m_pan);
-		m_pSoundEffectInstance->Play(m_isLoop);
+		if (m_pSoundEffect)
+		{
+			m_pSoundEffectInstance = m_pSoundEffect->CreateInstance();
+			m_pSoundEffectInstance->SetVolume(m_volume);
+			m_pSoundEffectInstance->SetPitch(m_pitch);
+			m_pSoundEffectInstance->SetPan(m_pan);
+			m_pSoundEffectInstance->Play(m_isLoop);
+		}
 	}
 
 	void Audio::Stop()

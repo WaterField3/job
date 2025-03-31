@@ -34,6 +34,12 @@ namespace TMF
 		void LoadDefaltAnimation();
 		DirectX::SimpleMath::Vector3 GetBonePosition(std::string findName);
 		DirectX::SimpleMath::Quaternion GetBoneRotation(std::string findName);
+		/// <summary>
+		/// ボーンのマトリックスを取得する
+		/// </summary>
+		/// <param name="findName">ボーンの名前</param>
+		/// <returns></returns>
+		DirectX::SimpleMath::Matrix GetBoneMatrix(std::string findName);
 
 	private:
 		void LoadCMO();

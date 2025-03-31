@@ -338,6 +338,27 @@ namespace TMF
 		return rotation;
 	}
 
+	DirectX::SimpleMath::Matrix Animater::GetBoneMatrix(std::string findName)
+	{
+		auto matrix = DirectX::SimpleMath::Matrix::Identity;
+
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
+			{
+				matrix = pLockTransform->GetWorldMatrix();
+				if (auto pLockModel = m_pModel.lock())
+				{
+					auto bonematrix = m_pAnimationSDKMESH->GetBoneMatrix(*pLockModel, m_boneSize, findName);
+					bonematrix *= matrix;
+					matrix = bonematrix;
+				}
+			}
+		}
+		return matrix;
+	}
+
 	void Animater::LoadCMO()
 	{
 		auto pLockOwner = m_pOwner.lock();

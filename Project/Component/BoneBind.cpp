@@ -86,4 +86,21 @@ namespace TMF
 		auto pClone = std::make_shared<BoneBind>();
 		return move(pClone);
 	}
+	DirectX::SimpleMath::Matrix BoneBind::GetBoneMatrix()
+	{
+		if (boneMatrix != DirectX::SimpleMath::Matrix::Identity)
+		{
+			return boneMatrix;
+		}
+		if (auto pLockTransform = m_pTransform.lock())
+		{
+			auto bonePosition = pLockTransform->GetWorldPosition();
+			auto boneRotation = pLockTransform->GetRotation();
+			if (auto pLockAnimater = m_pAnimater.lock())
+			{
+				boneMatrix = pLockAnimater->GetBoneMatrix(m_bindName);
+			}
+		}
+		return boneMatrix;
+	}
 }

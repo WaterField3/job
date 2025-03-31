@@ -60,7 +60,7 @@ namespace TMF
 			{
 				m_pPlayerStatus = pLockPlayerStatus;
 			}
-		
+
 			if (isGetTransform == true && isGetRigidbody == true && isGetThruster == true)
 			{
 				m_pPlayerMove = std::make_unique<PlayerMove>(pTransform, pRigidbody, pThruster, moveSpeed);
@@ -85,7 +85,8 @@ namespace TMF
 	void PlayerIdleState::OnUpdate()
 	{
 		auto keyState = Input::Instance().GetKeyState();
-
+		auto keyTracker = Input::Instance().GetKeyboardTracker();
+		keyTracker->Update(keyState);
 		auto mouseTracker = Input::Instance().GetMouseTracker();
 		auto mouseState = Input::Instance().GetMouseState();
 		mouseTracker->Update(mouseState);
@@ -95,6 +96,22 @@ namespace TMF
 			if (pLockPlayerStatus->GetIsMove() == false)
 			{
 				return;
+			}
+		}
+
+		if (keyTracker->pressed.Space == true)
+		{
+			// åªç›éûä‘
+			auto now = duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+
+			// àÍíËéûä‘ì‡Ç…ï°êîâÒâüÇ≥ÇÍÇƒÇ¢ÇÈÇ©
+			if (Input::Instance().PluralGetKeyDiwn(now) == true)
+			{
+				if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
+				{
+					pLockAdministratorStateMachine->ChangeState("PlayerDodgeState");
+					return;
+				}
 			}
 		}
 
@@ -115,7 +132,7 @@ namespace TMF
 			m_pEventSystem->TriggerEvent('d');
 		}
 
-		if (keyState.V == true)
+		if (keyState.Space == true)
 		{
 			if (keyState.A == true)
 			{
@@ -133,24 +150,19 @@ namespace TMF
 			{
 				m_pEventSystem->TriggerEvent('W');
 			}
-
 		}
 		else
 		{
 			m_pEventSystem->TriggerEvent('N');
 		}
-		if (keyState.Space == true)
-		{
-			if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
-			{
-				pLockAdministratorStateMachine->ChangeState("PlayerJumpState");
-			}
-		}
+
+
 		if (mouseTracker->leftButton == DirectX::Mouse::ButtonStateTracker::ButtonState::PRESSED)
 		{
 			if (auto pLockAdministratorStateMachine = m_pAdministratorStateMachine.lock())
 			{
 				pLockAdministratorStateMachine->ChangeState("PlayerAttackState");
+				return;
 			}
 		}
 	}

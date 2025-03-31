@@ -702,7 +702,7 @@
                 "ptr_wrapper": {
                     "id": 2147483678,
                     "data": {
-                        "m_name": "Audio",
+                        "m_name": "BGM",
                         "m_uuID": {
                             "uuid": "7fbf6e9d-b6a9-4f9d-ba3f-136769f7974b"
                         },
@@ -756,12 +756,13 @@
                                             },
                                             "m_isEnable": true
                                         },
-                                        "m_soundName": "asset/sound/bgm/n51.wav",
+                                        "m_soundName": "n51.wav",
+                                        "m_soundType": 1,
                                         "m_volume": 0.10000000149011612,
                                         "m_pitch": 0.0,
                                         "m_pan": 0.0,
                                         "m_isLoop": false,
-                                        "m_isStartPlay": true
+                                        "m_isStartPlay": false
                                     }
                                 }
                             }

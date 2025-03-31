@@ -107,7 +107,8 @@ namespace TMF
 		{
 			auto movePos = vector * m_moveSpeed;
 			auto velocity = pLockRigidbody->GetLinearVelocity();
-			movePos.y = velocity.y;
+			movePos += velocity;
+			movePos *= 0.6f;
 			pLockRigidbody->SetLinearVelocity(movePos);
 		}
 	}

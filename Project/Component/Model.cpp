@@ -9,6 +9,7 @@
 #include "Utility/Log.h"
 #include "Utility/StringHelper.h"
 #include "FreeCamera.h"
+#include "BoneBind.h"
 
 REGISTER_COMPONENT(TMF::Model, "Model");
 
@@ -208,13 +209,12 @@ namespace TMF
 					matrixWorld = pLockTransform->GetLocalMatrix();
 				}
 			}
-		}
-
-		for (auto bone : m_pModel->bones)
-		{
-			if (bone.name == L"aaa")
+			auto pBoneBind = pLockOwner->GetComponent<BoneBind>();
+			if (auto pLockBoneBind = pBoneBind.lock())
 			{
-				bone;
+				auto bine = pLockBoneBind->GetBoneMatrix();
+				bine *= matrixWorld;
+				matrixWorld = bine;
 			}
 		}
 
