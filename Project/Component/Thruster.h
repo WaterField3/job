@@ -23,7 +23,7 @@ namespace TMF
 		void OnDraw() override;
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
-		void FastMovement(MoveDirection moveDirection);
+		void FastMovement(MOVEDIRECTION moveDirection);
 		void StopFastMovement();
 		void UseThruster(float useMagnification);
 		inline bool GetIsOverHeat() const { return m_isOverHeat; }
@@ -42,7 +42,7 @@ namespace TMF
 		std::string m_barTextureName = "asset/textures/sunset.jpg";
 		DirectX::SimpleMath::Vector3 m_moveVector = DirectX::SimpleMath::Vector3::Zero;
 		DirectX::SimpleMath::Vector2 m_drawUIPosition = DirectX::SimpleMath::Vector2::Zero;
-		MoveDirection m_moveDirection = MoveDirection::FOWARD;
+		MOVEDIRECTION m_moveDirection = MOVEDIRECTION::FOWARD;
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Rigidbody> m_pRigidBody;
 		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pBarTexture;

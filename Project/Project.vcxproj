@@ -178,6 +178,7 @@
     <ClCompile Include="AssimpTexture.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BoneCombMatrix.cpp" />
+    <ClCompile Include="Component\CameraLook.cpp" />
     <ClCompile Include="Component\AssimpAnimation.cpp" />
     <ClCompile Include="Component\ChangeTimeUI.cpp" />
     <ClCompile Include="Component\CameraMove.cpp" />
@@ -210,6 +211,7 @@
     <ClCompile Include="Component\GetWeapon.cpp" />
     <ClCompile Include="Component\Gun.cpp" />
     <ClCompile Include="Component\HPUI.cpp" />
+    <ClCompile Include="Component\FollowMove.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="State\PlayerAttackState.cpp" />
     <ClCompile Include="State\EnemyAttackState.cpp" />
@@ -293,6 +295,7 @@
     <ClInclude Include="AssimpTexture.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BoneCombMatrix.h" />
+    <ClInclude Include="Component\CameraLook.h" />
     <ClInclude Include="Component\AssimpAnimation.h" />
     <ClInclude Include="Component\ChangeTimeUI.h" />
     <ClInclude Include="Component\CameraMove.h" />
@@ -325,6 +328,7 @@
     <ClInclude Include="Component\GetWeapon.h" />
     <ClInclude Include="Component\Gun.h" />
     <ClInclude Include="Component\HPUI.h" />
+    <ClInclude Include="Component\FollowMove.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="State\PlayerAttackState.h" />

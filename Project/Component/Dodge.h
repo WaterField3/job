@@ -17,7 +17,7 @@ namespace TMF
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
 
-		bool DodgeStart(MoveDirection direction);
+		bool DodgeStart(MOVEDIRECTION direction);
 
 		inline bool GetIsDodgeEnd() { return m_isDodgeEnd; }
 	private:
@@ -28,7 +28,7 @@ namespace TMF
 		float m_moveMagnification = 1.0f;
 		float m_dodgeUseThrusterMagnification = 1.0f;
 		DirectX::SimpleMath::Vector3 m_dodgeMoveVector = DirectX::SimpleMath::Vector3::Zero;
-		MoveDirection m_dodgeDirection = MoveDirection::FOWARD;
+		MOVEDIRECTION m_dodgeDirection = MOVEDIRECTION::FOWARD;
 		std::string m_fowardDodge = "";
 		std::string m_rightDodge = "";
 		std::string m_leftDodge = "";

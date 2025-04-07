@@ -21,8 +21,8 @@ namespace TMF
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
 		void OnCollisionEnter(GameObject* pGameObject) override;
-		void Chage(MoveDirection moveDirection);
-		void ChageStop(MoveDirection moveDirection);
+		void Chage(MOVEDIRECTION moveDirection);
+		void ChageStop(MOVEDIRECTION moveDirection);
 		void Fall();
 
 		inline int GetMaxJumpNum() { return m_maxJumpNum; }
@@ -49,7 +49,7 @@ namespace TMF
 		bool m_isFall = false;
 		bool m_IsLanding = false;
 		DirectX::SimpleMath::Vector3 m_jumpVector = DirectX::SimpleMath::Vector3::Zero;
-		MoveDirection m_moveDirection = MoveDirection::NEUTRAL;
+		MOVEDIRECTION m_moveDirection = MOVEDIRECTION::NEUTRAL;
 		std::weak_ptr<Rigidbody> m_pRigidbody;
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Thruster> m_pThruster;

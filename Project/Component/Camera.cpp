@@ -78,6 +78,12 @@ namespace TMF
 		return move(pClone);
 	}
 
+	void Camera::SetTargetPosition(DirectX::SimpleMath::Vector3 target)
+	{
+		m_targetPos = target;
+		m_isSetTargetPos = true;
+	}
+
 	DirectX::SimpleMath::Matrix Camera::GetProjectionMatrix()
 	{
 		auto fovRadian = DirectX::XMConvertToRadians(m_fov);
@@ -103,8 +109,13 @@ namespace TMF
 				auto forward = DirectX::SimpleMath::Vector3::Transform(DirectX::SimpleMath::Vector3::Forward, rotate);
 				if (auto pLockTargetTransform = m_pTargetTransform.lock())
 				{
-					targetPos = pLockTargetTransform->GetPosition() /*+ pLockTargetTransform->GetForward() * 4 */+ DirectX::SimpleMath::Vector3::UnitY * 3;
+					targetPos = pLockTargetTransform->GetPosition() /*+ pLockTargetTransform->GetForward() * 4 */ + DirectX::SimpleMath::Vector3::UnitY * 3;
 					up = pLockTargetTransform->GetUp();
+				}
+				else if (m_isSetTargetPos == true)
+				{
+					targetPos = m_targetPos;
+					//up = pLockTargetTransform->GetUp();
 				}
 				else
 				{

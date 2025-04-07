@@ -45,7 +45,7 @@ namespace TMF
 					auto pCamera = pLockOwner->GetComponent<Camera>();
 					if (auto pLockCamera = pCamera.lock())
 					{
-						pLockCamera->SetTargetTransform(m_pPlayerTransform);
+						//pLockCamera->SetTargetTransform(m_pPlayerTransform);
 					}
 					m_pTargetRigidbody = pLockTargetObject->GetComponent<Rigidbody>();
 					m_pTargetPlayerStatus = pLockTargetObject->GetComponent<PlayerStatus>();
@@ -82,7 +82,7 @@ namespace TMF
 				pos.x = m_raduis * sin(m_elevation) * cos(azimuth);
 				pos.y = m_raduis * cos(m_elevation);
 				pos.z = m_raduis * sin(m_elevation) * sin(azimuth);
-				pLockTransform->SetPosition(pos);
+				//pLockTransform->SetPosition(pos);
 
 				// Œ»İ‚ÌˆÊ’u‚ğŸ‰ñ‚Ì‚½‚ß‚É•Û‘¶
 				prevMouseX = currentMouseX;

@@ -65,7 +65,7 @@ namespace TMF
 	{
 		if (auto pLockThruster = m_pThruster.lock())
 		{
-			pLockThruster->FastMovement(MoveDirection::FOWARD);
+			pLockThruster->FastMovement(MOVEDIRECTION::FOWARD);
 		}
 	}
 
@@ -73,7 +73,7 @@ namespace TMF
 	{
 		if (auto pLockThruster = m_pThruster.lock())
 		{
-			pLockThruster->FastMovement(MoveDirection::BACK);
+			pLockThruster->FastMovement(MOVEDIRECTION::BACK);
 		}
 	}
 
@@ -81,7 +81,7 @@ namespace TMF
 	{
 		if (auto pLockThruster = m_pThruster.lock())
 		{
-			pLockThruster->FastMovement(MoveDirection::LEFT);
+			pLockThruster->FastMovement(MOVEDIRECTION::LEFT);
 		}
 	}
 
@@ -89,7 +89,7 @@ namespace TMF
 	{
 		if (auto pLockThruster = m_pThruster.lock())
 		{
-			pLockThruster->FastMovement(MoveDirection::RIGHT);
+			pLockThruster->FastMovement(MOVEDIRECTION::RIGHT);
 		}
 	}
 

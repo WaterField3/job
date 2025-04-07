@@ -29,23 +29,23 @@ namespace TMF
 		if (auto pLockOwner = m_pOwner.lock())
 		{
 			m_pDodge = pLockOwner->GetComponent<Dodge>();
-			auto moveDirection = MoveDirection::NEUTRAL;
+			auto moveDirection = MOVEDIRECTION::NEUTRAL;
 			auto keyState = Input::Instance().GetKeyState();
 			if (keyState.W == true)
 			{
-				moveDirection = MoveDirection::FOWARD;
+				moveDirection = MOVEDIRECTION::FOWARD;
 			}
 			else if (keyState.A == true)
 			{
-				moveDirection = MoveDirection::LEFT;
+				moveDirection = MOVEDIRECTION::LEFT;
 			}
 			else if (keyState.S == true)
 			{
-				moveDirection = MoveDirection::BACK;
+				moveDirection = MOVEDIRECTION::BACK;
 			}
 			else if (keyState.D == true)
 			{
-				moveDirection = MoveDirection::RIGHT;
+				moveDirection = MOVEDIRECTION::RIGHT;
 			}
 			if (auto pLockDodge = m_pDodge.lock())
 			{

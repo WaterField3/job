@@ -2,7 +2,7 @@
 
 namespace TMF
 {
-	enum MoveDirection
+	enum MOVEDIRECTION
 	{
 		NEUTRAL,
 		FOWARD,

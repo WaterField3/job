@@ -23,7 +23,7 @@ namespace TMF
 		std::unique_ptr<PlayerJump> m_pPlayerJump;
 		std::weak_ptr<Transform> m_pTransform;
 		std::weak_ptr<Jump> m_pJump;
-		MoveDirection m_moveDirection = MoveDirection::FOWARD;
+		MOVEDIRECTION m_moveDirection = MOVEDIRECTION::FOWARD;
 	};
 }
 

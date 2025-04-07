@@ -88,7 +88,7 @@ namespace TMF
 		pClone->m_thrusterMoveSpeedMagnification = this->m_thrusterMoveSpeedMagnification;
 		return move(pClone);
 	}
-	void Thruster::FastMovement(MoveDirection moveDirection)
+	void Thruster::FastMovement(MOVEDIRECTION moveDirection)
 	{
 		// èââÒ
 		if (m_isThruster == false)

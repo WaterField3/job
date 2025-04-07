@@ -25,6 +25,7 @@ namespace TMF
 		void OnDrawImGui() override;
 		std::shared_ptr<Component> OnClone() const override;
 
+		void SetTargetPosition(DirectX::SimpleMath::Vector3 target);
 		DirectX::SimpleMath::Matrix GetProjectionMatrix();
 		DirectX::SimpleMath::Matrix GetViewMatrix();
 		inline void SetTargetTransform(std::weak_ptr<Transform> target) { m_pTargetTransform = target; }
@@ -36,7 +37,9 @@ namespace TMF
 		float m_fov = 45.0f;
 		float m_near = 0.1f;
 		float m_far = 1000.0f;
+		bool m_isSetTargetPos = false;
 		std::weak_ptr<Transform> m_pTargetTransform;
+		DirectX::SimpleMath::Vector3 m_targetPos = DirectX::SimpleMath::Vector3::Zero;
 
 		SERIALIZE_COMPONENT(m_fov, m_near, m_far);
 	};

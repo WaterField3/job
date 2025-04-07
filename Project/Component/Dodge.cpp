@@ -140,7 +140,7 @@ namespace TMF
 		pClone->m_dodgeUseThrusterMagnification = this->m_dodgeUseThrusterMagnification;
 		return move(pClone);
 	}
-	bool Dodge::DodgeStart(MoveDirection direction)
+	bool Dodge::DodgeStart(MOVEDIRECTION direction)
 	{
 		if (auto pLockOwner = m_pOwner.lock())
 		{
@@ -167,23 +167,23 @@ namespace TMF
 				{
 					switch (direction)
 					{
-					case MoveDirection::NEUTRAL:
-					case MoveDirection::FOWARD:
-						m_dodgeDirection = MoveDirection::FOWARD;
+					case MOVEDIRECTION::NEUTRAL:
+					case MOVEDIRECTION::FOWARD:
+						m_dodgeDirection = MOVEDIRECTION::FOWARD;
 						m_dodgeMoveVector = pLockTransform->GetForward();
 						break;
-					case MoveDirection::RIGHT:
-						m_dodgeDirection = MoveDirection::RIGHT;
+					case MOVEDIRECTION::RIGHT:
+						m_dodgeDirection = MOVEDIRECTION::RIGHT;
 						m_dodgeMoveVector = pLockTransform->GetRight();
 						dodgePath = m_rightDodge;
 						break;
-					case MoveDirection::LEFT:
-						m_dodgeDirection = MoveDirection::LEFT;
+					case MOVEDIRECTION::LEFT:
+						m_dodgeDirection = MOVEDIRECTION::LEFT;
 						m_dodgeMoveVector = pLockTransform->GetLeft();
 						dodgePath = m_leftDodge;
 						break;
-					case MoveDirection::BACK:
-						m_dodgeDirection = MoveDirection::BACK;
+					case MOVEDIRECTION::BACK:
+						m_dodgeDirection = MOVEDIRECTION::BACK;
 						m_dodgeMoveVector = pLockTransform->GetBack();
 						dodgePath = m_backDodge;
 						break;

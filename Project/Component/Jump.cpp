@@ -140,7 +140,7 @@ namespace TMF
 			m_isChage = false;
 		}
 	}
-	void Jump::Chage(MoveDirection moveDirection)
+	void Jump::Chage(MOVEDIRECTION moveDirection)
 	{
 		//if (m_isChageEnd == true)
 		//{
@@ -201,7 +201,7 @@ namespace TMF
 			}
 		}
 	}
-	void Jump::ChageStop(MoveDirection moveDirection)
+	void Jump::ChageStop(MOVEDIRECTION moveDirection)
 	{
 
 		if (m_chageTime < 0.1f || m_isChage == false)
