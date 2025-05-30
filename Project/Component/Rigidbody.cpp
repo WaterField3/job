@@ -163,7 +163,16 @@ namespace TMF
 	}
 
 	void Rigidbody::SetRigidBodyTranform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion qua)
-	{
+	{ 
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
+			{
+				pos += pLockTransform->GetPosition();
+				qua += pLockTransform->GetRotation();
+			}
+		}
 		auto trans = btTransform(MakebtQuaternion(qua), MakebtVector3(pos));
 		m_pRigidBody->setWorldTransform(trans);
 	}

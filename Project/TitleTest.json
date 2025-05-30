@@ -26,8 +26,8 @@
                                         },
                                         "m_position": {
                                             "value0": 0.0,
-                                            "value1": 6.0,
-                                            "value2": 22.0
+                                            "value1": 0.0,
+                                            "value2": 3.4000000953674318
                                         },
                                         "m_scale": {
                                             "value0": 1.0,
@@ -763,6 +763,246 @@
                                         "m_pan": 0.0,
                                         "m_isLoop": false,
                                         "m_isStartPlay": false
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483681,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "uuid": "332a0564-57c6-4df5-9c7d-0310ffb7310c"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483682,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "8742128e-0ed4-414e-aa4b-bbcfd7d3e385"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 0.5,
+                                            "value1": 0.5,
+                                            "value2": 0.5
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483683,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "uuid": "da49fcf9-3410-4aee-883e-562fcdaf637c"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483684,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "373d8fc9-3f01-4588-9706-a45af689119a"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.6000000238418579,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 1073741824,
+                                                "ptr_wrapper": {
+                                                    "id": 34
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "id": 2147483685,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "238c6a7a-bcd8-48ee-ba77-d9651366b96c"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_isInvertn": false,
+                                        "m_isRhcoords": true,
+                                        "m_shapeType": 1,
+                                        "m_color": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0,
+                                            "value3": 0.800000011920929
+                                        },
+                                        "m_scale": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0
+                                        },
+                                        "m_textureName": ""
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "id": 2147483686,
+                    "data": {
+                        "m_name": "NewGameObject",
+                        "m_uuID": {
+                            "uuid": "6050d56f-bf84-4988-b732-78c80bd9c70f"
+                        },
+                        "m_tag": 0,
+                        "m_isActive": true,
+                        "m_pComponents": [
+                            {
+                                "polymorphic_id": 1,
+                                "ptr_wrapper": {
+                                    "id": 2147483687,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "bfa9c680-c9c5-4896-b9e0-eff51c7a4f59"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_position": {
+                                            "value0": 0.0,
+                                            "value1": 0.6000000238418579,
+                                            "value2": 0.0
+                                        },
+                                        "m_scale": {
+                                            "value0": 0.20000000298023225,
+                                            "value1": 0.20000000298023225,
+                                            "value2": 0.20000000298023225
+                                        },
+                                        "m_rotation": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0,
+                                            "value3": 1.0
+                                        },
+                                        "m_pParent": {
+                                            "locked_ptr": {
+                                                "polymorphic_id": 0
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 3,
+                                "ptr_wrapper": {
+                                    "id": 2147483688,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "dae2845c-6207-49c5-bf5f-59904e2ce196"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_isInvertn": false,
+                                        "m_isRhcoords": true,
+                                        "m_shapeType": 0,
+                                        "m_color": {
+                                            "value0": 1.0,
+                                            "value1": 1.0,
+                                            "value2": 1.0,
+                                            "value3": 0.800000011920929
+                                        },
+                                        "m_scale": {
+                                            "value0": 2.0,
+                                            "value1": 2.0,
+                                            "value2": 2.0
+                                        },
+                                        "m_textureName": ""
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 2147483661,
+                                "polymorphic_name": "TMF::Model",
+                                "ptr_wrapper": {
+                                    "id": 2147483689,
+                                    "data": {
+                                        "value0": {
+                                            "m_uuID": {
+                                                "uuid": "4a8f1d95-2291-41c4-a7c2-a232fcee1599"
+                                            },
+                                            "m_isEnable": true
+                                        },
+                                        "m_loadFile": "asset/model/sword.sdkmesh",
+                                        "m_isDraw": true,
+                                        "m_loadType": 0,
+                                        "m_loadDirectory": "asset/model",
+                                        "m_drawPositionOffset": {
+                                            "value0": 0.0,
+                                            "value1": 0.0,
+                                            "value2": 0.0
+                                        },
+                                        "m_editorDrawRotationOffset": {
+                                            "value0": 0.0,
+                                            "value1": 1.5700000524520875,
+                                            "value2": 1.600000023841858
+                                        }
                                     }
                                 }
                             }

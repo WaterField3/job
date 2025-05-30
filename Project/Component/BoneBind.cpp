@@ -80,6 +80,12 @@ namespace TMF
 		{
 
 		}
+
+		auto testLabel = StringHelper::CreateLabel("test", m_uuID);
+		if (ImGui::DragFloat(testLabel.c_str(), &m_scale, 0.1f))
+		{
+
+		}
 	}
 	std::shared_ptr<Component> BoneBind::OnClone() const
 	{
@@ -88,18 +94,39 @@ namespace TMF
 	}
 	DirectX::SimpleMath::Matrix BoneBind::GetBoneMatrix()
 	{
-		if (boneMatrix != DirectX::SimpleMath::Matrix::Identity)
-		{
-			return boneMatrix;
-		}
+		//if (boneMatrix != DirectX::SimpleMath::Matrix::Identity)
+		//{
+		//	return boneMatrix;
+		//}
 		if (auto pLockTransform = m_pTransform.lock())
 		{
 			auto bonePosition = pLockTransform->GetWorldPosition();
 			auto boneRotation = pLockTransform->GetRotation();
+			auto scale = pLockTransform->GetScale();
 			if (auto pLockAnimater = m_pAnimater.lock())
 			{
+				bonePosition = pLockAnimater->GetBonePosition(m_bindName);
 				boneMatrix = pLockAnimater->GetBoneMatrix(m_bindName);
+				//boneMatrix = boneMatrix * pLockTransform->GetWorldMatrix();
 			}
+			auto parentRotation = DirectX::SimpleMath::Quaternion::Identity;
+			auto pParent = pLockTransform->GetParent();
+			if (auto pLockParent = pParent.lock())
+			{
+				bonePosition *= /*pLockParent->GetScale()*/ m_scale;
+				bonePosition += pLockParent->GetWorldPosition();
+				parentRotation = pLockParent->GetRotation();
+				boneRotation *= parentRotation;
+			}
+
+			auto rotateMatrix = DirectX::SimpleMath::Matrix::CreateFromQuaternion(boneRotation);
+			// ägèkçsóÒ
+			auto scaleMatrix = DirectX::SimpleMath::Matrix::CreateScale(scale);
+			// à⁄ìÆçsóÒ
+			auto transformMatrix = DirectX::SimpleMath::Matrix::CreateTranslation(bonePosition);
+
+			boneMatrix = scaleMatrix * rotateMatrix * transformMatrix;
+
 		}
 		return boneMatrix;
 	}

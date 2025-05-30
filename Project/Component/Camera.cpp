@@ -4,6 +4,7 @@
 
 #include "Transform.h"
 #include "direct3d.h"
+#include "Input.h"
 
 REGISTER_COMPONENT(TMF::Camera, "Camera");
 
@@ -21,7 +22,34 @@ namespace TMF
 	}
 	void Camera::OnUpdate()
 	{
+#if _DEBUG
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
+			{
 
+				auto keyState = Input::Instance().GetKeyState();
+				auto pos = pLockTransform->GetPosition();
+				if (keyState.W)
+				{
+					pLockTransform->SetPosition(pos + pLockTransform->GetForward());
+				}
+				if (keyState.A)
+				{
+					pLockTransform->SetPosition(pos + pLockTransform->GetLeft());
+				}
+				if (keyState.S)
+				{
+					pLockTransform->SetPosition(pos + pLockTransform->GetBack());
+				}
+				if (keyState.D)
+				{
+					pLockTransform->SetPosition(pos + pLockTransform->GetRight());
+				}
+			}
+		}
+#endif // DEBUG
 	}
 	void Camera::OnLateUpdate()
 	{

@@ -32,6 +32,7 @@ namespace TMF
 		m_pEffectFactory = std::make_unique<DirectX::EffectFactory>(device);
 		auto wstringDirectry = std::wstring(m_loadDirectory.begin(), m_loadDirectory.end());
 		m_pEffectFactory->SetDirectory(wstringDirectry.c_str());
+		m_drawRotationOffset = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(m_editorDrawRotationOffset.y, m_editorDrawRotationOffset.x, m_editorDrawRotationOffset.z);
 		switch (m_loadType)
 		{
 		case TMF::Model::DEFAULT:
@@ -106,6 +107,18 @@ namespace TMF
 		if (ImGui::Checkbox(activeLabel.c_str(), &m_isDraw))
 		{
 
+		}
+
+		auto drawPositionOffsetLabel = StringHelper::CreateLabel("DrawPosition", m_uuID);
+		if (ImGui::DragFloat3(drawPositionOffsetLabel.c_str(), &m_drawPositionOffset.x, 0.1f))
+		{
+
+		}
+
+		auto drawRotationOffsetLabel = StringHelper::CreateLabel("DrawRotation", m_uuID);
+		if (ImGui::DragFloat3(drawRotationOffsetLabel.c_str(), &m_editorDrawRotationOffset.x, 0.1f))
+		{
+			m_drawRotationOffset = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(m_editorDrawRotationOffset.y, m_editorDrawRotationOffset.x, m_editorDrawRotationOffset.z);
 		}
 		auto useWorldMatrixLabel = StringHelper::CreateLabel("IsUseWorldMatrix", m_uuID);
 		if (ImGui::Checkbox(useWorldMatrixLabel.c_str(), &m_isUseWorldMatrix))
@@ -202,19 +215,52 @@ namespace TMF
 			{
 				if (m_isUseWorldMatrix == true)
 				{
-					matrixWorld = pLockTransform->GetWorldMatrix();
+					// オフセットでモデルの描画位置を変更
+					auto position = pLockTransform->GetWorldPosition();
+					auto rotation = pLockTransform->GetWorldRotation();
+					auto scale = pLockTransform->GetScale();
+
+					position += m_drawPositionOffset;
+
+					rotation *= m_drawRotationOffset;
+
+					auto rotateMatrix = DirectX::SimpleMath::Matrix::CreateFromQuaternion(rotation);
+					// 拡縮行列
+					auto scaleMatrix = DirectX::SimpleMath::Matrix::CreateScale(scale);
+					// 移動行列
+					auto transformMatrix = DirectX::SimpleMath::Matrix::CreateTranslation(position);
+
+					matrixWorld = scaleMatrix * rotateMatrix * transformMatrix;
+
+					//matrixWorld = pLockTransform->GetWorldMatrix();
 				}
 				else
 				{
 					matrixWorld = pLockTransform->GetLocalMatrix();
 				}
-			}
-			auto pBoneBind = pLockOwner->GetComponent<BoneBind>();
-			if (auto pLockBoneBind = pBoneBind.lock())
-			{
-				auto bine = pLockBoneBind->GetBoneMatrix();
-				bine *= matrixWorld;
-				matrixWorld = bine;
+
+				//auto pParent = pLockTransform->GetParent();
+				//if (auto pLockParent = pParent.lock())
+				//{
+				//	auto pParentOwner = pLockParent->GetOwner();
+				//	if (auto pLockParentOwner = pParentOwner.lock())
+				//	{
+				//		auto pBoneBind = pLockParentOwner->GetComponent<BoneBind>();
+				//		if (auto pLockBoneBind = pBoneBind.lock())
+				//		{
+				//			auto bine = pLockBoneBind->GetBoneMatrix();
+				//			bine *= matrixWorld;
+				//			matrixWorld = bine;
+				//		}
+				//	}
+				//}
+				auto pBoneBind = pLockOwner->GetComponent<BoneBind>();
+				if (auto pLockBoneBind = pBoneBind.lock())
+				{
+					auto bind = pLockBoneBind->GetBoneMatrix();
+					//bind *= matrixWorld;
+					matrixWorld = bind;
+				}
 			}
 		}
 

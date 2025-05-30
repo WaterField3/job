@@ -953,15 +953,15 @@ void D3D::SettingEffect(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::M
 	m_pEffect->SetView(view);
 	m_pEffect->SetProjection(proj);
 	m_pEffect->SetWorld(DirectX::SimpleMath::Matrix::Identity);
-	//void const* shaderByteCode;
-	//size_t byteCodeLength;
-	//m_pEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
-	//m_pDevice->CreateInputLayout(
-	//	VertexPositionColor::InputElements, VertexPositionColor::InputElementCount,
-	//	shaderByteCode, byteCodeLength,
-	//	&m_pInputLayout);
+	void const* shaderByteCode;
+	size_t byteCodeLength;
+	m_pEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
+	m_pDevice->CreateInputLayout(
+		VertexPositionColor::InputElements, VertexPositionColor::InputElementCount,
+		shaderByteCode, byteCodeLength,
+		&m_pInputLayout);
 	m_pCommonStates = std::make_shared<CommonStates>(m_pDevice);
 	m_pImmediateContext->OMSetBlendState(m_pCommonStates->Opaque(), nullptr, 0xFFFFFFFF);
-	//m_pEffect->Apply(m_pImmediateContext);
-	//m_pImmediateContext->IASetInputLayout(m_pInputLayout);
+	m_pEffect->Apply(m_pImmediateContext);
+	m_pImmediateContext->IASetInputLayout(m_pInputLayout);
 }

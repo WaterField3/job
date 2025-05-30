@@ -110,6 +110,16 @@ namespace TMF
 
 	void GhostObject::SetGhostObjectTransform(DirectX::SimpleMath::Vector3 pos, DirectX::SimpleMath::Quaternion rotate)
 	{
+		if (auto pLockOwner = m_pOwner.lock())
+		{
+			auto pTransform = pLockOwner->GetComponent<Transform>();
+			if (auto pLockTransform = pTransform.lock())
+			{
+				pos += pLockTransform->GetPosition();
+				rotate += pLockTransform->GetRotation();
+			}
+		}
+
 		auto btPos = btVector3(pos.x, pos.y, pos.z);
 		auto btRot = btQuaternion(rotate.x, rotate.y, rotate.z, rotate.w);
 		auto btTrans = btTransform(btRot, btPos);

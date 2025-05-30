@@ -35,14 +35,14 @@ namespace TMF
 		auto compoent = GameObjectManager::Instance().GetComponent<Camera>();
 		if (auto camera = compoent.lock())
 		{
-			//D3D::Get()->SettingEffect(camera->GetViewMatrix(), camera->GetProjectionMatrix());
+			D3D::Get()->SettingEffect(camera->GetViewMatrix(), camera->GetProjectionMatrix());
 		}
 		auto collisionObjects = m_pDynamicsWorld->getCollisionObjectArray();
 		if (collisionObjects.size() > 0)
 		{
 #if _DEBUG
-			//m_pDynamicsWorld->debugDrawWorld();
-			//m_pBulletDebugDrawer->Render();
+			m_pDynamicsWorld->debugDrawWorld();
+			m_pBulletDebugDrawer->Render();
 #endif // _DEBUG
 		}
 	}

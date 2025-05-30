@@ -431,12 +431,67 @@ DX::AnimationSDKMESH::SDKANIMATION_FRAME_DATA& DX::AnimationSDKMESH::GetFrameDat
 
 			if (strFrameName.find(strCheckName) != std::string::npos)
 			{
-				return frameData[j];
+				return frameData[m_boneToTrack[j]];
 			}
 
 		}
 	}
 	return frameData[m_boneToTrack[0]];
+}
+
+//DX::AnimationSDKMESH::SDKANIMATION_FRAME_DATA& DX::AnimationSDKMESH::GetAnimationFrameData(const DirectX::Model& model, size_t nbones, std::string boneName)
+//{
+//	// TODO: return ステートメントをここに挿入します
+//}
+
+DX::AnimationSDKMESH::SDKANIMATION_DATA& DX::AnimationSDKMESH::GetAnimationData(const DirectX::Model& model, size_t nbones, std::string boneName)
+{
+	// TODO: return ステートメントをここに挿入します
+	assert(m_animData && m_animSize > 0);
+
+	if (!nbones)
+	{
+		throw std::invalid_argument("Bone transforms array required");
+	}
+
+	auto header = reinterpret_cast<const SDKANIMATION_FILE_HEADER*>(m_animData.get());
+	assert(header->Version == SDKMESH_FILE_VERSION);
+
+	// Determine animation time
+	auto tick = static_cast<uint32_t>(static_cast<double>(header->AnimationFPS) * m_animTime);
+	tick %= header->NumAnimationKeys;
+
+	// Compute local bone transforms
+	auto frameData = reinterpret_cast<SDKANIMATION_FRAME_DATA*>(m_animData.get() + header->AnimationDataOffset);
+
+	for (size_t j = 0; j < nbones; ++j)
+	{
+		if (m_boneToTrack[j] == ModelBone::c_Invalid)
+		{
+			m_animBones[j] = model.boneMatrices[j];
+		}
+		else
+		{
+			auto frame = &frameData[m_boneToTrack[j]];
+			auto data = &frame->pAnimationData[tick];
+			wchar_t frameName[MAX_FRAME_NAME] = {};
+			MultiByteToWideChar(CP_UTF8, 0, frameData[j].FrameName, -1, frameName, MAX_FRAME_NAME);
+			int bufferSize = WideCharToMultiByte(CP_UTF8, 0, frameName, -1, nullptr, 0, nullptr, nullptr);
+			std::string result(bufferSize, '\0');
+			WideCharToMultiByte(CP_UTF8, 0, frameName, -1, &result[0], bufferSize, nullptr, nullptr);
+			result.pop_back(); // null文字を削除
+			auto strFrameName = result;
+			auto strCheckName = std::string(boneName);
+
+			if (strFrameName.find(strCheckName) != std::string::npos)
+			{
+				return *data;
+			}
+
+		}
+	}
+	auto frame = &frameData[m_boneToTrack[0]];
+	return frame->pAnimationData[tick];
 }
 
 DirectX::XMMATRIX DX::AnimationSDKMESH::GetBoneMatrix(const DirectX::Model& model, size_t nbones, std::string boneName)

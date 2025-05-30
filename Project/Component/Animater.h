@@ -65,6 +65,9 @@ namespace TMF
 		std::string m_nextPath = "";
 		DirectX::ModelBone::TransformArray m_drawBones;
 		DirectX::ModelBone::TransformArray m_animBones;
+		DirectX::SimpleMath::Vector3 m_testBonePos;
+		DirectX::SimpleMath::Vector3 m_testBoneZeroPos;
+		int m_testBoneIndex = 1;
 		std::unique_ptr<DX::AnimationCMO> m_pAnimationCMO;
 		std::unique_ptr<DX::AnimationSDKMESH> m_pAnimationSDKMESH;
 		DirectX::ModelBone::TransformArray m_drawBone;

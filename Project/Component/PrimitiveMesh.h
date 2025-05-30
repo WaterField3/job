@@ -39,6 +39,7 @@ namespace TMF
         };
 
     private:
+        bool m_isUseWorldMatrix = false;
         bool m_isSetDepthBufferMode = false;
         bool m_isInvertn = false;
         bool m_isRhcoords = true;

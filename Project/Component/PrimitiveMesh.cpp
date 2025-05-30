@@ -70,7 +70,28 @@ namespace TMF
 			auto pTransform = pOwner->GetComponent<Transform>();
 			if (auto pLockTransform = pTransform.lock())
 			{
-				world = pLockTransform->GetWorldMatrix();
+				if (m_isUseWorldMatrix == true)
+				{
+					world = pLockTransform->GetWorldMatrix();
+				}
+				else
+				{
+					auto pos = DirectX::SimpleMath::Vector3::Zero;
+					auto rotate = DirectX::SimpleMath::Quaternion::Identity;
+					auto scale = DirectX::SimpleMath::Vector3::One;
+
+					pos = pLockTransform->GetWorldPosition();
+					rotate = pLockTransform->GetWorldRotation();
+					scale = pLockTransform->GetScale();
+					auto rotateMatrix = DirectX::SimpleMath::Matrix::CreateFromQuaternion(rotate);
+					// Šgks—ñ
+					auto scaleMatrix = DirectX::SimpleMath::Matrix::CreateScale(scale);
+					// ˆÚ“®s—ñ
+					auto transformMatrix = DirectX::SimpleMath::Matrix::CreateTranslation(pos);
+
+					world = scaleMatrix * rotateMatrix * transformMatrix;
+					//world = pLockTransform->GetLocalMatrix();
+				}
 			}
 
 			auto pCamera = GameObjectManager::Instance().GetComponent<Camera>();
@@ -150,6 +171,12 @@ namespace TMF
 		if (ImGui::Button(updateLabel.c_str()))
 		{
 			MakeMesh();
+		}
+
+		auto useWorldMatrixLabel = StringHelper::CreateLabel("UseWorldMatrixLabel", m_uuID);
+		if (ImGui::Checkbox(useWorldMatrixLabel.c_str(), &m_isUseWorldMatrix))
+		{
+
 		}
 	}
 	std::shared_ptr<Component> PrimitiveMesh::OnClone() const

@@ -203,6 +203,41 @@ namespace TMF
 		{
 
 		}
+
+		if (ImGui::DragInt("BoneIndex", &m_testBoneIndex))
+		{
+
+		}
+
+		if (ImGui::Button("GetBone"))
+		{
+			if (auto pLockOwner = m_pOwner.lock())
+			{
+				auto pTransform = pLockOwner->GetComponent<Transform>();
+				if (auto pLockTransform = pTransform.lock())
+				{
+					auto pos = pLockTransform->GetWorldPosition();
+					m_testBonePos = DirectX::XMVector3TransformCoord(
+						pos, // ボーンのローカル位置（原点）
+						//DirectX::XMVectorZero(),
+						m_drawBone[m_testBoneIndex]);
+
+					m_testBoneZeroPos = DirectX::XMVector3TransformCoord(
+						DirectX::XMVectorZero(),
+						m_drawBone[m_testBoneIndex]);
+				}
+			}
+		}
+		auto testBonePosLabel = StringHelper::CreateLabel("TestBonePos", m_uuID);
+		if (ImGui::DragFloat3(testBonePosLabel.c_str(), &m_testBonePos.x))
+		{
+
+		}
+		auto testBoneZeroPosLabel = StringHelper::CreateLabel("TestBoneZeroPos", m_uuID);
+		if (ImGui::DragFloat3(testBoneZeroPosLabel.c_str(), &m_testBoneZeroPos.x))
+		{
+
+		}
 	}
 
 	std::shared_ptr<Component> Animater::OnClone() const
@@ -314,6 +349,8 @@ namespace TMF
 				{
 					auto data = m_pAnimationSDKMESH->GetFrameData(*pLockModel, m_boneSize, findName);
 					position = data.pAnimationData->Translation;
+					auto a = m_pAnimationSDKMESH->GetAnimationData(*pLockModel, m_boneSize, findName);
+					position = a.Translation;
 				}
 			}
 		}
@@ -332,6 +369,8 @@ namespace TMF
 				{
 					auto data = m_pAnimationSDKMESH->GetFrameData(*pLockModel, m_boneSize, findName);
 					rotation = data.pAnimationData->Orientation;
+					auto a = m_pAnimationSDKMESH->GetAnimationData(*pLockModel, m_boneSize, findName);
+					rotation = a.Orientation;
 				}
 			}
 		}
@@ -351,7 +390,7 @@ namespace TMF
 				if (auto pLockModel = m_pModel.lock())
 				{
 					auto bonematrix = m_pAnimationSDKMESH->GetBoneMatrix(*pLockModel, m_boneSize, findName);
-					bonematrix *= matrix;
+					//bonematrix *= matrix;
 					matrix = bonematrix;
 				}
 			}
@@ -424,7 +463,7 @@ namespace TMF
 					else
 					{
 						auto toAnimWideString = std::wstring(m_toAnimName.begin(), m_toAnimName.end());
-						m_pAnimationSDKMESH->Load(wideString.c_str(), toAnimWideString.c_str());
+						m_pAnimationSDKMESH->Load(wideString.c_str());
 					}
 					m_pAnimationSDKMESH->Bind(*lockModel);
 					m_drawBone = DirectX::ModelBone::MakeArray(m_boneSize);

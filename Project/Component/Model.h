@@ -51,6 +51,10 @@ namespace TMF
 	private:
 		bool m_isDraw = true;
 		bool m_isUseWorldMatrix = false;
+		DirectX::SimpleMath::Vector3 m_drawPositionOffset = DirectX::SimpleMath::Vector3::Zero;
+		DirectX::SimpleMath::Vector3 m_editorDrawRotationOffset = DirectX::SimpleMath::Vector3::One;
+		DirectX::SimpleMath::Quaternion m_drawRotationOffset = DirectX::SimpleMath::Quaternion::Identity;
+
 		size_t animOffset = 0;
 		std::string m_loadFile = "asset/Gun.cmo";
 		std::string m_loadDirectory = "asset/model";
@@ -59,6 +63,6 @@ namespace TMF
 		std::shared_ptr<DirectX::Model> m_pModel;
 		std::unique_ptr<DirectX::CommonStates> m_pCommonState;
 
-		SERIALIZE_COMPONENT(m_loadFile, m_isDraw, m_loadType, m_loadDirectory);
+		SERIALIZE_COMPONENT(m_loadFile, m_isDraw, m_loadType, m_loadDirectory, m_drawPositionOffset, m_editorDrawRotationOffset);
 	};
 }

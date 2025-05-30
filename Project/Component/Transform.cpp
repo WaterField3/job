@@ -102,6 +102,31 @@ namespace TMF
 
 	DirectX::SimpleMath::Matrix Transform::GetLocalMatrix()
 	{
+		auto matrix = GetWorldMatrix();
+		if (auto pParent = m_pParent.lock())
+		{
+			matrix *= pParent->GetLocalMatrix();
+		}
+		return matrix;
+
+		//// 回転行列
+		//auto rotateMatrix = Matrix::CreateFromQuaternion(m_rotation);
+		//// 拡縮行列
+		//auto scaleMatrix = DirectX::SimpleMath::Matrix::CreateScale(m_scale);
+		//// 移動行列
+		//auto transformMatrix = DirectX::SimpleMath::Matrix::CreateTranslation(m_position);
+
+		//return scaleMatrix * rotateMatrix * transformMatrix;
+	}
+	DirectX::SimpleMath::Matrix Transform::GetWorldMatrix()
+	{
+		//auto matrix = GetLocalMatrix();
+		//if (auto pParent = m_pParent.lock())
+		//{
+		//	matrix *= pParent->GetWorldMatrix();
+		//}
+		//return matrix;
+
 		// 回転行列
 		auto rotateMatrix = Matrix::CreateFromQuaternion(m_rotation);
 		// 拡縮行列
@@ -110,15 +135,6 @@ namespace TMF
 		auto transformMatrix = DirectX::SimpleMath::Matrix::CreateTranslation(m_position);
 
 		return scaleMatrix * rotateMatrix * transformMatrix;
-	}
-	DirectX::SimpleMath::Matrix Transform::GetWorldMatrix()
-	{
-		auto matrix = GetLocalMatrix();
-		if (auto pParent = m_pParent.lock())
-		{
-			matrix *= pParent->GetWorldMatrix();
-		}
-		return matrix;
 
 	}
 	DirectX::SimpleMath::Matrix Transform::GetMatrixRotation()
@@ -178,6 +194,7 @@ namespace TMF
 				pLockRigidbody->SetRigidBodyTranform(m_position, m_rotation);
 			}
 		}
+
 	}
 	void Transform::ChangeGhostObjectTransform()
 	{
@@ -192,7 +209,25 @@ namespace TMF
 	}
 	void Transform::UpdateCollisionObjectTransform()
 	{
+		// 変更があったら子オブジェクトのコライダーの座標も変更する　親の座標と子の座標を計算した
+
 		ChangeRigidBodyTransform();
 		ChangeGhostObjectTransform();
+		if (auto pLockOnwer = m_pOwner.lock())
+		{
+			auto pChildren = pLockOnwer->GetChildren();
+			auto size = pChildren.size();
+			for (auto i = 0; i < size; i++)
+			{
+				if (auto pLockChild = pChildren[i].lock())
+				{
+					auto pChildTransform = pLockChild->GetComponent<Transform>();
+					if (auto pLockChildTransform = pChildTransform.lock())
+					{
+						pLockChildTransform->UpdateCollisionObjectTransform();
+					}
+				}
+			}
+		}
 	}
 }
